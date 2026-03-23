@@ -10,23 +10,32 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="LifeReady">
 <title>LifeReady — Life Skills Suite</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════
-   LifeReady Hub v1.0
-   The control center — one place, all skills
-   ═══════════════════════════════════════════════ */
+
+/* ── SYSTEM FONT FALLBACKS (loads instantly, no network needed) ── */
 :root {
-  --bg:#0d1117; --bg2:#161b22; --bg3:#1c2330; --bg4:#21262d;
-  --border:#2a3040; --border2:#1e2530;
-  --text:#e8edf5; --text2:#8b98b0; --text3:#4a5568; --text4:#2d3748;
-  --amber:#ffbb33; --amber2:#e6a800; --amber-light:rgba(255,187,51,0.12);
-  --shadow:0 8px 32px rgba(0,0,0,0.6);
-  --radius:18px; --radius-sm:12px;
-  --font-mono:'Space Mono','Courier New',monospace;
-  --font-body:'Nunito',-apple-system,sans-serif;
-  --font-display:'Fredoka One',cursive;
-  --font-sig:'Dancing Script',cursive;
+–font-body: ‘Nunito’, -apple-system, BlinkMacSystemFont, ‘Segoe UI’, Roboto, sans-serif;
+–font-mono: ‘Space Mono’, ui-monospace, ‘SF Mono’, ‘Cascadia Code’, ‘Courier New’, monospace;
+}
+
+/* ═══════════════════════════════════════════════
+LifeReady Hub v1.0
+The control center — one place, all skills
+═══════════════════════════════════════════════ */
+:root {
+–bg:#0d1117; –bg2:#161b22; –bg3:#1c2330; –bg4:#21262d;
+–border:#2a3040; –border2:#1e2530;
+–text:#e8edf5; –text2:#8b98b0; –text3:#4a5568; –text4:#2d3748;
+–amber:#ffbb33; –amber2:#e6a800; –amber-light:rgba(255,187,51,0.12);
+–shadow:0 8px 32px rgba(0,0,0,0.6);
+–radius:18px; –radius-sm:12px;
+–font-mono:‘Space Mono’,‘Courier New’,monospace;
+–font-body:‘Nunito’,-apple-system,sans-serif;
+–font-display:‘Fredoka One’,cursive;
+–font-sig:‘Dancing Script’,cursive;
 
 /* App colors */
 –cash:#00c851;   –cash-glow:rgba(0,200,81,0.25);   –cash-light:rgba(0,200,81,0.10);

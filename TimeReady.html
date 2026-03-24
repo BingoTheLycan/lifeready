@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" style="background:#0d1117">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -12,59 +12,68 @@
 <meta name="apple-mobile-web-app-title" content="TimeReady">
 <title>TimeReady — Time Skills Trainer</title>
 <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22TimeReady%22,%22short_name%22:%22TimeReady%22,%22description%22:%22Time skills trainer for everyone%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%230a0e1a%22,%22theme_color%22:%22%230066ff%22,%22orientation%22:%22portrait%22,%22icons%22:[{%22src%22:%22data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230a0e1a'/%3E%3Ccircle cx='256' cy='256' r='180' fill='none' stroke='%230066ff' stroke-width='20'/%3E%3Cline x1='256' y1='256' x2='256' y2='110' stroke='%230066ff' stroke-width='16' stroke-linecap='round'/%3E%3Cline x1='256' y1='256' x2='340' y2='290' stroke='%2300ccff' stroke-width='12' stroke-linecap='round'/%3E%3C/svg%3E%22,%22sizes%22:%22512x512%22,%22type%22:%22image/svg+xml%22}]}">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════
-   TimeReady v1.0 — Time Skills Trainer
-   Deep space clock aesthetic — blue/cyan on dark navy
-   ═══════════════════════════════════════════════════ */
+
+/* ── SYSTEM FONT FALLBACKS (loads instantly, no network needed) ── */
 :root {
-  --blue:#0066ff; --blue2:#0044cc; --blue3:#003399;
-  --blue-glow:rgba(0,102,255,0.3); --blue-light:rgba(0,102,255,0.12);
-  --cyan:#00ccff; --cyan2:#00aadd; --cyan-glow:rgba(0,204,255,0.25);
-  --amber:#ffbb33; --amber2:#e6a800; --amber-light:rgba(255,187,51,0.15);
-  --red:#ff4444; --red2:#cc0000; --red-light:rgba(255,68,68,0.15);
-  --green:#2288ff; --green-glow:rgba(34,136,255,0.28); --green-light:rgba(34,136,255,0.12);
-  --purple:#bb86fc; --orange:#ff9800;
-  --bg:#0a0e1a; --bg2:#0f1628; --bg3:#141d35; --bg4:#1a2540;
-  --panel:#0d1530; --panel2:#111a38;
-  --border:#1e2d55; --border2:#162245;
-  --text:#e8f0ff; --text2:#8fa8d4; --text3:#4a6090; --text4:#2a3a60;
-  --display-bg:#040810; --display-text:#00ccff; --display-dim:#003355;
-  --shadow:0 8px 32px rgba(0,0,0,0.7);
-  --glow:0 0 24px rgba(0,102,255,0.4);
-  --radius:16px; --radius-sm:10px; --radius-xs:6px;
-  --font-mono:'Space Mono',monospace;
-  --font-body:'Nunito',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  --font-display:'Fredoka One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;
-  --base-font:16px; --btn-min:52px;
+–font-body: ‘Nunito’, -apple-system, BlinkMacSystemFont, ‘Segoe UI’, Roboto, sans-serif;
+–font-mono: ‘Space Mono’, ui-monospace, ‘SF Mono’, ‘Cascadia Code’, ‘Courier New’, monospace;
 }
-body.large-text  { --base-font:19px; --btn-min:64px; }
-body.large-btns  { --btn-min:68px; }
+
+/* ═══════════════════════════════════════════════════
+TimeReady v1.0 — Time Skills Trainer
+Deep space clock aesthetic — blue/cyan on dark navy
+═══════════════════════════════════════════════════ */
+:root {
+–blue:#0066ff; –blue2:#0044cc; –blue3:#003399;
+–blue-glow:rgba(0,102,255,0.3); –blue-light:rgba(0,102,255,0.12);
+–cyan:#00ccff; –cyan2:#00aadd; –cyan-glow:rgba(0,204,255,0.25);
+–amber:#ffbb33; –amber2:#e6a800; –amber-light:rgba(255,187,51,0.15);
+–red:#ff4444; –red2:#cc0000; –red-light:rgba(255,68,68,0.15);
+–green:#2288ff; –green-glow:rgba(34,136,255,0.28); –green-light:rgba(34,136,255,0.12);
+–purple:#bb86fc; –orange:#ff9800;
+–bg:#0a0e1a; –bg2:#0f1628; –bg3:#141d35; –bg4:#1a2540;
+–panel:#0d1530; –panel2:#111a38;
+–border:#1e2d55; –border2:#162245;
+–text:#e8f0ff; –text2:#8fa8d4; –text3:#4a6090; –text4:#2a3a60;
+–display-bg:#040810; –display-text:#00ccff; –display-dim:#003355;
+–shadow:0 8px 32px rgba(0,0,0,0.7);
+–glow:0 0 24px rgba(0,102,255,0.4);
+–radius:16px; –radius-sm:10px; –radius-xs:6px;
+–font-mono:‘Space Mono’,monospace;
+–font-body:‘Nunito’,-apple-system,BlinkMacSystemFont,‘Segoe UI’,sans-serif;
+–font-display:‘Fredoka One’,‘Arial Rounded MT Bold’,‘Trebuchet MS’,sans-serif;
+–base-font:16px; –btn-min:52px;
+}
+body.large-text  { –base-font:19px; –btn-min:64px; }
+body.large-btns  { –btn-min:68px; }
 /* colorblind mode handled by SVG filters — see cb-* classes */
 #page-wrap{
-  position:fixed;
-  inset:0;
-  overflow-y:auto;
-  overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
+position:fixed;
+inset:0;
+overflow-y:auto;
+overflow-x:hidden;
+-webkit-overflow-scrolling:touch;
 }
 /* colorblind filter applied via JS on html element */
 body.no-motion * { animation:none!important; transition:none!important; }
 body.hi-contrast {
-  --bg:#000; --bg2:#000; --bg3:#111; --bg4:#111;
-  --panel:#000; --panel2:#000; --border:#fff; --border2:#fff;
-  --text:#fff; --text2:#fff; --text3:#ccc; --text4:#aaa;
-  --blue:#4499ff; --cyan:#00ffff; --blue-glow:rgba(68,153,255,.4);
-  --display-bg:#000; --display-text:#00ffff; --display-dim:#005566;
+–bg:#000; –bg2:#000; –bg3:#111; –bg4:#111;
+–panel:#000; –panel2:#000; –border:#fff; –border2:#fff;
+–text:#fff; –text2:#fff; –text3:#ccc; –text4:#aaa;
+–blue:#4499ff; –cyan:#00ffff; –blue-glow:rgba(68,153,255,.4);
+–display-bg:#000; –display-text:#00ffff; –display-dim:#005566;
 }
 body.light-mode {
-  --bg:#f0f4ff; --bg2:#ffffff; --bg3:#e4ecff; --bg4:#d8e4ff;
-  --panel:#dce8ff; --panel2:#ccd8ff;
-  --border:#99bbff; --border2:#88aaff;
-  --text:#0a1433; --text2:#1a3066; --text3:#4466aa; --text4:#8899cc;
-  --blue:#0044cc; --blue2:#003399; --blue-glow:rgba(0,68,204,.2);
-  --cyan:#0088bb; --display-bg:#1a2a44; --display-text:#00ccff; --display-dim:#224466;
+–bg:#f0f4ff; –bg2:#ffffff; –bg3:#e4ecff; –bg4:#d8e4ff;
+–panel:#dce8ff; –panel2:#ccd8ff;
+–border:#99bbff; –border2:#88aaff;
+–text:#0a1433; –text2:#1a3066; –text3:#4466aa; –text4:#8899cc;
+–blue:#0044cc; –blue2:#003399; –blue-glow:rgba(0,68,204,.2);
+–cyan:#0088bb; –display-bg:#1a2a44; –display-text:#00ccff; –display-dim:#224466;
 }
 body.light-mode::after{opacity:.2;}
 
@@ -474,7 +483,7 @@ main{grid-template-columns:1fr 300px;}
 </svg>
 
 </head>
-<body>
+<body style="background:#0d1117;color:#e8edf5;min-height:100vh">
 <div id="page-wrap">
 
 <header class="hdr">
@@ -3006,7 +3015,7 @@ function printReport(i){
   const html=`<!DOCTYPE html><html><head><title>Progress Report — ${cl.name}</title>
   <style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;padding:32px;max-width:720px;color:#222;font-size:14px;}.header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;padding-bottom:14px;border-bottom:3px solid #0066ff;}.header-title{font-size:1.4rem;font-weight:900;color:#0066ff;margin-bottom:4px;}.header-badge{background:#e8f0ff;border:2px solid #0066ff;border-radius:8px;padding:8px 14px;text-align:center;font-size:.75rem;color:#0066ff;font-weight:700;}h2{color:#333;font-size:.92rem;font-weight:900;margin:20px 0 8px;text-transform:uppercase;border-left:4px solid #0066ff;padding-left:8px;}table{width:100%;border-collapse:collapse;margin-top:4px;font-size:.84rem;}th,td{padding:8px 10px;border:1px solid #ddd;text-align:left;}th{background:#e8f0ff;font-weight:700;}tr:nth-child(even){background:#fafafa;}.bar-wrap{background:#e8e8e8;border-radius:4px;height:8px;overflow:hidden;min-width:80px;}.bar-fill{height:100%;background:#0066ff;border-radius:4px;}.goal-row{background:#fff8e1;border-left:4px solid #ffb300;padding:10px 14px;margin:6px 0;border-radius:4px;font-size:.84rem;}.footer{margin-top:28px;padding-top:12px;border-top:1px solid #ddd;font-size:.72rem;color:#aaa;display:flex;justify-content:space-between;}.print-btn{background:#0066ff;color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:.9rem;font-weight:700;cursor:pointer;margin-bottom:20px;}.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch;}.skill-row{background:#f5f8ff;border:1px solid #dde8ff;border-radius:6px;padding:10px 12px;}.skill-name{font-size:.78rem;font-weight:700;color:#555;margin-bottom:5px;}.skill-pct{float:right;color:#0066ff;}@media print{.print-btn{display:none;}}.cb-mode-btn{background:var(--panel);border:1px solid var(--border);border-radius:6px;color:var(--text2);font-family:var(--font-mono);font-size:.65rem;padding:6px 4px;cursor:pointer;transition:all .2s;letter-spacing:.5px;font-weight:600;}
 .cb-mode-btn.on{background:var(--green);border-color:var(--green);color:#fff;}
-</style></head><body>
+</style></head><body style="background:#0d1117;color:#e8edf5;min-height:100vh">
 
 <button class="print-btn" onclick="window.print()">🖨️ Print This Report</button>
 
@@ -3924,7 +3933,7 @@ rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-b
 });
 const w=window.open(’’,’_blank’);
 if(!w){openHint(‘Pop-up Blocked’,’<p style="color:var(--text2);font-size:.88rem">Allow pop-ups for this page then try again.</p>’,null,null);return;}
-w.document.write(`<!DOCTYPE html><html><head><title>${appName} — Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto}@media print{.noprint{display:none}}</style></head><body> <div class="noprint" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#222;color:#fff;border:none;border-radius:6px;cursor:pointer">🖨 Print / Save as PDF</button></div> <h2 style="margin-bottom:4px">${appName} — Coach Report</h2> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows}</bo`+`dy></ht`+`ml>`);
+w.document.write(`<!DOCTYPE html><html><head><title>${appName} — Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto}@media print{.noprint{display:none}}</style></head><body style="background:#0d1117;color:#e8edf5;min-height:100vh"> <div class="noprint" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#222;color:#fff;border:none;border-radius:6px;cursor:pointer">🖨 Print / Save as PDF</button></div> <h2 style="margin-bottom:4px">${appName} — Coach Report</h2> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows}</bo`+`dy></ht`+`ml>`);
 w.document.close();
 }
 

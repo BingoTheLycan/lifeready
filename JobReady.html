@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" style="background:#0d1117">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -11,43 +11,52 @@
 <meta name="apple-mobile-web-app-title" content="JobReady">
 <title>JobReady — Workplace Readiness Trainer</title>
 <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22JobReady%22,%22short_name%22:%22JobReady%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%23120e00%22,%22theme_color%22:%22%23c8830a%22}">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --gold:#c8830a;--gold2:#a86800;--gold3:#6a4200;
-  --gold-glow:rgba(200,131,10,.3);--gold-light:rgba(200,131,10,.12);
-  --amber:#ffbb33;--amber2:#e6a800;--amber-light:rgba(255,187,51,.15);
-  --green:#d4900a; --green-glow:rgba(212,144,10,0.28);--green-light:rgba(212,144,10,.12);
-  --red:#ff4444;--red-light:rgba(255,68,68,.15);
-  --blue:#33b5e5;--blue-light:rgba(51,181,229,.15);
-  --purple:#bb86fc;--orange:#ff9800;
-  --bg:#120e00;--bg2:#1c1500;--bg3:#241c00;--bg4:#2c2200;
-  --panel:#201700;--panel2:#281e00;
-  --border:#3e3000;--border2:#302400;
-  --text:#fff8e8;--text2:#c8a86a;--text3:#7a6030;--text4:#4a3a10;
-  --display-bg:#080500;--display-text:#c8830a;--display-dim:#4a3000;
-  --shadow:0 8px 32px rgba(0,0,0,.7);
-  --glow:0 0 24px rgba(200,131,10,.4);
-  --radius:16px;--radius-sm:10px;--radius-xs:6px;
-  --font-mono:'Space Mono',monospace;
-  --font-body:'Nunito',-apple-system,sans-serif;
-  --font-display:'Fredoka One','Arial Rounded MT Bold',sans-serif;
-  --base-font:16px;--btn-min:52px;
+
+/* ── SYSTEM FONT FALLBACKS (loads instantly, no network needed) ── */
+:root {
+–font-body: ‘Nunito’, -apple-system, BlinkMacSystemFont, ‘Segoe UI’, Roboto, sans-serif;
+–font-mono: ‘Space Mono’, ui-monospace, ‘SF Mono’, ‘Cascadia Code’, ‘Courier New’, monospace;
 }
-body.large-text{--base-font:19px;--btn-min:64px;}
-body.large-btns{--btn-min:68px;}
+
+:root{
+–gold:#c8830a;–gold2:#a86800;–gold3:#6a4200;
+–gold-glow:rgba(200,131,10,.3);–gold-light:rgba(200,131,10,.12);
+–amber:#ffbb33;–amber2:#e6a800;–amber-light:rgba(255,187,51,.15);
+–green:#d4900a; –green-glow:rgba(212,144,10,0.28);–green-light:rgba(212,144,10,.12);
+–red:#ff4444;–red-light:rgba(255,68,68,.15);
+–blue:#33b5e5;–blue-light:rgba(51,181,229,.15);
+–purple:#bb86fc;–orange:#ff9800;
+–bg:#120e00;–bg2:#1c1500;–bg3:#241c00;–bg4:#2c2200;
+–panel:#201700;–panel2:#281e00;
+–border:#3e3000;–border2:#302400;
+–text:#fff8e8;–text2:#c8a86a;–text3:#7a6030;–text4:#4a3a10;
+–display-bg:#080500;–display-text:#c8830a;–display-dim:#4a3000;
+–shadow:0 8px 32px rgba(0,0,0,.7);
+–glow:0 0 24px rgba(200,131,10,.4);
+–radius:16px;–radius-sm:10px;–radius-xs:6px;
+–font-mono:‘Space Mono’,monospace;
+–font-body:‘Nunito’,-apple-system,sans-serif;
+–font-display:‘Fredoka One’,‘Arial Rounded MT Bold’,sans-serif;
+–base-font:16px;–btn-min:52px;
+}
+body.large-text{–base-font:19px;–btn-min:64px;}
+body.large-btns{–btn-min:68px;}
 /* colorblind mode handled by SVG filters — see cb-* classes */
 #page-wrap{
-  position:fixed;
-  inset:0;
-  overflow-y:auto;
-  overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
+position:fixed;
+inset:0;
+overflow-y:auto;
+overflow-x:hidden;
+-webkit-overflow-scrolling:touch;
 }
 /* colorblind filter applied via JS on html element */
 body.no-motion *{animation:none!important;transition:none!important;}
-body.hi-contrast{--bg:#000;--bg2:#000;--bg3:#111;--bg4:#111;--panel:#000;--panel2:#000;--border:#fff;--border2:#fff;--text:#fff;--text2:#fff;--text3:#ccc;--gold:#ffd700;--gold2:#ccaa00;--display-bg:#000;--display-text:#ffd700;}
-body.light-mode{--bg:#fffbf0;--bg2:#fff;--bg3:#fff5d6;--bg4:#ffedba;--panel:#fff0c0;--panel2:#ffe89a;--border:#d4aa44;--border2:#c09030;--text:#1a1000;--text2:#3a2800;--text3:#7a5a00;--text4:#aa8800;--gold:#8a5e00;--gold2:#6a4600;--display-bg:#1a1000;--display-text:#c8830a;}
+body.hi-contrast{–bg:#000;–bg2:#000;–bg3:#111;–bg4:#111;–panel:#000;–panel2:#000;–border:#fff;–border2:#fff;–text:#fff;–text2:#fff;–text3:#ccc;–gold:#ffd700;–gold2:#ccaa00;–display-bg:#000;–display-text:#ffd700;}
+body.light-mode{–bg:#fffbf0;–bg2:#fff;–bg3:#fff5d6;–bg4:#ffedba;–panel:#fff0c0;–panel2:#ffe89a;–border:#d4aa44;–border2:#c09030;–text:#1a1000;–text2:#3a2800;–text3:#7a5a00;–text4:#aa8800;–gold:#8a5e00;–gold2:#6a4600;–display-bg:#1a1000;–display-text:#c8830a;}
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
@@ -373,7 +382,7 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
 </svg>
 
 </head>
-<body>
+<body style="background:#0d1117;color:#e8edf5;min-height:100vh">
 <div id="page-wrap">
 
 <header class="hdr">
@@ -3509,7 +3518,7 @@ const sessRows=(cl.sessions||[]).slice(-15).reverse().map(s=>`<tr><td>${s.date}<
 const w=window.open(’’,’_blank’);
 w.document.write(`<!DOCTYPE html><html><head><title>JobReady — ${cl.name}</title><style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;padding:32px;max-width:720px;color:#222;font-size:14px;}.header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;padding-bottom:14px;border-bottom:3px solid #d4900a;}.header-title{font-size:1.4rem;font-weight:900;color:#d4900a;margin-bottom:4px;}.header-badge{background:#fff8e1;border:2px solid #d4900a;border-radius:8px;padding:8px 14px;text-align:center;font-size:.75rem;color:#d4900a;font-weight:700;}h2{color:#333;font-size:.92rem;font-weight:900;margin:20px 0 8px;text-transform:uppercase;border-left:4px solid #d4900a;padding-left:8px;}table{width:100%;border-collapse:collapse;margin-top:4px;font-size:.84rem;}th,td{padding:8px 10px;border:1px solid #ddd;text-align:left;}th{background:#fff8e1;font-weight:700;}tr:nth-child(even){background:#fafafa;}.bar-wrap{background:#e8e8e8;border-radius:4px;height:8px;overflow:hidden;min-width:80px;}.bar-fill{height:100%;background:#d4900a;border-radius:4px;}.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch;}.skill-row{background:#f5f5f5;border:1px solid #e8e8e8;border-radius:6px;padding:10px 12px;}.skill-name{font-size:.78rem;font-weight:700;color:#555;margin-bottom:5px;}.skill-pct{float:right;color:#d4900a;}.footer{margin-top:28px;padding-top:12px;border-top:1px solid #ddd;font-size:.72rem;color:#aaa;display:flex;justify-content:space-between;}.print-btn{background:#d4900a;color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:.9rem;font-weight:700;cursor:pointer;margin-bottom:20px;}@media print{.print-btn{display:none;}}.cb-mode-btn{background:var(–panel);border:1px solid var(–border);border-radius:6px;color:var(–text2);font-family:var(–font-mono);font-size:.65rem;padding:6px 4px;cursor:pointer;transition:all .2s;letter-spacing:.5px;font-weight:600;}
 .cb-mode-btn.on{background:var(–green);border-color:var(–green);color:#fff;}
-</style></head><body>
+</style></head><body style="background:#0d1117;color:#e8edf5;min-height:100vh">
 <button class="print-btn" onclick="window.print()">🖨 Print Report</button>
 
   <div class="header"><div><div class="header-title">💼 JobReady Progress Report</div><div>${cl.name}</div><div style="font-size:.8rem;color:#666;margin-top:4px">${cl.program||''} · Level: ${(cl.level||'').toUpperCase()}</div></div><div class="header-badge">Generated<br>${today()}</div></div>
@@ -3554,7 +3563,7 @@ rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-b
 });
 const w=window.open(’’,’_blank’);
 if(!w){openHint(‘Pop-up Blocked’,’<p style="color:var(--text2);font-size:.88rem">Allow pop-ups then try again.</p>’,null,null);return;}
-w.document.write(`<!DOCTYPE html><html><head><title>${appName} — Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto}@media print{.noprint{display:none}}</style></head><body> <div class="noprint" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#222;color:#fff;border:none;border-radius:6px;cursor:pointer">🖨 Print / Save as PDF</button></div> <h2>${appName} — Coach Report</h2> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows}</bo`+`dy></ht`+`ml>`);
+w.document.write(`<!DOCTYPE html><html><head><title>${appName} — Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto}@media print{.noprint{display:none}}</style></head><body style="background:#0d1117;color:#e8edf5;min-height:100vh"> <div class="noprint" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#222;color:#fff;border:none;border-radius:6px;cursor:pointer">🖨 Print / Save as PDF</button></div> <h2>${appName} — Coach Report</h2> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows}</bo`+`dy></ht`+`ml>`);
 w.document.close();
 }
 

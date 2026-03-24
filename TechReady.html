@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" style="background:#0d1117">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -25,67 +25,76 @@
     {%22src%22:%22data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230d1117'/%3E%3Ctext x='256' y='310' font-family='monospace' font-size='200' font-weight='bold' text-anchor='middle' fill='%2300c851'%3E%24%3C/text%3E%3C/svg%3E%22,%22sizes%22:%22512x512%22,%22type%22:%22image/svg+xml%22}
   ]
 }">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════════
-   TechReady v1.0
-   Warm home aesthetic with accessibility focus
-   ═══════════════════════════════════════════════════════ */
+
+/* ── SYSTEM FONT FALLBACKS (loads instantly, no network needed) ── */
 :root {
-  --green:#cc2200; --green2:#991a00; --green3:#4a1070;
-  --green-glow:rgba(204,34,0,0.28); --green-light:rgba(204,34,0,0.12);
-  --amber:#ffbb33; --amber2:#e6a800; --amber-light:rgba(255,187,51,0.15);
-  --red:#ff4444; --red2:#cc0000; --red-light:rgba(255,68,68,0.15);
-  --blue:#33b5e5; --blue-light:rgba(51,181,229,0.15);
-  --purple:#bb86fc; --orange:#ff9800;
-  --bg:#0a070f; --bg2:#161b22; --bg3:#1c2330; --bg4:#21262d;
-  --panel:#150d1f; --panel2:#1e1230;
-  --border:#2a1a40; --border2:#201030;
-  --text:#f0eaf8; --text2:#b89acc; --text3:#6a4a8a; --text4:#4a2a6a;
-  --display-bg:#0f0804; --display-text:#ff8833; --display-dim:#6b3300;
-  --shadow:0 8px 32px rgba(0,0,0,0.6);
-  --glow:0 0 24px rgba(204,34,0,0.35);
-  --radius:16px; --radius-sm:10px; --radius-xs:6px;
-  --font-mono:'Space Mono','Courier New',Courier,monospace;
-  --font-body:'Nunito',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  --font-display:'Fredoka One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;
-  --base-font:16px; --btn-min:52px; --coin-scale:1;
+–font-body: ‘Nunito’, -apple-system, BlinkMacSystemFont, ‘Segoe UI’, Roboto, sans-serif;
+–font-mono: ‘Space Mono’, ui-monospace, ‘SF Mono’, ‘Cascadia Code’, ‘Courier New’, monospace;
 }
-body.large-text  { --base-font:19px; --btn-min:64px; --coin-scale:1.25; }
-body.large-btns  { --btn-min:68px; }
+
+/* ═══════════════════════════════════════════════════════
+TechReady v1.0
+Warm home aesthetic with accessibility focus
+═══════════════════════════════════════════════════════ */
+:root {
+–green:#cc2200; –green2:#991a00; –green3:#4a1070;
+–green-glow:rgba(204,34,0,0.28); –green-light:rgba(204,34,0,0.12);
+–amber:#ffbb33; –amber2:#e6a800; –amber-light:rgba(255,187,51,0.15);
+–red:#ff4444; –red2:#cc0000; –red-light:rgba(255,68,68,0.15);
+–blue:#33b5e5; –blue-light:rgba(51,181,229,0.15);
+–purple:#bb86fc; –orange:#ff9800;
+–bg:#0a070f; –bg2:#161b22; –bg3:#1c2330; –bg4:#21262d;
+–panel:#150d1f; –panel2:#1e1230;
+–border:#2a1a40; –border2:#201030;
+–text:#f0eaf8; –text2:#b89acc; –text3:#6a4a8a; –text4:#4a2a6a;
+–display-bg:#0f0804; –display-text:#ff8833; –display-dim:#6b3300;
+–shadow:0 8px 32px rgba(0,0,0,0.6);
+–glow:0 0 24px rgba(204,34,0,0.35);
+–radius:16px; –radius-sm:10px; –radius-xs:6px;
+–font-mono:‘Space Mono’,‘Courier New’,Courier,monospace;
+–font-body:‘Nunito’,-apple-system,BlinkMacSystemFont,‘Segoe UI’,sans-serif;
+–font-display:‘Fredoka One’,‘Arial Rounded MT Bold’,‘Trebuchet MS’,sans-serif;
+–base-font:16px; –btn-min:52px; –coin-scale:1;
+}
+body.large-text  { –base-font:19px; –btn-min:64px; –coin-scale:1.25; }
+body.large-btns  { –btn-min:68px; }
 /* colorblind mode handled by SVG filters — see cb-protanopia/deuteranopia/tritanopia */
 #page-wrap{
-  position:fixed;
-  inset:0;
-  overflow-y:auto;
-  overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
+position:fixed;
+inset:0;
+overflow-y:auto;
+overflow-x:hidden;
+-webkit-overflow-scrolling:touch;
 }
 /* colorblind filter applied via JS on html element */
 body.no-motion * { animation:none!important; transition:none!important; }
 body.hi-contrast {
-  --bg:#000; --bg2:#000; --bg3:#111; --bg4:#111;
-  --panel:#000; --panel2:#000;
-  --border:#fff; --border2:#fff;
-  --text:#fff; --text2:#fff; --text3:#ccc; --text4:#aaa;
-  --green:#ff8833; --green2:#cc6600; --green3:#994400;
-  --green-glow:rgba(255,136,51,.4); --green-light:rgba(255,136,51,.15);
-  --amber:#ffff00; --amber2:#cccc00; --amber-light:rgba(255,255,0,.2);
-  --red:#ff4444; --red2:#cc0000;
-  --display-bg:#000; --display-text:#ff8833; --display-dim:#994400;
-  --shadow:0 4px 12px rgba(0,0,0,.8);
+–bg:#000; –bg2:#000; –bg3:#111; –bg4:#111;
+–panel:#000; –panel2:#000;
+–border:#fff; –border2:#fff;
+–text:#fff; –text2:#fff; –text3:#ccc; –text4:#aaa;
+–green:#ff8833; –green2:#cc6600; –green3:#994400;
+–green-glow:rgba(255,136,51,.4); –green-light:rgba(255,136,51,.15);
+–amber:#ffff00; –amber2:#cccc00; –amber-light:rgba(255,255,0,.2);
+–red:#ff4444; –red2:#cc0000;
+–display-bg:#000; –display-text:#ff8833; –display-dim:#994400;
+–shadow:0 4px 12px rgba(0,0,0,.8);
 }
 body.light-mode {
-  --bg:#f4f7f4; --bg2:#ffffff; --bg3:#e8f0e8; --bg4:#dde8dd;
-  --panel:#ede8e0; --panel2:#e8d4c8;
-  --border:#ccb898; --border2:#bf9a7a;
-  --text:#2e1a0a; --text2:#4a2d10; --text3:#7a5a3a; --text4:#aa8a6a;
-  --green:#b85a00; --green2:#8f4400; --green3:#e8d4c8;
-  --green-glow:rgba(184,90,0,.2); --green-light:rgba(184,90,0,.1);
-  --amber:#b86e00; --amber2:#8f5500; --amber-light:rgba(184,110,0,.12);
-  --red:#c0392b; --red2:#96261f; --red-light:rgba(192,57,43,.1);
-  --display-bg:#2e1a0a; --display-text:#ff8833; --display-dim:#5a2d0a;
-  --shadow:0 4px 16px rgba(0,0,0,.12);
+–bg:#f4f7f4; –bg2:#ffffff; –bg3:#e8f0e8; –bg4:#dde8dd;
+–panel:#ede8e0; –panel2:#e8d4c8;
+–border:#ccb898; –border2:#bf9a7a;
+–text:#2e1a0a; –text2:#4a2d10; –text3:#7a5a3a; –text4:#aa8a6a;
+–green:#b85a00; –green2:#8f4400; –green3:#e8d4c8;
+–green-glow:rgba(184,90,0,.2); –green-light:rgba(184,90,0,.1);
+–amber:#b86e00; –amber2:#8f5500; –amber-light:rgba(184,110,0,.12);
+–red:#c0392b; –red2:#96261f; –red-light:rgba(192,57,43,.1);
+–display-bg:#2e1a0a; –display-text:#ff8833; –display-dim:#5a2d0a;
+–shadow:0 4px 16px rgba(0,0,0,.12);
 }
 /* Keep scanlines subtle in light mode */
 body.light-mode::after{opacity:.3;}
@@ -675,7 +684,7 @@ max-width:320px;width:calc(100% - 32px);
 </svg>
 
 </head>
-<body>
+<body style="background:#0d1117;color:#e8edf5;min-height:100vh">
 <div id="page-wrap">
 
 <header class="hdr">
@@ -3629,6 +3638,13 @@ function printReport(i){
   const goals=(cl.goals||[]);
   const html=`<!DOCTYPE html><html><head><title>Progress Report — ${cl.name}</title>
   <style>
+
+/* ── SYSTEM FONT FALLBACKS (loads instantly, no network needed) ── */
+:root {
+  --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'SF Mono', 'Cascadia Code', 'Courier New', monospace;
+}
+
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:Arial,sans-serif;padding:32px;max-width:720px;color:#222;font-size:14px;}
     .header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;padding-bottom:14px;border-bottom:3px solid #00a041;}
@@ -3657,7 +3673,7 @@ function printReport(i){
     .prompt-ind{color:#00a041;} .prompt-ver{color:#2196F3;} .prompt-ges{color:#FF9800;} .prompt-phy{color:#FF5722;} .prompt-hoh{color:#F44336;}
   .cb-mode-btn{background:var(--panel);border:1px solid var(--border);border-radius:6px;color:var(--text2);font-family:var(--font-mono);font-size:.65rem;padding:6px 4px;cursor:pointer;transition:all .2s;letter-spacing:.5px;font-weight:600;}
 .cb-mode-btn.on{background:var(--green);border-color:var(--green);color:#fff;}
-</style></head><body>
+</style></head><body style="background:#0d1117;color:#e8edf5;min-height:100vh">
 
 <button class="print-btn" onclick="window.print()">🖨️ Print This Report</button>
 
@@ -4080,7 +4096,7 @@ rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-b
 });
 const w=window.open(’’,’_blank’);
 if(!w){openHint(‘Pop-up Blocked’,’<p style="color:var(--text2);font-size:.88rem">Please allow pop-ups for this page, then try again.</p>’,null,null);return;}
-w.document.write(`<!DOCTYPE html><html><head><title>${appName} — Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}@media print{.no-print{display:none}}</style></head><body> <div class="no-print" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">🖨️ Print / Save as PDF</button></div> <h1>${appName} — Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
+w.document.write(`<!DOCTYPE html><html><head><title>${appName} — Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}@media print{.no-print{display:none}}</style></head><body style="background:#0d1117;color:#e8edf5;min-height:100vh"> <div class="no-print" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">🖨️ Print / Save as PDF</button></div> <h1>${appName} — Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
 w.document.close();
 }
 

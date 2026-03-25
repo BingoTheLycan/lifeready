@@ -1,72 +1,63 @@
 <!DOCTYPE html>
 
-<html lang="en" style="background:#0d1117">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0d1117">
-<meta name="description" content="LifeReady — Free life skills trainers for everyone. CashReady, TimeReady, JobReady, HomeReady, TravelReady, SocialReady. Built with love, for real life.">
+<meta name="description" content="LifeReady - Free life skills trainers for everyone. CashReady, TimeReady, JobReady, HomeReady, TravelReady, SocialReady, HealthReady, and TechReady. Built with love, for real life.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="LifeReady">
-<title>LifeReady — Life Skills Suite</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<title>LifeReady - Life Skills Suite</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
-
-/* ── SYSTEM FONT FALLBACKS (loads instantly, no network needed) ── */
-:root {
-–font-body: ‘Nunito’, -apple-system, BlinkMacSystemFont, ‘Segoe UI’, Roboto, sans-serif;
-–font-mono: ‘Space Mono’, ui-monospace, ‘SF Mono’, ‘Cascadia Code’, ‘Courier New’, monospace;
-}
-
 /* ═══════════════════════════════════════════════
-LifeReady Hub v1.0
-The control center — one place, all skills
-═══════════════════════════════════════════════ */
+   LifeReady Hub v1.0
+   The control center -- one place, all skills
+   ═══════════════════════════════════════════════ */
 :root {
-–bg:#0d1117; –bg2:#161b22; –bg3:#1c2330; –bg4:#21262d;
-–border:#2a3040; –border2:#1e2530;
-–text:#e8edf5; –text2:#8b98b0; –text3:#4a5568; –text4:#2d3748;
-–amber:#ffbb33; –amber2:#e6a800; –amber-light:rgba(255,187,51,0.12);
-–shadow:0 8px 32px rgba(0,0,0,0.6);
-–radius:18px; –radius-sm:12px;
-–font-mono:‘Space Mono’,‘Courier New’,monospace;
-–font-body:‘Nunito’,-apple-system,sans-serif;
-–font-display:‘Fredoka One’,cursive;
-–font-sig:‘Dancing Script’,cursive;
+  --bg:#0d1117; --bg2:#161b22; --bg3:#1c2330; --bg4:#21262d;
+  --border:#2a3040; --border2:#1e2530;
+  --text:#e8edf5; --text2:#8b98b0; --text3:#4a5568; --text4:#2d3748;
+  --amber:#ffbb33; --amber2:#e6a800; --amber-light:rgba(255,187,51,0.12);
+  --shadow:0 8px 32px rgba(0,0,0,0.6);
+  --radius:18px; --radius-sm:12px;
+  --font-mono:'Space Mono','Courier New',monospace;
+  --font-body:'Nunito',-apple-system,sans-serif;
+  --font-display:'Fredoka One',cursive;
+  --font-sig:'Dancing Script',cursive;
 
 /* App colors */
-–cash:#00c851;   –cash-glow:rgba(0,200,81,0.25);   –cash-light:rgba(0,200,81,0.10);
-–time:#2288ff;   –time-glow:rgba(34,136,255,0.25);  –time-light:rgba(34,136,255,0.10);
-–job:#d4900a;    –job-glow:rgba(212,144,10,0.25);   –job-light:rgba(212,144,10,0.10);
-–home:#e8650a;   –home-glow:rgba(232,101,10,0.25);  –home-light:rgba(232,101,10,0.10);
-–travel:#0a9396; –travel-glow:rgba(10,147,150,0.25);  –travel-light:rgba(10,147,150,0.10);
-–social:#9b30d9; –social-glow:rgba(155,48,217,0.25);  –social-light:rgba(155,48,217,0.10);
-–soon:#6b7a99;   –soon-light:rgba(107,122,153,0.08);
+--cash:#00c851;   --cash-glow:rgba(0,200,81,0.25);   --cash-light:rgba(0,200,81,0.10);
+--time:#2288ff;   --time-glow:rgba(34,136,255,0.25);  --time-light:rgba(34,136,255,0.10);
+--job:#d4900a;    --job-glow:rgba(212,144,10,0.25);   --job-light:rgba(212,144,10,0.10);
+--home:#e8650a;   --home-glow:rgba(232,101,10,0.25);  --home-light:rgba(232,101,10,0.10);
+--travel:#0a9396; --travel-glow:rgba(10,147,150,0.25);  --travel-light:rgba(10,147,150,0.10);
+--social:#9b30d9; --social-glow:rgba(155,48,217,0.25);  --social-light:rgba(155,48,217,0.10);
+--soon:#6b7a99;   --soon-light:rgba(107,122,153,0.08);
 }
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
 body{
-font-family:var(–font-body);
-background:#0d1117;background:var(–bg);
-color:#e8edf5;color:var(–text);
+font-family:var(--font-body);
+background:var(--bg);
+color:var(--text);
 min-height:100vh;
 overflow-x:hidden;
 }
 
 /* scanlines */
 body::after{
-content:’’;position:fixed;inset:0;
+content:'';position:fixed;inset:0;
 background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.018) 3px,rgba(0,0,0,0.018) 4px);
 pointer-events:none;z-index:9000;
 }
 
 ::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:var(–bg);}
-::-webkit-scrollbar-thumb{background:var(–border);border-radius:2px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 
 /* ══ HERO HEADER ══ */
 .hero{
@@ -76,13 +67,13 @@ position:relative;
 overflow:hidden;
 }
 .hero::before{
-content:’’;position:absolute;inset:0;
+content:'';position:absolute;inset:0;
 background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,187,51,0.06) 0%, transparent 70%);
 pointer-events:none;
 }
-.hero-badge{display:inline-block;font-family:var(–font-mono);font-size:.62rem;color:var(–text2);letter-spacing:3px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;margin-bottom:16px;background:rgba(255,255,255,0.04);}
+.hero-badge{display:inline-block;font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:3px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;margin-bottom:16px;background:rgba(255,255,255,0.04);}
 .hero-logo{
-font-family:var(–font-mono);
+font-family:var(--font-mono);
 font-size:clamp(2.2rem,8vw,3.8rem);
 font-weight:700;
 letter-spacing:6px;
@@ -90,10 +81,10 @@ line-height:1;
 margin-bottom:10px;
 animation:fadeDown .6s .1s ease both;
 }
-.hero-logo .lr-life{color:var(–amber);text-shadow:0 0 40px rgba(255,187,51,0.4);}
-.hero-logo .lr-ready{color:var(–text);}
-.hero-tagline{font-family:var(–font-mono);font-size:.72rem;color:var(–text2);letter-spacing:4px;text-transform:uppercase;margin:8px 0 12px;text-shadow:0 0 14px rgba(255,255,255,0.2);}
-.hero-desc{font-size:.92rem;color:var(–text);max-width:400px;margin:0 auto;line-height:1.6;text-align:center;}
+.hero-logo .lr-life{color:var(--amber);text-shadow:0 0 40px rgba(255,187,51,0.4);}
+.hero-logo .lr-ready{color:var(--text);}
+.hero-tagline{font-family:var(--font-mono);font-size:.72rem;color:var(--text2);letter-spacing:4px;text-transform:uppercase;margin:8px 0 12px;text-shadow:0 0 14px rgba(255,255,255,0.2);}
+.hero-desc{font-size:.92rem;color:var(--text);max-width:400px;margin:0 auto;line-height:1.6;text-align:center;}
 
 /* ══ MAIN GRID ══ */
 main{
@@ -102,9 +93,9 @@ margin:0 auto;
 padding:0 14px 60px;
 }
 
-.section-label{font-family:var(–font-mono);font-size:.65rem;color:var(–text2);letter-spacing:4px;text-transform:uppercase;text-align:center;margin:0 0 18px;padding-bottom:8px;border-bottom:1px solid var(–border);text-shadow:0 0 12px rgba(255,255,255,0.15);}
-.section-label::before{content:’’; flex:1; height:1px; background:var(–border2);}
-.section-label::after{content:’’; flex:1; height:1px; background:var(–border2);}
+.section-label{font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:4px;text-transform:uppercase;text-align:center;margin:0 0 18px;padding-bottom:8px;border-bottom:1px solid var(--border);text-shadow:0 0 12px rgba(255,255,255,0.15);}
+.section-label::before{content:''; flex:1; height:1px; background:var(--border2);}
+.section-label::after{content:''; flex:1; height:1px; background:var(--border2);}
 
 .app-grid{
 display:grid;
@@ -116,7 +107,7 @@ margin-bottom:24px;
 /* ══ APP CARD ══ */
 .app-card{
 position:relative;
-border-radius:var(–radius);
+border-radius:var(--radius);
 padding:22px 16px 18px;
 cursor:pointer;
 text-decoration:none;
@@ -138,9 +129,9 @@ user-select:none;
 .app-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 8px 32px rgba(0,0,0,0.4);}
 }
 .app-card::before{
-content:’’;position:absolute;inset:0;
+content:'';position:absolute;inset:0;
 opacity:0;transition:opacity .3s;
-border-radius:calc(var(–radius) - 2px);
+border-radius:calc(var(--radius) - 2px);
 }
 @media(hover:hover){.app-card:hover::before{opacity:1;}}
 
@@ -148,10 +139,10 @@ border-radius:calc(var(–radius) - 2px);
 .card-cash{
 background:linear-gradient(145deg,#0d1a0f,#111d13);
 border-color:rgba(0,200,81,0.35);
-box-shadow:0 4px 24px rgba(0,0,0,0.4), 0 0 0 0 var(–cash);
+box-shadow:0 4px 24px rgba(0,0,0,0.4), 0 0 0 0 var(--cash);
 }
 .card-cash::before{background:radial-gradient(ellipse at 50% 0%,rgba(0,200,81,0.08),transparent 70%);}
-@media(hover:hover){.card-cash:hover{border-color:var(–cash);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(–cash-glow);}.card-cash:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #00c85155;border-color:#00c851;}}
+@media(hover:hover){.card-cash:hover{border-color:var(--cash);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--cash-glow);}.card-cash:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #00c85155;border-color:#00c851;}}
 
 /* Time */
 .card-time{
@@ -160,7 +151,7 @@ border-color:rgba(34,136,255,0.35);
 box-shadow:0 4px 24px rgba(0,0,0,0.4);
 }
 .card-time::before{background:radial-gradient(ellipse at 50% 0%,rgba(34,136,255,0.08),transparent 70%);}
-@media(hover:hover){.card-time:hover{border-color:var(–time);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(–time-glow);}.card-time:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #2288ff55;border-color:#2288ff;}}
+@media(hover:hover){.card-time:hover{border-color:var(--time);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--time-glow);}.card-time:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #2288ff55;border-color:#2288ff;}}
 
 /* Job */
 .card-job{
@@ -169,7 +160,7 @@ border-color:rgba(212,144,10,0.35);
 box-shadow:0 4px 24px rgba(0,0,0,0.4);
 }
 .card-job::before{background:radial-gradient(ellipse at 50% 0%,rgba(212,144,10,0.08),transparent 70%);}
-@media(hover:hover){.card-job:hover{border-color:var(–job);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(–job-glow);}.card-job:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #d4900a55;border-color:#d4900a;}}
+@media(hover:hover){.card-job:hover{border-color:var(--job);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--job-glow);}.card-job:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #d4900a55;border-color:#d4900a;}}
 
 /* Home */
 .card-home{
@@ -178,7 +169,7 @@ border-color:rgba(232,101,10,0.35);
 box-shadow:0 4px 24px rgba(0,0,0,0.4);
 }
 .card-home::before{background:radial-gradient(ellipse at 50% 0%,rgba(232,101,10,0.08),transparent 70%);}
-@media(hover:hover){.card-home:hover{border-color:var(–home);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(–home-glow);}.card-home:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #e8650a55;border-color:#e8650a;}}
+@media(hover:hover){.card-home:hover{border-color:var(--home);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--home-glow);}.card-home:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #e8650a55;border-color:#e8650a;}}
 
 /* Soon */
 /* Travel */
@@ -188,7 +179,7 @@ border-color:rgba(10,147,150,0.35);
 box-shadow:0 4px 24px rgba(0,0,0,0.4);
 }
 @media(hover:hover){.card-travel:hover{border-color:#0a9396;box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px rgba(10,147,150,0.25);}.card-travel:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #0a939655;border-color:#0a9396;}}
-.card-travel .app-name{font-family:var(–font-mono);font-size:.82rem;font-weight:900;letter-spacing:2px;margin-bottom:6px;transition:color .2s;color:#0a9396;}
+.card-travel .app-name{font-family:var(--font-mono);font-size:.82rem;font-weight:900;letter-spacing:2px;margin-bottom:6px;transition:color .2s;color:#0a9396;}
 .card-travel .app-pill{background:rgba(10,147,150,0.10);color:#0a9396;border:1px solid rgba(10,147,150,0.25);}
 
 .card-social{
@@ -235,35 +226,35 @@ line-height:1;
 filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
 .app-name{
-font-family:var(–font-mono);
+font-family:var(--font-mono);
 font-size:.85rem;
 font-weight:700;
 letter-spacing:2px;
 margin-bottom:6px;
 line-height:1;
 }
-.card-cash  .app-name{color:var(–cash);}
-.card-time  .app-name{color:var(–time);}
-.card-job   .app-name{color:var(–job);}
-.card-home  .app-name{color:var(–home);}
-.card-soon  .app-name{color:var(–soon);}
+.card-cash  .app-name{color:var(--cash);}
+.card-time  .app-name{color:var(--time);}
+.card-job   .app-name{color:var(--job);}
+.card-home  .app-name{color:var(--home);}
+.card-soon  .app-name{color:var(--soon);}
 
-.app-sub{font-size:.74rem;color:var(–text2);line-height:1.4;margin-bottom:10px;flex:1;}
-.card-soon .app-sub{color:var(–text3);}
+.app-sub{font-size:.74rem;color:var(--text2);line-height:1.4;margin-bottom:10px;flex:1;}
+.card-soon .app-sub{color:var(--text3);}
 
 .app-pill{
-font-family:var(–font-mono);
+font-family:var(--font-mono);
 font-size:.58rem;
 letter-spacing:1px;
 padding:3px 10px;
 border-radius:20px;
 font-weight:700;
 }
-.card-cash  .app-pill{background:var(–cash-light);color:var(–cash);border:1px solid rgba(0,200,81,0.25);}
-.card-time  .app-pill{background:var(–time-light);color:var(–time);border:1px solid rgba(34,136,255,0.25);}
-.card-job   .app-pill{background:var(–job-light);color:var(–job);border:1px solid rgba(212,144,10,0.25);}
-.card-home  .app-pill{background:var(–home-light);color:var(–home);border:1px solid rgba(232,101,10,0.25);}
-.card-soon  .app-pill{background:var(–soon-light);color:var(–soon);border:1px solid rgba(107,122,153,0.2);}
+.card-cash  .app-pill{background:var(--cash-light);color:var(--cash);border:1px solid rgba(0,200,81,0.25);}
+.card-time  .app-pill{background:var(--time-light);color:var(--time);border:1px solid rgba(34,136,255,0.25);}
+.card-job   .app-pill{background:var(--job-light);color:var(--job);border:1px solid rgba(212,144,10,0.25);}
+.card-home  .app-pill{background:var(--home-light);color:var(--home);border:1px solid rgba(232,101,10,0.25);}
+.card-soon  .app-pill{background:var(--soon-light);color:var(--soon);border:1px solid rgba(107,122,153,0.2);}
 
 .app-arrow{
 position:absolute;
@@ -276,26 +267,26 @@ transition:opacity .2s, transform .2s;
 
 /* ══ ABOUT SECTION ══ */
 .about-section{
-background:linear-gradient(135deg,var(–bg2),var(–bg3));
-border:1px solid var(–border);
-border-radius:var(–radius);
+background:linear-gradient(135deg,var(--bg2),var(--bg3));
+border:1px solid var(--border);
+border-radius:var(--radius);
 padding:24px 20px;
 margin-bottom:20px;
 animation:fadeUp .5s .3s ease both;
 }
 .about-title{
-font-family:var(–font-mono);
+font-family:var(--font-mono);
 font-size:.62rem;
-color:var(–amber);
+color:var(--amber);
 letter-spacing:3px;
 text-transform:uppercase;
 margin-bottom:14px;
 display:flex;align-items:center;gap:8px;
 }
-.about-title::after{content:’’;flex:1;height:1px;background:rgba(255,187,51,0.2);}
+.about-title::after{content:'';flex:1;height:1px;background:rgba(255,187,51,0.2);}
 .about-body{
 font-size:.86rem;
-color:var(–text2);
+color:var(--text2);
 line-height:1.8;
 }
 .about-body p{margin-bottom:10px;}
@@ -309,36 +300,36 @@ margin-bottom:20px;
 animation:fadeUp .5s .4s ease both;
 }
 .mission-quote{
-font-family:var(–font-mono);
+font-family:var(--font-mono);
 font-size:.78rem;
-color:var(–text3);
+color:var(--text3);
 letter-spacing:1px;
 line-height:1.8;
 font-style:italic;
 }
-.mission-quote strong{color:var(–amber);font-style:normal;}
+.mission-quote strong{color:var(--amber);font-style:normal;}
 
 /* ══ SIGNATURE ══ */
 .signature-wrap{
 text-align:center;
 padding:24px 16px 16px;
-border-top:1px solid var(–border2);
+border-top:1px solid var(--border2);
 animation:fadeUp .5s .5s ease both;
 }
 .sig-emoji{font-size:1.6rem;margin-bottom:10px;}
 .sig-name{
-font-family:var(–font-sig);
+font-family:var(--font-sig);
 font-size:2.4rem;
-color:var(–amber);
+color:var(--amber);
 text-shadow:0 0 30px rgba(255,187,51,0.35);
 margin-bottom:4px;
 line-height:1.1;
 }
-.sig-title{font-size:.78rem;color:var(–text2);margin-bottom:4px;}
+.sig-title{font-size:.78rem;color:var(--text2);margin-bottom:4px;}
 .sig-tagline{
-font-family:var(–font-mono);
+font-family:var(--font-mono);
 font-size:.6rem;
-color:var(–text3);
+color:var(--text3);
 letter-spacing:2px;
 }
 
@@ -350,12 +341,12 @@ justify-content:center;
 gap:10px;
 background:rgba(255,187,51,0.06);
 border:1px solid rgba(255,187,51,0.2);
-border-radius:var(–radius-sm);
+border-radius:var(--radius-sm);
 padding:12px 16px;
 margin-bottom:20px;
-font-family:var(–font-mono);
+font-family:var(--font-mono);
 font-size:.65rem;
-color:var(–amber);
+color:var(--amber);
 letter-spacing:2px;
 animation:fadeUp .5s .35s ease both;
 }
@@ -386,8 +377,14 @@ main{max-width:580px;}
 }
 </style>
 
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon_180.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon_512.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="LifeReady">
 </head>
-<body style="background:#0d1117;color:#e8edf5;min-height:100vh">
+<body>
 
 <!-- ══ HERO ══ -->
 
@@ -396,7 +393,7 @@ main{max-width:580px;}
   <div class="hero-logo">
     <span class="lr-life">LIFE</span><span class="lr-ready">READY</span>
   </div>
-  <div class="hero-tagline">— Life Skills Suite —</div>
+  <div class="hero-tagline">- Life Skills Suite -</div>
   <div class="hero-desc">Real skills for real life. Free tools that meet you exactly where you are.</div>
 </div>
 
@@ -408,7 +405,6 @@ main{max-width:580px;}
 
   <div class="app-grid">
 
-```
 <!-- CashReady -->
 <a class="app-card card-cash" href="CashReady.html" target="_self" onclick="event.preventDefault();window.location.href='CashReady.html'">
   <span class="app-icon">💵</span>
@@ -481,8 +477,6 @@ main{max-width:580px;}
   <div class="app-pill">HEALTH SKILLS</div>
   <div class="app-arrow">›</div>
 </a>
-```
-
   </div>
 
   <!-- ══ FREE BADGE ══ -->
@@ -495,7 +489,7 @@ main{max-width:580px;}
 
   <div style="background:linear-gradient(135deg,#0d1520,#101a28);border:1px solid rgba(34,136,255,0.25);border-left:4px solid #2288ff;border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:24px;animation:fadeUp .5s .38s ease both">
     <div style="font-family:var(--font-mono);font-size:.58rem;color:#2288ff;letter-spacing:3px;margin-bottom:10px">🎓 FOR COACHES &amp; TEACHERS</div>
-    <div style="font-size:.84rem;color:var(--text2);line-height:1.7">Every app includes a built-in <strong style="color:var(--text)">Coach Dashboard</strong> — log sessions, track accuracy, set mastery goals, monitor prompt fading, and print progress reports for your clients or students. Tap <strong style="color:var(--text)">COACH</strong> in any app header to get started.</div>
+    <div style="font-size:.84rem;color:var(--text2);line-height:1.7">Every app includes a built-in <strong style="color:var(--text)">Coach Dashboard</strong> - log sessions, track accuracy, set mastery goals, monitor prompt fading, and print progress reports for your clients or students. Tap <strong style="color:var(--text)">COACH</strong> in any app header to get started.</div>
   </div>
 
   <!-- ══ ABOUT ══ -->
@@ -505,8 +499,8 @@ main{max-width:580px;}
   <div class="about-section">
     <div class="about-title">⭐ WHAT IS LIFEREADY?</div>
     <div class="about-body">
-      <p>LifeReady is a suite of free, accessible life skills trainers — built by someone who knows what it's like to need them.</p>
-      <p>Every app in the suite focuses on a different set of real-world skills: managing money, reading time, preparing for work, keeping a home, getting around independently, and navigating social situations. Each one is designed to be used by anyone — people with disabilities, people building independence, people in transition, or anyone who just wants to get better at something.</p>
+      <p>LifeReady is a suite of free, accessible life skills trainers - built by someone who knows what it is like to need them.</p>
+      <p>Every app in the suite focuses on a different set of real-world skills: managing money, reading time, preparing for work, keeping a home, getting around independently, and navigating social situations. Each one is designed to be used by anyone - people with disabilities, people building independence, people in transition, or anyone who just wants to get better at something.</p>
       <p>No accounts. No ads. No paywalls. Just practice.</p>
     </div>
   </div>
@@ -515,7 +509,7 @@ main{max-width:580px;}
 
   <div class="mission">
     <div class="mission-quote">
-      "These tools were built for the person who has been told what they <strong>can't</strong> do.<br>
+      "These tools were built for the person who has been told what they <strong>cannot</strong> do.<br>
       Every skill here says otherwise."
     </div>
   </div>
@@ -526,7 +520,7 @@ main{max-width:580px;}
     <div class="about-title">🤝 WHO IT'S FOR</div>
     <div class="about-body">
       <p>People with developmental disabilities building toward independence. Adults aging out of foster care. People transitioning from supported living. Special education students preparing for adult life. Job coaches and life skills instructors looking for a better tool. Anyone who learns differently and deserves tools that respect that.</p>
-      <p>If you've ever needed to practice something that most people take for granted — this suite was built for you.</p>
+      <p>If you have ever needed to practice something that most people take for granted - this suite was built for you.</p>
     </div>
   </div>
 

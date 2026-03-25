@@ -1,16 +1,30 @@
 {
-  "name": "LifeReady — Life Skills Suite",
+  "name": "LifeReady \u2014 Life Skills Suite",
   "short_name": "LifeReady",
   "description": "Real life skills for real life.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#080a14",
   "theme_color": "#080a14",
   "icons": [
-    {"src":"icon_192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"icon_512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"},
-    {"src":"icon.png","sizes":"1024x1024","type":"image/png"}
+    {
+      "src": "icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
   ]
 }

@@ -811,7 +811,7 @@ max-width:320px;width:calc(100% - 32px);
     </svg>
     <div id="grade-letter" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--green);text-shadow:0 0 20px rgba(0,200,81,.5);line-height:1">A+</div>
   </div>
-  <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">SHIFT COMPLETE</div>
+  <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">SESSION COMPLETE</div>
   <div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You helped 10 customers today!</div>
   <div id="r-level-badge" style="display:inline-block;background:rgba(255,187,51,.14);border:1px solid var(--amber);border-radius:20px;padding:3px 14px;font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:1px">BEGINNER</div>
 </div>
@@ -1602,7 +1602,7 @@ max-width:320px;width:calc(100% - 32px);
     </svg>
     <div id="grade-letter" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--green);text-shadow:0 0 20px rgba(0,200,81,.5);line-height:1">A+</div>
   </div>
-  <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">SHIFT COMPLETE</div>
+  <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">SESSION COMPLETE</div>
   <div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You helped 10 customers today!</div>
   <div id="r-level-badge" style="display:inline-block;background:rgba(255,187,51,.14);border:1px solid var(--amber);border-radius:20px;padding:3px 14px;font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:1px">BEGINNER</div>
 </div>
@@ -2425,16 +2425,36 @@ function makeTappable(screenId){
       const steps=card.querySelectorAll('.gstep');
       let txt='';
       if(steps.length>0){
+        let titleTxt='';
+        let prev=card.previousElementSibling;
+        while(prev){
+          if(prev.classList && prev.classList.contains('gtitle')){
+            titleTxt = prev.innerText || '';
+            break;
+          }
+          prev = prev.previousElementSibling;
+        }
         steps.forEach(step=>{
           const body=step.querySelector('div:last-child');
           if(body) txt+=cleanTTS(body.innerText)+' ';
         });
+        txt = cleanTTS((titleTxt ? titleTxt + '. ' : '') + txt);
       } else {
-        txt=cleanTTS(card.innerText);
+        let titleTxt='';
+        let prev=card.previousElementSibling;
+        while(prev){
+          if(prev.classList && prev.classList.contains('gtitle')){
+            titleTxt = prev.innerText || '';
+            break;
+          }
+          prev = prev.previousElementSibling;
+        }
+        txt = cleanTTS((titleTxt ? titleTxt + '. ' : '') + card.innerText);
       }
       say(txt.trim());
     });
   });
+
   // guide-card elements (TechReady, HealthReady specialized guides)
   // Override any hardcoded onclick with full gc-body text
   el.querySelectorAll('.guide-card').forEach(card=>{
@@ -2512,10 +2532,13 @@ function go(id){
   if(id==='convguide')makeTappable('scr-convguide');
   if(id==='conflictguide')makeTappable('scr-conflictguide');
   if(id==='about')makeTappable('scr-about');
+makeTappable('scr-callscripts');
+  if(id==='callscripts')makeTappable('scr-callscripts');
   if(id==='badges')makeTappable('scr-badges');
   if(id==='guide')makeTappable('scr-guide');
   if(id==='settings')makeTappable('scr-settings');
   if(id==='about')makeTappable('scr-about');
+  if(id==='callscripts')makeTappable('scr-callscripts');
 }
 
 // ════════════════════════════════════════════════════════
@@ -2934,6 +2957,7 @@ function replayModeIntro(){
 }
 
 function startMode(mode){
+  ST.askedQs = Array.isArray(ST.askedQs) ? ST.askedQs : [];
   lastMode=mode;
   const isP=mode==='practice';
   ST={mode,score:0,streak:0,bestStreak:0,correct:0,total:0,
@@ -3000,7 +3024,7 @@ function genQuestionNoDupe(mode){
     return genQuestion._bankFor?genQuestion._bankFor(mode):[];
   })();
   // Filter out already asked questions this session
-  const remaining=all.filter(q=>!ST.askedQs.includes(q));
+  const remaining=all.filter(q=>!(Array.isArray(ST.askedQs)?ST.askedQs:[]).includes(q));
   const pool=remaining.length>0?remaining:all; // reset if all used
   if(remaining.length===0) ST.askedQs=[];
   const q=rand(pool.length>0?pool:all.length>0?all:[{q:'...',opts:['...','...','...','...'],correct:0,explain:'',hint:''}]);
@@ -3019,11 +3043,11 @@ function genQuestionDedup(mode){
   // If we've seen this question this session, try up to 20 more times
   let attempts=0;
   let picked=q;
-  while(ST.askedQs.includes(picked.q) && attempts<20){
+  while((Array.isArray(ST.askedQs)?ST.askedQs:[]).includes(picked.q) && attempts<20){
     picked=genQuestion(mode);
     attempts++;
   }
-  if(!ST.askedQs.includes(picked.q)) ST.askedQs.push(picked.q);
+  if(!(Array.isArray(ST.askedQs)?ST.askedQs:[]).includes(picked.q)) ST.askedQs.push(picked.q);
   return picked;
 }
 

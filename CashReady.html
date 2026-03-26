@@ -1001,14 +1001,14 @@ max-width:320px;width:calc(100% - 32px);
 
 <div id="scr-changedrill" class="scr">
   <div class="gtop">
-    <button class="back" onclick="confirmCDExit()">‹ BACK</button>
+    <button class="back" onclick="confirmChangeDrillExit()">‹ BACK</button>
     <div class="gmode">🔄 MAKING CHANGE DRILL</div>
     <div class="gscore">
-      <div class="sbox"><div class="sv" id="cd-score">0</div><div class="sl">SCORE</div></div>
+      <div class="sbox"><div class="sv" id="chd-score">0</div><div class="sl">SCORE</div></div>
     </div>
   </div>
-  <div class="pdots" id="cd-dots"></div>
-  <div id="cd-content"></div>
+  <div class="pdots" id="chd-dots"></div>
+  <div id="chd-content"></div>
 </div>
 
 <!-- ══════════ MONEY ID QUIZ ══════════ -->
@@ -4489,7 +4489,7 @@ const CD_QS=[
 {price:149,paid:200},{price:299,paid:300},{price:450,paid:500},
 {price:625,paid:700},{price:199,paid:200},{price:349,paid:400},
 ];
-let CD={qs:[],idx:0,score:0,answered:false};
+let CHD={qs:[],idx:0,score:0,answered:false};
 function startChangeDrill(){
 showModeIntro('🔄','MAKING CHANGE DRILL','#00c851',[
 ['🧾','Price and payment shown on every question.','You can see exactly what was paid and what the item costs.'],
@@ -4497,77 +4497,77 @@ showModeIntro('🔄','MAKING CHANGE DRILL','#00c851',[
 ['📈','8 questions, graded.','Great for building quick mental math before a real shift.'],
 ],'Start Drill →',()=>{
 closeM('m-hint');
-CD={qs:shuf(CD_QS).slice(0,8),idx:0,score:0,answered:false};
-buildCDDots();renderCD();
+CHD={qs:shuf(CD_QS).slice(0,8),idx:0,score:0,answered:false};
+buildChangeDrillDots();renderChangeDrill();
 });
 }
-function buildCDDots(){
-const c=$('cd-dots');if(!c)return;c.innerHTML='';
-for(let i=0;i<CD.qs.length;i++){const d=document.createElement('div');d.className='pd'+(i===0?' cur':'');d.id='cdd'+i;c.appendChild(d);}
+function buildChangeDrillDots(){
+const c=$('chd-dots');if(!c)return;c.innerHTML='';
+for(let i=0;i<CHD.qs.length;i++){const d=document.createElement('div');d.className='pd'+(i===0?' cur':'');d.id='chdd'+i;c.appendChild(d);}
 }
-function updCDDots(){
-for(let i=0;i<CD.qs.length;i++){const d=$('cdd'+i);if(!d)continue;
-if(i<CD.idx)d.className='pd done';else if(i===CD.idx)d.className='pd cur';else d.className='pd';}
+function updChangeDrillDots(){
+for(let i=0;i<CHD.qs.length;i++){const d=$('chdd'+i);if(!d)continue;
+if(i<CHD.idx)d.className='pd done';else if(i===CHD.idx)d.className='pd cur';else d.className='pd';}
 }
-function renderCD(){
-CD.answered=false;
-const q=CD.qs[CD.idx];if(!q)return;
-$('cd-score').textContent=CD.score;
-updCDDots();
+function renderChangeDrill(){
+CHD.answered=false;
+const q=CHD.qs[CHD.idx];if(!q)return;
+$('chd-score').textContent=CHD.score;
+updChangeDrillDots();
 const change=q.paid-q.price;
 // Generate wrong answers - nearby amounts
 const wrongs=[-25,-10,10,25,50,-50,5,-5].map(d=>change+d).filter(v=>v>0&&v!==change);
 const opts=shuf([change,...shuf(wrongs).slice(0,3)]);
-const optHTML=opts.map(o=>`<button class="qo" onclick="answerCD(${o},${change})">${fmt(o)}</button>`).join('');
-$('cd-content').innerHTML=` <div class="qpanel"> <div class="qq">Item costs <strong style="color:var(--green)">${fmt(q.price)}</strong>.<br>Customer paid <strong style="color:var(--amber)">${fmt(q.paid)}</strong>.<br>How much change?</div> <div style="display:flex;gap:10px;justify-content:center;margin:10px 0 16px"> <div style="background:var(--bg3);border:2px solid var(--green);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--green)">${fmt(q.price)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Price</div> </div> <div style="font-size:1.5rem;color:var(--text3);display:flex;align-items:center">→</div> <div style="background:var(--bg3);border:2px solid var(--amber);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">${fmt(q.paid)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Paid</div> </div> </div> <div class="qopts" id="cd-opts">${optHTML}</div> <div class="qfb" id="cd-fb"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="say('Item costs ${fmtSay(q.price)}. Customer paid ${fmtSay(q.paid)}. How much change?')">🔊 SAY AGAIN</button> <button class="dbtn" id="cd-next" onclick="nextCD()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button> </div>`;
+const optHTML=opts.map(o=>`<button class="qo" onclick="answerChangeDrill(${o},${change})">${fmt(o)}</button>`).join('');
+$('chd-content').innerHTML=` <div class="qpanel"> <div class="qq">Item costs <strong style="color:var(--green)">${fmt(q.price)}</strong>.<br>Customer paid <strong style="color:var(--amber)">${fmt(q.paid)}</strong>.<br>How much change?</div> <div style="display:flex;gap:10px;justify-content:center;margin:10px 0 16px"> <div style="background:var(--bg3);border:2px solid var(--green);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--green)">${fmt(q.price)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Price</div> </div> <div style="font-size:1.5rem;color:var(--text3);display:flex;align-items:center">→</div> <div style="background:var(--bg3);border:2px solid var(--amber);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">${fmt(q.paid)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Paid</div> </div> </div> <div class="qopts" id="chd-opts">${optHTML}</div> <div class="qfb" id="chd-fb"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="say('Item costs ${fmtSay(q.price)}. Customer paid ${fmtSay(q.paid)}. How much change?')">🔊 SAY AGAIN</button> <button class="dbtn" id="chd-next" onclick="nextChangeDrill()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button> </div>`;
 say(`Item costs ${fmtSay(q.price)}. Customer paid ${fmtSay(q.paid)}. How much change?`);
 }
 function fmtSay(cents){
 if(cents%100===0)return`${cents/100} dollar${cents/100!==1?'s':''}`;
 return`${fmt(cents)}`;
 }
-function answerCD(chosen,correct){
-if(CD.answered)return;
-CD.answered=true;
+function answerChangeDrill(chosen,correct){
+if(CHD.answered)return;
+CHD.answered=true;
 const ok=chosen===correct;
-if(ok){CD.score++;chime();if(!CFG.nomotion)confetti();}else{buzz();}
-document.querySelectorAll('#cd-opts .qo').forEach(b=>{
+if(ok){CHD.score++;chime();if(!CFG.nomotion)confetti();}else{buzz();}
+document.querySelectorAll('#chd-opts .qo').forEach(b=>{
 b.disabled=true;
 const v=Math.round(parseFloat(b.textContent.replace('$',''))*100);
 if(v===correct)b.classList.add('ok');
 else if(v===chosen&&!ok)b.classList.add('bad');
 });
-$('cd-score').textContent=CD.score;
-const fb=$('cd-fb');
+$('chd-score').textContent=CHD.score;
+const fb=$('chd-fb');
 if(fb){
 fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
-const q=CD.qs[CD.idx];
+const q=CHD.qs[CHD.idx];
 fb.textContent=ok?'✅ Correct! '+fmt(correct)+' change.':'❌ The correct change is '+fmt(correct)+'. ('+fmt(q.paid)+' paid - '+fmt(q.price)+' price = '+fmt(correct)+')';
 }
-const nxt=$('cd-next');
-if(nxt){nxt.style.display='block';nxt.textContent=CD.idx+1>=CD.qs.length?'SEE RESULTS →':'NEXT →';}
+const nxt=$('chd-next');
+if(nxt){nxt.style.display='block';nxt.textContent=CHD.idx+1>=CHD.qs.length?'SEE RESULTS →':'NEXT →';}
 say(ok?'Correct!':'Not quite. The answer is '+fmt(correct));
 }
-function nextCD(){
-CD.idx++;
-if(CD.idx>=CD.qs.length){
-const pct=Math.round(CD.score/CD.qs.length*100);
+function nextChangeDrill(){
+CHD.idx++;
+if(CHD.idx>=CHD.qs.length){
+const pct=Math.round(CHD.score/CHD.qs.length*100);
 const grade=pct===100?'A+':pct>=90?'A':pct>=80?'B':pct>=60?'C':'D';
-const gc=pct>=80?'var(--green)':pct>=60?'var(-amber)':'var(--red)';
-SCORES.unshift({mode:'Change Drill',score:CD.score*10,correct:CD.score,total:CD.qs.length,streak:0,date:today()});
+const gc=pct>=80?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
+SCORES.unshift({mode:'Change Drill',score:CHD.score*10,correct:CHD.score,total:CHD.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('change_drill_ace');
 if(!CFG.nomotion&&pct>=80)confetti();
-say(`Done! You got ${CD.score} out of ${CD.qs.length}!`);
+say(`Done! You got ${CHD.score} out of ${CHD.qs.length}!`);
 updateHomeUI();
-$('cd-dots').innerHTML='';
-$('cd-content').innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--green);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${CD.score} of ${CD.qs.length}</strong> correct · ${pct}%</div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:0 0 18px;text-align:left"> ${pct===100?'Flawless! You\'re a change-making machine.':pct>=80?'Strong work! Enable Count-Up Guide in Settings to see the counting method.':'Try enabling Count-Up Guide in Settings - it shows you how to count forward instead of subtract.'} </div> <button class="dbtn" onclick="startChangeDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
+$('chd-dots').innerHTML='';
+$('chd-content').innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--green);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${CHD.score} of ${CHD.qs.length}</strong> correct · ${pct}%</div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:0 0 18px;text-align:left"> ${pct===100?'Flawless! You\'re a change-making machine.':pct>=80?'Strong work! Enable Count-Up Guide in Settings to see the counting method.':'Try enabling Count-Up Guide in Settings - it shows you how to count forward instead of subtract.'} </div> <button class="dbtn" onclick="startChangeDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
 return;
 }
-renderCD();
+renderChangeDrill();
 }
-function confirmCDExit(){
-if(CD.idx>0&&CD.idx<CD.qs.length){
+function confirmChangeDrillExit(){
+if(CHD.idx>0&&CHD.idx<CHD.qs.length){
 openHint('Leave Drill?','<p style="color:var(--text2);font-size:.88rem">Leave the Making Change Drill? Progress will not be saved.</p>','Leave',()=>{closeM('m-hint');go('home');});
 } else go('home');
 }

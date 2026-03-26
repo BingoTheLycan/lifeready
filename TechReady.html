@@ -817,7 +817,7 @@ max-width:320px;width:calc(100% - 32px);
     </svg>
     <div id="grade-letter" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--green);text-shadow:0 0 20px rgba(0,200,81,.5);line-height:1">A+</div>
   </div>
-  <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">SHIFT COMPLETE</div>
+  <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">SESSION COMPLETE</div>
   <div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You helped 10 customers today!</div>
   <div id="r-level-badge" style="display:inline-block;background:rgba(255,187,51,.14);border:1px solid var(--amber);border-radius:20px;padding:3px 14px;font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:1px">BEGINNER</div>
 </div>
@@ -1057,7 +1057,7 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 
 <div id="scr-scamsguide" class="scr">
-  <div class="gtop"><button class="back" onclick="go('guide')">‹ BACK</button><div class="gmode">🚨 SCAM SPOTTING GUIDE</div></div>
+  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🚨 SCAM SPOTTING GUIDE</div></div>
 
   <div class="gsec">
     <div class="gtitle">HOW TO SPOT A SCAM</div>
@@ -1124,7 +1124,7 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 
 <div id="scr-passwordsguide" class="scr">
-  <div class="gtop"><button class="back" onclick="go('guide')">‹ BACK</button><div class="gmode">🔐 PASSWORDS GUIDE</div></div>
+  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🔐 PASSWORDS GUIDE</div></div>
 
   <div class="gsec">
     <div class="gtitle">PASSWORD SAFETY</div>
@@ -1149,7 +1149,7 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 
 <div id="scr-onlineguide" class="scr">
-  <div class="gtop"><button class="back" onclick="go('guide')">‹ BACK</button><div class="gmode">🌐 ONLINE SAFETY GUIDE</div></div>
+  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🌐 ONLINE SAFETY GUIDE</div></div>
 
   <div class="gsec">
     <div class="gtitle">STAYING SAFE ONLINE</div>
@@ -1174,7 +1174,7 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 
 <div id="scr-commguide" class="scr">
-  <div class="gtop"><button class="back" onclick="go('guide')">‹ BACK</button><div class="gmode">💬 DIGITAL COMMUNICATION GUIDE</div></div>
+  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">💬 DIGITAL COMMUNICATION GUIDE</div></div>
 
   <div class="gsec">
     <div class="gtitle">PROFESSIONAL DIGITAL COMMUNICATION</div>
@@ -1199,7 +1199,7 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 
 <div id="scr-devicesguide" class="scr">
-  <div class="gtop"><button class="back" onclick="go('guide')">‹ BACK</button><div class="gmode">📱💻 YOUR DEVICES GUIDE</div></div>
+  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">📱💻 YOUR DEVICES GUIDE</div></div>
 
   <div class="gsec">
     <div class="gtitle">PHONES, TABLETS &amp; COMPUTERS</div>
@@ -1230,7 +1230,7 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 
 <div id="scr-callscripts" class="scr">
-  <div class="gtop"><button class="back" onclick="go('guide')">‹ BACK</button><div class="gmode">📞 CALL SCRIPTS</div></div>
+  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">📞 CALL SCRIPTS</div></div>
   <div style="padding:0 16px 80px">
     <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:4px;margin-top:4px">WHAT TO SAY</div>
     <div style="font-size:.82rem;color:var(--text2);margin-bottom:16px;line-height:1.7">Real scripts for real situations. Practice these so the words feel natural when you need them.</div>
@@ -2128,15 +2128,25 @@ function makeTappable(screenId){
   el.querySelectorAll('.guide-card').forEach(card=>{
     card.setAttribute('data-tts','1');
     card.style.cursor='pointer';
-    card.onclick=null; // remove hardcoded say() 
+    card.onclick=null;
     card.addEventListener('click',e=>{
       e.stopPropagation();
       const title=card.querySelector('.gc-title');
       const body =card.querySelector('.gc-body');
-      const txt  =cleanTTS((title?title.innerText+'. ':'')+(body?body.innerText:''));
+      let txt='';
+      if(el.id==='scr-callscripts'){
+        const titleTxt = title ? title.innerText : '';
+        const bodyTxt = body ? body.innerText : '';
+        txt = cleanTTS((titleTxt ? titleTxt + '. ' : '') + bodyTxt)
+          .replace(/^script\s*:?\s*/i,'')
+          .replace(/^say\s*:?\s*/i,'');
+      } else {
+        txt = cleanTTS((title?title.innerText+'. ':'')+(body?body.innerText:''));
+      }
       say(txt.trim());
     });
   });
+
   // settings - attach to .sinfo (name+desc area) so switch stays separate
   el.querySelectorAll('.sr .sinfo').forEach(info=>{
     if(info.getAttribute('data-tts'))return;
@@ -2199,6 +2209,7 @@ function go(id){
   if(id==='onlineguide')makeTappable('scr-onlineguide');
   if(id==='commguide')makeTappable('scr-commguide');
   if(id==='devicesguide')makeTappable('scr-devicesguide');
+  if(id==='callscripts')makeTappable('scr-callscripts');
   if(id==='about')makeTappable('scr-about');
 }
 
@@ -2610,6 +2621,7 @@ function replayModeIntro(){
 }
 
 function startMode(mode){
+  ST.askedQs = ST.askedQs || [];
   lastMode=mode;
   const isP=mode==='practice';
   ST={mode,score:0,streak:0,bestStreak:0,correct:0,total:0,
@@ -2664,7 +2676,7 @@ function genQuestionNoDupe(mode){
   const banks=[...SCAM_Qs,...PASSWORD_Qs,...ONLINE_Qs,...COMMUNICATION_Qs,...DEVICES_Qs,...GENERAL_Qs];
   const modeMap={scams:SCAM_Qs,passwords:PASSWORD_Qs,online:ONLINE_Qs,communication:COMMUNICATION_Qs,devices:DEVICES_Qs};
   const pool=modeMap[mode]||banks;
-  const remaining=pool.filter(q=>!ST.askedQs.includes(q));
+  const remaining=pool.filter(q=>!(ST.askedQs||[]).includes(q));
   const src=remaining.length>0?remaining:pool;
   if(remaining.length===0) ST.askedQs=[];
   const q=rand(src);
@@ -2683,11 +2695,11 @@ function genQuestionDedup(mode){
   // If we've seen this question this session, try up to 20 more times
   let attempts=0;
   let picked=q;
-  while(ST.askedQs.includes(picked.q) && attempts<20){
+  while((ST.askedQs||[]).includes(picked.q) && attempts<20){
     picked=genQuestion(mode);
     attempts++;
   }
-  if(!ST.askedQs.includes(picked.q)) ST.askedQs.push(picked.q);
+  if(!(ST.askedQs||[]).includes(picked.q)) ST.askedQs.push(picked.q);
   return picked;
 }
 

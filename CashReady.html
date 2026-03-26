@@ -4017,7 +4017,7 @@ if(oc)oc.style.display=(CFG.playerNamePrompted&&!CFG.onboardingSeen)?'block':'no
 
 const bc=BADGES.size;
 $('badge-ct').textContent=bc>0?`${bc} earned`:'None yet';
-$('badge-ct').style.color=bc>0?'var(-amber)':'var(-text3)';
+$('badge-ct').style.color=bc>0?'var(--amber)':'var(-text3)';
 
 // Desktop sidebar
 const sidebar=$('desktop-sidebar');
@@ -4482,7 +4482,7 @@ window.go = go;
 // ════════════════════════════════════════════════
 //  MAKING CHANGE DRILL
 // ════════════════════════════════════════════════
-const CD_QS=[
+const CHD_QS=[
 {price:75,paid:100},{price:50,paid:100},{price:25,paid:100},
 {price:150,paid:200},{price:175,paid:200},{price:125,paid:200},
 {price:250,paid:500},{price:375,paid:400},{price:99,paid:100},
@@ -4497,7 +4497,7 @@ showModeIntro('🔄','MAKING CHANGE DRILL','#00c851',[
 ['📈','8 questions, graded.','Great for building quick mental math before a real shift.'],
 ],'Start Drill →',()=>{
 closeM('m-hint');
-CHD={qs:shuf(CD_QS).slice(0,8),idx:0,score:0,answered:false};
+CHD={qs:shuf(CHD_QS).slice(0,8),idx:0,score:0,answered:false};
 buildChangeDrillDots();renderChangeDrill();
 });
 }
@@ -4710,7 +4710,7 @@ function nextBD(){
 BD.idx++;
 if(BD.idx>=BD.qs.length){
 const pct=Math.round(BD.score/BD.qs.length*100);
-const gc=pct>=80?'var(--green)':pct>=60?'var(-amber)':'var(--red)';
+const gc=pct>=80?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
 SCORES.unshift({mode:'Bill Recognition',score:BD.score*10,correct:BD.score,total:BD.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('bill_ace');
@@ -4786,7 +4786,7 @@ function nextCD(){
 CD.idx++;
 if(CD.idx>=CD.qs.length){
 const pct=Math.round(CD.score/CD.qs.length*100);
-const gc=pct>=80?'var(--green)':pct>=60?'var(-amber)':'var(--red)';
+const gc=pct>=80?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
 SCORES.unshift({mode:'Coin Recognition',score:CD.score*10,correct:CD.score,total:CD.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('coin_drill_ace');
@@ -4977,7 +4977,7 @@ SCORES = SCORES.slice(0, 30);
 saveAll();
 // Show results
 const grade=pct===100?'A+':pct>=90?'A':pct>=80?'B':pct>=70?'C':'D';
-const gradeColor=pct>=80?'var(--green)':pct>=70?'var(-amber)':'var(--red)';
+const gradeColor=pct>=80?'var(--green)':pct>=70?'var(--amber)':'var(--red)';
 document.getElementById('dihe-content').innerHTML = ` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:var(--font-display);font-size:4rem;color:${gradeColor};text-shadow:0 0 20px ${gradeColor}33;margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:${gradeColor};margin-bottom:4px;letter-spacing:2px"> ${pct >= 80 ? 'SMART SHOPPER!' : pct >= 60 ? 'GETTING THERE!' : 'KEEP PRACTICING!'} </div> <div style="font-size:.88rem;color:var(--text2);margin-bottom:6px"> <strong style="color:var(--amber)">${DIHE_STATE.score} out of ${DIHE_STATE.maxQ}</strong> correct · ${pct}% </div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:11px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:14px 0 20px;text-align:left"> ${pct===100?'Perfect! You always know if you have enough money - that\'s a real life skill.': pct>=80?'Great work! Knowing before you get to the register saves embarrassment and builds confidence.': pct>=60?'You\'re getting it! Keep practicing and you\'ll be a smart shopper in no time.': 'Keep going! This skill takes practice. Try the Money Guide for help with coin values.'} </div> <button class="dbtn" onclick="startDIHE()" style="margin-bottom:10px;width:100%">🔄 PLAY AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
 say(`Done! You got ${DIHE_STATE.score} out of ${DIHE_STATE.maxQ}!`);
 if(!CFG.nomotion&&pct>=80) confetti();

@@ -3825,7 +3825,7 @@ function printReport(i){
     .notes-box{background:#f9f9f9;border:1px solid #ddd;border-radius:6px;padding:12px;font-size:.84rem;color:#444;line-height:1.6;}
     .footer{margin-top:28px;padding-top:12px;border-top:1px solid #ddd;font-size:.72rem;color:#aaa;display:flex;justify-content:space-between;}
     .print-btn{background:#00c851;color:#000;border:none;border-radius:6px;padding:10px 24px;font-size:.9rem;font-weight:700;cursor:pointer;margin-bottom:20px;}
-    .print-btn:hover{background:#00a041;}
+    .print-btn:hover{background:#00a041;} .print-btn:nth-child(2):hover{background:#d8d8d8;}
     @media print{.print-btn{display:none;}body{padding:16px;}}
     .skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch;}
     .skill-row{background:#f9f9f9;border:1px solid #eee;border-radius:6px;padding:10px 12px;}
@@ -3836,7 +3836,10 @@ function printReport(i){
 .cb-mode-btn.on{background:var(--green);border-color:var(--green);color:#fff;}
 </style></head><body>
 
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px">
 <button class="print-btn" onclick="window.print()">🖨️ Print This Report</button>
+<button class="print-btn" style="background:#e8e8e8;color:#222" onclick="if(window.opener && !window.opener.closed){window.close();}else if(history.length>1){history.back();}else{window.location.href='CashReady.html';}">← Back to App</button>
+</div>
 
   <div class="header">
     <div>

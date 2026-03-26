@@ -1,8 +1,8 @@
 {
-  "name": "LifeReady \u2014 Life Skills Suite",
+  "name": "LifeReady — Life Skills Suite",
   "short_name": "LifeReady",
   "description": "Real life skills for real life.",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
@@ -26,5 +26,11 @@
       "sizes": "1024x1024",
       "type": "image/png"
     }
+  ],
+  "lang": "en-US",
+  "categories": [
+    "education",
+    "productivity",
+    "utilities"
   ]
 }

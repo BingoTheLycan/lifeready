@@ -3825,7 +3825,7 @@ function printReport(i){
     .notes-box{background:#f9f9f9;border:1px solid #ddd;border-radius:6px;padding:12px;font-size:.84rem;color:#444;line-height:1.6;}
     .footer{margin-top:28px;padding-top:12px;border-top:1px solid #ddd;font-size:.72rem;color:#aaa;display:flex;justify-content:space-between;}
     .print-btn{background:#00c851;color:#000;border:none;border-radius:6px;padding:10px 24px;font-size:.9rem;font-weight:700;cursor:pointer;margin-bottom:20px;}
-    .print-btn:hover{background:#00a041;} .print-btn:nth-child(2):hover{background:#d8d8d8;}
+    .print-btn:hover{background:#00a041;}
     @media print{.print-btn{display:none;}body{padding:16px;}}
     .skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch;}
     .skill-row{background:#f9f9f9;border:1px solid #eee;border-radius:6px;padding:10px 12px;}
@@ -3836,10 +3836,7 @@ function printReport(i){
 .cb-mode-btn.on{background:var(--green);border-color:var(--green);color:#fff;}
 </style></head><body>
 
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px">
 <button class="print-btn" onclick="window.print()">🖨️ Print This Report</button>
-<button class="print-btn" style="background:#e8e8e8;color:#222" onclick="if(window.opener && !window.opener.closed){window.close();}else if(history.length>1){history.back();}else{window.location.href='CashReady.html';}">← Back to App</button>
-</div>
 
   <div class="header">
     <div>
@@ -4248,7 +4245,9 @@ if(!CLIENTS.length){
 openHint('No Client Data','<p style="color:var(--text2);font-size:.88rem">Add clients and log sessions before printing a report.</p>',null,null);
 return;
 }
-const appName=document.title.replace(' - ','\n').split('\n')[0];
+const appName=document.title.replace(' - ','
+').split('
+')[0];
 let rows='';
 CLIENTS.forEach(c=>{
 const sessCount=c.sessions?c.sessions.length:0;
@@ -4261,7 +4260,7 @@ rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-b
 });
 const w=window.open('','_blank');
 if(!w){openHint('Pop-up Blocked','<p style="color:var(--text2);font-size:.88rem">Please allow pop-ups for this page, then try again.</p>',null,null);return;}
-w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}@media print{.no-print{display:none}}</style></head><body> <div class="no-print" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">🖨️ Print / Save as PDF</button></div> <h1>${appName} - Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
+w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}.btnbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.print-btn{padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px}.back-btn{padding:10px 20px;background:#e8e8e8;color:#222;border:none;border-radius:6px;cursor:pointer;font-size:14px}.back-btn:hover{background:#d8d8d8}.print-btn:hover{background:#111}@media print{.btnbar{display:none}}</style></head><body> <div class="btnbar"><button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button><button class="back-btn" onclick="if(window.opener && !window.opener.closed){window.close();}else if(history.length>1){history.back();}else{window.location.href='CashReady.html';}">← Back to App</button></div> <h1>${appName} - Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
 w.document.close();
 }
 

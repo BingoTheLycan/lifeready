@@ -1496,6 +1496,15 @@ function makeTappable(screenId){
       e.stopPropagation();
       const steps=card.querySelectorAll('.gstep');
       let txt='';
+      let titleTxt='';
+      let prev=card.previousElementSibling;
+      while(prev){
+        if(prev.classList && prev.classList.contains('gtitle')){
+          titleTxt = prev.innerText || '';
+          break;
+        }
+        prev = prev.previousElementSibling;
+      }
       if(steps.length>0){
         steps.forEach(step=>{
           const body=step.querySelector('div:last-child');
@@ -1504,9 +1513,11 @@ function makeTappable(screenId){
       } else {
         txt=cleanTTS(card.innerText);
       }
+      txt = cleanTTS((titleTxt ? titleTxt + '. ' : '') + txt);
       say(txt.trim());
     });
   });
+
   // guide-card elements (TechReady, HealthReady specialized guides)
   // Override any hardcoded onclick with full gc-body text
   el.querySelectorAll('.guide-card').forEach(card=>{
@@ -1885,6 +1896,7 @@ function replayModeIntro(){
 }
 
 function startMode(mode){
+  ST.askedQs = Array.isArray(ST.askedQs) ? ST.askedQs : [];
   lastMode=mode;
   const isP=mode==='practice';
   ST={mode,score:0,streak:0,bestStreak:0,correct:0,total:0,
@@ -2888,6 +2900,12 @@ function openHint(title,body,okLabel,okCb,showCancel){
   const cancel=$('m-hint-cancel');
   if(cancel) cancel.style.display=showCancel?'block':'none';
   $('m-hint').classList.add('on');
+  try{
+    const tmp=document.createElement('div');
+    tmp.innerHTML=body||'';
+    const spoken=(tmp.innerText||tmp.textContent||'').replace(/\s+/g,' ').trim();
+    if(spoken) say(spoken);
+  }catch(e){}
 }
 function selPrompt(el){
   document.querySelectorAll('#pchips .pchip').forEach(c=>c.classList.remove('on'));
@@ -3350,10 +3368,12 @@ fb.style.display='block';
 }
 const nxt=$('cq-next');if(nxt){nxt.style.display='block';nxt.textContent=CQ.idx+1>=CQ.qs.length?'SEE RESULTS →':'NEXT →';}
 $('cq-score').textContent=CQ.score;
+say(ok?'Correct!':'Incorrect. The correct answer is '+correct+'.');
 }
 function showCQHint(){
 const q=CQ.qs[CQ.idx];if(!q?.hint)return;
 openHint('💡 Hint',`<p style="color:var(--text2);font-size:.88rem">${q.hint}</p>`,null,null);
+say(q.hint);
 }
 function nextCQ(){
 CQ.idx++;
@@ -3571,7 +3591,9 @@ openHint('Leave Drill?','<p style="color:var(--text2);font-size:.88rem">Leave AM
 // ════════════════════════════════════════════
 let WT={score:0,total:0,maxQ:8,answered:false};
 function showWTHint(){
+const hintText='Look at the short hand first. It tells you the hour. Then look at the long hand for minutes.';
 openHint('💡 Hint','<p style="color:var(--text2)">Look at the <strong>short hand</strong> first - it tells you the hour. Then look at the <strong>long hand</strong> for minutes.</p>',null,null);
+say(hintText);
 }
 
 // ════════════════════════════════════════════
@@ -3681,6 +3703,7 @@ if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
 fb.innerHTML=(ok?'✅ Correct! ':'❌ Not quite. ')+(explain?`<div class="fexplain" style="display:block;margin-top:8px">${explain}</div>`:'');}
 const nxt=$('ws-next');
 if(nxt){nxt.style.display='block';nxt.textContent=WS.idx+1>=WS.qs.length?'SEE RESULTS →':'NEXT →';}
+say(ok?'Correct!':'Incorrect. The correct answer is '+correct+'.');
 }
 function nextWS(){
 WS.idx++;
@@ -3788,6 +3811,7 @@ if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
 fb.innerHTML=(ok?'✅ Correct! ':'❌ Not quite. ')+(explain?`<div class="fexplain" style="display:block;margin-top:8px">${explain}</div>`:'');}
 const nxt=$('ac-next');
 if(nxt){nxt.style.display='block';nxt.textContent=AC.idx+1>=AC.qs.length?'SEE RESULTS →':'NEXT →';}
+say(ok?'Correct!':'Incorrect. The correct answer is '+correct+'.');
 }
 function nextAC(){
 AC.idx++;
@@ -3862,6 +3886,7 @@ const fb=$('wt-fb');
 if(fb){fb.className='wt-fb on '+(ok?'ok':'bad');fb.textContent=ok?getRandMsg(CORRECT_MSGS,correct):getRandMsg(WRONG_MSGS,correct);fb.style.display='block';}
 $('wt-score').textContent=WT.score;
 const nxt=$('wt-next');if(nxt){nxt.style.display='block';nxt.textContent=WT.total>=WT.maxQ?'SEE RESULTS →':'NEXT →';}
+say(ok?'Correct!':'Incorrect. The correct answer is '+correct+'.');
 }
 function nextWT(){
 if(WT.total>=WT.maxQ){

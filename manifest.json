@@ -1,0 +1,25 @@
+{
+  "name": "LifeReady",
+  "short_name": "LifeReady",
+  "description": "LifeReady is a playful life skills app with interactive modules for money, time, jobs, home, travel, social, health, and technology skills.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

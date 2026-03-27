@@ -5,17 +5,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0d1117">
-<meta name="description" content="CashReady - Money skills trainer for everyone. Practice making change, counting money, and real cashier skills. Free, accessible, built by someone who gets it.">
+<meta name="description" content="CashReady - A playful money skills trainer for everyone. Practice making change, counting coins, reading prices, and real cashier skills at your own pace.">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="CashReady">
-<title>CashReady - Money Skills Trainer</title>
+<title>CashReady | LifeReady</title>
 <!-- PWA Manifest (inline) -->
 <link rel="manifest" href="data:application/manifest+json,{
   %22name%22:%22CashReady%22,
   %22short_name%22:%22CashReady%22,
-  %22description%22:%22Money skills trainer for everyone%22,
+  %22description%22:%22A playful money skills trainer for everyone%22,
   %22start_url%22:%22.%22,
   %22display%22:%22standalone%22,
   %22background_color%22:%22%230d1117%22,
@@ -1452,7 +1452,7 @@ max-width:320px;width:calc(100% - 32px);
   <!-- About blurb -->
   <div class="dsb-card">
     <div class="dsb-title">ℹ️ About CashReady</div>
-    <p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free money skills trainer for everyone. Practice making change, counting coins, and real cashier skills - at your own pace.</p>
+    <p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">A playful money skills trainer for everyone. Practice making change, counting coins, and real cashier skills at your own pace.</p>
     <button class="rsec" onclick="go('about')" style="width:100%;font-size:.78rem;padding:8px">Read Our Story →</button>
   </div>
 </aside>
@@ -4245,9 +4245,7 @@ if(!CLIENTS.length){
 openHint('No Client Data','<p style="color:var(--text2);font-size:.88rem">Add clients and log sessions before printing a report.</p>',null,null);
 return;
 }
-const appName=document.title.replace(' - ','
-').split('
-')[0];
+const appName=document.title.replace(' - ','\n').split('\n')[0];
 let rows='';
 CLIENTS.forEach(c=>{
 const sessCount=c.sessions?c.sessions.length:0;
@@ -4260,7 +4258,7 @@ rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-b
 });
 const w=window.open('','_blank');
 if(!w){openHint('Pop-up Blocked','<p style="color:var(--text2);font-size:.88rem">Please allow pop-ups for this page, then try again.</p>',null,null);return;}
-w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}.btnbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.print-btn{padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px}.back-btn{padding:10px 20px;background:#e8e8e8;color:#222;border:none;border-radius:6px;cursor:pointer;font-size:14px}.back-btn:hover{background:#d8d8d8}.print-btn:hover{background:#111}@media print{.btnbar{display:none}}</style></head><body> <div class="btnbar"><button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button><button class="back-btn" onclick="if(window.opener && !window.opener.closed){window.close();}else if(history.length>1){history.back();}else{window.location.href='CashReady.html';}">← Back to App</button></div> <h1>${appName} - Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
+w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}@media print{.no-print{display:none}}</style></head><body> <div class="no-print" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">🖨️ Print / Save as PDF</button></div> <h1>${appName} - Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
 w.document.close();
 }
 

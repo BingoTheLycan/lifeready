@@ -10,8 +10,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="TimeReady">
-<title>TimeReady | LifeReady</title>
-<link rel="manifest" href="data:application/manifest+json,{%22name%22:%22TimeReady%22,%22short_name%22:%22TimeReady%22,%22description%22:%22A playful time skills trainer for everyone%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%230a0e1a%22,%22theme_color%22:%22%230066ff%22,%22orientation%22:%22portrait%22,%22icons%22:[{%22src%22:%22data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230a0e1a'/%3E%3Ccircle cx='256' cy='256' r='180' fill='none' stroke='%230066ff' stroke-width='20'/%3E%3Cline x1='256' y1='256' x2='256' y2='110' stroke='%230066ff' stroke-width='16' stroke-linecap='round'/%3E%3Cline x1='256' y1='256' x2='340' y2='290' stroke='%2300ccff' stroke-width='12' stroke-linecap='round'/%3E%3C/svg%3E%22,%22sizes%22:%22512x512%22,%22type%22:%22image/svg+xml%22}]}">
+<title>TimeReady - Time Skills Trainer</title>
+<link rel="manifest" href="data:application/manifest+json,{%22name%22:%22TimeReady%22,%22short_name%22:%22TimeReady%22,%22description%22:%22Time skills trainer for everyone%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%230a0e1a%22,%22theme_color%22:%22%230066ff%22,%22orientation%22:%22portrait%22,%22icons%22:[{%22src%22:%22data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230a0e1a'/%3E%3Ccircle cx='256' cy='256' r='180' fill='none' stroke='%230066ff' stroke-width='20'/%3E%3Cline x1='256' y1='256' x2='256' y2='110' stroke='%230066ff' stroke-width='16' stroke-linecap='round'/%3E%3Cline x1='256' y1='256' x2='340' y2='290' stroke='%2300ccff' stroke-width='12' stroke-linecap='round'/%3E%3C/svg%3E%22,%22sizes%22:%22512x512%22,%22type%22:%22image/svg+xml%22}]}">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════
@@ -472,6 +472,35 @@ main{grid-template-columns:1fr 300px;}
 </filter>
 </defs>
 </svg>
+
+
+<style id="timeready-hotfix">
+@media (max-width: 700px) {
+  .hint-card {
+    max-width: calc(100vw - 32px) !important;
+    margin: 16px auto !important;
+    padding: 18px 18px 16px 18px !important;
+  }
+  #closeHintBtn {
+    line-height: 1;
+    padding: 0 0 8px 8px;
+  }
+}
+</style>
+
+
+<style id="timeready-wt-inline-hint-fix">
+@media (max-width:700px){
+  #wt-inline-hint{
+    font-size:.98rem !important;
+    margin-top:12px !important;
+  }
+  #wt .acts .abtn,
+  #wt .acts .dbtn{
+    width:100%;
+  }
+}
+</style>
 
 </head>
 <body>
@@ -1121,7 +1150,7 @@ main{grid-template-columns:1fr 300px;}
   </div>
   <div class="dsb-card">
     <div class="dsb-title">ℹ️ About TimeReady</div>
-    <p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">A playful time skills trainer for everyone. Learn to read clocks, understand schedules, and build real independence - at your own pace.</p>
+    <p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free time skills trainer for everyone. Learn to read clocks, understand schedules, and build real independence - at your own pace.</p>
     <button class="rsec" onclick="go('about')" style="width:100%;font-size:.78rem;padding:8px">Read Our Story →</button>
   </div>
 </aside>
@@ -3018,7 +3047,36 @@ function printReport(i){
   const html=`<!DOCTYPE html><html><head><title>Progress Report - ${cl.name}</title>
   <style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;padding:32px;max-width:720px;color:#222;font-size:14px;}.header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;padding-bottom:14px;border-bottom:3px solid #0066ff;}.header-title{font-size:1.4rem;font-weight:900;color:#0066ff;margin-bottom:4px;}.header-badge{background:#e8f0ff;border:2px solid #0066ff;border-radius:8px;padding:8px 14px;text-align:center;font-size:.75rem;color:#0066ff;font-weight:700;}h2{color:#333;font-size:.92rem;font-weight:900;margin:20px 0 8px;text-transform:uppercase;border-left:4px solid #0066ff;padding-left:8px;}table{width:100%;border-collapse:collapse;margin-top:4px;font-size:.84rem;}th,td{padding:8px 10px;border:1px solid #ddd;text-align:left;}th{background:#e8f0ff;font-weight:700;}tr:nth-child(even){background:#fafafa;}.bar-wrap{background:#e8e8e8;border-radius:4px;height:8px;overflow:hidden;min-width:80px;}.bar-fill{height:100%;background:#0066ff;border-radius:4px;}.goal-row{background:#fff8e1;border-left:4px solid #ffb300;padding:10px 14px;margin:6px 0;border-radius:4px;font-size:.84rem;}.footer{margin-top:28px;padding-top:12px;border-top:1px solid #ddd;font-size:.72rem;color:#aaa;display:flex;justify-content:space-between;}.print-btn{background:#0066ff;color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:.9rem;font-weight:700;cursor:pointer;margin-bottom:20px;}.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch;}.skill-row{background:#f5f8ff;border:1px solid #dde8ff;border-radius:6px;padding:10px 12px;}.skill-name{font-size:.78rem;font-weight:700;color:#555;margin-bottom:5px;}.skill-pct{float:right;color:#0066ff;}@media print{.print-btn{display:none;}}.cb-mode-btn{background:var(--panel);border:1px solid var(--border);border-radius:6px;color:var(--text2);font-family:var(--font-mono);font-size:.65rem;padding:6px 4px;cursor:pointer;transition:all .2s;letter-spacing:.5px;font-weight:600;}
 .cb-mode-btn.on{background:var(--green);border-color:var(--green);color:#fff;}
-</style></head><body>
+</style>
+<style id="timeready-hotfix">
+@media (max-width: 700px) {
+  .hint-card {
+    max-width: calc(100vw - 32px) !important;
+    margin: 16px auto !important;
+    padding: 18px 18px 16px 18px !important;
+  }
+  #closeHintBtn {
+    line-height: 1;
+    padding: 0 0 8px 8px;
+  }
+}
+</style>
+
+
+<style id="timeready-wt-inline-hint-fix">
+@media (max-width:700px){
+  #wt-inline-hint{
+    font-size:.98rem !important;
+    margin-top:12px !important;
+  }
+  #wt .acts .abtn,
+  #wt .acts .dbtn{
+    width:100%;
+  }
+}
+</style>
+
+</head><body>
 
 <button class="print-btn" onclick="window.print()">🖨️ Print This Report</button>
 
@@ -3592,7 +3650,11 @@ openHint('Leave Drill?','<p style="color:var(--text2);font-size:.88rem">Leave AM
 let WT={score:0,total:0,maxQ:8,answered:false};
 function showWTHint(){
 const hintText='Look at the short hand first. It tells you the hour. Then look at the long hand for minutes.';
-openHint('💡 Hint','<p style="color:var(--text2)">Look at the <strong>short hand</strong> first - it tells you the hour. Then look at the <strong>long hand</strong> for minutes.</p>',null,null);
+const bar=$('wt-inline-hint');
+if(bar){
+  bar.innerHTML='💡 Hint: Look at the <strong>short hand</strong> first. It tells you the hour. Then look at the <strong>long hand</strong> for minutes.';
+  bar.style.display='block';
+}
 say(hintText);
 }
 
@@ -3869,7 +3931,7 @@ const wh=((h+randInt(1,4)-1)%12)+1,wm=(m+rand([5,10,15,20,30]))%60;
 const wt=fmtTime12(wh,wm);if(wt!==correct)wrongs.add(wt);
 }
 const opts=shuf([correct,...wrongs]);
-$('wt-content').innerHTML=` <div class="wt-scenario"> <div class="wt-context">Look at the clock. What time does it show?</div> <div class="wt-clock">${drawClock(h,m,200,diff>1,true)}</div> <div class="qopts">${opts.map(o=>`<button class="qo ${CFG.errorless&&o===correct?'ok':''}" onclick="answerWT('${o}','${correct}',${h},${m})">${o}</button>`).join('')}</div> <div class="wt-fb" id="wt-fb"></div> </div> <div class="acts" style="margin-top:8px"> <button class="abtn full-abtn" onclick="showWTHint()">💡 HINT</button> <button class="dbtn" id="wt-next" onclick="nextWT()" style="display:none;margin-top:8px">NEXT →</button> </div>`;
+$('wt-content').innerHTML=` <div class="wt-scenario"> <div class="wt-context">Look at the clock. What time does it show?</div> <div class="wt-clock">${drawClock(h,m,200,diff>1,true)}</div> <div class="qopts">${opts.map(o=>`<button class="qo ${CFG.errorless&&o===correct?'ok':''}" onclick="answerWT('${o}','${correct}',${h},${m})">${o}</button>`).join('')}</div> <div class="wt-fb" id="wt-fb"></div> <div id="wt-inline-hint" style="display:none;background:var(--bg2);border-left:5px solid var(--amber);border-radius:16px;padding:14px 16px;margin-top:14px;color:var(--text2);line-height:1.6;text-align:left">💡 Hint: Look at the <strong>short hand</strong> first. It tells you the hour. Then look at the <strong>long hand</strong> for minutes.</div> </div> <div class="acts" style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"> <button class="abtn" style="flex:1;min-width:140px" onclick="showWTHint()">💡 HINT</button> <button class="abtn" style="flex:1;min-width:140px" onclick="say('What time does this clock show?')">🔊 SAY AGAIN</button> <button class="dbtn" id="wt-next" onclick="nextWT()" style="display:none;margin-top:0;flex:1;min-width:140px">NEXT →</button> </div>`;
 say('What time does this clock show?');
 }
 function answerWT(chosen,correct,h,m){
@@ -3943,7 +4005,36 @@ rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-b
 });
 const w=window.open('','_blank');
 if(!w){openHint('Pop-up Blocked','<p style="color:var(--text2);font-size:.88rem">Allow pop-ups for this page then try again.</p>',null,null);return;}
-w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto}@media print{.noprint{display:none}}</style></head><body> <div class="noprint" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#222;color:#fff;border:none;border-radius:6px;cursor:pointer">🖨 Print / Save as PDF</button></div> <h2 style="margin-bottom:4px">${appName} - Coach Report</h2> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows}</bo`+`dy></ht`+`ml>`);
+w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto}@media print{.noprint{display:none}}</style>
+<style id="timeready-hotfix">
+@media (max-width: 700px) {
+  .hint-card {
+    max-width: calc(100vw - 32px) !important;
+    margin: 16px auto !important;
+    padding: 18px 18px 16px 18px !important;
+  }
+  #closeHintBtn {
+    line-height: 1;
+    padding: 0 0 8px 8px;
+  }
+}
+</style>
+
+
+<style id="timeready-wt-inline-hint-fix">
+@media (max-width:700px){
+  #wt-inline-hint{
+    font-size:.98rem !important;
+    margin-top:12px !important;
+  }
+  #wt .acts .abtn,
+  #wt .acts .dbtn{
+    width:100%;
+  }
+}
+</style>
+
+</head><body> <div class="noprint" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#222;color:#fff;border:none;border-radius:6px;cursor:pointer">🖨 Print / Save as PDF</button></div> <h2 style="margin-bottom:4px">${appName} - Coach Report</h2> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows}</bo`+`dy></ht`+`ml>`);
 w.document.close();
 }
 
@@ -4025,6 +4116,25 @@ const swURL=URL.createObjectURL(blob);
 navigator.serviceWorker.register(swURL).catch(()=>{});
 }
 
+
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.id === 'closeHintBtn') {
+    const hint = e.target.closest('.hint-card');
+    if (hint) hint.style.display = 'none';
+  }
+});
+
+function speakQuestionText(text) {
+  try {
+    if (!('speechSynthesis' in window) || !text) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(String(text));
+    utterance.rate = 0.95;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+    window.speechSynthesis.speak(utterance);
+  } catch (e) {}
+}
 </script>
 
 <script>

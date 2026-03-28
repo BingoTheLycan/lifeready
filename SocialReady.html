@@ -1260,7 +1260,8 @@ max-width:320px;width:calc(100% - 32px);
       </div>
     </div>
     </div>
-    <div class="gsec"><div class="gtitle">🆓 ALWAYS FREE</div><div class="gcard">
+    <div class="gsec"><div class="gtitle">🆓 ALWAYS FREE</div><div class="gcard" style="text-align:center;padding:20px">
+      <div style="font-size:2rem;margin-bottom:10px">🆓</div>
       <p style="font-size:.88rem;color:var(--text2);line-height:1.8">SocialReady is and always will be completely free. No accounts. No ads. No paywalls. No data collected. Just a tool that helps people build stronger connections - for everyone, always.</p>
     </div></div>
     <div style="text-align:center;padding:20px 0 8px">
@@ -2420,7 +2421,7 @@ function makeTappable(screenId){
           const body=step.querySelector('div:last-child');
           if(body) txt+=cleanTTS(body.innerText)+' ';
         });
-        txt = cleanTTS((titleTxt ? titleTxt + '. ' : '') + txt);
+        txt = cleanTTS(txt);
       } else {
         let titleTxt='';
         let prev=card.previousElementSibling;
@@ -2431,7 +2432,7 @@ function makeTappable(screenId){
           }
           prev = prev.previousElementSibling;
         }
-        txt = cleanTTS((titleTxt ? titleTxt + '. ' : '') + card.innerText);
+        txt = cleanTTS(card.innerText);
       }
       say(txt.trim());
     });
@@ -3105,17 +3106,31 @@ function answerQ(chosen){
   $('g-score').textContent=ST.score;
   {const _z=$('g-lvl');if(_z)_z.textContent=getLvl(ST.score).n;}
   const CORRECT=['Great thinking!','Correct!','That\'s right!','Nailed it!','Yes! Strong social skills.','Right on!'];
-  const WRONG=['Not quite - see explanation below.','Almost! Read why below.','That\'s okay - the right answer is shown.','Not this time. Keep going!'];
+  const WRONG=['Not quite - the right answer is shown.','Almost! Read the explanation to understand why.','That\'s okay - the right answer is highlighted.','Not this time. Keep going!'];
   const fb=$('g-fb');
   if(fb){
-    fb.className='qfb on '+(ok?'ok':'bad'); fb.style.display='block';
-    fb.innerHTML=(ok?`<strong style="color:#00c851">✅ ${rand(CORRECT)}</strong>`:`<strong style="color:#ff4444">❌ ${rand(WRONG)}</strong>`)
-      +(currentQ.explain?`<div style="font-size:.78rem;color:var(--text3);margin-top:8px;line-height:1.6">${currentQ.explain}</div>`:'');
+    fb.className='qfb';
+    fb.style.display='none';
+    fb.innerHTML='';
+  }
+  const fcard=$('fcard'), femoji=$('femoji'), ftitle=$('ftitle'), fmsg=$('fmsg'), fnext=$('fnext');
+  if(fcard) fcard.classList.toggle('wrong', !ok);
+  if(femoji) femoji.textContent = ok ? '✅' : '❌';
+  if(ftitle){
+    ftitle.textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+    ftitle.className = 'ftitle ' + (ok ? 'ok' : 'bad');
+  }
+  if(fmsg){
+    const top = ok ? rand(CORRECT) : rand(WRONG);
+    fmsg.innerHTML = `<div style="margin-bottom:10px">${top}</div>` + (currentQ.explain ? `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:left">${currentQ.explain}</div>` : '');
+  }
+  if(fnext){
+    fnext.textContent = ST.total>=ST.maxQ ? 'SEE RESULTS →' : 'NEXT →';
+    fnext.className = 'fnext' + (ok ? '' : ' bad');
   }
   awardBadge('first_step');
   if(ok) awardBadge('first_correct');
   setTimeout(()=>{
-    const fn=$('fnext'); if(fn) fn.textContent=ST.total>=ST.maxQ?'SEE RESULTS →':'NEXT →';
     const feoc=$('feoc'); if(feoc) feoc.style.display='none';
     $('fov').classList.add('on');
     say(ok?'Correct! Great job.':('Not quite. '+(currentQ.explain||'').split('.')[0]+'.'));
@@ -3344,6 +3359,11 @@ function endSession(early=false){
   const eoc=$('eoc-card-wrap');
   if(eoc) eoc.innerHTML=!early&&pct>=80?`<div style="background:linear-gradient(135deg,rgba(155,48,217,.15),rgba(155,48,217,.05));border:2px solid rgba(155,48,217,.4);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">🏅 GREAT SESSION!</div><div style="font-family:var(--font-display);font-size:1.3rem;color:var(--green)">${CFG.playerName?CFG.playerName+' · ':''}⭐ ${pct}% Accuracy ⭐</div><div style="font-size:.72rem;color:var(--text3);margin-top:4px">Real social skills - keep it up!</div></div>`:'';
   if(!CFG.noMotion&&pct>=70) confetti();
+  const rpa=$('r-play-again');
+  if(rpa){
+    if(ST.mode==='daily'){rpa.textContent='▶ PLAY CHALLENGE MODE'; rpa.onclick=()=>startMode('challenge');}
+    else{rpa.textContent='▶ PLAY AGAIN'; rpa.onclick=()=>startMode(ST.mode);}
+  }
   say(`Session complete! You got ${ST.correct} out of ${ST.total} correct.`);
   updateHomeUI();
   go('results'); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;

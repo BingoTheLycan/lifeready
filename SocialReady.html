@@ -6,30 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0d0a07">
 <meta name="description" content="SocialReady - Social skills trainer for everyone. Practice conversations, boundaries, emotions, and real-life social situations. Free, accessible, built by someone who gets it.">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="SocialReady">
-<title>SocialReady - Social Skills Trainer</title>
-<!-- PWA Manifest (inline) -->
-<link rel="manifest" href="data:application/manifest+json,{
-  %22name%22:%22SocialReady%22,
-  %22short_name%22:%22SocialReady%22,
-  %22description%22:%22Social skills trainer for everyone%22,
-  %22start_url%22:%22.%22,
-  %22display%22:%22standalone%22,
-  %22background_color%22:%22%230d0a07%22,
-  %22theme_color%22:%22%239b30d9%22,
-  %22orientation%22:%22portrait%22,
-  %22icons%22:[
-    {%22src%22:%22data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230d1117'/%3E%3Ctext x='256' y='308' font-family='Arial, sans-serif' font-size='180' font-weight='bold' text-anchor='middle' fill='%239b30d9'%3E%F0%9F%92%AC%3C/text%3E%3C/svg%3E%22,%22sizes%22:%22512x512%22,%22type%22:%22image/svg+xml%22}
-  ]
-}">
+<title>SocialReady | LifeReady</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════
    SocialReady v1.0
-   Warm social aesthetic with accessibility focus
+   Warm home aesthetic with accessibility focus
    ═══════════════════════════════════════════════════════ */
 :root {
   --green:#9b30d9; --green2:#7a20b8; --green3:#4a1070;
@@ -143,7 +125,7 @@ main{grid-template-columns:1fr 300px;}
 .dsb-stat-label{color:var(--text2);}
 .dsb-stat-value{font-family:var(--font-mono);font-weight:700;color:var(--green);}
 
-/* ══ SOCIALREADY LOGO ══ */
+/* ══ HOMEREADY LOGO ══ */
 #socialready-logo{
 font-family:var(--font-mono);
 font-size:clamp(2.2rem,10vw,3.4rem);
@@ -175,7 +157,7 @@ pointer-events:none;
 50%{text-shadow:0 0 50px var(--green-glow),0 0 100px rgba(155,48,217,.25),0 0 140px rgba(155,48,217,.08);}
 }
 .home-tagline{font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:4px;margin-top:6px;text-shadow:0 0 10px #9b30d944;animation:blink 4s step-end infinite;}
-/* ══ HOME SCREEN ══ */
+/* ══ HOME ══ */
 .home-hero{text-align:center;padding:32px 12px 22px;animation:fadeUp .5s ease;}
 .home-title{font-family:var(--font-mono);font-size:clamp(1.7rem,8vw,2.8rem);color:var(--green);text-shadow:0 0 40px var(--green-glow),0 0 80px rgba(155,48,217,0.08);letter-spacing:5px;line-height:1.05;}
 .home-sub{color:var(--text2);font-size:0.88rem;margin-top:10px;font-weight:600;letter-spacing:.5px;}
@@ -689,7 +671,7 @@ max-width:320px;width:calc(100% - 32px);
 
 <main>
 
-<!-- ══════════ HOME SCREEN ══════════ -->
+<!-- ══════════ HOME ══════════ -->
 
 <div id="scr-home" class="scr on">
   <div class="home-hero">
@@ -768,7 +750,7 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 
   <div style="height:1px;background:var(--border);margin:12px 0 8px;opacity:.5"></div>
-  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #9b30d955">🧠 TOOLS & GUIDES</div>
+  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #9b30d955">🧠 LEARNING TOOLS</div>
   <div class="hgrid">
     <div class="hb" onclick="go('situationsguide')"><div class="hi">👁️</div><div class="hl">Situations Guide</div><div class="hc">Reading social cues</div></div>
     <div class="hb" onclick="go('feelingsguide')"><div class="hi">💛</div><div class="hl">Feelings Guide</div><div class="hc">Naming & managing emotions</div></div>
@@ -812,7 +794,7 @@ max-width:320px;width:calc(100% - 32px);
     <div id="grade-letter" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--green);text-shadow:0 0 20px rgba(0,200,81,.5);line-height:1">A+</div>
   </div>
   <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">SESSION COMPLETE</div>
-  <div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You completed 10 social skill rounds today!</div>
+  <div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You helped 10 customers today!</div>
   <div id="r-level-badge" style="display:inline-block;background:rgba(255,187,51,.14);border:1px solid var(--amber);border-radius:20px;padding:3px 14px;font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:1px">BEGINNER</div>
 </div>
 
@@ -833,7 +815,7 @@ max-width:320px;width:calc(100% - 32px);
 
 <!-- Badges -->
 <div id="r-badges-sec" style="display:none;margin-bottom:12px">
-  <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text3);letter-spacing:2px;margin-bottom:7px">🎖 BADGES EARNED THIS SESSION</div>
+  <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text3);letter-spacing:2px;margin-bottom:7px">🎖 BADGES EARNED THIS SHIFT</div>
   <div class="ebadges" id="r-badges"></div>
 </div>
 
@@ -870,7 +852,7 @@ max-width:320px;width:calc(100% - 32px);
   </div>
 </div>
 
-<!-- ══════════ SOCIAL GUIDES ══════════ -->
+<!-- ══════════ LAUNDRY GUIDE ══════════ -->
 
 <!-- ══════════ SCORES ══════════ -->
 
@@ -882,16 +864,19 @@ max-width:320px;width:calc(100% - 32px);
   </div>
   <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px" id="score-filters">
     <button class="sopt on" onclick="filterScores('all',this)">All</button>
-    <button class="sopt" onclick="filterScores('Social Challenge',this)">Challenge</button>
-    <button class="sopt" onclick="filterScores('Reading the Room',this)">Situations</button>
-    <button class="sopt" onclick="filterScores('Conversations',this)">Talk</button>
-    <button class="sopt" onclick="filterScores('Boundaries',this)">Boundaries</button>
-    <button class="sopt" onclick="filterScores('Conflict & Feelings',this)">Feelings</button>
-    <button class="sopt" onclick="filterScores('Daily Challenge',this)">Daily</button>
-    <button class="sopt" onclick="filterScores('Practice Mode',this)">Practice</button>
+    <button class="sopt" onclick="filterScores('Home Challenge',this)">Challenge</button>
+    <button class="sopt" onclick="filterScores('Laundry',this)">Laundry</button>
+    <button class="sopt" onclick="filterScores('Budget',this)">Budget</button>
+    <button class="sopt" onclick="filterScores('Home Safety',this)">Safety</button>
+    <button class="sopt" onclick="filterScores('Food Safety',this)">Food</button>
+    <button class="sopt" onclick="filterScores('Renting',this)">Renting</button>
+    <button class="sopt" onclick="filterScores('Daily',this)">Daily</button>
+    <button class="sopt" onclick="filterScores('Change Drill',this)">Change Drill</button>
+    <button class="sopt" onclick="filterScores('Money ID Quiz',this)">Quiz</button>
+    <button class="sopt" onclick="filterScores('Do I Have Enough',this)">Enough?</button>
   </div>
   <button id="read-scores-btn" style="display:block;width:100%;margin:10px 0 4px;padding:9px 16px;background:transparent;border:1px solid #9b30d955;border-radius:20px;color:#9b30d9;font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px #9b30d944">🔊  READ MY SCORES ALOUD</button>
-  <div id="scores-wrap"><div class="no-data">No scores yet.<br>Complete a session to see your best!</div></div>
+  <div id="scores-wrap"><div class="no-data">No scores yet.<br>Complete a shift to see your best!</div></div>
 </div>
 
 <!-- ══════════ BADGES ══════════ -->
@@ -1161,72 +1146,76 @@ max-width:320px;width:calc(100% - 32px);
 
 <div id="scr-callscripts" class="scr">
   <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">📞 CALL SCRIPTS</div></div>
-  <div class="gsec">
-    <div class="gtitle">CALLING TO ASK FOR HELP</div>
-    <div class="gcard" style="border-left:4px solid var(--green)">
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;font-style:italic">"Hi, my name is [your name]. I need help with [the problem]. I am not sure what to do next. Can you help me?"</p>
+  <div style="padding:0 16px 80px">
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:16px;font-size:.82rem;color:var(--text2);line-height:1.6">
+      📞 <strong style="color:var(--text)">Not sure what to say?</strong> These scripts give you the exact words for tricky social situations. Read them, practice them, make them your own.
     </div>
-    <div class="gtitle" style="margin-top:14px">LEAVING A VOICEMAIL</div>
-    <div class="gcard" style="border-left:4px solid var(--green)">
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;font-style:italic">"Hi, this is [your name]. I am calling about [reason]. You can call me back at [your number]. Thank you."</p>
+    <div class="gsec"><div class="gtitle">🛡️ SETTING A BOUNDARY</div>
+      <div class="gcard" style="background:var(--bg3);border-radius:var(--radius-sm);padding:14px 16px">
+        <div style="font-size:.78rem;color:var(--text3);margin-bottom:8px;font-family:var(--font-mono);letter-spacing:1px">IN PERSON OR BY TEXT</div>
+        <div style="font-size:.9rem;color:var(--text);line-height:1.8;font-style:italic">"I care about our friendship, but I am not comfortable with [specific thing]. I need you to [specific request]."</div>
+        <div style="font-size:.78rem;color:var(--text2);margin-top:8px">You do not need to apologize for having a boundary. State it clearly and warmly.</div>
+      </div>
     </div>
-    <div class="gtitle" style="margin-top:14px">CHECKING IN WITH SOMEONE</div>
-    <div class="gcard" style="border-left:4px solid var(--green)">
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;font-style:italic">"Hi, I wanted to check in with you about [topic]. Is now a good time to talk?"</p>
+    <div class="gsec"><div class="gtitle">💬 TELLING SOMEONE THEY HURT YOUR FEELINGS</div>
+      <div class="gcard" style="background:var(--bg3);border-radius:var(--radius-sm);padding:14px 16px">
+        <div style="font-size:.78rem;color:var(--text3);margin-bottom:8px;font-family:var(--font-mono);letter-spacing:1px">SCRIPT</div>
+        <div style="font-size:.9rem;color:var(--text);line-height:1.8;font-style:italic">"Hey, I wanted to talk to you about something. When [describe what happened], I felt [name your feeling]. I do not think you meant to hurt me, but I wanted you to know."</div>
+        <div style="font-size:.78rem;color:var(--text2);margin-top:8px">💡 Keep it about how you felt, not what they did wrong. That keeps the conversation open.</div>
+      </div>
     </div>
-    <div class="gtitle" style="margin-top:14px">ENDING A CALL POLITELY</div>
-    <div class="gcard" style="border-left:4px solid var(--amber)">
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;font-style:italic">"Thanks for talking with me. I have to go now, but I appreciate your help. Bye."</p>
+    <div class="gsec"><div class="gtitle">🚫 SAYING NO WHEN PRESSURED</div>
+      <div class="gcard" style="background:var(--bg3);border-radius:var(--radius-sm);padding:14px 16px">
+        <div style="font-size:.78rem;color:var(--text3);margin-bottom:8px;font-family:var(--font-mono);letter-spacing:1px">WHEN SOMEONE KEEPS PUSHING</div>
+        <div style="font-size:.9rem;color:var(--text);line-height:1.8;font-style:italic">"I already said no, and my answer is not changing. I'd appreciate you respecting that."</div>
+        <div style="font-size:.78rem;color:var(--text2);margin-top:8px">You do not owe anyone an explanation for saying no. No is a complete sentence.</div>
+      </div>
     </div>
-    <div class="gcard" style="border-left:4px solid var(--green)"><p>💡 <strong>You do not need perfect words.</strong> Calm, clear, respectful language usually works best.</p></div>
+    <div class="gsec"><div class="gtitle">🤝 APOLOGIZING SINCERELY</div>
+      <div class="gcard" style="background:var(--bg3);border-radius:var(--radius-sm);padding:14px 16px">
+        <div style="font-size:.78rem;color:var(--text3);margin-bottom:8px;font-family:var(--font-mono);letter-spacing:1px">SCRIPT</div>
+        <div style="font-size:.9rem;color:var(--text);line-height:1.8;font-style:italic">"I am sorry for [specific thing you did]. I understand that it [describe the impact]. That wasn't okay, and I am going to work on [specific change]."</div>
+        <div style="font-size:.78rem;color:var(--text2);margin-top:8px">💡 No "but" after sorry. "I am sorry, but..." cancels the apology.</div>
+      </div>
+    </div>
+    <div class="gsec"><div class="gtitle">🆘 TELLING A TRUSTED PERSON SOMETHING IS WRONG</div>
+      <div class="gcard" style="background:var(--bg3);border-radius:var(--radius-sm);padding:14px 16px">
+        <div style="font-size:.78rem;color:var(--text3);margin-bottom:8px;font-family:var(--font-mono);letter-spacing:1px">STARTING THE CONVERSATION</div>
+        <div style="font-size:.9rem;color:var(--text);line-height:1.8;font-style:italic">"I need to talk to you about something. I am not sure how to say it, but I want you to know that [describe the situation]. I could really use your help."</div>
+        <div style="font-size:.78rem;color:var(--text2);margin-top:8px">It is always okay to ask for help. You do not have to have the perfect words. Just start.</div>
+      </div>
+    </div>
+    <div class="gsec"><div class="gtitle">💛 SUPPORTING A FRIEND WHO IS STRUGGLING</div>
+      <div class="gcard" style="background:var(--bg3);border-radius:var(--radius-sm);padding:14px 16px">
+        <div style="font-size:.78rem;color:var(--text3);margin-bottom:8px;font-family:var(--font-mono);letter-spacing:1px">WHAT TO SAY WHEN YOU DON'T KNOW WHAT TO SAY</div>
+        <div style="font-size:.9rem;color:var(--text);line-height:1.8;font-style:italic">"I am here. You do not have to go through this alone. I do not have all the answers, but I am not going anywhere."</div>
+        <div style="font-size:.78rem;color:var(--text2);margin-top:8px">💡 Sometimes the most powerful thing you can offer is simply your presence. You do not need to fix anything.</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ══════════ ABOUT ══════════ -->
-
 <div id="scr-about" class="scr">
-  <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
-    <div class="gmode">ℹ️ ABOUT</div>
-  </div>
-
-  <div style="text-align:center;padding:28px 16px 20px">
-    <div style="font-family:var(--font-mono);font-size:2.2rem;letter-spacing:6px;line-height:1;margin-bottom:6px">
-      <span style="color:var(--green);text-shadow:0 0 30px var(--green-glow)">SOCIAL</span><span style="color:var(--text)">READY</span>
+  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">ℹ️ ABOUT</div></div>
+  <div style="padding:0 16px 80px">
+    <div style="text-align:center;padding:24px 0 16px">
+      <div style="font-family:var(--font-mono);font-size:2rem;font-weight:700;letter-spacing:6px;color:var(--green);text-shadow:0 0 30px rgba(155,48,217,0.4)">SOCIAL<span style="color:var(--text2)">READY</span></div>
+      <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:3px;margin-top:6px">SOCIAL SKILLS TRAINER</div>
     </div>
-    <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:4px;text-shadow:0 0 12px #9b30d944">SOCIAL SKILLS TRAINER</div>
-  </div>
-
-  <div class="gsec">
-    <div class="gtitle">💜 THE STORY</div>
+    <div class="gsec"><div class="gtitle">💜 THE STORY</div><div class="gcard">
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">SocialReady was built as the sixth piece of the LifeReady suite. Social skills are some of the most important - and most personal - life skills there are. Reading a room, setting a boundary, working through conflict, knowing what to say and when: these things matter in every relationship, every setting, every day.</p>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-top:10px">This app was built because social skills class does not always happen as often as it should. SocialReady is here to fill the gap - free, available anytime, built with the same care as every other app in the suite.</p>
+    </div></div>
+    <div class="gsec"><div class="gtitle">🚀 THE MISSION</div><div class="gcard">
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">Social connection should not be a mystery. SocialReady helps people practice the real skills behind connection - reading situations, having healthy conversations, setting limits, handling conflict, and understanding their own feelings. Free, accessible, and built for everyone.</p>
+    </div></div>
+    <div class="gsec"><div class="gtitle">🤝 A DEDICATION</div><div class="gcard">
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">For the behaviorists, counselors, social workers, and support staff who show up every day to help people understand themselves and each other. And for everyone who has ever felt out of place in a social situation and wondered if they would ever figure it out. You will.</p>
+    </div></div>
+    <div class="gsec"><div class="gtitle">💬 PART OF THE LIFEREADY SUITE</div>
     <div class="gcard">
-      <p style="font-size:.92rem;color:var(--text);line-height:1.8;margin-bottom:14px">SocialReady was built because connection is a life skill too.</p>
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">A lot of people are told to “just be social” without ever being taught how. Reading the room, starting a conversation, knowing when to speak up, understanding feelings, and setting boundaries can all be learned and practiced.</p>
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">SocialReady gives people a safe place to build those skills without pressure, shame, or guesswork.</p>
-    </div>
-  </div>
-
-  <div class="gsec">
-    <div class="gtitle">🚀 THE MISSION</div>
-    <div class="gcard">
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">Social skills should not feel like a mystery. This module helps people practice real-world communication, boundaries, emotional awareness, and conflict resolution at their own pace.</p>
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">It is designed to be supportive, accessible, and useful for learners, families, educators, counselors, and support staff.</p>
-    </div>
-  </div>
-
-  <div class="gsec">
-    <div class="gtitle">🤝 A DEDICATION</div>
-    <div class="gcard" style="border-left:4px solid var(--amber)">
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">This app is for everyone who has ever felt unsure in a conversation, misunderstood a situation, or wished social rules came with a guidebook.</p>
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">And it is for the helpers too: teachers, counselors, behaviorists, social workers, direct support professionals, and family members who keep showing up with patience and heart.</p>
-    </div>
-  </div>
-
-  <div class="gsec">
-    <div class="gtitle">💬 PART OF THE LIFEREADY SUITE</div>
-    <div class="gcard">
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">SocialReady is part of the LifeReady suite, a growing set of free, accessible life skills trainers built to make real-world learning feel playable.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch">
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">SocialReady is part of the LifeReady suite - a growing set of free, accessible life skills trainers built by the same person, for the same purpose.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch">
         <div style="background:rgba(0,200,81,0.08);border:1px solid rgba(0,200,81,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
           <div style="font-size:1.2rem">💵</div>
           <div style="font-family:var(--font-mono);font-size:.7rem;color:#00c851;font-weight:700;margin-top:4px">CashReady</div>
@@ -1270,28 +1259,25 @@ max-width:320px;width:calc(100% - 32px);
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="gsec">
-    <div class="gtitle">🆓 ALWAYS FREE</div>
-    <div class="gcard" style="text-align:center;padding:20px">
-      <div style="font-size:2rem;margin-bottom:10px">🆓</div>
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">SocialReady is completely free. No ads. No subscriptions. No paywalls. Just practice, support, and progress.</p>
     </div>
-  </div>
+    <div class="gsec"><div class="gtitle">🆓 ALWAYS FREE</div><div class="gcard">
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">SocialReady is and always will be completely free. No accounts. No ads. No paywalls. No data collected. Just a tool that helps people build stronger connections - for everyone, always.</p>
+    </div></div>
+    <div style="text-align:center;padding:20px 0 8px">
+      <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;margin-bottom:4px">SocialReady v1.0</div>
+      <div style="font-size:.82rem;color:var(--text2);line-height:1.6;max-width:260px;margin:0 auto">Built with love, by someone who gets it. Free for everyone. Always.</div>
+    </div>
+    <div style="margin:0 0 20px;padding:18px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
+      <div style="font-size:1.6rem;margin-bottom:8px">💬</div>
+      <div style="font-family:'Dancing Script',cursive;font-size:2.6rem;color:#9b30d9;line-height:1.1;margin-bottom:6px;text-shadow:0 0 30px rgba(155,48,217,0.4)">Tristan Beck</div>
+      <div style="font-size:.8rem;color:var(--text2);line-height:1.7;margin-bottom:6px">SocialReady - Social Skills Trainer</div>
+      <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px">FREE FOR EVERYONE · ALWAYS</div>
+    </div>
 
-  <div style="text-align:center;padding:20px 16px 12px;border-top:1px solid var(--border);margin-top:8px">
-    <div style="font-size:1.4rem;margin-bottom:8px">💬</div>
-    <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:1px;margin-bottom:4px">SocialReady v1.0</div>
-    <div style="font-size:.82rem;color:var(--text2);line-height:1.6;max-width:260px;margin:0 auto">Built with care, by someone who gets it. Free for everyone. Always.</div>
+</div>
+  <div style="text-align:center;padding:20px 0 8px">
+    <a href="index.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);font-family:var(--font-mono);font-size:.65rem;letter-spacing:2px;text-decoration:none;color:#9b30d9;border:1px solid #9b30d955;border-radius:20px;padding:8px 22px;display:inline-block;text-shadow:0 0 10px #9b30d944;transition:box-shadow .2s,border-color .2s" onclick="event.preventDefault();window.open('index.html','_self')">← BACK TO LIFEREADY HUB</a>
   </div>
-  <div style="margin:0 0 20px;padding:18px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
-    <div style="font-size:1.6rem;margin-bottom:8px">💬</div>
-    <div style="font-family:'Dancing Script',cursive;font-size:2.6rem;color:var(--green);line-height:1.1;margin-bottom:6px;text-shadow:0 0 30px var(--green-glow)">Tristan Beck</div>
-    <div style="font-size:.8rem;color:var(--text2);line-height:1.7;margin-bottom:6px">SocialReady - Social Skills Trainer</div>
-    <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px">FREE FOR EVERYONE · ALWAYS</div>
-  </div>
-
 </div>
 
 <!-- ══ DESKTOP SIDEBAR (hidden on mobile) ══ -->
@@ -1314,15 +1300,15 @@ max-width:320px;width:calc(100% - 32px);
     <div class="dsb-title">🔗 Quick Links</div>
     <div style="display:flex;flex-direction:column;gap:7px">
       <button class="rsec" onclick="go('guide')" style="text-align:left;padding:9px 12px;font-size:.8rem">📖 How To Play</button>
-      <button class="rsec" onclick="go('about')" style="text-align:left;padding:9px 12px;font-size:.8rem">ℹ️ About SocialReady</button>
+      <button class="rsec" onclick="go('guide')" style="text-align:left;padding:9px 12px;font-size:.8rem">📖 How To Play</button>
       <button class="rsec" onclick="go('badges')" style="text-align:left;padding:9px 12px;font-size:.8rem">🎖 View Badges</button>
       <button class="rsec" onclick="go('scores')" style="text-align:left;padding:9px 12px;font-size:.8rem">🏆 High Scores</button>
     </div>
   </div>
   <!-- About blurb -->
   <div class="dsb-card">
-    <div class="dsb-title">ℹ️ About SocialReady</div>
-    <p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free social skills trainer for everyone. Practice conversations, boundaries, emotions, and real-world social situations at your own pace.</p>
+    <div class="dsb-title">ℹ️ About HomeReady</div>
+    <p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free home skills trainer for everyone. Practice laundry, budgeting, food safety, and independent living - at your own pace.</p>
     <button class="rsec" onclick="go('about')" style="width:100%;font-size:.78rem;padding:8px">Read Our Story →</button>
   </div>
 </aside>
@@ -1393,8 +1379,8 @@ max-width:320px;width:calc(100% - 32px);
         <div class="note-chip" onclick="appendNote('Independent today')">Independent today</div>
         <div class="note-chip" onclick="appendNote('Needed verbal prompts')">Needed verbal prompts</div>
         <div class="note-chip" onclick="appendNote('Great focus')">Great focus</div>
-        <div class="note-chip" onclick="appendNote('Needed help reading social cues')">Social cues</div>
-        <div class="note-chip" onclick="appendNote('Strong emotional awareness')">Feelings strength</div>
+        <div class="note-chip" onclick="appendNote('Struggled with laundry symbols')">Laundry symbols</div>
+        <div class="note-chip" onclick="appendNote('Good with food safety')">Food safety strength</div>
         <div class="note-chip" onclick="appendNote('Improving steadily')">Improving steadily</div>
         <div class="note-chip" onclick="appendNote('Best session yet')">Best session yet</div>
         <div class="note-chip" onclick="appendNote('Short attention today')">Short attention today</div>
@@ -1434,7 +1420,682 @@ max-width:320px;width:calc(100% - 32px);
       </select>
     </div>
     <div class="fg"><label class="fl">Goal Description (optional)</label>
-      <input class="fi" id="goal-desc" placeholder="e.g. Complete Reading the Room with 80% independently">
+      <input class="fi" id="goal-desc" placeholder="e.g. Complete Laundry Master with 80% independently">
+    </div>
+    <div class="mbtns"><button class="mcancel" onclick="closeM('m-goal')">Cancel</button><button class="msave" onclick="saveGoal()">Save Goal</button></div>
+  </div>
+</div>
+
+<div class="mow" id="m-hint">
+  <div class="mdl">
+    <div class="mt" id="m-hint-title">💡 HINT</div>
+    <div id="m-hint-body" style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:16px;"></div>
+    <button class="msave" style="width:100%;margin-bottom:8px" id="m-hint-ok" onclick="closeM('m-hint')">Got it!</button>
+    <button class="rsec" id="m-hint-cancel" style="width:100%;display:none" onclick="closeM('m-hint')">Cancel</button>
+  </div>
+</div>
+
+<!-- ══ COACH PIN ══ -->
+
+<div class="mow" id="m-pin">
+  <div class="mdl" style="max-width:320px;text-align:center">
+    <div style="font-size:2rem;margin-bottom:6px">🔒</div>
+    <div class="mt" id="pin-title" style="text-align:center;justify-content:center">COACH ACCESS</div>
+    <div id="pin-subtitle" style="font-size:.82rem;color:var(--text2);margin-bottom:16px;line-height:1.5">Enter your PIN to access the coach dashboard.</div>
+    <input id="pin-input" type="password" class="fi" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
+      placeholder="Enter PIN"
+      style="text-align:center;font-size:1.3rem;letter-spacing:4px;font-family:var(--font-mono);margin-bottom:10px"
+      oninput="pinInputChange()" onkeydown="if(event.key==='Enter')handlePinSubmit()">
+    <div id="pin-error" style="color:var(--red);font-size:.78rem;font-weight:700;margin-bottom:10px;min-height:18px;font-family:var(--font-mono)"></div>
+    <button class="dbtn" onclick="handlePinSubmit()" style="margin-bottom:8px">Submit →</button>
+    <button class="rsec" onclick="closeM('m-pin');go('home')" style="font-size:.8rem">Cancel</button>
+    <div id="pin-footer" style="margin-top:12px;font-size:.72rem;color:var(--text3);line-height:1.5"></div>
+  </div>
+</div>
+
+<!-- ══ NAME PROMPT ══ -->
+
+<div class="mow" id="m-name">
+  <div class="mdl" style="max-width:340px">
+    <div style="text-align:center;font-size:2rem;margin-bottom:8px">👋</div>
+    <div class="mt" style="text-align:center;justify-content:center">WHAT'S YOUR NAME?</div>
+    <p style="font-size:.83rem;color:var(--text2);margin-bottom:16px;line-height:1.6">Your first name will appear on your results when you do a great job!</p>
+    <div style="background:var(--amber-light);border:1px solid var(--amber);border-radius:var(--radius-sm);padding:9px 13px;font-size:.76rem;color:var(--amber);font-weight:700;margin-bottom:16px;line-height:1.5">
+      ⚠️ Only use your name if this is your <strong>personal device</strong>. Do not enter client names on shared devices.
+    </div>
+    <div class="fg">
+      <label class="fl">First name only</label>
+      <input class="fi" id="name-input" placeholder="e.g. Alex" maxlength="20" style="font-size:1.1rem;text-align:center">
+    </div>
+    <div class="mbtns" style="flex-direction:column;gap:8px">
+      <button class="msave" style="width:100%;padding:13px" onclick="saveName()">Save My Name ✓</button>
+      <button class="mcancel" style="width:100%;padding:11px;text-align:center" onclick="skipName()">Skip - No Thanks</button>
+      <button class="mcancel" id="clear-name-btn" onclick="clearName()" style="width:100%;padding:9px;text-align:center;font-size:.75rem;color:var(--red);display:none">Remove My Name</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STREAK MILESTONE ══ -->
+
+<div class="mow" id="m-streak">
+  <div class="mdl" style="max-width:320px;text-align:center">
+    <div id="streak-milestone-emoji" style="font-size:3.5rem;margin-bottom:10px">🔥</div>
+    <div id="streak-milestone-title" style="font-family:var(--font-mono);font-size:1.1rem;color:var(--amber);letter-spacing:3px;margin-bottom:8px">3-DAY STREAK!</div>
+    <div id="streak-milestone-msg" style="font-size:.88rem;color:var(--text2);line-height:1.6;margin-bottom:16px"></div>
+    <div id="streak-milestone-badge" style="background:var(--amber-light);border:2px solid var(--amber);border-radius:var(--radius);padding:14px;margin-bottom:18px">
+      <div style="font-size:2rem;margin-bottom:5px">☀️</div>
+      <div style="font-family:var(--font-mono);font-size:.75rem;color:var(--amber);font-weight:700;letter-spacing:1px">BADGE EARNED!</div>
+      <div id="streak-badge-name" style="font-size:.88rem;color:var(--text);font-weight:700;margin-top:3px"></div>
+    </div>
+    <button class="dbtn" onclick="closeM('m-streak')">Keep Going! →</button>
+  </div>
+</div>
+
+<!-- ══ QUICK SETTINGS (mid-game) ══ -->
+
+<div class="mow" id="m-quick-settings">
+  <div class="mdl" style="max-width:340px">
+    <div class="mt">⚙️ QUICK SETTINGS</div>
+    <p style="font-size:.78rem;color:var(--text2);margin-bottom:14px">Changes apply instantly. Your session continues.</p>
+    <div class="sr" style="margin-bottom:8px"><div class="si">🔊</div><div class="sinfo"><div class="sn">Audio</div><div class="sd2">Spoken instructions &amp; sounds</div></div><div class="tog" id="qs-tog-audio" onclick="qsToggle('audio','qs-tog-audio')"></div></div>
+    <div class="sr" style="margin-bottom:8px"><div class="si">T</div><div class="sinfo"><div class="sn">Large Text</div><div class="sd2">Bigger text &amp; buttons</div></div><div class="tog" id="qs-tog-lt" onclick="qsToggle('largetext','qs-tog-lt')"></div></div>
+    <div class="sr" style="margin-bottom:8px"><div class="si">👁</div><div class="sinfo"><div class="sn">Colorblind Mode</div><div class="sd2">Orange/blue instead of red/green</div></div><div class="tog" id="qs-tog-cb" onclick="qsToggle('colorblind','qs-tog-cb')"></div></div>
+    <div class="sr" style="margin-bottom:8px"><div class="si">☀️</div><div class="sinfo"><div class="sn">Light Mode</div><div class="sd2">Light background, easier in bright light</div></div><div class="tog" id="qs-tog-lm" onclick="qsToggle('lightmode','qs-tog-lm')"></div></div>
+    <div class="sr" style="margin-bottom:8px"><div class="si">🌀</div><div class="sinfo"><div class="sn">Reduce Animations</div><div class="sd2">Turns off motion effects</div></div><div class="tog" id="qs-tog-nm" onclick="qsToggle('nomotion','qs-tog-nm')"></div></div>
+    <div class="sr" style="margin-bottom:8px"><div class="si">💡</div><div class="sinfo"><div class="sn">Errorless Hints</div><div class="sd2">Highlights the correct answer before you tap</div></div><div class="tog" id="qs-tog-el" onclick="qsToggle('errorless','qs-tog-el')"></div></div>
+    <div style="margin-top:8px">
+      <button class="msave" style="width:100%" onclick="closeM('m-quick-settings')">Done - Resume Session ▶</button>
+    </div>
+    <p style="font-size:.68rem;color:var(--text3);text-align:center;margin-top:9px">For all settings, visit the home screen grid.</p>
+  </div>
+</div>
+
+<!-- ══ BADGE TOAST ══ -->
+
+<div id="badge-toast">
+  <div id="badge-toast-icon">🎖</div>
+  <div id="badge-toast-body">
+    <div id="badge-toast-label">🎉 BADGE UNLOCKED!</div>
+    <div id="badge-toast-name"></div>
+    <div id="badge-toast-desc"></div>
+  </div>
+</div>
+
+<div id="scr-game" class="scr">
+  <div class="gtop">
+    <button class="back" id="end-btn" onclick="confirmEnd()">‹ END</button>
+    <div class="gmode" id="gmode-lbl">SOCIAL CHALLENGE</div>
+    <button class="back" onclick="syncQS();openM('m-quick-settings')" style="margin-left:auto;padding:7px 10px;font-size:1rem;min-width:36px" title="Settings">⚙️</button>
+    <button class="back" onclick="replayModeIntro()" style="padding:7px 10px;font-size:.9rem;min-width:36px;font-weight:900;color:var(--green)" title="What is this mode?">?</button>
+    <button class="back" onclick="requestBreak()" style="padding:7px 10px;font-size:.9rem;min-width:36px" title="I need a break">☕</button>
+    <div class="gscore">
+      <div class="sbox" id="sbox-score"><div class="sv" id="g-score">0</div><div class="sl">SCORE</div></div>
+      <div class="sbox" id="sbox-streak">
+        <div class="sdots" id="sdots">
+          <div class="sd" id="sd0"></div><div class="sd" id="sd1"></div>
+          <div class="sd" id="sd2"></div><div class="sd" id="sd3"></div>
+          <div class="sd" id="sd4"></div>
+        </div>
+        <div class="sl">STREAK</div>
+      </div>
+      <div class="lvl" id="g-lvl">BEGINNER</div>
+    </div>
+  </div>
+  <div class="pdots" id="pdots"></div>
+  <div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
+
+  <div class="qpanel" id="qpanel">
+    <div id="g-question" style="font-size:.95rem;font-weight:800;color:var(--text);line-height:1.55;margin-bottom:14px;font-family:var(--font-mono)"></div>
+    <div id="g-visual"></div>
+    <div id="g-opts" class="qopts"></div>
+    <div id="g-fb" class="qfb" style="display:none"></div>
+  </div>
+
+  <div id="g-hint-bar" style="display:none;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:8px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
+
+  <div style="display:flex;gap:8px;margin-top:8px">
+    <button class="abtn" id="hint-btn" onclick="doHint()" style="flex:1">💡 HINT</button>
+    <button class="abtn" onclick="say(currentQ?currentQ.q:'')" style="flex:1">🔊 SAY AGAIN</button>
+  </div>
+</div>
+<!-- ══════════ FEEDBACK ══════════ -->
+<div class="fov" id="fov">
+  <div class="fcard" id="fcard">
+    <div class="femoji" id="femoji">✅</div>
+    <div class="ftitle ok" id="ftitle">CORRECT!</div>
+    <div class="fmsg" id="fmsg"></div>
+    <div id="feoc" style="display:none"></div>
+    <button class="fnext" id="fnext" onclick="nextQ_game()">NEXT →</button>
+  </div>
+</div>
+
+<!-- ══════════ RESULTS ══════════ -->
+
+<div id="scr-results" class="scr">
+  <div style="padding-bottom:10px;animation:fadeUp .5s ease">
+
+<!-- HERO: Grade Arc -->
+<div style="background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:22px 18px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,200,81,.13),transparent 68%);pointer-events:none"></div>
+  <div style="position:relative;width:140px;height:78px;margin:0 auto 10px">
+    <svg viewBox="0 0 140 80" style="width:140px;height:80px;display:block">
+      <path d="M15,75 A55,55 0 0,1 125,75" fill="none" stroke="#1c2330" stroke-width="13" stroke-linecap="round"/>
+      <path id="arc-fill" d="M15,75 A55,55 0 0,1 125,75" fill="none" stroke="#00c851" stroke-width="13" stroke-linecap="round" stroke-dasharray="173" stroke-dashoffset="173"/>
+    </svg>
+    <div id="grade-letter" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--green);text-shadow:0 0 20px rgba(0,200,81,.5);line-height:1">A+</div>
+  </div>
+  <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">SESSION COMPLETE</div>
+  <div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You helped 10 customers today!</div>
+  <div id="r-level-badge" style="display:inline-block;background:rgba(255,187,51,.14);border:1px solid var(--amber);border-radius:20px;padding:3px 14px;font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:1px">BEGINNER</div>
+</div>
+
+<!-- Personal Best Banner (hidden by default) -->
+<div id="pb-banner" style="display:none;background:linear-gradient(135deg,rgba(255,187,51,.14),rgba(255,187,51,.04));border:2px solid var(--amber);border-radius:var(--radius-sm);padding:9px 14px;text-align:center;margin-bottom:10px;font-family:var(--font-mono);font-size:.78rem;color:var(--amber);font-weight:700"></div>
+
+<!-- EOC Card -->
+<div id="eoc-card-wrap" style="margin-bottom:10px"></div>
+
+<!-- Stats Grid -->
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:12px">
+  <div class="rst"><div class="rsv" id="r-score">0</div><div class="rsl">Score</div></div>
+  <div class="rst"><div class="rsv" id="r-acc">0%</div><div class="rsl">Accuracy</div></div>
+  <div class="rst"><div class="rsv" id="r-correct">0/0</div><div class="rsl">Correct</div></div>
+  <div class="rst"><div class="rsv" id="r-streak">0</div><div class="rsl">Best Streak</div></div>
+  <div class="rst" id="r-timer-box" style="display:none"><div class="rsv" id="r-timer">0:00</div><div class="rsl">Time</div></div>
+</div>
+
+<!-- Badges -->
+<div id="r-badges-sec" style="display:none;margin-bottom:12px">
+  <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text3);letter-spacing:2px;margin-bottom:7px">🎖 BADGES EARNED THIS SHIFT</div>
+  <div class="ebadges" id="r-badges"></div>
+</div>
+
+<!-- Tabs -->
+<div class="r-tabs">
+  <button class="r-tab on" onclick="showRTab('summary',this)">SUMMARY</button>
+  <button class="r-tab" id="rounds-tab-btn" onclick="showRTab('rounds',this)">ROUNDS (0)</button>
+  <button class="r-tab" onclick="showRTab('nextsteps',this)">NEXT STEPS</button>
+</div>
+
+<!-- Tab: Summary (level progress) -->
+<div id="rtab-summary" class="r-tab-pane on">
+  <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--border)">LEVEL PROGRESS</div>
+  <div id="lvl-prog" style="display:flex;align-items:center;gap:5px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none"></div>
+</div>
+
+<!-- Tab: Rounds log -->
+<div id="rtab-rounds" class="r-tab-pane">
+  <div id="rounds-log"></div>
+</div>
+
+<!-- Tab: What to work on next -->
+<div id="rtab-nextsteps" class="r-tab-pane">
+  <div id="wtw-card" style="background:var(--bg3);border-radius:var(--radius-sm);padding:14px;border-left:4px solid var(--amber)"></div>
+</div>
+
+<!-- Buttons -->
+<div class="rbtns" style="margin-top:12px">
+  <button class="rpri" id="r-play-again">▶ PLAY AGAIN</button>
+  <button class="rsec" id="r-share" onclick="shareScore()" style="display:none">📤 SHARE MY SCORE</button>
+  <button class="rsec" id="r-coach-copy" onclick="copyForCoach()" style="display:none">📋 COPY FOR MY COACH</button>
+  <button class="rsec" onclick="go('home')">← MAIN MENU</button>
+</div>
+  </div>
+</div>
+
+<!-- ══════════ LAUNDRY GUIDE ══════════ -->
+
+<!-- ══════════ SCORES ══════════ -->
+
+<div id="scr-scores" class="scr">
+  <div class="gtop">
+    <button class="back" onclick="go('home')">‹ BACK</button>
+    <div class="gmode">🏆 HIGH SCORES</div>
+    <button class="abtn" onclick="clearScores()" style="margin-left:auto;padding:5px 11px;min-height:30px;font-size:0.72rem">CLEAR</button>
+  </div>
+  <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px" id="score-filters">
+    <button class="sopt on" onclick="filterScores('all',this)">All</button>
+    <button class="sopt" onclick="filterScores('Home Challenge',this)">Challenge</button>
+    <button class="sopt" onclick="filterScores('Laundry',this)">Laundry</button>
+    <button class="sopt" onclick="filterScores('Budget',this)">Budget</button>
+    <button class="sopt" onclick="filterScores('Home Safety',this)">Safety</button>
+    <button class="sopt" onclick="filterScores('Food Safety',this)">Food</button>
+    <button class="sopt" onclick="filterScores('Renting',this)">Renting</button>
+    <button class="sopt" onclick="filterScores('Daily',this)">Daily</button>
+    <button class="sopt" onclick="filterScores('Change Drill',this)">Change Drill</button>
+    <button class="sopt" onclick="filterScores('Money ID Quiz',this)">Quiz</button>
+    <button class="sopt" onclick="filterScores('Do I Have Enough',this)">Enough?</button>
+  </div>
+  <div id="scores-wrap"><div class="no-data">No scores yet.<br>Complete a shift to see your best!</div></div>
+</div>
+
+<!-- ══════════ BADGES ══════════ -->
+
+<div id="scr-badges" class="scr">
+  <div class="gtop">
+    <button class="back" onclick="go('home')">‹ BACK</button>
+    <div class="gmode">🎖 BADGES</div>
+  </div>
+  <div class="bgrid2" id="bgrid"></div>
+</div>
+
+<!-- ══════════ GUIDE ══════════ -->
+
+<div id="scr-guide" class="scr">
+  <div class="gtop">
+    <button class="back" onclick="go('home')">‹ BACK</button>
+    <div class="gmode">📖 HOW TO PLAY</div>
+  </div>
+  <div class="gsec">
+    <div class="gtitle">🏠 WHAT IS HOMEREADY?</div>
+    <div class="gcard">
+      <div class="gstep"><div class="gnum" style="background:var(--amber)">★</div><div>HomeReady helps you practice <strong>real home and life skills</strong> - laundry, budgeting, food safety, emergencies, and renting. Free for everyone, no account needed.</div></div>
+    </div>
+  </div>
+  <div class="gsec">
+    <div class="gtitle">🎮 THE MODES</div>
+    <div class="gcard">
+      <div class="gstep"><div class="gnum" style="background:var(--amber);font-size:.7rem">🎓</div><div><strong>Practice Mode</strong> - No score, no pressure, unlimited hints. All home topics.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🏠</div><div><strong>Home Challenge</strong> - 10 questions, scored. Levels up as you improve.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🧺</div><div><strong>Laundry Master</strong> - 10 laundry questions. Care symbols, sorting, temperatures.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">💰</div><div><strong>Budget Basics</strong> - 10 grocery math and smart shopping questions.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🚨</div><div><strong>Home Safety</strong> - 10 emergency scenarios. Know who to call and what to do.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🍳</div><div><strong>Food Safety</strong> - 10 questions about safe food handling and storage.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">📋</div><div><strong>Renting Basics</strong> - 10 questions about leases, deposits, and tenant rights.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--amber);font-size:.7rem">📅</div><div><strong>Daily Challenge</strong> - 5 quick questions every day. Build a streak!</div></div>
+    </div>
+  </div>
+  <div class="gsec">
+    <div class="gtitle">💡 HOW QUESTIONS WORK</div>
+    <div class="gcard">
+      <div class="gstep"><div class="gnum">1</div><div>Read the question and tap one of the 4 answer choices.</div></div>
+      <div class="gstep"><div class="gnum">2</div><div><strong style="color:#00c851">Green</strong> = correct. <strong style="color:var(--red)">Red</strong> = not quite. You always see why.</div></div>
+      <div class="gstep"><div class="gnum">3</div><div>Tap <strong>💡 HINT</strong> any time - no penalty, ever.</div></div>
+      <div class="gstep"><div class="gnum">4</div><div>Tap <strong>🔊 SAY AGAIN</strong> to hear the question read aloud.</div></div>
+      <div class="gstep"><div class="gnum">5</div><div>Tap <strong>?</strong> at the top to replay the mode introduction.</div></div>
+      <div class="gstep"><div class="gnum">6</div><div>Tap <strong>☕</strong> any time during a session to take a break.</div></div>
+    </div>
+  </div>
+  <div class="gsec">
+    <div class="gtitle">📈 LEVELS</div>
+    <div class="gcard">
+      <div class="gstep"><div class="gnum" style="background:var(--text3)">0</div><div><strong>Beginner</strong> - Everyone starts here.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--green)">50</div><div><strong>Learner</strong> - You are building real skills.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--green)">150</div><div><strong>Resident</strong> - You know your way around a home.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--amber)">300</div><div><strong>Home Maker</strong> - Solid, consistent home skills.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--amber)">600</div><div><strong>Home Pro</strong> - You handle this like a pro.</div></div>
+      <div class="gstep"><div class="gnum" style="background:var(--amber)">1000</div><div><strong>Life Ready</strong> - The highest level. You have earned it.</div></div>
+    </div>
+  </div>
+</div>
+<div id="scr-settings" class="scr">
+  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">⚙️ SETTINGS</div></div>
+  <div class="ss">
+    <div class="st">AUDIO</div>
+    <div class="sr"><div class="si">🔊</div><div class="sinfo"><div class="sn">Audio On</div><div class="sd2">Spoken questions, sound effects, and badge announcements.</div></div><div class="tog on" id="tog-audio" onclick="togSet('audio')"></div></div>
+    <div class="sr"><div class="si">⚡</div><div class="sinfo"><div class="sn">Speech Speed</div><div class="sd2">Slow is great if you need more time to listen.</div></div>
+      <div class="sopts">
+        <div class="sopt" onclick="setSpeed('slow',this)">🐢 Slow</div>
+        <div class="sopt on" onclick="setSpeed('normal',this)">Normal</div>
+        <div class="sopt" onclick="setSpeed('fast',this)">⚡ Fast</div>
+      </div>
+    </div>
+  </div>
+  <div class="ss">
+    <div class="st">VISION</div>
+    <div class="sr"><div class="si">👁</div><div class="sinfo"><div class="sn">Colorblind Mode</div><div class="sd2">Choose the mode that matches your color vision.</div><div id="cb-current-mode" style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);font-weight:700;margin-top:4px;margin-bottom:2px">Current: None</div>
+      <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+        <button id="cb-btn-none"    class="cb-mode-btn on"  onclick="setColorblindMode('none')"         style="flex:1;min-width:60px">None</button>
+        <button id="cb-btn-proto"   class="cb-mode-btn"     onclick="setColorblindMode('protanopia')"   style="flex:1;min-width:60px">Protan</button>
+        <button id="cb-btn-deuter"  class="cb-mode-btn"     onclick="setColorblindMode('deuteranopia')" style="flex:1;min-width:60px">Deuter</button>
+        <button id="cb-btn-trita"   class="cb-mode-btn"     onclick="setColorblindMode('tritanopia')"   style="flex:1;min-width:60px">Tritan</button>
+      </div>
+    </div></div>
+    <div class="sr"><div class="si">⬛</div><div class="sinfo"><div class="sn">High Contrast</div><div class="sd2">Maximum contrast for low vision.</div></div><div class="tog" id="tog-hicontrast" onclick="togSet('hicontrast')"></div></div>
+    <div class="sr"><div class="si">☀️</div><div class="sinfo"><div class="sn">Light Mode</div><div class="sd2">Light background, easier in bright environments.</div></div><div class="tog" id="tog-lightmode" onclick="togSet('lightmode')"></div></div>
+    <div class="sr"><div class="si">T</div><div class="sinfo"><div class="sn">Large Text</div><div class="sd2">Bigger text everywhere.</div></div><div class="tog" id="tog-largetext" onclick="togSet('largetext')"></div></div>
+  </div>
+  <div class="ss">
+    <div class="st">MOTOR &amp; SENSORY</div>
+    <div class="sr"><div class="si">♿</div><div class="sinfo"><div class="sn">Extra-Large Buttons</div><div class="sd2">Makes all tap targets bigger.</div></div><div class="tog" id="tog-largebtns" onclick="togSet('largebtns')"></div></div>
+    <div class="sr"><div class="si">🌀</div><div class="sinfo"><div class="sn">Reduce Animations</div><div class="sd2">Turns off all motion effects.</div></div><div class="tog" id="tog-nomotion" onclick="togSet('nomotion')"></div></div>
+    <div class="sr"><div class="si">🛑</div><div class="sinfo"><div class="sn">Break Reminder</div><div class="sd2">Suggests a short break every 5 questions.</div></div><div class="tog" id="tog-breaks" onclick="togSet('breaks')"></div></div>
+  </div>
+  <div class="ss">
+    <div class="st">LEARNING AIDS</div>
+    <div class="sr"><div class="si">✨</div><div class="sinfo"><div class="sn">Errorless Learning</div><div class="sd2">Highlights the correct answer to build recognition before recall.</div></div><div class="tog" id="tog-errorless" onclick="togSet('errorless')"></div></div>
+  </div>
+  <div class="ss">
+    <div class="st">COACH DASHBOARD</div>
+    <div class="sr">
+      <div class="si">🔒</div>
+      <div class="sinfo"><div class="sn">Coach PIN</div><div class="sd2">Reset the PIN for the coach dashboard. At least 4 characters.</div></div>
+      <button class="cbt" onclick="resetCoachPin()" style="flex-shrink:0;font-size:.72rem">Reset PIN</button>
+    </div>
+  </div>
+  <div class="ss">
+    <div class="st">PLAYER NAME (OPTIONAL)</div>
+    <div class="sr">
+      <div class="si">👤</div>
+      <div class="sinfo"><div class="sn" id="name-setting-display">No name set</div><div class="sd2">Appears on your results card. Personal devices only.</div></div>
+      <button class="cbt" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem" id="name-setting-btn">Set Name</button>
+    </div>
+  </div>
+  <div style="text-align:center;padding:12px 0 4px">
+    <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text3);margin-bottom:3px">HomeReady v1.0</div>
+    <div style="font-size:.72rem;color:var(--green);font-weight:700">© 2026 Tristan</div>
+    <div style="font-size:.68rem;color:var(--text3);margin-top:2px">Free for everyone, always 💜</div>
+  </div>
+  <div class="stip">TIP: All settings save automatically.
+    <div class="gsec" style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border)">
+      <div class="gtitle">⚠️ DANGER ZONE</div>
+      <button onclick="resetApp()" style="width:100%;background:rgba(255,68,68,0.1);border:1px solid var(--red);border-radius:var(--radius-sm);color:var(--red);font-family:var(--font-mono);font-size:.75rem;padding:12px;cursor:pointer;letter-spacing:1px;font-weight:700">RESET APP - CLEAR ALL DATA</button>
+    </div>
+</div>
+</div>
+<div id="scr-coach" class="scr">
+  <div class="coach-hdr">
+    <div class="coach-title">📋 LIFE SKILLS COACH DASHBOARD</div>
+    <div class="cacts">
+      <button class="cbt" onclick="printCoachReport()">🖨️ Print Report</button>
+      <button class="cbt" onclick="exportCSV()" title="Download all session data as spreadsheet">📥 Export CSV</button>
+      <button class="cbt" onclick="openM('m-goal')">＋ Add Goal</button>
+      <button class="cbt" onclick="openM('m-log')">＋ Log Session</button>
+      <button class="cbt pri" onclick="openM('m-client')">＋ Add Client</button>
+    </div>
+  </div>
+  <!-- First-time welcome card -->
+  <div id="coach-welcome" style="display:none;background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:18px;margin-bottom:16px;animation:fadeUp .4s ease">
+    <div style="font-family:var(--font-mono);font-size:.8rem;color:var(--green);letter-spacing:2px;margin-bottom:8px">👋 WELCOME, COACH!</div>
+    <p style="font-size:.86rem;color:var(--text2);line-height:1.7;margin-bottom:12px">This is your private dashboard. Add clients, track their progress, log sessions after practice, and set mastery goals - all in one place.</p>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">
+      <div style="display:flex;gap:9px;font-size:.83rem;color:var(--text2)"><span style="color:var(--green)">1.</span><span>Tap <strong style="color:var(--text)">+ Add Client</strong> to create a profile for each person you support.</span></div>
+      <div style="display:flex;gap:9px;font-size:.83rem;color:var(--text2)"><span style="color:var(--green)">2.</span><span>After each practice session, tap <strong style="color:var(--text)">+ Log Session</strong> to record what you observed.</span></div>
+      <div style="display:flex;gap:9px;font-size:.83rem;color:var(--text2)"><span style="color:var(--green)">3.</span><span>Use <strong style="color:var(--text)">+ Add Goal</strong> to set mastery targets the dashboard will track automatically.</span></div>
+      <div style="display:flex;gap:9px;font-size:.83rem;color:var(--text2)"><span style="color:var(--green)">4.</span><span>Tap <strong style="color:var(--text)">🖨 Print</strong> or <strong style="color:var(--text)">📥 CSV</strong> to export data for IEP meetings or billing.</span></div>
+    </div>
+    <div style="font-size:.75rem;color:var(--amber);font-weight:700">🔒 This dashboard is PIN-protected. Your clients' data stays private.</div>
+    <button class="rsec" style="margin-top:12px;width:100%" onclick="dismissCoachWelcome()">Got it - Let us Get Started</button>
+  </div>
+  <div id="coach-wrap"><div class="no-data">No clients yet.<br>Tap "+ Add Client" to get started.</div></div>
+</div>
+
+<!-- ══════════ BILLS GUIDE ══════════ -->
+
+<!-- ══════════ RENTING GUIDE ══════════ -->
+
+<!-- ══════════ FOOD SAFETY GUIDE ══════════ -->
+
+<!-- ══════════ CLEANING GUIDE ══════════ -->
+
+<!-- ══════════ CALL SCRIPTS ══════════ -->
+
+<div id="scr-callscripts" class="scr">
+  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">📞 CALL SCRIPTS</div></div>
+  <div class="gsec">
+    <div class="gtitle">CALLING YOUR LANDLORD</div>
+    <div class="gcard" style="border-left:4px solid var(--green)">
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;font-style:italic">"Hi, my name is [your name] and I live at [your address], apartment [number]. I am calling to report that [describe the problem]. Can someone come take a look? My number is [your number]. Thank you."</p>
+    </div>
+    <div class="gtitle" style="margin-top:14px">CALLING A UTILITY COMPANY</div>
+    <div class="gcard" style="border-left:4px solid var(--green)">
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;font-style:italic">"Hi, I am calling about my account. My account number is [number]. I have a question about my bill for [month] - specifically the charge for [amount]. Can you help me understand that?"</p>
+    </div>
+    <div class="gtitle" style="margin-top:14px">CALLING 911</div>
+    <div class="gcard" style="border-left:4px solid var(--red)">
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:10px"><strong style="color:var(--red)">Only call 911 for real emergencies</strong> - fire, medical emergency, or crime in progress.</p>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;font-style:italic">"I need help at [your full address]. [Describe what is happening.]"</p>
+      <p style="font-size:.82rem;color:var(--text3);margin-top:8px">Stay on the line. They will tell you what to do. Do not hang up.</p>
+    </div>
+    <div class="gcard" style="border-left:4px solid var(--green)"><p>💡 <strong>Not everything needs 911.</strong> For noise complaints, minor fender benders, or small local issues - search "[your city] non-emergency police number."</p></div>
+  </div>
+</div>
+
+<!-- ══════════ ABOUT ══════════ -->
+
+<div id="scr-about" class="scr">
+  <div class="gtop">
+    <button class="back" onclick="go('home')">‹ BACK</button>
+    <div class="gmode">ℹ️ ABOUT</div>
+  </div>
+
+  <div style="text-align:center;padding:28px 16px 20px">
+    <div style="font-family:var(--font-mono);font-size:2.2rem;letter-spacing:6px;line-height:1;margin-bottom:6px">
+      <span style="color:var(--green);text-shadow:0 0 30px var(--green-glow)">HOME</span><span style="color:var(--text)">READY</span>
+    </div>
+    <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:4px;text-shadow:0 0 12px #9b30d944">HOME SKILLS TRAINER</div>
+  </div>
+
+  <div class="gsec">
+    <div class="gtitle">🧡 THE STORY</div>
+    <div class="gcard">
+      <p style="font-size:.92rem;color:var(--text);line-height:1.8;margin-bottom:14px">HomeReady was built because home skills are the foundation of everything else.</p>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">I built CashReady to teach money skills. I built TimeReady to teach clock and schedule skills. I built JobReady to teach workplace readiness. But the whole time, I kept thinking about something more fundamental - what about the skills you need before any of that? The skills you need just to keep a roof over your head and food in your fridge?</p>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">How do you sort laundry? How do you read a utility bill? What do you do when you smell gas? What does your lease actually say? These are not complicated things - but if nobody taught you, they can feel impossible.</p>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">HomeReady is the fourth piece of the LifeReady puzzle - and in a lot of ways, the most important one. Home is where everything starts.</p>
+    </div>
+  </div>
+
+  <div class="gsec">
+    <div class="gtitle">🚀 THE MISSION</div>
+    <div class="gcard">
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">Independent living should not be a mystery. For a lot of people - especially people with disabilities, people aging out of foster care, people transitioning from supported living - the gap between knowing something and being able to practice it safely is huge.</p>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">HomeReady closes that gap. It gives you a safe place to practice real home skills - laundry, budgeting, food safety, emergencies, renting - at your own pace, with no pressure and no cost.</p>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">Every question is written for real life. Every hint is real guidance. Every badge celebrates real progress. This app is for the person working toward their first apartment. For the life skills instructor helping a client build independence. For anyone who just needs the right tool.</p>
+    </div>
+  </div>
+
+  <div class="gsec">
+    <div class="gtitle">🤝 A DEDICATION</div>
+    <div class="gcard" style="border-left:4px solid var(--amber)">
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">This app is dedicated to every support worker, life skills instructor, and direct care professional who shows up - often without recognition, always with heart - to help people build the lives they deserve.</p>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">And it is dedicated to everyone who has ever had to figure out adult life without a roadmap. You are not behind. You are exactly where you need to be - and HomeReady is here to help you get where you want to go.</p>
+    </div>
+  </div>
+
+  <div class="gsec">
+    <div class="gtitle">🧡 PART OF THE LIFEREADY SUITE</div>
+    <div class="gcard">
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">HomeReady is the fourth app in the LifeReady suite - a growing set of free, accessible life skills trainers built by the same person, for the same purpose.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch">
+        <div style="background:rgba(0,200,81,0.07);border:1px solid rgba(0,200,81,0.3);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">💵</div>
+          <div style="font-family:var(--font-mono);font-size:.7rem;color:#00c851;font-weight:700;margin-top:4px">CashReady</div>
+          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Money Skills</div>
+        </div>
+        <div style="background:rgba(68,136,255,0.07);border:1px solid rgba(68,136,255,0.3);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">🕐</div>
+          <div style="font-family:var(--font-mono);font-size:.7rem;color:#4488ff;font-weight:700;margin-top:4px">TimeReady</div>
+          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Time Skills</div>
+        </div>
+        <div style="background:rgba(212,144,10,0.07);border:1px solid rgba(212,144,10,0.3);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">💼</div>
+          <div style="font-family:var(--font-mono);font-size:.7rem;color:#d4900a;font-weight:700;margin-top:4px">JobReady</div>
+          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Work Skills</div>
+        </div>
+        <div style="background:rgba(232,101,10,0.12);border:2px solid #e8650a;border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">🏠</div>
+          <div style="font-family:var(--font-mono);font-size:.7rem;color:#e8650a;font-weight:700;margin-top:4px">HomeReady</div>
+          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Home Skills</div>
+          <div style="font-size:.62rem;color:#e8650a;margin-top:3px;font-weight:700">← You are here</div>
+        </div>
+        <div style="background:rgba(10,147,150,0.07);border:1px solid rgba(10,147,150,0.3);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">🗺️</div>
+          <div style="font-family:var(--font-mono);font-size:.7rem;color:#0a9396;font-weight:700;margin-top:4px">TravelReady</div>
+          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Travel Skills</div>
+        </div>
+        <div style="background:rgba(155,48,217,0.07);border:1px solid rgba(155,48,217,0.3);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:1.2rem">💬</div>
+          <div style="font-family:var(--font-mono);font-size:.7rem;color:#9b30d9;font-weight:700;margin-top:4px">SocialReady</div>
+          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Social Skills</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gsec">
+    <div class="gtitle">🧡 ALWAYS FREE</div>
+    <div class="gcard" style="text-align:center;padding:20px">
+      <div style="font-size:2rem;margin-bottom:10px">🆓</div>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">HomeReady is completely free. No ads, no subscriptions, no paywalls. It was built to help people - and that does not have a price tag.</p>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:20px 16px 12px;border-top:1px solid var(--border);margin-top:8px">
+    <div style="font-size:1.4rem;margin-bottom:8px">🧡</div>
+    <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:1px;margin-bottom:4px">HomeReady v1.0</div>
+    <div style="font-size:.82rem;color:var(--text2);line-height:1.6;max-width:260px;margin:0 auto">Built with love, by someone who gets it. Free for everyone. Always.</div>
+  </div>
+  <div style="margin:0 0 20px;padding:18px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
+    <div style="font-size:1.6rem;margin-bottom:8px">🧡</div>
+    <div style="font-family:'Dancing Script',cursive;font-size:2.6rem;color:var(--green);line-height:1.1;margin-bottom:6px;text-shadow:0 0 30px var(--green-glow)">Tristan Beck</div>
+    <div style="font-size:.8rem;color:var(--text2);line-height:1.7;margin-bottom:6px">HomeReady - Home Skills Trainer</div>
+    <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px">FREE FOR EVERYONE · ALWAYS</div>
+  </div>
+
+</div>
+
+<!-- ══ DESKTOP SIDEBAR (hidden on mobile) ══ -->
+
+<aside id="desktop-sidebar" style="display:none">
+  <!-- Quick stats -->
+  <div class="dsb-card">
+    <div class="dsb-title">📊 Your Stats</div>
+    <div class="dsb-stat"><span class="dsb-stat-label">Daily Streak</span><span class="dsb-stat-value" id="dsb-streak">🔥0</span></div>
+    <div class="dsb-stat"><span class="dsb-stat-label">Badges Earned</span><span class="dsb-stat-value" id="dsb-badges">0</span></div>
+    <div class="dsb-stat"><span class="dsb-stat-label">Total Sessions</span><span class="dsb-stat-value" id="dsb-sessions">0</span></div>
+  </div>
+  <!-- Today's progress -->
+  <div class="dsb-card" id="dsb-today-wrap" style="display:none">
+    <div class="dsb-title">⚡ Today's Progress</div>
+    <div id="dsb-today"></div>
+  </div>
+  <!-- Quick links -->
+  <div class="dsb-card">
+    <div class="dsb-title">🔗 Quick Links</div>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <button class="rsec" onclick="go('guide')" style="text-align:left;padding:9px 12px;font-size:.8rem">📖 How To Play</button>
+      <button class="rsec" onclick="go('guide')" style="text-align:left;padding:9px 12px;font-size:.8rem">📖 How To Play</button>
+      <button class="rsec" onclick="go('badges')" style="text-align:left;padding:9px 12px;font-size:.8rem">🎖 View Badges</button>
+      <button class="rsec" onclick="go('scores')" style="text-align:left;padding:9px 12px;font-size:.8rem">🏆 High Scores</button>
+    </div>
+  </div>
+  <!-- About blurb -->
+  <div class="dsb-card">
+    <div class="dsb-title">ℹ️ About HomeReady</div>
+    <p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free home skills trainer for everyone. Practice laundry, budgeting, food safety, and independent living - at your own pace.</p>
+    <button class="rsec" onclick="go('about')" style="width:100%;font-size:.78rem;padding:8px">Read Our Story →</button>
+  </div>
+</aside>
+
+</main>
+
+<!-- ══ BREAK SCREEN ══ -->
+
+<div class="break-scr" id="break-scr">
+  <div class="break-emoji" id="break-emoji">☕</div>
+  <div class="break-title" id="break-title">GREAT WORK!</div>
+  <div class="break-sub" id="break-sub">You have done 5 questions in a row. Want to take a short break or keep going?</div>
+  <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:12px 18px;max-width:280px;font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6" id="break-tip"></div>
+  <button class="dbtn" style="max-width:260px" onclick="closeBreak(false)">Keep Going →</button>
+  <button class="rsec" style="max-width:260px" onclick="closeBreak(true)">Take a Break ☕</button>
+  <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1px;max-width:260px;text-align:center">Your shift will be waiting when you come back.</div>
+</div>
+
+<!-- ══ MODALS ══ -->
+
+<div class="mow" id="m-client">
+  <div class="mdl">
+    <div class="mt">+ ADD NEW CLIENT</div>
+    <div class="fg"><label class="fl">Full Name</label><input class="fi" id="nc-name" placeholder="e.g. Alex Johnson"></div>
+    <div class="fg"><label class="fl">Starting Level</label>
+      <select class="fsel" id="nc-level">
+        <option value="beginner">Beginner - Just starting out</option>
+        <option value="developing">Developing - Building basic skills</option>
+        <option value="proficient">Proficient - Practicing independently</option>
+        <option value="advanced">Advanced - Near-independent living skills</option>
+      </select>
+    </div>
+    <div class="fg"><label class="fl">Program / Group</label><input class="fi" id="nc-program" placeholder="e.g. Independent Living Group A"></div>
+    <div class="fg"><label class="fl">Notes / Accommodations</label><textarea class="fta" id="nc-notes" placeholder="Goals, accommodations, preferences, IEP notes..."></textarea></div>
+    <div class="mbtns"><button class="mcancel" onclick="closeM('m-client')">Cancel</button><button class="msave" onclick="saveClient()">Add Client</button></div>
+  </div>
+</div>
+
+<div class="mow" id="m-log">
+  <div class="mdl">
+    <div class="mt">📝 LOG SESSION</div>
+    <div class="fg"><label class="fl">Client</label><select class="fsel" id="log-cl"></select></div>
+    <div class="fg"><label class="fl">Module Practiced</label>
+      <select class="fsel" id="log-mod">
+        <option>Social Challenge</option>
+        <option>Reading the Room</option>
+        <option>Conversations</option>
+        <option>Boundaries</option>
+        <option>Conflict &amp; Feelings</option>
+        <option>Daily Challenge</option>
+        <option>Practice Mode</option>
+        <option>Social Guide Review</option>
+      </select>
+    </div>
+    <div class="fg"><label class="fl">Score (e.g. 8/10)</label><input class="fi" id="log-sc" placeholder="8/10"></div>
+    <div class="fg">
+      <label class="fl">Prompt Level Used</label>
+      <div class="pchips" id="pchips">
+        <div class="pchip on" data-v="independent" onclick="selPrompt(this)">Independent</div>
+        <div class="pchip" data-v="verbal" onclick="selPrompt(this)">Verbal</div>
+        <div class="pchip" data-v="gestural" onclick="selPrompt(this)">Gestural</div>
+        <div class="pchip" data-v="physical" onclick="selPrompt(this)">Physical</div>
+        <div class="pchip" data-v="hoh" onclick="selPrompt(this)">Hand-over-Hand</div>
+      </div>
+    </div>
+    <div class="fg"><label class="fl">Session Notes</label>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px">
+        <div class="note-chip" onclick="appendNote('Independent today')">Independent today</div>
+        <div class="note-chip" onclick="appendNote('Needed verbal prompts')">Needed verbal prompts</div>
+        <div class="note-chip" onclick="appendNote('Great focus')">Great focus</div>
+        <div class="note-chip" onclick="appendNote('Struggled with laundry symbols')">Laundry symbols</div>
+        <div class="note-chip" onclick="appendNote('Good with food safety')">Food safety strength</div>
+        <div class="note-chip" onclick="appendNote('Improving steadily')">Improving steadily</div>
+        <div class="note-chip" onclick="appendNote('Best session yet')">Best session yet</div>
+        <div class="note-chip" onclick="appendNote('Short attention today')">Short attention today</div>
+      </div>
+      <textarea class="fta" id="log-notes" placeholder="Tap a chip above or type your own notes..."></textarea>
+    </div>
+    <div class="mbtns"><button class="mcancel" onclick="closeM('m-log')">Cancel</button><button class="msave" onclick="saveSession()">Save Session</button></div>
+  </div>
+</div>
+
+<div class="mow" id="m-goal">
+  <div class="mdl">
+    <div class="mt">🎯 ADD SESSION GOAL</div>
+    <div class="fg"><label class="fl">Client</label><select class="fsel" id="goal-cl"></select></div>
+    <div class="fg"><label class="fl">Skill Area</label>
+      <select class="fsel" id="goal-skill">
+        <option value="situations">Reading Situations</option>
+        <option value="conversations">Conversations</option>
+        <option value="boundaries">Boundaries</option>
+        <option value="feelings">Emotions &amp; Feelings</option>
+      </select>
+    </div>
+    <div class="fg"><label class="fl">Target Score (e.g. 4/5 correct)</label>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center">
+        <input class="fi" id="goal-num" type="number" min="1" max="10" value="4" placeholder="4">
+        <span style="color:var(--text2);font-weight:700;text-align:center">out of</span>
+        <input class="fi" id="goal-den" type="number" min="1" max="10" value="5" placeholder="5">
+      </div>
+    </div>
+    <div class="fg"><label class="fl">Consecutive Sessions Required</label>
+      <select class="fsel" id="goal-consec">
+        <option value="1">1 session</option>
+        <option value="2">2 sessions in a row</option>
+        <option value="3" selected>3 sessions in a row</option>
+        <option value="4">4 sessions in a row</option>
+        <option value="5">5 sessions in a row</option>
+      </select>
+    </div>
+    <div class="fg"><label class="fl">Goal Description (optional)</label>
+      <input class="fi" id="goal-desc" placeholder="e.g. Complete Laundry Master with 80% independently">
     </div>
     <div class="mbtns"><button class="mcancel" onclick="closeM('m-goal')">Cancel</button><button class="msave" onclick="saveGoal()">Save Goal</button></div>
   </div>
@@ -2290,8 +2951,8 @@ function startMode(mode){
   {const _z=$('g-lvl');if(_z)_z.style.display=(mode==='challenge')?'':'none';}
   const endBtn=$('end-btn');
   if(endBtn) endBtn.textContent=isP?'‹ DONE':'‹ END';
-  const labels={challenge:'SOCIAL CHALLENGE',practice:'PRACTICE MODE',situations:'READING THE ROOM',conversations:'CONVERSATIONS',boundaries:'BOUNDARIES',feelings:'CONFLICT & FEELINGS',daily:'DAILY CHALLENGE'};
-  $('gmode-lbl').textContent=labels[mode]||'SOCIAL CHALLENGE';
+  const labels={challenge:'HOME CHALLENGE',practice:'PRACTICE',laundry:'LAUNDRY MASTER',budget:'BUDGET BASICS',safety:'HOME SAFETY',food:'FOOD SAFETY',renting:'RENTING BASICS',daily:'DAILY CHALLENGE'};
+  $('gmode-lbl').textContent=labels[mode]||'HOME CHALLENGE';
   CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed[mode]=true;
   awardBadge('built_diff');saveAll();
   buildDots();go('game');
@@ -2659,7 +3320,7 @@ function endSession(early=false){
   }
   saveAll();
   // Build share text
-  _shareText=`I scored ${ST.score} points in SocialReady! 💬\n${modeName} · ${ST.correct}/${ST.total} correct · ${pct}%${elapsed>10?' · '+fmtElapsed(elapsed):''}\nSocialReady - Free Social Skills Trainer`;
+  _shareText=`I scored ${ST.score} points in SocialReady! 💬\n${modeName} · ${ST.correct}/${ST.total} correct · ${pct}%${elapsed>10?' · '+fmtElapsed(elapsed):''}\nSocialReady - Free Home Skills Trainer`;
   const shareBtn=$('r-share'); if(shareBtn) shareBtn.style.display=(!early&&ST.total>0)?'':'none';
   const coachBtn=$('r-coach-copy'); if(coachBtn) coachBtn.style.display=(!early&&ST.total>0)?'':'none';
   // Previous best
@@ -3135,7 +3796,7 @@ function saveSession(){
   const s={module:$('log-mod').value,score:$('log-sc').value,prompt:PROMPT_SEL,notes:$('log-notes').value.trim(),date:today()};
   CLIENTS[idx].sessions=CLIENTS[idx].sessions||[];
   CLIENTS[idx].sessions.push(s);
-  const map={'Social Challenge':'challenge','Reading the Room':'situations','Conversations':'conversations','Boundaries':'boundaries','Conflict & Feelings':'feelings','Daily Challenge':'challenge','Practice Mode':'challenge'};
+  const map={'Social Challenge':'challenge','Reading the Room':'laundry','Conversations':'budget','Boundaries':'safety','Conflict & Feelings':'food','Daily Challenge':'renting','Daily Challenge':'challenge','Practice Mode':'challenge'};
   const sk=map[s.module];
   if(sk&&s.score){const p=s.score.split('/');if(p.length===2){const pct=Math.round(parseInt(p[0])/parseInt(p[1])*100);CLIENTS[idx].skills=CLIENTS[idx].skills||{};CLIENTS[idx].skills[sk]=Math.max(CLIENTS[idx].skills[sk]||0,pct);}}
   saveAll();closeM('m-log');renderCoach();
@@ -3376,7 +4037,7 @@ p.addEventListener('animationend',()=>p.remove());
 }
 
 // ════════════════════════════════════════════════════════
-//  HOME SCREEN UI
+//  HOME UI
 // ════════════════════════════════════════════════════════
 // ── Onboarding card ──
 function dismissOnboarding(){
@@ -3974,7 +4635,7 @@ saveAll();
 // Show results
 const grade=pct===100?'A+':pct>=90?'A':pct>=80?'B':pct>=70?'C':'D';
 const gradeColor=pct>=80?'var(--green)':pct>=70?'var(-amber)':'var(--red)';
-document.getElementById('dihe-content').innerHTML = ` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:var(--font-display);font-size:4rem;color:${gradeColor};text-shadow:0 0 20px ${gradeColor}33;margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:${gradeColor};margin-bottom:4px;letter-spacing:2px"> ${pct >= 80 ? 'SOCIAL STAR!' : pct >= 60 ? 'GETTING THERE!' : 'KEEP PRACTICING!'} </div> <div style="font-size:.88rem;color:var(--text2);margin-bottom:6px"> <strong style="color:var(--amber)">${DIHE_STATE.score} out of ${DIHE_STATE.maxQ}</strong> correct · ${pct}% </div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:11px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:14px 0 20px;text-align:left"> ${pct===100?'Perfect! You handled every social situation with confidence and care.': pct>=80?'Great work! You are building real-world confidence and communication skills.': pct>=60?'You\'re getting it! Keep practicing and your confidence will keep growing.': 'Keep going! Social skills take practice. Try one of the guides for extra help.'} </div> <button class="dbtn" onclick="startDIHE()" style="margin-bottom:10px;width:100%">🔄 PLAY AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
+document.getElementById('dihe-content').innerHTML = ` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:var(--font-display);font-size:4rem;color:${gradeColor};text-shadow:0 0 20px ${gradeColor}33;margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:${gradeColor};margin-bottom:4px;letter-spacing:2px"> ${pct >= 80 ? 'SMART SHOPPER!' : pct >= 60 ? 'GETTING THERE!' : 'KEEP PRACTICING!'} </div> <div style="font-size:.88rem;color:var(--text2);margin-bottom:6px"> <strong style="color:var(--amber)">${DIHE_STATE.score} out of ${DIHE_STATE.maxQ}</strong> correct · ${pct}% </div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:11px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:14px 0 20px;text-align:left"> ${pct===100?'Perfect! You always know if you have enough money - that\'s a real life skill.': pct>=80?'Great work! Knowing builds real-world skills and confidence.': pct>=60?'You\'re getting it! Keep practicing and you\'ll be a smart shopper in no time.': 'Keep going! This skill takes practice. Try the Money Guide for help with coin values.'} </div> <button class="dbtn" onclick="startDIHE()" style="margin-bottom:10px;width:100%">🔄 PLAY AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
 say(`Done! You got ${DIHE_STATE.score} out of ${DIHE_STATE.maxQ}!`);
 if(!CFG.nomotion&&pct>=80) confetti();
 updateHomeUI();

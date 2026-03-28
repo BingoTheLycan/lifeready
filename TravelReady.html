@@ -22,7 +22,7 @@
   %22theme_color%22:%22%230a9396%22,
   %22orientation%22:%22portrait%22,
   %22icons%22:[
-    {%22src%22:%22data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%23070d0d'/%3E%3Ctext x='256' y='305' font-family='monospace' font-size='190' font-weight='bold' text-anchor='middle' fill='%230a9396'%3E%F0%9F%97%BA%3C/text%3E%3C/svg%3E%22,%22sizes%22:%22512x512%22,%22type%22:%22image/svg+xml%22}
+    {%22src%22:%22data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230d1117'/%3E%3Ctext x='256' y='310' font-family='monospace' font-size='200' font-weight='bold' text-anchor='middle' fill='%2300c851'%3E%24%3C/text%3E%3C/svg%3E%22,%22sizes%22:%22512x512%22,%22type%22:%22image/svg+xml%22}
   ]
 }" rel="manifest"/>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Space+Mono:wght@400;700&amp;family=Nunito:wght@400;600;700;800;900&amp;family=Fredoka+One&amp;display=swap" rel="stylesheet"/>
@@ -175,7 +175,7 @@ pointer-events:none;
 50%{text-shadow:0 0 50px var(--green-glow),0 0 100px rgba(10,147,150,.25),0 0 140px rgba(10,147,150,.08);}
 }
 .home-tagline{font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:4px;margin-top:6px;text-shadow:0 0 10px #0a939644;animation:blink 4s step-end infinite;}
-/* ══ HOME SCREEN ══ */
+/* ══ HOME ══ */
 .home-hero{text-align:center;padding:32px 12px 22px;animation:fadeUp .5s ease;}
 .home-title{font-family:var(--font-mono);font-size:clamp(1.7rem,8vw,2.8rem);color:var(--green);text-shadow:0 0 40px var(--green-glow),0 0 80px rgba(10,147,150,0.08);letter-spacing:5px;line-height:1.05;}
 .home-sub{color:var(--text2);font-size:0.88rem;margin-top:10px;font-weight:600;letter-spacing:.5px;}
@@ -855,7 +855,7 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 </div>
 </div>
-<!-- ══════════ TRANSIT GUIDE ══════════ -->
+<!-- ══════════ LAUNDRY GUIDE ══════════ -->
 <!-- ══════════ SCORES ══════════ -->
 <div class="scr" id="scr-scores">
 <div class="gtop">
@@ -865,16 +865,16 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div id="score-filters" style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">
 <button class="sopt on" onclick="filterScores('all',this)">All</button>
-<button class="sopt" onclick="filterScores('Transit Challenge',this)">Challenge</button>
-<button class="sopt" onclick="filterScores('Bus & Train',this)">Bus &amp; Train</button>
-<button class="sopt" onclick="filterScores('Getting Around',this)">Getting Around</button>
-<button class="sopt" onclick="filterScores('Money & Travel',this)">Money &amp; Travel</button>
-<button class="sopt" onclick="filterScores('Planning a Trip',this)">Trip Planning</button>
-<button class="sopt" onclick="filterScores('Travel Safety',this)">Safety</button>
+<button class="sopt" onclick="filterScores('Home Challenge',this)">Challenge</button>
+<button class="sopt" onclick="filterScores('Laundry',this)">Laundry</button>
+<button class="sopt" onclick="filterScores('Budget',this)">Budget</button>
+<button class="sopt" onclick="filterScores('Home Safety',this)">Safety</button>
+<button class="sopt" onclick="filterScores('Food Safety',this)">Food</button>
+<button class="sopt" onclick="filterScores('Renting',this)">Renting</button>
 <button class="sopt" onclick="filterScores('Daily',this)">Daily</button>
-<button class="sopt" onclick="filterScores('Practice Mode',this)">Practice</button>
-<button class="sopt" onclick="filterScores('Bus & Train',this)">Routes</button>
-<button class="sopt" onclick="filterScores('Money & Travel',this)">Fares</button>
+<button class="sopt" onclick="filterScores('Change Drill',this)">Change Drill</button>
+<button class="sopt" onclick="filterScores('Money ID Quiz',this)">Quiz</button>
+<button class="sopt" onclick="filterScores('Do I Have Enough',this)">Enough?</button>
 </div>
 <button id="read-scores-btn" style="display:block;width:100%;margin:10px 0 4px;padding:9px 16px;background:transparent;border:1px solid #0a939655;border-radius:20px;color:#0a9396;font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px #0a939644">🔊  READ MY SCORES ALOUD</button>
 <div id="scores-wrap"><div class="no-data">No scores yet.<br/>Complete a shift to see your best!</div></div>
@@ -1400,7 +1400,7 @@ max-width:320px;width:calc(100% - 32px);
 <!-- About blurb -->
 <div class="dsb-card">
 <div class="dsb-title">ℹ️ About TravelReady</div>
-<p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free travel skills trainer for everyone. Practice routes, schedules, fares, safety, and independent travel - at your own pace.</p>
+<p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free home skills trainer for everyone. Practice laundry, budgeting, food safety, and independent living - at your own pace.</p>
 <button class="rsec" onclick="go('about')" style="width:100%;font-size:.78rem;padding:8px">Read Our Story →</button>
 </div>
 </aside>
@@ -1505,7 +1505,7 @@ max-width:320px;width:calc(100% - 32px);
 </select>
 </div>
 <div class="fg"><label class="fl">Goal Description (optional)</label>
-<input class="fi" id="goal-desc" placeholder="e.g. Complete Bus & Train with 80% independently"/>
+<input class="fi" id="goal-desc" placeholder="e.g. Complete Laundry Master with 80% independently"/>
 </div>
 <div class="mbtns"><button class="mcancel" onclick="closeM('m-goal')">Cancel</button><button class="msave" onclick="saveGoal()">Save Goal</button></div>
 </div>
@@ -1637,7 +1637,7 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <!-- ══════════ RESULTS ══════════ -->
 
-<!-- ══════════ TRANSIT GUIDE ══════════ -->
+<!-- ══════════ LAUNDRY GUIDE ══════════ -->
 <!-- ══════════ SCORES ══════════ -->
 
 <!-- ══════════ BADGES ══════════ -->
@@ -1647,8 +1647,8 @@ max-width:320px;width:calc(100% - 32px);
 
 
 <!-- ══════════ BILLS GUIDE ══════════ -->
-<!-- ══════════ TRIP PLANNING GUIDE ══════════ -->
-<!-- ══════════ FARES GUIDE ══════════ -->
+<!-- ══════════ RENTING GUIDE ══════════ -->
+<!-- ══════════ FOOD SAFETY GUIDE ══════════ -->
 <!-- ══════════ CLEANING GUIDE ══════════ -->
 <!-- ══════════ CALL SCRIPTS ══════════ -->
 
@@ -2444,8 +2444,8 @@ function genQuestionNoDupe(mode){
   const all=(function(){
     if(mode==='practice'||mode==='challenge'||mode==='daily'){
       // For mixed modes, use all banks
-      return typeof TRANSIT_Qs!=='undefined'?
-        [...(TRANSIT_Qs||[]),...(NAVIGATE_Qs||[]),...(MONEY_TRAVEL_Qs||[]),...(PLAN_Qs||[]),...(SAFETY_Qs||[]),...(GENERAL_Qs||[])]:
+      return typeof LAUNDRY_Qs!=='undefined'?
+        [...(LAUNDRY_Qs||[]),...(BUDGET_Qs||[]),...(SAFETY_Qs||[]),...(FOOD_Qs||[]),...(RENTING_Qs||[]),...(GENERAL_Qs||[])]:
         typeof SITUATIONS_Qs!=='undefined'?
         [...(SITUATIONS_Qs||[]),...(CONVERSATIONS_Qs||[]),...(BOUNDARIES_Qs||[]),...(FEELINGS_Qs||[]),...(CONFLICT_Qs||[]),...(GENERAL_Qs||[])]:
         typeof TRANSIT_Qs!=='undefined'?
@@ -2773,7 +2773,7 @@ function endSession(early=false){
   }
   saveAll();
   // Build share text
-  _shareText=`I scored ${ST.score} points in TravelReady! 🗺️\n${modeName} · ${ST.correct}/${ST.total} correct · ${pct}%${elapsed>10?' · '+fmtElapsed(elapsed):''}\nTravelReady - Free Travel Skills Trainer`;
+  _shareText=`I scored ${ST.score} points in TravelReady! 🏠\n${modeName} · ${ST.correct}/${ST.total} correct · ${pct}%${elapsed>10?' · '+fmtElapsed(elapsed):''}\nTravelReady - Free Travel Skills Trainer`;
   const shareBtn=$('r-share'); if(shareBtn) shareBtn.style.display=(!early&&ST.total>0)?'':'none';
   const coachBtn=$('r-coach-copy'); if(coachBtn) coachBtn.style.display=(!early&&ST.total>0)?'':'none';
   // Previous best

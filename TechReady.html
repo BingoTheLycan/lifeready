@@ -6,7 +6,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0d0a07">
 <meta name="description" content="TechReady - Digital life skills trainer for everyone. Practice phone safety, messaging, online basics, and everyday technology skills. Free, accessible, built by someone who gets it.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TechReady">
 <title>TechReady - Digital Life Skills Trainer</title>
+<!-- PWA Manifest (inline) -->
+<link rel="manifest" href="data:application/manifest+json,{
+  %22name%22:%22TechReady%22,
+  %22short_name%22:%22TechReady%22,
+  %22description%22:%22Digital life skills trainer for everyone%22,
+  %22start_url%22:%22.%22,
+  %22display%22:%22standalone%22,
+  %22background_color%22:%22%230d0a07%22,
+  %22theme_color%22:%22%23cc2200%22,
+  %22orientation%22:%22portrait%22,
+  %22icons%22:[
+    {%22src%22:%22data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230d1117'/%3E%3Ctext x='256' y='310' font-family='monospace' font-size='200' font-weight='bold' text-anchor='middle' fill='%2300c851'%3E%24%3C/text%3E%3C/svg%3E%22,%22sizes%22:%22512x512%22,%22type%22:%22image/svg+xml%22}
+  ]
+}">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════
@@ -1521,6 +1539,7 @@ max-width:320px;width:calc(100% - 32px);
     <div class="femoji" id="femoji">✅</div>
     <div class="ftitle ok" id="ftitle">CORRECT!</div>
     <div class="fmsg" id="fmsg"></div>
+    <div id="fexplain" style="display:none;font-size:.82rem;color:var(--text2);background:var(--bg3);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:14px;line-height:1.65;text-align:left;border-left:3px solid var(--green)"></div>
     <div id="feoc" style="display:none"></div>
     <button class="fnext" id="fnext" onclick="nextQ_game()">NEXT →</button>
   </div>
@@ -1610,7 +1629,8 @@ max-width:320px;width:calc(100% - 32px);
       </div>
     </div>
     </div>
-    <div class="gsec"><div class="gtitle">🆓 ALWAYS FREE</div><div class="gcard">
+    <div class="gsec"><div class="gtitle">🆓 ALWAYS FREE</div><div class="gcard" style="text-align:center;padding:20px">
+      <div style="font-size:2rem;margin-bottom:10px">🆓</div>
       <p style="font-size:.88rem;color:var(--text2);line-height:1.8">TechReady is and always will be completely free. No accounts. No ads. No paywalls. No data collected. Just a tool that helps people stay safer and more confident in the digital world - for everyone, always.</p>
     </div></div>
     <div style="text-align:center;padding:20px 0 8px">
@@ -2667,21 +2687,17 @@ function genQuestionNoDupe(mode){
 }
 
 function genQuestionDedup(mode){
-  // Get the full pool for this mode
-  const pool=genQuestion._pool=genQuestion._pool||{};
-  // Build pool key
-  const key=mode;
-  // Get all questions for this mode by calling genQuestion many times will not work
-  // Instead: track asked questions by question text
-  const q=genQuestion(mode);
-  // If we've seen this question this session, try up to 20 more times
-  let attempts=0;
-  let picked=q;
-  while((ST.askedQs||[]).includes(picked.q) && attempts<20){
-    picked=genQuestion(mode);
+  ST.askedQs = Array.isArray(ST.askedQs) ? ST.askedQs : [];
+  let picked = genQuestion(mode);
+  let attempts = 0;
+  while(picked && picked.q && ST.askedQs.includes(picked.q) && attempts < 20){
+    picked = genQuestion(mode);
     attempts++;
   }
-  if(!(ST.askedQs||[]).includes(picked.q)) ST.askedQs.push(picked.q);
+  if(picked && picked.q){
+    if(ST.askedQs.length >= Math.max(5, (ST.maxQ||10))) ST.askedQs = [];
+    if(!ST.askedQs.includes(picked.q)) ST.askedQs.push(picked.q);
+  }
   return picked;
 }
 
@@ -2740,12 +2756,15 @@ function genQ(){
 function answerQ(chosen){
   if(ST.answered) return;
   ST.answered=true; ST.total++;
-  const ok=chosen===('_shuffledCorrect' in currentQ?currentQ._shuffledCorrect:currentQ.correct);
+  const correctIndex = ('_shuffledCorrect' in currentQ ? currentQ._shuffledCorrect : currentQ.correct);
+  const ok = chosen === correctIndex;
+
   document.querySelectorAll('#g-opts .qo').forEach((btn,i)=>{
-    btn.disabled=true;
-    if(i===('_shuffledCorrect' in currentQ?currentQ._shuffledCorrect:currentQ.correct)) btn.classList.add('ok');
-    else if(i===chosen&&!ok) btn.classList.add('bad');
+    btn.disabled = true;
+    if(i===correctIndex) btn.classList.add('ok');
+    else if(i===chosen && !ok) btn.classList.add('bad');
   });
+
   if(ok){
     ST.correct++; ST.streak++; ST.bestStreak=Math.max(ST.bestStreak,ST.streak);
     if(ST.mode!=='practice') ST.score+=Math.max(10,10+ST.streak*2);
@@ -2754,24 +2773,47 @@ function answerQ(chosen){
   } else {
     ST.streak=0; buzz();
   }
+
   for(let i=0;i<5;i++){const d=$('sd'+i);if(d)d.classList.toggle('lit',i<ST.streak);}
   $('g-score').textContent=ST.score;
   {const _z=$('g-lvl');if(_z)_z.textContent=getLvl(ST.score).n;}
+
   const CORRECT=['Great thinking!','Correct!','That\'s right!','Nailed it!','Yes! Strong digital skills.','Right on!'];
-  const WRONG=['Not quite - see explanation below.','Almost! Read why below.','That\'s okay - the right answer is shown.','Not this time. Keep going!'];
+  const WRONG=['Not quite - the right answer is shown.','Almost! Read the explanation to understand why.','That\'s okay - the right answer is highlighted.','Not this time. Keep going!'];
+  const explain = currentQ.explain || '';
+
   const fb=$('g-fb');
   if(fb){
-    fb.className='qfb on '+(ok?'ok':'bad'); fb.style.display='block';
-    fb.innerHTML=(ok?`<strong style="color:#00c851">✅ ${rand(CORRECT)}</strong>`:`<strong style="color:#ff4444">❌ ${rand(WRONG)}</strong>`)
-      +(currentQ.explain?`<div style="font-size:.78rem;color:var(--text3);margin-top:8px;line-height:1.6">${currentQ.explain}</div>`:'');
+    fb.className='qfb';
+    fb.style.display='none';
+    fb.innerHTML='';
   }
+
   awardBadge('first_step');
   if(ok) awardBadge('first_correct');
+
   setTimeout(()=>{
-    const fn=$('fnext'); if(fn) fn.textContent=ST.total>=ST.maxQ?'SEE RESULTS →':'NEXT →';
+    const femoji=$('femoji'), ftitle=$('ftitle'), fmsg=$('fmsg'), fexplain=$('fexplain'), fcard=$('fcard');
+    if(femoji) femoji.textContent = ok ? '✅' : '❌';
+    if(ftitle){
+      ftitle.textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+      ftitle.className = 'ftitle ' + (ok ? 'ok' : 'bad');
+    }
+    if(fmsg) fmsg.textContent = ok ? rand(CORRECT) : rand(WRONG);
+    if(fexplain){
+      fexplain.textContent = explain;
+      fexplain.style.display = explain ? 'block' : 'none';
+    }
+    if(fcard) fcard.className = 'fcard' + (ok ? '' : ' wrong');
+
+    const fn=$('fnext');
+    if(fn){
+      fn.textContent = ST.total>=ST.maxQ ? 'SEE RESULTS →' : 'NEXT →';
+      fn.className = 'fnext' + (ok ? '' : ' bad');
+    }
     const feoc=$('feoc'); if(feoc) feoc.style.display='none';
     $('fov').classList.add('on');
-    say(ok?'Correct! Great job.':('Not quite. '+(currentQ.explain||'').split('.')[0]+'.'));
+    say(ok ? 'Correct! Great job.' : ('Not quite. ' + (explain||'Try again.').split('.')[0] + '.'));
   },300);
 }
 
@@ -3053,13 +3095,18 @@ function endSession(early=false){
   if(elapsed>10){const rtb=$('r-timer-box');if(rtb)rtb.style.display='';const rtv=$('r-timer');if(rtv)rtv.textContent=fmtElapsed(elapsed);}
   const eoc=$('eoc-card-wrap');
   if(eoc) eoc.innerHTML=!early&&pct>=80?`<div style="background:linear-gradient(135deg,rgba(204,34,0,.15),rgba(204,34,0,.05));border:2px solid rgba(204,34,0,.4);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">🏅 GREAT SESSION!</div><div style="font-family:var(--font-display);font-size:1.3rem;color:var(--green)">${CFG.playerName?CFG.playerName+' · ':''}⭐ ${pct}% Accuracy ⭐</div><div style="font-size:.72rem;color:var(--text3);margin-top:4px">Real digital skills - keep it up!</div></div>`:'';
+  const rpa=$('r-play-again');
+  if(rpa){
+    if(ST.mode==='daily'){ rpa.textContent='▶ PLAY CHALLENGE MODE'; rpa.onclick=()=>startMode('challenge'); }
+    else { rpa.textContent='▶ PLAY AGAIN'; rpa.onclick=()=>startMode(lastMode||ST.mode); }
+  }
   if(!CFG.noMotion&&pct>=70) confetti();
-  say(`Session complete! You got ${ST.correct} out of ${ST.total} correct.`);
   updateHomeUI();
   go('results'); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+  setTimeout(()=>say(`Session complete! You got ${ST.correct} out of ${ST.total} correct.`),150);
 }
 
-function replayMode(){ startMode(lastMode); }
+function replayMode(){ startMode(lastMode||ST.mode||'challenge'); }
 
 // ── Tab switcher (for guide screens) ──
 

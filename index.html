@@ -559,6 +559,38 @@ main{
 .card-tech.pressed{border-color:#cc2200 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(204,34,0,.40) !important;}
 .card-health.pressed{border-color:#e91e8c !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(233,30,140,.40) !important;}
 
+
+/* === Added shell polish === */
+.start-here-box,.use-cases-box,.install-cta-box{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:18px 16px;
+  margin:16px 0;
+  box-shadow:0 8px 24px rgba(0,0,0,.14);
+}
+.start-here-box h2,.use-cases-box h2,.install-cta-box h2{font-size:1rem;margin-bottom:8px;}
+.start-here-box p,.use-cases-box p,.install-cta-box p{color:var(--text2);line-height:1.65;}
+.start-grid,.use-grid{display:grid;gap:10px;margin-top:12px;}
+.start-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
+.use-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
+.start-card,.use-card{
+  display:block;text-decoration:none;color:var(--text);background:var(--bg3);border:1px solid var(--border);
+  border-radius:14px;padding:14px 12px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.start-card:hover,.use-card:hover{transform:translateY(-2px);border-color:#e91e8c;box-shadow:0 8px 20px rgba(0,0,0,.16);}
+.start-card strong,.use-card strong{display:block;margin-bottom:4px;}
+.start-card span,.use-card span{color:var(--text2);font-size:.92rem;line-height:1.5;}
+.install-cta-box{display:flex;flex-direction:column;align-items:flex-start;gap:10px;}
+.install-btn{appearance:none;border:none;border-radius:14px;padding:13px 18px;font-weight:700;cursor:pointer;background:#e91e8c;color:white;}
+.install-btn[hidden]{display:none!important;}
+.footer-utility{margin-top:26px;padding:18px 0 10px;border-top:1px solid var(--border);text-align:center;}
+.footer-meta{color:var(--text2);font-size:.92rem;line-height:1.6;margin-top:10px;}
+.footer-link-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
+.footer-link-row a{color:var(--text);text-decoration:none;background:var(--bg2);border:1px solid var(--border);padding:8px 12px;border-radius:999px;}
+.footer-link-row a:hover{border-color:#e91e8c;}
+@media (min-width:900px){.start-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.use-grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+
 </style>
 <link href="manifest.json" rel="manifest"/>
 <link href="icon_180.png" rel="apple-touch-icon"/>
@@ -582,9 +614,9 @@ main{
 <div class="section-label">CHOOSE YOUR SKILL</div>
 
 <section aria-label="Choose a module" class="lr-action-intro">
-<p class="lr-action-kicker">Start anywhere</p>
+<p class="lr-action-kicker">CHOOSE YOUR SKILL</p>
 
-<p class="lr-action-copy">Same welcoming style. Different real-world skill paths. Pick the skill you want to build next.</p>
+<p class="lr-action-copy">Same welcoming style. Different real-world skill paths. Start anywhere.</p>
 </section>
 <div class="app-grid">
 <!-- CashReady -->
@@ -699,6 +731,46 @@ main{
 <div class="sig-title">Creator of the LifeReady Suite</div>
 <div class="sig-tagline">FREE FOR EVERYONE · ALWAYS</div>
 </div>
+
+<section class="start-here-box" aria-labelledby="start-anywhere-heading">
+  <h2 id="start-anywhere-heading">Start anywhere</h2>
+  <p>If you are not sure where to begin, these are great first steps. You can still use any module in any order.</p>
+  <div class="start-grid">
+    <a class="start-card" href="CashReady.html"><strong>💰 CashReady</strong><span>Money basics, counting, spending, and real-world confidence.</span></a>
+    <a class="start-card" href="TimeReady.html"><strong>⏰ TimeReady</strong><span>Reading clocks, routines, schedules, and time awareness.</span></a>
+    <a class="start-card" href="JobReady.html"><strong>💼 JobReady</strong><span>Workplace expectations, communication, and everyday job skills.</span></a>
+  </div>
+</section>
+
+<section class="install-cta-box" aria-labelledby="install-lifeready-heading">
+  <h2 id="install-lifeready-heading">Install LifeReady</h2>
+  <p>Add LifeReady to your home screen for faster access on phones, tablets, and computers that support app install.</p>
+  <button class="install-btn" id="installBtn" hidden>📲 Install LifeReady</button>
+</section>
+
+<section class="use-cases-box" aria-labelledby="use-cases-heading">
+  <h2 id="use-cases-heading">How people use LifeReady</h2>
+  <p>Built for independent learners. Helpful for teachers, support staff, families, programs, clinics, and anyone building real-world skills.</p>
+  <div class="use-grid">
+    <div class="use-card"><strong>Independent practice</strong><span>Self-paced, repeatable learning with visual support, audio, and low pressure.</span></div>
+    <div class="use-card"><strong>Classroom or program support</strong><span>Use modules during instruction, small groups, transition practice, or community-based learning.</span></div>
+    <div class="use-card"><strong>Coaching and progress tracking</strong><span>Track sessions, celebrate wins, and build confidence over time across the full suite.</span></div>
+  </div>
+</section>
+
+<footer class="footer-utility">
+  <div class="footer-link-row">
+    <a href="privacy_v1.html">Privacy</a>
+    <a href="accessibility_v1.html">Accessibility</a>
+    <a href="contact_v1.html">Contact</a>
+    <a href="health-disclaimer_v1.html">Health Disclaimer</a>
+  </div>
+  <div class="footer-meta">
+    LifeReady is a practical life-skills learning suite built to be useful right now on phones, tablets, and computers.<br>
+    No accounts. No ads. No paywalls.
+  </div>
+</footer>
+
 </main>
 <script>
 document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});
@@ -735,6 +807,31 @@ document.addEventListener('gesturestart', function(e){ e.preventDefault(); });
     card.addEventListener('mouseleave', off);
     card.addEventListener('blur', off);
     card.addEventListener('dragstart', off);
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  let deferredPrompt = null;
+  const installBtn = document.getElementById('installBtn');
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+    if(installBtn) installBtn.hidden = false;
+  });
+  if(installBtn){
+    installBtn.addEventListener('click', async function(){
+      if(!deferredPrompt) return;
+      deferredPrompt.prompt();
+      try { await deferredPrompt.userChoice; } catch(e) {}
+      deferredPrompt = null;
+      installBtn.hidden = true;
+    });
+  }
+  window.addEventListener('appinstalled', function(){
+    if(installBtn) installBtn.hidden = true;
   });
 })();
 </script>

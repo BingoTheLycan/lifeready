@@ -1052,14 +1052,6 @@ main{grid-template-columns:1fr 300px;}
     </div>
   </div>
   <div class="gsec">
-    <div class="gtitle">🆓 ALWAYS FREE</div>
-    <div class="gcard" style="text-align:center;padding:20px">
-      <div style="font-size:2rem;margin-bottom:10px">🆓</div>
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">TimeReady is completely free. No ads, no subscriptions, no paywalls. It was built to help people - and that does not have a price tag.</p>
-    </div>
-  </div>
-
-  <div class="gsec">
     <div class="gtitle">🕐 PART OF THE LIFEREADY SUITE</div>
     <div class="gcard">
       <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">TimeReady is part of the LifeReady suite - a growing set of free, accessible life skills trainers built by the same person, for the same purpose.</p>
@@ -1106,6 +1098,14 @@ main{grid-template-columns:1fr 300px;}
           <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Health &amp; Life Skills</div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="gsec">
+    <div class="gtitle">🆓 ALWAYS FREE</div>
+    <div class="gcard" style="text-align:center;padding:20px">
+      <div style="font-size:2rem;margin-bottom:10px">🆓</div>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">TimeReady is completely free. No ads, no subscriptions, no paywalls. It was built to help people - and that does not have a price tag.</p>
     </div>
   </div>
 
@@ -1475,8 +1475,14 @@ function fmtTime12(h,m){
 // ════════════════════════════════════════════
 function say(txt){
   if(!CFG.audio||!window.speechSynthesis)return;
+  const clean=String(txt||'')
+    .replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF]/gu,' ')
+    .replace(/[_*`#<>]/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+  if(!clean)return;
   window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(txt);
+  const u=new SpeechSynthesisUtterance(clean);
   u.rate=speechRate;u.pitch=1.05;u.volume=0.95;
   window.speechSynthesis.speak(u);
 }
@@ -2252,7 +2258,7 @@ function endSession(early=false){
   if(ST.mode==='practice'){go('home');updateHomeUI();return;}
 
   // Clock School graduation moment
-  if(ST.mode==='starter'&&!early&&ST.correct>=ST.total*0.7){
+  if(ST.mode==='starter'&&!early&&ST.total>0&&ST.correct===ST.total){
     awardBadge('analog_ace');
     setTimeout(()=>{
       const isPerfect=ST.correct===ST.total;
@@ -2915,7 +2921,10 @@ function openLogForClient(i){
   openM('m-log');
   const sel=$('log-cl');if(sel)sel.value=i;
 }
-function closeM(id){$(id).classList.remove('on');}
+function closeM(id){
+  $(id).classList.remove('on');
+  try{ if(window.speechSynthesis) window.speechSynthesis.cancel(); }catch(e){}
+}
 function openHint(title,body,okLabel,okCb,showCancel){
   $('m-hint-title').textContent=title;
   $('m-hint-body').innerHTML=body;
@@ -2925,12 +2934,6 @@ function openHint(title,body,okLabel,okCb,showCancel){
   const cancel=$('m-hint-cancel');
   if(cancel) cancel.style.display=showCancel?'block':'none';
   $('m-hint').classList.add('on');
-  try{
-    const tmp=document.createElement('div');
-    tmp.innerHTML=body||'';
-    const spoken=(tmp.innerText||tmp.textContent||'').replace(/\s+/g,' ').trim();
-    if(spoken) say(spoken);
-  }catch(e){}
 }
 function selPrompt(el){
   document.querySelectorAll('#pchips .pchip').forEach(c=>c.classList.remove('on'));
@@ -3645,13 +3648,11 @@ openHint('Leave Drill?','<p style="color:var(--text2);font-size:.88rem">Leave AM
 // ════════════════════════════════════════════
 let WT={score:0,total:0,maxQ:8,answered:false};
 function showWTHint(){
-const hintText='Look at the short hand first. It tells you the hour. Then look at the long hand for minutes.';
 const bar=$('wt-inline-hint');
 if(bar){
   bar.innerHTML='💡 Hint: Look at the <strong>short hand</strong> first. It tells you the hour. Then look at the <strong>long hand</strong> for minutes.';
   bar.style.display='block';
 }
-say(hintText);
 }
 
 // ════════════════════════════════════════════
@@ -3928,7 +3929,7 @@ const wt=fmtTime12(wh,wm);if(wt!==correct)wrongs.add(wt);
 }
 const opts=shuf([correct,...wrongs]);
 $('wt-content').innerHTML=` <div class="wt-scenario"> <div class="wt-context">Look at the clock. What time does it show?</div> <div class="wt-clock">${drawClock(h,m,200,diff>1,true)}</div> <div class="qopts">${opts.map(o=>`<button class="qo ${CFG.errorless&&o===correct?'ok':''}" onclick="answerWT('${o}','${correct}',${h},${m})">${o}</button>`).join('')}</div> <div class="wt-fb" id="wt-fb"></div> <div id="wt-inline-hint" style="display:none;background:var(--bg2);border-left:5px solid var(--amber);border-radius:16px;padding:14px 16px;margin-top:14px;color:var(--text2);line-height:1.6;text-align:left">💡 Hint: Look at the <strong>short hand</strong> first. It tells you the hour. Then look at the <strong>long hand</strong> for minutes.</div> </div> <div class="acts" style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"> <button class="abtn" style="flex:1;min-width:140px" onclick="showWTHint()">💡 HINT</button> <button class="abtn" style="flex:1;min-width:140px" onclick="say('What time does this clock show?')">🔊 SAY AGAIN</button> <button class="dbtn" id="wt-next" onclick="nextWT()" style="display:none;margin-top:0;flex:1;min-width:140px">NEXT →</button> </div>`;
-say('What time does this clock show?');
+setTimeout(()=>say('What time does this clock show?'),120);
 }
 function answerWT(chosen,correct,h,m){
 if(WT.answered)return;
@@ -4123,8 +4124,10 @@ document.addEventListener('click', function(e) {
 function speakQuestionText(text) {
   try {
     if (!('speechSynthesis' in window) || !text) return;
+    const clean=String(text||'').replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF]/gu,' ').replace(/\s+/g,' ').trim();
+    if(!clean) return;
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(String(text));
+    const utterance = new SpeechSynthesisUtterance(clean);
     utterance.rate = 0.95;
     utterance.pitch = 1;
     utterance.volume = 1;

@@ -225,6 +225,7 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
 .gsec{margin-bottom:18px;}
 .gtitle{font-family:var(--font-mono);font-size:.75rem;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);text-shadow:0 0 10px #d4900a55;}
 .gcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 15px;font-size:.9rem;color:var(--text2);line-height:1.6;}.gcard:hover{border-color:#d4900a;box-shadow:0 0 14px #d4900a55;}
+.rights-tappable{cursor:pointer;}
 .gstep{display:flex;gap:10px;margin-bottom:9px;align-items:flex-start;}
 .gstep:last-child{margin-bottom:0;}
 .gnum{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#000;font-weight:900;font-size:.7rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
@@ -649,7 +650,7 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
   </div>
   <div class="gsec">
     <div class="gtitle">⚖️ YOUR BASIC RIGHTS</div>
-    <div class="gcard">
+    <div class="gcard rights-tappable">
       <div class="gstep"><div class="gnum" style="background:var(--gold)">✅</div><div>You have the right to a <strong>safe workplace</strong>. If something is dangerous, you can report it without being fired for reporting it.</div></div>
       <div class="gstep"><div class="gnum" style="background:var(--gold)">✅</div><div>You have the right to be paid at least <strong>minimum wage</strong> for every hour you work. Your employer must pay you on time.</div></div>
       <div class="gstep"><div class="gnum" style="background:var(--gold)">✅</div><div>You have the right to <strong>breaks</strong>. Most states require a meal break for shifts over a certain length. Ask your employer or HR about your state's rules.</div></div>
@@ -659,7 +660,7 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
   </div>
   <div class="gsec">
     <div class="gtitle">🚫 WHAT IS HARASSMENT?</div>
-    <div class="gcard">
+    <div class="gcard rights-tappable">
       <div class="gstep"><div class="gnum" style="background:var(--red);font-size:.7rem">🚫</div><div>Harassment means someone is treating you in a way that is <strong>unwelcome, offensive, or threatening</strong> - repeatedly or seriously enough to make your workplace uncomfortable.</div></div>
       <div class="gstep"><div class="gnum" style="background:var(--red);font-size:.7rem">🚫</div><div>Examples: someone making <strong>rude jokes about your disability</strong>, calling you names, touching you without permission, or threatening your job if you do not do something you are uncomfortable with.</div></div>
       <div class="gstep"><div class="gnum" style="background:var(--gold);font-size:.7rem">✅</div><div>If this happens to you, <strong>write down what happened, when, and who was there</strong>. Then report it to your supervisor or HR. You have the right to work without harassment.</div></div>
@@ -667,7 +668,7 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
   </div>
   <div class="gsec">
     <div class="gtitle">🆘 WHO TO TALK TO</div>
-    <div class="gcard">
+    <div class="gcard rights-tappable">
       <div class="gstep"><div class="gnum" style="background:var(--amber);font-size:.7rem">1</div><div><strong>Your supervisor or manager</strong> - for most workplace concerns, this is your first step.</div></div>
       <div class="gstep"><div class="gnum" style="background:var(--amber);font-size:.7rem">2</div><div><strong>HR (Human Resources)</strong> - if your concern involves your supervisor, or involves discrimination or harassment.</div></div>
       <div class="gstep"><div class="gnum" style="background:var(--amber);font-size:.7rem">3</div><div><strong>Your job coach or support person</strong> - they can help you figure out what to say and go with you if needed.</div></div>
@@ -676,7 +677,7 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
   </div>
   <div class="gsec">
     <div class="gtitle">💡 REMEMBER</div>
-    <div class="gcard" style="border-left:4px solid var(--gold)">
+    <div class="gcard rights-tappable" style="border-left:4px solid var(--gold)">
       <p style="font-size:.9rem;color:var(--text);line-height:1.8">You are allowed to <strong>ask questions</strong> about your pay, your hours, and your rights. You are allowed to <strong>say no</strong> to things that make you uncomfortable. A good employer will respect that.</p>
     </div>
   </div>
@@ -913,11 +914,6 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
     <div class="gcard" style="border-left:4px solid var(--amber)"><p style="font-size:.88rem;color:var(--text2);line-height:1.8">Dedicated to every job coach, support worker, and educator who believes in their clients before their clients believe in themselves. And to the educators, coaches, and support workers who stay late, show up early, and believe before anyone else does - your jobs are safe. This app just does the homework.</p></div>
   </div>
   <div class="gsec">
-    <div class="gtitle">🆓 ALWAYS FREE</div>
-    <div class="gcard" style="text-align:center;padding:20px"><div style="font-size:2rem;margin-bottom:10px">🆓</div><p style="font-size:.88rem;color:var(--text2);line-height:1.8">JobReady is completely free. No ads, no subscriptions, no paywalls. Built to help people - and that does not have a price tag.</p></div>
-  </div>
-
-  <div class="gsec">
     <div class="gtitle">💼 PART OF THE LIFEREADY SUITE</div>
     <div class="gcard">
       <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">JobReady is part of the LifeReady suite - a growing set of free, accessible life skills trainers built by the same person, for the same purpose.</p>
@@ -965,6 +961,11 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="gsec">
+    <div class="gtitle">🆓 ALWAYS FREE</div>
+    <div class="gcard" style="text-align:center;padding:20px"><div style="font-size:2rem;margin-bottom:10px">🆓</div><p style="font-size:.88rem;color:var(--text2);line-height:1.8">JobReady is completely free. No ads, no subscriptions, no paywalls. Built to help people - and that does not have a price tag.</p></div>
   </div>
 
 <div style="text-align:center;padding:20px 0 8px">
@@ -3615,6 +3616,22 @@ document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preve
 document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});
 document.addEventListener('gesturestart',function(e){e.preventDefault();});
 let _lt=0;document.addEventListener('touchend',function(e){const n=Date.now();if(n-_lt<300)e.preventDefault();_lt=n;},false);
+</script>
+
+
+<script id="jobready-rights-card-tap">
+function cleanRightsSpeech(txt){
+  return String(txt||'').replace(/[^\x00-\x7F]+/g,' ').replace(/\s+/g,' ').trim();
+}
+document.addEventListener('click', function(e){
+  const card = e.target && e.target.closest ? e.target.closest('#scr-rightsatwork .rights-tappable') : null;
+  if(!card) return;
+  try{
+    if(typeof say === 'function'){
+      say(cleanRightsSpeech(card.innerText || card.textContent || ''));
+    }
+  }catch(err){}
+});
 </script>
 
 </body>

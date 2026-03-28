@@ -835,6 +835,7 @@ max-width:320px;width:calc(100% - 32px);
     <div class="femoji" id="femoji">✅</div>
     <div class="ftitle ok" id="ftitle">CORRECT!</div>
     <div class="fmsg" id="fmsg"></div>
+    <div id="fexplain" style="display:none;font-size:.82rem;color:var(--text2);background:var(--bg3);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:14px;line-height:1.65;text-align:left;border-left:3px solid var(--green)"></div>
     <div id="feoc" style="display:none"></div>
     <button class="fnext" id="fnext" onclick="nextQ_game()">NEXT →</button>
   </div>
@@ -2535,12 +2536,15 @@ function genQ(){
 function answerQ(chosen){
   if(ST.answered) return;
   ST.answered=true; ST.total++;
-  const ok=chosen===('_shuffledCorrect' in currentQ?currentQ._shuffledCorrect:currentQ.correct);
+  const correctIndex=('_shuffledCorrect' in currentQ?currentQ._shuffledCorrect:currentQ.correct);
+  const ok=chosen===correctIndex;
+
   document.querySelectorAll('#g-opts .qo').forEach((btn,i)=>{
     btn.disabled=true;
-    if(i===('_shuffledCorrect' in currentQ?currentQ._shuffledCorrect:currentQ.correct)) btn.classList.add('ok');
+    if(i===correctIndex) btn.classList.add('ok');
     else if(i===chosen&&!ok) btn.classList.add('bad');
   });
+
   if(ok){
     ST.correct++; ST.streak++; ST.bestStreak=Math.max(ST.bestStreak,ST.streak);
     if(ST.mode!=='practice') ST.score+=Math.max(10,10+ST.streak*2);
@@ -2549,24 +2553,42 @@ function answerQ(chosen){
   } else {
     ST.streak=0; buzz();
   }
+
   for(let i=0;i<5;i++){const d=$('sd'+i);if(d)d.classList.toggle('lit',i<ST.streak);}
   $('g-score').textContent=ST.score;
   $('g-lvl').textContent=getLvl(ST.score).n;
+
   const CORRECT=['Great thinking!','Correct!','That\'s right!','Nailed it!','Yes! Strong home skills.','Right on!'];
-  const WRONG=['Not quite - see explanation below.','Almost! Read why below.','That\'s okay - the right answer is shown.','Not this time. Keep going!'];
+  const WRONG=['Not quite - the right answer is shown.','Almost! Read the explanation to understand why.','That\'s okay - the right answer is highlighted.','Not this time. Keep going!'];
+  const explain=(currentQ && currentQ.explain) ? currentQ.explain : '';
+
   const fb=$('g-fb');
   if(fb){
-    fb.className='qfb on '+(ok?'ok':'bad'); fb.style.display='block';
-    fb.innerHTML=(ok?`<strong style="color:#00c851">✅ ${rand(CORRECT)}</strong>`:`<strong style="color:#ff4444">❌ ${rand(WRONG)}</strong>`)
-      +(currentQ.explain?`<div style="font-size:.78rem;color:var(--text3);margin-top:8px;line-height:1.6">${currentQ.explain}</div>`:'');
+    fb.className='qfb';
+    fb.style.display='none';
+    fb.innerHTML='';
   }
+
   awardBadge('first_home');
   if(ok) awardBadge('first_correct');
+
   setTimeout(()=>{
-    const fn=$('fnext'); if(fn) fn.textContent=ST.total>=ST.maxQ?'SEE RESULTS →':'NEXT →';
+    const firstEver=!BADGES.has('first_correct')&&ST.correct===1&&ST.total===1;
+    $('femoji').textContent=firstEver?'🎉':ok?(ST.streak>=5?'🔥':ST.streak>=3?'⭐':'✅'):'❌';
+    $('ftitle').textContent=firstEver?'YOUR FIRST ONE!':ok?(ST.streak>=5?'ON FIRE!':ST.streak>=3?'GREAT JOB!':'CORRECT!'):'NOT QUITE';
+    $('ftitle').className='ftitle '+(ok?'ok':'bad');
+    $('fmsg').textContent=ok?rand(CORRECT):rand(WRONG);
+    const exEl=$('fexplain');
+    if(exEl){ exEl.textContent=explain; exEl.style.display=explain?'block':'none'; }
+    $('fcard').className='fcard'+(ok?'':' wrong');
+    const fn=$('fnext');
+    if(fn){
+      fn.className='fnext'+(ok?'':' bad');
+      fn.textContent=ST.total>=ST.maxQ?'SEE RESULTS →':'NEXT →';
+    }
     const feoc=$('feoc'); if(feoc) feoc.style.display='none';
     $('fov').classList.add('on');
-    say(ok?'Correct! Great job.':('Not quite. '+(currentQ.explain||'').split('.')[0]+'.'));
+    say(ok?'Correct! Great job.':('Not quite. '+(explain||'Try again.').split('.')[0]+'.'));
   },300);
 }
 
@@ -2793,13 +2815,18 @@ function endSession(early=false){
   if(elapsed>10){const rtb=$('r-timer-box');if(rtb)rtb.style.display='';const rtv=$('r-timer');if(rtv)rtv.textContent=fmtElapsed(elapsed);}
   const eoc=$('eoc-card-wrap');
   if(eoc) eoc.innerHTML=!early&&pct>=80?`<div style="background:linear-gradient(135deg,rgba(232,101,10,.15),rgba(232,101,10,.05));border:2px solid rgba(232,101,10,.4);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">🏅 GREAT SESSION!</div><div style="font-family:var(--font-display);font-size:1.3rem;color:var(--green)">${CFG.playerName?CFG.playerName+' · ':''}⭐ ${pct}% Accuracy ⭐</div><div style="font-size:.72rem;color:var(--text3);margin-top:4px">Real home skills - keep it up!</div></div>`:'';
+  const rpa=$('r-play-again');
+  if(rpa){
+    if(ST.mode==='daily'){ rpa.textContent='▶ PLAY CHALLENGE MODE'; rpa.onclick=()=>startMode('challenge'); }
+    else { rpa.textContent='▶ PLAY AGAIN'; rpa.onclick=()=>startMode(lastMode||ST.mode); }
+  }
   if(!CFG.noMotion&&pct>=70) confetti();
   say(`Session complete! You got ${ST.correct} out of ${ST.total} correct.`);
   updateHomeUI();
   go('results'); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
 }
 
-function replayMode(){ startMode(lastMode); }
+function replayMode(){ startMode(lastMode||ST.mode||'challenge'); }
 
 // ── Laundry tab switcher (for guide screens) ──
 function showLTab(tab,btn){

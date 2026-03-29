@@ -9,22 +9,10 @@
 <meta content="yes" name="mobile-web-app-capable"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<meta content="HealthReady" name="apple-mobile-web-app-title"/>
+<meta content="LifeReady" name="apple-mobile-web-app-title"/>
 <title>HealthReady - Health &amp; Life Skills Trainer</title>
-<!-- PWA Manifest (inline) -->
-<link href="data:application/manifest+json,{
-  %22name%22:%22HealthReady%22,
-  %22short_name%22:%22HealthReady%22,
-  %22description%22:%22Health and life skills trainer for everyone%22,
-  %22start_url%22:%22.%22,
-  %22display%22:%22standalone%22,
-  %22background_color%22:%22%230d0a07%22,
-  %22theme_color%22:%22%23e91e8c%22,
-  %22orientation%22:%22portrait%22,
-  %22icons%22:[
-    {%22src%22:%22data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230d1117'/%3E%3Ctext x='256' y='310' font-family='monospace' font-size='200' font-weight='bold' text-anchor='middle' fill='%2300c851'%3E%24%3C/text%3E%3C/svg%3E%22,%22sizes%22:%22512x512%22,%22type%22:%22image/svg+xml%22}
-  ]
-}" rel="manifest"/>
+<!-- Shared app manifest -->
+<link href="manifest.json" rel="manifest"/>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Space+Mono:wght@400;700&amp;family=Nunito:wght@400;600;700;800;900&amp;family=Fredoka+One&amp;display=swap" rel="stylesheet"/>
 <style>
 /* ═══════════════════════════════════════════════════════
@@ -1346,7 +1334,6 @@ max-width:320px;width:calc(100% - 32px);
 <div class="femoji" id="femoji">✅</div>
 <div class="ftitle ok" id="ftitle">CORRECT!</div>
 <div class="fmsg" id="fmsg"></div>
-<div id="fexplain" style="display:none;font-size:.82rem;color:var(--text2);background:var(--bg3);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:14px;line-height:1.65;text-align:left;border-left:3px solid var(--green)"></div>
 <div id="feoc" style="display:none"></div>
 <button class="fnext" id="fnext" onclick="nextQ_game()">NEXT →</button>
 </div>
@@ -1542,8 +1529,7 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 </div>
 </div>
-<div class="gsec"><div class="gtitle">🆓 ALWAYS FREE</div><div class="gcard" style="text-align:center;padding:20px">
-<div style="font-size:2rem;margin-bottom:10px">🆓</div>
+<div class="gsec"><div class="gtitle">🆓 ALWAYS FREE</div><div class="gcard">
 <p style="font-size:.88rem;color:var(--text2);line-height:1.8">HealthReady is and always will be completely free. No accounts. No ads. No paywalls. No data collected. Just a tool that helps people understand their health, advocate for themselves, and stay safe - for everyone, always.</p>
 </div></div>
 <div style="text-align:center;padding:20px 0 8px">
@@ -2482,15 +2468,12 @@ function genQ(){
 function answerQ(chosen){
   if(ST.answered) return;
   ST.answered=true; ST.total++;
-  const correctIndex = ('_shuffledCorrect' in currentQ ? currentQ._shuffledCorrect : currentQ.correct);
-  const ok = chosen===correctIndex;
-
+  const ok=chosen===('_shuffledCorrect' in currentQ?currentQ._shuffledCorrect:currentQ.correct);
   document.querySelectorAll('#g-opts .qo').forEach((btn,i)=>{
     btn.disabled=true;
-    if(i===correctIndex) btn.classList.add('ok');
-    else if(i===chosen && !ok) btn.classList.add('bad');
+    if(i===('_shuffledCorrect' in currentQ?currentQ._shuffledCorrect:currentQ.correct)) btn.classList.add('ok');
+    else if(i===chosen&&!ok) btn.classList.add('bad');
   });
-
   if(ok){
     ST.correct++; ST.streak++; ST.bestStreak=Math.max(ST.bestStreak,ST.streak);
     if(ST.mode!=='practice') ST.score+=Math.max(10,10+ST.streak*2);
@@ -2499,47 +2482,24 @@ function answerQ(chosen){
   } else {
     ST.streak=0; buzz();
   }
-
   for(let i=0;i<5;i++){const d=$('sd'+i);if(d)d.classList.toggle('lit',i<ST.streak);}
   $('g-score').textContent=ST.score;
   {const _z=$('g-lvl');if(_z)_z.textContent=getLvl(ST.score).n;}
-
   const CORRECT=['Great thinking!','Correct!','That\'s right!','Nailed it!','Yes! Good health knowledge!','Right on!'];
-  const WRONG=['Not quite - the right answer is shown.','Almost! Read the explanation to understand why.','That\'s okay - the right answer is highlighted.','Not this time. Keep going!'];
-  const explain = currentQ.explain || '';
-
+  const WRONG=['Not quite - see explanation below.','Almost! Read why below.','That\'s okay - the right answer is shown.','Not this time. Keep going!'];
   const fb=$('g-fb');
   if(fb){
-    fb.className='qfb';
-    fb.style.display='none';
-    fb.innerHTML='';
+    fb.className='qfb on '+(ok?'ok':'bad'); fb.style.display='block';
+    fb.innerHTML=(ok?`<strong style="color:#00c851">✅ ${rand(CORRECT)}</strong>`:`<strong style="color:#ff4444">❌ ${rand(WRONG)}</strong>`)
+      +(currentQ.explain?`<div style="font-size:.78rem;color:var(--text3);margin-top:8px;line-height:1.6">${currentQ.explain}</div>`:'');
   }
-
   awardBadge('first_step');
   if(ok) awardBadge('first_correct');
-
   setTimeout(()=>{
-    const femoji=$('femoji'), ftitle=$('ftitle'), fmsg=$('fmsg'), fexplain=$('fexplain'), fcard=$('fcard');
-    if(femoji) femoji.textContent = ok ? '✅' : '❌';
-    if(ftitle){
-      ftitle.textContent = ok ? 'CORRECT!' : 'NOT QUITE';
-      ftitle.className = 'ftitle ' + (ok ? 'ok' : 'bad');
-    }
-    if(fmsg) fmsg.textContent = ok ? rand(CORRECT) : rand(WRONG);
-    if(fexplain){
-      fexplain.textContent = explain;
-      fexplain.style.display = explain ? 'block' : 'none';
-    }
-    if(fcard) fcard.className = 'fcard' + (ok ? '' : ' wrong');
-
-    const fn=$('fnext');
-    if(fn){
-      fn.textContent = ST.total>=ST.maxQ ? 'SEE RESULTS →' : 'NEXT →';
-      fn.className = 'fnext' + (ok ? '' : ' bad');
-    }
+    const fn=$('fnext'); if(fn) fn.textContent=ST.total>=ST.maxQ?'SEE RESULTS →':'NEXT →';
     const feoc=$('feoc'); if(feoc) feoc.style.display='none';
     $('fov').classList.add('on');
-    say(ok ? 'Correct! Great job.' : ('Not quite. ' + (explain || 'Try again.').split('.')[0] + '.'));
+    say(ok?'Correct! Great job.':('Not quite. '+(currentQ.explain||'').split('.')[0]+'.'));
   },300);
 }
 
@@ -2803,18 +2763,13 @@ function endSession(early=false){
   if(elapsed>10){const rtb=$('r-timer-box');if(rtb)rtb.style.display='';const rtv=$('r-timer');if(rtv)rtv.textContent=fmtElapsed(elapsed);}
   const eoc=$('eoc-card-wrap');
   if(eoc) eoc.innerHTML=!early&&pct>=80?`<div style="background:linear-gradient(135deg,rgba(233,30,140,.15),rgba(233,30,140,.05));border:2px solid rgba(233,30,140,.4);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">🏅 GREAT SESSION!</div><div style="font-family:var(--font-display);font-size:1.3rem;color:var(--green)">${CFG.playerName?CFG.playerName+' · ':''}⭐ ${pct}% Accuracy ⭐</div><div style="font-size:.72rem;color:var(--text3);margin-top:4px">Real health knowledge - keep it up!</div></div>`:'';
-  const rpa=$('r-play-again');
-  if(rpa){
-    if(ST.mode==='daily'){ rpa.textContent='▶ PLAY CHALLENGE MODE'; rpa.onclick=()=>startMode('challenge'); }
-    else { rpa.textContent='▶ PLAY AGAIN'; rpa.onclick=()=>startMode(lastMode||ST.mode); }
-  }
   if(!CFG.noMotion&&pct>=70) confetti();
+  say(`Session complete! You got ${ST.correct} out of ${ST.total} correct.`);
   updateHomeUI();
   go('results'); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
-  setTimeout(()=>say(`Session complete! You got ${ST.correct} out of ${ST.total} correct.`),150);
 }
 
-function replayMode(){ startMode(lastMode||ST.mode||'challenge'); }
+function replayMode(){ startMode(lastMode); }
 
 // ── Tab switcher (for guide screens) ──
 

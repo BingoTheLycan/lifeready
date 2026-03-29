@@ -6,9 +6,6 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <meta content="#0d1117" name="theme-color"/>
 <meta content="LifeReady - Free life skills trainers for everyone. CashReady, TimeReady, JobReady, HomeReady, TravelReady, SocialReady, HealthReady, and TechReady. Built with love, for real life." name="description"/>
-<meta content="yes" name="apple-mobile-web-app-capable"/>
-<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<meta content="LifeReady" name="apple-mobile-web-app-title"/>
 <title>LifeReady - Life Skills Suite</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Space+Mono:wght@400;700&amp;family=Nunito:wght@400;700;800;900&amp;family=Fredoka+One&amp;display=swap" rel="stylesheet"/>
 <style>
@@ -93,7 +90,7 @@ margin:0 auto;
 padding:0 14px 60px;
 }
 
-.section-label{font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:4px;text-transform:uppercase;text-align:center;margin:0 0 18px;padding-bottom:8px;border-bottom:1px solid var(--border);text-shadow:0 0 12px rgba(255,255,255,0.15);}
+.section-label{font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:4px;text-transform:uppercase;text-align:center;margin:0 0 18px;padding-bottom:8px;border-bottom:1px solid var(--border);text-shadow:0 0 12px rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;gap:12px;}
 .section-label::before{content:''; flex:1; height:1px; background:var(--border2);}
 .section-label::after{content:''; flex:1; height:1px; background:var(--border2);}
 
@@ -589,12 +586,15 @@ main{
 .footer-link-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
 .footer-link-row a{color:var(--text);text-decoration:none;background:var(--bg2);border:1px solid var(--border);padding:8px 12px;border-radius:999px;}
 .footer-link-row a:hover{border-color:#e91e8c;}
-@media (min-width:900px){.start-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.use-grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media (min-width:900px){.start-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.use-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.about-section,.start-here-box,.use-cases-box,.install-cta-box{padding:22px 22px;}}
 
 </style>
 <link href="manifest.json" rel="manifest"/>
 <link href="icon_180.png" rel="apple-touch-icon"/>
 <link href="icon_512.png" rel="icon" sizes="512x512" type="image/png"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="LifeReady" name="apple-mobile-web-app-title"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="LifeReady" name="apple-mobile-web-app-title"/>
@@ -620,7 +620,7 @@ main{
 </section>
 <div class="app-grid">
 <!-- CashReady -->
-<a aria-label="💵 CASHREADY Count coins &amp; bills, make change, practice real cashier skills MONEY SKILLS ›" class="app-card card-cash" href="CashReady.html" onclick="event.preventDefault();window.location.href='CashReady.html'" target="_self">
+<a aria-label="💵 CASHREADY Count coins &amp; bills, make change, practice real cashier skills MONEY SKILLS ›" class="app-card card-cash" href="CashReady.html" target="_self">
 <span class="app-icon">💵</span>
 <div class="app-name">CASHREADY</div>
 <div class="app-sub">Count coins &amp; bills, make change, practice real cashier skills</div>
@@ -628,7 +628,7 @@ main{
 <div class="app-arrow">›</div>
 </a>
 <!-- TimeReady -->
-<a aria-label="🕐 TIMEREADY Read clocks, follow schedules, learn AM/PM and time on the job TIME SKILLS ›" class="app-card card-time" href="TimeReady.html" onclick="event.preventDefault();window.location.href='TimeReady.html'" target="_self">
+<a aria-label="🕐 TIMEREADY Read clocks, follow schedules, learn AM/PM and time on the job TIME SKILLS ›" class="app-card card-time" href="TimeReady.html" target="_self">
 <span class="app-icon">🕐</span>
 <div class="app-name">TIMEREADY</div>
 <div class="app-sub">Read clocks, follow schedules, learn AM/PM and time on the job</div>
@@ -636,7 +636,7 @@ main{
 <div class="app-arrow">›</div>
 </a>
 <!-- JobReady -->
-<a aria-label="💼 JOBREADY Interview skills, workplace rules, pay stubs, rights &amp; responsibilities WORK SKILLS ›" class="app-card card-job" href="JobReady.html" onclick="event.preventDefault();window.location.href='JobReady.html'" target="_self">
+<a aria-label="💼 JOBREADY Interview skills, workplace rules, pay stubs, rights &amp; responsibilities WORK SKILLS ›" class="app-card card-job" href="JobReady.html" target="_self">
 <span class="app-icon">💼</span>
 <div class="app-name">JOBREADY</div>
 <div class="app-sub">Interview skills, workplace rules, pay stubs, rights &amp; responsibilities</div>
@@ -644,7 +644,7 @@ main{
 <div class="app-arrow">›</div>
 </a>
 <!-- HomeReady -->
-<a aria-label="🏠 HOMEREADY Laundry, budgeting, food safety, renting, and handling emergencies HOME SKILLS ›" class="app-card card-home" href="HomeReady.html" onclick="event.preventDefault();window.location.href='HomeReady.html'" target="_self">
+<a aria-label="🏠 HOMEREADY Laundry, budgeting, food safety, renting, and handling emergencies HOME SKILLS ›" class="app-card card-home" href="HomeReady.html" target="_self">
 <span class="app-icon">🏠</span>
 <div class="app-name">HOMEREADY</div>
 <div class="app-sub">Laundry, budgeting, food safety, renting, and handling emergencies</div>
@@ -652,7 +652,7 @@ main{
 <div class="app-arrow">›</div>
 </a>
 <!-- TravelReady -->
-<a aria-label="🗺️ TRAVELREADY Read bus schedules, pay fares, navigate routes, plan safe trips TRAVEL SKILLS ›" class="app-card card-travel" href="TravelReady.html" onclick="event.preventDefault();window.location.href='TravelReady.html'" target="_self">
+<a aria-label="🗺️ TRAVELREADY Read bus schedules, pay fares, navigate routes, plan safe trips TRAVEL SKILLS ›" class="app-card card-travel" href="TravelReady.html" target="_self">
 <span class="app-icon">🗺️</span>
 <div class="app-name">TRAVELREADY</div>
 <div class="app-sub">Read bus schedules, pay fares, navigate routes, plan safe trips</div>
@@ -660,7 +660,7 @@ main{
 <div class="app-arrow">›</div>
 </a>
 <!-- SocialReady -->
-<a aria-label="💬 SOCIALREADY Start conversations, read social cues, set limits, handle conflict SOCIAL SKILLS ›" class="app-card card-social" href="SocialReady.html" onclick="event.preventDefault();window.location.href='SocialReady.html'" target="_self">
+<a aria-label="💬 SOCIALREADY Start conversations, read social cues, set limits, handle conflict SOCIAL SKILLS ›" class="app-card card-social" href="SocialReady.html" target="_self">
 <span class="app-icon">💬</span>
 <div class="app-name">SOCIALREADY</div>
 <div class="app-sub">Start conversations, read social cues, set limits, handle conflict</div>
@@ -668,7 +668,7 @@ main{
 <div class="app-arrow">›</div>
 </a>
 <!-- TechReady -->
-<a aria-label="📱 TECHREADY Spot scams, stay safe online &amp; master digital skills DIGITAL SKILLS ›" class="app-card card-tech" href="TechReady.html" onclick="event.preventDefault();window.location.href='TechReady.html'" target="_self">
+<a aria-label="📱 TECHREADY Spot scams, stay safe online &amp; master digital skills DIGITAL SKILLS ›" class="app-card card-tech" href="TechReady.html" target="_self">
 <span class="app-icon">📱</span>
 <div class="app-name">TECHREADY</div>
 <div class="app-sub">Spot scams, stay safe online &amp; master digital skills</div>
@@ -676,7 +676,7 @@ main{
 <div class="app-arrow">›</div>
 </a>
 <!-- HealthReady -->
-<a aria-label="🏥 HEALTHREADY Read prescriptions, navigate the doctor &amp; know what to do in an emergency HEALTH SKILLS ›" class="app-card card-health" href="HealthReady.html" onclick="event.preventDefault();window.location.href='HealthReady.html'" target="_self">
+<a aria-label="🏥 HEALTHREADY Read prescriptions, navigate the doctor &amp; know what to do in an emergency HEALTH SKILLS ›" class="app-card card-health" href="HealthReady.html" target="_self">
 <span class="app-icon">🏥</span>
 <div class="app-name">HEALTHREADY</div>
 <div class="app-sub">Read prescriptions, navigate the doctor &amp; know what to do in an emergency</div>
@@ -690,7 +690,7 @@ main{
   </div>
 <!-- ══ COACH CALLOUT ══ -->
 <div class="lr-info-card" style="background:linear-gradient(135deg,#0d1520,#101a28);border:1px solid rgba(34,136,255,0.25);border-left:4px solid #2288ff;border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:24px;animation:fadeUp .5s .38s ease both">
-<div class="lr-info-card" style="font-family:var(--font-mono);font-size:.58rem;color:#2288ff;letter-spacing:3px;margin-bottom:10px">🎓 FOR COACHES &amp; TEACHERS</div>
+<div style="font-family:var(--font-mono);font-size:.58rem;color:#2288ff;letter-spacing:3px;margin-bottom:10px">🎓 FOR COACHES &amp; TEACHERS</div>
 <div style="font-size:.84rem;color:var(--text2);line-height:1.7">Every app includes a built-in <strong style="color:var(--text)">Coach Dashboard</strong> - log sessions, track accuracy, set mastery goals, monitor prompt fading, and print progress reports for your clients or students. Tap <strong style="color:var(--text)">COACH</strong> in any app header to get started.</div>
 </div>
 <!-- ══ ABOUT ══ -->
@@ -745,6 +745,7 @@ main{
 <section class="install-cta-box" aria-labelledby="install-lifeready-heading">
   <h2 id="install-lifeready-heading">Install LifeReady</h2>
   <p>Add LifeReady to your home screen for faster access on phones, tablets, and computers that support app install.</p>
+  <p style="font-size:.9rem;color:var(--text2);margin-top:-2px">If the install button does not appear, your browser may not support app install yet.</p>
   <button class="install-btn" id="installBtn" hidden>📲 Install LifeReady</button>
 </section>
 
@@ -775,15 +776,6 @@ main{
 <script>
 document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});
 var _lt=0;document.addEventListener('touchend',function(e){var n=Date.now();if(n-_lt<300)e.preventDefault();_lt=n;},false);
-</script>
-<script>
-document.addEventListener('touchstart', function(e){
-  if(e.touches.length > 1) e.preventDefault();
-}, {passive: false});
-document.addEventListener('touchmove', function(e){
-  if(e.touches.length > 1) e.preventDefault();
-}, {passive: false});
-document.addEventListener('gesturestart', function(e){ e.preventDefault(); });
 </script>
 
 

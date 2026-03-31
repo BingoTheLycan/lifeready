@@ -120,6 +120,10 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
 .hb .hl{font-size:.68rem;font-weight:800;color:var(--text2);letter-spacing:.5px;text-transform:uppercase;}
 .hb .hc{font-size:.62rem;color:var(--text2);margin-top:2px;}
 .tagline{text-align:center;color:var(--green);font-family:var(--font-mono);font-size:.72rem;letter-spacing:3px;margin-top:28px;padding:0 20px;line-height:1.6;text-shadow:0 0 12px #d4900a44;animation:blink 2.5s step-end infinite;}
+.home-group{margin-top:14px;}
+.home-group-label{font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:7px;text-transform:uppercase;margin:0 0 10px;text-shadow:0 0 10px rgba(212,144,10,.18);}
+.home-tools-label{font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:5px;text-transform:uppercase;margin:0 0 12px;text-shadow:0 0 10px #d4900a55;display:flex;align-items:center;gap:10px;}
+.home-divider{height:1px;background:var(--border);margin:6px 0 14px;opacity:.55;}
 @keyframes blink{50%{opacity:0;}}
 
 /* GAME */
@@ -389,11 +393,10 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
 
 <div id="scr-home" class="scr on">
   <div class="home-hero">
-    <div class="jr-logo"><span class="jr-job">JOB</span><span class="cr-ready">READY</span></div>
+    <div class="jr-logo"><span class="jr-job">JOB</span><span class="jr-ready">READY</span></div>
     <div class="home-tagline">- WORKPLACE READINESS TRAINER -</div>
     <div class="home-sub" id="home-sub">Practice interviews · Learn workplace skills · Get job ready</div>
-  <button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-family:var(--font-mono);font-size:.65rem;color:#d4900a;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #d4900a44;background:transparent;border:1px solid #d4900a55;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB &nbsp;·&nbsp; All Apps</button>
-
+  <button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-size:.65rem;color:#d4900a;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #d4900a44;background:transparent;border:1px solid #d4900a55;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB &nbsp;·&nbsp; All Apps</button>
   </div>
   <div id="onboarding-card" style="display:none;background:linear-gradient(135deg,var(--panel),var(--panel2));border:2px solid var(--gold);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;animation:fadeUp .5s ease">
     <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--gold);letter-spacing:2px;margin-bottom:8px">👋 WELCOME TO JOBREADY!</div>
@@ -403,6 +406,8 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
       <button class="rsec" style="flex:1;padding:11px;font-size:.8rem" onclick="dismissOnboarding()">Got It ✓</button>
     </div>
   </div>
+
+  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;margin-top:4px;text-shadow:0 0 10px #d4900a55">🎮 PLAY</div>
   <div class="daily-card" onclick="startDaily()" id="daily-card">
     <div class="daily-icon">📅</div>
     <div class="daily-info">
@@ -411,68 +416,100 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
     </div>
     <div class="daily-streak" id="daily-streak-disp">🔥0</div>
   </div>
-  <div style="height:1px;background:var(--border);margin:4px 0 8px;opacity:.5"></div>
-  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #d4900a55">🎮 PLAY</div>
-  <div class="mode-list">
-  <div class="mc" onclick="startMode('practice')">
-      <div class="mc-icon">🎓</div>
-      <div class="mc-body"><div class="mc-name">PRACTICE MODE</div><div class="mc-desc">No score · Unlimited hints · Take your time · All workplace topics</div></div>
-      <div class="mc-arr">›</div>
+
+  <div class="home-divider"></div>
+
+  <div class="home-group">
+    <div class="home-group-label">START HERE</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc star" onclick="startMode('challenge')">
+        <div class="mc-icon">🏢</div>
+        <div class="mc-body"><div class="mc-name">WORKPLACE CHALLENGE</div><div class="mc-desc">Score · Streaks · Levels · Mixed scenarios · 10 questions</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('practice')">
+        <div class="mc-icon">🎓</div>
+        <div class="mc-body"><div class="mc-name">PRACTICE MODE</div><div class="mc-desc">No score · Unlimited hints · Take your time · All workplace topics</div></div>
+        <div class="mc-arr">›</div>
+      </div>
     </div>
-  <div class="mc" onclick="startMode('interview')">
-      <div class="mc-icon">🎤</div>
-      <div class="mc-body"><div class="mc-name">INTERVIEW SCHOOL</div><div class="mc-desc">Practice real interview Q&amp;A · Learn what employers want to hear · Build confidence</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc star" onclick="startMode('challenge')">
-      <div class="mc-icon">🏢</div>
-      <div class="mc-body"><div class="mc-name">WORKPLACE CHALLENGE</div><div class="mc-desc">Score · Streaks · Levels · Mixed scenarios · 10 questions</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('paycheck')">
-      <div class="mc-icon">💵</div>
-      <div class="mc-body"><div class="mc-name">PAYCHECK MATH</div><div class="mc-desc">Gross vs net · Deductions · Hourly math · Real pay stubs</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('schedule')">
-      <div class="mc-icon">📋</div>
-      <div class="mc-body"><div class="mc-name">SCHEDULE MASTER</div><div class="mc-desc">Punctuality · Travel time · Shift planning · Calling in sick</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('communication')">
-      <div class="mc-icon">🤝</div>
-      <div class="mc-body"><div class="mc-name">COMMUNICATION SKILLS</div><div class="mc-desc">Scripts for real moments · Talking to managers · Handling conflict</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="go('mockinterview')">
-      <div class="mc-icon">🎤</div>
-      <div class="mc-body"><div class="mc-name">MOCK INTERVIEW</div><div class="mc-desc">Full simulated interview · 8 questions · Performance card at the end</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="go('demo')">
-      <div class="mc-icon">👀</div>
-      <div class="mc-body"><div class="mc-name">WATCH A DEMO</div><div class="mc-desc">See exactly how JobReady works before you start</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-</div>
-  <div style="height:1px;background:var(--border);margin:4px 0 8px;opacity:.5"></div>
-  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #d4900a55">🧠 LEARNING TOOLS</div>
-  <div class="hgrid">
-    <div class="hb" onclick="go('jobguide')"><div class="hi">📖</div><div class="hl">Job Guide</div><div class="hc">Tips &amp; reference</div></div>
-    <div class="hb" onclick="go('dresscode')"><div class="hi">👔</div><div class="hl">Dress Code</div><div class="hc">What to wear?</div></div>
-    <div class="hb" onclick="go('apphelper')"><div class="hi">📝</div><div class="hl">App Helper</div><div class="hc">Fill out an application</div></div>
-    <div class="hb" onclick="go('rightsatwork')"><div class="hi">⚖️</div><div class="hl">Your Rights</div><div class="hc">Know your rights</div></div>
-    <div class="hb" onclick="startJobQuiz()"><div class="hi">🧩</div><div class="hl">Job Quiz</div><div class="hc">10 mixed questions</div></div>
-    <div class="hb" onclick="go('scenarioflash')"><div class="hi">⚡</div><div class="hl">Scenario Flash</div><div class="hc">What would you do?</div></div>
-    <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best results</div></div>
-    <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct">None yet</span></div></div>
-    <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Job Coach</div><div class="hc">Track clients</div></div>
-    <div class="hb" onclick="go('guide')"><div class="hi">❓</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
-    <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
-    <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div>
   </div>
 
+  <div class="home-group">
+    <div class="home-group-label">SKILL TRACKS</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc" onclick="startMode('interview')">
+        <div class="mc-icon">🎤</div>
+        <div class="mc-body"><div class="mc-name">INTERVIEW SCHOOL</div><div class="mc-desc">Practice real interview Q&amp;A · Learn what employers want to hear · Build confidence</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('paycheck')">
+        <div class="mc-icon">💵</div>
+        <div class="mc-body"><div class="mc-name">PAYCHECK MATH</div><div class="mc-desc">Gross vs net · Deductions · Hourly math · Real pay stubs</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('schedule')">
+        <div class="mc-icon">📋</div>
+        <div class="mc-body"><div class="mc-name">SCHEDULE MASTER</div><div class="mc-desc">Punctuality · Travel time · Shift planning · Calling in sick</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('communication')">
+        <div class="mc-icon">🤝</div>
+        <div class="mc-body"><div class="mc-name">COMMUNICATION SKILLS</div><div class="mc-desc">Scripts for real moments · Talking to managers · Handling conflict</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="go('mockinterview')">
+        <div class="mc-icon">🎤</div>
+        <div class="mc-body"><div class="mc-name">MOCK INTERVIEW</div><div class="mc-desc">Full simulated interview · 8 questions · Performance card at the end</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+    </div>
   </div>
+
+  <div class="home-group">
+    <div class="home-group-label">LEARN THE FLOW</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc" onclick="go('demo')">
+        <div class="mc-icon">👀</div>
+        <div class="mc-body"><div class="mc-name">WATCH A DEMO</div><div class="mc-desc">See exactly how JobReady works before you start</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-divider"></div>
+  <div class="home-tools-label">🧠 <span>LEARNING TOOLS</span></div>
+
+  <div class="home-group">
+    <div class="home-group-label">LEARN</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('jobguide')"><div class="hi">📖</div><div class="hl">Job Guide</div><div class="hc">Tips &amp; reference</div></div>
+      <div class="hb" onclick="go('dresscode')"><div class="hi">👔</div><div class="hl">Dress Code</div><div class="hc">What to wear?</div></div>
+      <div class="hb" onclick="go('apphelper')"><div class="hi">📝</div><div class="hl">App Helper</div><div class="hc">Fill out an application</div></div>
+      <div class="hb" onclick="go('rightsatwork')"><div class="hi">⚖️</div><div class="hl">Your Rights</div><div class="hc">Know your rights</div></div>
+      <div class="hb" onclick="startJobQuiz()"><div class="hi">🧩</div><div class="hl">Job Quiz</div><div class="hc">10 mixed questions</div></div>
+      <div class="hb" onclick="go('scenarioflash')"><div class="hi">⚡</div><div class="hl">Scenario Flash</div><div class="hc">What would you do?</div></div>
+      <div class="hb" onclick="go('guide')"><div class="hi">❓</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">PROGRESS</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best results</div></div>
+      <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct">None yet</span></div></div>
+      <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Job Coach</div><div class="hc">Track clients</div></div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">APP</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
+      <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
+    </div>
+  </div>
+
   <div class="tagline">YOUR FUTURE STARTS HERE</div>
 
   <div id="today-progress" style="display:none;margin-top:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px">
@@ -512,6 +549,8 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
     </div>
   </div>
   <div class="pdots" id="pdots"></div>
+  <div id="progress-text" class="progress-text" style="font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:1px;margin:-2px 0 8px;text-transform:uppercase;">Question X of Y</div>
+  <div id="hint-counter" class="hint-counter" style="display:none;font-family:var(--font-mono);font-size:.65rem;color:var(--amber);letter-spacing:1px;margin-bottom:8px;opacity:.85;">Hints used: 0</div>
   <div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
   <div class="qpanel">
     <div class="qq" id="g-question"></div>
@@ -521,8 +560,8 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
   </div>
   <div id="g-hint-bar" style="display:none;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--radius-sm);padding:11px 14px;margin-bottom:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
   <div style="display:flex;gap:8px;margin-top:8px">
-    <button class="abtn" id="hint-btn" onclick="doHint()" style="flex:1">💡 HINT</button>
-    <button class="abtn" onclick="say(currentQ?currentQ.q:'')" style="flex:1">🔊 SAY AGAIN</button>
+    <button class="abtn" id="hint-btn" onclick="doHint(this)" style="flex:1">💡 HINT</button>
+    <button class="abtn" id="say-again-btn" onclick="sayAgain(this)" style="flex:1">🔊 SAY AGAIN</button>
   </div>
 </div>
 
@@ -539,6 +578,22 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
   </div>
 </div>
 
+
+<div id="scr-practice-results" class="scr">
+  <div style="padding-bottom:10px;animation:fadeUp .5s ease">
+    <div style="background:var(--panel);border:2px solid var(--gold);border-radius:var(--radius);padding:22px 18px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden">
+      <div style="font-size:3rem;margin-bottom:8px">👍</div>
+      <div style="font-family:var(--font-mono);font-size:1.25rem;color:var(--gold);letter-spacing:3px;margin-bottom:6px">PRACTICE MODE COMPLETE</div>
+      <div style="font-size:.88rem;color:var(--text2);margin-bottom:10px">Nice work. You completed a practice session.</div>
+      <div id="practice-results-summary" style="font-family:var(--font-mono);font-size:.82rem;color:var(--amber);line-height:1.6"></div>
+    </div>
+    <div class="rbtns">
+      <button class="rpri" onclick="startMode('practice')">▶ PRACTICE AGAIN</button>
+      <button class="rsec" onclick="go('home')">← MAIN MENU</button>
+    </div>
+  </div>
+</div>
+
 <!-- RESULTS -->
 
 <div id="scr-results" class="scr">
@@ -552,7 +607,7 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
         </svg>
         <div id="grade-letter" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--gold);line-height:1">A</div>
       </div>
-      <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--gold);letter-spacing:3px;margin-bottom:4px">SESSION COMPLETE</div>
+      <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--gold);letter-spacing:3px;margin-bottom:4px">WORKPLACE CHALLENGE COMPLETE</div>
       <div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You answered 10 questions!</div>
       <div id="r-level-badge" style="display:inline-block;background:rgba(255,187,51,.14);border:1px solid var(--amber);border-radius:20px;padding:3px 14px;font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:1px">APPLICANT</div>
     </div>
@@ -719,11 +774,13 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
 
 <div id="scr-mockinterview" class="scr">
   <div class="gtop">
-    <button class="back" onclick="confirmMIExit()">‹ END INTERVIEW</button>
+    <button class="back" onclick="confirmMIExit()">‹ END</button>
     <div class="gmode">🎤 MOCK INTERVIEW</div>
-    <div class="gscore"><div class="sbox"><div class="sv" id="mi-qnum">1/8</div><div class="sl">QUESTION</div></div></div>
+    <div class="gscore"><div class="sbox"><div class="sv" id="mi-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
   <div class="pdots" id="mi-dots"></div>
+  <div class="progress-text" id="mi-progress-text" style="font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:1px;margin:-2px 0 8px;text-transform:uppercase;">Question 1 of 8</div>
+  <div id="mi-hint-counter" style="font-family:var(--font-mono);font-size:.65rem;color:var(--amber);letter-spacing:1px;margin-bottom:8px;opacity:.85;">Hints used: 0</div>
   <div id="mi-content"></div>
 </div>
 
@@ -745,17 +802,18 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
   <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🏆 HIGH SCORES</div></div>
   <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px" id="score-filters">
     <button class="sopt on" onclick="filterScores('all',this)">All</button>
-    <button class="sopt" onclick="filterScores('Interview',this)">Interview</button>
-    <button class="sopt" onclick="filterScores('Workplace',this)">Workplace</button>
-    <button class="sopt" onclick="filterScores('Paycheck',this)">Paycheck</button>
-    <button class="sopt" onclick="filterScores('Schedule',this)">Schedule</button>
-    <button class="sopt" onclick="filterScores('Communication',this)">Comms</button>
-    <button class="sopt" onclick="filterScores('Daily',this)">Daily</button>
-    <button class="sopt" onclick="filterScores('Scenario',this)">Scenarios</button>
+    <button class="sopt" onclick="filterScores('Interview School',this)">Interview</button>
+    <button class="sopt" onclick="filterScores('Workplace Challenge',this)">Challenge</button>
+    <button class="sopt" onclick="filterScores('Paycheck Math',this)">Paycheck</button>
+    <button class="sopt" onclick="filterScores('Schedule Master',this)">Schedule</button>
+    <button class="sopt" onclick="filterScores('Communication Skills',this)">Comms</button>
+    <button class="sopt" onclick="filterScores('Daily Challenge',this)">Daily</button>
+    <button class="sopt" onclick="filterScores('Scenario Flash',this)">Scenarios</button>
     <button class="sopt" onclick="filterScores('Job Quiz',this)">Job Quiz</button>
-    <button class="sopt" onclick="filterScores('Dress',this)">Dress Code</button>
+    <button class="sopt" onclick="filterScores('Dress Code',this)">Dress Code</button>
+    <button class="sopt" onclick="filterScores('Mock Interview',this)">Mock Interview</button>
   </div>
-  <button id="read-scores-btn" style="display:block;width:100%;margin:10px 0 4px;padding:9px 16px;background:transparent;border:1px solid #d4900a55;border-radius:20px;color:#d4900a;font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px #d4900a44">🔊  READ MY SCORES ALOUD</button>
+  <button id="read-scores-btn"  style="display:block;width:100%;margin:10px 0 4px;padding:9px 16px;background:transparent;border:1px solid #d4900a55;border-radius:20px;color:#d4900a;font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px #d4900a44">🔊  READ MY SCORES ALOUD</button>
   <div id="scores-wrap"><div class="no-data">No scores yet.<br>Complete a session to see your best!</div></div>
 </div>
 
@@ -1257,9 +1315,12 @@ function openHint(title,body,okLabel,onOk,showCancel){
   $('m-hint-body').innerHTML=typeof body==='string'?body:body;
   const ok=$('m-hint-ok');
   ok.textContent=okLabel||'Got it!';
-  ok.onclick=onOk?()=>{onOk();}:()=>closeM('m-hint');
+  ok.onclick=onOk?()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); onOk(); }:()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); closeM('m-hint'); };
   const cancel=$('m-hint-cancel');
-  if(cancel) cancel.style.display=showCancel?'block':'none';
+  if(cancel){
+    cancel.style.display=showCancel?'block':'none';
+    cancel.onclick=()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); closeM('m-hint'); };
+  }
   openM('m-hint');
 }
 
@@ -1287,6 +1348,109 @@ function pad(n){return n.toString().padStart(2,'0');}
 function fmtElapsed(s){return`${Math.floor(s/60)}:${Math.round(s%60).toString().padStart(2,'0')}`;}
 
 // ── Audio ──
+
+function updateProgressText(){
+  const el = $('progress-text');
+  if(!el || !ST) return;
+  const maxQ = Number(ST.maxQ || (ST.mode==='daily' ? 5 : 10));
+  const current = Math.min((ST.total || 0) + 1, maxQ);
+  el.textContent = (ST.total || 0) >= maxQ
+    ? `Complete · ${maxQ} of ${maxQ}`
+    : `Question ${current} of ${maxQ}`;
+}
+
+function updateHintCounter(){
+  const el = $('hint-counter');
+  if(!el || !ST) return;
+  el.style.display = 'block';
+  el.textContent = `Hints used: ${ST.hintsUsed || 0}`;
+}
+
+function showPracticeResults(){
+  const total = ST.total || 0;
+  const correct = ST.correct || 0;
+  const hints = ST.hintsUsed || 0;
+  const summary = $('practice-results-summary');
+  if(summary){
+    summary.textContent = `You answered ${total} questions · ${correct} correct · Hints used: ${hints}`;
+  }
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  $('scr-practice-results').classList.add('on');
+  window.scrollTo(0,0);
+  const _spw=document.getElementById('page-wrap'); if(_spw) _spw.scrollTop=0;
+  setTimeout(()=>say(`Practice mode complete. You answered ${total} questions, got ${correct} correct, and used ${hints} hint${hints!==1?'s':''}.`),140);
+}
+
+
+function flashActionButton(el, kind='audio'){
+  if(!el) return;
+  const oldBorder = el.style.borderColor;
+  const oldColor = el.style.color;
+  const oldShadow = el.style.boxShadow;
+  const oldBg = el.style.background;
+  el.style.borderColor = 'var(--gold)';
+  el.style.color = 'var(--gold)';
+  el.style.background = 'var(--gold-light)';
+  el.style.boxShadow = '0 0 18px var(--gold-glow)';
+  setTimeout(()=>{
+    el.style.borderColor = oldBorder;
+    el.style.color = oldColor;
+    el.style.boxShadow = oldShadow;
+    el.style.background = oldBg;
+    if(typeof el.blur==='function') el.blur();
+  }, 650);
+}
+function pulseButtonLabel(el, text, restoreAfter=850){
+  if(!el) return;
+  const original = el.dataset.originalLabel || el.textContent;
+  el.dataset.originalLabel = original;
+  el.textContent = text;
+  clearTimeout(el._restoreTimer);
+  el._restoreTimer = setTimeout(()=>{
+    el.textContent = original;
+    if(typeof el.blur==='function') el.blur();
+  }, restoreAfter);
+}
+function gameHintFlash(btn){
+  if(!btn) return;
+  flashActionButton(btn,'hint');
+  pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function gameAudioFlash(btn){
+  if(!btn) return;
+  flashActionButton(btn,'audio');
+  pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function sayAgain(btn){
+  if(btn) gameAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const txt = (currentQ && currentQ.q) ? currentQ.q : (document.getElementById('g-question')?.textContent || '');
+  if(txt) say(txt);
+}
+function miSayAgain(btn){
+  if(btn) gameAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const q = MI && MI.qs ? MI.qs[MI.idx] : null;
+  if(q && q.q) say(q.q);
+}
+function showMIHint(btn){
+  const q = MI && MI.qs ? MI.qs[MI.idx] : null;
+  if(!q) return;
+  if(btn) gameHintFlash(btn);
+  MI.hintsUsed = (MI.hintsUsed || 0) + 1;
+  const mihc = document.getElementById('mi-hint-counter');
+  if(mihc) mihc.textContent = `Hints used: ${MI.hintsUsed}`;
+  const hint = q.feedback && q.feedback.ok
+    ? q.feedback.ok
+    : 'Choose the answer that sounds polite, honest, and professional.';
+  const box = document.getElementById('mi-hint');
+  if(box){
+    box.style.display = 'block';
+    box.textContent = '💡 ' + hint;
+  }
+  say(hint);
+}
+
 function say(txt){
   if(!CFG.audio||!window.speechSynthesis)return;
   window.speechSynthesis.cancel();
@@ -1761,6 +1925,20 @@ const BREAK_MSGS=[
 ];
 
 // ── Game Engine ──
+
+function playIntroAudio(title, lines){
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  let text = cleanTTS(title || '');
+  (lines || []).forEach(item=>{
+    if(Array.isArray(item)){
+      const bold = item[1] || '';
+      const detail = item[2] || '';
+      text += '. ' + cleanTTS((bold + '. ' + detail).trim());
+    }
+  });
+  if(text.trim()) say(text.trim());
+}
+
 function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
   const linesHTML=lines.map(([emoji,bold,detail])=>
     `<div style="display:flex;gap:11px;align-items:flex-start;margin-bottom:9px">
@@ -1772,8 +1950,15 @@ function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
     `${icon} ${title}`,
     `<div style="background:linear-gradient(135deg,${color}18,${color}06);border:1px solid ${color}44;border-radius:10px;padding:13px 14px;margin-bottom:12px">${linesHTML}</div>`,
     btnLabel||'Let\'s Go! →',
-    onConfirm
+    onConfirm,
+    true
   );
+  const cancel=$('m-hint-cancel');
+  if(cancel){
+    cancel.style.display='block';
+    cancel.onclick=()=>{ closeM('m-hint'); go('home'); };
+  }
+  setTimeout(()=>playIntroAudio(title, lines), 180);
 }
 
 function replayModeIntro(){
@@ -1797,6 +1982,8 @@ function startMode(mode){
     maxQ:mode==='daily'?5:10,answered:false,shiftBadges:[],askedQs:[],
     startTime:Date.now(),hintsUsed:0};
   gameRounds=[];gameHintsUsed=0;txCountForBreak=0;
+  updateProgressText();
+  updateHintCounter();
 
   $('end-btn').textContent=isP?'‹ DONE':'‹ END';
   $('sbox-score').style.display=isP?'none':'';
@@ -1809,6 +1996,8 @@ function startMode(mode){
   CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed[mode]=true;
   awardBadge('applicant');saveAll();
   buildDots();goRaw('game');
+  updateProgressText();
+  updateHintCounter();
 
   const launch=()=>{ genQ(); };
 
@@ -1960,13 +2149,15 @@ function genQ(){
 
   currentQ=genQuestionDedup(ST.mode);
   updDots();
+  updateProgressText();
+  updateHintCounter();
   $('g-score').textContent=ST.score;
   $('g-lvl').textContent=getLvl(ST.score).n;
   $('g-question').textContent=currentQ.q;
 
   // Paycheck visual
-  if(ST.mode==='paycheck'&&currentQ.paycheckData){
-    const pd=currentQ.paycheckData;
+  if((currentQ && currentQ.paycheckData) || (currentQ && currentQ.checkData)){
+    const pd=currentQ.paycheckData || currentQ.checkData;
     $('g-visual').innerHTML=`<div class="paycheck">
       <div class="pc-row dim"><span class="pc-label">HOURS WORKED</span><span class="pc-value">${pd.hours}</span></div>
       <div class="pc-row dim"><span class="pc-label">HOURLY RATE</span><span class="pc-value">${pd.rate}</span></div>
@@ -1994,6 +2185,8 @@ function genQ(){
 function answerQ(chosen){
   if(ST.answered)return;
   ST.answered=true;ST.total++;
+  updateProgressText();
+  updateHintCounter();
   const ok=chosen===('_shuffledCorrect' in currentQ?currentQ._shuffledCorrect:currentQ.correct);
 
   document.querySelectorAll('#g-opts .qo').forEach((btn,i)=>{
@@ -2016,13 +2209,14 @@ function answerQ(chosen){
   setTimeout(()=>{
     const firstEver=!BADGES.has('first_correct')&&ST.correct===1&&ST.total===1;
     $('femoji').textContent=firstEver?'🎉':ok?(ST.streak>=5?'🔥':ST.streak>=3?'⭐':'✅'):'❌';
-    $('ftitle').textContent=firstEver?'YOUR FIRST ONE!':ok?(ST.streak>=5?'ON FIRE!':ST.streak>=3?'GREAT JOB!':'CORRECT!'):'NOT QUITE';
+    $('ftitle').textContent=firstEver?'YOUR FIRST ONE!':ok?(ST.streak>=5?'ON FIRE!':ST.streak>=3?'GREAT JOB!':'CORRECT!'):'NOT THE STRONGEST CHOICE';
     $('ftitle').className='ftitle '+(ok?'ok':'bad');
     $('fmsg').textContent=ok?rand(CORRECT_MSGS):rand(WRONG_MSGS);
     const exEl=$('fexplain');
     if(exEl){const ex=currentQ.explain||'';exEl.textContent=ex;exEl.style.display=ex?'block':'none';}
     $('fcard').className='fcard'+(ok?'':' wrong');
     const fnext=$('fnext');
+    fnext.onclick = nextQ_game;
     fnext.className='fnext'+(ok?'':' bad');
     fnext.textContent=ST.total>=ST.maxQ?'SEE RESULTS →':'NEXT →';
     if(firstEver)setTimeout(()=>confetti(),400);
@@ -2032,18 +2226,25 @@ function answerQ(chosen){
       else $('feoc').style.display='none';
     } else $('feoc').style.display='none';
     $('fov').classList.add('on');
-    say(ok?'Correct! Great job.':('Not quite. '+(currentQ.explain||'').split('.')[0]+'.'));
+    say(ok ? 'Correct! Great job.' : ('Not the strongest choice. ' + ((currentQ.explain||'').split('.')[0] || 'Read the explanation and try the next one.') + '.'));
   },300);
 }
 
-function doHint(){
+function doHint(btn){
+  if(btn) gameHintFlash(btn);
   gameHintsUsed++;
+  ST.hintsUsed = (ST.hintsUsed || 0) + 1;
+  updateHintCounter();
   const hint=currentQ?.explain?'Hint: '+currentQ.explain.split('.')[0]+'.':'Think carefully about what a professional would do.';
-  $('g-hint-bar').style.display='block';$('g-hint-bar').textContent='💡 '+hint;say(hint);
+  $('g-hint-bar').style.display='block';
+  $('g-hint-bar').textContent='💡 '+hint;
+  say(hint);
 }
 
 function nextQ_game(){
   $('fov').classList.remove('on');
+  updateProgressText();
+  updateHintCounter();
   if(ST.total>=ST.maxQ)endSession();else genQ();
 }
 
@@ -2065,11 +2266,154 @@ function closeBreak(pause){
   if(!pause)genQ();
 }
 
-function endSession(early=false){
-  $('fov').classList.remove('on');txCountForBreak=0;
-  if(ST.mode==='practice'){go('home');updateHomeUI();return;}
 
-  if(ST.mode==='daily'&&!early){
+function calcSessionStrengthsAndImprovements(rounds, mode){
+  const strengths = [];
+  const improvements = [];
+  const seenStrength = new Set();
+  const seenImprove = new Set();
+
+  const pushStrength = (label) => {
+    if(!label) return;
+    if(seenStrength.has(label)) return;
+    seenStrength.add(label);
+    strengths.push(label);
+  };
+  const pushImprove = (title, text) => {
+    const key = `${title}|${text}`;
+    if(seenImprove.has(key)) return;
+    seenImprove.add(key);
+    improvements.push({title, text});
+  };
+
+  const positiveMap = {
+    interview: ['Professional communication', 'Interview confidence', 'Employer-ready responses'],
+    challenge: ['Workplace judgment', 'Professional decision-making', 'Following workplace expectations'],
+    paycheck: ['Paycheck reading', 'Gross vs net pay', 'Understanding deductions'],
+    schedule: ['Reading schedules', 'Time management', 'Shift planning'],
+    communication: ['Professional communication', 'Respectful responses', 'Clear workplace language'],
+    daily: ['Daily consistency', 'Workplace knowledge', 'Strong habits']
+  };
+
+  const improvementMap = {
+    interview: [
+      {title:'Interview responses', text:'Choose answers that sound honest, calm, and professional.'},
+      {title:'Professional wording', text:'Use clear, respectful language that an employer would trust.'},
+      {title:'Preparation', text:'Think about examples that show teamwork, reliability, and effort.'}
+    ],
+    challenge: [
+      {title:'Workplace decisions', text:'Pick the safest, calmest, and most professional response.'},
+      {title:'Judgment', text:'Slow down and look for the answer that follows expectations and instructions.'},
+      {title:'Professional habits', text:'Good work decisions are respectful, honest, and dependable.'}
+    ],
+    paycheck: [
+      {title:'Paycheck math', text:'Review how gross pay, deductions, and net pay connect.'},
+      {title:'Reading pay stubs', text:'Look carefully at hours, rate, gross pay, and deductions before choosing.'},
+      {title:'Money vocabulary', text:'Practice the meaning of terms like gross pay, net pay, and deductions.'}
+    ],
+    schedule: [
+      {title:'Time reading', text:'Read the start time, end time, and travel details carefully.'},
+      {title:'Shift planning', text:'Double-check AM and PM and count hours step by step.'},
+      {title:'Schedule awareness', text:'Look for the full time picture before you answer.'}
+    ],
+    communication: [
+      {title:'Professional tone', text:'Choose responses that are respectful, clear, and calm.'},
+      {title:'Workplace language', text:'The strongest answer usually sounds polite and direct.'},
+      {title:'Conflict handling', text:'Good workplace communication stays respectful even under pressure.'}
+    ],
+    daily: [
+      {title:'Consistency', text:'Daily practice helps workplace skills feel more automatic.'},
+      {title:'Accuracy', text:'Slow down and focus on one question at a time.'},
+      {title:'Mixed review', text:'Use daily questions to spot which skills need the most attention.'}
+    ]
+  };
+
+  const positives = positiveMap[mode] || ['Strong effort', 'Learning in progress', 'Good focus'];
+  const improveDefaults = improvementMap[mode] || [
+    {title:'Accuracy', text:'Slow down and focus on one question at a time.'},
+    {title:'Confidence', text:'Practice a little more so the right answer feels more natural.'},
+    {title:'Consistency', text:'Keep going. Repetition builds real skill.'}
+  ];
+
+  const correctCount = (rounds||[]).filter(r => r && r.ok).length;
+  const incorrectCount = (rounds||[]).filter(r => r && !r.ok).length;
+
+  if(correctCount > 0){
+    positives.forEach(pushStrength);
+  } else {
+    pushStrength('Showing up and practicing');
+  }
+
+  if(incorrectCount > 0){
+    improveDefaults.forEach(item => pushImprove(item.title, item.text));
+  } else {
+    pushImprove('Next step', 'Try a harder mode or a different Job Ready activity to keep building skill.');
+  }
+
+  return {
+    strengths: strengths.slice(0, 3),
+    improvements: improvements.slice(0, 4)
+  };
+}
+
+function renderJobReadyEndScreen({percent, rating, ratingColor, message, correct, total, timeText, hintsText='', strengths=[], improvements=[]}){
+  const wrap = $('scr-results');
+  if(!wrap) return;
+
+  const strengthsHtml = (strengths||[]).slice(0,3).map(s => `<div style="margin:8px 0;font-size:.96rem;color:var(--text)">• ${s}</div>`).join('');
+  const improvementsHtml = (improvements||[]).slice(0,4).map(item => `
+    <div style="margin:0 0 18px 0">
+      <div style="font-size:1rem;font-weight:800;color:var(--text);margin-bottom:4px">${item.title}</div>
+      <div style="font-size:.92rem;color:var(--text2);line-height:1.55">${item.text}</div>
+    </div>
+  `).join('');
+
+  wrap.innerHTML = `
+  <div style="padding-bottom:18px;animation:fadeUp .5s ease">
+    <div style="background:var(--panel);border:2px solid var(--gold);border-radius:var(--radius);padding:22px 18px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(200,131,10,.13),transparent 68%);pointer-events:none"></div>
+      <div style="position:relative;font-family:'Fredoka One',cursive;font-size:4rem;color:${ratingColor};line-height:1;margin-bottom:10px">${percent}%</div>
+      <div style="position:relative;font-family:var(--font-mono);font-size:1rem;color:${ratingColor};letter-spacing:3px;margin-bottom:16px">${rating}</div>
+      <div style="position:relative;font-size:.98rem;color:var(--text2);line-height:1.55;max-width:560px;margin:0 auto 16px">${message}</div>
+      <div style="position:relative;display:grid;grid-template-columns:repeat(${hintsText?3:2},1fr);gap:10px">
+        <div class="rst"><div class="rsv">${correct}/${total}</div><div class="rsl">CORRECT</div></div>
+        <div class="rst"><div class="rsv">${timeText}</div><div class="rsl">TIME</div></div>
+        ${hintsText ? `<div class="rst"><div class="rsv">${hintsText}</div><div class="rsl">HINTS</div></div>` : ``}
+      </div>
+    </div>
+
+    <div style="background:var(--bg2);border:2px solid var(--gold3);border-radius:var(--radius);padding:18px 18px;margin-bottom:12px">
+      <div style="font-family:var(--font-mono);font-size:.82rem;color:var(--gold);letter-spacing:3px;margin-bottom:10px">✅ YOUR STRENGTHS</div>
+      ${strengthsHtml || `<div style="font-size:.92rem;color:var(--text2)">You kept going and practiced all the way through.</div>`}
+    </div>
+
+    <div style="background:rgba(255,68,68,.06);border:2px solid rgba(255,68,68,.45);border-radius:var(--radius);padding:18px 18px;margin-bottom:12px">
+      <div style="font-family:var(--font-mono);font-size:.82rem;color:var(--red);letter-spacing:3px;margin-bottom:12px">📌 WORK ON THESE</div>
+      ${improvementsHtml}
+    </div>
+
+    <div class="rbtns" style="margin-top:12px">
+      <button class="rpri" id="r-play-again">▶ PLAY AGAIN</button>
+      <button class="rsec" id="r-share" onclick="shareScore()">📤 SHARE MY SCORE</button>
+      <button class="rsec" id="r-coach-copy" onclick="copyForCoach()">📋 COPY FOR MY COACH</button>
+      <button class="rsec" onclick="go('home')">← MAIN MENU</button>
+    </div>
+  </div>`;
+}
+
+function endSession(early=false){
+  $('fov').classList.remove('on');
+  txCountForBreak=0;
+
+  if(ST.mode==='practice'){
+    showPracticeResults();
+    updateHomeUI();
+    return;
+  }
+
+  const pct = ST.total>0 ? Math.round(ST.correct/ST.total*100) : 0;
+
+  if(ST.mode==='daily' && !early){
     const t=today();
     if(CFG.lastDaily!==t){
       const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);
@@ -2093,93 +2437,74 @@ function endSession(early=false){
     }
   }
 
-  const modeNames={interview:'Interview School',challenge:'Workplace Challenge',paycheck:'Paycheck Math',schedule:'Schedule Master',communication:'Communication Skills',daily:'Daily Challenge'};
+  const modeNames={
+    interview:'Interview School',
+    challenge:'Workplace Challenge',
+    paycheck:'Paycheck Math',
+    schedule:'Schedule Master',
+    communication:'Communication Skills',
+    daily:'Daily Challenge'
+  };
   const modeName=modeNames[ST.mode]||ST.mode;
 
-  if(ST.total>0&&!early){
-    
-  // JobReady secret: hired, by_the_book
-  if(!early && pct===100 && ST.mode==='mockinterview') awardBadge('hired');
-  if(!early && gameHintsUsed===0){
-    CFG.hintlessSessionCount=(CFG.hintlessSessionCount||0)+1;
-    if(CFG.hintlessSessionCount>=3) awardBadge('by_the_book');
+  if(ST.total>0 && !early){
+    if(pct===100 && ST.mode==='mockinterview') awardBadge('hired');
+    if(gameHintsUsed===0){
+      CFG.hintlessSessionCount=(CFG.hintlessSessionCount||0)+1;
+      if(CFG.hintlessSessionCount>=3) awardBadge('by_the_book');
+      saveAll();
+    }
+    SCORES.unshift({mode:modeName,score:ST.score,correct:ST.correct,total:ST.total,streak:ST.bestStreak,date:today()});
+    SCORES=SCORES.slice(0,30);
     saveAll();
   }
-SCORES.unshift({mode:modeName,score:ST.score,correct:ST.correct,total:ST.total,streak:ST.bestStreak,date:today()});
-    SCORES=SCORES.slice(0,30);saveAll();
-  }
-
-  const pct=ST.total>0?Math.round(ST.correct/ST.total*100):0;
-  const grade=pct>=97?'A+':pct>=93?'A':pct>=90?'A-':pct>=87?'B+':pct>=83?'B':pct>=80?'B-':pct>=70?'C':pct>=60?'D':'F';
-  const gc=pct>=80?'var(--gold)':pct>=70?'var(--amber)':'var(--red)';
-
-  const gl=$('grade-letter');if(gl){gl.textContent=grade;gl.style.color=gc;}
-  const af=$('arc-fill');
-  if(af){
-    af.style.stroke=gc;af.style.transition='none';af.style.strokeDashoffset='173';
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{
-      af.style.transition='stroke-dashoffset 1.3s cubic-bezier(.4,0,.2,1)';
-      af.style.strokeDashoffset=String(173-Math.round(pct/100*173));
-    }));
-  }
-
-  $('r-title').textContent=early?'SESSION ENDED':pct>=90?'EXCELLENT WORK!':pct>=70?'GREAT SESSION!':'SESSION COMPLETE';
-  $('r-sub').textContent=`You answered ${ST.total} question${ST.total!==1?'s':''}!`;
-  $('r-level-badge').textContent=getLvl(ST.score).n;
-  $('r-score').textContent=ST.score;
-  $('r-acc').textContent=pct+'%';
-  $('r-correct').textContent=`${ST.correct}/${ST.total}`;
-  $('r-streak').textContent=ST.bestStreak;
 
   const elapsed=ST.startTime?(Date.now()-ST.startTime)/1000:0;
-  const timerBox=$('r-timer-box'),timerEl=$('r-timer');
-  if(timerBox&&timerEl&&elapsed>10&&!early){timerEl.textContent=fmtElapsed(elapsed);timerBox.style.display='';}
-  else if(timerBox)timerBox.style.display='none';
+  const timeText = elapsed>0 ? fmtElapsed(elapsed) : '0:00';
+  const rating = pct>=80 ? 'STRONG PERFORMANCE' : pct>=50 ? 'SOLID START' : 'NEEDS MORE PRACTICE';
+  const ratingColor = pct>=80 ? 'var(--gold)' : pct>=50 ? 'var(--amber)' : 'var(--red)';
+  const message = pct>=80
+    ? 'Nice work. You finished this session with strong job-ready thinking.'
+    : pct>=50
+      ? 'Good progress. Keep practicing and these workplace skills will get stronger.'
+      : 'Keep going. Every practice session makes the real thing easier.';
+  const insights = calcSessionStrengthsAndImprovements(gameRounds, ST.mode);
 
-  _shareData=`I scored ${ST.score} points in JobReady! 💼\n${modeName} · ${ST.correct}/${ST.total} correct · ${pct}%${elapsed>10?' · '+fmtElapsed(elapsed):''}\nJobReady - Free Workplace Readiness Trainer`;
-  const shareBtn=$('r-share');if(shareBtn)shareBtn.style.display=(!early&&ST.total>0)?'':'none';
-  const coachBtn=$('r-coach-copy');if(coachBtn)coachBtn.style.display=(!early&&ST.total>0)?'':'none';
 
-  const prev=SCORES.slice(1).filter(s=>s.mode===modeName);
-  const pbb=$('pb-banner');
-  if(pbb&&prev.length>0&&ST.score>Math.max(...prev.map(s=>s.score))){pbb.style.display='block';pbb.textContent='🎯 NEW PERSONAL BEST! Previous: '+Math.max(...prev.map(s=>s.score))+' → Now: '+ST.score;}
-  else if(pbb)pbb.style.display='none';
+  const shareBtn=$('r-share'); if(shareBtn) shareBtn.style.display=(!early&&ST.total>0)?'':'none';
+  const coachBtn=$('r-coach-copy'); if(coachBtn) coachBtn.style.display=(!early&&ST.total>0)?'':'none';
 
-  if(!early&&pct>=80){$('eoc-card-wrap').innerHTML=`<div class="eoc"><div class="eoc-title">🏅 EMPLOYEE OF THE SESSION</div><div class="eoc-name">${CFG.playerName?CFG.playerName+' · ':''}⭐ ${pct}% Accuracy ⭐</div><div class="eoc-sub">You answered ${ST.total} questions - real workplace skills!</div></div>`;}
-  else $('eoc-card-wrap').innerHTML='';
+  renderJobReadyEndScreen({
+    percent: pct,
+    rating,
+    ratingColor,
+    message,
+    correct: ST.correct,
+    total: ST.total,
+    timeText,
+    strengths: insights.strengths,
+    improvements: insights.improvements
+  });
 
-  if(ST.shiftBadges&&ST.shiftBadges.length>0){
-    $('r-badges-sec').style.display='';
-    $('r-badges').innerHTML=ST.shiftBadges.map(id=>{const b=BADGES_DEF.find(x=>x.id===id);return b?`<div class="ebchip">${b.icon} ${b.name}</div>`:''}).join('');
-  } else $('r-badges-sec').style.display='none';
+  if(lastMode==='daily'){
+    $('r-play-again').textContent='▶ PLAY CHALLENGE MODE';
+    $('r-play-again').onclick=()=>startMode('challenge');
+  } else {
+    $('r-play-again').textContent='▶ PLAY AGAIN';
+    $('r-play-again').onclick=()=>startMode(lastMode);
+  }
 
-  $('rounds-tab-btn').textContent='ROUNDS ('+gameRounds.length+')';
-  $('rounds-log').innerHTML=gameRounds.map((r,i)=>`<div class="round-row"><div style="font-family:var(--font-mono);color:var(--text3);font-size:.67rem;width:22px">#${i+1}</div><div style="flex:1;color:var(--text2);font-weight:700;font-size:.72rem;line-height:1.4">${r.answer}</div><div>${r.ok?'✅':'❌'}</div></div>`).join('');
-
-  $('lvl-prog').innerHTML=LEVELS.map((lv,i)=>
-    (i>0?'<span style="color:var(--border);font-size:.72rem;flex-shrink:0">›</span>':'')+
-    `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0"><div class="lvl-circle ${lv.n===getLvl(ST.score).n?'cur':ST.score>=lv.m?'reached':''}">${i+1}</div><div style="font-size:.57rem;color:${ST.score>=lv.m?'var(--text2)':'var(--text3)'};text-align:center;max-width:52px;line-height:1.2">${lv.n}</div></div>`).join('');
-
-  let wtw=`<div style="font-family:var(--font-mono);font-size:.58rem;color:var(--text3);letter-spacing:2px;margin-bottom:9px">WHAT TO WORK ON NEXT</div>`;
-  if(pct===100)wtw+=`<div style="display:flex;gap:8px;font-size:.84rem;color:var(--text2);margin-bottom:6px"><span style="color:var(--amber)">→</span><div>Outstanding! Try a different module to earn more badges.</div></div>`;
-  else if(pct>=80)wtw+=`<div style="display:flex;gap:8px;font-size:.84rem;color:var(--text2);margin-bottom:6px"><span style="color:var(--amber)">→</span><div>Great work! Try the <strong style="color:var(--text)">Workplace Challenge</strong> to mix all your skills.</div></div>`;
-  else if(ST.mode==='paycheck')wtw+=`<div style="display:flex;gap:8px;font-size:.84rem;color:var(--text2);margin-bottom:6px"><span style="color:var(--amber)">→</span><div>Review <strong style="color:var(--text)">Paycheck Math</strong> in the Job Guide, then try again.</div></div>`;
-  else wtw+=`<div style="display:flex;gap:8px;font-size:.84rem;color:var(--text2);margin-bottom:6px"><span style="color:var(--amber)">→</span><div>Try <strong style="color:var(--text)">Interview School</strong> to build confidence.</div></div>`;
-  wtw+=`<div style="display:flex;gap:8px;font-size:.84rem;color:var(--text2);margin-top:4px"><span style="color:var(--amber)">→</span><div>Check the <strong style="color:var(--text)">Job Guide</strong> anytime for tips and paycheck basics.</div></div>`;
-  $('wtw-card').innerHTML=wtw;
-
-  document.querySelectorAll('.r-tab').forEach(b=>b.classList.remove('on'));
-  document.querySelectorAll('.r-tab-pane').forEach(p=>{p.style.display='none';p.classList.remove('on');});
-  document.querySelector('.r-tab').classList.add('on');
-  $('rtab-summary').style.display='block';$('rtab-summary').classList.add('on');
-
-  if(lastMode==='daily'){$('r-play-again').textContent='▶ PLAY CHALLENGE MODE';$('r-play-again').onclick=()=>startMode('challenge');}
-  else{$('r-play-again').textContent='▶ PLAY AGAIN';$('r-play-again').onclick=()=>startMode(lastMode);}
-
-  say(pct>=90?'Excellent work! You are job ready!':pct>=70?'Great session!':'Session complete. Nice work!');
   document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
-  $('scr-results').classList.add('on');window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;updateHomeUI();
+  $('scr-results').classList.add('on');
+  window.scrollTo(0,0);
+  const _spw=document.getElementById('page-wrap'); if(_spw)_spw.scrollTop=0;
+  updateHomeUI();
+
+  setTimeout(()=>say(early
+    ? `${modeName} ended. You got ${ST.correct} out of ${ST.total} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`
+    : `${modeName} complete. You got ${ST.correct} out of ${ST.total} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`),140);
 }
+
 
 function showRTab(id,el){
   document.querySelectorAll('.r-tab').forEach(b=>b.classList.remove('on'));
@@ -2394,7 +2719,111 @@ const MOCK_INTERVIEW_QS=[
    correct:1,feedback:{ok:'Strong finish! You left a positive, motivated impression. That\'s what they\'ll remember.',bad:'This is your chance to make a final impression. Keep it short, positive, and enthusiastic.'}},
 ];
 const INTERVIEW_CATEGORIES={intro:'Introduction',motivation:'Motivation',strengths:'Strengths',teamwork:'Teamwork',conflict:'Handling Conflict',engagement:'Engagement',problem_solving:'Problem Solving',closing:'Closing'};
-let MI={qs:[],idx:0,results:[],startTime:0};
+
+function updateMIProgressText(){
+  const el = $('mi-progress-text');
+  if(!el || !MI || !MI.qs) return;
+  const total = MI.qs.length || 8;
+  const current = Math.min((MI.idx || 0) + 1, total);
+  el.textContent = `Question ${current} of ${total}`;
+}
+function updateMIScore(){
+  const el = $('mi-score');
+  if(!el || !MI) return;
+  el.textContent = String((MI.results || []).filter(r=>r.ok).length);
+}
+function showMockFeedback(ok, detail, isLast){
+  $('femoji').textContent = ok ? '✅' : '❌';
+  $('ftitle').textContent = ok ? 'STRONG ANSWER!' : 'NOT THE STRONGEST CHOICE';
+  $('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
+  $('fmsg').innerHTML = ok
+    ? '<div style="margin-bottom:14px">Good answer. That response sounds professional and employer-ready.</div>'
+    : '<div style="margin-bottom:14px">Almost. Read the explanation to understand the stronger response.</div>';
+  const ex=$('fexplain');
+  if(ex){
+    ex.textContent = detail;
+    ex.style.display = 'block';
+  }
+  const feoc=$('feoc'); if(feoc) feoc.style.display='none';
+  const fnext=$('fnext');
+  if(fnext){
+    fnext.className = 'fnext ' + (ok ? '' : 'bad');
+    fnext.textContent = isLast ? 'SEE RESULTS →' : 'NEXT →';
+    fnext.onclick = nextMI;
+  }
+  $('fcard').className='fcard'+(ok?'':' wrong');
+  $('fov').classList.add('on');
+  say(ok ? ('Strong answer. ' + detail) : ('Not the strongest choice. ' + detail));
+}
+
+
+function showJobReadyPopupFeedback(ok, detail, nextFn, isLast, titleOk='CORRECT!', titleBad='NOT THE STRONGEST CHOICE'){
+  $('femoji').textContent = ok ? '✅' : '❌';
+  $('ftitle').textContent = ok ? titleOk : titleBad;
+  $('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
+  $('fmsg').innerHTML = ok
+    ? '<div style="margin-bottom:14px">Good job. Keep it going.</div>'
+    : '<div style="margin-bottom:14px">Almost. Read the explanation to understand the stronger answer.</div>';
+  const ex = $('fexplain');
+  if(ex){
+    ex.textContent = detail || '';
+    ex.style.display = detail ? 'block' : 'none';
+  }
+  const feoc = $('feoc'); if(feoc) feoc.style.display='none';
+  const fnext = $('fnext');
+  if(fnext){
+    fnext.className = 'fnext ' + (ok ? '' : 'bad');
+    fnext.textContent = isLast ? 'SEE RESULTS →' : 'NEXT →';
+    fnext.onclick = nextFn;
+  }
+  $('fcard').className = 'fcard' + (ok ? '' : ' wrong');
+  $('fov').classList.add('on');
+  say(ok ? ('Correct. ' + (detail || '')) : ('Not the strongest choice. ' + (detail || 'Read the explanation and try the next one.')));
+}
+function showJQHint(btn){
+  const q=JQ && JQ.qs ? JQ.qs[JQ.idx] : null;
+  if(!q) return;
+  if(btn) gameHintFlash(btn);
+  const hint = q.explain || ('Think about what the term means in a real workplace.');
+  const box=$('jq-hint');
+  if(box){ box.style.display='block'; box.textContent='💡 ' + hint; }
+  say(hint);
+}
+function jqSayAgain(btn){
+  const q=JQ && JQ.qs ? JQ.qs[JQ.idx] : null;
+  if(btn) gameAudioFlash(btn);
+  if(q && q.q) say(q.q);
+}
+function showDQHint(btn){
+  const q=DQ && DQ.qs ? DQ.qs[DQ.idx] : null;
+  if(!q) return;
+  if(btn) gameHintFlash(btn);
+  const hint = q.explain || 'Pick the choice that looks neat, safe, and professional for the job.';
+  const box=$('dq-hint');
+  if(box){ box.style.display='block'; box.textContent='💡 ' + hint; }
+  say(hint);
+}
+function dqSayAgain(btn){
+  const q=DQ && DQ.qs ? DQ.qs[DQ.idx] : null;
+  if(btn) gameAudioFlash(btn);
+  if(q && q.q) say(q.q);
+}
+function showSFHint(btn){
+  const q=SF && SF.qs ? SF.qs[SF.idx] : null;
+  if(!q) return;
+  if(btn) gameHintFlash(btn);
+  const hint = q.explain || 'Choose the response that is calm, respectful, and professional.';
+  const box=$('sf-hint');
+  if(box){ box.style.display='block'; box.textContent='💡 ' + hint; }
+  say(hint);
+}
+function sfSayAgain(btn){
+  const q=SF && SF.qs ? SF.qs[SF.idx] : null;
+  if(btn) gameAudioFlash(btn);
+  if(q && q.q) say(q.q);
+}
+
+let MI={qs:[],idx:0,results:[],startTime:0,hintsUsed:0};
 function startMockInterview(){
   showModeIntro('🎤','MOCK INTERVIEW','#d4900a',[
     ['🏢','A full simulated job interview - 8 questions.','Just like a real interview, one question at a time.'],
@@ -2404,7 +2833,7 @@ function startMockInterview(){
   ],'Start Interview →',()=>{
     closeM('m-hint');
     MI={qs:shuf(MOCK_INTERVIEW_QS).slice(0,8),idx:0,results:[],startTime:Date.now()};
-    buildMIDots();renderMI();
+    buildMIDots();updateMIProgressText();updateMIScore();renderMI();
   });
 }
 function buildMIDots(){
@@ -2416,56 +2845,46 @@ function updMIDots(){
     if(i<MI.idx)d.className='pd done';else if(i===MI.idx)d.className='pd cur';else d.className='pd';}
 }
 function renderMI(){
-  const q=MI.qs[MI.idx];if(!q)return;
+  const q=MI.qs[MI.idx]; if(!q) return;
   updMIDots();
-  const qnum=$('mi-qnum');if(qnum)qnum.textContent=(MI.idx+1)+'/'+MI.qs.length;
+  updateMIProgressText();
+  updateMIScore();
   const optHTML=q.opts.map((o,i)=>`<button class="qo" onclick="answerMI(${i})" style="text-align:left;padding:14px 16px;line-height:1.5">${o}</button>`).join('');
   $('mi-content').innerHTML=`
-    <div style="background:var(--panel);border:2px solid var(--gold3);border-radius:var(--radius);overflow:hidden;margin-bottom:12px">
-      <div style="background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:10px">
-        <div style="font-size:1.4rem">🧑‍💼</div>
-        <div>
-          <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--gold);letter-spacing:2px">INTERVIEWER</div>
-          <div style="font-size:.72rem;color:var(--text3);margin-top:1px">Question ${MI.idx+1} of ${MI.qs.length}</div>
-        </div>
-      </div>
-      <div style="padding:16px 18px">
-        <div style="font-size:1rem;font-weight:800;color:var(--text);line-height:1.5;margin-bottom:14px">"${q.q}"</div>
-        <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:2px;margin-bottom:8px">YOUR RESPONSE:</div>
-        <div class="qopts" id="mi-opts">${optHTML}</div>
-        <div id="mi-fb" style="display:none;margin-top:12px;padding:12px 14px;border-radius:var(--radius-sm);font-size:.86rem;line-height:1.6"></div>
-      </div>
+    <div class="qpanel">
+      <div class="qq">${q.q}</div>
+      <div class="qopts" id="mi-opts">${optHTML}</div>
+      <div id="mi-hint" style="display:none;background:var(--panel2);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.82rem;color:var(--text2);line-height:1.6"></div>
     </div>
-    <div style="display:flex;gap:8px">
-      <button class="abtn" style="flex:1" onclick="say('${q.q.replace(/'/g,"\\'")}')">🔊 SAY AGAIN</button>
-      <button class="dbtn" id="mi-next" onclick="nextMI()" style="display:none;flex:1;padding:13px;font-size:.82rem">${MI.idx+1>=MI.qs.length?'SEE RESULTS →':'NEXT QUESTION →'}</button>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button class="abtn" style="flex:1" onclick="showMIHint(this)">💡 HINT</button>
+      <button class="abtn" style="flex:1" onclick="miSayAgain(this)">🔊 SAY AGAIN</button>
     </div>`;
   say(q.q);
 }
 function answerMI(i){
   const q=MI.qs[MI.idx];
+  if(!q || q.answered) return;
+  q.answered = true;
   const ok=i===q.correct;
   MI.results.push({q:q.q,category:q.category,ok,answer:q.opts[i],bestAnswer:q.opts[q.correct],feedback:ok?q.feedback.ok:q.feedback.bad});
+  updateMIScore();
   document.querySelectorAll('#mi-opts .qo').forEach((b,j)=>{
     b.disabled=true;
     if(j===q.correct)b.classList.add('ok');
     else if(j===i&&!ok)b.classList.add('bad');
   });
   if(ok){chime();if(!CFG.nomotion&&MI.idx===MI.qs.length-1)confetti();}else{buzz();}
-  const fb=$('mi-fb');
-  if(fb){
-    fb.style.display='block';
-    fb.style.cssText=`display:block;margin-top:12px;padding:12px 14px;border-radius:var(--radius-sm);font-size:.86rem;line-height:1.6;background:${ok?'rgba(212,144,10,0.1)':'rgba(255,68,68,0.1)'};border:2px solid ${ok?'var(--gold)':'var(--red)'}`;
-    fb.innerHTML=`<strong style="color:${ok?'var(--gold)':'var(--red)'}">${ok?'✅ Strong answer!':'❌ Not the strongest choice.'}</strong><br>${ok?q.feedback.ok:q.feedback.bad}`;
-  }
-  const nxt=$('mi-next');if(nxt)nxt.style.display='block';
-  say(ok?'Good answer!':q.feedback.bad.split('.')[0]+'.');
+  const detail = ok ? q.feedback.ok : q.feedback.bad;
+  showMockFeedback(ok, detail, MI.idx===MI.qs.length-1);
 }
 function nextMI(){
+  $('fov').classList.remove('on');
   MI.idx++;
   if(MI.idx>=MI.qs.length){endMockInterview();return;}
   renderMI();
 }
+
 function endMockInterview(){
   const score=MI.results.filter(r=>r.ok).length;
   const pct=Math.round(score/MI.qs.length*100);
@@ -2475,43 +2894,59 @@ function endMockInterview(){
   if(pct>=80)awardBadge('interview_ace');
   if(pct===100)awardBadge('mock_perfect');
   saveAll();updateHomeUI();
-  if(!CFG.nomotion&&pct>=70)confetti();
 
-  // Strengths and improvements
-  const strong=MI.results.filter(r=>r.ok).map(r=>r.category);
-  const improve=MI.results.filter(r=>!r.ok).map(r=>({cat:r.category,tip:r.feedback}));
+  const strengths = [];
+  const improvements = [];
+  const seenS = new Set();
+  const seenI = new Set();
+
+  MI.results.forEach(r=>{
+    if(r.ok){
+      if(!seenS.has(r.category)){
+        seenS.add(r.category);
+        strengths.push(r.category);
+      }
+    } else {
+      const text = r.feedback || 'Choose the answer that sounds calm, honest, and professional.';
+      if(!seenI.has(r.category+'|'+text)){
+        seenI.add(r.category+'|'+text);
+        improvements.push({title:r.category, text});
+      }
+    }
+  });
 
   const readinessLabel=pct>=90?'INTERVIEW READY':pct>=70?'ALMOST READY':pct>=50?'KEEP PRACTICING':'NEEDS MORE PRACTICE';
   const readinessColor=pct>=90?'var(--gold)':pct>=70?'var(--amber)':pct>=50?'var(--blue)':'var(--red)';
-  const readinessTip=pct>=90?'You handled that interview with confidence. A real employer would be impressed.':pct>=70?'You\'re close! A little more practice on the tricky questions and you\'ll be ready.':pct>=50?'Good start. Review the feedback below and try again - it gets easier each time.':'Keep going. Every practice interview makes the real one easier.';
+  const readinessTip=pct>=90
+    ? 'You handled that interview with confidence. A real employer would be impressed.'
+    : pct>=70
+      ? 'You are getting close. A little more practice will make your answers stronger.'
+      : 'Keep going. Every practice interview makes the real one easier.';
 
-  $('mi-dots').innerHTML='';
-  $('mi-content').innerHTML=`
-    <div style="animation:fadeUp .4s ease">
-      <div style="background:var(--panel);border:2px solid var(--gold);border-radius:var(--radius);padding:22px 18px;text-align:center;margin-bottom:12px">
-        <div style="font-size:2rem;margin-bottom:8px">🎤</div>
-        <div style="font-family:var(--font-mono);font-size:.75rem;color:var(--text3);letter-spacing:3px;margin-bottom:6px">INTERVIEW PERFORMANCE</div>
-        <div style="font-family:'Fredoka One',cursive;font-size:2.4rem;color:${readinessColor};margin-bottom:4px">${pct}%</div>
-        <div style="font-family:var(--font-mono);font-size:.8rem;color:${readinessColor};font-weight:700;letter-spacing:2px;margin-bottom:10px">${readinessLabel}</div>
-        <div style="font-size:.86rem;color:var(--text2);line-height:1.6;margin-bottom:12px">${readinessTip}</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px">
-          <div style="background:var(--bg3);border-radius:8px;padding:10px"><div style="font-family:var(--font-mono);font-size:1.1rem;color:var(--gold)">${score}/${MI.qs.length}</div><div style="font-size:.65rem;color:var(--text3);margin-top:2px">CORRECT</div></div>
-          <div style="background:var(--bg3);border-radius:8px;padding:10px"><div style="font-family:var(--font-mono);font-size:1.1rem;color:var(--amber)">${fmtElapsed(elapsed)}</div><div style="font-size:.65rem;color:var(--text3);margin-top:2px">TIME</div></div>
-        </div>
-      </div>
-      ${strong.length>0?`<div style="background:rgba(212,144,10,0.1);border:1px solid var(--gold3);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:10px">
-        <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--gold);letter-spacing:2px;margin-bottom:8px">✅ YOUR STRENGTHS</div>
-        ${strong.map(c=>`<div style="font-size:.82rem;color:var(--text2);margin-bottom:4px">• ${INTERVIEW_CATEGORIES[c]||c}</div>`).join('')}
-      </div>`:''}
-      ${improve.length>0?`<div style="background:rgba(255,68,68,0.06);border:1px solid rgba(255,68,68,0.25);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:12px">
-        <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--red);letter-spacing:2px;margin-bottom:8px">📌 WORK ON THESE</div>
-        ${improve.map(r=>`<div style="margin-bottom:8px"><div style="font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:2px">${INTERVIEW_CATEGORIES[r.cat]||r.cat}</div><div style="font-size:.74rem;color:var(--text2);line-height:1.5">${r.tip}</div></div>`).join('')}
-      </div>`:''}
-      <button class="dbtn" onclick="startMockInterview()" style="margin-bottom:10px;width:100%">🎤 PRACTICE AGAIN</button>
-      <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button>
-    </div>`;
-  say(pct>=70?'Interview complete! Great effort.':'Interview complete. Review your feedback and try again.');
+  renderJobReadyEndScreen({
+    percent:pct,
+    rating:readinessLabel,
+    ratingColor:readinessColor,
+    message:readinessTip,
+    correct:score,
+    total:MI.qs.length,
+    timeText:fmtElapsed(elapsed),
+    strengths: strengths.slice(0,3).length ? strengths.slice(0,3) : ['Showing up and practicing'],
+    improvements: improvements.slice(0,5).length ? improvements.slice(0,5) : [{title:'Next step', text:'Keep practicing honest, polite, and professional answers.'}]
+  });
+
+  const shareBtn=$('r-share'); if(shareBtn) shareBtn.style.display='';
+  const coachBtn=$('r-coach-copy'); if(coachBtn) coachBtn.style.display='';
+
+  $('r-play-again').textContent='▶ TRY AGAIN';
+  $('r-play-again').onclick=()=>startMockInterview();
+
+  say(`Session complete. You got ${score} out of ${MI.qs.length} correct.`);
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  $('scr-results').classList.add('on');
+  window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
 }
+
 function confirmMIExit(){
   if(MI.idx>0&&MI.idx<MI.qs.length){
     const done=MI.idx;const total=MI.qs.length;
@@ -2549,56 +2984,38 @@ function updSFDots(){
 }
 function renderSF(){
   SF.answered=false;
-  const q=SF.qs[SF.idx];if(!q)return;
+  const q=SF.qs[SF.idx]; if(!q) return;
   $('sf-score').textContent=SF.score;
   updSFDots();
-  const optHTML=q.opts.map((o,i)=>
-    `<button class="qo${CFG.errorless&&i===q.correct?' ok':''}" onclick="answerSF(${i})">${o}</button>`
-  ).join('');
+  const optHTML=q.opts.map((o,i)=>`<button class="qo${CFG.errorless&&i===q.correct?' ok':''}" onclick="answerSF(${i})">${o}</button>`).join('');
   $('sf-content').innerHTML=`
-    <div class="scenario-card">
-      <div class="scenario-header">
-        <div class="scenario-icon">⚡</div>
-        <div>
-          <div class="scenario-title">WHAT WOULD YOU DO?</div>
-          <div style="font-size:.7rem;color:var(--text3);margin-top:2px">Question ${SF.idx+1} of ${SF.qs.length}</div>
-        </div>
-      </div>
-      <div class="scenario-body">
-        <div class="scenario-situation">${q.q}</div>
-        <div class="qopts" id="sf-opts">${optHTML}</div>
-        <div class="qfb" id="sf-fb"></div>
-      </div>
+    <div class="qpanel">
+      <div class="qq">${q.q}</div>
+      <div class="qopts" id="sf-opts">${optHTML}</div>
+      <div id="sf-hint" style="display:none;background:var(--panel2);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.82rem;color:var(--text2);line-height:1.6"></div>
     </div>
     <div style="display:flex;gap:8px;margin-top:8px">
-      <button class="abtn" style="flex:1" onclick="say(SF.qs[SF.idx]?SF.qs[SF.idx].q:'')">🔊 SAY AGAIN</button>
-      <button class="dbtn" id="sf-next" onclick="nextSF()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button>
+      <button class="abtn" style="flex:1" onclick="showSFHint(this)">💡 HINT</button>
+      <button class="abtn" style="flex:1" onclick="sfSayAgain(this)">🔊 SAY AGAIN</button>
     </div>`;
   say(q.q);
 }
 function answerSF(i){
-  if(SF.answered)return;
+  if(SF.answered) return;
   SF.answered=true;
   const q=SF.qs[SF.idx];
   const ok=i===q.correct;
-  if(ok){SF.score++;chime();if(!CFG.nomotion)confetti();}else{buzz();}
+  if(ok){ SF.score++; chime(); if(!CFG.nomotion) confetti(); } else buzz();
   document.querySelectorAll('#sf-opts .qo').forEach((b,j)=>{
     b.disabled=true;
-    if(j===q.correct)b.classList.add('ok');
-    else if(j===i&&!ok)b.classList.add('bad');
+    if(j===i) b.classList.add(ok?'ok':'bad');
   });
   $('sf-score').textContent=SF.score;
-  const fb=$('sf-fb');
-  if(fb){
-    fb.className='qfb on '+(ok?'ok':'bad');
-    fb.style.display='block';
-    fb.innerHTML=(ok?'✅ '+rand(CORRECT_MSGS):'❌ '+rand(WRONG_MSGS))+(q.explain?`<div class="fexplain" style="display:block;margin-top:8px">${q.explain}</div>`:'');
-  }
-  const nxt=$('sf-next');
-  if(nxt){nxt.style.display='block';nxt.textContent=SF.idx+1>=SF.qs.length?'SEE RESULTS →':'NEXT →';}
-  if(ok&&!BADGES.has('sf_first'))awardBadge('sf_first');
+  if(ok && !BADGES.has('sf_first')) awardBadge('sf_first');
+  showJobReadyPopupFeedback(ok, q.explain || ('The correct answer is ' + q.opts[q.correct] + '.'), nextSF, SF.idx+1>=SF.qs.length);
 }
 function nextSF(){
+  $('fov').classList.remove('on');
   SF.idx++;
   if(SF.idx>=SF.qs.length){
     const pct=Math.round(SF.score/SF.qs.length*100);
@@ -2608,7 +3025,7 @@ function nextSF(){
     SCORES=SCORES.slice(0,30);saveAll();
     if(pct===100)awardBadge('sf_ace');
     if(!CFG.nomotion&&pct>=80)confetti();
-    say(`Done! You got ${SF.score} out of ${SF.qs.length}!`);
+    say(`Session complete. You got ${SF.score} out of ${SF.qs.length} correct.`);
     updateHomeUI();
     $('sf-dots').innerHTML='';
     $('sf-content').innerHTML=`
@@ -2685,50 +3102,37 @@ function updDQDots(){
 }
 function renderDQ(){
   DQ.answered=false;
-  const q=DQ.qs[DQ.idx];if(!q)return;
+  const q=DQ.qs[DQ.idx]; if(!q) return;
   $('dq-score').textContent=DQ.score;
   updDQDots();
-  const optHTML=q.opts.map((o,i)=>
-    `<button class="qo${CFG.errorless&&i===q.correct?' ok':''}" onclick="answerDQ(${i})">${o}</button>`
-  ).join('');
+  const optHTML=q.opts.map((o,i)=>`<button class="qo${CFG.errorless&&i===q.correct?' ok':''}" onclick="answerDQ(${i})">${o}</button>`).join('');
   $('dq-content').innerHTML=`
-    <div class="scenario-card">
-      <div class="scenario-header">
-        <div class="scenario-icon">👔</div>
-        <div><div class="scenario-title">WHAT WOULD YOU WEAR?</div>
-        <div style="font-size:.7rem;color:var(--text3);margin-top:2px">Question ${DQ.idx+1} of ${DQ.qs.length}</div></div>
-      </div>
-      <div class="scenario-body">
-        <div class="scenario-situation">${q.q}</div>
-        <div class="qopts" id="dq-opts">${optHTML}</div>
-        <div class="qfb" id="dq-fb"></div>
-      </div>
+    <div class="qpanel">
+      <div class="qq">${q.q}</div>
+      <div class="qopts" id="dq-opts">${optHTML}</div>
+      <div id="dq-hint" style="display:none;background:var(--panel2);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.82rem;color:var(--text2);line-height:1.6"></div>
     </div>
     <div style="display:flex;gap:8px;margin-top:8px">
-      <button class="abtn" style="flex:1" onclick="say(DQ.qs[DQ.idx].q)">🔊 SAY AGAIN</button>
-      <button class="dbtn" id="dq-next" onclick="nextDQ()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button>
+      <button class="abtn" style="flex:1" onclick="showDQHint(this)">💡 HINT</button>
+      <button class="abtn" style="flex:1" onclick="dqSayAgain(this)">🔊 SAY AGAIN</button>
     </div>`;
   say(q.q);
 }
 function answerDQ(i){
-  if(DQ.answered)return;
+  if(DQ.answered) return;
   DQ.answered=true;
   const q=DQ.qs[DQ.idx];
   const ok=i===q.correct;
-  if(ok){DQ.score++;chime();if(!CFG.nomotion)confetti();}else{buzz();}
+  if(ok){ DQ.score++; chime(); if(!CFG.nomotion) confetti(); } else buzz();
   document.querySelectorAll('#dq-opts .qo').forEach((b,j)=>{
     b.disabled=true;
-    if(j===q.correct)b.classList.add('ok');
-    else if(j===i&&!ok)b.classList.add('bad');
+    if(j===i) b.classList.add(ok?'ok':'bad');
   });
   $('dq-score').textContent=DQ.score;
-  const fb=$('dq-fb');
-  if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
-    fb.innerHTML=(ok?'✅ '+rand(CORRECT_MSGS):'❌ '+rand(WRONG_MSGS))+(q.explain?`<div class="fexplain" style="display:block;margin-top:8px">${q.explain}</div>`:'');}
-  const nxt=$('dq-next');
-  if(nxt){nxt.style.display='block';nxt.textContent=DQ.idx+1>=DQ.qs.length?'SEE RESULTS →':'NEXT →';}
+  showJobReadyPopupFeedback(ok, q.explain || ('The correct answer is ' + q.opts[q.correct] + '.'), nextDQ, DQ.idx+1>=DQ.qs.length);
 }
 function nextDQ(){
+  $('fov').classList.remove('on');
   DQ.idx++;
   if(DQ.idx>=DQ.qs.length){
     const pct=Math.round(DQ.score/DQ.qs.length*100);
@@ -2890,7 +3294,7 @@ function answerRightsQ(i){
     else if(j===i&&!ok)b.classList.add('bad');
   });
   const fb=$('raw-fb');
-  if(fb){fb.style.display='block';fb.className='qfb on '+(ok?'ok':'bad');fb.textContent=(ok?'✅ Correct! ':'❌ Not quite. ')+q.explain;}
+  if(fb){fb.style.display='block';fb.className='qfb on '+(ok?'ok':'bad');fb.textContent=(ok?'✅ Correct! ':'❌ Not the strongest choice. ')+q.explain;}
   const nxt=$('raw-next');if(nxt){nxt.style.display='block';nxt.textContent=RAW.idx+1>=RAW.qs.length?'SEE RESULTS →':'NEXT →';}
 }
 function nextRightsQ(){
@@ -2915,26 +3319,37 @@ function updJQDots(){
 }
 function renderJQ(){
   JQ.answered=false;
-  const q=JQ.qs[JQ.idx];if(!q)return;
-  $('jq-score').textContent=JQ.score;updJQDots();
+  const q=JQ.qs[JQ.idx]; if(!q) return;
+  $('jq-score').textContent=JQ.score;
+  updJQDots();
   const optHTML=q.opts.map((o,i)=>`<button class="qo ${CFG.errorless&&o===q.correct?'ok':''}" onclick="answerJQ(${i})">${o}</button>`).join('');
   $('jq-content').innerHTML=`
-    <div class="qpanel"><div class="qq">${q.q}</div><div class="qopts" id="jq-opts">${optHTML}</div><div class="qfb" id="jq-fb"></div></div>
-    <div style="margin-top:8px"><button class="dbtn" id="jq-next" onclick="nextJQ()" style="display:none;margin-top:8px">NEXT →</button></div>`;
+    <div class="qpanel">
+      <div class="qq">${q.q}</div>
+      <div class="qopts" id="jq-opts">${optHTML}</div>
+      <div id="jq-hint" style="display:none;background:var(--panel2);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.82rem;color:var(--text2);line-height:1.6"></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button class="abtn" style="flex:1" onclick="showJQHint(this)">💡 HINT</button>
+      <button class="abtn" style="flex:1" onclick="jqSayAgain(this)">🔊 SAY AGAIN</button>
+    </div>`;
   say(q.q);
 }
 function answerJQ(i){
-  if(JQ.answered)return;JQ.answered=true;
-  const q=JQ.qs[JQ.idx];const ok=q.opts[i]===q.correct;
-  if(ok){JQ.score++;chime();if(!CFG.nomotion)confetti();}else buzz();
+  if(JQ.answered) return;
+  JQ.answered=true;
+  const q=JQ.qs[JQ.idx];
+  const ok=q.opts[i]===q.correct;
+  if(ok){ JQ.score++; chime(); if(!CFG.nomotion) confetti(); } else buzz();
   document.querySelectorAll('#jq-opts .qo').forEach((b,j)=>{
-    b.disabled=true;if(q.opts[j]===q.correct)b.classList.add('ok');else if(j===i&&!ok)b.classList.add('bad');
+    b.disabled=true;
+    if(j===i) b.classList.add(ok?'ok':'bad');
   });
   $('jq-score').textContent=JQ.score;
-  const fb=$('jq-fb');if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.textContent=ok?rand(CORRECT_MSGS):rand(WRONG_MSGS);fb.style.display='block';}
-  const nxt=$('jq-next');if(nxt){nxt.style.display='block';nxt.textContent=JQ.idx+1>=JQ.qs.length?'SEE RESULTS →':'NEXT →';}
+  showJobReadyPopupFeedback(ok, q.explain || ('The correct answer is ' + q.correct + '.'), nextJQ, JQ.idx+1>=JQ.qs.length);
 }
 function nextJQ(){
+  $('fov').classList.remove('on');
   JQ.idx++;
   if(JQ.idx>=JQ.qs.length){
     const pct=Math.round(JQ.score/JQ.qs.length*100);
@@ -3527,12 +3942,20 @@ function updateAaBtn(){
 const btn=document.getElementById('aa-btn');
 if(btn)btn.classList.toggle('large-on',!!CFG.largetext);
 }
+
+function speakResetAppWarning(){
+  say('This will clear all your data. Scores, badges, settings, coach clients, and player name. This cannot be undone.');
+}
+
 function resetApp(){
-openHint('Reset App?',
+openHint(
+'Reset App?',
 '<p style="color:var(--text2);font-size:.88rem;line-height:1.6">This will clear <strong style="color:var(--red)">all your data</strong> - scores, badges, settings, coach clients, and player name.<br><br>This cannot be undone.</p>',
 '⚠️ Yes, Reset Everything',
-()=>{STORAGE_KEYS.forEach(k=>localStorage.removeItem(k));closeM('m-hint');setTimeout(()=>location.reload(),300);}
+()=>{STORAGE_KEYS.forEach(k=>localStorage.removeItem(k));closeM('m-hint');setTimeout(()=>location.reload(),300);},
+true
 );
+setTimeout(()=>speakResetAppWarning(),120);
 }
 function printCoachReport(){
 if(!CLIENTS||!CLIENTS.length){

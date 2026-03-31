@@ -361,6 +361,23 @@ pointer-events:none;
 .eoc-name{font-family:var(--font-display);font-size:1.5rem;color:var(--text);}
 .eoc-sub{font-size:0.8rem;color:var(--text2);margin-top:4px;}
 
+
+/* ══ GAME META ══ */
+.gmeta{display:flex;flex-direction:column;gap:4px;margin:-2px 0 12px;}
+.gmeta-line{font-family:var(--font-mono);text-transform:uppercase;}
+.gmeta-line.qprog{font-size:.72rem;color:var(--amber);letter-spacing:2px;}
+.gmeta-line.hprog{font-size:.66rem;color:var(--text2);letter-spacing:1.6px;}
+@media(min-width:900px){
+  .gmeta{margin:-2px 0 14px;}
+  .gmeta-line.qprog{font-size:.74rem;}
+  .gmeta-line.hprog{font-size:.68rem;}
+}
+
+/* ══ HOME GROUP HEADERS ══ */
+.home-group{margin-top:14px;}
+.home-group-label{font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:7px;text-transform:uppercase;margin:0 0 10px;text-shadow:0 0 10px rgba(232,101,10,.18);}
+.home-tools-label{font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:5px;text-transform:uppercase;margin:0 0 12px;text-shadow:0 0 10px #e8650a55;display:flex;align-items:center;gap:10px;}
+.home-divider{height:1px;background:var(--border);margin:6px 0 14px;opacity:.55;}
 /* ══ QUIZ ══ */
 .qpanel{background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:12px;}
 .qq{font-size:1.05rem;font-weight:800;margin-bottom:18px;color:var(--text);line-height:1.5;text-align:center;}
@@ -701,80 +718,110 @@ max-width:320px;width:calc(100% - 32px);
     <div class="daily-icon">📅</div>
     <div class="daily-info">
       <div class="daily-title">DAILY CHALLENGE</div>
-      <div class="daily-desc">5 home skills questions · Builds daily habit · Tracks your streak</div>
+      <div class="daily-desc">3-minute warmup · 5 questions · Builds daily habit</div>
     </div>
     <div class="daily-streak" id="daily-streak-disp">🔥0</div>
   </div>
 
-  <div style="height:1px;background:var(--border);margin:4px 0 8px;opacity:.5"></div>
+  <div class="home-divider"></div>
 
-  <div class="mode-list">
-  <div class="mc" onclick="startMode('practice')">
-      <div class="mc-icon">🎓</div>
-      <div class="mc-body"><div class="mc-name">PRACTICE MODE</div>
-      <div class="mc-desc">No score · Unlimited hints · Take your time · All home topics</div></div>
-      <div class="mc-arr">›</div>
+  <div class="home-group">
+    <div class="home-group-label">START HERE</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc star" onclick="startMode('challenge')">
+        <div class="mc-icon">🏠</div>
+        <div class="mc-body"><div class="mc-name">HOME CHALLENGE</div>
+        <div class="mc-desc">Score · Streaks · Levels · Mixed home skills · 10 questions</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('practice')">
+        <div class="mc-icon">🎓</div>
+        <div class="mc-body"><div class="mc-name">PRACTICE MODE</div>
+        <div class="mc-desc">No score · Unlimited hints · Take your time · All home topics</div></div>
+        <div class="mc-arr">›</div>
+      </div>
     </div>
-  <div class="mc star" onclick="startMode('challenge')">
-      <div class="mc-icon">🏠</div>
-      <div class="mc-body"><div class="mc-name">HOME CHALLENGE</div>
-      <div class="mc-desc">Score · Streaks · Levels · Mixed home skills · 10 questions</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('laundry')">
-      <div class="mc-icon">🧺</div>
-      <div class="mc-body"><div class="mc-name">LAUNDRY MASTER</div>
-      <div class="mc-desc">Care symbols · Sorting colors · Temperatures · Care labels · 10 questions</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('budget')">
-      <div class="mc-icon">💰</div>
-      <div class="mc-body"><div class="mc-name">BUDGET BASICS</div>
-      <div class="mc-desc">Grocery math · Unit prices · Comparing deals · Smart shopping</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('safety')">
-      <div class="mc-icon">🚨</div>
-      <div class="mc-body"><div class="mc-name">HOME SAFETY</div>
-      <div class="mc-desc">Emergencies · Who to call · Gas leaks · Power outages · Scams</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('food')">
-      <div class="mc-icon">🍳</div>
-      <div class="mc-body"><div class="mc-name">FOOD SAFETY</div>
-      <div class="mc-desc">Fridge vs pantry · Expiration dates · Safe handling · The 2-hour rule</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('renting')">
-      <div class="mc-icon">📋</div>
-      <div class="mc-body"><div class="mc-name">RENTING BASICS</div>
-      <div class="mc-desc">Leases · Security deposits · Tenant rights · Landlord communication</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="go('demo')">
-      <div class="mc-icon">👀</div>
-      <div class="mc-body"><div class="mc-name">WATCH A DEMO</div>
-      <div class="mc-desc">See exactly how HomeReady works before you start</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-</div>
-
-  <div style="height:1px;background:var(--border);margin:12px 0 8px;opacity:.5"></div>
-  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #e8650a55">🧠 LEARNING TOOLS</div>
-  <div class="hgrid">
-    <div class="hb" onclick="go('cleaningguide')"><div class="hi">🧹</div><div class="hl">Cleaning Guide</div><div class="hc">Routines &amp; safe products</div></div>
-    <div class="hb" onclick="go('foodguide')"><div class="hi">🍳</div><div class="hl">Food Safety</div><div class="hc">Fridge &amp; pantry rules</div></div>
-    <div class="hb" onclick="go('laundrysymbols')"><div class="hi">🏷️</div><div class="hl">Laundry Guide</div><div class="hc">Care symbols reference</div></div>
-    <div class="hb" onclick="go('billsguide')"><div class="hi">🧾</div><div class="hl">Bills Guide</div><div class="hc">Read utility bills</div></div>
-    <div class="hb" onclick="go('leaseguide')"><div class="hi">📋</div><div class="hl">Renting Guide</div><div class="hc">Leases &amp; landlords</div></div>
-    <div class="hb" onclick="go('callscripts')"><div class="hi">📞</div><div class="hl">Call Scripts</div><div class="hc">What to say &amp; when</div></div>
-    <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best results</div></div>
-    <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct">None yet</span></div></div>
-    <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Life Coach</div><div class="hc">Track clients</div></div>
-    <div class="hb" onclick="go('guide')"><div class="hi">❓</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
-    <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
-    <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div>
   </div>
+
+  <div class="home-group">
+    <div class="home-group-label">SKILL TRACKS</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc" onclick="startMode('laundry')">
+        <div class="mc-icon">🧺</div>
+        <div class="mc-body"><div class="mc-name">LAUNDRY MASTER</div>
+        <div class="mc-desc">Sort colors · Read care labels · Pick the right wash settings</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('budget')">
+        <div class="mc-icon">💰</div>
+        <div class="mc-body"><div class="mc-name">BUDGET BASICS</div>
+        <div class="mc-desc">Grocery math · Unit prices · Comparing deals · Smart shopping</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('safety')">
+        <div class="mc-icon">🚨</div>
+        <div class="mc-body"><div class="mc-name">HOME SAFETY</div>
+        <div class="mc-desc">Emergencies · Who to call · Gas leaks · Power outages · Scams</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('food')">
+        <div class="mc-icon">🍳</div>
+        <div class="mc-body"><div class="mc-name">FOOD SAFETY</div>
+        <div class="mc-desc">Fridge vs pantry · Expiration dates · Safe handling · The 2-hour rule</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('renting')">
+        <div class="mc-icon">📋</div>
+        <div class="mc-body"><div class="mc-name">RENTING BASICS</div>
+        <div class="mc-desc">Leases · Security deposits · Tenant rights · Landlord communication</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">LEARN THE FLOW</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc" onclick="go('demo')">
+        <div class="mc-icon">👀</div>
+        <div class="mc-body"><div class="mc-name">WATCH A DEMO</div>
+        <div class="mc-desc">See exactly how HomeReady works before you start</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-divider"></div>
+  <div class="home-tools-label">🧠 <span>LEARNING TOOLS</span></div>
+
+  <div class="home-group">
+    <div class="home-group-label">LEARN</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('cleaningguide')"><div class="hi">🧹</div><div class="hl">Cleaning Guide</div><div class="hc">Routines &amp; safe products</div></div>
+      <div class="hb" onclick="go('foodguide')"><div class="hi">🍳</div><div class="hl">Food Safety</div><div class="hc">Fridge &amp; pantry rules</div></div>
+      <div class="hb" onclick="go('laundrysymbols')"><div class="hi">🏷️</div><div class="hl">Laundry Guide</div><div class="hc">Care symbols reference</div></div>
+      <div class="hb" onclick="go('billsguide')"><div class="hi">🧾</div><div class="hl">Bills Guide</div><div class="hc">Read utility bills</div></div>
+      <div class="hb" onclick="go('leaseguide')"><div class="hi">📋</div><div class="hl">Renting Guide</div><div class="hc">Leases &amp; landlords</div></div>
+      <div class="hb" onclick="go('callscripts')"><div class="hi">📞</div><div class="hl">Call Scripts</div><div class="hc">What to say &amp; when</div></div>
+      <div class="hb" onclick="go('guide')"><div class="hi">❓</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">PROGRESS</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best results</div></div>
+      <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct">None yet</span></div></div>
+      <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Life Coach</div><div class="hc">Track clients</div></div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">APP</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
+      <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
+    </div>
   </div>
 
   <div class="tagline" id="tagline">YOUR HOME YOUR RULES (MOSTLY)</div>
@@ -815,6 +862,10 @@ max-width:320px;width:calc(100% - 32px);
     </div>
   </div>
   <div class="pdots" id="pdots"></div>
+  <div class="gmeta">
+    <div class="gmeta-line qprog" id="g-progress-text">QUESTION 1 OF 10</div>
+    <div class="gmeta-line hprog" id="g-hints-used">HINTS USED: 0</div>
+  </div>
   <div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
 
   <div class="qpanel" id="qpanel">
@@ -827,8 +878,8 @@ max-width:320px;width:calc(100% - 32px);
   <div id="g-hint-bar" style="display:none;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:8px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
 
   <div style="display:flex;gap:8px;margin-top:8px">
-    <button class="abtn" id="hint-btn" onclick="doHint()" style="flex:1">💡 HINT</button>
-    <button class="abtn" onclick="say(currentQ?currentQ.q:'')" style="flex:1">🔊 SAY AGAIN</button>
+    <button class="abtn" id="hint-btn" onclick="doHint(this)" style="flex:1">💡 HINT</button>
+    <button class="abtn" id="say-again-btn" onclick="gameSayAgain(this)" style="flex:1">🔊 SAY AGAIN</button>
   </div>
 </div>
 <!-- ══════════ FEEDBACK ══════════ -->
@@ -840,6 +891,25 @@ max-width:320px;width:calc(100% - 32px);
     <div id="fexplain" style="display:none;font-size:.82rem;color:var(--text2);background:var(--bg3);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:14px;line-height:1.65;text-align:left;border-left:3px solid var(--green)"></div>
     <div id="feoc" style="display:none"></div>
     <button class="fnext" id="fnext" onclick="nextQ_game()">NEXT →</button>
+  </div>
+</div>
+
+
+
+<!-- ══════════ PRACTICE COMPLETE ══════════ -->
+<div id="scr-practice-complete" class="scr">
+  <div style="padding-bottom:10px;animation:fadeUp .5s ease;text-align:center">
+    <div style="background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:22px 18px;margin-bottom:12px">
+      <div style="font-size:3rem;margin-bottom:8px">👍</div>
+      <div style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:8px">PRACTICE COMPLETE</div>
+      <div style="font-size:.88rem;color:var(--text2);margin-bottom:10px">Nice work. You completed a practice session.</div>
+      <div id="practice-summary" style="font-family:var(--font-mono);font-size:.82rem;color:var(--amber);line-height:1.6"></div>
+    </div>
+    <div class="rbtns" style="margin-top:12px">
+      <button class="rpri" onclick="startMode('practice')">▶ PRACTICE AGAIN</button>
+      <button class="rsec" onclick="startMode('challenge')">🎯 TRY HOME CHALLENGE</button>
+      <button class="rsec" onclick="go('home')">← MAIN MENU</button>
+    </div>
   </div>
 </div>
 
@@ -2075,6 +2145,7 @@ function setSpeed(v,el){
 // ════════════════════════════════════════════════════════
 //  SPEECH & SOUND
 // ════════════════════════════════════════════════════════
+let _hintSpeechTimer=null;
 function say(txt){
   if(!CFG.audio||!window.speechSynthesis) return;
   window.speechSynthesis.cancel();
@@ -2361,6 +2432,20 @@ function defaultCFG(){
   return {audio:true,lightMode:false,hiContrast:false,largeText:false,largeBtns:false,noMotion:false,breaks:false,errorless:false,colorBlind:false,speed:'normal',dailyStreak:0,lastDaily:'',playerName:null,namePrompted:false,coachPin:null,onboardingSeen:false,appOpens:0,uniqueDays:[],settingsUsed:0,settingsToggled:{},modesPlayed:{}};
 }
 
+function speakIntroCardText(title, lines){
+  try{
+    const parts=[cleanTTS(title||'')];
+    (lines||[]).forEach(row=>{
+      const head = cleanTTS(row && row[1] ? row[1] : '');
+      const body = cleanTTS(row && row[2] ? row[2] : '');
+      if(head) parts.push(head + '.');
+      if(body) parts.push(body);
+    });
+    const text = parts.join(' ').trim();
+    if(text) say(text);
+  }catch(e){}
+}
+
 function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
   const body=lines.map(([em,bold,sub])=>`
     <div style="display:flex;gap:11px;align-items:flex-start;margin-bottom:10px">
@@ -2369,7 +2454,17 @@ function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
     </div>`).join('');
   openHint(`${icon} ${title}`,
     `<div style="background:linear-gradient(135deg,${color}18,${color}06);border:1px solid ${color}55;border-radius:10px;padding:13px 14px;margin-bottom:4px">${body}</div>`,
-    btnLabel||'Let\'s Go! →', onConfirm);
+    btnLabel||'Let\'s Go! →', onConfirm, true);
+  setTimeout(()=>{
+    speakIntroCardText(title, lines);
+    const cancel = document.getElementById('m-hint-cancel');
+    if(cancel){
+      cancel.onclick = () => {
+        closeM('m-hint');
+        if(document.getElementById('scr-game')?.classList.contains('on')) go('home');
+      };
+    }
+  },120);
 }
 
 function replayModeIntro(){
@@ -2385,6 +2480,51 @@ function replayModeIntro(){
   };
   const d=map[ST.mode];
   if(d) showModeIntro(d[0],d[1],d[2],d[3],'Got it - Back to the game!',()=>closeM('m-hint'));
+}
+
+
+function flashActionButton(el, kind='audio'){
+  if(!el || CFG.nomotion) return;
+  const oldBorder = el.style.borderColor;
+  const oldColor = el.style.color;
+  const oldShadow = el.style.boxShadow;
+  const oldBg = el.style.background;
+  const glow = 'var(--green)';
+  const bg = 'rgba(232,101,10,.12)';
+  el.style.borderColor = glow;
+  el.style.color = glow;
+  el.style.background = bg;
+  el.style.boxShadow = '0 0 18px rgba(232,101,10,.24), 0 0 30px rgba(232,101,10,.16)';
+  el.style.transform = 'scale(.985)';
+  setTimeout(()=>{
+    el.style.borderColor = oldBorder;
+    el.style.color = oldColor;
+    el.style.boxShadow = oldShadow;
+    el.style.background = oldBg;
+    el.style.transform = '';
+    if(typeof el.blur==='function') el.blur();
+  }, 700);
+}
+
+function pulseButtonLabel(el, tempText, ms){
+  if(!el) return;
+  const old = el.innerHTML;
+  el.innerHTML = tempText;
+  setTimeout(()=>{ el.innerHTML = old; }, ms||850);
+}
+
+function gameHintFlash(btn){
+  flashActionButton(btn,'hint');
+  pulseButtonLabel(btn,'✨ SHOWING HINT...',900);
+}
+function gameAudioFlash(btn){
+  flashActionButton(btn,'audio');
+  pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function gameSayAgain(btn){
+  if(btn) gameAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  if(currentQ && currentQ.q) say(currentQ.q);
 }
 
 function startMode(mode){
@@ -2514,6 +2654,8 @@ function genQ(){
   }
   currentQ=genQuestionDedup(ST.mode);
   updDots();
+  $('g-progress-text').textContent=`QUESTION ${Math.min(ST.total+1,ST.maxQ)} OF ${ST.maxQ}`;
+  $('g-hints-used').textContent=`HINTS USED: ${ST.hintsUsed||0}`;
   $('g-score').textContent=ST.score;
   $('g-lvl').textContent=getLvl(ST.score).n;
   $('g-question').textContent=currentQ.q;
@@ -2532,6 +2674,7 @@ function genQ(){
   $('g-fb').className='qfb'; $('g-fb').style.display='none';
   $('g-hint-bar').style.display='none';
   if($('hint-btn')) $('hint-btn').disabled=false;
+  const sab=$('say-again-btn'); if(sab) sab.innerHTML='🔊 SAY AGAIN';
   say(currentQ.q);
 }
 
@@ -2594,9 +2737,11 @@ function answerQ(chosen){
   },300);
 }
 
-function doHint(){
+function doHint(btn){
   if(!currentQ) return;
+  if(btn) gameHintFlash(btn);
   gameHintsUsed++; ST.hintsUsed=(ST.hintsUsed||0)+1;
+  $('g-hints-used').textContent=`HINTS USED: ${ST.hintsUsed||0}`;
   const hint=currentQ.hint||'Think about what makes the most sense in real life.';
   $('g-hint-bar').textContent='💡 '+hint;
   $('g-hint-bar').style.display='block';
@@ -2617,7 +2762,10 @@ function openHint(title,body,okLabel,onOk,showCancel){
   ok.textContent=okLabel||'Got it!';
   ok.onclick=onOk?()=>{onOk();}:()=>closeM('m-hint');
   const cancel=$('m-hint-cancel');
-  if(cancel) cancel.style.display=showCancel?'block':'none';
+  if(cancel){
+    cancel.style.display=showCancel?'block':'none';
+    cancel.onclick=()=>closeM('m-hint');
+  }
   openM('m-hint');
 }
 
@@ -2742,8 +2890,17 @@ function checkBadges(){
 }
 
 function endSession(early=false){
-  $('fov').classList.remove('on'); txCountForBreak=0;
-  if(ST.mode==='practice'){ go('home'); updateHomeUI(); return; }
+  $('fov').classList.remove('on');
+  if(ST.mode==='practice'){
+    const s=$('practice-summary');
+    if(s) s.textContent=`You answered ${ST.total} question${ST.total!==1?'s':''} • ${ST.correct} correct • Hints used: ${ST.hintsUsed||0}`;
+    updateHomeUI();
+    go('practice-complete');
+    window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+    setTimeout(()=>{ say(`Nice work. You answered ${ST.total} question${ST.total!==1?'s':''}, got ${ST.correct} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`); },120);
+    return;
+  }
+  txCountForBreak=0;
   if(ST.mode==='daily'&&!early){
     const t=today();
     if(CFG.lastDaily!==t){
@@ -2823,9 +2980,9 @@ function endSession(early=false){
     else { rpa.textContent='▶ PLAY AGAIN'; rpa.onclick=()=>startMode(lastMode||ST.mode); }
   }
   if(!CFG.noMotion&&pct>=70) confetti();
-  say(`Session complete! You got ${ST.correct} out of ${ST.total} correct.`);
   updateHomeUI();
   go('results'); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+  setTimeout(()=>say(`${modeName} complete. You got ${ST.correct} out of ${ST.total} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`),140);
 }
 
 function replayMode(){ startMode(lastMode||ST.mode||'challenge'); }
@@ -3257,7 +3414,13 @@ function openM(id){
   }
   $(id).classList.add('on');
 }
-function closeM(id){$(id).classList.remove('on');}
+function closeM(id){
+  $(id).classList.remove('on');
+  if(id==='m-hint'){
+    if(_hintSpeechTimer){ clearTimeout(_hintSpeechTimer); _hintSpeechTimer=null; }
+    if(window.speechSynthesis) window.speechSynthesis.cancel();
+  }
+}
 
 function saveClient(){
   const name=$('nc-name').value.trim();
@@ -3807,6 +3970,7 @@ const btn=document.getElementById('aa-btn');
 if(btn) btn.classList.toggle('large-on', !!CFG.largetext);
 }
 function resetApp(){
+const resetMsg='This will clear all your data, including scores, badges, settings, coach clients, and player name. This cannot be undone.';
 openHint('Reset App?',
 '<p style="color:var(--text2);font-size:.88rem;line-height:1.6">This will clear <strong style="color:var(--red)">all your data</strong> - scores, badges, settings, coach clients, and player name. This cannot be undone.</p>',
 '⚠️ Yes, Reset Everything',
@@ -3815,8 +3979,10 @@ const keys=STORAGE_KEYS;
 keys.forEach(k=>localStorage.removeItem(k));
 closeM('m-hint');
 setTimeout(()=>location.reload(), 300);
-}
+},
+true
 );
+_hintSpeechTimer=setTimeout(()=>{ _hintSpeechTimer=null; say(resetMsg); },120);
 }
 function printCoachReport(){
 if(!CLIENTS.length){

@@ -197,6 +197,18 @@ pointer-events:none;
 .hb .hc{font-size:0.62rem;color:var(--text2);margin-top:2px;}
 
 .tagline{text-align:center;color:var(--green);font-family:var(--font-mono);font-size:.72rem;letter-spacing:3px;margin-top:28px;padding:0 20px;line-height:1.6;text-shadow:0 0 12px #e91e8c44;animation:blink 2.5s step-end infinite;}
+.home-group{margin-top:14px;}
+.home-group-label{font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:7px;text-transform:uppercase;margin:0 0 10px;text-shadow:0 0 10px rgba(233,30,140,.18);}
+.home-tools-label{font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:5px;text-transform:uppercase;margin:0 0 12px;text-shadow:0 0 10px #e91e8c55;display:flex;align-items:center;gap:10px;}
+.home-divider{height:1px;background:var(--border);margin:6px 0 14px;opacity:.55;}
+.abtn.flash-hint,.abtn.flash-audio{
+  transform:scale(.985);
+  border-color:var(--green)!important;
+  color:var(--green)!important;
+  background:var(--green-light)!important;
+  box-shadow:0 0 0 1px var(--green) inset,0 0 16px rgba(233,30,140,.3);
+}
+
 @keyframes blink{50%{opacity:0;}}
 
 /* ══ DEMO SCREEN ══ */
@@ -681,8 +693,9 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div class="home-tagline">- HEALTH &amp; LIFE SKILLS TRAINER -</div>
 <div class="home-sub" id="home-sub">Know your health · Advocate for yourself · Stay safe</div>
-<button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-family:var(--font-mono);font-size:.65rem;color:#e91e8c;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #e91e8c44;background:transparent;border:1px solid #e91e8c55;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB  ·  All Apps</button>
+<button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-size:.65rem;color:#e91e8c;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #e91e8c44;background:transparent;border:1px solid #e91e8c55;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB &nbsp;·&nbsp; All Apps</button>
 </div>
+
 <div id="onboarding-card" style="display:none;background:linear-gradient(135deg,var(--panel),var(--panel2));border:2px solid var(--green);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;animation:fadeUp .5s ease">
 <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:8px">👋 WELCOME TO HEALTHREADY!</div>
 <p style="font-size:.84rem;color:var(--text2);line-height:1.6;margin-bottom:12px">New here? Start with <strong style="color:var(--text)">Watch a Demo</strong> to see how HealthReady works - then try <strong style="color:var(--text)">Practice Mode</strong> when you are ready.</p>
@@ -691,6 +704,7 @@ max-width:320px;width:calc(100% - 32px);
 <button class="rsec" onclick="dismissOnboarding()" style="flex:1;padding:11px;font-size:.8rem">Got It ✓</button>
 </div>
 </div>
+
 <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;margin-top:4px;text-shadow:0 0 10px #e91e8c55">🎮 PLAY</div>
 <div class="daily-card" id="daily-card" onclick="startDaily()">
 <div class="daily-icon">📅</div>
@@ -700,20 +714,30 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div class="daily-streak" id="daily-streak-disp">🔥0</div>
 </div>
-<div style="height:1px;background:var(--border);margin:4px 0 8px;opacity:.5"></div>
-<div class="mode-list">
-<div class="mc" onclick="startMode('practice')">
-<div class="mc-icon">🎓</div>
-<div class="mc-body"><div class="mc-name">PRACTICE MODE</div>
-<div class="mc-desc">No score · Unlimited hints · Take your time · All health topics</div></div>
-<div class="mc-arr">›</div>
-</div>
+
+<div class="home-divider"></div>
+
+<div class="home-group">
+<div class="home-group-label">START HERE</div>
+<div class="mode-list" style="margin-top:0">
 <div class="mc star" onclick="startMode('challenge')">
 <div class="mc-icon">⭐</div>
 <div class="mc-body"><div class="mc-name">HEALTH CHALLENGE</div>
 <div class="mc-desc">Score · Streaks · Levels · Mixed health topics · 10 questions</div></div>
 <div class="mc-arr">›</div>
 </div>
+<div class="mc" onclick="startMode('practice')">
+<div class="mc-icon">🎓</div>
+<div class="mc-body"><div class="mc-name">PRACTICE MODE</div>
+<div class="mc-desc">No score · Unlimited hints · Take your time · All health topics</div></div>
+<div class="mc-arr">›</div>
+</div>
+</div>
+</div>
+
+<div class="home-group">
+<div class="home-group-label">SKILL TRACKS</div>
+<div class="mode-list" style="margin-top:0">
 <div class="mc" onclick="startMode('prescriptions')">
 <div class="mc-icon">💊</div>
 <div class="mc-body"><div class="mc-name">PRESCRIPTIONS</div>
@@ -750,6 +774,12 @@ max-width:320px;width:calc(100% - 32px);
 <div class="mc-desc">Handwashing · Dental · Hygiene routines · Preventing illness · 8 questions</div></div>
 <div class="mc-arr">›</div>
 </div>
+</div>
+</div>
+
+<div class="home-group">
+<div class="home-group-label">LEARN THE FLOW</div>
+<div class="mode-list" style="margin-top:0">
 <div class="mc" onclick="go('demo')">
 <div class="mc-icon">👀</div>
 <div class="mc-body"><div class="mc-name">WATCH A DEMO</div>
@@ -757,8 +787,13 @@ max-width:320px;width:calc(100% - 32px);
 <div class="mc-arr">›</div>
 </div>
 </div>
-<div style="height:1px;background:var(--border);margin:12px 0 8px;opacity:.5"></div>
-<div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #e91e8c55">🧠 LEARNING TOOLS</div>
+</div>
+
+<div class="home-divider"></div>
+<div class="home-tools-label">🧠 <span>LEARNING TOOLS</span></div>
+
+<div class="home-group">
+<div class="home-group-label">LEARN</div>
 <div class="hgrid">
 <div class="hb" onclick="go('hygieneguide')"><div class="hi">🧼</div><div class="hl">Hygiene Guide</div><div class="hc">Daily health habits</div></div>
 <div class="hb" onclick="go('doctorguide')"><div class="hi">🩺</div><div class="hl">Doctor Visits Guide</div><div class="hc">Appointments &amp; preparation</div></div>
@@ -766,14 +801,27 @@ max-width:320px;width:calc(100% - 32px);
 <div class="hb" onclick="go('rxguide')"><div class="hi">💊</div><div class="hl">Rx &amp; Meds Guide</div><div class="hc">Labels, refills &amp; safety</div></div>
 <div class="hb" onclick="go('mentalguide')"><div class="hi">🧠</div><div class="hl">Mental Health Guide</div><div class="hc">Stress, sleep &amp; self-advocacy</div></div>
 <div class="hb" onclick="go('insuranceguide')"><div class="hi">🪪</div><div class="hl">Health Insurance Guide</div><div class="hc">Cards, copays &amp; networks</div></div>
+<div class="hb" onclick="go('guide')"><div class="hi">📖</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
+</div>
+</div>
+
+<div class="home-group">
+<div class="home-group-label">PROGRESS</div>
+<div class="hgrid">
 <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best sessions</div></div>
 <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct">None yet</span></div></div>
 <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Health Coach</div><div class="hc">Track clients</div></div>
-<div class="hb" onclick="go('guide')"><div class="hi">📖</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
+</div>
+</div>
+
+<div class="home-group">
+<div class="home-group-label">APP</div>
+<div class="hgrid">
 <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
-<div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div>
+<div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
 </div>
 </div>
+
 <div class="tagline" id="tagline">HEALTH SKILLS FOR REAL LIFE</div>
 </div>
 <div class="scr" id="scr-demo">
@@ -784,6 +832,21 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div class="demo-dots" id="demo-dots"></div>
 <div class="demo-wrap" id="demo-content"></div>
+</div>
+<div class="scr" id="scr-practice-complete">
+<div style="padding-bottom:10px;animation:fadeUp .5s ease;text-align:center">
+<div style="background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:22px 18px;margin-bottom:12px">
+<div style="font-size:3rem;margin-bottom:8px">🩺</div>
+<div style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:8px">PRACTICE MODE COMPLETE</div>
+<div style="font-size:.88rem;color:var(--text2);margin-bottom:10px">Nice work. You completed a practice session.</div>
+<div id="practice-summary" style="font-family:var(--font-mono);font-size:.82rem;color:var(--amber);line-height:1.6"></div>
+</div>
+<div class="rbtns" style="margin-top:12px">
+<button class="rpri" onclick="startMode('practice')">▶ PRACTICE AGAIN</button>
+<button class="rsec" onclick="startMode('challenge')">⭐ TRY CHALLENGE</button>
+<button class="rsec" onclick="go('home')">← MAIN MENU</button>
+</div>
+</div>
 </div>
 <!-- ══════════ RESULTS ══════════ -->
 <div class="scr" id="scr-results">
@@ -798,8 +861,8 @@ max-width:320px;width:calc(100% - 32px);
 </svg>
 <div id="grade-letter" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--green);text-shadow:0 0 20px rgba(0,200,81,.5);line-height:1">A+</div>
 </div>
-<div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">SHIFT COMPLETE</div>
-<div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You helped 10 customers today!</div>
+<div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">HEALTH CHALLENGE COMPLETE</div>
+<div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You answered 10 questions!</div>
 <div id="r-level-badge" style="display:inline-block;background:rgba(255,187,51,.14);border:1px solid var(--amber);border-radius:20px;padding:3px 14px;font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:1px">BEGINNER</div>
 </div>
 <!-- Personal Best Banner (hidden by default) -->
@@ -856,14 +919,15 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div id="score-filters" style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">
 <button class="sopt on" onclick="filterScores('all',this)">All</button>
-<button class="sopt" onclick="filterScores('challenge',this)">Challenge</button>
-<button class="sopt" onclick="filterScores('prescriptions',this)">Rx</button>
-<button class="sopt" onclick="filterScores('doctor',this)">Doctor</button>
-<button class="sopt" onclick="filterScores('insurance',this)">Insurance</button>
-<button class="sopt" onclick="filterScores('emergency',this)">Emergency</button>
-<button class="sopt" onclick="filterScores('hygiene',this)">Hygiene</button>
-<button class="sopt" onclick="filterScores('mental',this)">Mental</button>
-<button class="sopt" onclick="filterScores('daily',this)">Daily</button>
+<button class="sopt" onclick="filterScores('Health Challenge',this)">Challenge</button>
+<button class="sopt" onclick="filterScores('Prescriptions',this)">Rx</button>
+<button class="sopt" onclick="filterScores('Doctor Visits',this)">Doctor</button>
+<button class="sopt" onclick="filterScores('Health Insurance',this)">Insurance</button>
+<button class="sopt" onclick="filterScores('Emergencies',this)">Emergency</button>
+<button class="sopt" onclick="filterScores('Hygiene & Wellness',this)">Hygiene</button>
+<button class="sopt" onclick="filterScores('Mental Health',this)">Mental</button>
+<button class="sopt" onclick="filterScores('Daily Challenge',this)">Daily</button>
+<button class="sopt" onclick="filterScores('Practice Mode',this)">Practice</button>
 </div>
 <button id="read-scores-btn" style="display:block;width:100%;margin:10px 0 4px;padding:9px 16px;background:transparent;border:1px solid #e91e8c55;border-radius:20px;color:#e91e8c;font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px #e91e8c44">🔊  READ MY SCORES ALOUD</button>
 <div id="scores-wrap"><div class="no-data">No scores yet.<br/>Complete a shift to see your best!</div></div>
@@ -1315,6 +1379,8 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 </div>
 <div class="pdots" id="pdots"></div>
+<div id="progress-text" class="progress-text" style="font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:1px;margin:-2px 0 8px;text-transform:uppercase;">Question 1 of 10</div>
+<div id="hint-counter" class="hint-counter" style="display:block;font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:1px;margin-bottom:8px;opacity:.85;">Hints used: 0</div>
 <div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
 <div class="qpanel" id="qpanel">
 <div id="g-question" style="font-size:.95rem;font-weight:800;color:var(--text);line-height:1.55;margin-bottom:14px;font-family:var(--font-mono)"></div>
@@ -1324,8 +1390,8 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div id="g-hint-bar" style="display:none;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:8px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
 <div style="display:flex;gap:8px;margin-top:8px">
-<button class="abtn" id="hint-btn" onclick="doHint()" style="flex:1">💡 HINT</button>
-<button class="abtn" onclick="say(currentQ?currentQ.q:'')" style="flex:1">🔊 SAY AGAIN</button>
+<button class="abtn" id="hint-btn" onclick="doHint(this)" style="flex:1">💡 HINT</button>
+<button class="abtn" id="say-again-btn" onclick="gameSayAgain(this)" style="flex:1">🔊 SAY AGAIN</button>
 </div>
 </div>
 <!-- ══════════ FEEDBACK ══════════ -->
@@ -1334,6 +1400,7 @@ max-width:320px;width:calc(100% - 32px);
 <div class="femoji" id="femoji">✅</div>
 <div class="ftitle ok" id="ftitle">CORRECT!</div>
 <div class="fmsg" id="fmsg"></div>
+<div id="fexplain" style="display:none;font-size:.82rem;color:var(--text2);background:var(--bg3);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:14px;line-height:1.65;text-align:left;border-left:3px solid var(--green)"></div>
 <div id="feoc" style="display:none"></div>
 <button class="fnext" id="fnext" onclick="nextQ_game()">NEXT →</button>
 </div>
@@ -2305,7 +2372,13 @@ function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
     </div>`).join('');
   openHint(`${icon} ${title}`,
     `<div style="background:linear-gradient(135deg,${color}18,${color}06);border:1px solid ${color}55;border-radius:10px;padding:13px 14px;margin-bottom:4px">${body}</div>`,
-    btnLabel||'Let\'s Go! →', onConfirm);
+    btnLabel||'Let\'s Go! →', onConfirm, true);
+  const cancel=$('m-hint-cancel');
+  if(cancel){
+    cancel.style.display='block';
+    cancel.onclick=()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); closeM('m-hint'); go('home'); };
+  }
+  setTimeout(()=>playIntroAudio(title, lines),180);
 }
 
 function replayModeIntro(){
@@ -2325,6 +2398,50 @@ function replayModeIntro(){
 }
 
 
+
+function updateProgressText(){
+  const el=$('progress-text');
+  if(!el || !ST) return;
+  const maxQ=Number(ST.maxQ || (ST.mode==='daily'?5:10));
+  const current=Math.min((ST.total||0)+1,maxQ);
+  el.textContent=(ST.total||0)>=maxQ?`Complete · ${maxQ} of ${maxQ}`:`Question ${current} of ${maxQ}`;
+  el.style.display='block';
+}
+function updateHintCounter(){
+  const el=$('hint-counter');
+  if(!el || !ST) return;
+  el.style.display='block';
+  el.textContent=`Hints used: ${ST.hintsUsed||0}`;
+}
+function updateGameMeta(){ updateProgressText(); updateHintCounter(); }
+function flashActionButton(el){
+  if(!el) return;
+  el.classList.remove('flash-hint','flash-audio');
+  void el.offsetWidth;
+  el.classList.add('flash-hint');
+  setTimeout(()=>el.classList.remove('flash-hint','flash-audio'),650);
+}
+function pulseButtonLabel(el, text, restoreAfter=850){
+  if(!el) return;
+  const original = el.dataset.originalLabel || el.textContent;
+  el.dataset.originalLabel = original;
+  el.textContent = text;
+  clearTimeout(el._restoreTimer);
+  el._restoreTimer = setTimeout(()=>{ el.textContent = el.dataset.originalLabel || original; }, restoreAfter);
+}
+function gameHintFlash(btn){ flashActionButton(btn); pulseButtonLabel(btn,'💡 SHOWING HINT...',900); }
+function gameAudioFlash(btn){ flashActionButton(btn); pulseButtonLabel(btn,'🔊 READING...',850); }
+function gameSayAgain(btn){
+  if(btn) gameAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const txt=(currentQ&&currentQ.q)?currentQ.q:(document.getElementById('g-question')?.textContent||'');
+  if(txt) say(txt);
+}
+function playIntroAudio(title, lines){
+  const spoken=[title].concat((lines||[]).map(x=>[x[1],x[2]].filter(Boolean).join('. '))).join('. ');
+  say(spoken);
+}
+
 function startMode(mode){
   lastMode=mode;
   const isP=mode==='practice';
@@ -2342,8 +2459,10 @@ function startMode(mode){
   CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed[mode]=true;
   awardBadge('built_diff');saveAll();
   buildDots();go('game');
+  updateProgressText();
+  updateHintCounter();
 
-  const launch=()=>{ genQ(); };
+  const launch=()=>{ genQ(); updateProgressText(); updateHintCounter(); };
 
   const intros={
     prescriptions:['💊','PRESCRIPTIONS','#e91e8c',[['📋','10 prescription label questions.','Labels, refills, storage, and talking to your pharmacist.'],['🔬','Understanding medications keeps you safe.',''],['🔢','Graded at the end.','']],'Start Prescriptions →'],
@@ -2443,6 +2562,8 @@ function genQ(){
     else{mb.style.display='none';}
   }
   currentQ=genQuestionDedup(ST.mode);
+  updateProgressText();
+  updateHintCounter();
   updDots();
   $('g-score').textContent=ST.score;
   {const _z=$('g-lvl');if(_z)_z.textContent=getLvl(ST.score).n;}
@@ -2468,11 +2589,12 @@ function genQ(){
 function answerQ(chosen){
   if(ST.answered) return;
   ST.answered=true; ST.total++;
-  const ok=chosen===('_shuffledCorrect' in currentQ?currentQ._shuffledCorrect:currentQ.correct);
+  const correctIndex = ('_shuffledCorrect' in currentQ ? currentQ._shuffledCorrect : currentQ.correct);
+  const ok = chosen === correctIndex;
   document.querySelectorAll('#g-opts .qo').forEach((btn,i)=>{
     btn.disabled=true;
-    if(i===('_shuffledCorrect' in currentQ?currentQ._shuffledCorrect:currentQ.correct)) btn.classList.add('ok');
-    else if(i===chosen&&!ok) btn.classList.add('bad');
+    if(i===correctIndex) btn.classList.add('ok');
+    else if(i===chosen && !ok) btn.classList.add('bad');
   });
   if(ok){
     ST.correct++; ST.streak++; ST.bestStreak=Math.max(ST.bestStreak,ST.streak);
@@ -2486,26 +2608,51 @@ function answerQ(chosen){
   $('g-score').textContent=ST.score;
   {const _z=$('g-lvl');if(_z)_z.textContent=getLvl(ST.score).n;}
   const CORRECT=['Great thinking!','Correct!','That\'s right!','Nailed it!','Yes! Good health knowledge!','Right on!'];
-  const WRONG=['Not quite - see explanation below.','Almost! Read why below.','That\'s okay - the right answer is shown.','Not this time. Keep going!'];
+  const WRONG=['Not quite - the right answer is shown.','Almost! Read why below.','That\'s okay - the right answer is shown.','Not this time. Keep going!'];
+  const explain = currentQ.explain || '';
+
   const fb=$('g-fb');
   if(fb){
-    fb.className='qfb on '+(ok?'ok':'bad'); fb.style.display='block';
-    fb.innerHTML=(ok?`<strong style="color:#00c851">✅ ${rand(CORRECT)}</strong>`:`<strong style="color:#ff4444">❌ ${rand(WRONG)}</strong>`)
-      +(currentQ.explain?`<div style="font-size:.78rem;color:var(--text3);margin-top:8px;line-height:1.6">${currentQ.explain}</div>`:'');
+    fb.className='qfb';
+    fb.style.display='none';
+    fb.innerHTML='';
   }
+
   awardBadge('first_step');
   if(ok) awardBadge('first_correct');
+
   setTimeout(()=>{
-    const fn=$('fnext'); if(fn) fn.textContent=ST.total>=ST.maxQ?'SEE RESULTS →':'NEXT →';
+    const femoji=$('femoji'), ftitle=$('ftitle'), fmsg=$('fmsg'), fexplain=$('fexplain'), fcard=$('fcard');
+    if(femoji) femoji.textContent = ok ? '✅' : '❌';
+    if(ftitle){
+      ftitle.textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+      ftitle.className = 'ftitle ' + (ok ? 'ok' : 'bad');
+    }
+    if(fmsg) fmsg.textContent = ok ? rand(CORRECT) : rand(WRONG);
+    if(fexplain){
+      fexplain.textContent = explain;
+      fexplain.style.display = explain ? 'block' : 'none';
+      fexplain.style.borderLeftColor = ok ? 'var(--green)' : 'var(--red)';
+    }
+    if(fcard) fcard.classList.toggle('wrong', !ok);
+    const fn=$('fnext');
+    if(fn){
+      fn.textContent = ST.total>=ST.maxQ ? 'SEE RESULTS →' : 'NEXT →';
+      fn.classList.toggle('bad', !ok);
+    }
     const feoc=$('feoc'); if(feoc) feoc.style.display='none';
     $('fov').classList.add('on');
-    say(ok?'Correct! Great job.':('Not quite. '+(currentQ.explain||'').split('.')[0]+'.'));
+    say(ok
+      ? ('Correct. ' + (explain || 'Great job.'))
+      : ('Not quite. ' + (explain || 'The right answer is shown.')));
   },300);
 }
 
-function doHint(){
+function doHint(btn){
   if(!currentQ) return;
+  if(btn) gameHintFlash(btn);
   gameHintsUsed++; ST.hintsUsed=(ST.hintsUsed||0)+1;
+  updateGameMeta();
   const hint=currentQ.hint||'Think about what makes the most sense in real life.';
   {const _z=$('g-hint-bar');if(_z)_z.textContent='💡 '+hint;}
   {const _z=$('g-hint-bar');if(_z)_z.style.display='block';}
@@ -2514,8 +2661,14 @@ function doHint(){
 
 function nextQ_game(){
   $('fov').classList.remove('on');
+  const fb=$('g-fb'); if(fb){ fb.style.display='none'; fb.innerHTML=''; fb.className='qfb'; }
+  const fx=$('fexplain'); if(fx){ fx.style.display='none'; fx.textContent=''; }
+  updateProgressText();
+  updateHintCounter();
   if(ST.total>=ST.maxQ){ endSession(); return; }
   genQ();
+  updateProgressText();
+  updateHintCounter();
 }
 
 
@@ -2524,9 +2677,12 @@ function openHint(title,body,okLabel,onOk,showCancel){
   $('m-hint-body').innerHTML=typeof body==='string'?body:body;
   const ok=$('m-hint-ok');
   ok.textContent=okLabel||'Got it!';
-  ok.onclick=onOk?()=>{onOk();}:()=>closeM('m-hint');
+  ok.onclick=onOk?()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); onOk(); }:()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); closeM('m-hint'); };
   const cancel=$('m-hint-cancel');
-  if(cancel) cancel.style.display=showCancel?'block':'none';
+  if(cancel){
+    cancel.style.display=showCancel?'block':'none';
+    cancel.onclick=()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); closeM('m-hint'); };
+  }
   openM('m-hint');
 }
 
@@ -2691,7 +2847,16 @@ function checkBadges(){
 
 function endSession(early=false){
   $('fov').classList.remove('on'); txCountForBreak=0;
-  if(ST.mode==='practice'){ go('home'); updateHomeUI(); return; }
+  if(ST.mode==='practice'){
+    const total=ST.total||0, correct=ST.correct||0, hints=ST.hintsUsed||0;
+    const ps=$('practice-summary'); if(ps) ps.textContent=`You answered ${total} questions · ${correct} correct · Hints used: ${hints}`;
+    document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+    $('scr-practice-complete').classList.add('on');
+    window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+    updateHomeUI();
+    setTimeout(()=>say(`Practice mode complete. You answered ${total} questions, got ${correct} correct, and used ${hints} hint${hints!==1?'s':''}.`),140);
+    return;
+  }
   if(ST.mode==='daily'&&!early){
     const t=today();
     if(CFG.lastDaily!==t){
@@ -2763,8 +2928,13 @@ function endSession(early=false){
   if(elapsed>10){const rtb=$('r-timer-box');if(rtb)rtb.style.display='';const rtv=$('r-timer');if(rtv)rtv.textContent=fmtElapsed(elapsed);}
   const eoc=$('eoc-card-wrap');
   if(eoc) eoc.innerHTML=!early&&pct>=80?`<div style="background:linear-gradient(135deg,rgba(233,30,140,.15),rgba(233,30,140,.05));border:2px solid rgba(233,30,140,.4);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">🏅 GREAT SESSION!</div><div style="font-family:var(--font-display);font-size:1.3rem;color:var(--green)">${CFG.playerName?CFG.playerName+' · ':''}⭐ ${pct}% Accuracy ⭐</div><div style="font-size:.72rem;color:var(--text3);margin-top:4px">Real health knowledge - keep it up!</div></div>`:'';
+  const rp=$('r-play-again');
+  if(rp){
+    if(lastMode==='daily'){ rp.textContent='▶ PLAY CHALLENGE MODE'; rp.onclick=()=>startMode('challenge'); }
+    else { rp.textContent='▶ PLAY AGAIN'; rp.onclick=()=>startMode(lastMode||ST.mode||'challenge'); }
+  }
   if(!CFG.noMotion&&pct>=70) confetti();
-  say(`Session complete! You got ${ST.correct} out of ${ST.total} correct.`);
+  setTimeout(()=>say(`${modeName} complete. You got ${ST.correct} out of ${ST.total} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`),140);
   updateHomeUI();
   go('results'); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
 }
@@ -3743,6 +3913,10 @@ function updateAaBtn(){
 const btn=document.getElementById('aa-btn');
 if(btn) btn.classList.toggle('large-on', !!CFG.largetext);
 }
+function speakResetAppWarning(){
+  say('This will clear all your data. Scores, badges, settings, coach clients, and player name. This cannot be undone.');
+}
+
 function resetApp(){
 openHint('Reset App?',
 '<p style="color:var(--text2);font-size:.88rem;line-height:1.6">This will clear <strong style="color:var(--red)">all your data</strong> - scores, badges, settings, coach clients, and player name. This cannot be undone.</p>',
@@ -3752,8 +3926,10 @@ const keys=STORAGE_KEYS;
 keys.forEach(k=>localStorage.removeItem(k));
 closeM('m-hint');
 setTimeout(()=>location.reload(), 300);
-}
+},
+true
 );
+setTimeout(()=>speakResetAppWarning(),120);
 }
 function printCoachReport(){
 if(!CLIENTS.length){

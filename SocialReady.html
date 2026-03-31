@@ -6,9 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0d0a07">
 <meta name="description" content="SocialReady - Social skills trainer for everyone. Practice conversations, boundaries, emotions, and real-life social situations. Free, accessible, built by someone who gets it.">
-<link rel="manifest" href="manifest.json"> content="SocialReady - Social skills trainer for everyone. Practice conversations, boundaries, emotions, and real-life social situations. Free, accessible, built by someone who gets it.">
 <title>SocialReady | LifeReady</title>
-<meta name="apple-mobile-web-app-title" content="LifeReady">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════
@@ -194,6 +192,10 @@ pointer-events:none;
 
 .tagline{text-align:center;color:var(--green);font-family:var(--font-mono);font-size:.72rem;letter-spacing:3px;margin-top:28px;padding:0 20px;line-height:1.6;text-shadow:0 0 12px #9b30d944;animation:blink 2.5s step-end infinite;}
 @keyframes blink{50%{opacity:0;}}
+.home-group{margin-top:14px;}
+.home-group-label{font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:7px;text-transform:uppercase;margin:0 0 10px;text-shadow:0 0 10px rgba(155,48,217,.18);}
+.home-tools-label{font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:5px;text-transform:uppercase;margin:0 0 12px;text-shadow:0 0 10px #9b30d955;display:flex;align-items:center;gap:10px;}
+.home-divider{height:1px;background:var(--border);margin:6px 0 14px;opacity:.55;}
 
 /* ══ DEMO SCREEN ══ */
 .demo-wrap{animation:fadeUp .4s ease;}
@@ -245,6 +247,7 @@ pointer-events:none;
 .pd{width:9px;height:9px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);transition:.3s;}
 .pd.done{background:var(--green);border-color:var(--green);}
 .pd.cur{background:var(--amber);border-color:var(--amber);box-shadow:0 0 7px var(--amber);}
+.progress-text{font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:1px;margin:-2px 0 12px;text-transform:uppercase;}
 
 /* ══ RECEIPT ══ */
 .receipt{background:var(--display-bg);border:2px solid var(--green3);border-radius:var(--radius-sm);padding:16px 18px;margin-bottom:12px;font-family:var(--font-mono);box-shadow:0 0 24px rgba(0,255,106,0.08),inset 0 1px 0 rgba(0,255,106,0.06);position:relative;}
@@ -704,69 +707,101 @@ max-width:320px;width:calc(100% - 32px);
     <div class="daily-streak" id="daily-streak-disp">🔥0</div>
   </div>
 
-  <div style="height:1px;background:var(--border);margin:4px 0 8px;opacity:.5"></div>
+  <div class="home-divider"></div>
 
-  <div class="mode-list">
-  <div class="mc" onclick="startMode('practice')">
-      <div class="mc-icon">🎓</div>
-      <div class="mc-body"><div class="mc-name">PRACTICE MODE</div>
-      <div class="mc-desc">No score · Unlimited hints · Take your time · All social topics</div></div>
-      <div class="mc-arr">›</div>
+  <div class="home-group">
+    <div class="home-group-label">START HERE</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc star" onclick="startMode('challenge')">
+        <div class="mc-icon">⭐</div>
+        <div class="mc-body"><div class="mc-name">SOCIAL CHALLENGE</div>
+        <div class="mc-desc">Score · Streaks · Levels · Mixed social skills · 10 questions</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('practice')">
+        <div class="mc-icon">🎓</div>
+        <div class="mc-body"><div class="mc-name">PRACTICE MODE</div>
+        <div class="mc-desc">No score · Unlimited hints · Take your time · All social topics</div></div>
+        <div class="mc-arr">›</div>
+      </div>
     </div>
-  <div class="mc star" onclick="startMode('challenge')">
-      <div class="mc-icon">⭐</div>
-      <div class="mc-body"><div class="mc-name">SOCIAL CHALLENGE</div>
-      <div class="mc-desc">Score · Streaks · Levels · Mixed social skills · 10 questions</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('situations')">
-      <div class="mc-icon">👁️</div>
-      <div class="mc-body"><div class="mc-name">READING THE ROOM</div>
-      <div class="mc-desc">Social situations · Reading cues · Knowing what to do · 10 questions</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('conversations')">
-      <div class="mc-icon">💬</div>
-      <div class="mc-body"><div class="mc-name">CONVERSATIONS</div>
-      <div class="mc-desc">Starting · Keeping · Ending conversations · Active listening</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('boundaries')">
-      <div class="mc-icon">🛡️</div>
-      <div class="mc-body"><div class="mc-name">BOUNDARIES</div>
-      <div class="mc-desc">Personal space · Saying no · Recognizing when a line is crossed</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="startMode('feelings')">
-      <div class="mc-icon">💛</div>
-      <div class="mc-body"><div class="mc-name">CONFLICT & FEELINGS</div>
-      <div class="mc-desc">Naming emotions · Empathy · Managing frustration · Conflict resolution</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-  <div class="mc" onclick="go('demo')">
-      <div class="mc-icon">👀</div>
-      <div class="mc-body"><div class="mc-name">WATCH A DEMO</div>
-      <div class="mc-desc">See exactly how SocialReady works before you start</div></div>
-      <div class="mc-arr">›</div>
-    </div>
-</div>
-
-  <div style="height:1px;background:var(--border);margin:12px 0 8px;opacity:.5"></div>
-  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #9b30d955">🧠 LEARNING TOOLS</div>
-  <div class="hgrid">
-    <div class="hb" onclick="go('situationsguide')"><div class="hi">👁️</div><div class="hl">Situations Guide</div><div class="hc">Reading social cues</div></div>
-    <div class="hb" onclick="go('feelingsguide')"><div class="hi">💛</div><div class="hl">Feelings Guide</div><div class="hc">Naming & managing emotions</div></div>
-    <div class="hb" onclick="go('boundariesguide')"><div class="hi">🛡️</div><div class="hl">Boundaries Guide</div><div class="hc">Healthy limits</div></div>
-    <div class="hb" onclick="go('convguide')"><div class="hi">💬</div><div class="hl">Conversation Guide</div><div class="hc">Tips &amp; scripts</div></div>
-    <div class="hb" onclick="go('conflictguide')"><div class="hi">🤝</div><div class="hl">Conflict Guide</div><div class="hc">Working through disagreements</div></div>
-    <div class="hb" onclick="go('callscripts')"><div class="hi">📞</div><div class="hl">Call Scripts</div><div class="hc">What to say &amp; when</div></div>
-    <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best results</div></div>
-    <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct">None yet</span></div></div>
-    <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Social Coach</div><div class="hc">Track clients</div></div>
-    <div class="hb" onclick="go('guide')"><div class="hi">❓</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
-    <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
-    <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
   </div>
+
+  <div class="home-group">
+    <div class="home-group-label">SKILL TRACKS</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc" onclick="startMode('situations')">
+        <div class="mc-icon">👁️</div>
+        <div class="mc-body"><div class="mc-name">READING THE ROOM</div>
+        <div class="mc-desc">Social situations · Reading cues · Knowing what to do · 10 questions</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('conversations')">
+        <div class="mc-icon">💬</div>
+        <div class="mc-body"><div class="mc-name">CONVERSATIONS</div>
+        <div class="mc-desc">Starting · Keeping · Ending conversations · Active listening</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('boundaries')">
+        <div class="mc-icon">🛡️</div>
+        <div class="mc-body"><div class="mc-name">BOUNDARIES</div>
+        <div class="mc-desc">Personal space · Saying no · Recognizing when a line is crossed</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('feelings')">
+        <div class="mc-icon">💛</div>
+        <div class="mc-body"><div class="mc-name">CONFLICT & FEELINGS</div>
+        <div class="mc-desc">Naming emotions · Empathy · Managing frustration · Conflict resolution</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">LEARN THE FLOW</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc" onclick="go('demo')">
+        <div class="mc-icon">👀</div>
+        <div class="mc-body"><div class="mc-name">WATCH A DEMO</div>
+        <div class="mc-desc">See exactly how SocialReady works before you start</div></div>
+        <div class="mc-arr">›</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-divider"></div>
+  <div class="home-tools-label">🧠 <span>LEARNING TOOLS</span></div>
+
+  <div class="home-group">
+    <div class="home-group-label">LEARN</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('situationsguide')"><div class="hi">👁️</div><div class="hl">Situations Guide</div><div class="hc">Reading social cues</div></div>
+      <div class="hb" onclick="go('feelingsguide')"><div class="hi">💛</div><div class="hl">Feelings Guide</div><div class="hc">Naming &amp; managing emotions</div></div>
+      <div class="hb" onclick="go('boundariesguide')"><div class="hi">🛡️</div><div class="hl">Boundaries Guide</div><div class="hc">Healthy limits</div></div>
+      <div class="hb" onclick="go('convguide')"><div class="hi">💬</div><div class="hl">Conversation Guide</div><div class="hc">Tips &amp; scripts</div></div>
+      <div class="hb" onclick="go('conflictguide')"><div class="hi">🤝</div><div class="hl">Conflict Guide</div><div class="hc">Working through disagreements</div></div>
+      <div class="hb" onclick="go('callscripts')"><div class="hi">📞</div><div class="hl">Call Scripts</div><div class="hc">What to say &amp; when</div></div>
+      <div class="hb" onclick="go('guide')"><div class="hi">❓</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">PROGRESS</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best results</div></div>
+      <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct">None yet</span></div></div>
+      <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Social Coach</div><div class="hc">Track clients</div></div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">APP</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
+      <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
+    </div>
+  </div>
+
   <div class="tagline" id="tagline">CONNECTION STARTS WITH AWARENESS</div>
 </div>
 
@@ -866,16 +901,12 @@ max-width:320px;width:calc(100% - 32px);
   </div>
   <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px" id="score-filters">
     <button class="sopt on" onclick="filterScores('all',this)">All</button>
-    <button class="sopt" onclick="filterScores('Home Challenge',this)">Challenge</button>
-    <button class="sopt" onclick="filterScores('Laundry',this)">Laundry</button>
-    <button class="sopt" onclick="filterScores('Budget',this)">Budget</button>
-    <button class="sopt" onclick="filterScores('Home Safety',this)">Safety</button>
-    <button class="sopt" onclick="filterScores('Food Safety',this)">Food</button>
-    <button class="sopt" onclick="filterScores('Renting',this)">Renting</button>
-    <button class="sopt" onclick="filterScores('Daily',this)">Daily</button>
-    <button class="sopt" onclick="filterScores('Change Drill',this)">Change Drill</button>
-    <button class="sopt" onclick="filterScores('Money ID Quiz',this)">Quiz</button>
-    <button class="sopt" onclick="filterScores('Do I Have Enough',this)">Enough?</button>
+    <button class="sopt" onclick="filterScores('Social Challenge',this)">Challenge</button>
+    <button class="sopt" onclick="filterScores('Reading the Room',this)">Situations</button>
+    <button class="sopt" onclick="filterScores('Conversations',this)">Conversations</button>
+    <button class="sopt" onclick="filterScores('Boundaries',this)">Boundaries</button>
+    <button class="sopt" onclick="filterScores('Conflict &amp; Feelings',this)">Feelings</button>
+    <button class="sopt" onclick="filterScores('Daily Challenge',this)">Daily</button>
   </div>
   <button id="read-scores-btn" style="display:block;width:100%;margin:10px 0 4px;padding:9px 16px;background:transparent;border:1px solid #9b30d955;border-radius:20px;color:#9b30d9;font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px #9b30d944">🔊  READ MY SCORES ALOUD</button>
   <div id="scores-wrap"><div class="no-data">No scores yet.<br>Complete a shift to see your best!</div></div>
@@ -1545,6 +1576,8 @@ max-width:320px;width:calc(100% - 32px);
     </div>
   </div>
   <div class="pdots" id="pdots"></div>
+  <div class="progress-text" id="progress-text">Question 1 of 10</div>
+  <div class="progress-text" id="hints-used" style="font-size:.64rem;color:var(--text2);margin-top:-8px;margin-bottom:10px">Hints used: 0</div>
   <div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
 
   <div class="qpanel" id="qpanel">
@@ -1557,8 +1590,8 @@ max-width:320px;width:calc(100% - 32px);
   <div id="g-hint-bar" style="display:none;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:8px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
 
   <div style="display:flex;gap:8px;margin-top:8px">
-    <button class="abtn" id="hint-btn" onclick="doHint()" style="flex:1">💡 HINT</button>
-    <button class="abtn" onclick="say(currentQ?currentQ.q:'')" style="flex:1">🔊 SAY AGAIN</button>
+    <button class="abtn" id="hint-btn" onclick="doHint(this)" style="flex:1">💡 HINT</button>
+    <button class="abtn" id="sayagain-btn" onclick="socialSayAgain(this)" style="flex:1">🔊 SAY AGAIN</button>
   </div>
 </div>
 <!-- ══════════ FEEDBACK ══════════ -->
@@ -2916,6 +2949,65 @@ function defaultCFG(){
   return {audio:true,lightMode:false,hiContrast:false,largeText:false,largeBtns:false,noMotion:false,breaks:false,errorless:false,colorBlind:false,speed:'normal',dailyStreak:0,lastDaily:'',playerName:null,namePrompted:false,coachPin:null,onboardingSeen:false,appOpens:0,uniqueDays:[],settingsUsed:0,settingsToggled:{},modesPlayed:{}};
 }
 
+
+function socialFlashActionButton(btn,type){
+  if(!btn) return;
+  const oldBorder = btn.style.borderColor;
+  const oldColor = btn.style.color;
+  const oldShadow = btn.style.boxShadow;
+  const oldBg = btn.style.background;
+  btn.style.borderColor = 'var(--purple)';
+  btn.style.color = 'var(--purple)';
+  btn.style.background = 'rgba(155,48,217,.12)';
+  btn.style.boxShadow = '0 0 18px rgba(155,48,217,.28)';
+  setTimeout(()=>{
+    btn.style.borderColor = oldBorder;
+    btn.style.color = oldColor;
+    btn.style.boxShadow = oldShadow;
+    btn.style.background = oldBg;
+  }, 650);
+}
+function socialPulseButtonLabel(btn,label,ms){
+  if(!btn) return;
+  const old = btn.innerHTML;
+  btn.innerHTML = label;
+  setTimeout(()=>{ if(btn) btn.innerHTML = old; }, ms || 900);
+}
+function socialHintFlash(btn){
+  socialFlashActionButton(btn,'hint');
+  socialPulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function socialAudioFlash(btn){
+  socialFlashActionButton(btn,'audio');
+  socialPulseButtonLabel(btn,'🔊 READING...',850);
+}
+function socialSayAgain(btn){
+  if(btn) socialAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  say(currentQ?currentQ.q:'');
+}
+
+function stripLeadEmojiText(s){
+  return String(s||'')
+    .replace(/^[\p{Emoji_Presentation}\p{Extended_Pictographic}\u2600-\u27BF\uFE0F\s]+/gu,'')
+    .trim();
+}
+function speakIntroCardText(title, lines){
+  try{
+    if(window.speechSynthesis) speechSynthesis.cancel();
+    const cleanTitle = stripLeadEmojiText(title);
+    const parts = [];
+    if(cleanTitle) parts.push(cleanTitle + '.');
+    (lines||[]).forEach(row=>{
+      const head = stripLeadEmojiText(row && row[1] ? row[1] : '');
+      const body = stripLeadEmojiText(row && row[2] ? row[2] : '');
+      if(head) parts.push(head + '.');
+      if(body) parts.push(body);
+    });
+    const text = parts.join(' ').trim();
+    if(text) say(text);
+  }catch(e){}
+}
 function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
   const body=lines.map(([em,bold,sub])=>`
     <div style="display:flex;gap:11px;align-items:flex-start;margin-bottom:10px">
@@ -2924,7 +3016,17 @@ function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
     </div>`).join('');
   openHint(`${icon} ${title}`,
     `<div style="background:linear-gradient(135deg,${color}18,${color}06);border:1px solid ${color}55;border-radius:10px;padding:13px 14px;margin-bottom:4px">${body}</div>`,
-    btnLabel||'Let\'s Go! →', onConfirm);
+    btnLabel||'Let\'s Go! →', onConfirm, true);
+  setTimeout(()=>{
+    speakIntroCardText(title, lines);
+    const cancel = document.getElementById('m-hint-cancel');
+    if(cancel){
+      cancel.onclick = () => {
+        closeM('m-hint');
+        go('home');
+      };
+    }
+  },120);
 }
 
 function replayModeIntro(){
@@ -2954,8 +3056,8 @@ function startMode(mode){
   {const _z=$('g-lvl');if(_z)_z.style.display=(mode==='challenge')?'':'none';}
   const endBtn=$('end-btn');
   if(endBtn) endBtn.textContent=isP?'‹ DONE':'‹ END';
-  const labels={challenge:'HOME CHALLENGE',practice:'PRACTICE',laundry:'LAUNDRY MASTER',budget:'BUDGET BASICS',safety:'HOME SAFETY',food:'FOOD SAFETY',renting:'RENTING BASICS',daily:'DAILY CHALLENGE'};
-  $('gmode-lbl').textContent=labels[mode]||'HOME CHALLENGE';
+  const labels={challenge:'SOCIAL CHALLENGE',practice:'PRACTICE MODE',situations:'READING THE ROOM',conversations:'CONVERSATIONS',boundaries:'BOUNDARIES',feelings:'CONFLICT & FEELINGS',daily:'DAILY CHALLENGE'};
+  $('gmode-lbl').textContent=labels[mode]||'SOCIAL CHALLENGE';
   CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed[mode]=true;
   awardBadge('built_diff');saveAll();
   buildDots();go('game');
@@ -3139,12 +3241,14 @@ function answerQ(chosen){
   },300);
 }
 
-function doHint(){
+function doHint(btn){
   if(!currentQ) return;
   gameHintsUsed++; ST.hintsUsed=(ST.hintsUsed||0)+1;
+  if(btn) socialHintFlash(btn);
   const hint=currentQ.hint||'Think about what makes the most sense in real life.';
   {const _z=$('g-hint-bar');if(_z)_z.textContent='💡 '+hint;}
   {const _z=$('g-hint-bar');if(_z)_z.style.display='block';}
+  updateHintsUsedUI();
   say(hint);
 }
 
@@ -3252,6 +3356,19 @@ function renderBadges(){
   setTimeout(()=>makeTappable('scr-badges'),50);
 }
 
+function updProgressText(){
+  const el=$('progress-text');
+  if(!el||!ST) return;
+  const current=Math.min(ST.total+1, ST.maxQ);
+  el.textContent=ST.total>=ST.maxQ ? `Complete · ${ST.maxQ} of ${ST.maxQ}` : `Question ${current} of ${ST.maxQ}`;
+}
+function updateHintsUsedUI(){
+  const el=$('hints-used');
+  if(!el||!ST) return;
+  el.style.display='';
+  el.textContent=`Hints used: ${ST.hintsUsed||0}`;
+}
+
 function buildDots(){
   $('pdots').innerHTML='';
   for(let i=0;i<ST.maxQ;i++){
@@ -3259,6 +3376,8 @@ function buildDots(){
     d.className='pd'+(i===0?' cur':'');
     d.id='pd'+i; $('pdots').appendChild(d);
   }
+  updProgressText();
+  updateHintsUsedUI();
 }
 
 function updDots(){
@@ -3268,6 +3387,8 @@ function updDots(){
     else if(i===ST.total)d.className='pd cur';
     else d.className='pd';
   }
+  updProgressText();
+  updateHintsUsedUI();
 }
 function checkBadges(){
   if(ST.streak>=3) awardBadge('hot_start');
@@ -3366,9 +3487,12 @@ function endSession(early=false){
     if(ST.mode==='daily'){rpa.textContent='▶ PLAY CHALLENGE MODE'; rpa.onclick=()=>startMode('challenge');}
     else{rpa.textContent='▶ PLAY AGAIN'; rpa.onclick=()=>startMode(ST.mode);}
   }
-  say(`Session complete! You got ${ST.correct} out of ${ST.total} correct.`);
   updateHomeUI();
   go('results'); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+  setTimeout(()=>{
+    chime();
+    say(`${modeName} complete. You got ${ST.correct} out of ${ST.total} correct, and used ${gameHintsUsed||0} hint${(gameHintsUsed||0)!==1?'s':''}.`);
+  },120);
 }
 
 function replayMode(){ startMode(lastMode); }
@@ -4346,15 +4470,21 @@ if(btn) btn.classList.toggle('large-on', !!CFG.largetext);
 }
 function resetApp(){
 openHint('Reset App?',
-'<p style="color:var(--text2);font-size:.88rem;line-height:1.6">This will clear <strong style="color:var(--red)">all your data</strong> - scores, badges, settings, coach clients, and player name. This cannot be undone.</p>',
+'<p id="reset-description" class="reset-description" data-reset-text style="color:var(--text2);font-size:.88rem;line-height:1.6">This will clear <strong style="color:var(--red)">all your data</strong> - scores, badges, settings, coach clients, and player name. This cannot be undone.</p>',
 '⚠️ Yes, Reset Everything',
 ()=>{
 const keys=STORAGE_KEYS;
 keys.forEach(k=>localStorage.removeItem(k));
 closeM('m-hint');
 setTimeout(()=>location.reload(), 300);
-}
+},
+true
 );
+setTimeout(()=>{
+  if(typeof say==='function'){
+    say('This will clear all your data. Scores, badges, settings, coach clients, and player name. This cannot be undone.');
+  }
+},150);
 }
 function printCoachReport(){
 if(!CLIENTS.length){
@@ -4678,6 +4808,7 @@ document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preven
 document.addEventListener('gesturestart',function(e){e.preventDefault();});
 let _lt=0;document.addEventListener('touchend',function(e){const n=Date.now();if(n-_lt<300)e.preventDefault();_lt=n;},false);
 </script>
+
 
 </body>
 </html>

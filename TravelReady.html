@@ -197,6 +197,23 @@ pointer-events:none;
 .hb .hc{font-size:0.62rem;color:var(--text2);margin-top:2px;}
 
 .tagline{text-align:center;color:var(--green);font-family:var(--font-mono);font-size:.72rem;letter-spacing:3px;margin-top:28px;padding:0 20px;line-height:1.6;text-shadow:0 0 12px #0a939644;animation:blink 2.5s step-end infinite;}
+.home-group{margin-top:14px;}
+.home-group-label{font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:7px;text-transform:uppercase;margin:0 0 10px;text-shadow:0 0 10px rgba(10,147,150,.18);}
+.home-tools-label{font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:5px;text-transform:uppercase;margin:0 0 12px;text-shadow:0 0 10px #0a939655;display:flex;align-items:center;gap:10px;}
+.home-divider{height:1px;background:var(--border);margin:6px 0 14px;opacity:.55;}
+.gmeta{margin:-2px 0 12px}
+.gqcount{font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.ghintcount{font-family:var(--font-mono);font-size:.64rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase}
+.abtn.flash-hint,
+.abtn.flash-audio{
+  transform: scale(.985);
+  border-color: var(--green) !important;
+  color: var(--green) !important;
+  background: var(--green-light) !important;
+  box-shadow: 0 0 0 1px var(--green) inset,
+              0 0 16px rgba(10,147,150,.3);
+}
+
 @keyframes blink{50%{opacity:0;}}
 
 /* ══ DEMO SCREEN ══ */
@@ -353,7 +370,7 @@ pointer-events:none;
 .ftitle{font-family:var(--font-mono);font-size:1.3rem;font-weight:700;margin-bottom:7px;}
 .ftitle.ok{color:var(--green);}
 .ftitle.bad{color:var(--red);}
-.fmsg{font-size:0.9rem;color:var(--text2);line-height:1.55;margin-bottom:18px;}
+.fmsg{font-size:0.9rem;color:var(--text2);line-height:1.55;margin-bottom:18px;display:block;}
 .fnext{background:var(--green);color:#000;border:none;border-radius:var(--radius-sm);padding:13px 28px;font-family:var(--font-mono);font-weight:700;font-size:0.88rem;letter-spacing:1px;cursor:pointer;transition:.2s;width:100%;min-height:var(--btn-min);}
 .fnext:hover{background:var(--green2);}
 .fnext.bad{background:var(--red);color:#fff;}
@@ -681,8 +698,9 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div class="home-tagline">- INDEPENDENT TRAVEL TRAINER -</div>
 <div class="home-sub" id="home-sub">Practice transit skills · Navigate confidently · Get travel ready</div>
-<button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-family:var(--font-mono);font-size:.65rem;color:#0a9396;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #0a939644;background:transparent;border:1px solid #0a939655;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB  ·  All Apps</button>
+<button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-size:.65rem;color:#0a9396;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #0a939644;background:transparent;border:1px solid #0a939655;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB &nbsp;·&nbsp; All Apps</button>
 </div>
+
 <div id="onboarding-card" style="display:none;background:linear-gradient(135deg,var(--panel),var(--panel2));border:2px solid var(--green);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;animation:fadeUp .5s ease">
 <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:8px">👋 WELCOME TO TRAVELREADY!</div>
 <p style="font-size:.84rem;color:var(--text2);line-height:1.6;margin-bottom:12px">New here? Start with <strong style="color:var(--text)">Watch a Demo</strong> to see how TravelReady works - then try <strong style="color:var(--text)">Practice Mode</strong> when you are ready.</p>
@@ -691,6 +709,7 @@ max-width:320px;width:calc(100% - 32px);
 <button class="rsec" onclick="dismissOnboarding()" style="flex:1;padding:11px;font-size:.8rem">Got It ✓</button>
 </div>
 </div>
+
 <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;margin-top:4px;text-shadow:0 0 10px #0a939655">🎮 PLAY</div>
 <div class="daily-card" id="daily-card" onclick="startDaily()">
 <div class="daily-icon">📅</div>
@@ -700,20 +719,30 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div class="daily-streak" id="daily-streak-disp">🔥0</div>
 </div>
-<div style="height:1px;background:var(--border);margin:4px 0 8px;opacity:.5"></div>
-<div class="mode-list">
-<div class="mc" onclick="startMode('practice')">
-<div class="mc-icon">🎓</div>
-<div class="mc-body"><div class="mc-name">PRACTICE MODE</div>
-<div class="mc-desc">No score · Unlimited hints · Take your time · All travel topics</div></div>
-<div class="mc-arr">›</div>
-</div>
+
+<div class="home-divider"></div>
+
+<div class="home-group">
+<div class="home-group-label">START HERE</div>
+<div class="mode-list" style="margin-top:0">
 <div class="mc star" onclick="startMode('challenge')">
 <div class="mc-icon">🗺️</div>
 <div class="mc-body"><div class="mc-name">TRANSIT CHALLENGE</div>
 <div class="mc-desc">Score · Streaks · Levels · Mixed travel skills · 10 questions</div></div>
 <div class="mc-arr">›</div>
 </div>
+<div class="mc" onclick="startMode('practice')">
+<div class="mc-icon">🎓</div>
+<div class="mc-body"><div class="mc-name">PRACTICE MODE</div>
+<div class="mc-desc">No score · Unlimited hints · Take your time · All travel topics</div></div>
+<div class="mc-arr">›</div>
+</div>
+</div>
+</div>
+
+<div class="home-group">
+<div class="home-group-label">SKILL TRACKS</div>
+<div class="mode-list" style="margin-top:0">
 <div class="mc" onclick="startMode('transit')">
 <div class="mc-icon">🚌</div>
 <div class="mc-body"><div class="mc-name">BUS &amp; TRAIN</div>
@@ -744,6 +773,12 @@ max-width:320px;width:calc(100% - 32px);
 <div class="mc-desc">Feeling unsafe · Strangers · Emergencies · Trust your instincts</div></div>
 <div class="mc-arr">›</div>
 </div>
+</div>
+</div>
+
+<div class="home-group">
+<div class="home-group-label">LEARN THE FLOW</div>
+<div class="mode-list" style="margin-top:0">
 <div class="mc" onclick="go('demo')">
 <div class="mc-icon">👀</div>
 <div class="mc-body"><div class="mc-name">WATCH A DEMO</div>
@@ -751,8 +786,13 @@ max-width:320px;width:calc(100% - 32px);
 <div class="mc-arr">›</div>
 </div>
 </div>
-<div style="height:1px;background:var(--border);margin:12px 0 8px;opacity:.5"></div>
-<div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #0a939655">🧠 LEARNING TOOLS</div>
+</div>
+
+<div class="home-divider"></div>
+<div class="home-tools-label">🧠 <span>LEARNING TOOLS</span></div>
+
+<div class="home-group">
+<div class="home-group-label">LEARN</div>
 <div class="hgrid">
 <div class="hb" onclick="go('transitguide')"><div class="hi">🚌</div><div class="hl">Transit Guide</div><div class="hc">How to read schedules</div></div>
 <div class="hb" onclick="go('safetyguide')"><div class="hi">🛡️</div><div class="hl">Safety Guide</div><div class="hc">Staying safe while traveling</div></div>
@@ -760,14 +800,27 @@ max-width:320px;width:calc(100% - 32px);
 <div class="hb" onclick="go('scheduleguide')"><div class="hi">📅</div><div class="hl">Schedules Guide</div><div class="hc">Times, columns &amp; symbols</div></div>
 <div class="hb" onclick="go('faresguide')"><div class="hi">💰</div><div class="hl">Fares &amp; Passes</div><div class="hc">Costs &amp; how to pay</div></div>
 <div class="hb" onclick="go('callscripts')"><div class="hi">📞</div><div class="hl">Call Scripts</div><div class="hc">What to say &amp; when</div></div>
+<div class="hb" onclick="go('guide')"><div class="hi">❓</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
+</div>
+</div>
+
+<div class="home-group">
+<div class="home-group-label">PROGRESS</div>
+<div class="hgrid">
 <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best results</div></div>
 <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct">None yet</span></div></div>
 <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Travel Coach</div><div class="hc">Track clients</div></div>
-<div class="hb" onclick="go('guide')"><div class="hi">❓</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
+</div>
+</div>
+
+<div class="home-group">
+<div class="home-group-label">APP</div>
+<div class="hgrid">
 <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
-<div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div>
+<div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
 </div>
 </div>
+
 <div class="tagline" id="tagline">THE WORLD IS YOURS TO EXPLORE</div>
 </div>
 <!-- ══════════ GAME ══════════ -->
@@ -781,6 +834,23 @@ max-width:320px;width:calc(100% - 32px);
 <div class="demo-dots" id="demo-dots"></div>
 <div class="demo-wrap" id="demo-content"></div>
 </div>
+
+<div class="scr" id="scr-practice-complete">
+  <div style="padding-bottom:10px;animation:fadeUp .5s ease;text-align:center">
+    <div style="background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:22px 18px;margin-bottom:12px">
+      <div style="font-size:3rem;margin-bottom:8px">🧭</div>
+      <div style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:8px">PRACTICE MODE COMPLETE</div>
+      <div style="font-size:.88rem;color:var(--text2);margin-bottom:10px">Nice work. You completed a practice session.</div>
+      <div id="practice-summary" style="font-family:var(--font-mono);font-size:.82rem;color:var(--amber);line-height:1.6"></div>
+    </div>
+    <div class="rbtns" style="margin-top:12px">
+      <button class="rpri" onclick="startMode('practice')">▶ PRACTICE AGAIN</button>
+      <button class="rsec" onclick="startMode('challenge')">🗺️ TRY CHALLENGE</button>
+      <button class="rsec" onclick="go('home')">← MAIN MENU</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══════════ RESULTS ══════════ -->
 <div class="scr" id="scr-results">
 <div style="padding-bottom:10px;animation:fadeUp .5s ease">
@@ -794,8 +864,8 @@ max-width:320px;width:calc(100% - 32px);
 </svg>
 <div id="grade-letter" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--green);text-shadow:0 0 20px rgba(0,200,81,.5);line-height:1">A+</div>
 </div>
-<div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">SHIFT COMPLETE</div>
-<div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You helped 10 customers today!</div>
+<div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">TRANSIT CHALLENGE COMPLETE</div>
+<div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You answered 10 questions!</div>
 <div id="r-level-badge" style="display:inline-block;background:rgba(255,187,51,.14);border:1px solid var(--amber);border-radius:20px;padding:3px 14px;font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:1px">BEGINNER</div>
 </div>
 <!-- Personal Best Banner (hidden by default) -->
@@ -853,18 +923,16 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div id="score-filters" style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">
 <button class="sopt on" onclick="filterScores('all',this)">All</button>
-<button class="sopt" onclick="filterScores('Home Challenge',this)">Challenge</button>
-<button class="sopt" onclick="filterScores('Laundry',this)">Laundry</button>
-<button class="sopt" onclick="filterScores('Budget',this)">Budget</button>
-<button class="sopt" onclick="filterScores('Home Safety',this)">Safety</button>
-<button class="sopt" onclick="filterScores('Food Safety',this)">Food</button>
-<button class="sopt" onclick="filterScores('Renting',this)">Renting</button>
-<button class="sopt" onclick="filterScores('Daily',this)">Daily</button>
-<button class="sopt" onclick="filterScores('Change Drill',this)">Change Drill</button>
-<button class="sopt" onclick="filterScores('Money ID Quiz',this)">Quiz</button>
-<button class="sopt" onclick="filterScores('Do I Have Enough',this)">Enough?</button>
+<button class="sopt" onclick="filterScores('Travel Challenge',this)">Challenge</button>
+<button class="sopt" onclick="filterScores('Bus &amp; Train',this)">Transit</button>
+<button class="sopt" onclick="filterScores('Getting Around',this)">Navigate</button>
+<button class="sopt" onclick="filterScores('Money &amp; Travel',this)">Money</button>
+<button class="sopt" onclick="filterScores('Planning a Trip',this)">Plan</button>
+<button class="sopt" onclick="filterScores('Travel Safety',this)">Safety</button>
+<button class="sopt" onclick="filterScores('Daily Challenge',this)">Daily</button>
+<button class="sopt" onclick="filterScores('Practice Mode',this)">Practice</button>
 </div>
-<button id="read-scores-btn" style="display:block;width:100%;margin:10px 0 4px;padding:9px 16px;background:transparent;border:1px solid #0a939655;border-radius:20px;color:#0a9396;font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px #0a939644">🔊  READ MY SCORES ALOUD</button>
+<button id="read-scores-btn"  style="display:block;width:100%;margin:10px 0 4px;padding:9px 16px;background:transparent;border:1px solid #0a939655;border-radius:20px;color:#0a9396;font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px #0a939644">🔊  READ MY SCORES ALOUD</button>
 <div id="scores-wrap"><div class="no-data">No scores yet.<br/>Complete a shift to see your best!</div></div>
 </div>
 <!-- ══════════ BADGES ══════════ -->
@@ -1600,6 +1668,7 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 </div>
 <div class="pdots" id="pdots"></div>
+<div class="gmeta"><div class="gqcount" id="gqcount">QUESTION 1 OF 10</div><div class="ghintcount" id="ghintcount">HINTS USED: 0</div></div>
 <div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
 <div class="qpanel" id="qpanel">
 <div id="g-question" style="font-size:.95rem;font-weight:800;color:var(--text);line-height:1.55;margin-bottom:14px;font-family:var(--font-mono)"></div>
@@ -1609,8 +1678,8 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div id="g-hint-bar" style="display:none;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:8px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
 <div style="display:flex;gap:8px;margin-top:8px">
-<button class="abtn" id="hint-btn" onclick="doHint()" style="flex:1">💡 HINT</button>
-<button class="abtn" onclick="say(currentQ?currentQ.q:'')" style="flex:1">🔊 SAY AGAIN</button>
+<button class="abtn" id="hint-btn" onclick="doHint(this)" style="flex:1">💡 HINT</button>
+<button class="abtn" id="say-again-btn" onclick="gameSayAgain(this)" style="flex:1">🔊 SAY AGAIN</button>
 </div>
 </div>
 <!-- ══════════ FEEDBACK ══════════ -->
@@ -2358,7 +2427,13 @@ function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
     </div>`).join('');
   openHint(`${icon} ${title}`,
     `<div style="background:linear-gradient(135deg,${color}18,${color}06);border:1px solid ${color}55;border-radius:10px;padding:13px 14px;margin-bottom:4px">${body}</div>`,
-    btnLabel||'Let\'s Go! →', onConfirm);
+    btnLabel||'Let\'s Go! →', onConfirm, true);
+  const cancel=$('m-hint-cancel');
+  if(cancel){
+    cancel.style.display='block';
+    cancel.onclick=()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); closeM('m-hint'); go('home'); };
+  }
+  setTimeout(()=>playIntroAudio(title, lines),180);
 }
 
 function replayModeIntro(){
@@ -2374,6 +2449,58 @@ function replayModeIntro(){
   };
   const d=map[ST.mode];
   if(d) showModeIntro(d[0],d[1],d[2],d[3],'Got it - Back to the trip!',()=>closeM('m-hint'));
+}
+
+
+
+function pulseButtonLabel(el, text, restoreAfter=850){
+  if(!el) return;
+  const original = el.dataset.originalLabel || el.textContent;
+  el.dataset.originalLabel = original;
+  el.textContent = text;
+  clearTimeout(el._restoreTimer);
+  el._restoreTimer = setTimeout(()=>{
+    el.textContent = el.dataset.originalLabel || original;
+  }, restoreAfter);
+}
+
+function gameHintFlash(btn){
+  flashActionButton(btn,'hint');
+  pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+
+function gameAudioFlash(btn){
+  flashActionButton(btn,'audio');
+  pulseButtonLabel(btn,'🔊 READING...',850);
+}
+
+function gameSayAgain(btn){
+  if(btn) gameAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const txt=(currentQ&&currentQ.q)?currentQ.q:(document.getElementById('g-question')?.textContent||'');
+  if(txt) say(txt);
+}
+function updateGameMeta(){
+  const q=$('gqcount'), h=$('ghintcount');
+  if(q && ST) q.textContent=`QUESTION ${Math.min((ST.total||0)+1, ST.maxQ||0)} OF ${ST.maxQ||0}`;
+  if(h && ST) h.textContent=`HINTS USED: ${ST.hintsUsed||0}`;
+}
+function flashActionButton(el, kind='audio'){
+  if(!el) return;
+  el.classList.remove('flash-hint','flash-audio');
+  void el.offsetWidth;
+  el.classList.add(kind==='hint'?'flash-hint':'flash-audio');
+  setTimeout(()=>el.classList.remove('flash-hint','flash-audio'),650);
+}
+function sayAgain(btn){
+  if(btn) flashActionButton(btn,'audio');
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const txt=(currentQ&&currentQ.q)?currentQ.q:(document.getElementById('g-question')?.textContent||'');
+  if(txt) say(txt);
+}
+function playIntroAudio(title, lines){
+  const spoken = [title].concat((lines||[]).map(x=>[x[1],x[2]].filter(Boolean).join('. '))).join('. ');
+  say(spoken);
 }
 
 function startMode(mode){
@@ -2395,8 +2522,9 @@ function startMode(mode){
   CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed[mode]=true;
   awardBadge('built_diff');saveAll();
   buildDots();go('game');
+  updateGameMeta();
 
-  const launch=()=>{ genQ(); };
+  const launch=()=>{ genQ(); updateGameMeta(); };
 
   const intros={
     transit:  ['🚌','BUS & TRAIN','#0a9396',[['🗺️','10 transit knowledge questions.','Routes, schedules, transfers, and signs.'],['📖','Tip: check the Transit Guide in Learn.','It has a full schedule-reading reference.'],['🔢','Graded at the end.','']],'Start Bus & Train →'],
@@ -2500,6 +2628,7 @@ function genQ(){
   }
 
   currentQ=genQuestionDedup(ST.mode);
+  updateGameMeta();
   updDots();
   $('g-score').textContent=ST.score;
   {const _z=$('g-lvl');if(_z)_z.textContent=getLvl(ST.score).n;}
@@ -2546,31 +2675,54 @@ function answerQ(chosen){
   const WRONG=['Not quite - see explanation below.','Almost! Read why below.','That\'s okay - the right answer is shown.','Not this time. Keep going!'];
   const fb=$('g-fb');
   if(fb){
-    fb.className='qfb on '+(ok?'ok':'bad'); fb.style.display='block';
-    fb.innerHTML=(ok?`<strong style="color:#00c851">✅ ${rand(CORRECT)}</strong>`:`<strong style="color:#ff4444">❌ ${rand(WRONG)}</strong>`)
-      +(currentQ.explain?`<div style="font-size:.78rem;color:var(--text3);margin-top:8px;line-height:1.6">${currentQ.explain}</div>`:'');
+    fb.className='qfb '+(ok?'ok':'bad');
+    fb.style.display='none';
+    fb.innerHTML='';
   }
   awardBadge('first_trip');
   if(ok) awardBadge('first_correct');
   setTimeout(()=>{
-    const fn=$('fnext'); if(fn) fn.textContent=ST.total>=ST.maxQ?'SEE RESULTS →':'NEXT →';
+    const fn=$('fnext');
+    if(fn){
+      fn.textContent=ST.total>=ST.maxQ?'SEE RESULTS →':'NEXT →';
+      fn.classList.toggle('bad', !ok);
+    }
+    const card=$('fcard');
+    if(card) card.classList.toggle('wrong', !ok);
+    const emoji=$('femoji');
+    if(emoji) emoji.textContent = ok ? '✅' : '❌';
+    const title=$('ftitle');
+    if(title){
+      title.textContent = ok ? rand(CORRECT) : rand(WRONG);
+      title.className = 'ftitle ' + (ok ? 'ok' : 'bad');
+    }
+    const msg=$('fmsg');
+    if(msg){
+      msg.textContent = currentQ && currentQ.explain
+        ? currentQ.explain
+        : (ok ? 'Nice work. You picked the best answer.' : 'Take another look at why the correct answer works better.');
+    }
     const feoc=$('feoc'); if(feoc) feoc.style.display='none';
     $('fov').classList.add('on');
-    say(ok?'Correct! Great job.':('Not quite. '+(currentQ.explain||'').split('.')[0]+'.'));
+    say(ok ? ('Correct. ' + ((currentQ && currentQ.explain) || 'Nice work.')) : ('Not quite. ' + ((currentQ && currentQ.explain) || 'The right answer is shown.')));
   },300);
 }
 
-function doHint(){
+function doHint(btn){
   if(!currentQ) return;
+  if(btn) gameHintFlash(btn);
   gameHintsUsed++; ST.hintsUsed=(ST.hintsUsed||0)+1;
+  updateGameMeta();
   const hint=currentQ.hint||'Think about what makes the most sense in real life.';
-  {const _z=$('g-hint-bar');if(_z)_z.textContent='💡 '+hint;}
-  {const _z=$('g-hint-bar');if(_z)_z.style.display='block';}
+  const hb=document.getElementById('g-hint-bar');
+  if(hb){ hb.textContent='💡 '+hint; hb.style.display='block'; }
   say(hint);
 }
 
 function nextQ_game(){
   $('fov').classList.remove('on');
+  const fb=$('g-fb'); if(fb){ fb.style.display='none'; fb.innerHTML=''; fb.className='qfb'; }
+  updateGameMeta();
   if(ST.total>=ST.maxQ){ endSession(); return; }
   genQ();
 }
@@ -2581,9 +2733,12 @@ function openHint(title,body,okLabel,onOk,showCancel){
   $('m-hint-body').innerHTML=typeof body==='string'?body:body;
   const ok=$('m-hint-ok');
   ok.textContent=okLabel||'Got it!';
-  ok.onclick=onOk?()=>{onOk();}:()=>closeM('m-hint');
+  ok.onclick=onOk?()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); onOk(); }:()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); closeM('m-hint'); };
   const cancel=$('m-hint-cancel');
-  if(cancel) cancel.style.display=showCancel?'block':'none';
+  if(cancel){
+    cancel.style.display=showCancel?'block':'none';
+    cancel.onclick=()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); closeM('m-hint'); };
+  }
   openM('m-hint');
 }
 
@@ -2710,7 +2865,16 @@ function checkBadges(){
 
 function endSession(early=false){
   $('fov').classList.remove('on'); txCountForBreak=0;
-  if(ST.mode==='practice'){ go('home'); updateHomeUI(); return; }
+  if(ST.mode==='practice'){
+    const total=ST.total||0, correct=ST.correct||0, hints=ST.hintsUsed||0;
+    const ps=$('practice-summary'); if(ps) ps.textContent=`You answered ${total} questions · ${correct} correct · Hints used: ${hints}`;
+    document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+    $('scr-practice-complete').classList.add('on');
+    window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+    updateHomeUI();
+    setTimeout(()=>say(`Practice mode complete. You answered ${total} questions, got ${correct} correct, and used ${hints} hint${hints!==1?'s':''}.`),140);
+    return;
+  }
   if(ST.mode==='daily'&&!early){
     const t=today();
     if(CFG.lastDaily!==t){
@@ -2784,10 +2948,17 @@ function endSession(early=false){
   if(elapsed>10){const rtb=$('r-timer-box');if(rtb)rtb.style.display='';const rtv=$('r-timer');if(rtv)rtv.textContent=fmtElapsed(elapsed);}
   const eoc=$('eoc-card-wrap');
   if(eoc) eoc.innerHTML=!early&&pct>=80?`<div style="background:linear-gradient(135deg,rgba(232,101,10,.15),rgba(232,101,10,.05));border:2px solid rgba(232,101,10,.4);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">🏅 GREAT SESSION!</div><div style="font-family:var(--font-display);font-size:1.3rem;color:var(--green)">${CFG.playerName?CFG.playerName+' · ':''}⭐ ${pct}% Accuracy ⭐</div><div style="font-size:.72rem;color:var(--text3);margin-top:4px">Real travel skills - keep it up!</div></div>`:'';
+  if(lastMode==='daily'){
+    const rp=$('r-play-again');
+    if(rp){ rp.textContent='▶ PLAY CHALLENGE MODE'; rp.onclick=()=>startMode('challenge'); }
+  } else {
+    const rp=$('r-play-again');
+    if(rp){ rp.textContent='▶ PLAY AGAIN'; rp.onclick=()=>startMode(lastMode); }
+  }
   if(!CFG.noMotion&&pct>=70) confetti();
-  say(`Session complete! You got ${ST.correct} out of ${ST.total} correct.`);
   updateHomeUI();
   go('results'); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+  setTimeout(()=>say(`${modeName} complete. You got ${ST.correct} out of ${ST.total} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`),140);
 }
 
 function replayMode(){ startMode(lastMode); }
@@ -3757,6 +3928,10 @@ function updateAaBtn(){
 const btn=document.getElementById('aa-btn');
 if(btn) btn.classList.toggle('large-on', !!CFG.largetext);
 }
+function speakResetAppWarning(){
+  say('This will clear all your data. Scores, badges, settings, coach clients, and player name. This cannot be undone.');
+}
+
 function resetApp(){
 openHint('Reset App?',
 '<p style="color:var(--text2);font-size:.88rem;line-height:1.6">This will clear <strong style="color:var(--red)">all your data</strong> - scores, badges, settings, coach clients, and player name. This cannot be undone.</p>',
@@ -3766,8 +3941,10 @@ const keys=STORAGE_KEYS;
 keys.forEach(k=>localStorage.removeItem(k));
 closeM('m-hint');
 setTimeout(()=>location.reload(), 300);
-}
+},
+true
 );
+setTimeout(()=>speakResetAppWarning(),120);
 }
 function printCoachReport(){
 if(!CLIENTS.length){

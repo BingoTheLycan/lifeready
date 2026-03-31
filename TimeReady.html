@@ -6,9 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0a0e1a">
 <meta name="description" content="TimeReady - Time skills trainer for everyone. Learn to read clocks, understand schedules, and build real independence. Free, accessible.">
-<title>TimeReady | LifeReady</title>
-<meta name="apple-mobile-web-app-title" content="LifeReady">
-<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TimeReady">
+<title>TimeReady - Time Skills Trainer</title>
+<link rel="manifest" href="data:application/manifest+json,{%22name%22:%22TimeReady%22,%22short_name%22:%22TimeReady%22,%22description%22:%22Time skills trainer for everyone%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%230a0e1a%22,%22theme_color%22:%22%230066ff%22,%22orientation%22:%22portrait%22,%22icons%22:[{%22src%22:%22data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%230a0e1a'/%3E%3Ccircle cx='256' cy='256' r='180' fill='none' stroke='%230066ff' stroke-width='20'/%3E%3Cline x1='256' y1='256' x2='256' y2='110' stroke='%230066ff' stroke-width='16' stroke-linecap='round'/%3E%3Cline x1='256' y1='256' x2='340' y2='290' stroke='%2300ccff' stroke-width='12' stroke-linecap='round'/%3E%3C/svg%3E%22,%22sizes%22:%22512x512%22,%22type%22:%22image/svg+xml%22}]}">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════
@@ -149,6 +152,10 @@ main{grid-template-columns:1fr 300px;}
 .hb .hl{font-size:0.68rem;font-weight:800;color:var(--text2);letter-spacing:.5px;text-transform:uppercase;}
 .hb .hc{font-size:0.62rem;color:var(--text2);margin-top:2px;}
 .tagline{text-align:center;color:var(--green);font-family:var(--font-mono);font-size:.72rem;letter-spacing:3px;margin-top:28px;padding:0 20px;line-height:1.6;text-shadow:0 0 12px #2288ff44;animation:blink 2.5s step-end infinite;}
+.home-group{margin-top:14px;}
+.home-group-label{font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:7px;text-transform:uppercase;margin:0 0 10px;text-shadow:0 0 10px rgba(34,136,255,.18);}
+.home-tools-label{font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:5px;text-transform:uppercase;margin:0 0 12px;text-shadow:0 0 10px #2288ff55;display:flex;align-items:center;gap:10px;}
+.home-divider{height:1px;background:var(--border);margin:6px 0 14px;opacity:.55;}
 
 /* ══ ANALOG CLOCK ══ */
 .clock-wrap{display:flex;justify-content:center;margin:16px 0;}
@@ -171,6 +178,7 @@ main{grid-template-columns:1fr 300px;}
 .pd{width:9px;height:9px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);transition:.3s;}
 .pd.done{background:var(--blue);border-color:var(--blue);}
 .pd.cur{background:var(--amber);border-color:var(--amber);box-shadow:0 0 7px var(--amber);}
+.progress-text{font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:1px;margin:-2px 0 12px;text-transform:uppercase;}
 
 /* ══ QUIZ PANEL ══ */
 .qpanel{background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:12px;}
@@ -432,6 +440,9 @@ main{grid-template-columns:1fr 300px;}
 .arow{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
 .abtn{padding:11px;border-radius:var(--radius-sm);background:var(--bg2);border:1px solid var(--border);color:var(--text2);font-family:var(--font-body);font-weight:700;font-size:0.82rem;cursor:pointer;transition:.2s;min-height:44px;display:flex;align-items:center;justify-content:center;gap:5px;}
 .abtn:hover{border-color:var(--amber);color:var(--amber);}
+.abtn:focus,.abtn:active,.abtn:focus-visible{outline:none;-webkit-tap-highlight-color:transparent;}
+.abtn.flash-audio{transform:scale(.985);border-color:#4cc9f0 !important;color:#4cc9f0 !important;box-shadow:0 0 0 1px #4cc9f0 inset,0 0 14px rgba(76,201,240,.25);}
+.abtn.flash-hint{transform:scale(.985);border-color:#9b30d9 !important;color:#9b30d9 !important;box-shadow:0 0 0 1px #9b30d9 inset,0 0 14px rgba(155,48,217,.25);}
 .full-abtn{width:100%;}
 .pb-banner-tr{display:none;background:linear-gradient(135deg,rgba(255,187,51,.14),rgba(255,187,51,.04));border:2px solid var(--amber);border-radius:var(--radius-sm);padding:9px 14px;text-align:center;margin-bottom:10px;font-family:var(--font-mono);font-size:.78rem;color:var(--amber);font-weight:700;}
 .pfchart{margin-top:12px;}
@@ -470,35 +481,6 @@ main{grid-template-columns:1fr 300px;}
 </defs>
 </svg>
 
-
-<style id="timeready-hotfix">
-@media (max-width: 700px) {
-  .hint-card {
-    max-width: calc(100vw - 32px) !important;
-    margin: 16px auto !important;
-    padding: 18px 18px 16px 18px !important;
-  }
-  #closeHintBtn {
-    line-height: 1;
-    padding: 0 0 8px 8px;
-  }
-}
-</style>
-
-
-<style id="timeready-wt-inline-hint-fix">
-@media (max-width:700px){
-  #wt-inline-hint{
-    font-size:.98rem !important;
-    margin-top:12px !important;
-  }
-  #wt .acts .abtn,
-  #wt .acts .dbtn{
-    width:100%;
-  }
-}
-</style>
-
 </head>
 <body>
 <div id="page-wrap">
@@ -519,12 +501,11 @@ main{grid-template-columns:1fr 300px;}
 <div id="scr-home" class="scr on">
   <div class="home-hero">
     <div id="timeready-logo">
-      <span class="tr-time">TIME</span><span class="cr-ready">READY</span>
+      <span class="tr-time">TIME</span><span class="tr-ready">READY</span>
     </div>
     <div class="home-tagline">- TIME SKILLS TRAINER -</div>
     <div class="home-sub" id="home-sub">Learn to read clocks · Understand schedules · Build independence</div>
-  <button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-family:var(--font-mono);font-size:.65rem;color:#2288ff;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #2288ff44;background:transparent;border:1px solid #2288ff55;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB &nbsp;·&nbsp; All Apps</button>
-
+  <button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-size:.65rem;color:#2288ff;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #2288ff44;background:transparent;border:1px solid #2288ff55;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB &nbsp;·&nbsp; All Apps</button>
   </div>
 
   <div id="onboarding-card" style="display:none;background:linear-gradient(135deg,var(--panel),var(--panel2));border:2px solid var(--blue);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;animation:fadeUp .5s ease">
@@ -536,6 +517,7 @@ main{grid-template-columns:1fr 300px;}
     </div>
   </div>
 
+  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;margin-top:4px;text-shadow:0 0 10px #2288ff55">🎮 PLAY</div>
   <div class="daily-card" onclick="startDaily()" id="daily-card">
     <div class="daily-icon">⏰</div>
     <div class="daily-info">
@@ -545,70 +527,100 @@ main{grid-template-columns:1fr 300px;}
     <div class="daily-streak" id="daily-streak-disp">🔥0</div>
   </div>
 
-  <div style="height:1px;background:var(--border);margin:4px 0 8px;opacity:.5"></div>
+  <div class="home-divider"></div>
 
-  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #2288ff55">🎮 PLAY</div>
-  <div class="mode-list">
-    <div class="mc" onclick="startMode('starter')">
-      <div class="mc-icon">⭐</div>
-      <div class="mc-body">
-        <div class="mc-name">CLOCK SCHOOL</div>
-        <div class="mc-desc">Beginners start here · Hour hand first, then minutes added · Explains everything as you go</div>
+  <div class="home-group">
+    <div class="home-group-label">START HERE</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc star" onclick="startMode('challenge')">
+        <div class="mc-icon">🕐</div>
+        <div class="mc-body">
+          <div class="mc-name">TIME CHALLENGE</div>
+          <div class="mc-desc">Score · Streaks · Levels · Mixed clock types · 10 questions</div>
+        </div>
+        <div class="mc-arr">›</div>
       </div>
-      <div class="mc-arr">›</div>
-    </div>
-    <div class="mc" onclick="startMode('practice')">
-      <div class="mc-icon">🎓</div>
-      <div class="mc-body">
-        <div class="mc-name">PRACTICE MODE</div>
-        <div class="mc-desc">No score · Unlimited hints · Take your time · All clock types</div>
+      <div class="mc" onclick="startMode('practice')">
+        <div class="mc-icon">🎓</div>
+        <div class="mc-body">
+          <div class="mc-name">PRACTICE MODE</div>
+          <div class="mc-desc">No score · Unlimited hints · Take your time · All clock types</div>
+        </div>
+        <div class="mc-arr">›</div>
       </div>
-      <div class="mc-arr">›</div>
-    </div>
-    <div class="mc star" onclick="startMode('challenge')">
-      <div class="mc-icon">🏪</div>
-      <div class="mc-body">
-        <div class="mc-name">TIME CHALLENGE</div>
-        <div class="mc-desc">Score · Streaks · Levels · Mixed clock types · 10 questions</div>
-      </div>
-      <div class="mc-arr">›</div>
-    </div>
-    <div class="mc" onclick="startMode('schedule')">
-      <div class="mc-icon">📋</div>
-      <div class="mc-body">
-        <div class="mc-name">SCHEDULE MASTER</div>
-        <div class="mc-desc">Job schedules · How long until? · AM vs PM · Real life skills</div>
-      </div>
-      <div class="mc-arr">›</div>
-    </div>
-    <div class="mc" onclick="go('demo')">
-      <div class="mc-icon">👀</div>
-      <div class="mc-body">
-        <div class="mc-name">WATCH A DEMO</div>
-        <div class="mc-desc">See exactly how to read a clock step by step before you try</div>
-      </div>
-      <div class="mc-arr">›</div>
     </div>
   </div>
 
-  <div style="height:1px;background:var(--border);margin:4px 0 8px;opacity:.5"></div>
-
-  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #2288ff55">🧠 LEARNING TOOLS</div>
-  <div class="hgrid">
-    <div class="hb" onclick="go('clockquiz')"><div class="hi">🧩</div><div class="hl">Clock Quiz</div><div class="hc">Test your knowledge</div></div>
-    <div class="hb" onclick="startWT()"><div class="hi">🤔</div><div class="hl">What Time?</div><div class="hc">Read the clock</div></div>
-    <div class="hb" onclick="go('digitalclock')"><div class="hi">🔢</div><div class="hl">Digital Drill</div><div class="hc">Digital clock practice</div></div>
-    <div class="hb" onclick="go('ampm')"><div class="hi">🌅</div><div class="hl">AM / PM</div><div class="hc">Morning vs afternoon</div></div>
-    <div class="hb" onclick="go('workschedule')"><div class="hi">📅</div><div class="hl">Work Schedule</div><div class="hc">Read a real schedule</div></div>
-    <div class="hb" onclick="go('alarmclock')"><div class="hi">⏰</div><div class="hl">Alarm Clock</div><div class="hc">Set your alarm</div></div>
-    <div class="hb" onclick="go('clockguide')"><div class="hi">🕐</div><div class="hl">Clock Guide</div><div class="hc">How clocks work</div></div>
-    <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best results</div></div>
-    <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct"></span></div></div>
-    <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Job Coach</div><div class="hc">Track clients</div></div>
-    <div class="hb" onclick="go('guide')"><div class="hi">📖</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
-    <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
-    <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
+  <div class="home-group">
+    <div class="home-group-label">SKILL TRACKS</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc" onclick="startMode('starter')">
+        <div class="mc-icon">⭐</div>
+        <div class="mc-body">
+          <div class="mc-name">CLOCK SCHOOL</div>
+          <div class="mc-desc">Beginners start here · Hour hand first, then minutes added · Explains everything as you go</div>
+        </div>
+        <div class="mc-arr">›</div>
+      </div>
+      <div class="mc" onclick="startMode('schedule')">
+        <div class="mc-icon">📋</div>
+        <div class="mc-body">
+          <div class="mc-name">SCHEDULE MASTER</div>
+          <div class="mc-desc">Job schedules · How long until? · AM vs PM · Real life skills</div>
+        </div>
+        <div class="mc-arr">›</div>
+      </div>
+    </div>
   </div>
+
+  <div class="home-group">
+    <div class="home-group-label">LEARN THE FLOW</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc" onclick="go('demo')">
+        <div class="mc-icon">👀</div>
+        <div class="mc-body">
+          <div class="mc-name">WATCH A DEMO</div>
+          <div class="mc-desc">See exactly how to read a clock step by step before you try</div>
+        </div>
+        <div class="mc-arr">›</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-divider"></div>
+  <div class="home-tools-label">🧠 <span>LEARNING TOOLS</span></div>
+
+  <div class="home-group">
+    <div class="home-group-label">LEARN</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('clockguide')"><div class="hi">🕐</div><div class="hl">Clock Guide</div><div class="hc">How clocks work</div></div>
+      <div class="hb" onclick="go('clockquiz')"><div class="hi">🧩</div><div class="hl">Clock Quiz</div><div class="hc">Test your knowledge</div></div>
+      <div class="hb" onclick="startWT()"><div class="hi">🤔</div><div class="hl">What Time?</div><div class="hc">Read the clock</div></div>
+      <div class="hb" onclick="go('digitalclock')"><div class="hi">🔢</div><div class="hl">Digital Drill</div><div class="hc">Digital clock practice</div></div>
+      <div class="hb" onclick="go('ampm')"><div class="hi">🌅</div><div class="hl">AM / PM</div><div class="hc">Morning vs afternoon</div></div>
+      <div class="hb" onclick="go('workschedule')"><div class="hi">📅</div><div class="hl">Work Schedule</div><div class="hc">Read a real schedule</div></div>
+      <div class="hb" onclick="go('alarmclock')"><div class="hi">⏰</div><div class="hl">Alarm Clock</div><div class="hc">Set your alarm</div></div>
+      <div class="hb" onclick="go('guide')"><div class="hi">📖</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">PROGRESS</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best results</div></div>
+      <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct"></span></div></div>
+      <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Job Coach</div><div class="hc">Track clients</div></div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">APP</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
+      <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
+    </div>
+  </div>
+
   <div class="tagline">TIME IS ON YOUR SIDE</div>
   <div id="today-progress" style="display:none;margin-top:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;animation:fadeUp .4s ease">
     <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #2288ff55">TODAY'S PROGRESS</div>
@@ -647,10 +659,13 @@ main{grid-template-columns:1fr 300px;}
         </div>
         <div class="sl">STREAK</div>
       </div>
+      <div class="sbox" id="g-timer-box" style="display:none"><div class="sv" id="g-timer">0:00</div><div class="sl">TIME</div></div>
       <div class="lvl" id="g-lvl">BEGINNER</div>
     </div>
   </div>
   <div class="pdots" id="pdots"></div>
+  <div class="progress-text" id="progress-text">Question 1 of 10</div>
+  <div class="progress-text" id="hints-used" style="font-size:.64rem;color:var(--text2);margin-top:-8px;margin-bottom:10px">Hints used: 0</div>
   <div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
   <div class="qpanel">
     <div class="qq" id="g-question">What time does this clock show?</div>
@@ -658,9 +673,10 @@ main{grid-template-columns:1fr 300px;}
     <div class="qopts" id="g-opts"></div>
     <div class="qfb" id="g-fb"></div>
   </div>
-  <div id="g-hint-bar" style="display:none;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-bottom:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
-  <div class="acts" style="margin-top:8px">
-    <button class="abtn full-abtn" id="hint-btn" onclick="doHint()">💡 HINT</button>
+  <div id="g-hint-bar" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-bottom:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
+  <div class="acts" style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <button class="abtn" id="hint-btn" onclick="doHint(this)">💡 HINT</button>
+    <button class="abtn" id="say-again-btn" onclick="sayAgain(this)">🔊 SAY AGAIN</button>
   </div>
 </div>
 
@@ -673,6 +689,23 @@ main{grid-template-columns:1fr 300px;}
     <div class="fmsg" id="fmsg"></div>
     <div id="eoc-wrap" style="display:none"></div>
     <button class="fnext" id="fnext" onclick="nextQ_game()">NEXT →</button>
+  </div>
+</div>
+
+<!-- ══════════ PRACTICE COMPLETE ══════════ -->
+<div id="scr-practice-complete" class="scr">
+  <div style="padding-bottom:10px;animation:fadeUp .5s ease;text-align:center">
+    <div style="background:var(--panel);border:2px solid var(--blue);border-radius:var(--radius);padding:22px 18px;margin-bottom:12px">
+      <div style="font-size:3rem;margin-bottom:8px">👍</div>
+      <div style="font-family:var(--font-mono);font-size:1.25rem;color:var(--cyan);letter-spacing:3px;margin-bottom:8px">PRACTICE MODE COMPLETE</div>
+      <div style="font-size:.88rem;color:var(--text2);margin-bottom:10px">Nice work. You completed a practice session.</div>
+      <div id="practice-summary" style="font-family:var(--font-mono);font-size:.82rem;color:var(--amber);line-height:1.6"></div>
+    </div>
+    <div class="rbtns" style="margin-top:12px">
+      <button class="rpri" onclick="startMode('practice')">▶ PRACTICE AGAIN</button>
+      <button class="rsec" onclick="startMode('challenge')">🎯 TRY CHALLENGE</button>
+      <button class="rsec" onclick="go('home')">← MAIN MENU</button>
+    </div>
   </div>
 </div>
 
@@ -689,7 +722,7 @@ main{grid-template-columns:1fr 300px;}
         </svg>
         <div id="grade-letter" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--blue);text-shadow:0 0 20px rgba(0,102,255,.5);line-height:1">A+</div>
       </div>
-      <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--cyan);letter-spacing:3px;margin-bottom:4px">SESSION COMPLETE</div>
+      <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--cyan);letter-spacing:3px;margin-bottom:4px">TIME CHALLENGE COMPLETE</div>
       <div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You answered 10 questions!</div>
       <div id="r-level-badge" style="display:inline-block;background:rgba(255,187,51,.14);border:1px solid var(--amber);border-radius:20px;padding:3px 14px;font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:1px">BEGINNER</div>
     </div>
@@ -952,6 +985,7 @@ main{grid-template-columns:1fr 300px;}
     <div class="gscore"><div class="sbox"><div class="sv" id="cq-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
   <div class="pdots" id="cq-dots"></div>
+  <div class="progress-text" id="cq-progress">Question 1 of 10</div>
   <div id="cq-content"></div>
 </div>
 
@@ -964,6 +998,7 @@ main{grid-template-columns:1fr 300px;}
     <div class="gscore"><div class="sbox"><div class="sv" id="dc-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
   <div class="pdots" id="dc-dots"></div>
+  <div class="progress-text" id="dc-progress">Question 1 of 10</div>
   <div id="dc-content"></div>
 </div>
 
@@ -976,6 +1011,7 @@ main{grid-template-columns:1fr 300px;}
     <div class="gscore"><div class="sbox"><div class="sv" id="ap-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
   <div class="pdots" id="ap-dots"></div>
+  <div class="progress-text" id="ap-progress">Question 1 of 10</div>
   <div id="ap-content"></div>
 </div>
 
@@ -988,6 +1024,7 @@ main{grid-template-columns:1fr 300px;}
     <div class="gscore"><div class="sbox"><div class="sv" id="ws-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
   <div class="pdots" id="ws-dots"></div>
+  <div class="progress-text" id="ws-progress">Question 1 of 10</div>
   <div id="ws-content"></div>
 </div>
 
@@ -1000,6 +1037,7 @@ main{grid-template-columns:1fr 300px;}
     <div class="gscore"><div class="sbox"><div class="sv" id="ac-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
   <div class="pdots" id="ac-dots"></div>
+  <div class="progress-text" id="ac-progress">Question 1 of 10</div>
   <div id="ac-content"></div>
 </div>
 
@@ -1012,6 +1050,7 @@ main{grid-template-columns:1fr 300px;}
     <div class="gscore"><div class="sbox"><div class="sv" id="wt-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
   <div class="pdots" id="wt-dots"></div>
+  <div class="progress-text" id="wt-progress">Question 1 of 8</div>
   <div id="wt-content"></div>
 </div>
 
@@ -1052,6 +1091,14 @@ main{grid-template-columns:1fr 300px;}
       <p style="font-size:.88rem;color:var(--text2);line-height:1.8">And it is dedicated to every person out there who has ever been told what they cannot do - and decided to prove otherwise.</p>
     </div>
   </div>
+  <div class="gsec">
+    <div class="gtitle">🆓 ALWAYS FREE</div>
+    <div class="gcard" style="text-align:center;padding:20px">
+      <div style="font-size:2rem;margin-bottom:10px">🆓</div>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">TimeReady is completely free. No ads, no subscriptions, no paywalls. It was built to help people - and that does not have a price tag.</p>
+    </div>
+  </div>
+
   <div class="gsec">
     <div class="gtitle">🕐 PART OF THE LIFEREADY SUITE</div>
     <div class="gcard">
@@ -1099,14 +1146,6 @@ main{grid-template-columns:1fr 300px;}
           <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Health &amp; Life Skills</div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="gsec">
-    <div class="gtitle">🆓 ALWAYS FREE</div>
-    <div class="gcard" style="text-align:center;padding:20px">
-      <div style="font-size:2rem;margin-bottom:10px">🆓</div>
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">TimeReady is completely free. No ads, no subscriptions, no paywalls. It was built to help people - and that does not have a price tag.</p>
     </div>
   </div>
 
@@ -1476,14 +1515,8 @@ function fmtTime12(h,m){
 // ════════════════════════════════════════════
 function say(txt){
   if(!CFG.audio||!window.speechSynthesis)return;
-  const clean=String(txt||'')
-    .replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF]/gu,' ')
-    .replace(/[_*`#<>]/g,' ')
-    .replace(/\s+/g,' ')
-    .trim();
-  if(!clean)return;
   window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(clean);
+  const u=new SpeechSynthesisUtterance(txt);
   u.rate=speechRate;u.pitch=1.05;u.volume=0.95;
   window.speechSynthesis.speak(u);
 }
@@ -1506,6 +1539,14 @@ function buzz(){beep(180,200);}
 //  NAVIGATION
 // ════════════════════════════════════════════
 
+function spokenTitle(title){
+    if(!title) return '';
+    const normalized = title
+      .replace(/AM\s*\/\s*PM/gi,'A M P M')
+      .replace(/\s+/g,' ')
+      .trim();
+    return normalized.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+}
 function cleanTTS(rawTxt){
     // Safe emoji strip: works on all iOS WKWebView versions
     return rawTxt
@@ -1514,6 +1555,34 @@ function cleanTTS(rawTxt){
       .replace(/[★☆●◆■□▪▫►◄▲▼✅❌⭐]/g,'')
       .replace(/\s+/g,' ').trim();
 }
+let miniHintTimers = {};
+function showMiniHintBar(id, text){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.innerHTML='💡 ' + text;
+  el.style.display='block';
+  el.style.opacity='1';
+  clearTimeout(miniHintTimers[id]);
+  miniHintTimers[id]=setTimeout(()=>{
+    el.style.opacity='0';
+    setTimeout(()=>{ if(el) el.style.display='none'; }, 220);
+  }, 6000);
+}
+function learningSayAgain(text){
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  if(text) say(text);
+}
+
+function readAboutBodyOnly(){
+  const wrap = document.getElementById('scr-about');
+  if(!wrap) return;
+  const clone = wrap.cloneNode(true);
+  clone.querySelectorAll('.gtitle,.gtop,button,.back,.gmode').forEach(el=>el.remove());
+  const txt = (clone.innerText || clone.textContent || '').replace(/\s+/g,' ').trim();
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  if(txt) say(txt);
+}
+
 function makeTappable(screenId){
   const el=document.getElementById(screenId);
   if(!el)return;
@@ -1545,7 +1614,7 @@ function makeTappable(screenId){
       } else {
         txt=cleanTTS(card.innerText);
       }
-      txt = cleanTTS((titleTxt ? titleTxt + '. ' : '') + txt);
+      txt = cleanTTS(((screenId==='scr-about') ? '' : (titleTxt ? titleTxt + '. ' : '')) + txt);
       say(txt.trim());
     });
   });
@@ -1615,8 +1684,9 @@ function go(id){
   if(id==='clockguide')makeTappable('scr-clockguide');
   if(id==='badges')makeTappable('scr-badges');
   if(id==='guide')makeTappable('scr-guide');
-  if(id==='settings')makeTappable('scr-settings');
   if(id==='about')makeTappable('scr-about');
+  
+  if(id==='settings')makeTappable('scr-settings');
 }
 
 // Patch go for coach PIN
@@ -1663,7 +1733,7 @@ function applyCBFilter(f){
 
 function renderCBButtons(){
   const mode=CFG.colorblindMode||'none';
-  const labels={none:'None (off)',protanopia:'Protanopia',deuteranopia:'Deuteranopia',tritanopia:'Tritanopia'};
+  const labels={starter:'LEARNING PHASE · HOUR HAND ONLY',practice:'PRACTICE MODE · NO SCORE · NO PRESSURE · HINTS ALWAYS ON',challenge:'TIME CHALLENGE',schedule:'SCHEDULE MASTER',daily:'DAILY CHALLENGE'};
   ['none','proto','deuter','trita'].forEach(k=>{
     const full={none:'none',proto:'protanopia',deuter:'deuteranopia',trita:'tritanopia'}[k];
     const btn=document.getElementById('cb-btn-'+k);
@@ -1900,6 +1970,38 @@ function genScheduleQuestion(){
 // ════════════════════════════════════════════
 //  GAME ENGINE
 // ════════════════════════════════════════════
+
+function timeFlashActionButton(btn){
+  if(!btn) return;
+  const oldBorder = btn.style.borderColor;
+  const oldColor = btn.style.color;
+  const oldShadow = btn.style.boxShadow;
+  const oldBg = btn.style.background;
+  btn.style.borderColor = 'var(--blue)';
+  btn.style.color = 'var(--blue)';
+  btn.style.background = 'rgba(0,102,255,.12)';
+  btn.style.boxShadow = '0 0 18px rgba(0,102,255,.28)';
+  setTimeout(()=>{
+    btn.style.borderColor = oldBorder;
+    btn.style.color = oldColor;
+    btn.style.boxShadow = oldShadow;
+    btn.style.background = oldBg;
+  }, 650);
+}
+function timePulseButtonLabel(btn,label,ms){
+  if(!btn) return;
+  const old = btn.innerHTML;
+  btn.innerHTML = label;
+  setTimeout(()=>{ if(btn) btn.innerHTML = old; }, ms || 900);
+}
+function timeHintFlash(btn){
+  timeFlashActionButton(btn);
+  timePulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function timeAudioFlash(btn){
+  timeFlashActionButton(btn);
+  timePulseButtonLabel(btn,'🔊 READING...',850);
+}
 function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
   const linesHTML=lines.map(([emoji,bold,detail])=>
     `<div style="display:flex;gap:11px;align-items:flex-start;margin-bottom:9px">
@@ -1911,8 +2013,13 @@ function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
     `${icon} ${title}`,
     `<div style="background:linear-gradient(135deg,${color}18,${color}06);border:1px solid ${color}44;border-radius:10px;padding:13px 14px;margin-bottom:12px">${linesHTML}</div>`,
     btnLabel||'Let\'s Go! →',
-    onConfirm
+    onConfirm,
+    true
   );
+  const spoken = [spokenTitle(title)]
+    .concat(lines.map(([_,bold,detail]) => [bold, detail].filter(Boolean).join('. ')))
+    .join('. ');
+  setTimeout(()=>{ if(typeof say==='function') say(cleanTTS(spoken)); },150);
 }
 
 function replayModeIntro(){
@@ -1944,10 +2051,16 @@ function startMode(mode){
   $('g-lvl').style.display=(mode==='challenge')?'':'none';
   $('gmode-lbl').textContent=mode==='starter'?'CLOCK SCHOOL':mode==='practice'?'PRACTICE':mode==='daily'?'DAILY':mode==='schedule'?'SCHEDULE MASTER':'CHALLENGE';
 
-  buildDots();
-  go('game');
-
-  const launch=()=>{ genQuestion(); awardBadge('first_tick'); CFG.modesPlayed=CFG.modesPlayed||{}; CFG.modesPlayed[mode]=true; saveAll(); };
+  const launch=()=>{
+    buildDots();
+    go('game');
+    startGameTimer();
+    genQuestion();
+    awardBadge('first_tick');
+    CFG.modesPlayed=CFG.modesPlayed||{};
+    CFG.modesPlayed[mode]=true;
+    saveAll();
+  };
 
   if(mode==='starter'){
     showModeIntro('🎓','CLOCK SCHOOL','#0066ff',[
@@ -1994,6 +2107,100 @@ function startDaily(){
   startMode('daily');
 }
 
+
+let hintTimer=null;
+
+function flashActionButton(el, kind='audio'){
+  if(!el) return;
+  const oldBorder = el.style.borderColor;
+  const oldColor = el.style.color;
+  const oldShadow = el.style.boxShadow;
+  const oldBg = el.style.background;
+  el.style.borderColor = 'var(--blue)';
+  el.style.color = 'var(--blue)';
+  el.style.background = 'rgba(0,102,255,.12)';
+  el.style.boxShadow = '0 0 18px rgba(0,102,255,.28)';
+  setTimeout(()=>{
+    el.style.borderColor = oldBorder;
+    el.style.color = oldColor;
+    el.style.boxShadow = oldShadow;
+    el.style.background = oldBg;
+    if(typeof el.blur==='function') el.blur();
+  }, 650);
+}
+
+function pulseButtonLabel(el, text, restoreAfter=850){
+  if(!el) return;
+  const original = el.dataset.originalLabel || el.textContent;
+  el.dataset.originalLabel = original;
+  el.textContent = text;
+  clearTimeout(el._restoreTimer);
+  el._restoreTimer = setTimeout(()=>{
+    el.textContent = original;
+    if(typeof el.blur==='function') el.blur();
+  }, restoreAfter);
+}
+
+
+let gameTimerInt=null;
+
+function updateProgressText(){
+  const el=$('progress-text');
+  if(!el||!ST) return;
+  const current=Math.min(ST.total+1, ST.maxQ);
+  el.textContent = ST.total>=ST.maxQ ? `Complete · ${ST.maxQ} of ${ST.maxQ}` : `Question ${current} of ${ST.maxQ}`;
+}
+
+function updateHintsUsedUI(){
+  const el=$('hints-used');
+  if(!el||!ST) return;
+  el.style.display='';
+  el.textContent=`Hints used: ${ST.hintsUsed||0}`;
+}
+
+function showHintBar(text){
+  const bar=$('g-hint-bar');
+  if(!bar) return;
+  bar.textContent='💡 '+text;
+  bar.style.display='block';
+  bar.style.opacity='1';
+  clearTimeout(hintTimer);
+  hintTimer=setTimeout(()=>{
+    bar.style.opacity='0';
+    setTimeout(()=>{ if(bar) bar.style.display='none'; },200);
+  },6000);
+}
+
+function sayAgain(btn){
+  if(btn) timeAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  let text = '';
+  const qEl = document.getElementById('g-question');
+  if(qEl && qEl.textContent) text = qEl.textContent.trim();
+  if(!text && currentQ && currentQ.question) text = currentQ.question;
+  if(!text && currentQ && currentQ.q) text = currentQ.q;
+  if(!text && currentQ && currentQ.prompt) text = currentQ.prompt;
+  if(text) say(cleanTTS(text));
+}
+
+function timedMode(mode){
+  return ['challenge','daily','schedule'].includes(mode);
+}
+function stopGameTimer(){
+  if(gameTimerInt){ clearInterval(gameTimerInt); gameTimerInt=null; }
+}
+function updateGameTimer(){
+  const box=$('g-timer-box'), val=$('g-timer');
+  if(!box||!val||!ST||!timedMode(ST.mode)){ if(box) box.style.display='none'; return; }
+  box.style.display='';
+  val.textContent=fmtElapsed((Date.now()-ST.startTime)/1000);
+}
+function startGameTimer(){
+  stopGameTimer();
+  updateGameTimer();
+  if(timedMode(ST.mode)) gameTimerInt=setInterval(updateGameTimer,1000);
+}
+
 function buildDots(){
   $('pdots').innerHTML='';
   for(let i=0;i<ST.maxQ;i++){
@@ -2009,6 +2216,8 @@ function updDots(){
     else if(i===ST.total)d.className='pd cur';
     else d.className='pd';
   }
+  updateProgressText();
+  updateHintsUsedUI();
 }
 
 let currentQ=null;
@@ -2054,50 +2263,37 @@ function renderClockQuestion(){
   const firstMinuteQ=showMin&&ST.total===0&&ST.mode==='starter';
   $('g-question').textContent='What time does this clock show?';
 
-  // Set mode-banner div
   const mb=$('mode-banner');
   if(mb){
     if(ST.mode==='practice'){
       mb.innerHTML='<span style="font-size:1rem">🚫</span><span style="font-family:var(--font-mono);font-size:.65rem;color:#4499ff;font-weight:700;letter-spacing:1px">PRACTICE MODE - NO SCORE · NO PRESSURE · HINTS ALWAYS ON</span>';
       mb.style.cssText='display:flex;background:rgba(0,102,255,0.08);border:1px solid rgba(0,102,255,0.3);border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px';
+    } else if(ST.mode==='starter' && !showMin){
+      mb.innerHTML='<span style="font-size:1rem">🎓</span><span style="font-family:var(--font-mono);font-size:.65rem;color:#4499ff;font-weight:700;letter-spacing:1px">LEARNING PHASE · HOUR HAND ONLY</span>';
+      mb.style.cssText='display:flex;background:rgba(0,102,255,0.08);border:1px solid rgba(0,102,255,0.3);border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px';
+    } else if(ST.mode==='starter' && firstMinuteQ){
+      mb.innerHTML='<span style="font-size:1rem">🎉</span><span style="font-family:var(--font-mono);font-size:.65rem;color:#00ccff;font-weight:700;letter-spacing:1px">MINUTE HAND NOW ADDED!</span>';
+      mb.style.cssText='display:flex;background:rgba(0,204,255,0.08);border:1px solid rgba(0,204,255,0.3);border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px';
     } else {
-      mb.style.display='none'; mb.innerHTML='';
+      mb.style.display='none';
+      mb.innerHTML='';
     }
   }
-  let banner='';
-  if(!showMin){
-    banner=`<div style="background:rgba(0,102,255,0.12);border:2px solid #0066ff;border-radius:10px;padding:9px 14px;margin-bottom:10px;display:flex;align-items:center;gap:10px">
-      <div style="font-size:1.4rem">🎓</div>
-      <div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#4499ff;font-weight:700;letter-spacing:1px">LEARNING PHASE - HOUR HAND ONLY</div>
-        <div style="font-size:.75rem;color:var(--text2);margin-top:2px">The <strong style="color:#4499ff">short blue hand</strong> shows the hour. What number is it pointing to?</div>
-      </div>
-    </div>`;
-  } else if(firstMinuteQ){
-    banner=`<div style="background:rgba(0,204,255,0.12);border:2px solid #00ccff;border-radius:10px;padding:9px 14px;margin-bottom:10px;display:flex;align-items:center;gap:10px">
-      <div style="font-size:1.4rem">🎉</div>
-      <div>
-        <div style="font-family:var(--font-mono);font-size:.7rem;color:#00ccff;font-weight:700;letter-spacing:1px">MINUTE HAND NOW ADDED!</div>
-        <div style="font-size:.75rem;color:var(--text2);margin-top:2px"><strong style="color:#4499ff">Short blue hand</strong> = hour · <strong style="color:#00ccff">Long cyan hand</strong> = minutes</div>
-      </div>
-    </div>`;
-  } else if(ST.mode==='practice'){
-    banner=`<div style="background:rgba(0,102,255,0.08);border:1px solid rgba(0,102,255,0.3);border-radius:8px;padding:7px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px">
-      <span style="font-size:1rem">🚫</span>
-      <span style="font-family:var(--font-mono);font-size:.65rem;color:#4499ff;font-weight:700;letter-spacing:1px">PRACTICE MODE - NO SCORE · NO PRESSURE</span>
-    </div>`;
-  }
-  $('g-visual').innerHTML=banner+`<div class="clock-wrap">${drawClock(q.hour,q.minute,200,showMin,true)}</div>`;
+
+  $('g-visual').innerHTML=`<div class="clock-wrap">${drawClock(q.hour,q.minute,200,showMin,true)}</div>`;
+
   if(!showMin){
     $('g-question').textContent='The short hand points to a number. What hour is it?';
-    say('Learning phase. The short hand points to the hour. What number is it pointing to?');
+    say('The short hand points to the hour. What number is it pointing to?');
   } else if(firstMinuteQ){
     say('The minute hand has been added. Short blue hand is the hour. Long cyan hand is the minutes.');
   } else {
     say('What time does this clock show?');
   }
+
   renderOpts(q.opts,q.correct);
 }
+
 
 function renderScheduleQuestion(){
   const q=currentQ;
@@ -2187,7 +2383,7 @@ function answerQ(chosen,correct){
       fc.className='fcard wrong';
     }
   }
-  fb.style.display='block';
+  fb.style.display='none';
 
   // Update streak dots
   for(let i=0;i<5;i++){const d=$('sd'+i);if(d)d.classList.toggle('lit',i<ST.streak);}
@@ -2215,9 +2411,14 @@ function answerQ(chosen,correct){
   },300);
 }
 
-function doHint(){
+function updateHintsUsedDisplay(){ const el=document.getElementById('hints-used'); if(el) el.textContent=`Hints used: ${ST.hintsUsed||0}`; }
+
+function doHint(btn){
+  if(!currentQ) return;
+  if(btn) timeHintFlash(btn);
   gameHintsUsed++;
-  if(!currentQ){return;}
+  ST.hintsUsed=(ST.hintsUsed||0)+1;
+  updateHintsUsedUI();
   let hintText='';
   if(currentQ.type==='ampm'||currentQ.type==='howlong'||currentQ.type==='shiftend'||currentQ.type==='shiftstart'){
     hintText=currentQ.hint||'Think carefully about the times given.';
@@ -2229,8 +2430,8 @@ function doHint(){
     else if(m===30)hintText+=`The LONG hand points to 6, which means 30 minutes. The time is ${h}:30.`;
     else hintText+=`The LONG hand points near ${Math.round(m/5)}, which means about ${m} minutes.`;
   }
-  $('g-hint-bar').style.display='block';
-  $('g-hint-bar').textContent='💡 '+hintText;
+  showHintBar(hintText);
+  if(window.speechSynthesis) speechSynthesis.cancel();
   say(hintText);
 }
 
@@ -2255,11 +2456,20 @@ function confirmEnd(){
 
 function endSession(early=false){
   $('fov').classList.remove('on');
+  stopGameTimer();
   txCountForBreak=0;
-  if(ST.mode==='practice'){go('home');updateHomeUI();return;}
+  if(ST.mode==='practice'){
+    const s=$('practice-summary');
+    if(s) s.textContent=`You answered ${ST.total} question${ST.total!==1?'s':''} • ${ST.correct} correct • Hints used: ${ST.hintsUsed||0}`;
+    updateHomeUI();
+    go('practice-complete');
+    window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+    setTimeout(()=>{ say(`Nice work. You answered ${ST.total} question${ST.total!==1?'s':''}, got ${ST.correct} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`); },120);
+    return;
+  }
 
   // Clock School graduation moment
-  if(ST.mode==='starter'&&!early&&ST.total>0&&ST.correct===ST.total){
+  if(ST.mode==='starter'&&!early&&ST.correct>=ST.total*0.7){
     awardBadge('analog_ace');
     setTimeout(()=>{
       const isPerfect=ST.correct===ST.total;
@@ -2329,7 +2539,11 @@ function _finishEndSession(early=false){
     }));
   }
 
-  $('r-title').textContent=early?'SESSION ENDED':pct>=90?'PERFECT SESSION!':pct>=70?'GREAT SESSION!':'SESSION COMPLETE';
+  const modeTitleMap={practice:'PRACTICE MODE',starter:'CLOCK SCHOOL',challenge:'TIME CHALLENGE',schedule:'SCHEDULE MASTER',daily:'DAILY CHALLENGE'};
+  const modeSpeakMap={practice:'Practice mode',starter:'Clock School',challenge:'Time Challenge',schedule:'Schedule Master',daily:'Daily challenge'};
+  const modeTitle=(modeTitleMap[ST.mode]||'SESSION');
+  const modeSpeak=(modeSpeakMap[ST.mode]||'Session');
+  $('r-title').textContent=`${modeTitle} COMPLETE`;
   $('r-sub').textContent=`You answered ${ST.total} question${ST.total!==1?'s':''}!`;
   $('r-level-badge').textContent=getLvl(ST.score).n;
   $('r-score').textContent=ST.score;
@@ -2412,7 +2626,7 @@ function _finishEndSession(early=false){
     $('r-play-again').onclick=()=>startMode(lastMode);
   }
 
-  say(pct>=90?'Perfect session! Amazing work!':pct>=70?'Great session!':'Session complete. Nice work!');
+  setTimeout(()=>say(`${modeSpeak||'Session'} complete. You got ${ST.correct} out of ${ST.total} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`),140);
   document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
   $('scr-results').classList.add('on');
   window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
@@ -2923,8 +3137,8 @@ function openLogForClient(i){
   const sel=$('log-cl');if(sel)sel.value=i;
 }
 function closeM(id){
+  if(id==='m-hint'&&window.speechSynthesis) window.speechSynthesis.cancel();
   $(id).classList.remove('on');
-  try{ if(window.speechSynthesis) window.speechSynthesis.cancel(); }catch(e){}
 }
 function openHint(title,body,okLabel,okCb,showCancel){
   $('m-hint-title').textContent=title;
@@ -2933,8 +3147,14 @@ function openHint(title,body,okLabel,okCb,showCancel){
   if(okLabel){ok.style.display='block';ok.textContent=okLabel;ok.onclick=okCb||null;}
   else ok.style.display='none';
   const cancel=$('m-hint-cancel');
-  if(cancel) cancel.style.display=showCancel?'block':'none';
+  if(cancel){ cancel.style.display=showCancel?'block':'none'; cancel.textContent='Cancel'; cancel.onclick=()=>closeM('m-hint'); }
   $('m-hint').classList.add('on');
+  try{
+    const tmp=document.createElement('div');
+    tmp.innerHTML=body||'';
+    const spoken=(tmp.innerText||tmp.textContent||'').replace(/\s+/g,' ').trim();
+    if(spoken) say(cleanTTS(title + '. ' + spoken));
+  }catch(e){}
 }
 function selPrompt(el){
   document.querySelectorAll('#pchips .pchip').forEach(c=>c.classList.remove('on'));
@@ -3047,36 +3267,7 @@ function printReport(i){
   const html=`<!DOCTYPE html><html><head><title>Progress Report - ${cl.name}</title>
   <style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;padding:32px;max-width:720px;color:#222;font-size:14px;}.header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;padding-bottom:14px;border-bottom:3px solid #0066ff;}.header-title{font-size:1.4rem;font-weight:900;color:#0066ff;margin-bottom:4px;}.header-badge{background:#e8f0ff;border:2px solid #0066ff;border-radius:8px;padding:8px 14px;text-align:center;font-size:.75rem;color:#0066ff;font-weight:700;}h2{color:#333;font-size:.92rem;font-weight:900;margin:20px 0 8px;text-transform:uppercase;border-left:4px solid #0066ff;padding-left:8px;}table{width:100%;border-collapse:collapse;margin-top:4px;font-size:.84rem;}th,td{padding:8px 10px;border:1px solid #ddd;text-align:left;}th{background:#e8f0ff;font-weight:700;}tr:nth-child(even){background:#fafafa;}.bar-wrap{background:#e8e8e8;border-radius:4px;height:8px;overflow:hidden;min-width:80px;}.bar-fill{height:100%;background:#0066ff;border-radius:4px;}.goal-row{background:#fff8e1;border-left:4px solid #ffb300;padding:10px 14px;margin:6px 0;border-radius:4px;font-size:.84rem;}.footer{margin-top:28px;padding-top:12px;border-top:1px solid #ddd;font-size:.72rem;color:#aaa;display:flex;justify-content:space-between;}.print-btn{background:#0066ff;color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:.9rem;font-weight:700;cursor:pointer;margin-bottom:20px;}.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch;}.skill-row{background:#f5f8ff;border:1px solid #dde8ff;border-radius:6px;padding:10px 12px;}.skill-name{font-size:.78rem;font-weight:700;color:#555;margin-bottom:5px;}.skill-pct{float:right;color:#0066ff;}@media print{.print-btn{display:none;}}.cb-mode-btn{background:var(--panel);border:1px solid var(--border);border-radius:6px;color:var(--text2);font-family:var(--font-mono);font-size:.65rem;padding:6px 4px;cursor:pointer;transition:all .2s;letter-spacing:.5px;font-weight:600;}
 .cb-mode-btn.on{background:var(--green);border-color:var(--green);color:#fff;}
-</style>
-<style id="timeready-hotfix">
-@media (max-width: 700px) {
-  .hint-card {
-    max-width: calc(100vw - 32px) !important;
-    margin: 16px auto !important;
-    padding: 18px 18px 16px 18px !important;
-  }
-  #closeHintBtn {
-    line-height: 1;
-    padding: 0 0 8px 8px;
-  }
-}
-</style>
-
-
-<style id="timeready-wt-inline-hint-fix">
-@media (max-width:700px){
-  #wt-inline-hint{
-    font-size:.98rem !important;
-    margin-top:12px !important;
-  }
-  #wt .acts .abtn,
-  #wt .acts .dbtn{
-    width:100%;
-  }
-}
-</style>
-
-</head><body>
+</style></head><body>
 
 <button class="print-btn" onclick="window.print()">🖨️ Print This Report</button>
 
@@ -3393,6 +3584,8 @@ for(let i=0;i<CQ.qs.length;i++){const d=document.createElement('div');d.classNam
 }
 function updCQDots(){
 for(let i=0;i<CQ.qs.length;i++){const d=$('cqd'+i);if(!d)continue;if(i<CQ.idx)d.className='pd done';else if(i===CQ.idx)d.className='pd cur';else d.className='pd';}
+
+const _p=$('cq-progress');if(_p)_p.textContent='Question ' + ((CQ.idx) + 1) + ' of ' + (CQ.qs.length);
 }
 function renderCQ(){
 CQ.answered=false;
@@ -3403,9 +3596,8 @@ updCQDots();
 let visHTML='';
 if(q.visual==='analog'||q.type==='analog'){visHTML=`<div class="cq-visual">${drawClock(q.h,q.m,180,true,true)}</div>`;}
 else if(q.visual==='digital'||q.type==='digital'){visHTML=`<div class="digital-display" style="margin:8px 0 12px"><div class="digital-time">${q.h}:${pad(q.m)}<span class="digital-period">${q.period}</span></div></div>`;}
-// Errorless - highlight correct if enabled
 const optHTML=`<div class="qopts" id="cq-opts">${(q.opts||[q.correct,'AM','PM'].slice(0,4)).map(o=>`<button class="qo ${CFG.errorless&&o===q.correct?'ok':''}" onclick="answerCQ('${o}','${q.correct}',this)">${o}</button>`).join('')}</div>`;
-$('cq-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> ${visHTML} ${optHTML} <div class="qfb" id="cq-fb"></div> </div> <div class="acts" style="margin-top:8px"> <button class="abtn full-abtn" onclick="showCQHint()" style="display:${q.hint?'flex':'none'}">💡 HINT</button> <button class="dbtn" id="cq-next" onclick="nextCQ()" style="display:none;margin-top:8px">NEXT →</button> </div>`;
+$('cq-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> ${visHTML} ${optHTML} <div class="qfb" id="cq-fb" style="display:none"></div> <div id="cq-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div> </div> <div class="acts" style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"> <button class="abtn" style="flex:1;display:${q.hint?'flex':'none'}" onclick="showCQHint(this)">💡 HINT</button> <button class="abtn" style="flex:1" onclick="cqSayAgain(this)">🔊 SAY AGAIN</button> </div> <button class="dbtn" id="cq-next" onclick="nextCQ()" style="display:none;margin-top:8px;width:100%">NEXT →</button>`;
 say(q.q);
 }
 function answerCQ(chosen,correct,el){
@@ -3418,22 +3610,33 @@ b.disabled=true;
 if(b.textContent===correct)b.classList.add('ok');
 else if(b.textContent===chosen&&!ok)b.classList.add('bad');
 });
-const fb=$('cq-fb');
-if(fb){
-fb.className='qfb on '+(ok?'ok':'bad');
-fb.textContent=ok?getRandMsg(CORRECT_MSGS,correct):getRandMsg(WRONG_MSGS,correct);
-fb.style.display='block';
-}
 const nxt=$('cq-next');if(nxt){nxt.style.display='block';nxt.textContent=CQ.idx+1>=CQ.qs.length?'SEE RESULTS →':'NEXT →';}
 $('cq-score').textContent=CQ.score;
+
+const q=CQ.qs[CQ.idx];
+const detail = (q && q.hint) ? q.hint : (ok ? ('The correct answer is ' + correct + '.') : ('The correct answer is ' + correct + '.'));
+$('eoc-wrap').style.display='none';
+$('femoji').textContent = ok ? '✅' : '❌';
+$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
+$('fmsg').innerHTML = ok
+? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>'
+: '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>';
+$('fnext').textContent = CQ.idx+1>=CQ.qs.length ? 'SEE RESULTS →' : 'NEXT →';
+$('fnext').className = 'fnext ' + (ok ? '' : 'bad');
+window.nextQ_game = nextCQ;
+$('fcard').classList.toggle('wrong', !ok);
+$('fov').classList.add('on');
 say(ok?'Correct!':'Incorrect. The correct answer is '+correct+'.');
 }
-function showCQHint(){
+function showCQHint(btn){
 const q=CQ.qs[CQ.idx];if(!q?.hint)return;
-openHint('💡 Hint',`<p style="color:var(--text2);font-size:.88rem">${q.hint}</p>`,null,null);
+if(btn) cqHintFlash(btn);
+showMiniHintBar('cq-hint', q.hint);
 say(q.hint);
 }
 function nextCQ(){
+closeM('fov');
 CQ.idx++;
 if(CQ.idx>=CQ.qs.length){
 // Results
@@ -3500,6 +3703,8 @@ for(let i=0;i<DC.qs.length;i++){const d=document.createElement('div');d.classNam
 function updDCDots(){
 for(let i=0;i<DC.qs.length;i++){const d=$('dcd'+i);if(!d)continue;
 if(i<DC.idx)d.className='pd done';else if(i===DC.idx)d.className='pd cur';else d.className='pd';}
+
+const _p=$('dc-progress');if(_p)_p.textContent='Question ' + ((DC.idx) + 1) + ' of ' + (DC.qs.length);
 }
 function renderDC(){
 DC.answered=false;
@@ -3507,8 +3712,41 @@ const q=DC.qs[DC.idx];if(!q)return;
 $('dc-score').textContent=DC.score;
 updDCDots();
 const optHTML=q.opts.map(o=>`<button class="qo" onclick="answerDC('${o}','${q.correct}')">${o}</button>`).join('');
-$('dc-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> <div style="text-align:center;margin:10px 0 16px"> <div style="display:inline-block;background:var(--display-bg);border:3px solid var(--cyan);border-radius:12px;padding:18px 28px"> <div style="font-family:var(--font-mono);font-size:2.8rem;color:var(--cyan);letter-spacing:3px;text-shadow:0 0 20px var(--cyan-glow)">${q.h}:${q.m.toString().padStart(2,'0')}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:var(--cyan);margin-top:4px;letter-spacing:2px">${q.period}</div> </div> </div> <div class="qopts" id="dc-opts">${optHTML}</div> <div class="qfb" id="dc-fb"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="say('${q.q}')">🔊 SAY AGAIN</button> <button class="dbtn" id="dc-next" onclick="nextDC()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button> </div>`;
+$('dc-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> <div style="text-align:center;margin:10px 0 16px"> <div style="display:inline-block;background:var(--display-bg);border:3px solid var(--cyan);border-radius:12px;padding:18px 28px"> <div style="font-family:var(--font-mono);font-size:2.8rem;color:var(--cyan);letter-spacing:3px;text-shadow:0 0 20px var(--cyan-glow)">${q.h}:${q.m.toString().padStart(2,'0')}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:var(--cyan);margin-top:4px;letter-spacing:2px">${q.period}</div> </div> </div> <div class="qopts" id="dc-opts">${optHTML}</div> <div class="qfb" id="dc-fb" style="display:none"></div> <div id="dc-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="showDCHint(this)">💡 HINT</button> <button class="abtn" style="flex:1" onclick="dcSayAgain(this)">🔊 SAY AGAIN</button> </div> <button class="dbtn" id="dc-next" onclick="nextDC()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(q.q);
+}
+
+function dcHintFlash(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'hint');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function dcAudioFlash(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'audio');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function cqHintFlash(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'hint');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function cqAudioFlash(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'audio');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function dcSayAgain(btn){
+  if(btn) dcAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const q=DC.qs[DC.idx];
+  if(q && q.q) say(q.q);
+}
+function cqSayAgain(btn){
+  if(btn) cqAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const q=CQ.qs[CQ.idx];
+  if(q && q.q) say(q.q);
 }
 function answerDC(chosen,correct){
 if(DC.answered)return;
@@ -3521,15 +3759,34 @@ if(b.textContent.trim()===correct)b.classList.add('ok');
 else if(b.textContent.trim()===chosen&&!ok)b.classList.add('bad');
 });
 $('dc-score').textContent=DC.score;
-const fb=$('dc-fb');
-if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
-fb.textContent=ok?'✅ Correct! That reads '+correct+'.':'❌ The correct answer is '+correct+'.';}
 const nxt=$('dc-next');
 if(nxt){nxt.style.display='block';nxt.textContent=DC.idx+1>=DC.qs.length?'SEE RESULTS →':'NEXT →';}
+
+$('eoc-wrap').style.display='none';
+$('femoji').textContent = ok ? '✅' : '❌';
+$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
+const detail = ok ? ('That digital clock reads ' + correct + '.') : ('The correct answer is ' + correct + '. Read the hours first, then the minutes, and then check AM or PM.');
+$('fmsg').innerHTML = ok
+? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>'
+: '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>';
+$('fnext').textContent = DC.idx+1>=DC.qs.length ? 'SEE RESULTS →' : 'NEXT →';
+$('fnext').className = 'fnext ' + (ok ? '' : 'bad');
+window.nextQ_game = nextDC;
+$('fcard').classList.toggle('wrong', !ok);
+$('fov').classList.add('on');
 say(ok?'Correct!':'Not quite. The answer is '+correct);
 if(ok&&!BADGES.has('digital_first'))awardBadge('digital_first');
 }
+function showDCHint(btn){
+const q=DC.qs[DC.idx];
+const hintText=(q && q.hint) ? q.hint : 'Read the digital clock from left to right. The first number is the hour, the two digits after the colon are the minutes, then check whether it says AM or PM.';
+if(btn) dcHintFlash(btn);
+showMiniHintBar('dc-hint', hintText);
+say(hintText);
+}
 function nextDC(){
+closeM('fov');
 DC.idx++;
 if(DC.idx>=DC.qs.length){
 const pct=Math.round(DC.score/DC.qs.length*100);
@@ -3590,14 +3847,16 @@ for(let i=0;i<AP.qs.length;i++){const d=document.createElement('div');d.classNam
 function updAPDots(){
 for(let i=0;i<AP.qs.length;i++){const d=$('apd'+i);if(!d)continue;
 if(i<AP.idx)d.className='pd done';else if(i===AP.idx)d.className='pd cur';else d.className='pd';}
+
+const _p=$('ap-progress');if(_p)_p.textContent='Question ' + ((AP.idx) + 1) + ' of ' + (AP.qs.length);
 }
 function renderAP(){
 AP.answered=false;
 const q=AP.qs[AP.idx];if(!q)return;
 $('ap-score').textContent=AP.score;
 updAPDots();
-const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerAP('${o}','${q.correct}','${q.explain.replace(/'/g,"\\'")}')">${o}</button>`).join('');
-$('ap-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 4px"> <div style="background:var(--display-bg);border:2px solid var(--cyan);border-radius:10px;padding:14px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--cyan)">AM</div> <div style="font-size:.7rem;color:var(--text3);margin-top:4px">Midnight → Noon<br>12:00 AM - 11:59 AM</div> </div> <div style="background:var(--display-bg);border:2px solid var(--amber);border-radius:10px;padding:14px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">PM</div> <div style="font-size:.7rem;color:var(--text3);margin-top:4px">Noon → Midnight<br>12:00 PM - 11:59 PM</div> </div> </div> <div class="qopts" id="ap-opts" style="margin-top:12px">${optHTML}</div> <div class="qfb" id="ap-fb"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="say(AP.qs[AP.idx].q)">🔊 SAY AGAIN</button> <button class="dbtn" id="ap-next" onclick="nextAP()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button> </div>`;
+const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerAP('${o}','${q.correct}','${q.explain.replace(/'/g,"\'")}')">${o}</button>`).join('');
+$('ap-content').innerHTML=`<div class="qpanel"><div class="qq">${q.q}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 4px"><div style="background:var(--display-bg);border:2px solid var(--cyan);border-radius:10px;padding:14px;text-align:center"><div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--cyan)">AM</div><div style="font-size:.7rem;color:var(--text3);margin-top:4px">Midnight → Noon<br>12:00 AM - 11:59 AM</div></div><div style="background:var(--display-bg);border:2px solid var(--amber);border-radius:10px;padding:14px;text-align:center"><div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">PM</div><div style="font-size:.7rem;color:var(--text3);margin-top:4px">Noon → Midnight<br>12:00 PM - 11:59 PM</div></div></div><div class="qopts" id="ap-opts" style="margin-top:12px">${optHTML}</div><div class="qfb" id="ap-fb" style="display:none"></div><div id="ap-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div></div><div style="display:flex;gap:8px;margin-top:8px"><button class="abtn" style="flex:1" onclick="showAPHint(this)">💡 HINT</button><button class="abtn" style="flex:1" onclick="apSayAgain(this)">🔊 SAY AGAIN</button></div><button class="dbtn" id="ap-next" onclick="nextAP()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(q.q);
 }
 function answerAP(chosen,correct,explain){
@@ -3611,17 +3870,44 @@ if(b.textContent.trim()===correct)b.classList.add('ok');
 else if(b.textContent.trim()===chosen&&!ok)b.classList.add('bad');
 });
 $('ap-score').textContent=AP.score;
-const fb=$('ap-fb');
-if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
-fb.innerHTML=(ok?'✅ Correct! ':'❌ Not quite. ')+`<div class="fexplain" style="display:block;margin-top:8px">${explain}</div>`;}
 const nxt=$('ap-next');
 if(nxt){nxt.style.display='block';nxt.textContent=AP.idx+1>=AP.qs.length?'SEE RESULTS →':'NEXT →';}
+
+$('eoc-wrap').style.display='none';
+$('femoji').textContent = ok ? '✅' : '❌';
+$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
+$('fmsg').innerHTML = ok
+  ? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">' + explain + '</div>'
+  : '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">' + explain + '</div>';
+$('fnext').textContent = AP.idx+1>=AP.qs.length ? 'SEE RESULTS →' : 'NEXT →';
+$('fnext').className = 'fnext ' + (ok ? '' : 'bad');
+window.nextQ_game = nextAP;
+$('fcard').classList.toggle('wrong', !ok);
+$('fov').classList.add('on');
+
 say(ok?'Correct!':'Not quite. '+correct+'.');
 if(ok&&!BADGES.has('ampm_first'))awardBadge('ampm_first');
 if(ok){CFG.ampmStreak=(CFG.ampmStreak||0)+1;if(CFG.ampmStreak>=5)awardBadge('ampm_streak');saveAll();}
 else{CFG.ampmStreak=0;saveAll();}
 }
+function apSayAgain(btn){
+if(btn) apAudioBtnFlash(btn);
+if(window.speechSynthesis) speechSynthesis.cancel();
+const q=AP.qs[AP.idx];
+if(q && q.q) say(q.q);
+}
+
+function showAPHint(btn){
+const q=AP.qs[AP.idx];
+const hintText='Remember: AM is midnight to noon. PM is noon to midnight. Read the clue and decide whether it happens in the morning or later in the day.';
+if(btn) apHintBtnFlash(btn);
+showMiniHintBar('ap-hint', hintText);
+say(hintText);
+}
+
 function nextAP(){
+closeM('fov');
 AP.idx++;
 if(AP.idx>=AP.qs.length){
 const pct=Math.round(AP.score/AP.qs.length*100);
@@ -3648,12 +3934,51 @@ openHint('Leave Drill?','<p style="color:var(--text2);font-size:.88rem">Leave AM
 //  WHAT TIME IS IT? MINI-GAME
 // ════════════════════════════════════════════
 let WT={score:0,total:0,maxQ:8,answered:false};
-function showWTHint(){
-const bar=$('wt-inline-hint');
-if(bar){
-  bar.innerHTML='💡 Hint: Look at the <strong>short hand</strong> first. It tells you the hour. Then look at the <strong>long hand</strong> for minutes.';
-  bar.style.display='block';
+
+function ltFlashHintBtn(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'hint');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
 }
+function ltFlashAudioBtn(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'audio');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'🔊 READING...',850);
+}
+
+
+function apHintBtnFlash(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'hint');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function apAudioBtnFlash(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'audio');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function wtSayAgain(btn){
+const q = document.querySelector('#wt-content .wt-context');
+if(btn) ltFlashAudioBtn(btn);
+if(window.speechSynthesis) speechSynthesis.cancel();
+say(q ? q.textContent : 'What time does this clock show?');
+}
+
+function showWTHint(btn){
+const hintText='Look at the short hand first. It tells you the hour. Then look at the long hand for minutes.';
+if(btn) ltFlashHintBtn(btn);
+const el = document.getElementById('wt-hint');
+if(el){
+  el.innerHTML='💡 ' + hintText;
+  el.style.display='block';
+  el.style.opacity='1';
+  clearTimeout(window.__wtHintTimer);
+  window.__wtHintTimer=setTimeout(()=>{
+    el.style.opacity='0';
+    setTimeout(()=>{ if(el) el.style.display='none'; },200);
+  }, 4000);
+}
+say(hintText);
 }
 
 // ════════════════════════════════════════════
@@ -3737,15 +4062,28 @@ for(let i=0;i<WS.qs.length;i++){const d=document.createElement('div');d.classNam
 function updWSDots(){
 for(let i=0;i<WS.qs.length;i++){const d=$('wsd'+i);if(!d)continue;
 if(i<WS.idx)d.className='pd done';else if(i===WS.idx)d.className='pd cur';else d.className='pd';}
+
+const _p=$('ws-progress');if(_p)_p.textContent='Question ' + ((WS.idx) + 1) + ' of ' + (WS.qs.length);
 }
 function renderWS(){
 WS.answered=false;
 const q=WS.qs[WS.idx];if(!q)return;
 $('ws-score').textContent=WS.score;
 updWSDots();
-const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerWS('${o.replace(/'/g,"\\'")}','${q.correct.replace(/'/g,"\\'")}','${(q.explain||'').replace(/'/g,"\\'")}')">${o}</button>`).join('');
-$('ws-content').innerHTML=` <div class="qpanel"> ${renderScheduleGridHTML(WS.shifts)} <div class="qq" style="margin-top:10px">${q.q}</div> <div class="qopts" id="ws-opts">${optHTML}</div> <div class="qfb" id="ws-fb"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="say(WS.qs[WS.idx].q)">🔊 SAY AGAIN</button> <button class="dbtn" id="ws-next" onclick="nextWS()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button> </div>`;
+const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerWS('${o.replace(/'/g,"\'")}','${q.correct.replace(/'/g,"\'")}','${(q.explain||'').replace(/'/g,"\'")}')">${o}</button>`).join('');
+$('ws-content').innerHTML=`<div class="qpanel">${renderScheduleGridHTML(WS.shifts)}<div class="qq" style="margin-top:10px">${q.q}</div><div class="qopts" id="ws-opts">${optHTML}</div><div class="qfb" id="ws-fb"></div><div id="ws-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div></div><div style="display:flex;gap:8px;margin-top:8px"><button class="abtn" style="flex:1" onclick="showWSHint(this)">💡 HINT</button><button class="abtn" style="flex:1" onclick="wsSayAgain(this)">🔊 SAY AGAIN</button></div><button class="dbtn" id="ws-next" onclick="nextWS()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(q.q);
+}
+
+function wsHintFlash(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'hint');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function wsAudioFlash(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'audio');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'🔊 READING...',850);
 }
 function answerWS(chosen,correct,explain){
 if(WS.answered)return;
@@ -3758,14 +4096,46 @@ if(b.textContent.trim()===correct)b.classList.add('ok');
 else if(b.textContent.trim()===chosen&&!ok)b.classList.add('bad');
 });
 $('ws-score').textContent=WS.score;
-const fb=$('ws-fb');
-if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
-fb.innerHTML=(ok?'✅ Correct! ':'❌ Not quite. ')+(explain?`<div class="fexplain" style="display:block;margin-top:8px">${explain}</div>`:'');}
 const nxt=$('ws-next');
 if(nxt){nxt.style.display='block';nxt.textContent=WS.idx+1>=WS.qs.length?'SEE RESULTS →':'NEXT →';}
-say(ok?'Correct!':'Incorrect. The correct answer is '+correct+'.');
+
+$('eoc-wrap').style.display='none';
+$('femoji').textContent = ok ? '✅' : '❌';
+$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
+
+const detail = explain || ('The correct answer is ' + correct + '.');
+
+$('fmsg').innerHTML = ok
+  ? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">' + detail + '</div>'
+  : '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">' + detail + '</div>';
+
+$('fnext').textContent = WS.idx+1>=WS.qs.length ? 'SEE RESULTS →' : 'NEXT →';
+$('fnext').className = 'fnext ' + (ok ? '' : 'bad');
+
+window.nextQ_game = nextWS;
+$('fcard').classList.toggle('wrong', !ok);
+$('fov').classList.add('on');
+
+say(ok ? 'Correct!' : ('Incorrect. The correct answer is ' + correct + '.'));
 }
+function wsSayAgain(btn){
+if(btn) wsAudioFlash(btn);
+if(window.speechSynthesis) speechSynthesis.cancel();
+const q=WS.qs[WS.idx];
+if(q && q.q) say(q.q);
+}
+
+function showWSHint(btn){
+if(btn) wsHintFlash(btn);
+const q=WS.qs[WS.idx];
+const hintText=(q && q.explain) ? q.explain : 'Look at the highlighted work days and times on the schedule. Count carefully or compare the start and end times.';
+showMiniHintBar('ws-hint', hintText);
+say(hintText);
+}
+
 function nextWS(){
+closeM('fov');
 WS.idx++;
 if(WS.idx>=WS.qs.length){
 const pct=Math.round(WS.score/WS.qs.length*100);
@@ -3823,8 +4193,25 @@ alarmH:alarm12, alarmM:finalM, alarmP:alarmPeriod
 }
 return qs;
 }
-function drawAlarmClockSVG(h,m,period){
-return `<svg viewBox="0 0 160 160" width="160" height="160" style="display:block;margin:0 auto"> <circle cx="80" cy="85" r="55" fill="#0a1020" stroke="#0066ff" stroke-width="3"/> <circle cx="80" cy="85" r="55" fill="none" stroke="rgba(0,102,255,0.2)" stroke-width="8"/> ${[...Array(12)].map((_,i)=>{const a=(i*30-90)*Math.PI/180;const r1=44,r2=50;return `<line x1="${80+r1*Math.cos(a)}" y1="${85+r1*Math.sin(a)}" x2="${80+r2*Math.cos(a)}" y2="${85+r2*Math.sin(a)}" stroke="#4499ff" stroke-width="2"/>`;}).join('')} ${[...Array(12)].map((_,i)=>{const a=(i*30-90)*Math.PI/180;const nr=36;return `<text x="${80+nr*Math.cos(a)}" y="${85+nr*Math.sin(a)}" text-anchor="middle" dominant-baseline="central" fill="#8899cc" font-family="Space Mono,monospace" font-size="9" font-weight="700">${i===0?12:i}</text>`;}).join('')} <line x1="80" y1="85" x2="${80+22*Math.cos(((h%12+m/60)*30-90)*Math.PI/180)}" y2="${85+22*Math.sin(((h%12+m/60)*30-90)*Math.PI/180)}" stroke="#4499ff" stroke-width="4" stroke-linecap="round"/> <line x1="80" y1="85" x2="${80+34*Math.cos((m*6-90)*Math.PI/180)}" y2="${85+34*Math.sin((m*6-90)*Math.PI/180)}" stroke="#00ccff" stroke-width="2.5" stroke-linecap="round"/> <circle cx="80" cy="85" r="4" fill="#0066ff"/> <text x="80" y="118" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" fill="#4499ff" font-weight="700">${h}:${pad(m)} ${period}</text> <text x="80" y="32" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#2244aa" letter-spacing="2">⏰ ALARM</text> <rect x="50" y="20" width="60" height="14" rx="4" fill="#0a1020" stroke="#2244aa" stroke-width="1"/> </svg>`;
+function drawAlarmClockSVG(h, m, period){
+  const baseClock = drawClock(h, m, 240, true, true);
+  return `
+  <div style="position:relative;width:240px;margin:18px auto 14px;">
+    <div style="
+      position:absolute;
+      top:-8px;
+      left:50%;
+      transform:translateX(-50%);
+      width:70px;
+      height:18px;
+      border-radius:8px;
+      background:#091325;
+      border:2px solid #2c67ff;
+      z-index:2;
+    "></div>
+    ${baseClock}
+  </div>
+  `;
 }
 let AC={qs:[],idx:0,score:0,answered:false};
 function startAlarmClock(){
@@ -3845,15 +4232,34 @@ for(let i=0;i<AC.qs.length;i++){const d=document.createElement('div');d.classNam
 function updACDots(){
 for(let i=0;i<AC.qs.length;i++){const d=$('acd'+i);if(!d)continue;
 if(i<AC.idx)d.className='pd done';else if(i===AC.idx)d.className='pd cur';else d.className='pd';}
+
+const _p=$('ac-progress');if(_p)_p.textContent='Question ' + ((AC.idx) + 1) + ' of ' + (AC.qs.length);
 }
 function renderAC(){
 AC.answered=false;
 const q=AC.qs[AC.idx];if(!q)return;
 $('ac-score').textContent=AC.score;
 updACDots();
-const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerAC('${o.replace(/'/g,"\\'")}','${q.correct.replace(/'/g,"\\'")}','${(q.explain||'').replace(/'/g,"\\'")}')">${o}</button>`).join('');
-$('ac-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> ${drawAlarmClockSVG(q.alarmH,q.alarmM,q.alarmP)} <div class="qopts" id="ac-opts" style="margin-top:10px">${optHTML}</div> <div class="qfb" id="ac-fb"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="say(AC.qs[AC.idx].q)">🔊 SAY AGAIN</button> <button class="dbtn" id="ac-next" onclick="nextAC()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button> </div>`;
+const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerAC('${o.replace(/'/g,"\'")}','${q.correct.replace(/'/g,"\'")}','${(q.explain||'').replace(/'/g,"\'")}')">${o}</button>`).join('');
+$('ac-content').innerHTML=`<div class="qpanel"><div class="qq">${q.q}</div>${drawAlarmClockSVG(q.alarmH,q.alarmM,q.alarmP)}<div class="qopts" id="ac-opts" style="margin-top:10px">${optHTML}</div><div class="qfb" id="ac-fb" style="display:none"></div><div id="ac-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div></div><div style="display:flex;gap:8px;margin-top:8px"><button class="abtn" style="flex:1" onclick="showACHint(this)">💡 HINT</button><button class="abtn" style="flex:1" onclick="acSayAgain(this)">🔊 SAY AGAIN</button></div><button class="dbtn" id="ac-next" onclick="nextAC()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(q.q);
+}
+
+function acHintFlash(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'hint');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function acAudioFlash(btn){
+  if(!btn) return;
+  if(typeof flashActionButton==='function') flashActionButton(btn,'audio');
+  if(typeof pulseButtonLabel==='function') pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function acSayAgain(btn){
+  if(btn) acAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const q=AC.qs[AC.idx];
+  if(q && q.q) say(q.q);
 }
 function answerAC(chosen,correct,explain){
 if(AC.answered)return;
@@ -3866,14 +4272,38 @@ if(b.textContent.trim()===correct)b.classList.add('ok');
 else if(b.textContent.trim()===chosen&&!ok)b.classList.add('bad');
 });
 $('ac-score').textContent=AC.score;
-const fb=$('ac-fb');
-if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
-fb.innerHTML=(ok?'✅ Correct! ':'❌ Not quite. ')+(explain?`<div class="fexplain" style="display:block;margin-top:8px">${explain}</div>`:'');}
 const nxt=$('ac-next');
 if(nxt){nxt.style.display='block';nxt.textContent=AC.idx+1>=AC.qs.length?'SEE RESULTS →':'NEXT →';}
+
+$('eoc-wrap').style.display='none';
+$('femoji').textContent = ok ? '✅' : '❌';
+$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
+
+const detail = explain || ('The correct answer is ' + correct + '.');
+
+$('fmsg').innerHTML = ok
+? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>'
+: '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>';
+
+$('fnext').textContent = AC.idx+1>=AC.qs.length ? 'SEE RESULTS →' : 'NEXT →';
+$('fnext').className = 'fnext ' + (ok ? '' : 'bad');
+window.nextQ_game = nextAC;
+$('fcard').classList.toggle('wrong', !ok);
+$('fov').classList.add('on');
+
 say(ok?'Correct!':'Incorrect. The correct answer is '+correct+'.');
 }
+function showACHint(btn){
+if(btn) acHintFlash(btn);
+const q=AC.qs[AC.idx];
+const hintText=(q && q.explain) ? q.explain : 'Count backwards from the shift start time to figure out the alarm.';
+showMiniHintBar('ac-hint', hintText);
+say(hintText);
+}
+
 function nextAC(){
+closeM('fov');
 AC.idx++;
 if(AC.idx>=AC.qs.length){
 const pct=Math.round(AC.score/AC.qs.length*100);
@@ -3903,9 +4333,12 @@ showModeIntro('🤔','WHAT TIME IS IT?','#0066ff',[
 ['8️⃣','8 questions total.','Your score is saved at the end.'],
 ],'Start What Time Is It? →',()=>{
 closeM('m-hint');
+if(window.speechSynthesis) speechSynthesis.cancel();
 WT={score:0,total:0,maxQ:8,answered:false};
 CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed.wt=true;saveAll();
-buildWTDots();genWT();go('wt');
+buildWTDots();
+go('wt');
+setTimeout(()=>{ genWT(); },120);
 });
 }
 function buildWTDots(){
@@ -3914,6 +4347,8 @@ for(let i=0;i<WT.maxQ;i++){const d=document.createElement('div');d.className='pd
 }
 function updWTDots(){
 for(let i=0;i<WT.maxQ;i++){const d=$('wtd'+i);if(!d)continue;if(i<WT.total)d.className='pd done';else if(i===WT.total)d.className='pd cur';else d.className='pd';}
+
+const _p=$('wt-progress');if(_p)_p.textContent='Question ' + ((WT.total) + 1) + ' of ' + (WT.maxQ);
 }
 function genWT(){
 WT.answered=false;
@@ -3925,12 +4360,24 @@ const h=randInt(1,12),m=diff===2?rand([0,30]):diff===3?rand([0,15,30,45]):rand([
 const correct=fmtTime12(h,m);
 const wrongs=new Set();
 while(wrongs.size<3){
-const wh=((h+randInt(1,4)-1)%12)+1,wm=(m+rand([5,10,15,20,30]))%60;
-const wt=fmtTime12(wh,wm);if(wt!==correct)wrongs.add(wt);
+  const wh=((h+randInt(1,4)-1)%12)+1,wm=(m+rand([5,10,15,20,30]))%60;
+  const wt=fmtTime12(wh,wm);if(wt!==correct)wrongs.add(wt);
 }
 const opts=shuf([correct,...wrongs]);
-$('wt-content').innerHTML=` <div class="wt-scenario"> <div class="wt-context">Look at the clock. What time does it show?</div> <div class="wt-clock">${drawClock(h,m,200,diff>1,true)}</div> <div class="qopts">${opts.map(o=>`<button class="qo ${CFG.errorless&&o===correct?'ok':''}" onclick="answerWT('${o}','${correct}',${h},${m})">${o}</button>`).join('')}</div> <div class="wt-fb" id="wt-fb"></div> <div id="wt-inline-hint" style="display:none;background:var(--bg2);border-left:5px solid var(--amber);border-radius:16px;padding:14px 16px;margin-top:14px;color:var(--text2);line-height:1.6;text-align:left">💡 Hint: Look at the <strong>short hand</strong> first. It tells you the hour. Then look at the <strong>long hand</strong> for minutes.</div> </div> <div class="acts" style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"> <button class="abtn" style="flex:1;min-width:140px" onclick="showWTHint()">💡 HINT</button> <button class="abtn" style="flex:1;min-width:140px" onclick="say('What time does this clock show?')">🔊 SAY AGAIN</button> <button class="dbtn" id="wt-next" onclick="nextWT()" style="display:none;margin-top:0;flex:1;min-width:140px">NEXT →</button> </div>`;
-setTimeout(()=>say('What time does this clock show?'),120);
+$('wt-content').innerHTML=`
+  <div class="wt-scenario">
+    <div class="wt-context">Look at the clock. What time does it show?</div>
+    <div class="wt-clock">${drawClock(h,m,200,diff>1,true)}</div>
+    <div class="qopts">${opts.map(o=>`<button class="qo ${CFG.errorless&&o===correct?'ok':''}" onclick="answerWT('${o}','${correct}',${h},${m})">${o}</button>`).join('')}</div>
+    <div class="wt-fb" id="wt-fb" style="display:none"></div>
+    <div id="wt-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
+  </div>
+  <div style="display:flex;gap:8px;margin-top:8px">
+    <button class="abtn" style="flex:1" onclick="showWTHint(this)">💡 HINT</button>
+    <button class="abtn" style="flex:1" onclick="wtSayAgain(this)">🔊 SAY AGAIN</button>
+  </div>
+  <button class="dbtn" id="wt-next" onclick="nextWT()" style="display:none;margin-top:8px;width:100%">NEXT →</button>`;
+say('What time does this clock show?');
 }
 function answerWT(chosen,correct,h,m){
 if(WT.answered)return;
@@ -3942,13 +4389,27 @@ b.disabled=true;
 if(b.textContent===correct)b.classList.add('ok');
 else if(b.textContent===chosen&&!ok)b.classList.add('bad');
 });
-const fb=$('wt-fb');
-if(fb){fb.className='wt-fb on '+(ok?'ok':'bad');fb.textContent=ok?getRandMsg(CORRECT_MSGS,correct):getRandMsg(WRONG_MSGS,correct);fb.style.display='block';}
 $('wt-score').textContent=WT.score;
 const nxt=$('wt-next');if(nxt){nxt.style.display='block';nxt.textContent=WT.total>=WT.maxQ?'SEE RESULTS →':'NEXT →';}
-say(ok?'Correct!':'Incorrect. The correct answer is '+correct+'.');
+
+const fov=$('fov'), fcard=$('fcard');
+$('eoc-wrap').style.display='none';
+$('femoji').textContent = ok ? '✅' : '❌';
+$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
+$('fmsg').innerHTML = ok
+  ? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">That clock shows ' + correct + '.</div>'
+  : '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">The correct answer was ' + correct + '. Look at the short hand for the hour first, then the long hand for the minutes.</div>';
+$('fnext').textContent = WT.total>=WT.maxQ ? 'SEE RESULTS →' : 'NEXT →';
+$('fnext').className = 'fnext ' + (ok ? '' : 'bad');
+window.nextQ_game = nextWT;
+fcard.classList.toggle('wrong', !ok);
+fov.classList.add('on');
+
+say(ok ? ('Correct. The time is ' + correct + '.') : ('Not quite. The correct answer was ' + correct + '.'));
 }
 function nextWT(){
+closeM('fov');
 if(WT.total>=WT.maxQ){
 const pct=Math.round(WT.score/WT.maxQ*100);
 const grade=pct===100?'A+':pct>=90?'A':pct>=80?'B':pct>=70?'C':'D';
@@ -3985,7 +4446,8 @@ function resetApp(){
 openHint('Reset App?',
 '<p style="color:var(--text2);font-size:.88rem;line-height:1.6">This will clear <strong style="color:var(--red)">all your data</strong> - scores, badges, settings, coach clients, and player name.<br><br>This cannot be undone.</p>',
 '⚠️ Yes, Reset Everything',
-()=>{STORAGE_KEYS.forEach(k=>localStorage.removeItem(k));closeM('m-hint');setTimeout(()=>location.reload(),300);}
+()=>{STORAGE_KEYS.forEach(k=>localStorage.removeItem(k));closeM('m-hint');setTimeout(()=>location.reload(),300);},
+true
 );
 }
 function printCoachReport(){
@@ -4003,36 +4465,7 @@ rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-b
 });
 const w=window.open('','_blank');
 if(!w){openHint('Pop-up Blocked','<p style="color:var(--text2);font-size:.88rem">Allow pop-ups for this page then try again.</p>',null,null);return;}
-w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto}@media print{.noprint{display:none}}</style>
-<style id="timeready-hotfix">
-@media (max-width: 700px) {
-  .hint-card {
-    max-width: calc(100vw - 32px) !important;
-    margin: 16px auto !important;
-    padding: 18px 18px 16px 18px !important;
-  }
-  #closeHintBtn {
-    line-height: 1;
-    padding: 0 0 8px 8px;
-  }
-}
-</style>
-
-
-<style id="timeready-wt-inline-hint-fix">
-@media (max-width:700px){
-  #wt-inline-hint{
-    font-size:.98rem !important;
-    margin-top:12px !important;
-  }
-  #wt .acts .abtn,
-  #wt .acts .dbtn{
-    width:100%;
-  }
-}
-</style>
-
-</head><body> <div class="noprint" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#222;color:#fff;border:none;border-radius:6px;cursor:pointer">🖨 Print / Save as PDF</button></div> <h2 style="margin-bottom:4px">${appName} - Coach Report</h2> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows}</bo`+`dy></ht`+`ml>`);
+w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto}@media print{.noprint{display:none}}</style></head><body> <div class="noprint" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#222;color:#fff;border:none;border-radius:6px;cursor:pointer">🖨 Print / Save as PDF</button></div> <h2 style="margin-bottom:4px">${appName} - Coach Report</h2> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows}</bo`+`dy></ht`+`ml>`);
 w.document.close();
 }
 
@@ -4114,27 +4547,6 @@ const swURL=URL.createObjectURL(blob);
 navigator.serviceWorker.register(swURL).catch(()=>{});
 }
 
-
-document.addEventListener('click', function(e) {
-  if (e.target && e.target.id === 'closeHintBtn') {
-    const hint = e.target.closest('.hint-card');
-    if (hint) hint.style.display = 'none';
-  }
-});
-
-function speakQuestionText(text) {
-  try {
-    if (!('speechSynthesis' in window) || !text) return;
-    const clean=String(text||'').replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF]/gu,' ').replace(/\s+/g,' ').trim();
-    if(!clean) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(clean);
-    utterance.rate = 0.95;
-    utterance.pitch = 1;
-    utterance.volume = 1;
-    window.speechSynthesis.speak(utterance);
-  } catch (e) {}
-}
 </script>
 
 <script>

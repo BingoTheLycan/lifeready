@@ -3,12 +3,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="manifest" href="manifest.json">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0d1117">
 <meta name="description" content="CashReady - Money skills trainer for everyone. Practice making change, counting money, and real cashier skills. Free, accessible, built by someone who gets it.">
 <title>CashReady | LifeReady</title>
-<meta name="apple-mobile-web-app-title" content="LifeReady">
+<meta name="apple-mobile-web-app-title" content="CashReady">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════
@@ -194,6 +193,10 @@ pointer-events:none;
 
 .tagline{text-align:center;color:var(--green);font-family:var(--font-mono);font-size:.72rem;letter-spacing:3px;margin-top:28px;padding:0 20px;line-height:1.6;text-shadow:0 0 12px #00c85144;animation:blink 2.5s step-end infinite;}
 @keyframes blink{50%{opacity:0;}}
+.home-group{margin-top:14px;}
+.home-group-label{font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:7px;text-transform:uppercase;margin:0 0 10px;text-shadow:0 0 10px rgba(0,200,81,.18);}
+.home-tools-label{font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:5px;text-transform:uppercase;margin:0 0 12px;text-shadow:0 0 10px #00c85155;display:flex;align-items:center;gap:10px;}
+.home-divider{height:1px;background:var(--border);margin:6px 0 14px;opacity:.55;}
 
 /* ══ DEMO SCREEN ══ */
 .demo-wrap{animation:fadeUp .4s ease;}
@@ -704,62 +707,91 @@ max-width:320px;width:calc(100% - 32px);
     <div class="daily-streak" id="daily-streak-disp">🔥0</div>
   </div>
 
-  <div style="height:1px;background:var(--border);margin:4px 0 8px;opacity:.5"></div>
+  <div class="home-divider"></div>
 
-  <div class="mode-list">
-    <div class="mc" onclick="startMode('starter')">
-      <div class="mc-icon">⭐</div>
-      <div class="mc-body">
-        <div class="mc-name">STARTER MODE</div>
-        <div class="mc-desc">Coins only · Customer always pays $1 · No pressure · Perfect for beginners</div>
+  <div class="home-group">
+    <div class="home-group-label">START HERE</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc star" onclick="startMode('shift')">
+        <div class="mc-icon">🏪</div>
+        <div class="mc-body">
+          <div class="mc-name">START SHIFT</div>
+          <div class="mc-desc">Score · Streaks · Levels · Full cashier simulation · 10 customers</div>
+        </div>
+        <div class="mc-arr">›</div>
       </div>
-      <div class="mc-arr">›</div>
-    </div>
-    <div class="mc" onclick="startMode('practice')">
-      <div class="mc-icon">🎓</div>
-      <div class="mc-body">
-        <div class="mc-name">PRACTICE MODE</div>
-        <div class="mc-desc">No score · Unlimited hints · Count-up guide · Take your time</div>
+      <div class="mc" onclick="startMode('practice')">
+        <div class="mc-icon">🎓</div>
+        <div class="mc-body">
+          <div class="mc-name">PRACTICE MODE</div>
+          <div class="mc-desc">No score · Unlimited hints · Count-up guide · Take your time</div>
+        </div>
+        <div class="mc-arr">›</div>
       </div>
-      <div class="mc-arr">›</div>
-    </div>
-    <div class="mc star" onclick="startMode('shift')">
-      <div class="mc-icon">🏪</div>
-      <div class="mc-body">
-        <div class="mc-name">START SHIFT</div>
-        <div class="mc-desc">Score · Streaks · Levels · Full cashier simulation · 10 customers</div>
-      </div>
-      <div class="mc-arr">›</div>
-    </div>
-    <div class="mc" onclick="go('demo')">
-      <div class="mc-icon">👀</div>
-      <div class="mc-body">
-        <div class="mc-name">WATCH A DEMO</div>
-        <div class="mc-desc">See exactly how to make change step by step before you try</div>
-      </div>
-      <div class="mc-arr">›</div>
     </div>
   </div>
 
-  <div style="height:1px;background:var(--border);margin:4px 0 8px;opacity:.5"></div>
-
-  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 10px #00c85155">🧠 LEARNING TOOLS</div>
-  <div class="hgrid">
-    <div class="hb" onclick="go('moneyguide')"><div class="hi">📚</div><div class="hl">Money Guide</div><div class="hc">Coins &amp; bills ref</div></div>
-    <div class="hb" onclick="go('quiz')"><div class="hi">💵</div><div class="hl">Money Quiz</div><div class="hc">Coins &amp; bills ID</div></div>
-    <div class="hb" onclick="go('dihe')"><div class="hi">🛒</div><div class="hl">Have Enough?</div><div class="hc">Can I afford it?</div></div>
-    <div class="hb" onclick="go('coindrill')"><div class="hi">🪙</div><div class="hl">Coin Drill</div><div class="hc">Recognize coins</div></div>
-    <div class="hb" onclick="go('billdrill')"><div class="hi">💵</div><div class="hl">Bill Drill</div><div class="hc">Recognize bills</div></div>
-    <div class="hb" onclick="go('changedrill')"><div class="hi">🔄</div><div class="hl">Change Drill</div><div class="hc">Quick change practice</div></div>
-    <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best shifts</div></div>
-    <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct"></span></div></div>
-    <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Job Coach</div><div class="hc">Track clients</div></div>
-    <div class="hb" onclick="go('guide')"><div class="hi">📖</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
-    <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
-    <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div>
+  <div class="home-group">
+    <div class="home-group-label">SKILL TRACKS</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc" onclick="startMode('starter')">
+        <div class="mc-icon">⭐</div>
+        <div class="mc-body">
+          <div class="mc-name">STARTER MODE</div>
+          <div class="mc-desc">Coins only · Customer always pays $1 · No pressure · Perfect for beginners</div>
+        </div>
+        <div class="mc-arr">›</div>
+      </div>
+    </div>
   </div>
 
+  <div class="home-group">
+    <div class="home-group-label">LEARN THE FLOW</div>
+    <div class="mode-list" style="margin-top:0">
+      <div class="mc" onclick="go('demo')">
+        <div class="mc-icon">👀</div>
+        <div class="mc-body">
+          <div class="mc-name">WATCH A DEMO</div>
+          <div class="mc-desc">See exactly how to make change step by step before you try</div>
+        </div>
+        <div class="mc-arr">›</div>
+      </div>
+    </div>
   </div>
+
+  <div class="home-divider"></div>
+  <div class="home-tools-label">🧠 <span>LEARNING TOOLS</span></div>
+
+  <div class="home-group">
+    <div class="home-group-label">LEARN</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('moneyguide')"><div class="hi">📚</div><div class="hl">Money Guide</div><div class="hc">Coins &amp; bills ref</div></div>
+      <div class="hb" onclick="go('quiz')"><div class="hi">💵</div><div class="hl">Money Quiz</div><div class="hc">Coins &amp; bills ID</div></div>
+      <div class="hb" onclick="go('dihe')"><div class="hi">🛒</div><div class="hl">Have Enough?</div><div class="hc">Can I afford it?</div></div>
+      <div class="hb" onclick="go('coindrill')"><div class="hi">🪙</div><div class="hl">Coin Drill</div><div class="hc">Recognize coins</div></div>
+      <div class="hb" onclick="go('billdrill')"><div class="hi">💵</div><div class="hl">Bill Drill</div><div class="hc">Recognize bills</div></div>
+      <div class="hb" onclick="go('changedrill')"><div class="hi">🔄</div><div class="hl">Change Drill</div><div class="hc">Quick change practice</div></div>
+      <div class="hb" onclick="go('guide')"><div class="hi">📖</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">PROGRESS</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best shifts</div></div>
+      <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct"></span></div></div>
+      <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Job Coach</div><div class="hc">Track clients</div></div>
+    </div>
+  </div>
+
+  <div class="home-group">
+    <div class="home-group-label">APP</div>
+    <div class="hgrid">
+      <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
+      <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
+    </div>
+  </div>
+
   <div class="tagline">INSERT COIN TO PLAY (JUST KIDDING IT'S FREE)</div>
 
   <div id="today-progress" style="display:none;margin-top:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;animation:fadeUp .4s ease">
@@ -803,6 +835,8 @@ max-width:320px;width:calc(100% - 32px);
     </div>
   </div>
   <div class="pdots" id="pdots"></div>
+  <div class="progress-text" id="game-progress" style="font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:2px;margin:-2px 0 12px">QUESTION 1 OF 10</div>
+  <div id="practice-hints-line" style="display:none;font-family:var(--font-mono);font-size:.68rem;color:var(--text);letter-spacing:2px;margin:-4px 0 12px">HINTS USED: 0</div>
   <div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
 
   <div class="receipt" id="receipt">
@@ -864,11 +898,12 @@ max-width:320px;width:calc(100% - 32px);
     <div class="acts">
       <button class="dbtn" id="dbtn" onclick="dispense()">✓ DISPENSE CHANGE</button>
       <div class="arow">
-        <button class="abtn" onclick="say(document.getElementById('ibar-txt').textContent)">🔊 SAY AGAIN</button>
+        <button class="abtn" id="game-say-btn" onclick="gameSayAgain(this)">🔊 SAY AGAIN</button>
         <button class="abtn" id="undo-btn" onclick="undoLast()">↩ UNDO</button>
       </div>
       <button class="abtn red" onclick="clearTray()" style="width:100%">✕ CLEAR TRAY</button>
-      <button class="abtn full-abtn" id="hint-btn" onclick="doHint()">💡 HINT</button>
+      <button class="abtn full-abtn" id="hint-btn" onclick="doHint(this)">💡 HINT</button>
+      <div id="play-hint" style="display:none;opacity:0;transition:opacity .25s ease;background:linear-gradient(135deg,rgba(0,200,81,.16),rgba(0,200,81,.05));border:1px solid rgba(0,200,81,.45);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:10px 12px;margin-top:10px;font-size:.85rem;color:var(--text2);line-height:1.45;"></div>
     </div>
   </div>
 </div>
@@ -959,6 +994,23 @@ max-width:320px;width:calc(100% - 32px);
   </div>
 </div>
 
+
+<div id="scr-practice-results" class="scr">
+  <div style="padding-bottom:10px;animation:fadeUp .5s ease">
+    <div style="background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:22px 18px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden">
+      <div style="font-size:3rem;margin-bottom:8px">👍</div>
+      <div style="font-family:var(--font-mono);font-size:1.55rem;color:var(--green);letter-spacing:4px;margin-bottom:10px" id="pr-title">PRACTICE MODE COMPLETE</div>
+      <div style="font-size:1.02rem;color:var(--text2);margin-bottom:14px" id="pr-sub">Nice work. You completed a practice session.</div>
+      <div style="font-family:var(--font-mono);font-size:1rem;color:var(--amber);line-height:1.55" id="pr-stats">You answered 10 questions • 0 correct • Hints used: 0</div>
+    </div>
+    <div class="rbtns" style="margin-top:12px">
+      <button class="rpri" id="pr-again">▶ PRACTICE AGAIN</button>
+      <button class="rsec" id="pr-try-shift">🎯 TRY SHIFT MODE</button>
+      <button class="rsec" id="pr-main">← MAIN MENU</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══════════ COIN DRILL ══════════ -->
 
 <div id="scr-coindrill" class="scr">
@@ -968,6 +1020,7 @@ max-width:320px;width:calc(100% - 32px);
     <div class="gscore"><div class="sbox"><div class="sv" id="cd-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
   <div class="pdots" id="cd-dots"></div>
+  <div class="progress-text" id="cd-progress" style="font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:2px;margin:-2px 0 12px">QUESTION 1 OF 8</div>
   <div id="cd-content"></div>
 </div>
 <!-- ══════════ BILL RECOGNITION DRILL ══════════ -->
@@ -978,6 +1031,7 @@ max-width:320px;width:calc(100% - 32px);
     <div class="gscore"><div class="sbox"><div class="sv" id="bd-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
   <div class="pdots" id="bd-dots"></div>
+  <div class="progress-text" id="bd-progress" style="font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:2px;margin:-2px 0 12px">QUESTION 1 OF 8</div>
   <div id="bd-content"></div>
 </div>
 
@@ -992,6 +1046,7 @@ max-width:320px;width:calc(100% - 32px);
     </div>
   </div>
   <div class="pdots" id="chd-dots"></div>
+  <div class="progress-text" id="chd-progress" style="font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:2px;margin:-2px 0 12px">QUESTION 1 OF 8</div>
   <div id="chd-content"></div>
 </div>
 
@@ -1004,11 +1059,14 @@ max-width:320px;width:calc(100% - 32px);
     <div class="gscore"><div class="sbox"><div class="sv" id="q-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
   <div class="pdots" id="qdots"></div>
+  <div class="progress-text" id="q-progress" style="font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:2px;margin:-2px 0 12px">QUESTION 1 OF 10</div>
   <div class="qpanel">
     <div class="qq" id="qq"></div>
     <div class="qvis" id="qvis"></div>
     <div class="qopts" id="qopts"></div>
-    <div class="qfb" id="qfb"></div>
+    <div class="qfb" id="qfb" style="display:none"></div>
+    <div id="q-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,200,81,.16),rgba(0,200,81,.05));border:1px solid rgba(0,200,81,.45);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
+    <div id="quiz-acts" style="display:flex;gap:8px;margin-top:8px"><button class="abtn" style="flex:1" onclick="showQHint(this)">💡 HINT</button><button class="abtn" style="flex:1" onclick="qSayAgain(this)">🔊 SAY AGAIN</button></div>
     <button class="dbtn" id="qnext" onclick="nextQ()" style="display:none;margin-top:12px">NEXT →</button>
   </div>
 </div>
@@ -1260,6 +1318,7 @@ max-width:320px;width:calc(100% - 32px);
     </div>
   </div>
   <div class="pdots" id="dihe-dots"></div>
+  <div class="progress-text" id="dihe-progress" style="font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:2px;margin:-2px 0 12px">QUESTION 1 OF 8</div>
   <div id="dihe-content"></div>
 </div>
 <!-- ══════════ ABOUT ══════════ -->
@@ -2027,6 +2086,10 @@ function qsToggle(cfgKey,togId){
   applySettings();saveAll();
 }
 // Sync quick-settings toggles when modal opens
+
+function speakResetSettingsPrompt(){
+  say('Reset settings. This will restore the default settings for Cash Ready.');
+}
 function syncQS(){
   [['audio','qs-tog-audio'],['largetext','qs-tog-lt'],['colorblind','qs-tog-cb'],['lightmode','qs-tog-lm'],['nomotion','qs-tog-nm'],['errorless','qs-tog-el']].forEach(([k,id])=>{
     const el=document.getElementById(id);
@@ -2289,6 +2352,28 @@ function demoTapCoin(cents, label, cls) {
 // ════════════════════════════════════════════════════════
 //  GAME CORE
 // ════════════════════════════════════════════════════════
+
+function stripLeadEmojiText(s){
+  return String(s||'')
+    .replace(/^[\p{Emoji_Presentation}\p{Extended_Pictographic}\u2600-\u27BF\uFE0F\s]+/gu,'')
+    .trim();
+}
+function speakIntroCardText(title, items){
+  try{
+    if(window.speechSynthesis) speechSynthesis.cancel();
+    const cleanTitle = stripLeadEmojiText(title);
+    const parts = [];
+    if(cleanTitle) parts.push(cleanTitle + '.');
+    (items||[]).forEach(row=>{
+      const head = stripLeadEmojiText(row && row[1] ? row[1] : '');
+      const body = stripLeadEmojiText(row && row[2] ? row[2] : '');
+      if(head) parts.push(head + '.');
+      if(body) parts.push(body);
+    });
+    const text = parts.join(' ').trim();
+    if(text) say(text);
+  }catch(e){}
+}
 function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
   const linesHTML=lines.map(([emoji,bold,detail])=>
     `<div style="display:flex;gap:11px;align-items:flex-start;margin-bottom:9px">
@@ -2300,8 +2385,19 @@ function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
     `${icon} ${title}`,
     `<div style="background:linear-gradient(135deg,${color}18,${color}06);border:1px solid ${color}44;border-radius:10px;padding:13px 14px;margin-bottom:12px">${linesHTML}</div>`,
     btnLabel||'Let\'s Go! →',
-    onConfirm
+    onConfirm,
+    true
   );
+  setTimeout(()=>{
+    speakIntroCardText(title, lines);
+    const cancel = document.getElementById('m-hint-cancel');
+    if(cancel){
+      cancel.onclick = () => {
+        closeM('m-hint');
+        go('home');
+      };
+    }
+  }, 160);
 }
 
 function replayModeIntro(){
@@ -2315,6 +2411,38 @@ function replayModeIntro(){
   if(d) showModeIntro(d[0],d[1],d[2],d[3],'Got it - Back to the game!',()=>closeM('m-hint'));
 }
 
+
+function gameHintFlash(btn){
+  flashActionButton(btn,'hint');
+  pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function gameAudioFlash(btn){
+  flashActionButton(btn,'audio');
+  pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function gameSayAgain(btn){
+  if(btn) gameAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const txt = document.getElementById('ibar-txt');
+  if(txt && txt.textContent) say(txt.textContent);
+}
+function updateGameScoreDisplay(){
+  const val = document.getElementById('g-score');
+  const lbl = document.querySelector('#sbox-score .sl');
+  const hintsLine = document.getElementById('practice-hints-line');
+  if(!val || !lbl || !window.ST) return;
+  if(ST.mode==='practice'){
+    val.textContent = ST.hintsUsed || 0;
+    lbl.textContent = 'HINTS';
+  } else {
+    val.textContent = ST.score || 0;
+    lbl.textContent = 'SCORE';
+  }
+  if(hintsLine){
+    hintsLine.style.display = 'block';
+    hintsLine.textContent = 'HINTS USED: ' + (ST.hintsUsed || 0);
+  }
+}
 function startMode(mode){
   lastMode=mode;
   ST={mode,score:0,streak:0,bestStreak:0,correct:0,total:0,
@@ -2326,13 +2454,19 @@ function startMode(mode){
   txCountForBreak=0;
 
   // HUD visibility
-  $('sbox-score').style.display=mode==='practice'?'none':'';
+  $('sbox-score').style.display='';
   $('sbox-streak').style.display=mode==='shift'?'':'none';
   $('g-lvl').style.display=mode==='shift'?'':'none';
   $('gmode-lbl').textContent=mode==='starter'?'STARTER':mode==='practice'?'PRACTICE':mode==='daily'?'DAILY':'SHIFT';
   const endBtn=$('end-btn');
   if(endBtn) endBtn.textContent=mode==='practice'?'‹ DONE':'‹ END';
   buildDots();
+  updateGameScoreDisplay();
+  const _hl = $('practice-hints-line');
+  if(_hl){
+    _hl.style.display = 'block';
+    _hl.textContent = 'HINTS USED: 0';
+  }
   go('game');
 
   const launch=()=>{ genTx(); };
@@ -2391,6 +2525,8 @@ function updDots(){
     else if(i===ST.total)d.className='pd cur';
     else d.className='pd';
   }
+  const gp=$('game-progress');
+  if(gp) gp.textContent='QUESTION ' + (ST.total + 1) + ' OF ' + ST.maxQ;
 }
 
 function genQuestionNoDupe(mode){
@@ -2420,6 +2556,7 @@ function genQuestionNoDupe(mode){
 }
 
 function genTx(){
+  hideMiniHintBar('play-hint');
   clearTray(); ST.answered=false;
   const item=rand(ITEMS); ST.item=item;
   let price;
@@ -2451,7 +2588,12 @@ function genTx(){
   $('g-paid').textContent=fmt(ST.paid);
   $('g-change').textContent=fmt(ST.change);
   $('t-needed').textContent=fmt(ST.change);
-  $('g-score').textContent=ST.score;
+  updateGameScoreDisplay();
+  const _hl = $('practice-hints-line');
+  if(_hl){
+    _hl.style.display = 'block';
+    _hl.textContent = 'HINTS USED: ' + (ST.hintsUsed || 0);
+  }
   $('g-lvl').textContent=getLvl(ST.score).n;
 
   // Mode banner
@@ -2670,7 +2812,7 @@ function dispense(){
     ST.streak=0; updStreak(); buzz();
     showFeedback(false);
   }
-  $('g-score').textContent=ST.score;
+  updateGameScoreDisplay();
   $('g-lvl').textContent=getLvl(ST.score).n;
   txCountForBreak++;
 }
@@ -2786,12 +2928,31 @@ function confirmEnd(){
     </div>
   </div>
   <p style="font-size:.84rem;color:var(--text2);line-height:1.6">You have completed ${ST.total} of ${ST.maxQ} transactions. End now and save your partial results, or keep going!</p>`;
-  openHint('End Shift Early?',body,'Yes, End & Save',()=>{closeM('m-hint');endShift(true);});
+  openHint(ST.mode==='practice'?'Finish Practice?':'End Shift Early?',body,ST.mode==='practice'?'Finish Practice':'Yes, End & Save',()=>{closeM('m-hint');endShift(true);});
 }
 
+
+function renderPracticeResults(){
+  const title = document.getElementById('pr-title');
+  const sub = document.getElementById('pr-sub');
+  const stats = document.getElementById('pr-stats');
+  if(title) title.textContent = 'PRACTICE MODE COMPLETE';
+  if(sub) sub.textContent = 'Nice work. You completed a practice session.';
+  if(stats) stats.textContent = `You answered ${ST.total} questions • ${ST.correct} correct • Hints used: ${ST.hintsUsed}`;
+  const again = document.getElementById('pr-again');
+  const shift = document.getElementById('pr-try-shift');
+  const main = document.getElementById('pr-main');
+  if(again) again.onclick = ()=>startMode('practice');
+  if(shift) shift.onclick = ()=>startMode('shift');
+  if(main) main.onclick = ()=>go('home');
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  document.getElementById('scr-practice-results').classList.add('on');
+  window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+  setTimeout(()=>say(`Practice mode complete. You answered ${ST.total} questions, got ${ST.correct} correct, and used ${ST.hintsUsed} hint${ST.hintsUsed!==1?'s':''}.`),140);
+}
 function endShift(early=false){
   $('fov').classList.remove('on');
-  if(ST.mode==='practice'){go('home');updateHomeUI();return;}
+  if(ST.mode==='practice'){renderPracticeResults();return;}
   // Daily challenge
   if(ST.mode==='daily'&&!early){
     const t=today();
@@ -2841,7 +3002,21 @@ function endShift(early=false){
   }
 
   // ── Header text ──
-  $('r-title').textContent=early?'SHIFT ENDED':pct>=90?'PERFECT SHIFT!':pct>=70?'GREAT SHIFT!':'SHIFT COMPLETE';
+  const modeTitleMap={
+    starter:'STARTER MODE',
+    daily:'DAILY CHALLENGE',
+    practice:'PRACTICE MODE',
+    shift:'SHIFT'
+  };
+  const modeSpeakMap={
+    starter:'Starter mode',
+    daily:'Daily challenge',
+    practice:'Practice mode',
+    shift:'Shift'
+  };
+  const modeTitle=(modeTitleMap[ST.mode]||'SESSION');
+  const modeSpeak=(modeSpeakMap[ST.mode]||'Session');
+  $('r-title').textContent=early?`${modeTitle} ENDED`:`${modeTitle} COMPLETE`;
   $('r-sub').textContent=`You helped ${ST.total} customer${ST.total!==1?'s':''} today!`;
   $('r-level-badge').textContent=getLvl(ST.score).n;
 
@@ -2932,10 +3107,10 @@ function endShift(early=false){
     $('r-play-again').textContent='▶ PLAY AGAIN';
     $('r-play-again').onclick=()=>startMode(lastMode);
   }
-  say(pct>=90?'Perfect shift! Amazing work!':pct>=70?'Great shift!':'Shift complete. Nice work!');
   document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
   $('scr-results').classList.add('on');
   window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+  setTimeout(()=>say(`${modeSpeak} ${early?'ended':'complete'}. You got ${ST.correct} out of ${ST.total} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`),140);
 }
 
 // ════════════════════════════════════════════════════════
@@ -3123,10 +3298,18 @@ function renderBadges(){
 // ════════════════════════════════════════════════════════
 //  HINT
 // ════════════════════════════════════════════════════════
-function doHint(){
+function doHint(btn){
   ST.hintsUsed++;
+  updateGameScoreDisplay();
+  if(btn) gameHintFlash(btn);
   const rem=ST.change-ST.tray;
-  if(rem<=0){openHint('💡 Hint','Your tray is already full - tap DISPENSE CHANGE!','Got it!',null);return;}
+  let msg='';
+  if(rem<=0){
+    msg='Your tray is already full. Tap DISPENSE CHANGE.';
+    showMiniHintBar('play-hint', msg);
+    say(msg);
+    return;
+  }
   let left=rem;const used=[];
   for(const d of DENOMS){
     if(d>left)continue;
@@ -3134,8 +3317,8 @@ function doHint(){
     if(ct>0){used.push(`${ct} ${DENOM_NAMES[d]}${ct>1?'s':''}`);left-=ct*d;}
     if(left===0)break;
   }
-  const msg=`You need ${fmt(rem)} more. Try: ${used.join(', ')}.`;
-  openHint('💡 Hint',`<p><strong>Change still needed: ${fmt(rem)}</strong></p><br><p>${msg}</p><br><p style="color:var(--text3);font-size:0.8rem">💡 Tip: Start with the biggest coins and bills first, then fill in with smaller ones!</p>`,null,null);
+  msg=`You need ${fmt(rem)} more. Try: ${used.join(', ')}. Start with the biggest coins and bills first, then fill in with smaller ones.`;
+  showMiniHintBar('play-hint', msg);
   say(msg);
 }
 function openHint(title,body,okLabel,onOk,showCancel){
@@ -3201,6 +3384,7 @@ function renderQ(){
   $('qq').textContent=q.q;
   $('qfb').style.display='none';
   $('qnext').style.display='none';
+  hideMiniHintBar('q-hint');
   // Visual
   if(q.type==='coin'){
     const sMap={q:'64px',d:'52px',n:'58px',p:'56px'};
@@ -3220,16 +3404,17 @@ function renderQ(){
 function ansQ(sel,correct,el){
   if(QUIZ.answered)return;QUIZ.answered=true;
   const ok=sel===correct;
-  if(ok){el.classList.add('ok');QUIZ.score++;$('q-score').textContent=QUIZ.score;say('Correct!');chime();}
-  else{el.classList.add('bad');document.querySelectorAll('.qo').forEach(b=>{if(b.textContent===correct)b.classList.add('ok');});say('Not quite. The answer is '+correct);buzz();}
+  if(ok){el.classList.add('ok');QUIZ.score++;$('q-score').textContent=QUIZ.score;chime();if(!CFG.nomotion)confetti();}
+  else{el.classList.add('bad');document.querySelectorAll('.qo').forEach(b=>{if(b.textContent===correct)b.classList.add('ok');});buzz();}
   document.querySelectorAll('.qo').forEach(b=>b.disabled=true);
-  const fb=$('qfb');
-  fb.style.cssText=`display:block;background:${ok?'rgba(0,200,81,.15)':'rgba(255,68,68,.15)'};color:${ok?'var(--green)':'var(--red)'};border:2px solid ${ok?'var(--green)':'var(--red)'};border-radius:var(--radius-sm);padding:10px 14px;font-weight:700;font-size:.88rem;text-align:center;margin-top:12px;`;
-  fb.textContent=ok?'✓ Correct!':'✗ The answer is: '+correct;
   $('qnext').style.display='block';
   $('qnext').textContent=QUIZ.idx+1>=QUIZ.qs.length?'SEE RESULTS →':'NEXT →';
+  const detail='The correct answer is '+correct+'.';
+  showQuizPopup(ok, detail, nextQ, QUIZ.idx+1>=QUIZ.qs.length);
+  say(ok?'Correct!':'Not quite. '+correct);
 }
 function nextQ(){
+  closeQuizPopup();
   QUIZ.idx++;
   if(QUIZ.idx>=QUIZ.qs.length){
     const pct=Math.round(QUIZ.score/QUIZ.qs.length*100);
@@ -4212,6 +4397,10 @@ function updateAaBtn(){
 const btn=document.getElementById('aa-btn');
 if(btn) btn.classList.toggle('large-on', !!CFG.largetext);
 }
+
+function speakResetAppWarning(){
+  say('This will clear all your data. Scores, badges, settings, coach clients, and player name. This cannot be undone.');
+}
 function resetApp(){
 openHint('Reset App?',
 '<p style="color:var(--text2);font-size:.88rem;line-height:1.6">This will clear <strong style="color:var(--red)">all your data</strong> - scores, badges, settings, coach clients, and player name. This cannot be undone.</p>',
@@ -4221,8 +4410,10 @@ const keys=STORAGE_KEYS;
 keys.forEach(k=>localStorage.removeItem(k));
 closeM('m-hint');
 setTimeout(()=>location.reload(), 300);
-}
+},
+true
 );
+setTimeout(()=>speakResetAppWarning(),120);
 }
 function printCoachReport(){
 if(!CLIENTS.length){
@@ -4492,18 +4683,20 @@ for(let i=0;i<CHD.qs.length;i++){const d=document.createElement('div');d.classNa
 function updChangeDrillDots(){
 for(let i=0;i<CHD.qs.length;i++){const d=$('chdd'+i);if(!d)continue;
 if(i<CHD.idx)d.className='pd done';else if(i===CHD.idx)d.className='pd cur';else d.className='pd';}
+const _p=$('chd-progress');if(_p)_p.textContent='QUESTION ' + (CHD.idx + 1) + ' OF ' + (CHD.qs.length);
 }
 function renderChangeDrill(){
 CHD.answered=false;
 const q=CHD.qs[CHD.idx];if(!q)return;
 $('chd-score').textContent=CHD.score;
 updChangeDrillDots();
+hideMiniHintBar('chd-hint');
 const change=q.paid-q.price;
 // Generate wrong answers - nearby amounts
 const wrongs=[-25,-10,10,25,50,-50,5,-5].map(d=>change+d).filter(v=>v>0&&v!==change);
 const opts=shuf([change,...shuf(wrongs).slice(0,3)]);
 const optHTML=opts.map(o=>`<button class="qo" onclick="answerChangeDrill(${o},${change})">${fmt(o)}</button>`).join('');
-$('chd-content').innerHTML=` <div class="qpanel"> <div class="qq">Item costs <strong style="color:var(--green)">${fmt(q.price)}</strong>.<br>Customer paid <strong style="color:var(--amber)">${fmt(q.paid)}</strong>.<br>How much change?</div> <div style="display:flex;gap:10px;justify-content:center;margin:10px 0 16px"> <div style="background:var(--bg3);border:2px solid var(--green);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--green)">${fmt(q.price)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Price</div> </div> <div style="font-size:1.5rem;color:var(--text3);display:flex;align-items:center">→</div> <div style="background:var(--bg3);border:2px solid var(--amber);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">${fmt(q.paid)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Paid</div> </div> </div> <div class="qopts" id="chd-opts">${optHTML}</div> <div class="qfb" id="chd-fb"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="say('Item costs ${fmtSay(q.price)}. Customer paid ${fmtSay(q.paid)}. How much change?')">🔊 SAY AGAIN</button> <button class="dbtn" id="chd-next" onclick="nextChangeDrill()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button> </div>`;
+$('chd-content').innerHTML=` <div class="qpanel"> <div class="qq">Item costs <strong style="color:var(--green)">${fmt(q.price)}</strong>.<br>Customer paid <strong style="color:var(--amber)">${fmt(q.paid)}</strong>.<br>How much change?</div> <div style="display:flex;gap:10px;justify-content:center;margin:10px 0 16px"> <div style="background:var(--bg3);border:2px solid var(--green);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--green)">${fmt(q.price)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Price</div> </div> <div style="font-size:1.5rem;color:var(--text3);display:flex;align-items:center">→</div> <div style="background:var(--bg3);border:2px solid var(--amber);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">${fmt(q.paid)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Paid</div> </div> </div> <div class="qopts" id="chd-opts">${optHTML}</div> <div class="qfb" id="chd-fb" style="display:none"></div> <div id="chd-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,200,81,.16),rgba(0,200,81,.05));border:1px solid rgba(0,200,81,.45);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="showChangeDrillHint(this)">💡 HINT</button> <button class="abtn" style="flex:1" onclick="changeDrillSayAgain(this)">🔊 SAY AGAIN</button> </div> <button class="dbtn" id="chd-next" onclick="nextChangeDrill()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(`Item costs ${fmtSay(q.price)}. Customer paid ${fmtSay(q.paid)}. How much change?`);
 }
 function fmtSay(cents){
@@ -4522,17 +4715,15 @@ if(v===correct)b.classList.add('ok');
 else if(v===chosen&&!ok)b.classList.add('bad');
 });
 $('chd-score').textContent=CHD.score;
-const fb=$('chd-fb');
-if(fb){
-fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
-const q=CHD.qs[CHD.idx];
-fb.textContent=ok?'✅ Correct! '+fmt(correct)+' change.':'❌ The correct change is '+fmt(correct)+'. ('+fmt(q.paid)+' paid - '+fmt(q.price)+' price = '+fmt(correct)+')';
-}
 const nxt=$('chd-next');
 if(nxt){nxt.style.display='block';nxt.textContent=CHD.idx+1>=CHD.qs.length?'SEE RESULTS →':'NEXT →';}
+const q=CHD.qs[CHD.idx];
+const detail=ok?('Correct! '+fmt(correct)+' change.'):('The correct change is '+fmt(correct)+'. '+fmt(q.paid)+' paid minus '+fmt(q.price)+' price equals '+fmt(correct)+'.');
+showQuizPopup(ok, detail, nextChangeDrill, CHD.idx+1>=CHD.qs.length);
 say(ok?'Correct!':'Not quite. The answer is '+fmt(correct));
 }
 function nextChangeDrill(){
+closeQuizPopup();
 CHD.idx++;
 if(CHD.idx>=CHD.qs.length){
 const pct=Math.round(CHD.score/CHD.qs.length*100);
@@ -4659,17 +4850,89 @@ function buildBDDots(){
 const c=$('bd-dots');if(!c)return;c.innerHTML='';
 for(let i=0;i<BD.qs.length;i++){const d=document.createElement('div');d.className='pd'+(i===0?' cur':'');d.id='bdd'+i;c.appendChild(d);}
 }
+
+function bdHintFlash(btn){
+  flashActionButton(btn,'hint');
+  pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function bdAudioFlash(btn){
+  flashActionButton(btn,'audio');
+  pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function bdSayAgain(btn){
+  if(btn) bdAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const q=BD.qs[BD.idx];
+  if(q && q.q) say(q.q);
+}
+function showBDHint(btn){
+  const q=BD.qs[BD.idx];
+  if(!q) return;
+  const hintText=(q.explain&&q.explain.trim())?q.explain:'Look at the bill color, size, and big number in the corners.';
+  if(btn) bdHintFlash(btn);
+  showMiniHintBar('bd-hint', hintText);
+  say(hintText);
+}
+function chdHintFlash(btn){
+  flashActionButton(btn,'hint');
+  pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function chdAudioFlash(btn){
+  flashActionButton(btn,'audio');
+  pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function changeDrillSayAgain(btn){
+  if(btn) chdAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const q=CHD.qs[CHD.idx];
+  if(q) say('Item costs '+fmtSay(q.price)+'. Customer paid '+fmtSay(q.paid)+'. How much change?');
+}
+function showChangeDrillHint(btn){
+  const q=CHD.qs[CHD.idx];
+  if(!q) return;
+  const hintText='Start with the amount the customer paid. Count back to the price, or subtract '+fmt(q.price)+' from '+fmt(q.paid)+'.';
+  if(btn) chdHintFlash(btn);
+  showMiniHintBar('chd-hint', hintText);
+  say(hintText);
+}
+function qHintFlash(btn){
+  flashActionButton(btn,'hint');
+  pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function qAudioFlash(btn){
+  flashActionButton(btn,'audio');
+  pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function qSayAgain(btn){
+  if(btn) qAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const q=QUIZ.qs[QUIZ.idx];
+  if(q && q.q) say(q.q);
+}
+function showQHint(btn){
+  const q=QUIZ.qs[QUIZ.idx];
+  if(!q) return;
+  let hintText='';
+  if(q.type==='coin') hintText='Look at the coin color, size, and value. A quarter is the biggest silver coin, a dime is the smallest silver coin, a nickel is larger than a penny.';
+  else if(q.type==='bill') hintText='Look at the big number and bill color. Bills are labeled by value in the corners.';
+  else hintText='Look carefully at the money shown before choosing your answer.';
+  if(btn) qHintFlash(btn);
+  showMiniHintBar('q-hint', hintText);
+  say(hintText);
+}
 function updBDDots(){
 for(let i=0;i<BD.qs.length;i++){const d=$('bdd'+i);if(!d)continue;
 if(i<BD.idx)d.className='pd done';else if(i===BD.idx)d.className='pd cur';else d.className='pd';}
+const _p=$('bd-progress');if(_p)_p.textContent='QUESTION ' + (BD.idx + 1) + ' OF ' + (BD.qs.length);
 }
 function renderBD(){
 BD.answered=false;
 const q=BD.qs[BD.idx];if(!q)return;
 $('bd-score').textContent=BD.score;
 updBDDots();
+hideMiniHintBar('bd-hint');
 const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerBD('${o.replace(/'/g,"\\'")}','${q.correct.replace(/'/g,"\\'")}','${(q.explain||'').replace(/'/g,"\\'")}')">${o}</button>`).join('');
-$('bd-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> <div style="text-align:center;margin:10px 0 14px">${drawBillSVG(q.billVal)}</div> <div class="qopts" id="bd-opts">${optHTML}</div> <div class="qfb" id="bd-fb"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="say(BD.qs[BD.idx].q)">🔊 SAY AGAIN</button> <button class="dbtn" id="bd-next" onclick="nextBD()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button> </div>`;
+$('bd-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> <div style="text-align:center;margin:10px 0 14px">${drawBillSVG(q.billVal)}</div> <div class="qopts" id="bd-opts">${optHTML}</div> <div class="qfb" id="bd-fb" style="display:none"></div> <div id="bd-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,200,81,.16),rgba(0,200,81,.05));border:1px solid rgba(0,200,81,.45);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="showBDHint(this)">💡 HINT</button> <button class="abtn" style="flex:1" onclick="bdSayAgain(this)">🔊 SAY AGAIN</button> </div> <button class="dbtn" id="bd-next" onclick="nextBD()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(q.q);
 }
 function answerBD(chosen,correct,explain){
@@ -4683,14 +4946,14 @@ if(b.textContent.trim()===correct)b.classList.add('ok');
 else if(b.textContent.trim()===chosen&&!ok)b.classList.add('bad');
 });
 $('bd-score').textContent=BD.score;
-const fb=$('bd-fb');
-if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
-fb.innerHTML=(ok?'✅ Correct! ':'❌ Not quite. ')+(explain?`<div class="fexplain" style="display:block;margin-top:8px">${explain}</div>`:'');}
 const nxt=$('bd-next');
 if(nxt){nxt.style.display='block';nxt.textContent=BD.idx+1>=BD.qs.length?'SEE RESULTS →':'NEXT →';}
+const detail=(explain&&explain.trim())?explain:('The correct answer is '+correct+'.');
+showQuizPopup(ok, detail, nextBD, BD.idx+1>=BD.qs.length);
 say(ok?'Correct!':'Not quite. '+correct);
 }
 function nextBD(){
+closeQuizPopup();
 BD.idx++;
 if(BD.idx>=BD.qs.length){
 const pct=Math.round(BD.score/BD.qs.length*100);
@@ -4732,9 +4995,91 @@ const c=$('cd-dots');if(!c)return;c.innerHTML='';
 for(let i=0;i<CD.qs.length;i++){const d=document.createElement('div');d.className='pd'+(i===0?' cur':'');d.id='cdd'+i;c.appendChild(d);}
 }
 
+
+function flashActionButton(btn,type){
+  if(!btn) return;
+  const color = 'var(--green)';
+  const oldBorder = btn.style.borderColor, oldColor = btn.style.color, oldShadow = btn.style.boxShadow, oldBg = btn.style.background;
+  btn.style.borderColor = color;
+  btn.style.color = color;
+  btn.style.background = 'rgba(0,0,0,.18)';
+  btn.style.boxShadow = '0 0 18px rgba(0,200,81,.24)';
+  setTimeout(()=>{
+    btn.style.borderColor = oldBorder;
+    btn.style.color = oldColor;
+    btn.style.boxShadow = oldShadow;
+    btn.style.background = oldBg;
+  }, 650);
+}
+function pulseButtonLabel(btn,label,ms){
+  if(!btn) return;
+  const old = btn.innerHTML;
+  btn.innerHTML = label;
+  setTimeout(()=>{ if(btn) btn.innerHTML = old; }, ms || 900);
+}
+function showMiniHintBar(id,text){
+  const el=$(id);
+  if(!el) return;
+  if(el._hideTimer) clearTimeout(el._hideTimer);
+  el.innerHTML='💡 ' + text;
+  el.style.display='block';
+  requestAnimationFrame(()=>{
+    el.style.opacity='1';
+    if(el.scrollIntoView) el.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+  el._hideTimer=setTimeout(()=>{ hideMiniHintBar(id); }, 4200);
+}
+function hideMiniHintBar(id){
+  const el=$(id);
+  if(!el) return;
+  el.style.opacity='0';
+  setTimeout(()=>{ if(el) el.style.display='none'; }, 180);
+}
+function showQuizPopup(ok, detail, nextFn, isLast){
+  $('eoc-wrap').style.display='none';
+  $('femoji').textContent = ok ? '✅' : '❌';
+  $('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+  $('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
+  $('fmsg').innerHTML = ok
+    ? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>'
+    : '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>';
+  const nextBtn = $('fnext');
+  nextBtn.textContent = isLast ? 'SEE RESULTS →' : 'NEXT →';
+  nextBtn.className = 'fnext ' + (ok ? '' : 'bad');
+  nextBtn.onclick = nextFn || function(){};
+  $('fcard').classList.toggle('wrong', !ok);
+  $('fov').classList.add('on');
+}
+function closeQuizPopup(){
+  const ov=$('fov');
+  if(ov) ov.classList.remove('on');
+}
+function cdHintFlash(btn){
+  flashActionButton(btn,'hint');
+  pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function cdAudioFlash(btn){
+  flashActionButton(btn,'audio');
+  pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function cdSayAgain(btn){
+  if(btn) cdAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  const q=CD.qs[CD.idx];
+  if(q && q.q) say(q.q);
+}
+function showCDHint(btn){
+  const q=CD.qs[CD.idx];
+  if(!q) return;
+  const hintText=(q.explain&&q.explain.trim())?q.explain:'Look closely at the coin. Check the size, color, and value printed on it.';
+  if(btn) cdHintFlash(btn);
+  showMiniHintBar('cd-hint', hintText);
+  say(hintText);
+}
 function updCDDots(){
 for(let i=0;i<CD.qs.length;i++){const d=$('cdd'+i);if(!d)continue;
 if(i<CD.idx)d.className='pd done';else if(i===CD.idx)d.className='pd cur';else d.className='pd';}
+const _p=$('cd-progress');if(_p)_p.textContent='QUESTION ' + (CD.idx + 1) + ' OF ' + (CD.qs.length);
 }
 
 function renderCD(){
@@ -4742,8 +5087,8 @@ CD.answered=false;
 const q=CD.qs[CD.idx];if(!q)return;
 $('cd-score').textContent=CD.score;
 updCDDots();
-const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerCD('${o.replace(/'/g,"\\'")}','${q.correct.replace(/'/g,"\\'")}','${(q.explain||'').replace(/'/g,"\\'")}')"> ${o}</button>`).join('');
-$('cd-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> <div style="text-align:center;margin:16px 0 18px">${drawCoinSVG(q.coinVal)}</div> <div class="qopts" id="cd-opts">${optHTML}</div> <div class="qfb" id="cd-fb"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="say(CD.qs[CD.idx].q)">🔊 SAY AGAIN</button> <button class="dbtn" id="cd-next" onclick="nextCD()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button> </div>`;
+const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerCD('${o.replace(/'/g,"\\'")}','${q.correct.replace(/'/g,"\\'")}','${(q.explain||'').replace(/'/g,"\\'")}')">${o}</button>`).join('');
+$('cd-content').innerHTML=`<div class="qpanel"><div class="qq">${q.q}</div><div style="text-align:center;margin:16px 0 18px">${drawCoinSVG(q.coinVal)}</div><div class="qopts" id="cd-opts">${optHTML}</div><div class="qfb" id="cd-fb" style="display:none"></div><div id="cd-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,200,81,.16),rgba(0,200,81,.05));border:1px solid rgba(0,200,81,.45);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div></div><div style="display:flex;gap:8px;margin-top:8px"><button class="abtn" style="flex:1" onclick="showCDHint(this)">💡 HINT</button><button class="abtn" style="flex:1" onclick="cdSayAgain(this)">🔊 SAY AGAIN</button></div><button class="dbtn" id="cd-next" onclick="nextCD()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(q.q);
 }
 
@@ -4758,15 +5103,15 @@ if(b.textContent.trim()===correct)b.classList.add('ok');
 else if(b.textContent.trim()===chosen&&!ok)b.classList.add('bad');
 });
 $('cd-score').textContent=CD.score;
-const fb=$('cd-fb');
-if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
-fb.innerHTML=(ok?'✅ Correct! ':'❌ Not quite. ')+(explain?`<div class="fexplain" style="display:block;margin-top:8px">${explain}</div>`:'');}
 const nxt=$('cd-next');
 if(nxt){nxt.style.display='block';nxt.textContent=CD.idx+1>=CD.qs.length?'SEE RESULTS →':'NEXT →';}
+const detail=(explain&&explain.trim())?explain:('The correct answer is '+correct+'.');
+showQuizPopup(ok, detail, nextCD, CD.idx+1>=CD.qs.length);
 say(ok?'Correct!':'Not quite. '+correct);
 }
 
 function nextCD(){
+closeQuizPopup();
 CD.idx++;
 if(CD.idx>=CD.qs.length){
 const pct=Math.round(CD.score/CD.qs.length*100);
@@ -4838,6 +5183,29 @@ const DIHE_WALLETS = [
 
 var DIHE_STATE = { score:0, total:0, maxQ:8, answered:false };
 
+
+function diheHintFlash(btn){
+  flashActionButton(btn,'hint');
+  pulseButtonLabel(btn,'💡 SHOWING HINT...',900);
+}
+function diheAudioFlash(btn){
+  flashActionButton(btn,'audio');
+  pulseButtonLabel(btn,'🔊 READING...',850);
+}
+function diheSayAgain(btn){
+  if(btn) diheAudioFlash(btn);
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  if(DIHE_STATE && DIHE_STATE.item){
+    say('Item costs ' + fmtSay(DIHE_STATE.item.p) + '. You have ' + fmtSay(DIHE_STATE.wTotal) + ' in your wallet. Do you have enough money to buy this?');
+  }
+}
+function showDIHEHint(btn){
+  if(!DIHE_STATE || !DIHE_STATE.item) return;
+  const hintText = 'Count the coins in your wallet and compare that total to the price tag.';
+  if(btn) diheHintFlash(btn);
+  showMiniHintBar('dihe-hint', hintText);
+  say(hintText);
+}
 function startDIHE() {
 showModeIntro('🛒','DO I HAVE ENOUGH?','#00c851',[
 ['👛','You have a wallet of coins.','Count up your coins and see if you have enough to buy the item.'],
@@ -4866,6 +5234,8 @@ if (i < DIHE_STATE.total) d.className = 'pd done';
 else if (i === DIHE_STATE.total) d.className = 'pd cur';
 else d.className = 'pd';
 }
+const p = document.getElementById('dihe-progress');
+if (p) p.textContent = 'QUESTION ' + (DIHE_STATE.total + 1) + ' OF ' + DIHE_STATE.maxQ;
 }
 
 function genDIHE() {
@@ -4881,6 +5251,7 @@ DIHE_STATE.canAfford = canAfford;
 
 document.getElementById('dihe-score').textContent = DIHE_STATE.score;
 updDIHEDots();
+hideMiniHintBar('dihe-hint');
 
 // Build wallet coin display
 const sMap = { q:'48px', d:'38px', n:'43px', p:'41px' };
@@ -4890,9 +5261,9 @@ const coinsHtml = ['q','d','n','p']
 .filter(k => wallet[k] > 0)
 .map(k => ` <div class="dihe-c"> <div class="dihe-cnt">${wallet[k]}×</div> <div class="cc ${k}" style="width:${sMap[k]};height:${sMap[k]};font-size:.7rem;display:inline-flex;align-items:center;justify-content:center">${lbl[k]}</div> <div style="font-size:.62rem;color:var(--text3);margin-top:2px">${names[k]}</div> </div>`).join('');
 
-document.getElementById('dihe-content').innerHTML = ` <div class="dihe-scenario"> <div class="dihe-item"> <div class="dihe-emoji">${item.e}</div> <div class="dihe-iname">${item.n}</div> <div class="dihe-price">${fmt(item.p)}</div> </div> <div class="dihe-wallet"> <div class="dihe-wlbl">YOUR WALLET</div> <div class="dihe-coins">${coinsHtml}</div> <div class="dihe-total"> <div class="dihe-total-lbl">TOTAL IN WALLET</div> <div class="dihe-total-val">${fmt(wTotal)}</div> </div> </div> <div class="dihe-question">Do you have enough money to buy this?</div> <div class="yn-row"> <div class="yn-btn yes" onclick="answerDIHE(true)"> ✅ YES <div style="font-size:.72rem;font-weight:600;margin-top:3px">I can afford it</div> </div> <div class="yn-btn no" onclick="answerDIHE(false)"> ❌ NO <div style="font-size:.72rem;font-weight:600;margin-top:3px">I cannot afford it</div> </div> </div> <div class="dihe-fb" id="dihe-fb"></div> <button class="dbtn" id="dihe-next" onclick="nextDIHE()" style="display:none;margin-top:12px"> NEXT ITEM → </button> </div>`;
+document.getElementById('dihe-content').innerHTML = ` <div class="dihe-scenario"> <div class="dihe-item"> <div class="dihe-emoji">${item.e}</div> <div class="dihe-iname">${item.n}</div> <div class="dihe-price">${fmt(item.p)}</div> </div> <div class="dihe-wallet"> <div class="dihe-wlbl">YOUR WALLET</div> <div class="dihe-coins">${coinsHtml}</div> <div class="dihe-total"> <div class="dihe-total-lbl">TOTAL IN WALLET</div> <div class="dihe-total-val">${fmt(wTotal)}</div> </div> </div> <div class="dihe-question">Do you have enough money to buy this?</div> <div class="yn-row"> <div class="yn-btn yes" onclick="answerDIHE(true)"> ✅ YES <div style="font-size:.72rem;font-weight:600;margin-top:3px">I can afford it</div> </div> <div class="yn-btn no" onclick="answerDIHE(false)"> ❌ NO <div style="font-size:.72rem;font-weight:600;margin-top:3px">I cannot afford it</div> </div> </div> <div class="dihe-fb" id="dihe-fb" style="display:none"></div> <div id="dihe-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,200,81,.16),rgba(0,200,81,.05));border:1px solid rgba(0,200,81,.45);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="showDIHEHint(this)">💡 HINT</button> <button class="abtn" style="flex:1" onclick="diheSayAgain(this)">🔊 SAY AGAIN</button> </div> <button class="dbtn" id="dihe-next" onclick="nextDIHE()" style="display:none;margin-top:8px;width:100%">NEXT →</button>`;
 
-say(`Can you buy ${item.n} for ${fmt(item.p)}? You have ${fmt(wTotal)} in your wallet.`);
+say('Item costs ' + fmtSay(item.p) + '. You have ' + fmtSay(wTotal) + ' in your wallet. Do you have enough money to buy this?');
 }
 
 function answerDIHE(userSaidYes) {
@@ -4903,7 +5274,7 @@ DIHE_STATE.total++;
 const correct = userSaidYes === DIHE_STATE.canAfford;
 const diff    = DIHE_STATE.wTotal - DIHE_STATE.item.p;
 
-if (correct) { DIHE_STATE.score++; chime(); }
+if (correct) { DIHE_STATE.score++; chime(); if(!CFG.nomotion) confetti(); }
 else { buzz(); }
 
 document.getElementById('dihe-score').textContent = DIHE_STATE.score;
@@ -4919,36 +5290,31 @@ if (isNo  && DIHE_STATE.canAfford  && !userSaidYes) b.classList.add('wrong-ans')
 b.style.pointerEvents = 'none';
 });
 
-// Feedback message
-const fb = document.getElementById('dihe-fb');
-fb.classList.add('on');
-
+let detail = '';
 if (correct && DIHE_STATE.canAfford) {
-fb.className = 'dihe-fb on ok';
-fb.innerHTML = `✅ That is right! You have ${fmt(DIHE_STATE.wTotal)} and it costs ${fmt(DIHE_STATE.item.p)}. You can buy it and get <strong>${fmt(diff)}</strong> back in change!`;
-say(`Correct! You have enough. You would get ${fmt(diff)} in change.`);
+detail = 'You have ' + fmt(DIHE_STATE.wTotal) + ' and it costs ' + fmt(DIHE_STATE.item.p) + '. You can buy it and get ' + fmt(diff) + ' back in change.';
+say('Correct! You have enough. You would get ' + fmt(diff) + ' in change.');
 } else if (correct && !DIHE_STATE.canAfford) {
-fb.className = 'dihe-fb on ok';
-fb.innerHTML = `✅ That is right! You only have ${fmt(DIHE_STATE.wTotal)} but it costs ${fmt(DIHE_STATE.item.p)}. You are <strong>${fmt(-diff)}</strong> short.`;
-say(`Correct! You do not have enough. You are ${fmt(-diff)} short.`);
+detail = 'You only have ' + fmt(DIHE_STATE.wTotal) + ' but it costs ' + fmt(DIHE_STATE.item.p) + '. You are ' + fmt(-diff) + ' short.';
+say('Correct! You do not have enough. You are ' + fmt(-diff) + ' short.');
 } else if (!correct && DIHE_STATE.canAfford) {
-fb.className = 'dihe-fb on bad';
-fb.innerHTML = `❌ You actually DO have enough! ${fmt(DIHE_STATE.wTotal)} is more than ${fmt(DIHE_STATE.item.p)}. You'd even get <strong>${fmt(diff)}</strong> back in change!`;
-say(`Not quite. You actually have enough money.`);
+detail = 'You actually do have enough. ' + fmt(DIHE_STATE.wTotal) + ' is more than ' + fmt(DIHE_STATE.item.p) + '. You would get ' + fmt(diff) + ' back in change.';
+say('Not quite. You actually have enough money.');
 } else {
-fb.className = 'dihe-fb on bad';
-fb.innerHTML = `❌ You actually do not have enough. ${fmt(DIHE_STATE.wTotal)} is less than ${fmt(DIHE_STATE.item.p)}. You'd need <strong>${fmt(-diff)}</strong> more.`;
-say(`Not quite. You do not have enough money.`);
+detail = 'You actually do not have enough. ' + fmt(DIHE_STATE.wTotal) + ' is less than ' + fmt(DIHE_STATE.item.p) + '. You would need ' + fmt(-diff) + ' more.';
+say('Not quite. You do not have enough money.');
 }
 
 const nb = document.getElementById('dihe-next');
 if (nb) {
 nb.style.display = 'block';
-nb.textContent = DIHE_STATE.total >= DIHE_STATE.maxQ ? 'SEE RESULTS →' : 'NEXT ITEM →';
+nb.textContent = DIHE_STATE.total >= DIHE_STATE.maxQ ? 'SEE RESULTS →' : 'NEXT →';
 }
+showQuizPopup(correct, detail, nextDIHE, DIHE_STATE.total >= DIHE_STATE.maxQ);
 }
 
 function nextDIHE() {
+closeQuizPopup();
 if (DIHE_STATE.total >= DIHE_STATE.maxQ) {
 const pct = Math.round(DIHE_STATE.score / DIHE_STATE.maxQ * 100);
 if(DIHE_STATE.score>=8) awardBadge('enough_pro');

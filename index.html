@@ -205,7 +205,7 @@ main{
 }
 .app-name{
   font-family:var(--font-mono);
-  font-size:.85rem;
+  font-size:1rem;
   font-weight:700;
   letter-spacing:2px;
   margin-bottom:6px;
@@ -221,7 +221,11 @@ main{
 .card-health .app-name{color:var(--health);}
 
 .app-sub{
-  font-size:.74rem;color:var(--text2);line-height:1.4;margin-bottom:10px;flex:1;
+  font-size:.95rem;
+  line-height:1.5;
+  color:var(--text2);
+  margin-bottom:12px;
+  flex:1;
 }
 .app-pill{
   font-family:var(--font-mono);
@@ -390,6 +394,51 @@ main{
 .card-social.pressed{border-color:#9c27b0 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(156,39,176,.35) !important;}
 .card-tech.pressed{border-color:#cc2200 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(204,34,0,.40) !important;}
 .card-health.pressed{border-color:#e91e8c !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(233,30,140,.40) !important;}
+
+.coach-banner{
+  position:relative;
+  margin:0 0 18px;
+  padding:18px 18px 18px 20px;
+  border-radius:var(--radius);
+  border:1px solid rgba(34,136,255,0.24);
+  border-left:4px solid var(--time);
+  background:linear-gradient(135deg,#0d1520,#101a28);
+  box-shadow:var(--shadow), 0 0 0 1px rgba(255,255,255,0.02) inset, 0 0 22px rgba(34,136,255,0.10);
+  overflow:hidden;
+}
+.coach-banner::before{
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(circle at top right, rgba(34,136,255,0.10) 0%, transparent 36%);
+  pointer-events:none;
+}
+.coach-banner-label{
+  position:relative;
+  z-index:1;
+  display:block;
+  margin-bottom:10px;
+  font-family:var(--font-mono);
+  font-size:.64rem;
+  color:var(--time);
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+.coach-banner-text{
+  position:relative;
+  z-index:1;
+  color:var(--text2);
+  font-size:1rem;
+  line-height:1.72;
+}
+.coach-banner-text strong{
+  color:var(--text);
+  font-weight:800;
+}
+@media(max-width:640px){
+  .coach-banner{padding:16px 16px 16px 18px;}
+  .coach-banner-text{font-size:.97rem; line-height:1.68;}
+}
+
 </style>
 </head>
 <body>
@@ -419,6 +468,16 @@ main{
   </div>
 
   <div class="free-badge">🆓 &nbsp; ALL APPS FREE · NO ADS · NO ACCOUNTS · NO PAYWALLS</div>
+
+
+  <div class="coach-banner">
+    <span class="coach-banner-label">🎓 For Coaches &amp; Teachers</span>
+    <div class="coach-banner-text">
+      Every app includes a built-in <strong>Coach Dashboard</strong> to log sessions, track accuracy, set mastery goals,
+      monitor prompt fading, and print progress reports for your clients or students. Tap <strong>COACH</strong> in any app header to get started.
+    </div>
+  </div>
+
 
   <div class="info-grid">
     <div class="info-card">

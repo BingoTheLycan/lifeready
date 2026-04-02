@@ -38,11 +38,9 @@ body.large-text  { --base-font:19px; --btn-min:64px; --coin-scale:1.25; }
 body.large-btns  { --btn-min:68px; }
 /* colorblind mode handled by SVG filters -- see cb-protanopia/deuteranopia/tritanopia */
 #page-wrap{
-  position:fixed;
-  inset:0;
-  overflow-y:auto;
+  position:relative;
+  min-height:100vh;
   overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
 }
 /* colorblind filter applied via JS on html element */
 body.no-motion * { animation:none!important; transition:none!important; }
@@ -99,11 +97,11 @@ main{max-width:480px;margin:0 auto;padding:14px 12px 90px;}
 /* ══ DESKTOP RESPONSIVE LAYOUT ══ */
 @media(min-width:900px){
 body{font-size:15px;}
-main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start;}
+main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start;}
 /* All screens stack in left column by default */
-.scr{grid-column:1;}
+.scr{grid-column:1;min-width:0;}
 /* Sidebar lives in right column */
-#desktop-sidebar{display:flex;flex-direction:column;gap:16px;grid-column:2;grid-row:1/99;position:sticky;top:74px;}
+#desktop-sidebar{display:flex;flex-direction:column;gap:16px;grid-column:2;grid-row:1/99;position:static;top:auto;}
 /* Game screen takes full width when active */
 #scr-game.on{grid-column:1 / -1;}
 /* Results takes full width */
@@ -114,8 +112,8 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
 .hgrid{grid-template-columns:repeat(4,1fr);}
 }
 @media(min-width:900px) and (max-width:1099px){
-main{grid-template-columns:1fr 300px;}
-#desktop-sidebar{top:74px;}
+main{grid-template-columns:minmax(0,1fr) 300px;}
+#desktop-sidebar{top:auto;}
 }
 
 /* ══ DESKTOP SIDEBAR CARDS ══ */
@@ -615,7 +613,7 @@ pointer-events:none;
 #badge-toast{
 position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(30px);
 background:var(--bg2);border:2px solid var(--amber);border-radius:var(--radius);
-padding:14px 18px;display:flex;align-items:center;gap:12px;
+padding:14px 18px;display:none;align-items:center;gap:12px;
 box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 30px rgba(255,187,51,.15);
 z-index:9999;opacity:0;pointer-events:none;
 transition:opacity .35s ease,transform .35s cubic-bezier(.34,1.56,.64,1);
@@ -646,7 +644,8 @@ max-width:320px;width:calc(100% - 32px);
 .gc-body{font-size:.84rem;color:var(--text2);line-height:1.7;}
 .gc-body strong{color:var(--text);}
 .gc-body em{color:var(--text3);font-style:italic;}
-.cb-mode-btn{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap;}.cb-mode-btn.on{background:#00c85122;border-color:#00c851;color:#00c851;box-shadow:0 0 12px #00c85155;}.cb-mode-btn:hover{border-color:#00c85188;color:#00c851;}</style>
+.cb-mode-btn{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap;}.cb-mode-btn.on{background:#00c85122;border-color:#00c851;color:#00c851;box-shadow:0 0 12px #00c85155;}.cb-mode-btn:hover{border-color:#00c85188;color:#00c851;}@media(min-width:900px){main>*{min-width:0;}#desktop-sidebar{min-width:0;}}
+</style>
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
 <defs>
 <filter id="cb-proto" color-interpolation-filters="sRGB">
@@ -3216,9 +3215,21 @@ function showBadgeToast(b){
   $('badge-toast-label').textContent=b.secret?'✦ SECRET BADGE UNLOCKED!':'🎉 BADGE UNLOCKED!';
   $('badge-toast-name').textContent=b.name;
   $('badge-toast-desc').textContent=b.desc&&b.desc!=='???'?b.desc:'';
+  toast.style.display='flex';
+  toast.style.pointerEvents='none';
+  toast.style.opacity='0';
+  toast.style.transform='translateX(-50%) translateY(30px)';
+  void toast.offsetWidth;
   toast.classList.add('show');
+  toast.style.opacity='1';
+  toast.style.transform='translateX(-50%) translateY(0)';
   if(_badgeToastTimer) clearTimeout(_badgeToastTimer);
-  _badgeToastTimer=setTimeout(()=>toast.classList.remove('show'),3500);
+  _badgeToastTimer=setTimeout(()=>{
+    toast.classList.remove('show');
+    toast.style.opacity='0';
+    toast.style.transform='translateX(-50%) translateY(30px)';
+    setTimeout(()=>{toast.style.display='none';},350);
+  },3500);
 }
 function awardBadge(id){
   if(!BADGES.has(id)){
@@ -5336,57 +5347,7 @@ updateHomeUI();
 genDIHE();
 }
 }
-// ════════════════════════════════════════════════════════
-//  PWA - SERVICE WORKER REGISTRATION
-// ════════════════════════════════════════════════════════
-if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-const swCode = `
-const CACHE = 'cashready-v2';
-const FONT_CACHE = 'cashready-fonts-v1';
-
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE).then(cache => cache.addAll(['.']))
-  );
-  self.skipWaiting();
-});
-
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k=>k!==CACHE&&k!==FONT_CACHE).map(k=>caches.delete(k)))
-    )
-  );
-});
-
-self.addEventListener('fetch', e => {
-  const url = e.request.url;
-  // Cache Google Fonts separately with long TTL
-  if (url.includes('fonts.googleapis.com') || url.includes('fonts.gstatic.com')) {
-    e.respondWith(
-      caches.open(FONT_CACHE).then(cache =>
-        cache.match(e.request).then(cached => {
-          if (cached) return cached;
-          return fetch(e.request).then(response => {
-            cache.put(e.request, response.clone());
-            return response;
-          }).catch(() => cached);
-        })
-      )
-    );
-    return;
-  }
-  // Everything else - cache first, network fallback
-  e.respondWith(
-    caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('.')))
-  );
-});
-`;
-const blob = new Blob([swCode], {type: 'application/javascript'});
-const swURL = URL.createObjectURL(blob);
-navigator.serviceWorker.register(swURL).catch(() => {});
-}
-
+// Module-level service worker removed to avoid stale cache conflicts.
 </script>
 
 <script>
@@ -5394,6 +5355,15 @@ document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preve
 document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});
 document.addEventListener('gesturestart',function(e){e.preventDefault();});
 let _lt=0;document.addEventListener('touchend',function(e){const n=Date.now();if(n-_lt<300)e.preventDefault();_lt=n;},false);
+</script>
+
+
+<script id="lifeready-shared-sw">
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  });
+}
 </script>
 
 </body>

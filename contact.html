@@ -111,6 +111,19 @@ li+li{margin-top:8px;}
   box-shadow:0 0 20px var(--accent-soft);
   transform:translateY(-1px);
 }
+.contact-grid{display:grid;gap:14px;margin-top:18px;}
+.contact-box{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px 16px;
+  background:rgba(255,255,255,0.03);
+  position:relative;
+}
+.contact-box strong{display:block;color:var(--text);margin-bottom:6px;}
+.contact-box span{color:var(--text2);line-height:1.7;font-size:.96rem;}
+@media(min-width:700px){
+  .contact-grid{grid-template-columns:repeat(3, minmax(0,1fr));}
+}
 .footer-note{
   text-align:center;color:var(--text2);font-size:.88rem;line-height:1.7;margin-top:18px;
   text-shadow:0 0 10px rgba(255,255,255,0.04);
@@ -131,7 +144,22 @@ li+li{margin-top:8px;}
     
 <p>If you have questions, feedback, or need support, you can reach out directly.</p>
 <p>Every message is read and appreciated. Responses may take time, but your feedback matters.</p>
-<a class="email" href="mailto:mrtlbeck@gmail.com">mrtlbeck@gmail.com</a>
+<div class="contact-grid">
+  <div class="contact-box">
+    <strong>Bug reports</strong>
+    <span>Share the module name, device, browser, and what happened so problems are easier to track down.</span>
+  </div>
+  <div class="contact-box">
+    <strong>Educators and programs</strong>
+    <span>Questions from teachers, coaches, transition programs, and support teams are welcome.</span>
+  </div>
+  <div class="contact-box">
+    <strong>General feedback</strong>
+    <span>Ideas, accessibility feedback, and suggestions for improvements are encouraged.</span>
+  </div>
+</div>
+<a class="email" href="mailto:mrtlbeck@gmail.com?subject=LifeReady%20Support">mrtlbeck@gmail.com</a>
+<p style="margin-top:14px;">For faster troubleshooting, include the page or module name and a screenshot if you have one.</p>
 
   </div>
   <div class="footer-note">LifeReady • No accounts • No ads • No paywalls</div>

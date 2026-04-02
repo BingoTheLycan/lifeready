@@ -43,11 +43,9 @@ body.large-text  { --base-font:19px; --btn-min:64px; --coin-scale:1.25; }
 body.large-btns  { --btn-min:68px; }
 /* colorblind mode handled by SVG filters -- see cb-protanopia/deuteranopia/tritanopia */
 #page-wrap{
-  position:fixed;
-  inset:0;
-  overflow-y:auto;
+  position:relative;
+  min-height:100vh;
   overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
 }
 /* colorblind filter applied via JS on html element */
 body.no-motion * { animation:none!important; transition:none!important; }
@@ -104,11 +102,11 @@ main{max-width:480px;margin:0 auto;padding:14px 12px 90px;}
 /* ══ DESKTOP RESPONSIVE LAYOUT ══ */
 @media(min-width:900px){
 body{font-size:15px;}
-main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start;}
+main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start;}
 /* All screens stack in left column by default */
-.scr{grid-column:1;}
+.scr{grid-column:1;min-width:0;}
 /* Sidebar lives in right column */
-#desktop-sidebar{display:flex;flex-direction:column;gap:16px;grid-column:2;grid-row:1/99;position:sticky;top:74px;}
+#desktop-sidebar{display:flex;flex-direction:column;gap:16px;grid-column:2;grid-row:1/99;position:static;top:auto;}
 /* Game screen takes full width when active */
 #scr-game.on{grid-column:1 / -1;}
 /* Results takes full width */
@@ -119,8 +117,8 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
 .hgrid{grid-template-columns:repeat(4,1fr);}
 }
 @media(min-width:900px) and (max-width:1099px){
-main{grid-template-columns:1fr 300px;}
-#desktop-sidebar{top:74px;}
+main{grid-template-columns:minmax(0,1fr) 300px;}
+#desktop-sidebar{top:auto;}
 }
 
 /* ══ DESKTOP SIDEBAR CARDS ══ */
@@ -626,7 +624,7 @@ pointer-events:none;
 #badge-toast{
 position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(30px);
 background:var(--bg2);border:2px solid var(--amber);border-radius:var(--radius);
-padding:14px 18px;display:flex;align-items:center;gap:12px;
+padding:14px 18px;display:none;align-items:center;gap:12px;
 box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 30px rgba(255,187,51,.15);
 z-index:9999;opacity:0;pointer-events:none;
 transition:opacity .35s ease,transform .35s cubic-bezier(.34,1.56,.64,1);
@@ -657,7 +655,8 @@ max-width:320px;width:calc(100% - 32px);
 .gc-body{font-size:.84rem;color:var(--text2);line-height:1.7;}
 .gc-body strong{color:var(--text);}
 .gc-body em{color:var(--text3);font-style:italic;}
-.cb-mode-btn{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap;}.cb-mode-btn.on{background:#cc220022;border-color:#cc2200;color:#cc2200;box-shadow:0 0 12px #cc220055;}.cb-mode-btn:hover{border-color:#cc220088;color:#cc2200;}</style>
+.cb-mode-btn{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap;}.cb-mode-btn.on{background:#cc220022;border-color:#cc2200;color:#cc2200;box-shadow:0 0 12px #cc220055;}.cb-mode-btn:hover{border-color:#cc220088;color:#cc2200;}@media(min-width:900px){main>*{min-width:0;}#desktop-sidebar{min-width:0;}}
+</style>
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
 <defs>
 <filter id="cb-proto" color-interpolation-filters="sRGB">
@@ -1692,249 +1691,6 @@ max-width:320px;width:calc(100% - 32px);
   <div style="text-align:center;padding:20px 0 8px">
     <a href="index.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);font-family:var(--font-mono);font-size:.65rem;letter-spacing:2px;text-decoration:none;color:#cc2200;border:1px solid #cc220055;border-radius:20px;padding:8px 22px;display:inline-block;text-shadow:0 0 10px #cc220044;transition:box-shadow .2s,border-color .2s" onclick="event.preventDefault();window.open('index.html','_self')">← BACK TO LIFEREADY HUB</a>
   </div>
-</div>
-
-<!-- ══ DESKTOP SIDEBAR (hidden on mobile) ══ -->
-
-<aside id="desktop-sidebar" style="display:none">
-  <!-- Quick stats -->
-  <div class="dsb-card">
-    <div class="dsb-title">📊 Your Stats</div>
-    <div class="dsb-stat"><span class="dsb-stat-label">Daily Streak</span><span class="dsb-stat-value" id="dsb-streak">🔥0</span></div>
-    <div class="dsb-stat"><span class="dsb-stat-label">Badges Earned</span><span class="dsb-stat-value" id="dsb-badges">0</span></div>
-    <div class="dsb-stat"><span class="dsb-stat-label">Total Sessions</span><span class="dsb-stat-value" id="dsb-sessions">0</span></div>
-  </div>
-  <!-- Today's progress -->
-  <div class="dsb-card" id="dsb-today-wrap" style="display:none">
-    <div class="dsb-title">⚡ Today's Progress</div>
-    <div id="dsb-today"></div>
-  </div>
-  <!-- Quick links -->
-  <div class="dsb-card">
-    <div class="dsb-title">🔗 Quick Links</div>
-    <div style="display:flex;flex-direction:column;gap:7px">
-      <button class="rsec" onclick="go('guide')" style="text-align:left;padding:9px 12px;font-size:.8rem">📖 How To Play</button>
-      <button class="rsec" onclick="go('guide')" style="text-align:left;padding:9px 12px;font-size:.8rem">📖 Tech Guides</button>
-      <button class="rsec" onclick="go('badges')" style="text-align:left;padding:9px 12px;font-size:.8rem">🎖 View Badges</button>
-      <button class="rsec" onclick="go('scores')" style="text-align:left;padding:9px 12px;font-size:.8rem">🏆 High Scores</button>
-    </div>
-  </div>
-  <!-- About blurb -->
-  <div class="dsb-card">
-    <div class="dsb-title">ℹ️ About HomeReady</div>
-    <p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free home skills trainer for everyone. Practice laundry, budgeting, food safety, and independent living - at your own pace.</p>
-    <button class="rsec" onclick="go('about')" style="width:100%;font-size:.78rem;padding:8px">Read Our Story →</button>
-  </div>
-</aside>
-
-</main>
-
-<!-- ══ BREAK SCREEN ══ -->
-
-<div class="break-scr" id="break-scr">
-  <div class="break-emoji" id="break-emoji">☕</div>
-  <div class="break-title" id="break-title">GREAT WORK!</div>
-  <div class="break-sub" id="break-sub">You have done 5 questions in a row. Want to take a short break or keep going?</div>
-  <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:12px 18px;max-width:280px;font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6" id="break-tip"></div>
-  <button class="dbtn" style="max-width:260px" onclick="closeBreak(false)">Keep Going →</button>
-  <button class="rsec" style="max-width:260px" onclick="closeBreak(true)">Take a Break ☕</button>
-  <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1px;max-width:260px;text-align:center">Your shift will be waiting when you come back.</div>
-</div>
-
-<!-- ══ MODALS ══ -->
-
-<div class="mow" id="m-client">
-  <div class="mdl">
-    <div class="mt">+ ADD NEW CLIENT</div>
-    <div class="fg"><label class="fl">Full Name</label><input class="fi" id="nc-name" placeholder="e.g. Alex Johnson"></div>
-    <div class="fg"><label class="fl">Starting Level</label>
-      <select class="fsel" id="nc-level">
-        <option value="beginner">Beginner - Just starting out</option>
-        <option value="developing">Developing - Building basic skills</option>
-        <option value="proficient">Proficient - Practicing independently</option>
-        <option value="advanced">Advanced - Near-independent living skills</option>
-      </select>
-    </div>
-    <div class="fg"><label class="fl">Program / Group</label><input class="fi" id="nc-program" placeholder="e.g. Independent Living Group A"></div>
-    <div class="fg"><label class="fl">Notes / Accommodations</label><textarea class="fta" id="nc-notes" placeholder="Goals, accommodations, preferences, IEP notes..."></textarea></div>
-    <div class="mbtns"><button class="mcancel" onclick="closeM('m-client')">Cancel</button><button class="msave" onclick="saveClient()">Add Client</button></div>
-  </div>
-</div>
-
-<div class="mow" id="m-log">
-  <div class="mdl">
-    <div class="mt">📝 LOG SESSION</div>
-    <div class="fg"><label class="fl">Client</label><select class="fsel" id="log-cl"></select></div>
-    <div class="fg"><label class="fl">Module Practiced</label>
-      <select class="fsel" id="log-mod">
-        <option>Tech Challenge</option>
-        <option>Spot the Scam</option>
-        <option>Passwords</option>
-        <option>Daily Challenge</option>
-        <option>Online Safety</option>
-        <option>Digital Communication</option>
-        <option>Your Devices</option>
-        <option>Practice Mode</option>
-        <option>Daily Challenge</option>
-      </select>
-    </div>
-    <div class="fg"><label class="fl">Score (e.g. 8/10)</label><input class="fi" id="log-sc" placeholder="8/10"></div>
-    <div class="fg">
-      <label class="fl">Prompt Level Used</label>
-      <div class="pchips" id="pchips">
-        <div class="pchip on" data-v="independent" onclick="selPrompt(this)">Independent</div>
-        <div class="pchip" data-v="verbal" onclick="selPrompt(this)">Verbal</div>
-        <div class="pchip" data-v="gestural" onclick="selPrompt(this)">Gestural</div>
-        <div class="pchip" data-v="physical" onclick="selPrompt(this)">Physical</div>
-        <div class="pchip" data-v="hoh" onclick="selPrompt(this)">Hand-over-Hand</div>
-      </div>
-    </div>
-    <div class="fg"><label class="fl">Session Notes</label>
-      <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px">
-        <div class="note-chip" onclick="appendNote('Independent today')">Independent today</div>
-        <div class="note-chip" onclick="appendNote('Needed verbal prompts')">Needed verbal prompts</div>
-        <div class="note-chip" onclick="appendNote('Great focus')">Great focus</div>
-        <div class="note-chip" onclick="appendNote('Struggled with scam recognition')">Scam recognition</div>
-        <div class="note-chip" onclick="appendNote('Good with food safety')">Food safety strength</div>
-        <div class="note-chip" onclick="appendNote('Improving steadily')">Improving steadily</div>
-        <div class="note-chip" onclick="appendNote('Best session yet')">Best session yet</div>
-        <div class="note-chip" onclick="appendNote('Short attention today')">Short attention today</div>
-      </div>
-      <textarea class="fta" id="log-notes" placeholder="Tap a chip above or type your own notes..."></textarea>
-    </div>
-    <div class="mbtns"><button class="mcancel" onclick="closeM('m-log')">Cancel</button><button class="msave" onclick="saveSession()">Save Session</button></div>
-  </div>
-</div>
-
-<div class="mow" id="m-goal">
-  <div class="mdl">
-    <div class="mt">🎯 ADD SESSION GOAL</div>
-    <div class="fg"><label class="fl">Client</label><select class="fsel" id="goal-cl"></select></div>
-    <div class="fg"><label class="fl">Skill Area</label>
-      <select class="fsel" id="goal-skill">
-        <option value="scams">Scam Spotting</option>
-        <option value="passwords">Passwords</option>
-        <option value="online">Online Safety</option>
-        <option value="independence">Independent Living</option>
-      </select>
-    </div>
-    <div class="fg"><label class="fl">Target Score (e.g. 4/5 correct)</label>
-      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center">
-        <input class="fi" id="goal-num" type="number" min="1" max="10" value="4" placeholder="4">
-        <span style="color:var(--text2);font-weight:700;text-align:center">out of</span>
-        <input class="fi" id="goal-den" type="number" min="1" max="10" value="5" placeholder="5">
-      </div>
-    </div>
-    <div class="fg"><label class="fl">Consecutive Sessions Required</label>
-      <select class="fsel" id="goal-consec">
-        <option value="1">1 session</option>
-        <option value="2">2 sessions in a row</option>
-        <option value="3" selected>3 sessions in a row</option>
-        <option value="4">4 sessions in a row</option>
-        <option value="5">5 sessions in a row</option>
-      </select>
-    </div>
-    <div class="fg"><label class="fl">Goal Description (optional)</label>
-      <input class="fi" id="goal-desc" placeholder="e.g. Score 80% on Spot the Scam independently">
-    </div>
-    <div class="mbtns"><button class="mcancel" onclick="closeM('m-goal')">Cancel</button><button class="msave" onclick="saveGoal()">Save Goal</button></div>
-  </div>
-</div>
-
-<div class="mow" id="m-hint">
-  <div class="mdl">
-    <div class="mt" id="m-hint-title">💡 HINT</div>
-    <div id="m-hint-body" style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:16px;"></div>
-    <button class="msave" style="width:100%;margin-bottom:8px" id="m-hint-ok" onclick="closeM('m-hint')">Got it!</button>
-    <button class="rsec" id="m-hint-cancel" style="width:100%;display:none" onclick="closeM('m-hint')">Cancel</button>
-  </div>
-</div>
-
-<!-- ══ COACH PIN ══ -->
-
-<div class="mow" id="m-pin">
-  <div class="mdl" style="max-width:320px;text-align:center">
-    <div style="font-size:2rem;margin-bottom:6px">🔒</div>
-    <div class="mt" id="pin-title" style="text-align:center;justify-content:center">COACH ACCESS</div>
-    <div id="pin-subtitle" style="font-size:.82rem;color:var(--text2);margin-bottom:16px;line-height:1.5">Enter your PIN to access the coach dashboard.</div>
-    <input id="pin-input" type="password" class="fi" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
-      placeholder="Enter PIN"
-      style="text-align:center;font-size:1.3rem;letter-spacing:4px;font-family:var(--font-mono);margin-bottom:10px"
-      oninput="pinInputChange()" onkeydown="if(event.key==='Enter')handlePinSubmit()">
-    <div id="pin-error" style="color:var(--red);font-size:.78rem;font-weight:700;margin-bottom:10px;min-height:18px;font-family:var(--font-mono)"></div>
-    <button class="dbtn" onclick="handlePinSubmit()" style="margin-bottom:8px">Submit →</button>
-    <button class="rsec" onclick="closeM('m-pin');go('home')" style="font-size:.8rem">Cancel</button>
-    <div id="pin-footer" style="margin-top:12px;font-size:.72rem;color:var(--text3);line-height:1.5"></div>
-  </div>
-</div>
-
-<!-- ══ NAME PROMPT ══ -->
-
-<div class="mow" id="m-name">
-  <div class="mdl" style="max-width:340px">
-    <div style="text-align:center;font-size:2rem;margin-bottom:8px">👋</div>
-    <div class="mt" style="text-align:center;justify-content:center">WHAT'S YOUR NAME?</div>
-    <p style="font-size:.83rem;color:var(--text2);margin-bottom:16px;line-height:1.6">Your first name will appear on your results when you do a great job!</p>
-    <div style="background:var(--amber-light);border:1px solid var(--amber);border-radius:var(--radius-sm);padding:9px 13px;font-size:.76rem;color:var(--amber);font-weight:700;margin-bottom:16px;line-height:1.5">
-      ⚠️ Only use your name if this is your <strong>personal device</strong>. Do not enter client names on shared devices.
-    </div>
-    <div class="fg">
-      <label class="fl">First name only</label>
-      <input class="fi" id="name-input" placeholder="e.g. Alex" maxlength="20" style="font-size:1.1rem;text-align:center">
-    </div>
-    <div class="mbtns" style="flex-direction:column;gap:8px">
-      <button class="msave" style="width:100%;padding:13px" onclick="saveName()">Save My Name ✓</button>
-      <button class="mcancel" style="width:100%;padding:11px;text-align:center" onclick="skipName()">Skip - No Thanks</button>
-      <button class="mcancel" id="clear-name-btn" onclick="clearName()" style="width:100%;padding:9px;text-align:center;font-size:.75rem;color:var(--red);display:none">Remove My Name</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══ STREAK MILESTONE ══ -->
-
-<div class="mow" id="m-streak">
-  <div class="mdl" style="max-width:320px;text-align:center">
-    <div id="streak-milestone-emoji" style="font-size:3.5rem;margin-bottom:10px">🔥</div>
-    <div id="streak-milestone-title" style="font-family:var(--font-mono);font-size:1.1rem;color:var(--amber);letter-spacing:3px;margin-bottom:8px">3-DAY STREAK!</div>
-    <div id="streak-milestone-msg" style="font-size:.88rem;color:var(--text2);line-height:1.6;margin-bottom:16px"></div>
-    <div id="streak-milestone-badge" style="background:var(--amber-light);border:2px solid var(--amber);border-radius:var(--radius);padding:14px;margin-bottom:18px">
-      <div style="font-size:2rem;margin-bottom:5px">☀️</div>
-      <div style="font-family:var(--font-mono);font-size:.75rem;color:var(--amber);font-weight:700;letter-spacing:1px">BADGE EARNED!</div>
-      <div id="streak-badge-name" style="font-size:.88rem;color:var(--text);font-weight:700;margin-top:3px"></div>
-    </div>
-    <button class="dbtn" onclick="closeM('m-streak')">Keep Going! →</button>
-  </div>
-</div>
-
-<!-- ══ QUICK SETTINGS (mid-game) ══ -->
-
-<div class="mow" id="m-quick-settings">
-  <div class="mdl" style="max-width:340px">
-    <div class="mt">⚙️ QUICK SETTINGS</div>
-    <p style="font-size:.78rem;color:var(--text2);margin-bottom:14px">Changes apply instantly. Your session continues.</p>
-    <div class="sr" style="margin-bottom:8px"><div class="si">🔊</div><div class="sinfo"><div class="sn">Audio</div><div class="sd2">Spoken instructions &amp; sounds</div></div><div class="tog" id="qs-tog-audio" onclick="qsToggle('audio','qs-tog-audio')"></div></div>
-    <div class="sr" style="margin-bottom:8px"><div class="si">T</div><div class="sinfo"><div class="sn">Large Text</div><div class="sd2">Bigger text &amp; buttons</div></div><div class="tog" id="qs-tog-lt" onclick="qsToggle('largetext','qs-tog-lt')"></div></div>
-    <div class="sr" style="margin-bottom:8px"><div class="si">👁</div><div class="sinfo"><div class="sn">Colorblind Mode</div><div class="sd2">Orange/blue instead of red/green</div></div><div class="tog" id="qs-tog-cb" onclick="qsToggle('colorblind','qs-tog-cb')"></div></div>
-    <div class="sr" style="margin-bottom:8px"><div class="si">☀️</div><div class="sinfo"><div class="sn">Light Mode</div><div class="sd2">Light background, easier in bright light</div></div><div class="tog" id="qs-tog-lm" onclick="qsToggle('lightmode','qs-tog-lm')"></div></div>
-    <div class="sr" style="margin-bottom:8px"><div class="si">🌀</div><div class="sinfo"><div class="sn">Reduce Animations</div><div class="sd2">Turns off motion effects</div></div><div class="tog" id="qs-tog-nm" onclick="qsToggle('nomotion','qs-tog-nm')"></div></div>
-    <div class="sr" style="margin-bottom:8px"><div class="si">💡</div><div class="sinfo"><div class="sn">Errorless Hints</div><div class="sd2">Highlights the correct answer before you tap</div></div><div class="tog" id="qs-tog-el" onclick="qsToggle('errorless','qs-tog-el')"></div></div>
-    <div style="margin-top:8px">
-      <button class="msave" style="width:100%" onclick="closeM('m-quick-settings')">Done - Resume Session ▶</button>
-    </div>
-    <p style="font-size:.68rem;color:var(--text3);text-align:center;margin-top:9px">For all settings, visit the home screen grid.</p>
-  </div>
-</div>
-
-<!-- ══ BADGE TOAST ══ -->
-
-<div id="badge-toast">
-  <div id="badge-toast-icon">🎖</div>
-  <div id="badge-toast-body">
-    <div id="badge-toast-label">🎉 BADGE UNLOCKED!</div>
-    <div id="badge-toast-name"></div>
-    <div id="badge-toast-desc"></div>
-  </div>
-</div>
 </div>
 
 <script>
@@ -2998,9 +2754,21 @@ function showBadgeToast(b){
   $('badge-toast-label').textContent=b.secret?'✦ SECRET BADGE UNLOCKED!':'🎉 BADGE UNLOCKED!';
   $('badge-toast-name').textContent=b.name;
   $('badge-toast-desc').textContent=b.desc&&b.desc!=='???'?b.desc:'';
+  toast.style.display='flex';
+  toast.style.pointerEvents='none';
+  toast.style.opacity='0';
+  toast.style.transform='translateX(-50%) translateY(30px)';
+  void toast.offsetWidth;
   toast.classList.add('show');
+  toast.style.opacity='1';
+  toast.style.transform='translateX(-50%) translateY(0)';
   if(_badgeToastTimer) clearTimeout(_badgeToastTimer);
-  _badgeToastTimer=setTimeout(()=>toast.classList.remove('show'),3500);
+  _badgeToastTimer=setTimeout(()=>{
+    toast.classList.remove('show');
+    toast.style.opacity='0';
+    toast.style.transform='translateX(-50%) translateY(30px)';
+    setTimeout(()=>{toast.style.display='none';},350);
+  },3500);
 }
 
 function renderBadges(){
@@ -4561,6 +4329,15 @@ document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preve
 document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});
 document.addEventListener('gesturestart',function(e){e.preventDefault();});
 let _lt=0;document.addEventListener('touchend',function(e){const n=Date.now();if(n-_lt<300)e.preventDefault();_lt=n;},false);
+</script>
+
+
+<script id="lifeready-shared-sw">
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  });
+}
 </script>
 
 </body>

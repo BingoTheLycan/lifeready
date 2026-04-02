@@ -659,7 +659,50 @@ max-width:320px;width:calc(100% - 32px);
 .gc-body{font-size:.84rem;color:var(--text2);line-height:1.7;}
 .gc-body strong{color:var(--text);}
 .gc-body em{color:var(--text3);font-style:italic;}
-.cb-mode-btn{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap;}.cb-mode-btn.on{background:#e91e8c22;border-color:#e91e8c;color:#e91e8c;box-shadow:0 0 12px #e91e8c55;}.cb-mode-btn:hover{border-color:#e91e8c88;color:#e91e8c;}</style>
+.cb-mode-btn{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap;}.cb-mode-btn.on{background:#e91e8c22;border-color:#e91e8c;color:#e91e8c;box-shadow:0 0 12px #e91e8c55;}.cb-mode-btn:hover{border-color:#e91e8c88;color:#e91e8c;}
+
+
+/* HealthReady inline disclaimer */
+.health-disclaimer-card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px 12px;
+  margin:10px 0 14px;
+  font-size:0.78rem;
+  line-height:1.5;
+  opacity:0.9;
+}
+.hd-title{
+  font-size:.6rem;
+  letter-spacing:3px;
+  color:var(--text3);
+  margin-bottom:6px;
+  text-transform:uppercase;
+  font-family:var(--font-mono);
+}
+.hd-text{
+  color:var(--text2);
+  line-height:1.5;
+}
+.hd-text strong{
+  color:var(--text);
+  font-weight:800;
+}
+.hd-link{
+  display:inline-block;
+  margin-top:8px;
+  padding:6px 10px;
+  font-size:.7rem;
+  border-radius:10px;
+  opacity:0.85;
+  color:var(--green);
+  border:1px solid var(--border);
+  text-decoration:none;
+  font-family:var(--font-mono);
+}
+
+</style>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <filter color-interpolation-filters="sRGB" id="cb-proto">
@@ -694,6 +737,20 @@ max-width:320px;width:calc(100% - 32px);
 <div class="home-tagline">- HEALTH &amp; LIFE SKILLS TRAINER -</div>
 <div class="home-sub" id="home-sub">Know your health · Advocate for yourself · Stay safe</div>
 <button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-size:.65rem;color:#e91e8c;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #e91e8c44;background:transparent;border:1px solid #e91e8c55;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB &nbsp;·&nbsp; All Apps</button>
+
+<!-- HEALTH DISCLAIMER (DO NOT REMOVE) -->
+<div class="health-disclaimer-card">
+  <div class="hd-title">Important</div>
+  
+
+
+<div class="hd-text">
+    HealthReady is for education and practice only. It is <strong>not medical advice</strong>, not a diagnosis tool, and not emergency care.
+    For urgent symptoms, medication questions, or emergencies, contact a qualified healthcare professional or emergency services.
+  </div>
+  <a href="health-disclaimer.html" class="hd-link">Read the full health disclaimer</a>
+</div>
+
 </div>
 
 <div id="onboarding-card" style="display:none;background:linear-gradient(135deg,var(--panel),var(--panel2));border:2px solid var(--green);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;animation:fadeUp .5s ease">

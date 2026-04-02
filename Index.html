@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
-<meta content="#0d1117" name="theme-color"/>
-<meta content="LifeReady - Free life skills trainers for everyone. CashReady, TimeReady, JobReady, HomeReady, TravelReady, SocialReady, HealthReady, and TechReady. Built with love, for real life." name="description"/>
-<title>LifeReady - Life Skills Suite</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Space+Mono:wght@400;700&amp;family=Nunito:wght@400;700;800;900&amp;family=Fredoka+One&amp;display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="theme-color" content="#0d1117"/>
+<meta name="description" content="LifeReady - A retro-futuristic life skills game hub. Pick your world, build confidence, and level up real-life skills."/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="LifeReady"/>
+<title>LifeReady - Select Your World</title>
+<link rel="manifest" href="manifest.json"/>
+<link rel="apple-touch-icon" href="icon_192.png"/>
+<link rel="icon" href="icon_512.png" sizes="512x512" type="image/png"/>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet"/>
 <style>
-/* ═══════════════════════════════════════════════
-   LifeReady Hub v1.0
-   The control center -- one place, all skills
-   ═══════════════════════════════════════════════ */
 :root {
   --bg:#0d1117; --bg2:#161b22; --bg3:#1c2330; --bg4:#21262d;
   --border:#2a3040; --border2:#1e2530;
@@ -22,488 +23,352 @@
   --radius:18px; --radius-sm:12px;
   --font-mono:'Space Mono','Courier New',monospace;
   --font-body:'Nunito',-apple-system,sans-serif;
-  --font-display:'Fredoka One',cursive;
   --font-sig:'Dancing Script',cursive;
 
-/* App colors */
---cash:#00c851;   --cash-glow:rgba(0,200,81,0.25);   --cash-light:rgba(0,200,81,0.10);
---time:#2288ff;   --time-glow:rgba(34,136,255,0.25);  --time-light:rgba(34,136,255,0.10);
---job:#d4900a;    --job-glow:rgba(212,144,10,0.25);   --job-light:rgba(212,144,10,0.10);
---home:#e8650a;   --home-glow:rgba(232,101,10,0.25);  --home-light:rgba(232,101,10,0.10);
---travel:#0a9396; --travel-glow:rgba(10,147,150,0.25);  --travel-light:rgba(10,147,150,0.10);
---social:#9b30d9; --social-glow:rgba(155,48,217,0.25);  --social-light:rgba(155,48,217,0.10);
---soon:#6b7a99;   --soon-light:rgba(107,122,153,0.08);
+  --cash:#00c851;   --cash-glow:rgba(0,200,81,0.25);   --cash-light:rgba(0,200,81,0.10);
+  --time:#2288ff;   --time-glow:rgba(34,136,255,0.25);  --time-light:rgba(34,136,255,0.10);
+  --job:#d4900a;    --job-glow:rgba(212,144,10,0.25);   --job-light:rgba(212,144,10,0.10);
+  --home:#e8650a;   --home-glow:rgba(232,101,10,0.25);  --home-light:rgba(232,101,10,0.10);
+  --travel:#0a9396; --travel-glow:rgba(10,147,150,0.25);  --travel-light:rgba(10,147,150,0.10);
+  --social:#9b30d9; --social-glow:rgba(155,48,217,0.25);  --social-light:rgba(155,48,217,0.10);
+  --tech:#cc2200;   --tech-glow:rgba(204,34,0,0.25); --tech-light:rgba(204,34,0,0.10);
+  --health:#e91e8c; --health-glow:rgba(233,30,140,0.25); --health-light:rgba(233,30,140,0.10);
 }
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
 body{
-font-family:var(--font-body);
-background:var(--bg);
-color:var(--text);
-min-height:100vh;
-overflow-x:hidden;
+  font-family:var(--font-body);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,187,51,0.06) 0%, transparent 70%),
+    radial-gradient(circle at 15% 15%, rgba(34,136,255,0.08) 0%, transparent 22%),
+    radial-gradient(circle at 85% 10%, rgba(155,48,217,0.07) 0%, transparent 22%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
 }
-
-/* scanlines */
+body::before{
+  content:'';
+  position:fixed; inset:0;
+  background:
+    radial-gradient(circle at 8% 18%, rgba(255,255,255,.35) 0 1px, transparent 2px),
+    radial-gradient(circle at 82% 14%, rgba(255,255,255,.28) 0 1px, transparent 2px),
+    radial-gradient(circle at 24% 72%, rgba(255,255,255,.25) 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 84%, rgba(255,255,255,.22) 0 1px, transparent 2px);
+  pointer-events:none;
+  z-index:0;
+}
 body::after{
-content:'';position:fixed;inset:0;
-background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.018) 3px,rgba(0,0,0,0.018) 4px);
-pointer-events:none;z-index:9000;
+  content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.018) 3px,rgba(0,0,0,0.018) 4px);
+  pointer-events:none;z-index:9000;
 }
 
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 
-/* ══ HERO HEADER ══ */
 .hero{
-text-align:center;
-padding:48px 20px 36px;
-position:relative;
-overflow:hidden;
+  text-align:center;
+  padding:48px 20px 30px;
+  position:relative;
+  overflow:hidden;
+  z-index:1;
 }
-.hero::before{
-content:'';position:absolute;inset:0;
-background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,187,51,0.06) 0%, transparent 70%);
-pointer-events:none;
+.hero-badge{
+  display:inline-block;font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:3px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;margin-bottom:16px;background:rgba(255,255,255,0.04);
 }
-.hero-badge{display:inline-block;font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:3px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;margin-bottom:16px;background:rgba(255,255,255,0.04);}
 .hero-logo{
-font-family:var(--font-mono);
-font-size:clamp(2.2rem,8vw,3.8rem);
-font-weight:700;
-letter-spacing:6px;
-line-height:1;
-margin-bottom:10px;
-animation:fadeDown .6s .1s ease both;
+  font-family:var(--font-mono);
+  font-size:clamp(2.2rem,8vw,3.8rem);
+  font-weight:700;
+  letter-spacing:6px;
+  line-height:1;
+  margin-bottom:10px;
+  text-shadow:0 0 18px rgba(255,255,255,.06);
 }
 .hero-logo .lr-life{color:var(--amber);text-shadow:0 0 40px rgba(255,187,51,0.4);}
 .hero-logo .lr-ready{color:var(--text);}
-.hero-tagline{font-family:var(--font-mono);font-size:.72rem;color:var(--text2);letter-spacing:4px;text-transform:uppercase;margin:8px 0 12px;text-shadow:0 0 14px rgba(255,255,255,0.2);}
-.hero-desc{font-size:.92rem;color:var(--text);max-width:400px;margin:0 auto;line-height:1.6;text-align:center;}
-
-/* ══ MAIN GRID ══ */
-main{
-max-width:520px;
-margin:0 auto;
-padding:0 14px 60px;
+.hero-tagline{
+  font-family:var(--font-mono);font-size:.72rem;color:var(--text2);letter-spacing:4px;text-transform:uppercase;margin:8px 0 12px;text-shadow:0 0 14px rgba(255,255,255,0.2);
+}
+.hero-desc{
+  font-size:.96rem;color:var(--text);max-width:620px;margin:0 auto;line-height:1.65;text-align:center;
+}
+.hero-sub{
+  margin-top:12px;
+  font-family:var(--font-mono);
+  font-size:.7rem;
+  letter-spacing:3px;
+  color:var(--amber);
+  text-shadow:0 0 14px rgba(255,187,51,.18);
 }
 
-.section-label{font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:4px;text-transform:uppercase;text-align:center;margin:0 0 18px;padding-bottom:8px;border-bottom:1px solid var(--border);text-shadow:0 0 12px rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;gap:12px;}
-.section-label::before{content:''; flex:1; height:1px; background:var(--border2);}
-.section-label::after{content:''; flex:1; height:1px; background:var(--border2);}
+main{
+  max-width:900px;
+  margin:0 auto;
+  padding:0 14px 60px;
+  position:relative;
+  z-index:1;
+}
+
+.section-label{
+  font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:4px;text-transform:uppercase;text-align:center;margin:0 0 18px;padding-bottom:8px;border-bottom:1px solid var(--border);text-shadow:0 0 12px rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;gap:12px;
+}
+.section-label::before,.section-label::after{content:''; flex:1; height:1px; background:var(--border2);}
+
+.top-copy{
+  text-align:center;
+  max-width:560px;
+  margin:0 auto 18px;
+  color:var(--text2);
+  font-size:.95rem;
+  line-height:1.6;
+  padding:0 6px;
+}
 
 .app-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-bottom:24px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:22px;
 }
 
-/* ══ APP CARD ══ */
 .app-card{
-position:relative;
-border-radius:var(--radius);
-padding:22px 16px 18px;
-cursor:pointer;
-text-decoration:none;
-display:flex;
-flex-direction:column;
-align-items:center;
-text-align:center;
-justify-content:space-between;
-min-height:220px;
-transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease, border-color .2s;
-overflow:hidden;
-border:2px solid transparent;
-animation:fadeUp .5s ease both;
--webkit-user-select:none;
-user-select:none;
+  position:relative;
+  border-radius:var(--radius);
+  padding:22px 16px 18px;
+  cursor:pointer;
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  justify-content:space-between;
+  min-height:220px;
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease, border-color .2s;
+  overflow:hidden;
+  border:2px solid transparent;
+  -webkit-user-select:none;
+  user-select:none;
 }
 .app-card:active{transform:scale(.96);}
 @media(hover:hover){
-.app-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 8px 32px rgba(0,0,0,0.4);}
+  .app-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 8px 32px rgba(0,0,0,0.4);}
 }
 .app-card::before{
-content:'';position:absolute;inset:0;
-opacity:0;transition:opacity .3s;
-border-radius:calc(var(--radius) - 2px);
+  content:'';position:absolute;inset:0;
+  opacity:0;transition:opacity .3s;
+  border-radius:calc(var(--radius) - 2px);
 }
 @media(hover:hover){.app-card:hover::before{opacity:1;}}
 
-/* Cash */
-.card-cash{
-background:linear-gradient(145deg,#0d1a0f,#111d13);
-border-color:rgba(0,200,81,0.35);
-box-shadow:0 4px 24px rgba(0,0,0,0.4), 0 0 0 0 var(--cash);
-}
+.card-cash{background:linear-gradient(145deg,#0d1a0f,#111d13);border-color:rgba(0,200,81,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
 .card-cash::before{background:radial-gradient(ellipse at 50% 0%,rgba(0,200,81,0.08),transparent 70%);}
-@media(hover:hover){.card-cash:hover{border-color:var(--cash);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--cash-glow);}.card-cash:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #00c85155;border-color:#00c851;}}
+@media(hover:hover){.card-cash:hover{border-color:var(--cash);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--cash-glow);}}
 
-/* Time */
-.card-time{
-background:linear-gradient(145deg,#0a0f1a,#0d1220);
-border-color:rgba(34,136,255,0.35);
-box-shadow:0 4px 24px rgba(0,0,0,0.4);
-}
+.card-time{background:linear-gradient(145deg,#0a0f1a,#0d1220);border-color:rgba(34,136,255,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
 .card-time::before{background:radial-gradient(ellipse at 50% 0%,rgba(34,136,255,0.08),transparent 70%);}
-@media(hover:hover){.card-time:hover{border-color:var(--time);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--time-glow);}.card-time:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #2288ff55;border-color:#2288ff;}}
+@media(hover:hover){.card-time:hover{border-color:var(--time);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--time-glow);}}
 
-/* Job */
-.card-job{
-background:linear-gradient(145deg,#1a1205,#1c1408);
-border-color:rgba(212,144,10,0.35);
-box-shadow:0 4px 24px rgba(0,0,0,0.4);
-}
+.card-job{background:linear-gradient(145deg,#1a1205,#1c1408);border-color:rgba(212,144,10,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
 .card-job::before{background:radial-gradient(ellipse at 50% 0%,rgba(212,144,10,0.08),transparent 70%);}
-@media(hover:hover){.card-job:hover{border-color:var(--job);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--job-glow);}.card-job:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #d4900a55;border-color:#d4900a;}}
+@media(hover:hover){.card-job:hover{border-color:var(--job);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--job-glow);}}
 
-/* Home */
-.card-home{
-background:linear-gradient(145deg,#1a0e05,#1c1008);
-border-color:rgba(232,101,10,0.35);
-box-shadow:0 4px 24px rgba(0,0,0,0.4);
-}
+.card-home{background:linear-gradient(145deg,#1a0e05,#1c1008);border-color:rgba(232,101,10,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
 .card-home::before{background:radial-gradient(ellipse at 50% 0%,rgba(232,101,10,0.08),transparent 70%);}
-@media(hover:hover){.card-home:hover{border-color:var(--home);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--home-glow);}.card-home:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #e8650a55;border-color:#e8650a;}}
+@media(hover:hover){.card-home:hover{border-color:var(--home);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--home-glow);}}
 
-/* Soon */
-/* Travel */
-.card-travel{
-background:linear-gradient(145deg,#061a1a,#081f1f);
-border-color:rgba(10,147,150,0.35);
-box-shadow:0 4px 24px rgba(0,0,0,0.4);
-}
-@media(hover:hover){.card-travel:hover{border-color:#0a9396;box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px rgba(10,147,150,0.25);}.card-travel:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #0a939655;border-color:#0a9396;}}
-.card-travel .app-name{font-family:var(--font-mono);font-size:.82rem;font-weight:900;letter-spacing:2px;margin-bottom:6px;transition:color .2s;color:#0a9396;}
-.card-travel .app-pill{background:rgba(10,147,150,0.10);color:#0a9396;border:1px solid rgba(10,147,150,0.25);}
+.card-travel{background:linear-gradient(145deg,#061a1a,#081f1f);border-color:rgba(10,147,150,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
+.card-travel::before{background:radial-gradient(ellipse at 50% 0%,rgba(10,147,150,0.08),transparent 70%);}
+@media(hover:hover){.card-travel:hover{border-color:var(--travel);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--travel-glow);}}
 
-.card-social{
-background:linear-gradient(145deg,#0f071a,#130a22);
-border-color:rgba(155,48,217,0.35);
-box-shadow:0 4px 24px rgba(0,0,0,0.4);
-}
-@media(hover:hover){.card-social:hover{border-color:#9b30d9;box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px rgba(155,48,217,0.25);}.card-social:active{transform:scale(.97);box-shadow:0 4px 20px rgba(0,0,0,0.5),0 0 30px #9b30d955;border-color:#9b30d9;}}
-.card-social .app-name{color:#9b30d9;}
-.card-social .app-pill{background:rgba(155,48,217,0.10);color:#9b30d9;border:1px solid rgba(155,48,217,0.25);}
+.card-social{background:linear-gradient(145deg,#0f071a,#130a22);border-color:rgba(155,48,217,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
+.card-social::before{background:radial-gradient(ellipse at 50% 0%,rgba(155,48,217,0.08),transparent 70%);}
+@media(hover:hover){.card-social:hover{border-color:var(--social);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--social-glow);}}
 
-/* Tech */
-.card-tech{
-background:linear-gradient(145deg,#1a0505,#200808);
-border-color:rgba(204,34,0,0.35);
-box-shadow:0 4px 24px rgba(0,0,0,0.4);
-}
-.card-health{
-background:linear-gradient(145deg,#1a0515,#200820);
-border-color:rgba(233,30,140,0.35);
-box-shadow:0 4px 24px rgba(0,0,0,0.4);
-}
+.card-tech{background:linear-gradient(145deg,#1a0505,#200808);border-color:rgba(204,34,0,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
 .card-tech::before{background:radial-gradient(ellipse at 50% 0%,rgba(204,34,0,0.08),transparent 70%);}
-@media(hover:hover){}
-.card-tech .app-name{color:#cc2200;}
-.card-health .app-name{color:#e91e8c;}
+@media(hover:hover){.card-tech:hover{border-color:var(--tech);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--tech-glow);}}
 
-.card-health .app-pill{background:rgba(233,30,140,0.10);color:#e91e8c;border:1px solid rgba(233,30,140,0.25);}
-.card-tech .app-pill{background:rgba(204,34,0,0.10);color:#cc2200;border:1px solid rgba(204,34,0,0.25);}
-
-.card-soon{
-background:linear-gradient(145deg,#0f111a,#111420);
-border-color:rgba(107,122,153,0.2);
-box-shadow:0 4px 24px rgba(0,0,0,0.3);
-cursor:default;
-opacity:.7;
-}
+.card-health{background:linear-gradient(145deg,#1a0515,#200820);border-color:rgba(233,30,140,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
+.card-health::before{background:radial-gradient(ellipse at 50% 0%,rgba(233,30,140,0.08),transparent 70%);}
+@media(hover:hover){.card-health:hover{border-color:var(--health);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--health-glow);}}
 
 .app-icon{
-font-size:2.4rem;
-margin-bottom:12px;
-display:block;
-line-height:1;
-filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+  font-size:2.4rem;
+  margin-bottom:12px;
+  display:block;
+  line-height:1;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
 .app-name{
-font-family:var(--font-mono);
-font-size:.85rem;
-font-weight:700;
-letter-spacing:2px;
-margin-bottom:6px;
-line-height:1;
+  font-family:var(--font-mono);
+  font-size:.85rem;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:6px;
+  line-height:1;
 }
-.card-cash  .app-name{color:var(--cash);}
-.card-time  .app-name{color:var(--time);}
-.card-job   .app-name{color:var(--job);}
-.card-home  .app-name{color:var(--home);}
-.card-soon  .app-name{color:var(--soon);}
+.card-cash .app-name{color:var(--cash);}
+.card-time .app-name{color:var(--time);}
+.card-job .app-name{color:var(--job);}
+.card-home .app-name{color:var(--home);}
+.card-travel .app-name{color:var(--travel);}
+.card-social .app-name{color:var(--social);}
+.card-tech .app-name{color:var(--tech);}
+.card-health .app-name{color:var(--health);}
 
-.app-sub{font-size:.74rem;color:var(--text2);line-height:1.4;margin-bottom:10px;flex:1;}
-.card-soon .app-sub{color:var(--text3);}
-
+.app-sub{
+  font-size:.74rem;color:var(--text2);line-height:1.4;margin-bottom:10px;flex:1;
+}
 .app-pill{
-font-family:var(--font-mono);
-font-size:.58rem;
-letter-spacing:1px;
-padding:3px 10px;
-border-radius:20px;
-font-weight:700;
+  font-family:var(--font-mono);
+  font-size:.58rem;
+  letter-spacing:1px;
+  padding:3px 10px;
+  border-radius:20px;
+  font-weight:700;
 }
-.card-cash  .app-pill{background:var(--cash-light);color:var(--cash);border:1px solid rgba(0,200,81,0.25);}
-.card-time  .app-pill{background:var(--time-light);color:var(--time);border:1px solid rgba(34,136,255,0.25);}
-.card-job   .app-pill{background:var(--job-light);color:var(--job);border:1px solid rgba(212,144,10,0.25);}
-.card-home  .app-pill{background:var(--home-light);color:var(--home);border:1px solid rgba(232,101,10,0.25);}
-.card-soon  .app-pill{background:var(--soon-light);color:var(--soon);border:1px solid rgba(107,122,153,0.2);}
+.card-cash .app-pill{background:var(--cash-light);color:var(--cash);border:1px solid rgba(0,200,81,0.25);}
+.card-time .app-pill{background:var(--time-light);color:var(--time);border:1px solid rgba(34,136,255,0.25);}
+.card-job .app-pill{background:var(--job-light);color:var(--job);border:1px solid rgba(212,144,10,0.25);}
+.card-home .app-pill{background:var(--home-light);color:var(--home);border:1px solid rgba(232,101,10,0.25);}
+.card-travel .app-pill{background:var(--travel-light);color:var(--travel);border:1px solid rgba(10,147,150,0.25);}
+.card-social .app-pill{background:var(--social-light);color:var(--social);border:1px solid rgba(155,48,217,0.25);}
+.card-tech .app-pill{background:var(--tech-light);color:var(--tech);border:1px solid rgba(204,34,0,0.25);}
+.card-health .app-pill{background:var(--health-light);color:var(--health);border:1px solid rgba(233,30,140,0.25);}
 
 .app-arrow{
-position:absolute;
-bottom:12px;right:14px;
-font-size:.9rem;
-opacity:.4;
-transition:opacity .2s, transform .2s;
+  position:absolute;
+  bottom:12px;right:14px;
+  font-size:.9rem;
+  opacity:.4;
+  transition:opacity .2s, transform .2s;
 }
 @media(hover:hover){.app-card:hover .app-arrow{opacity:.9;transform:translate(2px,-1px);}}
 
-/* ══ ABOUT SECTION ══ */
-.about-section{
-background:linear-gradient(135deg,var(--bg2),var(--bg3));
-border:1px solid var(--border);
-border-radius:var(--radius);
-padding:24px 20px;
-margin-bottom:20px;
-animation:fadeUp .5s .3s ease both;
-}
-.about-title{
-font-family:var(--font-mono);
-font-size:.62rem;
-color:var(--amber);
-letter-spacing:3px;
-text-transform:uppercase;
-margin-bottom:14px;
-display:flex;align-items:center;gap:8px;
-}
-.about-title::after{content:'';flex:1;height:1px;background:rgba(255,187,51,0.2);}
-.about-body{
-font-size:.86rem;
-color:var(--text2);
-line-height:1.8;
-}
-.about-body p{margin-bottom:10px;}
-.about-body p:last-child{margin-bottom:0;}
-
-/* ══ MISSION STATEMENT ══ */
-.mission{
-text-align:center;
-padding:20px 16px;
-margin-bottom:20px;
-animation:fadeUp .5s .4s ease both;
-}
-.mission-quote{
-font-family:var(--font-mono);
-font-size:.78rem;
-color:var(--text3);
-letter-spacing:1px;
-line-height:1.8;
-font-style:italic;
-}
-.mission-quote strong{color:var(--amber);font-style:normal;}
-
-/* ══ SIGNATURE ══ */
-.signature-wrap{
-text-align:center;
-padding:24px 16px 16px;
-border-top:1px solid var(--border2);
-animation:fadeUp .5s .5s ease both;
-}
-.sig-emoji{font-size:1.6rem;margin-bottom:10px;}
-.sig-name{
-font-family:var(--font-sig);
-font-size:2.4rem;
-color:var(--amber);
-text-shadow:0 0 30px rgba(255,187,51,0.35);
-margin-bottom:4px;
-line-height:1.1;
-}
-.sig-title{font-size:.78rem;color:var(--text2);margin-bottom:4px;}
-.sig-tagline{
-font-family:var(--font-mono);
-font-size:.6rem;
-color:var(--text3);
-letter-spacing:2px;
-}
-
-/* ══ FREE BADGE ══ */
 .free-badge{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:10px;
-background:rgba(255,187,51,0.06);
-border:1px solid rgba(255,187,51,0.2);
-border-radius:var(--radius-sm);
-padding:12px 16px;
-margin-bottom:20px;
-font-family:var(--font-mono);
-font-size:.65rem;
-color:var(--amber);
-letter-spacing:2px;
-animation:fadeUp .5s .35s ease both;
-}
-
-/* ══ ANIMATIONS ══ */
-@keyframes fadeDown{
-from{opacity:0;transform:translateY(-16px)}
-to{opacity:1;transform:none}
-}
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(16px)}
-to{opacity:1;transform:none}
-}
-
-.app-card:nth-child(1){animation-delay:.05s}
-.app-card:nth-child(2){animation-delay:.1s}
-.app-card:nth-child(3){animation-delay:.15s}
-.app-card:nth-child(4){animation-delay:.2s}
-.app-card:nth-child(5){animation-delay:.25s}
-.app-card:nth-child(6){animation-delay:.3s}
-
-/* ══ RESPONSIVE DESKTOP ══ */
-@media(min-width:640px){
-main{max-width:580px;}
-.app-grid{grid-template-columns:1fr 1fr;gap:16px;}
-.hero{padding:64px 20px 48px;}
-.hero-logo{font-size:4rem;}
-}
-
-
-/* Full homepage flow upgrade */
-:root{
-  --lr-max:1100px;
-}
-main{
-  max-width:var(--lr-max);
-  margin:0 auto;
-}
-.lr-action-intro{
-  text-align:center;
-  padding:8px 6px 18px;
-}
-.lr-action-kicker{
-  margin:0 0 8px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:rgba(255,187,51,0.06);
+  border:1px solid rgba(255,187,51,0.2);
+  border-radius:var(--radius-sm);
+  padding:12px 16px;
+  margin-bottom:18px;
   font-family:var(--font-mono);
-  letter-spacing:.35em;
-  font-size:.78rem;
-  color:var(--text3);
+  font-size:.65rem;
+  color:var(--amber);
+  letter-spacing:2px;
 }
-.lr-action-title{
-  margin:0;
-  font-size:clamp(1.45rem, 3vw, 2.2rem);
-  line-height:1.08;
-  color:var(--text);
+
+.info-grid{
+  display:grid;
+  grid-template-columns:1.15fr .95fr;
+  gap:16px;
+  margin-bottom:18px;
 }
-.lr-action-copy{
-  margin:10px auto 0;
-  max-width:42rem;
-  color:var(--text2);
-  font-size:1rem;
-  line-height:1.5;
-}
-.app-grid{
-  margin-top:6px;
-  gap:18px !important;
-}
-.app-card{
+.info-card{
+  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:20px 18px;
   position:relative;
   overflow:hidden;
+  box-shadow:var(--shadow),0 0 0 1px rgba(255,255,255,0.02) inset;
 }
-.app-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%);
+.info-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at top right, rgba(255,255,255,0.03) 0%, transparent 34%);
   pointer-events:none;
 }
-.app-card .app-name,
-.app-card .hl,
-.app-card .card-title{
-  line-height:1.05;
-}
-.app-card .app-sub,
-.app-card .hc,
-.app-card p{
-  line-height:1.35;
-}
-.app-card [class*="skill"],
-.app-card .app-tag,
-.app-card .pill{
-  opacity:.95;
-}
-.lr-info-card{
-  scroll-margin-top:24px;
-}
-.lr-info-card + .lr-info-card{
-  margin-top:18px !important;
-}
-.lr-story-intro{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  margin:26px 0 12px;
-}
-.lr-story-intro span{
-  flex:1;
-  height:1px;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent);
-}
-.lr-story-intro div{
+.info-title{
   font-family:var(--font-mono);
-  letter-spacing:.35em;
-  font-size:.78rem;
-  color:var(--text3);
-  white-space:nowrap;
+  font-size:.64rem;
+  color:var(--amber);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:12px;
 }
-@media (max-width:760px){
-  .lr-action-intro{
-    padding:2px 2px 14px;
-  }
-  .lr-action-title{
-    font-size:1.6rem;
-  }
-  .lr-action-copy{
-    font-size:.96rem;
-  }
-  .app-grid{
-    gap:16px !important;
-  }
-  .lr-story-intro{
-    gap:10px;
-    margin:20px 0 10px;
-  }
-  .lr-story-intro div{
-    letter-spacing:.25em;
-    font-size:.72rem;
-  }
+.info-card h2{
+  font-size:1.22rem;
+  line-height:1.15;
+  margin-bottom:10px;
+  text-shadow:0 0 18px rgba(255,255,255,0.05);
 }
-/* Remove confusion from accidental button-like non-buttons if present */
-.lr-hero{
-  display:none !important;
+.info-card p{
+  color:var(--text2);
+  line-height:1.7;
+}
+.info-list{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+.info-item{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding-top:10px;
+  border-top:1px solid var(--border2);
+}
+.info-item:first-child{border-top:none;padding-top:0;}
+.info-mark{font-size:.95rem;color:var(--amber);}
+.info-item strong{display:block;margin-bottom:4px;}
+.info-item span{color:var(--text2);font-size:.92rem;line-height:1.55;}
+
+.install-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.btn{
+  appearance:none;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 16px;border-radius:999px;font-family:var(--font-mono);font-size:.74rem;letter-spacing:1px;min-height:46px;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(135deg,var(--amber),var(--amber2));color:#111;box-shadow:0 0 18px var(--amber-light)}
+.btn-secondary{background:rgba(255,255,255,0.03);color:var(--text);border:1px solid var(--border)}
+.install-note{color:var(--text3);font-size:.84rem;margin-top:10px}
+.signature{margin-top:14px;color:var(--text2);font-size:.95rem}
+.signature em{font-family:var(--font-sig);font-size:1.2rem;color:var(--amber)}
+
+.shared-device-box{
+  max-width:980px;margin:0 auto 18px;padding:18px 18px 20px;border:1px solid rgba(255,255,255,0.12);border-radius:22px;background:linear-gradient(135deg,rgba(17,24,39,0.88),rgba(22,27,34,0.94));box-shadow:0 12px 36px rgba(0,0,0,0.28)
+}
+.shared-device-box h2{margin:0 0 8px;font-size:1.15rem}
+.shared-device-box p{margin:0 0 10px;color:var(--text2);line-height:1.7}
+.shared-device-link{display:inline-block;color:var(--amber);font-weight:800;text-decoration:none}
+.shared-device-link:hover,.shared-device-link:focus-visible{text-decoration:underline}
+
+.footer-utility{margin-top:20px;padding:18px 0 10px;border-top:1px solid var(--border);text-align:center;}
+.footer-meta{color:var(--text2);font-size:.92rem;line-height:1.6;margin-top:10px;}
+.footer-link-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
+.footer-link-row a{
+  color:var(--text);text-decoration:none;background:var(--bg2);border:1px solid var(--border);padding:8px 12px;border-radius:999px;
+}
+.footer-link-row a:hover{border-color:#e91e8c;}
+
+@media(min-width:640px){
+  main{max-width:900px;}
+  .hero{padding:60px 20px 40px;}
+  .hero-logo{font-size:4rem;}
+}
+@media(max-width:760px){
+  .info-grid{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  .app-grid{grid-template-columns:1fr;gap:12px;}
+  .hero-desc{max-width:460px;font-size:.92rem;}
+  .top-copy{font-size:.9rem;}
 }
 
-
-
-/* Final homepage interaction polish */
 .app-card{
   -webkit-tap-highlight-color:transparent;
   touch-action:manipulation;
   will-change:transform, box-shadow, border-color, filter;
-  transition:transform .16s cubic-bezier(.34,1.56,.64,1), box-shadow .16s ease, border-color .16s ease, filter .16s ease !important;
 }
-
-/* Keep the quick game-like press on touch and click */
 .app-card:active{
   transform:translateY(4px) scale(.965) !important;
-  box-shadow:0 4px 20px rgba(0,0,0,0.5) !important;
+  box-shadow:0 4px 20px rgba(0,0,0,.5) !important;
 }
-
-/* Active glow for every module */
 .card-cash:active{border-color:#00c851 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(0,200,81,.35) !important;}
 .card-time:active{border-color:#33b5e5 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(51,181,229,.35) !important;}
 .card-job:active{border-color:#ffbb33 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(255,187,51,.35) !important;}
@@ -513,36 +378,6 @@ main{
 .card-tech:active{border-color:#cc2200 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(204,34,0,.40) !important;}
 .card-health:active{border-color:#e91e8c !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(233,30,140,.40) !important;}
 
-/* Hover glow only on devices that actually support hover.
-   This prevents sticky hover on touch devices, which caused the stuck TechReady / HealthReady glow. */
-@media (hover:hover) and (pointer:fine){
-  .card-cash:hover{border-color:var(--cash);box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 20px var(--cash-glow);}
-  .card-time:hover{border-color:var(--time);box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 20px var(--time-glow);}
-  .card-job:hover{border-color:var(--job);box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 20px var(--job-glow);}
-  .card-home:hover{border-color:var(--home);box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 20px var(--home-glow);}
-  .card-travel:hover{border-color:var(--travel);box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 20px var(--travel-glow);}
-  .card-social:hover{border-color:var(--social);box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 20px var(--social-glow);}
-  .card-tech:hover{border-color:#cc2200;box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 20px rgba(204,34,0,.28);}
-  .card-health:hover{border-color:#e91e8c;box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 20px rgba(233,30,140,.28);}
-}
-
-/* Keyboard polish */
-.app-card:focus-visible{
-  outline:3px solid rgba(255,255,255,.22);
-  outline-offset:3px;
-}
-
-
-@media (hover:none), (pointer:coarse){
-  .card-tech:hover,
-  .card-health:hover{
-    border-color:rgba(255,255,255,0.18) !important;
-    box-shadow:0 4px 24px rgba(0,0,0,0.4) !important;
-  }
-}
-
-
-/* JS-assisted press state so glow shows reliably before navigation */
 .app-card.pressed{
   transform:translateY(4px) scale(.965) !important;
   box-shadow:0 4px 20px rgba(0,0,0,.5) !important;
@@ -555,255 +390,94 @@ main{
 .card-social.pressed{border-color:#9c27b0 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(156,39,176,.35) !important;}
 .card-tech.pressed{border-color:#cc2200 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(204,34,0,.40) !important;}
 .card-health.pressed{border-color:#e91e8c !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(233,30,140,.40) !important;}
-
-
-/* === Added shell polish === */
-.start-here-box,.use-cases-box,.install-cta-box{
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:18px 16px;
-  margin:16px 0;
-  box-shadow:0 8px 24px rgba(0,0,0,.14);
-}
-.start-here-box h2,.use-cases-box h2,.install-cta-box h2{font-size:1rem;margin-bottom:8px;}
-.start-here-box p,.use-cases-box p,.install-cta-box p{color:var(--text2);line-height:1.65;}
-.start-grid,.use-grid{display:grid;gap:10px;margin-top:12px;}
-.start-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
-.use-grid{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
-.start-card,.use-card{
-  display:block;text-decoration:none;color:var(--text);background:var(--bg3);border:1px solid var(--border);
-  border-radius:14px;padding:14px 12px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
-}
-.start-card:hover,.use-card:hover{transform:translateY(-2px);border-color:#e91e8c;box-shadow:0 8px 20px rgba(0,0,0,.16);}
-.start-card strong,.use-card strong{display:block;margin-bottom:4px;}
-.start-card span,.use-card span{color:var(--text2);font-size:.92rem;line-height:1.5;}
-.install-cta-box{display:flex;flex-direction:column;align-items:flex-start;gap:10px;}
-.install-btn{appearance:none;border:none;border-radius:14px;padding:13px 18px;font-weight:700;cursor:pointer;background:#e91e8c;color:white;}
-.install-btn[hidden]{display:none!important;}
-.footer-utility{margin-top:26px;padding:18px 0 10px;border-top:1px solid var(--border);text-align:center;}
-.footer-meta{color:var(--text2);font-size:.92rem;line-height:1.6;margin-top:10px;}
-.footer-link-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
-.footer-link-row a{color:var(--text);text-decoration:none;background:var(--bg2);border:1px solid var(--border);padding:8px 12px;border-radius:999px;}
-.footer-link-row a:hover{border-color:#e91e8c;}
-@media (min-width:900px){.start-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.use-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.about-section,.start-here-box,.use-cases-box,.install-cta-box{padding:22px 22px;}}
-
-
-.shared-device-box{max-width:980px;margin:24px auto 0;padding:18px 18px 20px;border:1px solid rgba(255,255,255,0.12);border-radius:22px;background:linear-gradient(135deg,rgba(17,24,39,0.88),rgba(22,27,34,0.94));box-shadow:0 12px 36px rgba(0,0,0,0.28)}
-.shared-device-box h2{margin:0 0 8px;font-size:1.25rem}
-.shared-device-box p{margin:0 0 10px;color:var(--text2);line-height:1.7}
-.shared-device-link{display:inline-block;color:var(--amber);font-weight:800;text-decoration:none}
-.shared-device-link:hover,.shared-device-link:focus-visible{text-decoration:underline}
-
 </style>
-<link href="manifest.json" rel="manifest"/>
-<link rel="apple-touch-icon" href="icon_192.png"/>
-<link href="icon_512.png" rel="icon" sizes="512x512" type="image/png"/>
-<meta content="yes" name="apple-mobile-web-app-capable"/>
-<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<meta content="LifeReady" name="apple-mobile-web-app-title"/>
 </head>
 <body>
-<!-- ══ HERO ══ -->
 <div class="hero">
-<div class="hero-badge">FREE · ACCESSIBLE · FOR EVERYONE</div>
-<div class="hero-logo">
-<span class="lr-life">LIFE</span><span class="lr-ready">READY</span>
+  <div class="hero-badge">FREE · ACCESSIBLE · FOR EVERYONE</div>
+  <div class="hero-logo">
+    <span class="lr-life">LIFE</span><span class="lr-ready">READY</span>
+  </div>
+  <div class="hero-tagline">- LIFE SKILLS SUITE -</div>
+  <div class="hero-desc">Real skills for real life. Free tools that meet you exactly where you are.</div>
+  <div class="hero-sub">PRESS START ON REAL LIFE</div>
 </div>
-<div class="hero-tagline">- Life Skills Suite -</div>
-<div class="hero-desc">Real skills for real life. Free tools that meet you exactly where you are.</div>
-</div>
+
 <main>
-<!-- ══ APP LAUNCHER ══ -->
-<div class="section-label">CHOOSE YOUR SKILL</div>
+  <div class="section-label">CHOOSE YOUR MODE</div>
+  <div class="top-copy">Same welcoming style. Different real-world skill paths. Choose a mode and jump in.</div>
 
-<section aria-label="Choose a module" class="lr-action-intro">
-<p class="lr-action-kicker">CHOOSE YOUR SKILL</p>
-
-<p class="lr-action-copy">Same welcoming style. Different real-world skill paths. Start anywhere.</p>
-</section>
-<div class="app-grid">
-<!-- CashReady -->
-<a aria-label="💵 CASHREADY Count coins &amp; bills, make change, practice real cashier skills MONEY SKILLS ›" class="app-card card-cash" href="CashReady.html" target="_self">
-<span class="app-icon">💵</span>
-<div class="app-name">CASHREADY</div>
-<div class="app-sub">Count coins &amp; bills, make change, practice real cashier skills</div>
-<div class="app-pill">MONEY SKILLS</div>
-<div class="app-arrow">›</div>
-</a>
-<!-- TimeReady -->
-<a aria-label="🕐 TIMEREADY Read clocks, follow schedules, learn AM/PM and time on the job TIME SKILLS ›" class="app-card card-time" href="TimeReady.html" target="_self">
-<span class="app-icon">🕐</span>
-<div class="app-name">TIMEREADY</div>
-<div class="app-sub">Read clocks, follow schedules, learn AM/PM and time on the job</div>
-<div class="app-pill">TIME SKILLS</div>
-<div class="app-arrow">›</div>
-</a>
-<!-- JobReady -->
-<a aria-label="💼 JOBREADY Interview skills, workplace rules, pay stubs, rights &amp; responsibilities WORK SKILLS ›" class="app-card card-job" href="JobReady.html" target="_self">
-<span class="app-icon">💼</span>
-<div class="app-name">JOBREADY</div>
-<div class="app-sub">Interview skills, workplace rules, pay stubs, rights &amp; responsibilities</div>
-<div class="app-pill">WORK SKILLS</div>
-<div class="app-arrow">›</div>
-</a>
-<!-- HomeReady -->
-<a aria-label="🏠 HOMEREADY Laundry, budgeting, food safety, renting, and handling emergencies HOME SKILLS ›" class="app-card card-home" href="HomeReady.html" target="_self">
-<span class="app-icon">🏠</span>
-<div class="app-name">HOMEREADY</div>
-<div class="app-sub">Laundry, budgeting, food safety, renting, and handling emergencies</div>
-<div class="app-pill">HOME SKILLS</div>
-<div class="app-arrow">›</div>
-</a>
-<!-- TravelReady -->
-<a aria-label="🗺️ TRAVELREADY Read bus schedules, pay fares, navigate routes, plan safe trips TRAVEL SKILLS ›" class="app-card card-travel" href="TravelReady.html" target="_self">
-<span class="app-icon">🗺️</span>
-<div class="app-name">TRAVELREADY</div>
-<div class="app-sub">Read bus schedules, pay fares, navigate routes, plan safe trips</div>
-<div class="app-pill">TRAVEL SKILLS</div>
-<div class="app-arrow">›</div>
-</a>
-<!-- SocialReady -->
-<a aria-label="💬 SOCIALREADY Start conversations, read social cues, set limits, handle conflict SOCIAL SKILLS ›" class="app-card card-social" href="SocialReady.html" target="_self">
-<span class="app-icon">💬</span>
-<div class="app-name">SOCIALREADY</div>
-<div class="app-sub">Start conversations, read social cues, set limits, handle conflict</div>
-<div class="app-pill">SOCIAL SKILLS</div>
-<div class="app-arrow">›</div>
-</a>
-<!-- TechReady -->
-<a aria-label="📱 TECHREADY Spot scams, stay safe online &amp; master digital skills DIGITAL SKILLS ›" class="app-card card-tech" href="TechReady.html" target="_self">
-<span class="app-icon">📱</span>
-<div class="app-name">TECHREADY</div>
-<div class="app-sub">Spot scams, stay safe online &amp; master digital skills</div>
-<div class="app-pill">DIGITAL SKILLS</div>
-<div class="app-arrow">›</div>
-</a>
-<!-- HealthReady -->
-<a aria-label="🏥 HEALTHREADY Read prescriptions, navigate the doctor &amp; know what to do in an emergency HEALTH SKILLS ›" class="app-card card-health" href="HealthReady.html" target="_self">
-<span class="app-icon">🏥</span>
-<div class="app-name">HEALTHREADY</div>
-<div class="app-sub">Read prescriptions, navigate the doctor &amp; know what to do in an emergency</div>
-<div class="app-pill">HEALTH SKILLS</div>
-<div class="app-arrow">›</div>
-</a>
-</div>
-<!-- ══ FREE BADGE ══ -->
-<div class="free-badge lr-info-card">
-    🆓   ALL APPS FREE · NO ADS · NO ACCOUNTS · NO PAYWALLS
+  <div class="app-grid">
+    <a aria-label="CashReady" class="app-card card-cash" href="CashReady.html"><span class="app-icon">💵</span><div class="app-name">CASHREADY</div><div class="app-sub">Count coins &amp; bills, make change, practice real cashier skills</div><div class="app-pill">MONEY SKILLS</div><div class="app-arrow">›</div></a>
+    <a aria-label="TimeReady" class="app-card card-time" href="TimeReady.html"><span class="app-icon">🕐</span><div class="app-name">TIMEREADY</div><div class="app-sub">Read clocks, follow schedules, learn AM/PM and time on the job</div><div class="app-pill">TIME SKILLS</div><div class="app-arrow">›</div></a>
+    <a aria-label="JobReady" class="app-card card-job" href="JobReady.html"><span class="app-icon">💼</span><div class="app-name">JOBREADY</div><div class="app-sub">Interview skills, workplace rules, pay stubs, rights &amp; responsibilities</div><div class="app-pill">WORK SKILLS</div><div class="app-arrow">›</div></a>
+    <a aria-label="HomeReady" class="app-card card-home" href="HomeReady.html"><span class="app-icon">🏠</span><div class="app-name">HOMEREADY</div><div class="app-sub">Laundry, budgeting, food safety, renting, and handling emergencies</div><div class="app-pill">HOME SKILLS</div><div class="app-arrow">›</div></a>
+    <a aria-label="TravelReady" class="app-card card-travel" href="TravelReady.html"><span class="app-icon">🗺️</span><div class="app-name">TRAVELREADY</div><div class="app-sub">Read bus schedules, pay fares, navigate routes, plan safe trips</div><div class="app-pill">TRAVEL SKILLS</div><div class="app-arrow">›</div></a>
+    <a aria-label="SocialReady" class="app-card card-social" href="SocialReady.html"><span class="app-icon">💬</span><div class="app-name">SOCIALREADY</div><div class="app-sub">Start conversations, read social cues, set limits, handle conflict</div><div class="app-pill">SOCIAL SKILLS</div><div class="app-arrow">›</div></a>
+    <a aria-label="TechReady" class="app-card card-tech" href="TechReady.html"><span class="app-icon">📱</span><div class="app-name">TECHREADY</div><div class="app-sub">Spot scams, stay safe online &amp; master digital skills</div><div class="app-pill">DIGITAL SKILLS</div><div class="app-arrow">›</div></a>
+    <a aria-label="HealthReady" class="app-card card-health" href="HealthReady.html"><span class="app-icon">🏥</span><div class="app-name">HEALTHREADY</div><div class="app-sub">Read prescriptions, navigate the doctor &amp; know what to do in an emergency</div><div class="app-pill">HEALTH SKILLS</div><div class="app-arrow">›</div></a>
   </div>
-<!-- ══ COACH CALLOUT ══ -->
-<div class="lr-info-card" style="background:linear-gradient(135deg,#0d1520,#101a28);border:1px solid rgba(34,136,255,0.25);border-left:4px solid #2288ff;border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:24px;animation:fadeUp .5s .38s ease both">
-<div style="font-family:var(--font-mono);font-size:.58rem;color:#2288ff;letter-spacing:3px;margin-bottom:10px">🎓 FOR COACHES &amp; TEACHERS</div>
-<div style="font-size:.84rem;color:var(--text2);line-height:1.7">Every app includes a built-in <strong style="color:var(--text)">Coach Dashboard</strong> - log sessions, track accuracy, set mastery goals, monitor prompt fading, and print progress reports for your clients or students. Tap <strong style="color:var(--text)">COACH</strong> in any app header to get started.</div>
-</div>
-<!-- ══ ABOUT ══ -->
 
-<div aria-hidden="true" class="lr-story-intro">
-<span></span>
-<div>WHY LIFEREADY EXISTS</div>
-<span></span>
-</div>
-<div class="section-label">ABOUT LIFEREADY</div>
-<div class="about-section lr-info-card">
-<div class="about-title lr-info-card">⭐ WHAT IS LIFEREADY?</div>
-<div class="about-body">
-<p>LifeReady is a suite of free, accessible life skills trainers - built by someone who knows what it is like to need them.</p>
-<p>Every app in the suite focuses on a different set of real-world skills: managing money, reading time, preparing for work, keeping a home, getting around independently, and navigating social situations. Each one is designed to be used by anyone - people with disabilities, people building independence, people in transition, or anyone who just wants to get better at something.</p>
-<p>No accounts. No ads. No paywalls. Just practice.</p>
-</div>
-</div>
-<!-- ══ MISSION ══ -->
-<div class="mission">
-<div class="mission-quote">
-      "These tools were built for the person who has been told what they <strong>cannot</strong> do.<br/>
-      Every skill here says otherwise."
+  <div class="free-badge">🆓 &nbsp; ALL APPS FREE · NO ADS · NO ACCOUNTS · NO PAYWALLS</div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-title">Mission Brief</div>
+      <h2>Life skills should feel like unlocking levels, not sitting through another lesson.</h2>
+      <p>LifeReady is built for learners building independence, and for the teachers, families, coaches, and support people helping along the way. The goal is simple: make real-life practice feel inviting, rewarding, and worth coming back to.</p>
+      <div class="info-list">
+        <div class="info-item"><div class="info-mark">✦</div><div><strong>For players</strong><span>Jump into any world, play at your own pace, and build confidence one win at a time.</span></div></div>
+        <div class="info-item"><div class="info-mark">✦</div><div><strong>For coaches and educators</strong><span>Use the modules as guided practice, discussion starters, or confidence-building warmups.</span></div></div>
+        <div class="info-item"><div class="info-mark">✦</div><div><strong>Built for real life</strong><span>Practical skills, arcade energy, and zero talking down to people.</span></div></div>
+      </div>
+      <div class="signature">Made with stubborn optimism for real people trying to do real-life stuff. <em>– Tristan Beck</em></div>
     </div>
-</div>
-<!-- ══ WHO IT'S FOR ══ -->
-<div class="about-section lr-info-card" style="animation-delay:.45s">
-<div class="about-title lr-info-card">🤝 WHO IT'S FOR</div>
-<div class="about-body">
-<p>People with developmental disabilities building toward independence. Adults aging out of foster care. People transitioning from supported living. Special education students preparing for adult life. Job coaches and life skills instructors looking for a better tool. Anyone who learns differently and deserves tools that respect that.</p>
-<p>If you have ever needed to practice something that most people take for granted - this suite was built for you.</p>
-</div>
-</div>
-<!-- ══ SIGNATURE ══ -->
-<div class="signature-wrap">
-<div class="sig-emoji">⭐</div>
-<div class="sig-name">Tristan Beck</div>
-<div class="sig-title">Creator of the LifeReady Suite</div>
-<div class="sig-tagline">FREE FOR EVERYONE · ALWAYS</div>
-</div>
 
-<section class="start-here-box" aria-labelledby="start-anywhere-heading">
-  <h2 id="start-anywhere-heading">Start anywhere</h2>
-  <p>If you are not sure where to begin, these are great first steps. You can still use any module in any order.</p>
-  <p style="margin-top:10px;font-size:.95rem;color:var(--text2)"><strong style="color:var(--text)">Need bigger text or easier reading?</strong> Use the <strong style="color:var(--text)">Aa</strong> button inside modules to adjust text size and other reading supports when available.</p>
-  <div class="start-grid">
-    <a class="start-card" href="CashReady.html"><strong>💰 CashReady</strong><span>Money basics, counting, spending, and real-world confidence.</span></a>
-    <a class="start-card" href="TimeReady.html"><strong>⏰ TimeReady</strong><span>Reading clocks, routines, schedules, and time awareness.</span></a>
-    <a class="start-card" href="JobReady.html"><strong>💼 JobReady</strong><span>Workplace expectations, communication, and everyday job skills.</span></a>
+    <div class="info-card">
+      <div class="info-title">Install / Add to Home Screen</div>
+      <h2>Turn the hub into an actual app.</h2>
+      <p>Add LifeReady to your home screen for the cleanest game-hub feel. On iPhone, use Share → Add to Home Screen. On Android, open the browser menu and use Install app or Add to Home Screen.</p>
+      <div class="install-actions">
+        <button class="btn btn-primary" id="installBtn" type="button">Install LifeReady</button>
+        <a class="btn btn-secondary" href="contact.html">Send Feedback</a>
+      </div>
+      <div class="install-note" id="installNote">If install does not appear, refresh once after the app finishes loading.</div>
+    </div>
   </div>
-</section>
 
-<section class="install-cta-box" aria-labelledby="install-lifeready-heading">
-  <h2 id="install-lifeready-heading">Install LifeReady</h2>
-  <p>Add LifeReady to your home screen for faster access on phones, tablets, and computers that support app install.</p>
-  <p style="font-size:.9rem;color:var(--text2);margin-top:-2px">If the install button does not appear, your browser may not support app install yet.</p>
-  <button class="install-btn" id="installBtn" hidden>📲 Install LifeReady</button>
-</section>
+  <section class="shared-device-box" aria-labelledby="shared-device-heading">
+    <h2 id="shared-device-heading">Using a shared device?</h2>
+    <p>LifeReady can save progress, preferences, and notes on the device you are using. On a shared school, work, family, or program device, other people using that same device may be able to see saved activity unless it is cleared.</p>
+    <p><strong style="color:var(--text)">Need to reset things later?</strong> You can clear local LifeReady data by clearing this site's browser data on the device you used.</p>
+    <p><a class="shared-device-link" href="privacy.html">Read the privacy page for details and data-clearing info.</a></p>
+  </section>
 
-
-<section class="shared-device-box" aria-labelledby="shared-device-heading">
-  <h2 id="shared-device-heading">Using a shared device?</h2>
-  <p>LifeReady can save progress, preferences, and notes on the device you are using. On a shared school, work, family, or program device, other people using that same device may be able to see saved activity unless it is cleared.</p>
-  <p><strong style="color:var(--text)">Need to reset things later?</strong> You can clear local LifeReady data by clearing this site's browser data on the device you used.</p>
-  <p><a class="shared-device-link" href="privacy.html">Read the privacy page for details and data-clearing info.</a></p>
-</section>
-
-<section class="use-cases-box" aria-labelledby="use-cases-heading">
-  <h2 id="use-cases-heading">How people use LifeReady</h2>
-  <p>Built for independent learners. Helpful for teachers, support staff, families, programs, clinics, and anyone building real-world skills.</p>
-  <div class="use-grid">
-    <div class="use-card"><strong>Independent practice</strong><span>Self-paced, repeatable learning with visual support, audio, and low pressure.</span></div>
-    <div class="use-card"><strong>Classroom or program support</strong><span>Use modules during instruction, small groups, transition practice, or community-based learning.</span></div>
-    <div class="use-card"><strong>Coaching and progress tracking</strong><span>Track sessions, celebrate wins, and build confidence over time across the full suite.</span></div>
-  </div>
-</section>
-
-<footer class="footer-utility">
-  <div class="footer-link-row">
-    <a href="privacy.html">Privacy</a>
-    <a href="accessibility.html">Accessibility</a>
-    <a href="contact.html">Contact</a>
-    <a href="health-disclaimer.html">Health Disclaimer</a>
-  </div>
-  <div class="footer-meta">
-    LifeReady is a practical life-skills learning suite built to be useful right now on phones, tablets, and computers.<br>
-    No accounts. No ads. No paywalls.
-  </div>
-</footer>
-
+  <footer class="footer-utility">
+    <div class="footer-link-row">
+      <a href="privacy.html">Privacy</a>
+      <a href="accessibility.html">Accessibility</a>
+      <a href="contact.html">Contact</a>
+      <a href="health-disclaimer.html">Health Disclaimer</a>
+    </div>
+    <div class="footer-meta">
+      LifeReady is a practical life-skills learning suite built to be useful right now on phones, tablets, and computers.<br>
+      No accounts. No ads. No paywalls.
+    </div>
+  </footer>
 </main>
+
 <script>
 document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});
 var _lt=0;document.addEventListener('touchend',function(e){var n=Date.now();if(n-_lt<300)e.preventDefault();_lt=n;},false);
 </script>
 
-
 <script>
 (function(){
   const cards = document.querySelectorAll('.app-card');
   const clearPressed = () => cards.forEach(card => card.classList.remove('pressed'));
-
   cards.forEach(card => {
-    const on = () => {
-      clearPressed();
-      card.classList.add('pressed');
-    };
+    const on = () => { clearPressed(); card.classList.add('pressed'); };
     const off = () => card.classList.remove('pressed');
-
     card.addEventListener('touchstart', on, {passive:true});
     card.addEventListener('touchend', off, {passive:true});
     card.addEventListener('touchcancel', off, {passive:true});
@@ -816,23 +490,28 @@ var _lt=0;document.addEventListener('touchend',function(e){var n=Date.now();if(n
 })();
 </script>
 
-
 <script>
 (function(){
   let deferredPrompt = null;
   const installBtn = document.getElementById('installBtn');
+  const installNote = document.getElementById('installNote');
   window.addEventListener('beforeinstallprompt', function(e){
     e.preventDefault();
     deferredPrompt = e;
     if(installBtn) installBtn.hidden = false;
+    if(installNote) installNote.textContent = 'Install is ready. Tap the button above if your browser supports it.';
   });
   if(installBtn){
     installBtn.addEventListener('click', async function(){
-      if(!deferredPrompt) return;
+      if(!deferredPrompt){
+        if(installNote) installNote.textContent = 'On iPhone: Share → Add to Home Screen. On Android: browser menu → Install app or Add to Home Screen.';
+        return;
+      }
       deferredPrompt.prompt();
       try { await deferredPrompt.userChoice; } catch(e) {}
       deferredPrompt = null;
       installBtn.hidden = true;
+      if(installNote) installNote.textContent = 'If install did not appear, your browser may require using its menu instead.';
     });
   }
   window.addEventListener('appinstalled', function(){
@@ -841,7 +520,6 @@ var _lt=0;document.addEventListener('touchend',function(e){var n=Date.now();if(n
 })();
 </script>
 
-
 <script id="lifeready-shared-sw">
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   window.addEventListener('load', function () {
@@ -849,6 +527,5 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   });
 }
 </script>
-
 </body>
 </html>

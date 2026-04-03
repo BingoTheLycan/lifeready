@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="theme-color" content="#0d1117"/>
 <meta name="description" content="LifeReady - A retro-futuristic life skills game hub. Pick your world, build confidence, and level up real-life skills."/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -37,6 +37,7 @@
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}}
 body{
   font-family:var(--font-body);
   background:
@@ -349,6 +350,9 @@ main{
   color:var(--text);text-decoration:none;background:var(--bg2);border:1px solid var(--border);padding:8px 12px;border-radius:999px;
 }
 .footer-link-row a:hover{border-color:#e91e8c;}
+.footer-link-row a:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
+.app-card:focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+.skip-nav{position:absolute;top:-50px;left:8px;z-index:10000;background:var(--bg2);color:var(--text);border:2px solid var(--amber);padding:8px 16px;border-radius:8px;font-family:var(--font-mono);font-size:.8rem;font-weight:700;text-decoration:none;transition:top .15s;}.skip-nav:focus{top:8px;}
 
 @media(min-width:640px){
   main{max-width:900px;}
@@ -442,6 +446,7 @@ main{
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
 <div class="hero">
   <div class="hero-badge">FREE · ACCESSIBLE · FOR EVERYONE</div>
   <div class="hero-logo">
@@ -452,7 +457,7 @@ main{
   <div class="hero-sub">PRESS START ON REAL LIFE</div>
 </div>
 
-<main>
+<main id="main-content">
   <div class="section-label">CHOOSE YOUR MODE</div>
   <div class="top-copy">Same welcoming style. Different real-world skill paths. Choose a mode and jump in.</div>
 

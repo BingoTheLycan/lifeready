@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v9 - stable, GitHub Pages safe)
+// LifeReady Service Worker (v10 - cache-first navigation, accessibility fixes)
 
-const CACHE_NAME = 'lifeready-v9';
+const CACHE_NAME = 'lifeready-v10';
 
 const APP_SHELL = [
   './',
@@ -47,10 +47,17 @@ self.addEventListener('fetch', (event) => {
 
   if (req.method !== 'GET') return;
 
-  // Page navigation
+  // Page navigation — cache-first so pages load offline, network refreshes the cache
   if (req.mode === 'navigate') {
     event.respondWith(
-      fetch(req).catch(() => caches.match('./index.html'))
+      caches.match(req).then(cached => {
+        const networkFetch = fetch(req).then(res => {
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(req, copy));
+          return res;
+        });
+        return cached || networkFetch.catch(() => caches.match('./index.html'));
+      })
     );
     return;
   }

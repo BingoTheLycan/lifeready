@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a0e1a">
 <meta name="description" content="TimeReady - Time skills trainer for everyone. Learn to read clocks, understand schedules, and build real independence. Free, accessible.">
 <meta name="mobile-web-app-capable" content="yes">
@@ -49,6 +49,7 @@ body.large-btns  { --btn-min:68px; }
 }
 /* colorblind filter applied via JS on html element */
 body.no-motion * { animation:none!important; transition:none!important; }
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}}
 body.hi-contrast {
   --bg:#000; --bg2:#000; --bg3:#111; --bg4:#111;
   --panel:#000; --panel2:#000; --border:#fff; --border2:#fff;
@@ -456,6 +457,8 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 .aa-btn{background:transparent;border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:5px 10px;font-family:var(--font-body);font-size:.82rem;font-weight:700;cursor:pointer;transition:border-color .2s,color .2s,box-shadow .2s;}.aa-btn:hover{border-color:#2288ff88;color:#2288ff;}.aa-btn.large-on{background:#2288ff22;border-color:#2288ff;color:#2288ff;box-shadow:0 0 12px #2288ff44;}
 .aa-btn.large-on{background:var(--blue);border-color:var(--blue);color:#fff;}
+.nb:focus-visible,.aa-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
+.skip-nav{position:absolute;top:-50px;left:8px;z-index:10000;background:var(--bg2);color:var(--text);border:2px solid var(--blue);padding:8px 16px;border-radius:8px;font-family:var(--font-mono);font-size:.8rem;font-weight:700;text-decoration:none;transition:top .15s;}.skip-nav:focus{top:8px;}
 
 .guide-card{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:10px;cursor:pointer;transition:border-color .2s,background .2s;}
 .guide-card:hover,.guide-card:active{border-color:#2288ff;background:var(--panel2);box-shadow:0 0 14px #2288ff55;}
@@ -482,6 +485,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 </head>
 <body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
 <div id="page-wrap">
 
 <header class="hdr">
@@ -489,11 +493,11 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
   <nav class="hdr-nav">
     <button class="nb on" id="nb-home" onclick="go('home')">HOME</button>
     <button class="nb" id="nb-coach" onclick="coachNav()">COACH</button>
-    <button class="aa-btn" id="aa-btn" onclick="toggleFontSize()" title="Toggle large text">Aa</button>
+    <button class="aa-btn" id="aa-btn" onclick="toggleFontSize()" title="Toggle large text" aria-label="Toggle large text">Aa</button>
   </nav>
 </header>
 
-<main>
+<main id="main-content">
 
 <!-- ══════════ HOME ══════════ -->
 

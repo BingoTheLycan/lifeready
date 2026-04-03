@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#120e00">
 <meta name="description" content="JobReady - Free workplace readiness trainer. Practice interviews, workplace skills, and paycheck math.">
 <title>JobReady - Workplace Readiness Trainer</title>
@@ -42,6 +42,7 @@ body.large-btns{--btn-min:68px;}
 }
 /* colorblind filter applied via JS on html element */
 body.no-motion *{animation:none!important;transition:none!important;}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}}
 body.hi-contrast{--bg:#000;--bg2:#000;--bg3:#111;--bg4:#111;--panel:#000;--panel2:#000;--border:#fff;--border2:#fff;--text:#fff;--text2:#fff;--text3:#ccc;--gold:#ffd700;--gold2:#ccaa00;--display-bg:#000;--display-text:#ffd700;}
 body.light-mode{--bg:#fffbf0;--bg2:#fff;--bg3:#fff5d6;--bg4:#ffedba;--panel:#fff0c0;--panel2:#ffe89a;--border:#d4aa44;--border2:#c09030;--text:#1a1000;--text2:#3a2800;--text3:#7a5a00;--text4:#aa8800;--gold:#8a5e00;--gold2:#6a4600;--display-bg:#1a1000;--display-text:#c8830a;}
 
@@ -350,6 +351,8 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
 
 .aa-btn{background:transparent;border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:5px 10px;font-family:var(--font-body);font-size:.82rem;font-weight:700;cursor:pointer;transition:border-color .2s,color .2s,box-shadow .2s;}.aa-btn:hover{border-color:#d4900a88;color:#d4900a;}.aa-btn.large-on{background:#d4900a22;border-color:#d4900a;color:#d4900a;box-shadow:0 0 12px #d4900a44;}
 .aa-btn.large-on{background:var(--gold);border-color:var(--gold);color:#000;}
+.nb:focus-visible,.aa-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.skip-nav{position:absolute;top:-50px;left:8px;z-index:10000;background:var(--bg2);color:var(--text);border:2px solid var(--gold);padding:8px 16px;border-radius:8px;font-family:var(--font-mono);font-size:.8rem;font-weight:700;text-decoration:none;transition:top .15s;}.skip-nav:focus{top:8px;}
 
 .guide-card{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:10px;cursor:pointer;transition:border-color .2s,background .2s;}
 .guide-card:hover,.guide-card:active{border-color:#d4900a;background:var(--panel2);box-shadow:0 0 14px #d4900a55;}
@@ -376,6 +379,7 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
 
 </head>
 <body>
+<a href="#main-content" class="skip-nav">Skip to main content</a>
 <div id="page-wrap">
 
 <header class="hdr">
@@ -383,10 +387,10 @@ main{max-width:1100px;padding:20px 24px 40px;display:grid;grid-template-columns:
   <nav class="hdr-nav">
     <button class="nb on" id="nb-home" onclick="go('home')">HOME</button>
     <button class="nb" id="nb-coach" onclick="coachNav()">COACH</button>
-    <button class="aa-btn" id="aa-btn" onclick="toggleFontSize()" title="Toggle large text">Aa</button>
+    <button class="aa-btn" id="aa-btn" onclick="toggleFontSize()" title="Toggle large text" aria-label="Toggle large text">Aa</button>
   </nav>
 </header>
-<main>
+<main id="main-content">
 
 <!-- HOME -->
 

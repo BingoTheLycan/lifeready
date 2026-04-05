@@ -6,8 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0d1117">
 <meta name="description" content="CashReady - Money skills trainer for everyone. Practice making change, counting money, and real cashier skills. Free, accessible, built by someone who gets it.">
-<title>CashReady | LifeReady</title>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="CashReady">
+<title>CashReady - Money Skills Trainer</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon_512.png" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="icon_192.png">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════
@@ -668,7 +674,7 @@ max-width:320px;width:calc(100% - 32px);
   <div class="hdr-logo"><span style="color:var(--green)">C</span><span style="color:var(--text2)">ASH</span><span style="color:var(--green)">RE</span><span style="color:var(--text2)">ADY</span> <small>v1.0</small></div>
   <nav class="hdr-nav">
     <button class="nb on" id="nb-home" onclick="go('home')">HOME</button>
-    <button class="nb" id="nb-coach" onclick="coachNav()">COACH</button>
+    <button class="nb" id="nb-coach" onclick="go('coach')">COACH</button>
     <button class="aa-btn" id="aa-btn" onclick="toggleFontSize()" title="Toggle large text">Aa</button>
   </nav>
 </header>
@@ -915,7 +921,7 @@ max-width:320px;width:calc(100% - 32px);
     <div class="ftitle ok" id="ftitle">CORRECT!</div>
     <div class="fmsg" id="fmsg"></div>
     <div id="eoc-wrap" style="display:none"></div>
-    <button class="fnext" id="fnext" onclick="nextTx()">NEXT CUSTOMER →</button>
+    <button class="fnext" id="fnext" onclick="return feedbackNextTap(event)">NEXT CUSTOMER →</button>
   </div>
 </div>
 
@@ -999,12 +1005,12 @@ max-width:320px;width:calc(100% - 32px);
     <div style="background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:22px 18px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden">
       <div style="font-size:3rem;margin-bottom:8px">👍</div>
       <div style="font-family:var(--font-mono);font-size:1.55rem;color:var(--green);letter-spacing:4px;margin-bottom:10px" id="pr-title">PRACTICE MODE COMPLETE</div>
-      <div style="font-size:1.02rem;color:var(--text2);margin-bottom:14px" id="pr-sub">Nice work. You completed a practice session.</div>
+      <div style="font-size:1.02rem;color:var(--text2);margin-bottom:14px" id="pr-sub">Nice work. You completed a full practice session. No score, no pressure, just progress.</div>
       <div style="font-family:var(--font-mono);font-size:1rem;color:var(--amber);line-height:1.55" id="pr-stats">You answered 10 questions • 0 correct • Hints used: 0</div>
     </div>
     <div class="rbtns" style="margin-top:12px">
       <button class="rpri" id="pr-again">▶ PRACTICE AGAIN</button>
-      <button class="rsec" id="pr-try-shift">🎯 TRY SHIFT MODE</button>
+      <button class="rsec" id="pr-try-shift">🏪 TRY SHIFT MODE</button>
       <button class="rsec" id="pr-main">← MAIN MENU</button>
     </div>
   </div>
@@ -1266,12 +1272,14 @@ max-width:320px;width:calc(100% - 32px);
 <div id="scr-coach" class="scr">
   <div class="coach-hdr">
     <div class="coach-title">📋 CASH SKILLS COACH DASHBOARD</div>
+    <div id="save-indicator" style="display:none;font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:1px;margin-top:4px">Saved ✓</div>
     <div class="cacts">
       <button class="cbt" onclick="printCoachReport()">🖨️ Print Report</button>
       <button class="cbt" onclick="exportCSV()" title="Download all session data as spreadsheet">📥 Export CSV</button>
+      <button class="cbt" onclick="openM('m-range')">📅 Date Range</button>
       <button class="cbt" onclick="openM('m-goal')">＋ Add Goal</button>
       <button class="cbt" onclick="openM('m-log')">＋ Log Session</button>
-      <button class="cbt pri" onclick="openM('m-client')">＋ Add Client</button>
+      <button class="cbt pri" onclick="openClientModal()">＋ Add Client</button>
 
   <button class="cbt" onclick="CFG.coachWelcomeSeen=false;renderCoach();showCoachWelcome();" style="font-size:.65rem;letter-spacing:.5px">? How It Works</button>
 </div>
@@ -1518,17 +1526,18 @@ max-width:320px;width:calc(100% - 32px);
 <div class="mow" id="m-client">
   <div class="mdl">
     <div class="mt">+ ADD NEW CLIENT</div>
-    <div class="fg"><label class="fl">Full Name</label><input class="fi" id="nc-name" placeholder="e.g. Alex Johnson"></div>
+    <div class="fg"><label class="fl">Initials / Display Name</label><input class="fi" id="nc-initials" placeholder="e.g. AJ or Alex J."></div>
+    <div class="fg"><label class="fl">Private Full Name (optional)</label><input class="fi" id="nc-name" placeholder="Stored privately for staff use only"></div>
     <div class="fg"><label class="fl">Starting Level</label>
       <select class="fsel" id="nc-level">
-        <option value="beginner">Beginner - Just starting out</option>
+        <option value="beginner">Beginner - Learning money basics</option>
         <option value="developing">Developing - Learning coins &amp; bills</option>
         <option value="proficient">Proficient - Working on change</option>
         <option value="advanced">Advanced - Working independently</option>
       </select>
     </div>
     <div class="fg"><label class="fl">Program / Group</label><input class="fi" id="nc-program" placeholder="e.g. Prevocational Group A"></div>
-    <div class="fg"><label class="fl">Notes / Accommodations</label><textarea class="fta" id="nc-notes" placeholder="Goals, accommodations, preferences, IEP notes..."></textarea></div>
+    <div class="fg"><label class="fl">Notes / Accommodations</label><textarea class="fta" id="nc-notes" placeholder="Goals, accommodations, IEP notes..."></textarea></div>
     <div class="mbtns"><button class="mcancel" onclick="closeM('m-client')">Cancel</button><button class="msave" onclick="saveClient()">Add Client</button></div>
   </div>
 </div>
@@ -1610,6 +1619,18 @@ max-width:320px;width:calc(100% - 32px);
       <input class="fi" id="goal-desc" placeholder="e.g. Make change from $5 independently">
     </div>
     <div class="mbtns"><button class="mcancel" onclick="closeM('m-goal')">Cancel</button><button class="msave" onclick="saveGoal()">Save Goal</button></div>
+  </div>
+</div>
+
+<div class="mow" id="m-range">
+  <div class="mdl">
+    <div class="mt">📅 REPORT DATE RANGE</div>
+    <div class="fg"><label class="fl">Start Date</label><input class="fi" id="range-start" type="date"></div>
+    <div class="fg"><label class="fl">End Date</label><input class="fi" id="range-end" type="date"></div>
+    <div class="mbtns">
+      <button class="mcancel" onclick="clearCoachRange()">Clear</button>
+      <button class="msave" onclick="saveCoachRange()">Apply</button>
+    </div>
   </div>
 </div>
 
@@ -1713,15 +1734,20 @@ max-width:320px;width:calc(100% - 32px);
 
 // ════════════════════════════════════════════════════════
 const ITEMS=[
-  {n:'GUM',p:75},{n:'CANDY BAR',p:150},{n:'SODA',p:175},{n:'CHIPS',p:125},
-  {n:'WATER',p:100},{n:'COFFEE',p:200},{n:'SANDWICH',p:650},{n:'NOTEBOOK',p:299},
-  {n:'PEN',p:100},{n:'MAGAZINE',p:495},{n:'JUICE',p:225},{n:'COOKIE',p:75},
-  {n:'GRANOLA BAR',p:175},{n:'PROTEIN BAR',p:350},{n:'MUFFIN',p:325},
-  {n:'BAGEL',p:175},{n:'ENERGY DRINK',p:299},{n:'NEWSPAPER',p:150},
-  {n:'CHAPSTICK',p:299},{n:'HAND LOTION',p:499},{n:'HOT DOG',p:350},
-  {n:'FROZEN MEAL',p:599},{n:'SHAMPOO',p:699},{n:'BATTERIES',p:599},
-  {n:'SOAP',p:249},{n:'SALAD',p:799},{n:'PIZZA SLICE',p:350},
+  {n:'GUM',p:75},{n:'COOKIE',p:95},{n:'CANDY BAR',p:125},{n:'CHIPS',p:175},
+  {n:'WATER',p:150},{n:'SODA',p:225},{n:'COFFEE',p:295},{n:'JUICE',p:275},
+  {n:'GRANOLA BAR',p:185},{n:'BAGEL',p:225},{n:'MUFFIN',p:325},{n:'HOT DOG',p:375},
+  {n:'PIZZA SLICE',p:425},{n:'YOGURT',p:165},{n:'APPLE',p:115},{n:'NOTEBOOK',p:299},
+  {n:'PEN',p:129},{n:'CHAPSTICK',p:299},{n:'HAND LOTION',p:499},{n:'SANDWICH',p:675},
+  {n:'WRAP',p:725},{n:'SALAD',p:825},{n:'FROZEN MEAL',p:599},{n:'SHAMPOO',p:899},
+  {n:'BATTERIES',p:1099},{n:'PHONE CHARGER',p:1499},{n:'HEADPHONES',p:1999},{n:'DEODORANT',p:649},
 ];
+function getItemForPrice(price){
+  if(!Number.isFinite(price) || price<=0) return rand(ITEMS);
+  const banded = ITEMS.filter(it=>Math.abs(it.p-price) <= Math.max(50, Math.round(price*0.2)));
+  const pool = banded.length ? banded : ITEMS.slice().sort((a,b)=>Math.abs(a.p-price)-Math.abs(b.p-price)).slice(0,6);
+  return rand(pool);
+}
 const PAYS={
   starter:[{v:100,l:'$1.00'}],
   daily:[{v:100,l:'$1.00'},{v:500,l:'$5.00'},{v:1000,l:'$10.00'}],
@@ -1872,6 +1898,9 @@ function cleanTTS(rawTxt){
       .replace(/[★☆●◆■□▪▫►◄▲▼✅❌⭐]/g,'')
       .replace(/\s+/g,' ').trim();
 }
+function stopSpeech(){
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+}
 function makeTappable(screenId){
   const el=document.getElementById(screenId);
   if(!el)return;
@@ -1938,44 +1967,134 @@ function makeTappable(screenId){
     }
   });
 }
-function go(id){
-  // Cancel speech when navigating, but not if a badge is currently being announced
-  const _badgeShowing=document.getElementById('badge-toast')?.classList.contains('show');
-  if(window.speechSynthesis && !_badgeShowing) window.speechSynthesis.cancel();
+function clearActiveUI(){
   document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-  const el=document.getElementById('scr-'+id);
-  if(el) el.classList.add('on');
-  const nb=document.getElementById('nb-'+id);
-  if(nb) nb.classList.add('on');
-  if(id==='home'){
-    document.getElementById('nb-home').classList.add('on');
-    updateHomeUI();
-    // Clear results screen so stale data never shows
-    const pb=$('pb-banner');if(pb)pb.style.display='none';
-    const eoc=$('eoc-card-wrap');if(eoc)eoc.innerHTML='';
+}
+function activateScreen(id){
+  clearActiveUI();
+  const el=$('scr-'+id);
+  if(el)el.classList.add('on');
+}
+function activateNav(id){
+  const nb=$('nb-'+id);
+  if(nb)nb.classList.add('on');
+}
+function showScreen(id, options={}){
+  const { withNav=true, scrollTop=true, prime=true } = options||{};
+  activateScreen(id);
+  if(withNav) activateNav(id);
+  if(scrollTop) scrollAppTop();
+  if(prime) primeAccessibleScreen(id);
+}
+function resetResultsView(){
+  const pb=$('pb-banner');if(pb){pb.style.display='none';pb.textContent='';}
+  const eoc=$('eoc-card-wrap');if(eoc)eoc.innerHTML='';
+  const shareBtn=$('r-share');if(shareBtn)shareBtn.style.display='none';
+  const coachBtn=$('r-coach-copy');if(coachBtn)coachBtn.style.display='none';
+}
+function resetScoreFilters(){
+  scoreFilter='all';
+  document.querySelectorAll('#score-filters .sopt').forEach((b,i)=>b.classList.toggle('on',i===0));
+}
+function scrollAppTop(){
+  window.scrollTo(0,0);
+  const wrap=$('page-wrap');
+  if(wrap)wrap.scrollTop=0;
+}
+function setGameProgress(step,total){
+  const gbar=$('game-progress');
+  if(!gbar) return;
+  const safeTotal=Math.max(1, Number(total)||1);
+  const safeStep=Math.min(safeTotal, Math.max(1, Number(step)||1));
+  gbar.textContent='QUESTION ' + safeStep + ' OF ' + safeTotal;
+}
+function setPracticeHintLine(visible,count){
+  const hintLine=$('practice-hints-line');
+  if(!hintLine) return;
+  const show=!!visible;
+  hintLine.style.display=show?'block':'none';
+  hintLine.textContent='HINTS USED: ' + (Number(count)||0);
+}
+let SESSION_TRANSITION_LOCK=false;
+let MODAL_ACTION_LOCK=false;
+function withTransitionLock(fn){
+  if(SESSION_TRANSITION_LOCK) return false;
+  SESSION_TRANSITION_LOCK=true;
+  try{ fn(); return true; }
+  finally{ setTimeout(()=>{ SESSION_TRANSITION_LOCK=false; }, 180); }
+}
+function clearHintModalActions(){
+  const ok=$('m-hint-ok');
+  const cancel=$('m-hint-cancel');
+  if(ok){ ok.disabled=false; ok.onclick=null; }
+  if(cancel){ cancel.disabled=false; cancel.onclick=null; }
+  MODAL_ACTION_LOCK=false;
+}
+function resetSessionChrome(){
+  resetFeedbackOverlay();
+  hideMiniHintBar('play-hint');
+  setPracticeHintLine(false,0);
+  const streakBox=$('sbox-streak'); if(streakBox) streakBox.style.display='none';
+  const lvl=$('g-lvl'); if(lvl) lvl.style.display='none';
+  const endBtn=$('end-btn'); if(endBtn) endBtn.textContent='‹ END';
+  const modeBanner=$('mode-banner');
+  if(modeBanner){
+    modeBanner.innerHTML='';
+    modeBanner.style.display='none';
   }
-  if(id==='coach'){document.getElementById('nb-coach').classList.add('on');$('coach-wrap').innerHTML='<div class="no-data" style="padding:40px 0">🔒</div>';}
-  if(id==='settings') renderSettings();
-  if(id==='badges') renderBadges();
-  if(id==='scores'){
-    scoreFilter='all';
-    document.querySelectorAll('#score-filters .sopt').forEach((b,i)=>{b.classList.toggle('on',i===0);});
-    renderScores();
-  }
-  if(id==='quiz')   startQuiz();
-  if(id==='changedrill') startChangeDrill();
-  if(id==='coindrill') startCoinDrill();
-  if(id==='billdrill') startBillDrill();
-  if(id==='dihe')   startDIHE();
-  if(id==='demo')   startDemo();
-  window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
-  if(id==='moneyguide'){renderMoneyGuide();}
+  setGameProgress(1,(window.ST&&ST.maxQ)||1);
+}
+function primeAccessibleScreen(id){
   if(id==='badges')makeTappable('scr-badges');
   if(id==='guide')makeTappable('scr-guide');
   if(id==='settings')makeTappable('scr-settings');
   if(id==='moneyguide')makeTappable('scr-moneyguide');
   if(id==='about')makeTappable('scr-about');
+}
+function openCoachDashboard(){
+  const wrap=$('coach-wrap');
+  if(wrap)wrap.innerHTML='<div class="no-data" style="padding:40px 0">🔒</div>';
+  coachNav();
+}
+function go(id){
+  const _badgeShowing=document.getElementById('badge-toast')?.classList.contains('show');
+  if(!_badgeShowing) stopSpeech();
+
+  if(id==='coach'){
+    resetSessionChrome();
+    closeM('m-hint');
+    openCoachDashboard();
+    return;
+  }
+
+  const modeScreens=['game','quiz','changedrill','coindrill','billdrill','dihe'];
+  if(!modeScreens.includes(id)){
+    resetSessionChrome();
+    closeM('m-hint');
+  }
+
+  showScreen(id);
+
+  if(id==='home'){
+    $('nb-home')?.classList.add('on');
+    updateHomeUI();
+    resetResultsView();
+  }
+  if(id==='settings') renderSettings();
+  if(id==='badges') renderBadges();
+  if(id==='scores'){
+    resetScoreFilters();
+    renderScores();
+  }
+  if(id==='quiz') startQuiz();
+  if(id==='changedrill') startChangeDrill();
+  if(id==='coindrill') startCoinDrill();
+  if(id==='billdrill') startBillDrill();
+  if(id==='dihe') startDIHE();
+  if(id==='demo') startDemo();
+  if(id==='moneyguide') renderMoneyGuide();
+
 }
 
 // ════════════════════════════════════════════════════════
@@ -2359,7 +2478,7 @@ function stripLeadEmojiText(s){
 }
 function speakIntroCardText(title, items){
   try{
-    if(window.speechSynthesis) speechSynthesis.cancel();
+    stopSpeech();
     const cleanTitle = stripLeadEmojiText(title);
     const parts = [];
     if(cleanTitle) parts.push(cleanTitle + '.');
@@ -2373,7 +2492,7 @@ function speakIntroCardText(title, items){
     if(text) say(text);
   }catch(e){}
 }
-function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
+function showModeIntro(icon,title,color,lines,btnLabel,onConfirm,onCancel){
   const linesHTML=lines.map(([emoji,bold,detail])=>
     `<div style="display:flex;gap:11px;align-items:flex-start;margin-bottom:9px">
       <div style="font-size:1.2rem;width:26px;flex-shrink:0;text-align:center">${emoji}</div>
@@ -2383,20 +2502,18 @@ function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
   openHint(
     `${icon} ${title}`,
     `<div style="background:linear-gradient(135deg,${color}18,${color}06);border:1px solid ${color}44;border-radius:10px;padding:13px 14px;margin-bottom:12px">${linesHTML}</div>`,
-    btnLabel||'Let\'s Go! →',
+    btnLabel||"Let's Go! →",
     onConfirm,
     true
   );
-  setTimeout(()=>{
-    speakIntroCardText(title, lines);
-    const cancel = document.getElementById('m-hint-cancel');
-    if(cancel){
-      cancel.onclick = () => {
-        closeM('m-hint');
-        go('home');
-      };
-    }
-  }, 160);
+  const cancel=$('m-hint-cancel');
+  if(cancel) cancel.onclick=()=>{
+    stopSpeech();
+    closeM('m-hint');
+    if(typeof onCancel==='function') onCancel();
+    else go('home');
+  };
+  setTimeout(()=>{ speakIntroCardText(title, lines); }, 160);
 }
 
 function replayModeIntro(){
@@ -2421,25 +2538,22 @@ function gameAudioFlash(btn){
 }
 function gameSayAgain(btn){
   if(btn) gameAudioFlash(btn);
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   const txt = document.getElementById('ibar-txt');
   if(txt && txt.textContent) say(txt.textContent);
 }
 function updateGameScoreDisplay(){
   const val = document.getElementById('g-score');
   const lbl = document.querySelector('#sbox-score .sl');
-  const hintsLine = document.getElementById('practice-hints-line');
   if(!val || !lbl || !window.ST) return;
   if(ST.mode==='practice'){
     val.textContent = ST.hintsUsed || 0;
     lbl.textContent = 'HINTS';
+    setPracticeHintLine(true, ST.hintsUsed || 0);
   } else {
     val.textContent = ST.score || 0;
     lbl.textContent = 'SCORE';
-  }
-  if(hintsLine){
-    hintsLine.style.display = 'block';
-    hintsLine.textContent = 'HINTS USED: ' + (ST.hintsUsed || 0);
+    setPracticeHintLine(false, 0);
   }
 }
 function startMode(mode){
@@ -2451,6 +2565,8 @@ function startMode(mode){
       chipsRemoved:0,trayClears:0,trayOvers:0,shiftStartTime:Date.now(),
       practiceCount: (ST.practiceCount||0)+(mode==='practice'?1:0)};
   txCountForBreak=0;
+  resetSessionChrome();
+  resetResultsView();
 
   // HUD visibility
   $('sbox-score').style.display='';
@@ -2458,36 +2574,56 @@ function startMode(mode){
   $('g-lvl').style.display=mode==='shift'?'':'none';
   $('gmode-lbl').textContent=mode==='starter'?'STARTER':mode==='practice'?'PRACTICE':mode==='daily'?'DAILY':'SHIFT';
   const endBtn=$('end-btn');
-  if(endBtn) endBtn.textContent=mode==='practice'?'‹ DONE':'‹ END';
+  if(endBtn) endBtn.textContent='‹ CANCEL';
   buildDots();
   updateGameScoreDisplay();
-  const _hl = $('practice-hints-line');
-  if(_hl){
-    _hl.style.display = 'block';
-    _hl.textContent = 'HINTS USED: 0';
-  }
-  go('game');
+  setPracticeHintLine(mode==='practice',0);
+  setGameProgress(1,ST.maxQ);
+  hideMiniHintBar('play-hint');
 
-  const launch=()=>{ genTx(); };
+  const launch=()=>{
+    withTransitionLock(()=>{
+      try{
+        resetFeedbackOverlay();
+        clearHintModalActions();
+        closeM('m-hint');
+        go('game');
+        CFG.modesPlayed=CFG.modesPlayed||{};
+        CFG.modesPlayed[mode]=true;
+        saveAll();
+        genTx();
+      }catch(err){
+        console.error('CashReady startMode launch failed:', mode, err);
+        clearHintModalActions();
+        closeM('m-hint');
+        go('home');
+        openHint('Mode could not start',
+          '<p style="color:var(--text2);font-size:.88rem">Something interrupted the session launch. You were returned safely home so you can try again.</p>',
+          'OK',
+          ()=>{ clearHintModalActions(); closeM('m-hint'); go('home'); }
+        );
+      }
+    });
+  };
 
   if(mode==='starter'){
     showModeIntro('⭐','STARTER MODE','#00c851',[
       ['🪙','Coins only - no bills yet.','Every item costs under $1. The customer always pays with $1.'],
       ['👆','Tap coins to build the correct change.','The bar fills up as you get closer to the right amount.'],
       ['✅','Get it exactly right to move on.','Use the HINT button any time - no penalty in this mode.'],
-    ],'Start Starter Mode →',()=>{ closeM('m-hint'); launch(); });
+    ],'Start Starter Mode →',launch,()=>go('home'));
   } else if(mode==='practice'){
     showModeIntro('🎓','PRACTICE MODE','#00c851',[
       ['🚫','No score. No pressure.','Practice as long as you like - nothing is recorded.'],
       ['💡','Hints are always available.','Tap HINT any time to see which coin or bill to use next.'],
       ['🛒','All transaction types included.','Coins, bills, and mixed amounts - great for exploring at your own pace.'],
-    ],'Start Practice →',()=>{ closeM('m-hint'); launch(); });
+    ],'Start Practice →',launch,()=>go('home'));
   } else if(mode==='daily'){
     showModeIntro('📅','DAILY CHALLENGE','#ffbb33',[
       ['5️⃣','5 transactions - quick and focused.','Takes about 2-3 minutes. Perfect for a daily habit.'],
       ['🔥','Builds your daily streak.','Come back every day to keep it going.'],
       ['⭐','Scored and saved.','Your best daily score is recorded in High Scores.'],
-    ],'Start Today\'s Challenge →',()=>{ closeM('m-hint'); launch(); });
+    ],'Start Today\'s Challenge →',launch,()=>go('home'));
   } else {
     // Shift mode
     showModeIntro('🏪','SHIFT MODE','#00c851',[
@@ -2495,15 +2631,14 @@ function startMode(mode){
       ['📈','Difficulty builds as your shift goes on.','Early customers are simple. Later ones have bigger bills and trickier amounts.'],
       ['🔥','Streaks earn bonus points.','Get several right in a row to boost your score.'],
       ['💡','Tap HINT if you get stuck.','Using a hint won\'t end your session - just your hintless streak.'],
-    ],'Start Shift →',()=>{ closeM('m-hint'); launch(); });
+    ],'Start Shift →',launch,()=>go('home'));
   }
 }
 
 function startDaily(){
   const t=today();
   if(CFG.lastDaily===t){
-    // Already did today - show current streak
-    openHint('Daily Challenge',`You already completed today's challenge! Come back tomorrow to keep your ${CFG.dailyStreak}-day streak going! 🔥`,'OK!',null);
+    openHint('Daily Challenge Complete',`<p style="color:var(--text2);font-size:.88rem;line-height:1.6">You already completed today's challenge. Come back tomorrow to protect your <strong style="color:var(--amber)">${CFG.dailyStreak}-day streak</strong> 🔥</p><p style="color:var(--text2);font-size:.84rem;line-height:1.6;margin-top:10px">Want more practice right now? Try <strong style="color:var(--text)">Shift Mode</strong> or <strong style="color:var(--text)">Practice Mode</strong>.</p>`,'Got It',null);
     return;
   }
   startMode('daily');
@@ -2524,8 +2659,7 @@ function updDots(){
     else if(i===ST.total)d.className='pd cur';
     else d.className='pd';
   }
-  const gp=$('game-progress');
-  if(gp) gp.textContent='QUESTION ' + (ST.total + 1) + ' OF ' + ST.maxQ;
+  setGameProgress(ST.total + 1, ST.maxQ);
 }
 
 function genQuestionNoDupe(mode){
@@ -2557,7 +2691,6 @@ function genQuestionNoDupe(mode){
 function genTx(){
   hideMiniHintBar('play-hint');
   clearTray(); ST.answered=false;
-  const item=rand(ITEMS); ST.item=item;
   let price;
   const prog=ST.total/ST.maxQ;
   if(ST.mode==='starter') price=rand([5,10,15,20,25,50,75,10,50,25]);
@@ -2574,6 +2707,7 @@ function genTx(){
   if(CFG.coinsonly) price=Math.min(price,95);
   if(CFG.billsonly) price=Math.round(price/100)*100||100;
   ST.price=price;
+  const item=getItemForPrice(price); ST.item=item;
   const pool=PAYS[ST.mode]||PAYS.shift;
   const valid=pool.filter(p=>p.v>price);
   const pay=valid.length>0?rand(valid):pool[pool.length-1];
@@ -2588,11 +2722,7 @@ function genTx(){
   $('g-change').textContent=fmt(ST.change);
   $('t-needed').textContent=fmt(ST.change);
   updateGameScoreDisplay();
-  const _hl = $('practice-hints-line');
-  if(_hl){
-    _hl.style.display = 'block';
-    _hl.textContent = 'HINTS USED: ' + (ST.hintsUsed || 0);
-  }
+  setPracticeHintLine(ST.mode==='practice', ST.hintsUsed || 0);
   $('g-lvl').textContent=getLvl(ST.score).n;
 
   // Mode banner
@@ -2820,6 +2950,37 @@ function updStreak(){
   for(let i=0;i<5;i++){const d=$('sd'+i);if(d)d.classList.toggle('lit',i<ST.streak);}
 }
 
+function resetFeedbackOverlay(){
+  const fov=$('fov'); if(fov) fov.classList.remove('on');
+  const fcard=$('fcard'); if(fcard) fcard.className='fcard';
+  const fmsg=$('fmsg'); if(fmsg) fmsg.textContent='';
+  const ftitle=$('ftitle'); if(ftitle){ ftitle.textContent='CORRECT!'; ftitle.className='ftitle ok'; }
+  const femoji=$('femoji'); if(femoji) femoji.textContent='✅';
+  const fnext=$('fnext'); if(fnext){ fnext.className='fnext'; fnext.textContent='NEXT CUSTOMER →'; }
+  const eoc=$('eoc-wrap'); if(eoc){ eoc.style.display='none'; eoc.innerHTML=''; }
+}
+
+function safeDispatchNext(){
+  if(ST && ST.total>=ST.maxQ){
+    endShift();
+    return;
+  }
+  nextTx();
+}
+
+let feedbackNextLastTap = 0;
+function feedbackNextTap(event){
+  if(event){
+    if(typeof event.preventDefault==='function') event.preventDefault();
+    if(typeof event.stopPropagation==='function') event.stopPropagation();
+  }
+  const now = Date.now();
+  if(now - feedbackNextLastTap < 250) return false;
+  feedbackNextLastTap = now;
+  safeDispatchNext();
+  return false;
+}
+
 function showFeedback(ok){
   const fov=$('fov'),fc=$('fcard');
   fc.classList.toggle('wrong',!ok);
@@ -2843,16 +3004,27 @@ function showFeedback(ok){
     if(firstEver) setTimeout(()=>confetti(),400);
   } else {
     $('femoji').textContent='❌';
-    $('ftitle').textContent='NOT QUITE';
+    const phrase=getWrongFeedbackPhrase();
+    $('ftitle').textContent=phrase.toUpperCase();
     $('ftitle').className='ftitle bad';
     const diff=ST.tray-ST.change;
     let detailMsg='';
-    if(ST.tray===0) detailMsg=`You did not add any change. The correct amount was ${fmt(ST.change)}.`;
-    else if(ST.tray<ST.change) detailMsg=`You gave ${fmt(ST.tray)} but needed ${fmt(ST.change)}. You were ${fmt(ST.change-ST.tray)} short.`;
-    else detailMsg=`You gave ${fmt(ST.tray)} but needed ${fmt(ST.change)}. That was ${fmt(diff)} too much.`;
+    let spokenMsg='';
+    if(ST.tray===0){
+      detailMsg=`${phrase}. You gave ${fmt(ST.tray)} but needed ${fmt(ST.change)}. You did not add any change.`;
+      spokenMsg=`${phrase}. You gave ${fmt(ST.tray)} but needed ${fmt(ST.change)}. You did not add any change.`;
+    }
+    else if(ST.tray<ST.change){
+      detailMsg=`${phrase}. You gave ${fmt(ST.tray)} but needed ${fmt(ST.change)}. You were ${fmt(ST.change-ST.tray)} short.`;
+      spokenMsg=`${phrase}. You gave ${fmt(ST.tray)} but needed ${fmt(ST.change)}. You were ${fmt(ST.change-ST.tray)} short.`;
+    }
+    else {
+      detailMsg=`${phrase}. You gave ${fmt(ST.tray)} but needed ${fmt(ST.change)}. That was ${fmt(diff)} too much.`;
+      spokenMsg=`${phrase}. You gave ${fmt(ST.tray)} but needed ${fmt(ST.change)}. That was ${fmt(diff)} too much.`;
+    }
     $('fmsg').textContent=detailMsg;
     $('fnext').className='fnext bad';
-    say(getRandMsg(WRONG_MSGS_SHORT,ST.change));
+    say(spokenMsg);
   }
   $('fnext').textContent=ST.total>=ST.maxQ?'SEE RESULTS →':'NEXT CUSTOMER →';
   // Employee of Shift card on last correct
@@ -2876,7 +3048,7 @@ const BREAK_MSGS=[
 ];
 
 function nextTx(){
-  $('fov').classList.remove('on');
+  resetFeedbackOverlay();
   // Break reminder
   if(CFG.breaks&&txCountForBreak>=5&&ST.total<ST.maxQ&&ST.mode!=='daily'){
     // Pick a rotating break message
@@ -2917,41 +3089,146 @@ function confirmDIHEExit(){
     );
   } else go('home');
 }
+function getModeMeta(mode){
+  const map={
+    starter:{
+      title:'Starter Mode',
+      introTitle:'End Starter Mode Early?',
+      cta:'Yes, End Starter Mode',
+      endedTitle:'STARTER MODE ENDED',
+      completeTitle:'STARTER MODE COMPLETE',
+      speak:'Starter mode',
+      summary:'coin-only practice'
+    },
+    practice:{
+      title:'Practice Mode',
+      introTitle:'Finish Practice?',
+      cta:'Finish Practice',
+      endedTitle:'PRACTICE SESSION ENDED',
+      completeTitle:'PRACTICE MODE COMPLETE',
+      speak:'Practice mode',
+      summary:'practice session'
+    },
+    daily:{
+      title:'Daily Challenge',
+      introTitle:'End Daily Challenge Early?',
+      cta:'Yes, End Daily Challenge',
+      endedTitle:'DAILY CHALLENGE ENDED',
+      completeTitle:'DAILY CHALLENGE COMPLETE',
+      speak:'Daily challenge',
+      summary:'daily challenge'
+    },
+    shift:{
+      title:'Shift Mode',
+      introTitle:'End Shift Early?',
+      cta:'Yes, End Shift & Save',
+      endedTitle:'SHIFT MODE ENDED',
+      completeTitle:'SHIFT MODE COMPLETE',
+      speak:'Shift mode',
+      summary:'cashier shift'
+    }
+  };
+  return map[mode]||map.shift;
+}
+
+function getSessionElapsedSeconds(){
+  const startedAt = ST && (ST.shiftStartTime || ST.startTime);
+  return startedAt ? Math.max(0, (Date.now() - startedAt) / 1000) : 0;
+}
+function getResultsSubline(mode,total,early=false){
+  const count = total || 0;
+  const endedLead = early ? 'You saved the progress you made so far.' : '';
+  if(mode==='starter') return endedLead || `You completed ${count} coin change transaction${count!==1?'s':''}.`;
+  if(mode==='daily') return endedLead || `You completed today's ${count}-question challenge.`;
+  if(mode==='practice') return endedLead || `You practiced ${count} money transaction${count!==1?'s':''} with no score pressure.`;
+  return endedLead || `You helped ${count} customer${count!==1?'s':''} today!`;
+}
+function getResultsNextSteps(mode,pct,mis){
+  const items=[];
+  if(mode==='starter'){
+    if(pct===100) items.push('Excellent work. You are ready to move from coins-only practice into full Shift Mode.');
+    else if(mis.some(r=>r.change<100)) items.push('Keep practicing small coin amounts. Starter Mode is the right place to build speed and confidence.');
+    else items.push('You are close. Replay Starter Mode and focus on checking the cents before you dispense.');
+    items.push('Use the Money Guide anytime for a quick reminder of coin values.');
+    return items;
+  }
+  if(mode==='daily'){
+    if(pct===100) items.push('Strong daily run. Come back tomorrow to protect your streak and keep the habit going.');
+    else if(pct>=80) items.push('Great work. A quick Shift Mode run today could push your confidence even higher.');
+    else items.push('Use Practice Mode or Starter Mode for a few rounds, then come back tomorrow ready for a stronger daily score.');
+    items.push('Short daily practice adds up. Consistency matters more than perfection.');
+    return items;
+  }
+  if(mode==='shift'){
+    if(pct===100) items.push('Outstanding! Try a longer shift or harder transaction mix to earn more badges.');
+    else if(pct>=80) items.push('Great work! Play Shift Mode again to push your score higher.');
+    else if(mis.some(r=>r.change<100)) items.push('Practice small coin changes. Try Starter Mode for coins-only practice.');
+    else items.push('Keep it up! Try Practice Mode with hints to build confidence before another scored shift.');
+    items.push('Check the Money Guide anytime for a quick coin and bill reference.');
+    return items;
+  }
+  if(pct===100) items.push('Excellent practice session. You are ready to try a scored Shift Mode run.');
+  else items.push('Keep using Practice Mode and hints to build confidence before moving into a scored mode.');
+  items.push('The goal here is reps, not pressure. Smooth and accurate beats rushed.');
+  return items;
+}
+
 function confirmEnd(){
   if(ST.total===0){go('home');return;}
   const pct=Math.round(ST.correct/ST.total*100);
+  const meta=getModeMeta(ST.mode);
   const body=`<div style="background:var(--bg3);border-radius:10px;padding:12px 14px;margin-bottom:12px">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center">
       <div><div style="font-family:var(--font-mono);font-size:1.1rem;color:var(--green);font-weight:700">${ST.correct}/${ST.total}</div><div style="font-size:.68rem;color:var(--text2);margin-top:2px">CORRECT SO FAR</div></div>
       <div><div style="font-family:var(--font-mono);font-size:1.1rem;color:var(--amber);font-weight:700">${pct}%</div><div style="font-size:.68rem;color:var(--text2);margin-top:2px">ACCURACY</div></div>
     </div>
   </div>
-  <p style="font-size:.84rem;color:var(--text2);line-height:1.6">You have completed ${ST.total} of ${ST.maxQ} transactions. End now and save your partial results, or keep going!</p>`;
-  openHint(ST.mode==='practice'?'Finish Practice?':'End Shift Early?',body,ST.mode==='practice'?'Finish Practice':'Yes, End & Save',()=>{closeM('m-hint');endShift(true);});
+  <p style="font-size:.84rem;color:var(--text2);line-height:1.6">You have completed ${ST.total} of ${ST.maxQ} transactions in ${meta.title}. You can keep going, or end now and save the progress you made.</p>`;
+  openHint(meta.introTitle,body,meta.cta,()=>{closeM('m-hint');endShift(true);},true);
 }
 
 
-function renderPracticeResults(){
+function renderPracticeResults(completed=true){
+  resetSessionChrome();
   const title = document.getElementById('pr-title');
   const sub = document.getElementById('pr-sub');
   const stats = document.getElementById('pr-stats');
-  if(title) title.textContent = 'PRACTICE MODE COMPLETE';
-  if(sub) sub.textContent = 'Nice work. You completed a practice session.';
-  if(stats) stats.textContent = `You answered ${ST.total} questions • ${ST.correct} correct • Hints used: ${ST.hintsUsed}`;
+  const answered = ST.total||0;
+  const correct = ST.correct||0;
+  const hints = ST.hintsUsed||0;
+  const elapsed = getSessionElapsedSeconds();
+  if(title) title.textContent = completed ? 'PRACTICE MODE COMPLETE' : 'PRACTICE SESSION ENDED';
+  if(sub) sub.textContent = completed
+    ? 'Nice work. You completed a full practice session. No score, no pressure, just progress.'
+    : 'Your practice session was saved here so you can stop without losing your progress.';
+  if(stats) stats.textContent = `You answered ${answered} transaction${answered!==1?'s':''} • ${correct} correct • Hints used: ${hints}${elapsed>10?' • Time: '+fmtElapsed(elapsed):''}`;
   const again = document.getElementById('pr-again');
   const shift = document.getElementById('pr-try-shift');
   const main = document.getElementById('pr-main');
   if(again) again.onclick = ()=>startMode('practice');
   if(shift) shift.onclick = ()=>startMode('shift');
   if(main) main.onclick = ()=>go('home');
-  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
-  document.getElementById('scr-practice-results').classList.add('on');
-  window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
-  setTimeout(()=>say(`Practice mode complete. You answered ${ST.total} questions, got ${ST.correct} correct, and used ${ST.hintsUsed} hint${ST.hintsUsed!==1?'s':''}.`),140);
+  updateHomeUI();
+  resetResultsView();
+  updateHomeUI();
+  showScreen('practice-results',{withNav:false});
+  const timeLine = elapsed>10 ? `, and your time was ${fmtElapsedSpeech(elapsed)}` : '';
+  setTimeout(()=>say(`${completed?'Practice mode complete':'Practice session ended'}. You answered ${answered} transaction${answered!==1?'s':''}, got ${correct} correct, and used ${hints} hint${hints!==1?'s':''}${timeLine}.`),140);
 }
 function endShift(early=false){
-  $('fov').classList.remove('on');
-  if(ST.mode==='practice'){renderPracticeResults();return;}
+  if(SESSION_TRANSITION_LOCK) return;
+  withTransitionLock(()=>{
+    resetFeedbackOverlay();
+    txCountForBreak=0;
+    if(ST.mode==='practice'){
+      renderPracticeResults(!early);
+      return;
+    }
+    _finishEndShift(early);
+  });
+}
+function _finishEndShift(early=false){
+  resetSessionChrome();
   // Daily challenge
   if(ST.mode==='daily'&&!early){
     const t=today();
@@ -2965,7 +3242,6 @@ function endShift(early=false){
       if(CFG.dailyStreak>=14) awardBadge('daily14');
       if(CFG.dailyStreak>=30) awardBadge('daily30');
       if(CFG.dailyStreak>=60) awardBadge('daily60');
-      // Show milestone celebration at key numbers
       const milestones={
         3:  {emoji:'🔥',title:'3-DAY STREAK!',   msg:`You have practiced 3 days in a row! That is a real habit forming. Keep it up!`,    badge:'daily3'},
         7:  {emoji:'☀️',title:'ONE WEEK STREAK!', msg:`7 days straight! You have been showing up every single day. That is incredible dedication!`, badge:'daily7'},
@@ -2977,14 +3253,13 @@ function endShift(early=false){
       if(ms) setTimeout(()=>showStreakMilestone(ms), 1800);
     }
   }
-  // Save score
-  if(ST.total>0&&!early){
-    SCORES.unshift({mode:ST.mode,score:ST.score,correct:ST.correct,total:ST.total,streak:ST.bestStreak,date:today()});
+  const meta=getModeMeta(ST.mode);
+  const modeName=meta.title;
+  if(ST.total>0){
+    SCORES.unshift({mode:modeName,score:ST.score,correct:ST.correct,total:ST.total,streak:ST.bestStreak,date:today()});
     SCORES=SCORES.slice(0,30);saveAll();
   }
   const pct=ST.total>0?Math.round(ST.correct/ST.total*100):0;
-
-  // ── Grade arc ──
   const grade=pct>=97?'A+':pct>=93?'A':pct>=90?'A-':pct>=87?'B+':pct>=83?'B':pct>=80?'B-':pct>=70?'C':pct>=60?'D':'F';
   const gc=pct>=80?'#00c851':pct>=70?'#ffbb33':'#ff4444';
   const gl=$('grade-letter');
@@ -3000,33 +3275,16 @@ function endShift(early=false){
     }));
   }
 
-  // ── Header text ──
-  const modeTitleMap={
-    starter:'STARTER MODE',
-    daily:'DAILY CHALLENGE',
-    practice:'PRACTICE MODE',
-    shift:'SHIFT'
-  };
-  const modeSpeakMap={
-    starter:'Starter mode',
-    daily:'Daily challenge',
-    practice:'Practice mode',
-    shift:'Shift'
-  };
-  const modeTitle=(modeTitleMap[ST.mode]||'SESSION');
-  const modeSpeak=(modeSpeakMap[ST.mode]||'Session');
-  $('r-title').textContent=early?`${modeTitle} ENDED`:`${modeTitle} COMPLETE`;
-  $('r-sub').textContent=`You helped ${ST.total} customer${ST.total!==1?'s':''} today!`;
+  updateHomeUI();
+  $('r-title').textContent=early?meta.endedTitle:meta.completeTitle;
+  $('r-sub').textContent=getResultsSubline(ST.mode,ST.total,early);
   $('r-level-badge').textContent=getLvl(ST.score).n;
-
-  // ── Stats ──
   $('r-score').textContent=ST.score;
   $('r-acc').textContent=pct+'%';
   $('r-correct').textContent=`${ST.correct}/${ST.total}`;
   $('r-streak').textContent=ST.bestStreak;
 
-  // ── Session timer ──
-  const elapsed=ST.shiftStartTime?(Date.now()-ST.shiftStartTime)/1000:0;
+  const elapsed=getSessionElapsedSeconds();
   const timerBox=$('r-timer-box');
   const timerEl=$('r-timer');
   if(timerBox&&timerEl&&elapsed>10&&!early){
@@ -3034,33 +3292,29 @@ function endShift(early=false){
     timerBox.style.display='';
   } else if(timerBox) timerBox.style.display='none';
 
-  // ── Share score ──
-  const modeName=ST.mode==='starter'?'Starter Mode':ST.mode==='daily'?'Daily Challenge':ST.mode==='practice'?'Practice':'Shift Mode';
-  _shareData=`I just scored ${ST.score} points in CashReady! 💰\n${modeName} · ${ST.correct}/${ST.total} correct · ${pct}% accuracy${elapsed>10?` · ${fmtElapsed(elapsed)}`:''}\nCashReady - Free Money Skills Trainer`;
+  _shareData=`I just scored ${ST.score} points in CashReady! 💰
+${modeName} · ${ST.correct}/${ST.total} correct · ${pct}% accuracy${elapsed>10?` · ${fmtElapsed(elapsed)}`:''}
+CashReady - Free Money Skills Trainer`;
   const shareBtn=$('r-share');
   if(shareBtn)shareBtn.style.display=(!early&&ST.total>0)?'':'none';
   const coachBtn=$('r-coach-copy');if(coachBtn)coachBtn.style.display=(!early&&ST.total>0)?'':'none';
 
-  // ── Personal best ──
-  const prev=SCORES.slice(1).filter(s=>s.mode===ST.mode);
+  const prev=SCORES.slice(1).filter(s=>s.mode===modeName);
   const pbb=$('pb-banner');
   if(pbb&&prev.length>0&&ST.score>Math.max(...prev.map(s=>s.score))){
     pbb.style.display='block';
     pbb.textContent='🎯 NEW PERSONAL BEST!  Previous: '+Math.max(...prev.map(s=>s.score))+' → Now: '+ST.score;
   } else if(pbb) pbb.style.display='none';
 
-  // ── EOC card ──
   if(!early&&pct>=80){
     $('eoc-card-wrap').innerHTML=`<div class="eoc"><div class="eoc-title">🏅 EMPLOYEE OF THE SHIFT</div><div class="eoc-name">${CFG.playerName?CFG.playerName+' - ':''}${pct}% Accuracy</div><div class="eoc-sub">You helped ${ST.total} customers today - that is real cashier work!</div></div>`;
   } else $('eoc-card-wrap').innerHTML='';
 
-  // ── Badges ──
   if(ST.shiftBadges.length>0){
     $('r-badges-sec').style.display='';
     $('r-badges').innerHTML=ST.shiftBadges.map(id=>{const b=BADGES_DEF.find(x=>x.id===id);return b?`<div class="ebchip">${b.icon} ${b.name}</div>`:''}).join('');
   } else $('r-badges-sec').style.display='none';
 
-  // ── Level progress ──
   const curLvl=getLvl(ST.score);
   $('lvl-prog').innerHTML=LEVELS.map((lv,i)=>
     (i>0?'<span style="color:var(--border);font-size:.72rem;flex-shrink:0">›</span>':'')+
@@ -3069,7 +3323,6 @@ function endShift(early=false){
     '<div style="font-size:.57rem;color:'+(ST.score>=lv.m?'var(--text2)':'var(--text3)')+';text-align:center;max-width:50px;line-height:1.2">'+lv.n+'</div></div>'
   ).join('');
 
-  // ── Rounds log ──
   $('rounds-tab-btn').textContent='ROUNDS ('+shiftRounds.length+')';
   $('rounds-log').innerHTML=shiftRounds.length?shiftRounds.map((r,i)=>
     '<div class="round-row">'+
@@ -3079,21 +3332,13 @@ function endShift(early=false){
     '<div style="font-size:.95rem">'+(r.ok?'✅':'❌')+'</div></div>'
   ).join(''):'<div style="color:var(--text3);font-size:.8rem;font-family:var(--font-mono);padding:10px">No rounds recorded.</div>';
 
-  // ── What to work on ──
   const mis=shiftRounds.filter(r=>!r.ok);
   let wtw='<div style="font-family:var(--font-mono);font-size:.58rem;color:var(--text3);letter-spacing:2px;margin-bottom:9px">WHAT TO WORK ON NEXT</div>';
-  if(pct===100)
-    wtw+='<div style="display:flex;gap:8px;font-size:.84rem;color:var(--text2);margin-bottom:6px"><span style="color:var(--amber)">→</span><div>Outstanding! Try a longer shift or harder mode to earn more badges.</div></div>';
-  else if(pct>=80)
-    wtw+='<div style="display:flex;gap:8px;font-size:.84rem;color:var(--text2);margin-bottom:6px"><span style="color:var(--amber)">→</span><div>Great work! Play <strong style="color:var(--text)">Shift Mode</strong> again to push your score higher.</div></div>';
-  else if(mis.some(r=>r.change<100))
-    wtw+='<div style="display:flex;gap:8px;font-size:.84rem;color:var(--text2);margin-bottom:6px"><span style="color:var(--amber)">→</span><div>Practice small coin changes. Try <strong style="color:var(--text)">Starter Mode</strong> for coins-only practice.</div></div>';
-  else
-    wtw+='<div style="display:flex;gap:8px;font-size:.84rem;color:var(--text2);margin-bottom:6px"><span style="color:var(--amber)">→</span><div>Keep it up! Try <strong style="color:var(--text)">Practice Mode</strong> with hints to build confidence.</div></div>';
-  wtw+='<div style="display:flex;gap:8px;font-size:.84rem;color:var(--text2);margin-top:4px"><span style="color:var(--amber)">→</span><div>Check the <strong style="color:var(--text)">Money Guide</strong> anytime for a quick coin & bill reference.</div></div>';
+  getResultsNextSteps(ST.mode,pct,mis).forEach((tip,idx)=>{
+    wtw+=`<div style="display:flex;gap:8px;font-size:.84rem;color:var(--text2);${idx===0?'margin-bottom:6px':'margin-top:4px'}"><span style="color:var(--amber)">→</span><div>${tip}</div></div>`;
+  });
   $('wtw-card').innerHTML=wtw;
 
-  // Reset tab to summary
   document.querySelectorAll('.r-tab').forEach(b=>b.classList.remove('on'));
   document.querySelectorAll('.r-tab-pane').forEach(p=>{p.style.display='none';p.classList.remove('on');});
   document.querySelector('.r-tab').classList.add('on');
@@ -3106,10 +3351,12 @@ function endShift(early=false){
     $('r-play-again').textContent='▶ PLAY AGAIN';
     $('r-play-again').onclick=()=>startMode(lastMode);
   }
-  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
-  $('scr-results').classList.add('on');
-  window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
-  setTimeout(()=>say(`${modeSpeak} ${early?'ended':'complete'}. You got ${ST.correct} out of ${ST.total} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`),140);
+  updateHomeUI();
+  showScreen('results',{withNav:false});
+  const scoreLine = ST.mode==='practice' ? '' : ` Your score was ${ST.score}.`;
+  const hintLine = ` You used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`;
+  const elapsedLine = elapsed>10 ? ` Your time was ${fmtElapsedSpeech(elapsed)}.` : '';
+  setTimeout(()=>say(`${meta.speak} ${early?'ended':'complete'}. You got ${ST.correct} out of ${ST.total} correct.${scoreLine}${hintLine}${elapsedLine}`),140);
 }
 
 // ════════════════════════════════════════════════════════
@@ -3311,6 +3558,7 @@ function renderBadges(){
 // ════════════════════════════════════════════════════════
 function doHint(btn){
   ST.hintsUsed++;
+  setPracticeHintLine(ST.mode==='practice', ST.hintsUsed||0);
   updateGameScoreDisplay();
   if(btn) gameHintFlash(btn);
   const rem=ST.change-ST.tray;
@@ -3333,14 +3581,59 @@ function doHint(btn){
   say(msg);
 }
 function openHint(title,body,okLabel,onOk,showCancel){
+  clearHintModalActions();
   $('m-hint-title').textContent=title;
   $('m-hint-body').innerHTML=typeof body==='string'?body:body;
   const ok=$('m-hint-ok');
-  ok.textContent=okLabel||'Got it!';
-  ok.onclick=onOk?()=>{onOk();}:()=>closeM('m-hint');
+  if(ok){
+    ok.type='button';
+    ok.style.display='block';
+    ok.textContent=okLabel||'Got it!';
+    ok.onclick=()=>{
+      if(MODAL_ACTION_LOCK) return false;
+      MODAL_ACTION_LOCK=true;
+      ok.disabled=true;
+      const cancelBtn=$('m-hint-cancel');
+      if(cancelBtn) cancelBtn.disabled=true;
+      try{
+        if(typeof onOk==='function') onOk();
+        else {
+          clearHintModalActions();
+          closeM('m-hint');
+        }
+      }catch(err){
+        console.error('CashReady modal action failed:', err);
+        clearHintModalActions();
+        closeM('m-hint');
+        openHint('Something went wrong',
+          '<p style="color:var(--text2);font-size:.88rem">That action hit an error. The app returned you safely home so nothing gets stuck.</p>',
+          'Back Home',
+          ()=>{ clearHintModalActions(); closeM('m-hint'); go('home'); }
+        );
+      }
+      return false;
+    };
+  }
   const cancel=$('m-hint-cancel');
-  if(cancel) cancel.style.display=showCancel?'block':'none';
+  if(cancel){
+    cancel.type='button';
+    cancel.style.display=showCancel?'block':'none';
+    cancel.textContent='Cancel';
+    cancel.onclick=()=>{
+      if(MODAL_ACTION_LOCK) return false;
+      clearHintModalActions();
+      stopSpeech();
+      closeM('m-hint');
+      return false;
+    };
+  }
   openM('m-hint');
+  try{
+    const tmp=document.createElement('div');
+    tmp.innerHTML=typeof body==='string'?body:(body||'');
+    const spoken=(tmp.innerText||tmp.textContent||'').replace(/\s+/g,' ').trim();
+    if(spoken) say((title ? title + '. ' : '') + spoken);
+  }catch(e){}
 }
 
 
@@ -3522,13 +3815,166 @@ function clearScores(){
   );
 }
 
+
+function getClientDisplayName(cl){
+  return (cl.initials||cl.name||cl.fullName||'Client').trim();
+}
+function getClientPrivateName(cl){
+  return (cl.fullName||'').trim();
+}
+function getClientAvatarText(cl){
+  const base=getClientDisplayName(cl);
+  const compact=base.replace(/[^A-Za-z0-9]/g,'').toUpperCase();
+  return compact.slice(0,2)||'C';
+}
+function getClientSessionTime(s){
+  return (s.time||'').trim();
+}
+function toDateInputValue(str){
+  if(!str) return '';
+  const parts=String(str).split(/[\/\-]/).map(p=>p.trim()).filter(Boolean);
+  if(parts.length===3){
+    let m,d,y=parts;
+    if(y.length===4) return `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    if(parts[0].length===4) return `${parts[0]}-${String(parts[1]).padStart(2,'0')}-${String(parts[2]).padStart(2,'0')}`;
+  }
+  return '';
+}
+function fromDateInputValue(str){
+  if(!str) return '';
+  const parts=String(str).split('-');
+  if(parts.length!==3) return str;
+  return `${parseInt(parts[1],10)}/${parseInt(parts[2],10)}/${parts[0]}`;
+}
+function parseStoredDate(str){
+  if(!str) return null;
+  const raw=String(str).trim();
+  const m1=raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if(m1) return new Date(Number(m1[3]), Number(m1[1])-1, Number(m1[2]));
+  const m2=raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(m2) return new Date(Number(m2[1]), Number(m2[2])-1, Number(m2[3]));
+  const d=new Date(raw);
+  return isNaN(d.getTime()) ? null : d;
+}
+function sessionInSelectedRange(s){
+  const start=parseStoredDate(CFG.coachRangeStart||'');
+  const end=parseStoredDate(CFG.coachRangeEnd||'');
+  if(!start && !end) return true;
+  const d=parseStoredDate(s.date||s.dat||'');
+  if(!d) return true;
+  if(start && d < start) return false;
+  if(end){
+    const endPlus=new Date(end.getFullYear(), end.getMonth(), end.getDate(), 23, 59, 59, 999);
+    if(d > endPlus) return false;
+  }
+  return true;
+}
+function getFilteredSessions(cl){
+  return (cl.sessions||[]).filter(sessionInSelectedRange);
+}
+function getRelativeLastSessionLabel(cl){
+  const sessions=getFilteredSessions(cl);
+  if(!sessions.length) return (CFG.coachRangeStart||CFG.coachRangeEnd) ? 'No sessions in range' : 'No sessions yet';
+  const last=sessions[sessions.length-1];
+  const d=parseStoredDate(last.date||last.dat||'');
+  if(!d) return `Last session: ${last.date||'Unknown date'}`;
+  const todayDate=new Date();
+  const startA=new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+  const startB=new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const diffDays=Math.round((startA-startB)/(1000*60*60*24));
+  if(diffDays<=0) return 'Last session: Today';
+  if(diffDays===1) return 'Last session: 1 day ago';
+  return `Last session: ${diffDays} days ago`;
+}
+function saveCoachRange(){
+  CFG.coachRangeStart = fromDateInputValue($('range-start').value);
+  CFG.coachRangeEnd = fromDateInputValue($('range-end').value);
+  saveAll();
+  closeM('m-range');
+  renderCoach();
+  showSaveIndicator('Range saved ✓');
+}
+function clearCoachRange(){
+  CFG.coachRangeStart = '';
+  CFG.coachRangeEnd = '';
+  const rs=$('range-start'); if(rs) rs.value='';
+  const re=$('range-end'); if(re) re.value='';
+  saveAll();
+  closeM('m-range');
+  renderCoach();
+  showSaveIndicator('Range cleared ✓');
+}
+function showSaveIndicator(msg='Saved ✓'){
+  const el=$('save-indicator');
+  if(!el) return;
+  el.textContent=msg;
+  el.style.display='block';
+  el.style.opacity='1';
+  clearTimeout(showSaveIndicator._t);
+  showSaveIndicator._t=setTimeout(()=>{
+    el.style.transition='opacity .25s ease';
+    el.style.opacity='0';
+    setTimeout(()=>{
+      el.style.display='none';
+      el.style.transition='';
+      el.style.opacity='1';
+    },250);
+  },1500);
+}
+function resetClientModal(){
+  const modal=$('m-client');
+  if(!modal) return;
+  const titleEl=modal.querySelector('.mt');
+  const saveBtn=modal.querySelector('.msave');
+  if(titleEl) titleEl.textContent='+ ADD NEW CLIENT';
+  if(saveBtn){
+    saveBtn.textContent='Add Client';
+    saveBtn.onclick=saveClient;
+  }
+  const initials=$('nc-initials');
+  if(initials){
+    initials.value='';
+    initials.style.borderColor='';
+    initials.placeholder='e.g. AJ or Alex J.';
+  }
+  const name=$('nc-name');
+  if(name){
+    name.value='';
+    name.style.borderColor='';
+    name.placeholder='Stored privately for staff use only';
+  }
+  const level=$('nc-level'); if(level) level.value='beginner';
+  const program=$('nc-program'); if(program) program.value='';
+  const notes=$('nc-notes'); if(notes) notes.value='';
+}
+function openClientModal(){
+  resetClientModal();
+  openM('m-client');
+  setTimeout(()=>{ const field=$('nc-initials'); if(field) field.focus(); },120);
+}
+
 // ════════════════════════════════════════════════════════
 //  COACH DASHBOARD - Charts, Goals, CSV Export
 // ════════════════════════════════════════════════════════
+
 function renderCoach(){
-  if(!CLIENTS.length){$('coach-wrap').innerHTML='<div class="no-data">No clients yet.<br>Tap "+ Add Client" to get started.</div>';return;}
-  $('coach-wrap').innerHTML=`<div class="ccards">${CLIENTS.map((cl,i)=>clientCard(cl,i)).join('')}</div>`;
-  CLIENTS.forEach((_,i)=>drawCharts(i));
+  CFG.coachShowArchived = !!CFG.coachShowArchived;
+  const activeClients = CLIENTS.filter(cl=>!cl.archived);
+  const archivedClients = CLIENTS.filter(cl=>cl.archived);
+  const visibleClients = CFG.coachShowArchived ? archivedClients : activeClients;
+  const toggleLabel = CFG.coachShowArchived ? `Show Active (${activeClients.length})` : `Show Archived (${archivedClients.length})`;
+  const rangeLabel = (CFG.coachRangeStart||CFG.coachRangeEnd)
+    ? `<div style="font-size:.72rem;color:var(--text2);margin-right:auto">Range: ${CFG.coachRangeStart||'Any'} to ${CFG.coachRangeEnd||'Any'}</div>`
+    : '<div style="margin-right:auto"></div>';
+  const toggleBtn = `<div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-bottom:12px">${rangeLabel}<button class="cbt" onclick="CFG.coachShowArchived=!CFG.coachShowArchived;saveAll();renderCoach();">${toggleLabel}</button></div>`;
+  if(!visibleClients.length){
+    const emptyTitle = CFG.coachShowArchived ? 'No archived clients.' : 'No clients yet.';
+    const emptySub = CFG.coachShowArchived ? 'Archive a client to keep their records without deleting them.' : 'Tap "+ Add Client" to get started.';
+    $('coach-wrap').innerHTML=`${toggleBtn}<div class="no-data">${emptyTitle}<br>${emptySub}<br>${!CFG.coachShowArchived?'<button class="cbt pri" style="margin-top:12px" onclick="openClientModal()">＋ Add Client</button>':''}</div>`;
+    return;
+  }
+  $('coach-wrap').innerHTML=`${toggleBtn}<div class="ccards">${visibleClients.map(cl=>clientCard(cl,CLIENTS.indexOf(cl))).join('')}</div>`;
+  visibleClients.forEach(cl=>drawCharts(CLIENTS.indexOf(cl)));
 }
 
 function clientCard(cl,i){
@@ -3539,16 +3985,15 @@ function clientCard(cl,i){
       <div class="sp-lbl"><span>${n}</span><span class="sp-pct">${sk[k]||0}%</span></div>
       <div class="spbg"><div class="spf" style="width:${sk[k]||0}%"></div></div>
     </div>`).join('');
-
-  // Prompt fading dots
-  const sess=(cl.sessions||[]).slice(-8);
+  const filteredSessions=getFilteredSessions(cl);
+  const sess=filteredSessions.slice(-8);
   const pColors={independent:'ind',verbal:'ver',gestural:'ges',physical:'phy',hoh:'hoh'};
   const pfHtml=sess.length>0?`
     <div class="pfchart">
       <div class="pfc-title">PROMPT FADING (last ${sess.length} sessions)</div>
       <div class="pfc-row">
         <div class="pfc-label">Prompt level:</div>
-        <div class="pfc-dots">${sess.map(s=>`<div class="pfc-dot ${pColors[s.prompt]||'empty'}" title="${s.prompt||''} - ${s.date}"></div>`).join('')}</div>
+        <div class="pfc-dots">${sess.map(s=>`<div class="pfc-dot ${pColors[s.prompt]||'empty'}" title="${s.prompt||''} - ${s.date}${getClientSessionTime(s)?' '+getClientSessionTime(s):''}"></div>`).join('')}</div>
       </div>
       <div style="font-size:.64rem;color:var(--text2);margin-top:4px">
         <span style="color:var(--green)">● Indep</span>
@@ -3558,86 +4003,72 @@ function clientCard(cl,i){
         <span style="color:var(--red)">● HoH</span>
       </div>
     </div>`:'';
-
-  // Progress chart placeholder (canvas drawn after render)
-  const allSess=cl.sessions||[];
-  const chartHtml=allSess.length>=2?`
+  const chartHtml=filteredSessions.length>=2?`
     <div class="chart-wrap">
-      <div class="chart-title">
-        <span>ACCURACY OVER TIME</span>
-        <span style="color:var(--text3);font-size:.58rem">${allSess.length} sessions</span>
-      </div>
+      <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:2px;margin-bottom:10px">ACCURACY OVER TIME</div>
       <canvas class="chart-canvas" id="chart-${i}" width="400" height="120"></canvas>
       <div class="chart-legend" id="chart-legend-${i}"></div>
-    </div>`:`
-    <div class="chart-wrap">
-      <div class="chart-no-data">Log 2+ sessions to see the progress chart</div>
-    </div>`;
-
-  // Goals
+    </div>`:`<div class="chart-wrap"><div class="chart-no-data">Log 2+ sessions in this date range to see progress chart</div></div>`;
   const goals=(cl.goals||[]);
-  const goalsHtml=goals.length>0?`
-    <div class="goals-section">
-      <div class="sec-hdr">GOALS & MASTERY</div>
-      ${goals.map((g,gi)=>renderGoalCard(g,i,gi)).join('')}
-    </div>`:'';
-
-  // Recent sessions
-  const recentLogs=sess.slice(-4).reverse().map(s=>`
+  const goalsHtml=goals.length>0?`<div class="goals-section"><div class="sec-hdr">GOALS & MASTERY</div>${goals.map((g,gi)=>renderGoalCard(g,i,gi)).join('')}</div>`:'';
+  const recentLogs=filteredSessions.slice(-4).reverse().map(s=>`
     <div class="lrow">
       <div class="lm">${s.module}</div>
       <div class="ls">${s.score}</div>
-      <div class="ld">${s.date}</div>
-      ${s.prompt?`<div><span class="ptag">${s.prompt}</span></div>`:''}
+      <div class="ld">${s.date}${getClientSessionTime(s)?' · '+getClientSessionTime(s):''}${s.prompt?` · <span class="ptag">${s.prompt}</span>`:''}${s.staff?` · <span class="ptag">${s.staff}</span>`:''}</div>
       ${s.notes?`<div class="ln">${s.notes}</div>`:''}
-    </div>`).join('')||'<div style="color:var(--text3);font-size:.78rem;padding:6px">No sessions logged yet.</div>';
+    </div>`).join('')||'<div style="color:var(--text3);font-size:.78rem;padding:6px">No sessions logged in this date range.</div>';
+
+  const sessions=filteredSessions;
+  const last=sessions[sessions.length-1];
+  const promptColors={independent:'var(--green)',verbal:'var(--blue)',gestural:'var(--orange)',physical:'#ff5722',hoh:'var(--red)'};
+  const pc=last? (promptColors[last.prompt]||'var(--text3)') : 'var(--text3)';
+  const strongEntry=Object.entries(sk).sort((a,b)=>(b[1]||0)-(a[1]||0))[0];
+  const supportEntry=Object.entries(sk).sort((a,b)=>(a[1]||0)-(b[1]||0))[0];
+  const labelMap={coins:'Coins',bills:'Bills',change:'Making Change',cashier:'Cashier'};
+  const weekAgo = Date.now() - 7*24*60*60*1000;
+  const weekSessions = sessions.filter(s=>{
+    const d=parseStoredDate(s.date||s.dat||'');
+    return d ? d.getTime() >= weekAgo : false;
+  });
+  const avgWeek = weekSessions.length ? Math.round(weekSessions.reduce((acc,s)=>{
+    const p=String(s.score||'').split('/');
+    if(p.length===2 && parseInt(p[1],10)>0) return acc + (parseInt(p[0],10)/parseInt(p[1],10)*100);
+    return acc;
+  },0)/weekSessions.length) : 0;
+  const summaryHtml=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 12px">
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">LAST SESSION</div><div style="font-size:.78rem;color:var(--text);font-weight:700">${last?`${last.module||'-'} · ${last.score||'-'}`:'None yet'}</div></div>
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">PROMPT TREND</div><div style="font-size:.78rem;color:${pc};font-weight:700">${last?(last.prompt||'Not set'):'No data yet'}</div></div>
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">STRONGEST SKILL</div><div style="font-size:.78rem;color:var(--green);font-weight:700">${strongEntry?`${labelMap[strongEntry[0]]||strongEntry[0]} · ${strongEntry[1]||0}%`:'No data yet'}</div></div>
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">NEEDS SUPPORT</div><div style="font-size:.78rem;color:var(--amber);font-weight:700">${supportEntry?`${labelMap[supportEntry[0]]||supportEntry[0]} · ${supportEntry[1]||0}%`:'No data yet'}</div></div>
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">LAST 7 DAYS</div><div style="font-size:.78rem;color:var(--text);font-weight:700">${weekSessions.length} session${weekSessions.length!==1?'s':''}</div></div>
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">WEEKLY AVG</div><div style="font-size:.78rem;color:var(--blue);font-weight:700">${weekSessions.length?avgWeek+'%':'No data yet'}</div></div>
+  </div>`;
 
   return `<div class="ccard">
     <div class="ctop">
-      <div class="cav" style="background:${cl.color||'#00c851'}">${cl.name.charAt(0)}</div>
+      <div class="cav" style="background:${cl.color||'#00c851'}">${getClientAvatarText(cl)}</div>
       <div style="flex:1">
-        <div class="cname">${cl.name}</div>
-        <div class="cmeta">${cl.program||''}</div>
-        <div style="font-size:.68rem;color:var(--text2);margin-top:2px">
-          ${(cl.sessions||[]).length} session${(cl.sessions||[]).length!==1?'s':''} logged
-          ${(cl.sessions||[]).length>0?' · Last: '+(cl.sessions[cl.sessions.length-1].date):''}
-        </div>
+        <div class="cname">${getClientDisplayName(cl)}</div>
+        <div class="cmeta">${cl.program||''}${cl.fullName?` · <span style="opacity:.8">Private full name saved</span>`:''}</div>
+        <div style="font-size:.68rem;color:var(--text2);margin-top:2px">${filteredSessions.length} session${filteredSessions.length!==1?'s':''} in range · ${getRelativeLastSessionLabel(cl)}</div>
       </div>
       <div class="clvl">${(cl.level||'beginner').toUpperCase()}</div>
     </div>
 
-    <!-- Last Session Planning Card -->
+    ${summaryHtml}
+
     ${(()=>{
-      const sessions=cl.sessions||[];
-      if(sessions.length===0) return '';
-      const last=sessions[sessions.length-1];
-      const promptColors={independent:'var(--green)',verbal:'var(--blue)',gestural:'var(--orange)',physical:'#ff5722',hoh:'var(--red)'};
-      const pc=promptColors[last.prompt]||'var(--text3)';
+      if(!last) return '';
       return `<div style="background:var(--bg3);border-left:4px solid ${pc};border-radius:var(--radius-sm);padding:11px 14px;margin-bottom:12px">
         <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text2);letter-spacing:2px;margin-bottom:7px">📋 LAST SESSION - PLAN FROM HERE</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px">
           <div><div style="font-size:.68rem;color:var(--text2)">Module</div><div style="font-size:.78rem;font-weight:700;color:var(--text)">${last.module||'-'}</div></div>
           <div><div style="font-size:.68rem;color:var(--text2)">Score</div><div style="font-size:.78rem;font-weight:700;color:var(--amber)">${last.score||'-'}</div></div>
           <div><div style="font-size:.68rem;color:var(--text2)">Prompt Level</div><div style="font-size:.78rem;font-weight:700;color:${pc}">${last.prompt||'-'}</div></div>
-          <div><div style="font-size:.68rem;color:var(--text2)">Date</div><div style="font-size:.78rem;color:var(--text2)">${last.date||'-'}</div></div>
+          <div><div style="font-size:.68rem;color:var(--text2)">Date</div><div style="font-size:.78rem;color:var(--text2)">${last.date||'-'}${getClientSessionTime(last)?' · '+getClientSessionTime(last):''}</div></div>
         </div>
         ${last.notes?`<div style="font-size:.75rem;color:var(--text2);font-style:italic;border-top:1px solid var(--border2);padding-top:6px;margin-top:2px">"${last.notes}"</div>`:''}
-      </div>`;
-    })()}
-    ${(()=>{
-      const sk=cl.skills||{};
-      const skLabels={'coins':'Coin Recognition','bills':'Bill Recognition','change':'Making Change','cashier':'Cashier Skills'};
-      const skEntries=Object.entries(sk).filter(([k,v])=>v>0);
-      if(skEntries.length===0) return '';
-      const [lowestKey,lowestVal]=skEntries.reduce((a,b)=>a[1]<b[1]?a:b);
-      const pct=lowestVal;
-      const emoji=pct>=80?'🌟':pct>=60?'📈':'📌';
-      const msg=pct>=80?'Great across the board - keep it up!':
-                pct>=60?`Focus on <strong>${skLabels[lowestKey]}</strong> next - at ${pct}%, close to mastery.`:
-                        `Suggested focus: <strong>${skLabels[lowestKey]}</strong> - currently at ${pct}%.`;
-      return `<div style="background:var(--bg3);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:.78rem;color:var(--text2);line-height:1.6">
-        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--green);letter-spacing:2px;display:block;margin-bottom:4px">${emoji} NEXT SESSION</span>
-        ${msg}
       </div>`;
     })()}
     <div class="sec-hdr">SKILL PROGRESS <button class="cbt" style="font-size:.63rem;padding:2px 8px;min-height:22px" onclick="editSkills(${i})">EDIT</button></div>
@@ -3649,15 +4080,19 @@ function clientCard(cl,i){
       <div class="slog-t">RECENT SESSIONS</div>
       <div class="lrows">${recentLogs}</div>
     </div>
-    <div style="margin-top:10px;display:flex;gap:7px;flex-wrap:wrap">
+    <div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap">
+      <button class="cbt pri" onclick="exportClientCSV(${i})">📥 Export ${getClientDisplayName(cl)}</button>
+      <button class="cbt" onclick="openLogForClient(${i})">＋ Log Session</button>
       <button class="cbt" onclick="printReport(${i})">🖨 Print</button>
-      <button class="cbt" onclick="exportClientCSV(${i})">📥 Export CSV</button>
       <button class="cbt" onclick="editClient(${i})">✏ Edit</button>
-      <button class="cbt" style="color:var(--red);border-color:var(--red)" onclick="delClient(${i})">Remove</button>
+      <button class="cbt" style="color:var(--amber)" onclick="archiveClient(${i})">${cl.archived?'↩ Restore':'🗂 Archive'}</button>
+      <button class="cbt" style="color:var(--red);border-color:var(--red)" onclick="delClient(${i})">🗑 Delete</button>
     </div>
   </div>`;
 }
 
+// ── PROGRESS CHART (Canvas) ──
+// ── PROGRESS CHART (Canvas) ──
 // ── PROGRESS CHART (Canvas) ──
 const SKILL_COLORS={coins:'#33b5e5',bills:'#ffbb33',change:'#00c851',cashier:'#bb86fc'};
 const SKILL_NAMES={coins:'Coins',bills:'Bills',change:'Change',cashier:'Cashier'};
@@ -3669,7 +4104,7 @@ function drawCharts(clientIdx){
   const cl=CLIENTS[clientIdx];
   const canvas=document.getElementById('chart-'+clientIdx);
   if(!canvas)return;
-  const sessions=(cl.sessions||[]);
+  const sessions=getFilteredSessions(cl);
   if(sessions.length<2)return;
 
   const ctx=canvas.getContext('2d');
@@ -3830,13 +4265,14 @@ function saveGoal(){
   CLIENTS[idx].goals=CLIENTS[idx].goals||[];
   CLIENTS[idx].goals.push(goal);
   saveAll();closeM('m-goal');renderCoach();
+  showSaveIndicator('Goal saved ✓');
   $('goal-desc').value='';
 }
 function deleteGoal(ci,gi){
   openHint('Remove Goal?',
     `<p style="color:var(--text2);font-size:.88rem">Remove this goal from ${CLIENTS[ci].name}'s dashboard?</p>`,
     'Yes, Remove',
-    ()=>{closeM('m-hint');CLIENTS[ci].goals.splice(gi,1);saveAll();renderCoach();}
+    ()=>{closeM('m-hint');CLIENTS[ci].goals.splice(gi,1);saveAll();renderCoach();showSaveIndicator('Goal removed ✓');}
   );
 }
 
@@ -3856,35 +4292,50 @@ function openM(id){
     const sel=$(selId);
     if(sel) sel.innerHTML=CLIENTS.length?CLIENTS.map((c,i)=>`<option value="${i}">${c.name}</option>`).join(''):'<option>No clients yet</option>';
   }
+  if(id==='m-range'){
+    const rs=$('range-start'); if(rs) rs.value=toDateInputValue(CFG.coachRangeStart||'');
+    const re=$('range-end'); if(re) re.value=toDateInputValue(CFG.coachRangeEnd||'');
+  }
   $(id).classList.add('on');
 }
-function closeM(id){$(id).classList.remove('on');}
+function closeM(id){
+  if(id==='m-hint' && window.speechSynthesis) speechSynthesis.cancel();
+  $(id).classList.remove('on');
+  if(id==='m-client') resetClientModal();
+}
 
 function saveClient(){
-  const name=$('nc-name').value.trim();
-  if(!name){
-    $('nc-name').style.borderColor='var(--red)';
-    $('nc-name').placeholder='← Name is required';
-    setTimeout(()=>$('nc-name').focus(),100);
-    openHint('⚠️ Name Required','<p style="color:var(--text2);font-size:.88rem">Please enter the client\'s first name before saving.</p>','Got it',()=>{closeM('m-hint');setTimeout(()=>{openM('m-client');$('nc-name').focus();},200);});
+  const initials=($('nc-initials')?.value||'').trim();
+  const fullName=($('nc-name')?.value||'').trim();
+  const displayName=(initials||fullName).trim();
+  if(!displayName){
+    const target=$('nc-initials')||$('nc-name');
+    if(target){
+      target.style.borderColor='var(--red)';
+      target.placeholder='← Display name is required';
+      setTimeout(()=>target.focus(),100);
+    }
+    openHint('⚠️ Name Required','<p style="color:var(--text2);font-size:.88rem">Please enter initials or a display name before saving.</p>','Got it',()=>{closeM('m-hint');setTimeout(()=>{openClientModal(); const f=$('nc-initials')||$('nc-name'); if(f) f.focus();},200);});
     return;
   }
   const colors=['#00c851','#33b5e5','#ff9800','#9c27b0','#f44336','#009688','#ff5722'];
-  CLIENTS.push({name,level:$('nc-level').value,program:$('nc-program').value.trim(),notes:$('nc-notes').value.trim(),color:colors[CLIENTS.length%colors.length],sessions:[],skills:{coins:0,bills:0,change:0,cashier:0},goals:[]});
+  CLIENTS.push({initials,name:displayName,fullName,level:$('nc-level').value,program:$('nc-program').value.trim(),notes:$('nc-notes').value.trim(),color:colors[CLIENTS.length%colors.length],sessions:[],skills:{coins:0,bills:0,change:0,cashier:0},goals:[],archived:false});
   saveAll();closeM('m-client');renderCoach();
-  ['nc-name','nc-program','nc-notes'].forEach(id=>$(id).value='');
+  showSaveIndicator('Client saved ✓');
+  resetClientModal();
 }
 
 function saveSession(){
   const idx=parseInt($('log-cl').value);
   if(isNaN(idx)||!CLIENTS[idx])return;
-  const s={module:$('log-mod').value,score:$('log-sc').value,prompt:PROMPT_SEL,notes:$('log-notes').value.trim(),date:today()};
+  const s={module:$('log-mod').value,score:$('log-sc').value,prompt:PROMPT_SEL,notes:$('log-notes').value.trim(),date:today(),time:new Date().toLocaleTimeString([], {hour:'numeric', minute:'2-digit'})};
   CLIENTS[idx].sessions=CLIENTS[idx].sessions||[];
   CLIENTS[idx].sessions.push(s);
   const map={'Coin Identification':'coins','Counting Bills':'bills','Making Change - Starter':'change','Making Change - Practice':'change','Making Change - Shift':'change','Money ID Quiz':'coins','Do I Have Enough?':'change','Daily Challenge':'change'};
   const sk=map[s.module];
   if(sk&&s.score){const p=s.score.split('/');if(p.length===2){const pct=Math.round(parseInt(p[0])/parseInt(p[1])*100);CLIENTS[idx].skills=CLIENTS[idx].skills||{};CLIENTS[idx].skills[sk]=Math.max(CLIENTS[idx].skills[sk]||0,pct);}}
   saveAll();closeM('m-log');renderCoach();
+  showSaveIndicator('Session logged ✓');
   $('log-sc').value='';$('log-notes').value='';
 }
 
@@ -3893,18 +4344,37 @@ function selPrompt(el){
   el.classList.add('on');PROMPT_SEL=el.dataset.v;
 }
 
+function openLogForClient(i){
+  const sel=$('log-cl');
+  if(sel){
+    sel.innerHTML=CLIENTS.length?CLIENTS.map((c,idx)=>`<option value="${idx}">${c.name}</option>`).join(''):'<option>No clients yet</option>';
+    sel.value=String(i);
+  }
+  openM('m-log');
+}
+
 function editClient(i){
   const cl=CLIENTS[i];
-  $('nc-name').value=cl.name;$('nc-program').value=cl.program||'';$('nc-notes').value=cl.notes||'';$('nc-level').value=cl.level||'beginner';
+  resetClientModal();
+  if($('nc-initials')) $('nc-initials').value=cl.initials||cl.name||'';
+  $('nc-name').value=cl.fullName||'';
+  $('nc-program').value=cl.program||'';
+  $('nc-notes').value=cl.notes||'';
+  $('nc-level').value=cl.level||'beginner';
   $('m-client').querySelector('.mt').textContent='✏ EDIT CLIENT';
+  $('m-client').querySelector('.msave').textContent='Save Changes';
   $('m-client').querySelector('.msave').onclick=()=>{
-    CLIENTS[i].name=$('nc-name').value.trim()||cl.name;
+    const initials=($('nc-initials')?.value||'').trim();
+    const fullName=($('nc-name')?.value||'').trim();
+    const displayName=(initials||fullName||cl.name).trim();
+    CLIENTS[i].initials=initials;
+    CLIENTS[i].name=displayName;
+    CLIENTS[i].fullName=fullName;
     CLIENTS[i].program=$('nc-program').value.trim();
     CLIENTS[i].notes=$('nc-notes').value.trim();
     CLIENTS[i].level=$('nc-level').value;
     saveAll();closeM('m-client');renderCoach();
-    $('m-client').querySelector('.mt').textContent='+ ADD NEW CLIENT';
-    $('m-client').querySelector('.msave').onclick=saveClient;
+    showSaveIndicator('Client updated ✓');
   };
   openM('m-client');
 }
@@ -3916,30 +4386,46 @@ function editSkills(i){
   openHint(`Skills - ${cl.name}`,`<div>${inp}</div>`,'Save Skills',()=>{
     Object.keys(names).forEach(k=>{CLIENTS[i].skills[k]=Math.min(100,Math.max(0,parseInt($('se-'+k).value)||0));});
     saveAll();closeM('m-hint');renderCoach();
+    showSaveIndicator('Skills saved ✓');
   });
 }
 
+function archiveClient(i){
+  const cl=CLIENTS[i];
+  if(!cl) return;
+  const willArchive=!cl.archived;
+  openHint(
+    willArchive?'Archive Client?':'Restore Client?',
+    `<p style="color:var(--text2);font-size:.88rem">${willArchive?'Move':'Restore'} <strong style="color:var(--text)">${getClientDisplayName(cl)}</strong> ${willArchive?'to the archived list':'to the active list'}?</p>`,
+    willArchive?'Archive':'Restore',
+    ()=>{closeM('m-hint');cl.archived=willArchive;saveAll();renderCoach();showSaveIndicator(willArchive?'Client archived ✓':'Client restored ✓');},
+    true
+  );
+}
 function delClient(i){
   openHint(
     'Remove Client?',
-    `<p style="color:var(--text2);font-size:.88rem">Are you sure you want to remove <strong style="color:var(--text)">${CLIENTS[i].name}</strong>? All their sessions and goals will be deleted.</p>`,
+    `<p style="color:var(--text2);font-size:.88rem">Are you sure you want to remove <strong style="color:var(--text)">${getClientDisplayName(CLIENTS[i])}</strong>? All their sessions and goals will be deleted.</p>`,
     'Yes, Remove',
-    ()=>{closeM('m-hint');CLIENTS.splice(i,1);saveAll();renderCoach();},
+    ()=>{closeM('m-hint');CLIENTS.splice(i,1);saveAll();renderCoach();showSaveIndicator('Client removed ✓');},
     true
   );
 }
 
 // ── CSV EXPORT (all clients) ──
 function exportCSV(){
-  if(!CLIENTS.length){openHint('No Data','No clients to export yet. Add clients and log sessions first.',null,null);return;}
-  let csv='Client Name,Program,Level,Date,Module,Score,Prompt Level,Notes\n';
-  CLIENTS.forEach(cl=>{
+  const exportClients=CLIENTS.filter(cl=>!cl.archived);
+  if(!exportClients.length){openHint('No Data','<p style="color:var(--text2);font-size:.88rem">No active clients to export yet.</p>',null,null);return;}
+  let csv='Client Display Name,Client Full Name,Program,Level,Date,Time,Module,Score,Prompt Level,Notes\n';
+  exportClients.forEach(cl=>{
     (cl.sessions||[]).forEach(s=>{
       const row=[
-        `"${cl.name}"`,
+        `"${getClientDisplayName(cl)}"`,
+        `"${getClientPrivateName(cl).replace(/"/g,'""')}"`,
         `"${cl.program||''}"`,
         `"${cl.level||''}"`,
         `"${s.date||s.dat||''}"`,
+        `"${getClientSessionTime(s)}"`,
         `"${s.module}"`,
         `"${s.score}"`,
         `"${s.prompt||''}"`,
@@ -3954,12 +4440,12 @@ function exportCSV(){
 // ── CSV EXPORT (single client) ──
 function exportClientCSV(i){
   const cl=CLIENTS[i];
-  if(!(cl.sessions||[]).length){openHint('No Sessions','No sessions logged for '+cl.name+' yet.',null,null);return;}
-  let csv='Date,Module,Score,Prompt Level,Notes\n';
+  if(!(cl.sessions||[]).length){openHint('No Sessions','No sessions logged for '+getClientDisplayName(cl)+' yet.',null,null);return;}
+  let csv='Client Display Name,Client Full Name,Date,Time,Module,Score,Prompt Level,Notes\n';
   (cl.sessions||[]).forEach(s=>{
-    csv+=`"${s.date||s.dat||''}","${s.module}","${s.score}","${s.prompt||''}","${(s.notes||'').replace(/"/g,'""')}"\n`;
+    csv+=`"${getClientDisplayName(cl)}","${getClientPrivateName(cl).replace(/"/g,'""')}","${s.date||s.dat||''}","${getClientSessionTime(s)}","${s.module}","${s.score}","${s.prompt||''}","${(s.notes||'').replace(/"/g,'""')}"\n`;
   });
-  tryDownload(csv,`${cl.name.replace(/\s+/g,'-')}-Sessions-${today().replace(/\//g,'-')}.csv`,'text/csv');
+  tryDownload(csv,`${getClientDisplayName(cl).replace(/\s+/g,'-')}-Sessions-${today().replace(/\//g,'-')}.csv`,'text/csv');
 }
 
 // ── Download helper - falls back gracefully on iOS ──
@@ -4136,6 +4622,19 @@ const m=Math.floor(seconds/60);
 const s=Math.round(seconds%60);
 return `${m}:${s.toString().padStart(2,'0')}`;
 }
+function fmtElapsedSpeech(seconds){
+seconds=Math.max(0,Math.round(Number(seconds)||0));
+const h=Math.floor(seconds/3600);
+const m=Math.floor((seconds%3600)/60);
+const s=seconds%60;
+const parts=[];
+if(h>0) parts.push(`${h} hour${h===1?'':'s'}`);
+if(m>0) parts.push(`${m} minute${m===1?'':'s'}`);
+if(s>0 || !parts.length) parts.push(`${s} second${s===1?'':'s'}`);
+if(parts.length===1) return parts[0];
+if(parts.length===2) return parts[0] + ' and ' + parts[1];
+return parts.slice(0,-1).join(', ') + ', and ' + parts[parts.length-1];
+}
 
 // ── Share score ──
 let _shareData=null;
@@ -4164,7 +4663,7 @@ const breakMsg = [
 {emoji:'🚶',tip:'Stand up and stretch for a minute if you can.'},
 ];
 const msg = breakMsg[Math.floor(Math.random()*breakMsg.length)];
-const elapsed = ST.startTime ? Math.round((Date.now()-ST.startTime)/1000) : 0;
+const elapsed = Math.round(getSessionElapsedSeconds());
 const body = `<div style="text-align:center;padding:8px 0 16px">
 <div style="font-size:3rem;margin-bottom:10px">${msg.emoji}</div>
 <div style="font-size:.9rem;color:var(--text2);line-height:1.7;margin-bottom:14px">${msg.tip}</div>
@@ -4197,7 +4696,7 @@ if(oc)oc.style.display=(CFG.playerNamePrompted&&!CFG.onboardingSeen)?'block':'no
 
 const bc=BADGES.size;
 $('badge-ct').textContent=bc>0?`${bc} earned`:'None yet';
-$('badge-ct').style.color=bc>0?'var(--amber)':'var(-text3)';
+$('badge-ct').style.color=bc>0?'var(--amber)':'var(--text3)';
 
 // Desktop sidebar
 const sidebar=$('desktop-sidebar');
@@ -4300,12 +4799,45 @@ const WRONG_MSGS_SHORT=[
 "Close! The correct amount was {change}.",
 "No worries - {change} was the right answer.",
 ];
+const WRONG_LEAD_INS=[
+"Not quite.",
+"Almost.",
+"Close one.",
+"That is okay.",
+"Nice try.",
+"Good try.",
+"You are getting there.",
+];
 let lastMsgIdx=-1;
+let lastWrongLeadIdx=-1;
 function getRandMsg(pool,change){
 let idx;
 do { idx=Math.floor(Math.random()*pool.length); } while(idx===lastMsgIdx&&pool.length>1);
 lastMsgIdx=idx;
 return pool[idx].replace(/{change}/g,fmt(change));
+}
+
+function getWrongFeedbackPhrase(){
+  const pool=[
+    'Not quite',
+    'Almost',
+    'Nice try',
+    'Close one',
+    'Give it another go',
+    'Good try',
+    'You are getting there'
+  ];
+  let idx;
+  do { idx=Math.floor(Math.random()*pool.length); } while(idx===window.__lastWrongPhraseIdx && pool.length>1);
+  window.__lastWrongPhraseIdx=idx;
+  return pool[idx];
+}
+
+function getWrongLeadIn(){
+let idx;
+do { idx=Math.floor(Math.random()*WRONG_LEAD_INS.length); } while(idx===lastWrongLeadIdx&&WRONG_LEAD_INS.length>1);
+lastWrongLeadIdx=idx;
+return WRONG_LEAD_INS[idx];
 }
 
 // ════════════════════════════════════════════════════════
@@ -4605,11 +5137,10 @@ if(!val){$('pin-error').textContent='Please enter a PIN.';return;}
 if(pinMode==='verify'){
 if(val===CFG.coachPin){
 closeM('m-pin');inp.value='';
-document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
-document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-$('scr-coach').classList.add('on');
-$('nb-coach').classList.add('on');
-renderCoach();window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+activateScreen('coach');
+activateNav('coach');
+renderCoach();
+scrollAppTop();
 } else {
 $('pin-error').textContent='Incorrect PIN. Try again.';
 inp.value='';inp.focus();buzz();
@@ -4629,11 +5160,11 @@ inp.focus();
 if(val===pinSetupFirst){
 CFG.coachPin=val;CFG.coachWelcomeSeen=false;saveAll();
 closeM('m-pin');inp.value='';
-document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
-document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-$('scr-coach').classList.add('on');
-$('nb-coach').classList.add('on');
-renderCoach();showCoachWelcome();window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+activateScreen('coach');
+activateNav('coach');
+renderCoach();
+showCoachWelcome();
+scrollAppTop();
 say('PIN created. Welcome to the coach dashboard.');
 } else {
 $('pin-error').textContent="PINs do not match. Try again.";
@@ -4657,12 +5188,6 @@ openHint('Remove Coach PIN?',
 );
 }
 
-// Patch go() - intercept coach navigation through PIN
-const _go_orig = go;
-go = function(id) {
-_go_orig(id);
-if (id === 'coach') { renderCoach(); coachNav(); }
-};
 window.go = go;
 
 // ════════════════════════════════════════════════
@@ -4872,7 +5397,7 @@ function bdAudioFlash(btn){
 }
 function bdSayAgain(btn){
   if(btn) bdAudioFlash(btn);
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   const q=BD.qs[BD.idx];
   if(q && q.q) say(q.q);
 }
@@ -4894,7 +5419,7 @@ function chdAudioFlash(btn){
 }
 function changeDrillSayAgain(btn){
   if(btn) chdAudioFlash(btn);
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   const q=CHD.qs[CHD.idx];
   if(q) say('Item costs '+fmtSay(q.price)+'. Customer paid '+fmtSay(q.paid)+'. How much change?');
 }
@@ -4916,7 +5441,7 @@ function qAudioFlash(btn){
 }
 function qSayAgain(btn){
   if(btn) qAudioFlash(btn);
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   const q=QUIZ.qs[QUIZ.idx];
   if(q && q.q) say(q.q);
 }
@@ -5049,7 +5574,7 @@ function hideMiniHintBar(id){
 function showQuizPopup(ok, detail, nextFn, isLast){
   $('eoc-wrap').style.display='none';
   $('femoji').textContent = ok ? '✅' : '❌';
-  $('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+  $('ftitle').textContent = ok ? 'CORRECT!' : getWrongFeedbackPhrase().toUpperCase();
   $('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
   $('fmsg').innerHTML = ok
     ? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>'
@@ -5075,7 +5600,7 @@ function cdAudioFlash(btn){
 }
 function cdSayAgain(btn){
   if(btn) cdAudioFlash(btn);
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   const q=CD.qs[CD.idx];
   if(q && q.q) say(q.q);
 }
@@ -5150,23 +5675,23 @@ openHint('Leave Drill?','<p style="color:var(--text2);font-size:.88rem">Leave Co
 //  DO I HAVE ENOUGH?
 // ════════════════════════════════════════════════
 const DIHE_ITEMS = [
-{n:'APPLE',        p:75,  e:'🍎'},
+{n:'APPLE',        p:115, e:'🍎'},
 {n:'GUM',          p:75,  e:'🍬'},
-{n:'COOKIE',       p:75,  e:'🍪'},
-{n:'WATER',        p:100, e:'💧'},
-{n:'PEN',          p:100, e:'🖊'},
-{n:'CANDY BAR',    p:150, e:'🍫'},
-{n:'SODA',         p:175, e:'🥤'},
-{n:'COFFEE',       p:200, e:'☕'},
-{n:'JUICE',        p:225, e:'🧃'},
-{n:'CHIPS',        p:125, e:'🍟'},
-{n:'GRANOLA BAR',  p:175, e:'🌾'},
+{n:'COOKIE',       p:95,  e:'🍪'},
+{n:'WATER',        p:150, e:'💧'},
+{n:'PEN',          p:129, e:'🖊'},
+{n:'CANDY BAR',    p:125, e:'🍫'},
+{n:'SODA',         p:225, e:'🥤'},
+{n:'COFFEE',       p:295, e:'☕'},
+{n:'JUICE',        p:275, e:'🧃'},
+{n:'CHIPS',        p:175, e:'🍟'},
+{n:'GRANOLA BAR',  p:185, e:'🌾'},
 {n:'MUFFIN',       p:325, e:'🧁'},
-{n:'ENERGY DRINK', p:299, e:'⚡'},
-{n:'BAGEL',        p:175, e:'🥯'},
-{n:'YOGURT',       p:199, e:'🥛'},
-{n:'APPLE PIE',    p:250, e:'🥧'},
-{n:'HOT DOG',      p:350, e:'🌭'},
+{n:'ENERGY DRINK', p:325, e:'⚡'},
+{n:'BAGEL',        p:225, e:'🥯'},
+{n:'YOGURT',       p:165, e:'🥛'},
+{n:'APPLE PIE',    p:350, e:'🥧'},
+{n:'HOT DOG',      p:375, e:'🌭'},
 {n:'NOTEBOOK',     p:299, e:'📓'},
 ];
 
@@ -5205,7 +5730,7 @@ function diheAudioFlash(btn){
 }
 function diheSayAgain(btn){
   if(btn) diheAudioFlash(btn);
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   if(DIHE_STATE && DIHE_STATE.item){
     say('Item costs ' + fmtSay(DIHE_STATE.item.p) + '. You have ' + fmtSay(DIHE_STATE.wTotal) + ' in your wallet. Do you have enough money to buy this?');
   }

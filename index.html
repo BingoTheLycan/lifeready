@@ -439,6 +439,142 @@ main{
   .coach-banner-text{font-size:.97rem; line-height:1.68;}
 }
 
+
+.trust-line{
+  margin-top:10px;
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:2px;
+  color:var(--text3);
+  text-transform:uppercase;
+}
+
+.hero-sub{
+  animation:pulseGlow 2.8s ease-in-out infinite;
+}
+@keyframes pulseGlow{
+  0%,100%{opacity:.88;text-shadow:0 0 12px rgba(255,187,51,.18);}
+  50%{opacity:1;text-shadow:0 0 24px rgba(255,187,51,.40);}
+}
+
+.app-grid{
+  position:relative;
+  overflow:visible;
+}
+.app-grid::before{
+  content:'';
+  position:absolute;
+  inset:-6px;
+  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,0.00) 35%,rgba(255,255,255,0.035) 50%,rgba(255,255,255,0.00) 65%,transparent 100%);
+  animation:gridSweep 7s linear infinite;
+  pointer-events:none;
+  z-index:0;
+}
+@keyframes gridSweep{
+  0%{transform:translateX(-105%);}
+  100%{transform:translateX(105%);}
+}
+.app-grid > *{
+  position:relative;
+  z-index:1;
+}
+
+.app-card{
+  overflow:hidden;
+}
+.app-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.055),transparent);
+  opacity:0;
+  transition:opacity .25s;
+  pointer-events:none;
+}
+.app-card .app-progress{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0%;
+  height:3px;
+  transition:width .28s ease;
+  opacity:.95;
+}
+.card-cash{--accent:var(--cash);}
+.card-time{--accent:var(--time);}
+.card-job{--accent:var(--job);}
+.card-home{--accent:var(--home);}
+.card-travel{--accent:var(--travel);}
+.card-social{--accent:var(--social);}
+.card-tech{--accent:var(--tech);}
+.card-health{--accent:var(--health);}
+.app-card .app-progress{
+  background:linear-gradient(90deg,var(--accent),transparent);
+}
+@media(hover:hover){
+  .app-card:hover::after{opacity:1;}
+  .app-card:hover .app-progress{width:100%;}
+}
+.app-card:active{
+  transform:translateY(4px) scale(.965) !important;
+}
+
+.signature-block{
+  margin-top:18px;
+  text-align:center;
+  padding:16px 10px 6px;
+  border-top:1px solid var(--border2);
+  animation:fadeInUp .6s ease both;
+}
+.sig-star{
+  font-size:1.4rem;
+  color:var(--amber);
+  margin-bottom:6px;
+  text-shadow:0 0 18px rgba(255,187,51,.4);
+}
+.sig-name{
+  font-family:var(--font-sig);
+  font-size:clamp(1.9rem,4vw,2.8rem);
+  color:var(--amber);
+  line-height:1.05;
+  text-shadow:0 0 24px rgba(255,187,51,.18);
+}
+.sig-sub{
+  font-size:.98rem;
+  color:var(--text2);
+  margin-top:4px;
+}
+.sig-line{
+  font-family:var(--font-mono);
+  font-size:.65rem;
+  letter-spacing:3px;
+  color:var(--text3);
+  margin-top:10px;
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.coach-banner{
+  backdrop-filter:blur(6px);
+}
+
+
+.info-divider{
+  margin:16px 0 12px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);
+  opacity:.6;
+}
+
+.info-closing-line{
+  font-size:.95rem;
+  color:var(--text2);
+  line-height:1.6;
+}
+
 </style>
 </head>
 <body>
@@ -448,23 +584,24 @@ main{
     <span class="lr-life">LIFE</span><span class="lr-ready">READY</span>
   </div>
   <div class="hero-tagline">- LIFE SKILLS SUITE -</div>
-  <div class="hero-desc">Real skills for real life. Free tools that meet you exactly where you are.</div>
+  <div class="hero-desc">Real skills for real life. Free tools designed to feel welcoming, modern, and worth coming back to.</div>
   <div class="hero-sub">PRESS START ON REAL LIFE</div>
+  <div class="trust-line">Designed for real-world independence · Simple, repeatable, and judgment-free</div>
 </div>
 
 <main>
   <div class="section-label">CHOOSE YOUR MODE</div>
-  <div class="top-copy">Same welcoming style. Different real-world skill paths. Choose a mode and jump in.</div>
+  <div class="top-copy">Choose the skill area you want to work on and build confidence in a space that feels more inviting than instructional.</div>
 
   <div class="app-grid">
-    <a aria-label="CashReady" class="app-card card-cash" href="CashReady.html"><span class="app-icon">💵</span><div class="app-name">CASHREADY</div><div class="app-sub">Count coins &amp; bills, make change, practice real cashier skills</div><div class="app-pill">MONEY SKILLS</div><div class="app-arrow">›</div></a>
-    <a aria-label="TimeReady" class="app-card card-time" href="TimeReady.html"><span class="app-icon">🕐</span><div class="app-name">TIMEREADY</div><div class="app-sub">Read clocks, follow schedules, learn AM/PM and time on the job</div><div class="app-pill">TIME SKILLS</div><div class="app-arrow">›</div></a>
-    <a aria-label="JobReady" class="app-card card-job" href="JobReady.html"><span class="app-icon">💼</span><div class="app-name">JOBREADY</div><div class="app-sub">Interview skills, workplace rules, pay stubs, rights &amp; responsibilities</div><div class="app-pill">WORK SKILLS</div><div class="app-arrow">›</div></a>
-    <a aria-label="HomeReady" class="app-card card-home" href="HomeReady.html"><span class="app-icon">🏠</span><div class="app-name">HOMEREADY</div><div class="app-sub">Laundry, budgeting, food safety, renting, and handling emergencies</div><div class="app-pill">HOME SKILLS</div><div class="app-arrow">›</div></a>
-    <a aria-label="TravelReady" class="app-card card-travel" href="TravelReady.html"><span class="app-icon">🗺️</span><div class="app-name">TRAVELREADY</div><div class="app-sub">Read bus schedules, pay fares, navigate routes, plan safe trips</div><div class="app-pill">TRAVEL SKILLS</div><div class="app-arrow">›</div></a>
-    <a aria-label="SocialReady" class="app-card card-social" href="SocialReady.html"><span class="app-icon">💬</span><div class="app-name">SOCIALREADY</div><div class="app-sub">Start conversations, read social cues, set limits, handle conflict</div><div class="app-pill">SOCIAL SKILLS</div><div class="app-arrow">›</div></a>
-    <a aria-label="TechReady" class="app-card card-tech" href="TechReady.html"><span class="app-icon">📱</span><div class="app-name">TECHREADY</div><div class="app-sub">Spot scams, stay safe online &amp; master digital skills</div><div class="app-pill">DIGITAL SKILLS</div><div class="app-arrow">›</div></a>
-    <a aria-label="HealthReady" class="app-card card-health" href="HealthReady.html"><span class="app-icon">🏥</span><div class="app-name">HEALTHREADY</div><div class="app-sub">Read prescriptions, navigate the doctor &amp; know what to do in an emergency</div><div class="app-pill">HEALTH SKILLS</div><div class="app-arrow">›</div></a>
+    <a aria-label="CashReady" class="app-card card-cash" href="CashReady.html"><span class="app-icon">💵</span><div class="app-name">CASHREADY</div><div class="app-sub">Count coins &amp; bills, make change, practice real cashier skills</div><div class="app-pill">MONEY SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="TimeReady" class="app-card card-time" href="TimeReady.html"><span class="app-icon">🕐</span><div class="app-name">TIMEREADY</div><div class="app-sub">Read clocks, follow schedules, learn AM/PM and time on the job</div><div class="app-pill">TIME SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="JobReady" class="app-card card-job" href="JobReady.html"><span class="app-icon">💼</span><div class="app-name">JOBREADY</div><div class="app-sub">Interview skills, workplace rules, pay stubs, rights &amp; responsibilities</div><div class="app-pill">WORK SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="HomeReady" class="app-card card-home" href="HomeReady.html"><span class="app-icon">🏠</span><div class="app-name">HOMEREADY</div><div class="app-sub">Laundry, budgeting, food safety, renting, and handling emergencies</div><div class="app-pill">HOME SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="TravelReady" class="app-card card-travel" href="TravelReady.html"><span class="app-icon">🗺️</span><div class="app-name">TRAVELREADY</div><div class="app-sub">Read bus schedules, pay fares, navigate routes, plan safe trips</div><div class="app-pill">TRAVEL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="SocialReady" class="app-card card-social" href="SocialReady.html"><span class="app-icon">💬</span><div class="app-name">SOCIALREADY</div><div class="app-sub">Start conversations, read social cues, set limits, handle conflict</div><div class="app-pill">SOCIAL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="TechReady" class="app-card card-tech" href="TechReady.html"><span class="app-icon">📱</span><div class="app-name">TECHREADY</div><div class="app-sub">Spot scams, stay safe online &amp; master digital skills</div><div class="app-pill">DIGITAL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="HealthReady" class="app-card card-health" href="HealthReady.html"><span class="app-icon">🏥</span><div class="app-name">HEALTHREADY</div><div class="app-sub">Read prescriptions, navigate the doctor &amp; know what to do in an emergency</div><div class="app-pill">HEALTH SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
   </div>
 
   <div class="free-badge">🆓 &nbsp; ALL APPS FREE · NO ADS · NO ACCOUNTS · NO PAYWALLS</div>
@@ -489,7 +626,14 @@ main{
         <div class="info-item"><div class="info-mark">✦</div><div><strong>For coaches and educators</strong><span>Use the modules as guided practice, discussion starters, or confidence-building warmups.</span></div></div>
         <div class="info-item"><div class="info-mark">✦</div><div><strong>Built for real life</strong><span>Practical skills, arcade energy, and zero talking down to people.</span></div></div>
       </div>
-      <div class="signature">Made with stubborn optimism for real people trying to do real-life stuff. <em>– Tristan Beck</em></div>
+      <div class="info-divider"></div>
+      <div class="info-closing-line">Made with stubborn optimism for real people trying to do real-life stuff.</div>
+      <div class="signature-block">
+        <div class="sig-star">★</div>
+        <div class="sig-name">Tristan Beck</div>
+        <div class="sig-sub">Creator of the LifeReady Suite</div>
+        <div class="sig-line">FREE FOR EVERYONE · ALWAYS</div>
+      </div>
     </div>
 
     <div class="info-card">

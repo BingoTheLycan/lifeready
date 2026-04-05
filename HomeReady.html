@@ -661,6 +661,15 @@ max-width:320px;width:calc(100% - 32px);
 .gc-body strong{color:var(--text);}
 .gc-body em{color:var(--text3);font-style:italic;}
 .cb-mode-btn{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap;}.cb-mode-btn.on{background:#e8650a22;border-color:#e8650a;color:#e8650a;box-shadow:0 0 12px #e8650a55;}.cb-mode-btn:hover{border-color:#e8650a88;color:#e8650a;}@media(min-width:900px){main>*{min-width:0;}#desktop-sidebar{min-width:0;}}
+
+/* Coach dashboard polish */
+.coach-hdr{margin-bottom:14px}
+.coach-hdr .cacts{gap:8px;flex-wrap:wrap}
+#coach-wrap .no-data{background:var(--panel);border:2px dashed var(--border2);border-radius:var(--radius);padding:26px 18px;text-align:center;color:var(--text2);line-height:1.65;}
+.ccard{margin-bottom:14px}
+.ccard .sec-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 10px;}
+.ccard .chart-wrap,.ccard .pfchart{margin:12px 0}
+
 </style>
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
 <defs>
@@ -1138,16 +1147,21 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div id="scr-coach" class="scr">
   <div class="coach-hdr">
-    <div class="coach-title">📋 LIFE SKILLS COACH DASHBOARD</div>
+    <div class="coach-title">📋 HOME COACH DASHBOARD</div>
+    <div id="coach-save-indicator" style="display:none;font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:1px;margin-top:6px">Saved ✓</div>
+    <div id="coach-range-label" style="display:none;font-family:var(--font-mono);font-size:.64rem;color:var(--amber);letter-spacing:1px;margin-top:6px"></div>
     <div class="cacts">
-      <button class="cbt" onclick="printCoachReport()">🖨️ Print Report</button>
+      <button class="cbt" onclick="printCoachReport()">🖨 Print Report</button>
       <button class="cbt" onclick="exportCSV()" title="Download all session data as spreadsheet">📥 Export CSV</button>
-      <button class="cbt" onclick="openM('m-goal')">＋ Add Goal</button>
-      <button class="cbt" onclick="openM('m-log')">＋ Log Session</button>
-      <button class="cbt pri" onclick="openM('m-client')">＋ Add Client</button>
-
-  <button class="cbt" onclick="CFG.coachWelcomeSeen=false;renderCoach();showCoachWelcome();" style="font-size:.65rem;letter-spacing:.5px">? How It Works</button>
-</div>
+      <button class="cbt" onclick="openDateRangeModal()">📅 Date Range</button>
+      <button class="cbt" onclick="openM('m-goal')">🎯 Add Goal</button>
+      <button class="cbt" onclick="openM('m-log')">📝 Log Session</button>
+      <button class="cbt pri" onclick="openClientModal()">＋ Add Client</button>
+      <button class="cbt" onclick="CFG.coachWelcomeSeen=false;renderCoach();showCoachWelcome();" style="font-size:.65rem;letter-spacing:.5px">? How It Works</button>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin:10px 0 0">
+      <button class="cbt" onclick="toggleArchivedView()" id="arch-toggle-btn">🗂 Show Archived (0)</button>
+    </div>
   </div>
   <!-- First-time welcome card -->
   <div id="coach-welcome" style="position:relative;z-index:1;display:none;background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:18px;margin-bottom:16px;animation:fadeUp .4s ease">
@@ -1371,7 +1385,7 @@ max-width:320px;width:calc(100% - 32px);
     <div class="gtitle">🧡 THE STORY</div>
     <div class="gcard">
       <p style="font-size:.92rem;color:var(--text);line-height:1.8;margin-bottom:14px">HomeReady was built because home skills are the foundation of everything else.</p>
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">I built CashReady to teach money skills. I built TimeReady to teach clock and schedule skills. I built JobReady to teach workplace readiness. But the whole time, I kept thinking about something more fundamental - what about the skills you need before any of that? The skills you need just to keep a roof over your head and food in your fridge?</p>
+      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">I built HomeReady to teach money skills. I built TimeReady to teach clock and schedule skills. I built JobReady to teach workplace readiness. But the whole time, I kept thinking about something more fundamental - what about the skills you need before any of that? The skills you need just to keep a roof over your head and food in your fridge?</p>
       <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">How do you sort laundry? How do you read a utility bill? What do you do when you smell gas? What does your lease actually say? These are not complicated things - but if nobody taught you, they can feel impossible.</p>
       <p style="font-size:.88rem;color:var(--text2);line-height:1.8">HomeReady is the fourth piece of the LifeReady puzzle - and in a lot of ways, the most important one. Home is where everything starts.</p>
     </div>
@@ -1401,7 +1415,7 @@ max-width:320px;width:calc(100% - 32px);
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch">
         <div style="background:rgba(0,200,81,0.08);border:1px solid rgba(0,200,81,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
           <div style="font-size:1.2rem">💵</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#00c851;font-weight:700;margin-top:4px">CashReady</div>
+          <div style="font-family:var(--font-mono);font-size:.7rem;color:#00c851;font-weight:700;margin-top:4px">HomeReady</div>
           <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Money Skills</div>
         </div>
         <div style="background:rgba(34,136,255,0.08);border:1px solid rgba(34,136,255,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
@@ -1518,8 +1532,9 @@ max-width:320px;width:calc(100% - 32px);
 
 <div class="mow" id="m-client">
   <div class="mdl">
-    <div class="mt">+ ADD NEW CLIENT</div>
-    <div class="fg"><label class="fl">Full Name</label><input class="fi" id="nc-name" placeholder="e.g. Alex Johnson"></div>
+    <div class="mt" id="client-modal-title">+ ADD NEW CLIENT</div>
+    <div class="fg"><label class="fl">Initials / Display Name</label><input class="fi" id="nc-name" placeholder="e.g. AJ or Alex J."></div>
+    <div class="fg"><label class="fl">Private Full Name (optional)</label><input class="fi" id="nc-fullname" placeholder="Stored privately for staff use only"></div>
     <div class="fg"><label class="fl">Starting Level</label>
       <select class="fsel" id="nc-level">
         <option value="beginner">Beginner - Just starting out</option>
@@ -1530,7 +1545,7 @@ max-width:320px;width:calc(100% - 32px);
     </div>
     <div class="fg"><label class="fl">Program / Group</label><input class="fi" id="nc-program" placeholder="e.g. Independent Living Group A"></div>
     <div class="fg"><label class="fl">Notes / Accommodations</label><textarea class="fta" id="nc-notes" placeholder="Goals, accommodations, preferences, IEP notes..."></textarea></div>
-    <div class="mbtns"><button class="mcancel" onclick="closeM('m-client')">Cancel</button><button class="msave" onclick="saveClient()">Add Client</button></div>
+    <div class="mbtns"><button class="mcancel" onclick="closeM('m-client')">Cancel</button><button class="msave" id="client-save-btn" onclick="saveClient()">Add Client</button></div>
   </div>
 </div>
 
@@ -1985,6 +2000,7 @@ function makeTappable(screenId){
 function go(id){
   // Cancel speech when navigating, but not if a badge is currently being announced
   const _badgeShowing=document.getElementById('badge-toast')?.classList.contains('show');
+  clearTimeout(window._screenSpeechTimer);
   if(window.speechSynthesis && !_badgeShowing) window.speechSynthesis.cancel();
   document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
@@ -2145,12 +2161,26 @@ function setSpeed(v,el){
 //  SPEECH & SOUND
 // ════════════════════════════════════════════════════════
 let _hintSpeechTimer=null;
+
+function clearPopupSpeech(){
+  clearTimeout(window._fbSpeechTimer);
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+}
+
 function say(txt){
   if(!CFG.audio||!window.speechSynthesis) return;
   window.speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(txt);
   u.rate=speechRate; u.pitch=1.05; u.volume=0.95;
   window.speechSynthesis.speak(u);
+}
+function speakAfterScreenChange(txt, delay=420){
+  if(!CFG.audio||!window.speechSynthesis) return;
+  clearTimeout(window._screenSpeechTimer);
+  window._screenSpeechTimer=setTimeout(()=>{
+    window.speechSynthesis.cancel();
+    setTimeout(()=>say(txt), 80);
+  }, delay);
 }
 function beep(f,d){
   if(!CFG.audio) return;
@@ -2689,6 +2719,7 @@ function answerQ(chosen){
     else if(i===chosen&&!ok) btn.classList.add('bad');
   });
 
+  const prevStreak = ST.streak||0;
   if(ok){
     ST.correct++; ST.streak++; ST.bestStreak=Math.max(ST.bestStreak,ST.streak);
     if(ST.mode!=='practice') ST.score+=Math.max(10,10+ST.streak*2);
@@ -2703,7 +2734,6 @@ function answerQ(chosen){
   $('g-lvl').textContent=getLvl(ST.score).n;
 
   const CORRECT=['Great thinking!','Correct!','That\'s right!','Nailed it!','Yes! Strong home skills.','Right on!'];
-  const WRONG=['Not quite - the right answer is shown.','Almost! Read the explanation to understand why.','That\'s okay - the right answer is highlighted.','Not this time. Keep going!'];
   const explain=(currentQ && currentQ.explain) ? currentQ.explain : '';
 
   const fb=$('g-fb');
@@ -2718,10 +2748,27 @@ function answerQ(chosen){
 
   setTimeout(()=>{
     const firstEver=!BADGES.has('first_correct')&&ST.correct===1&&ST.total===1;
+    const smartTitle = firstEver
+      ? 'YOUR FIRST ONE!'
+      : ok
+        ? (ST.streak>=5?'ON FIRE!':ST.streak>=3?'GREAT JOB!':'CORRECT!')
+        : (ST.total<=1?'GOOD TRY':prevStreak>=3?'STREAK PAUSED':rand(['NOT QUITE','ALMOST THERE','KEEP GOING']));
+    const smartMsg = ok
+      ? (firstEver?'Nice start!':ST.streak>=5?'Amazing streak!':ST.streak>=3?'Great job!':rand(CORRECT))
+      : (smartTitle==='GOOD TRY'
+          ? 'Good try.'
+          : smartTitle==='STREAK PAUSED'
+            ? 'Streak paused.'
+            : smartTitle==='ALMOST THERE'
+              ? 'Almost there.'
+              : smartTitle==='KEEP GOING'
+                ? 'Keep going.'
+                : 'Not quite.');
+
     $('femoji').textContent=firstEver?'🎉':ok?(ST.streak>=5?'🔥':ST.streak>=3?'⭐':'✅'):'❌';
-    $('ftitle').textContent=firstEver?'YOUR FIRST ONE!':ok?(ST.streak>=5?'ON FIRE!':ST.streak>=3?'GREAT JOB!':'CORRECT!'):'NOT QUITE';
+    $('ftitle').textContent=smartTitle;
     $('ftitle').className='ftitle '+(ok?'ok':'bad');
-    $('fmsg').textContent=ok?rand(CORRECT):rand(WRONG);
+    $('fmsg').textContent=explain || smartMsg;
     const exEl=$('fexplain');
     if(exEl){ exEl.textContent=explain; exEl.style.display=explain?'block':'none'; }
     $('fcard').className='fcard'+(ok?'':' wrong');
@@ -2732,7 +2779,8 @@ function answerQ(chosen){
     }
     const feoc=$('feoc'); if(feoc) feoc.style.display='none';
     $('fov').classList.add('on');
-    say(ok?'Correct! Great job.':('Not quite. '+(explain||'Try again.').split('.')[0]+'.'));
+    clearTimeout(window._fbSpeechTimer);
+    window._fbSpeechTimer=setTimeout(()=>say(smartTitle.replace(/!/g,'') + '. ' + (explain || smartMsg)),120);
   },300);
 }
 
@@ -2748,6 +2796,7 @@ function doHint(btn){
 }
 
 function nextQ_game(){
+  clearPopupSpeech();
   $('fov').classList.remove('on');
   if(ST.total>=ST.maxQ){ endSession(); return; }
   genQ();
@@ -2900,15 +2949,31 @@ function checkBadges(){
   if(['challenge','laundry','budget','safety','daily'].every(m=>modes.includes(m))) awardBadge('explorer');
 }
 
+
+function showPracticeResults(){
+  const total = ST.total || 0;
+  const correct = ST.correct || 0;
+  const hints = ST.hintsUsed || 0;
+  const elapsed = ST.startTime ? (Date.now()-ST.startTime)/1000 : 0;
+  const summary = $('practice-summary');
+  if(summary){
+    summary.textContent = `You answered ${total} question${total!==1?'s':''} • ${correct} correct • Hints used: ${hints} • Time: ${fmtElapsed(elapsed)}`;
+  }
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  $('scr-practice-complete').classList.add('on');
+  window.scrollTo(0,0);
+  const _spw=document.getElementById('page-wrap'); if(_spw) _spw.scrollTop=0;
+  clearTimeout(window._fbSpeechTimer);
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  setTimeout(()=>say(`Practice mode complete. You answered ${total} question${total!==1?'s':''}, got ${correct} correct, used ${hints} hint${hints!==1?'s':''}, and finished in ${fmtElapsedSpeech(elapsed)}.`),220);
+}
+
 function endSession(early=false){
+  clearPopupSpeech();
   $('fov').classList.remove('on');
   if(ST.mode==='practice'){
-    const s=$('practice-summary');
-    if(s) s.textContent=`You answered ${ST.total} question${ST.total!==1?'s':''} • ${ST.correct} correct • Hints used: ${ST.hintsUsed||0}`;
+    showPracticeResults();
     updateHomeUI();
-    go('practice-complete');
-    window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
-    setTimeout(()=>{ say(`Nice work. You answered ${ST.total} question${ST.total!==1?'s':''}, got ${ST.correct} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`); },120);
     return;
   }
   txCountForBreak=0;
@@ -2962,7 +3027,7 @@ function endSession(early=false){
   }
   saveAll();
   // Build share text
-  _shareText=`I scored ${ST.score} points in HomeReady! 🏠\n${modeName} · ${ST.correct}/${ST.total} correct · ${pct}%${elapsed>10?' · '+fmtElapsed(elapsed):''}\nHomeReady - Free Home Skills Trainer`;
+  _shareText=`I scored ${ST.score} points in HomeReady! 🏠\n${modeName} · ${ST.correct}/${ST.total} correct · ${pct}% · ${fmtElapsed(elapsed)}\nHomeReady - Free Home Skills Trainer`;
   const shareBtn=$('r-share'); if(shareBtn) shareBtn.style.display=(!early&&ST.total>0)?'':'none';
   const coachBtn=$('r-coach-copy'); if(coachBtn) coachBtn.style.display=(!early&&ST.total>0)?'':'none';
   // Previous best
@@ -2982,7 +3047,8 @@ function endSession(early=false){
   const racc=$('r-acc'); if(racc) racc.textContent=pct+'%';
   const rcr=$('r-correct'); if(rcr) rcr.textContent=ST.correct+'/'+ST.total;
   const rstr=$('r-streak'); if(rstr) rstr.textContent=ST.bestStreak;
-  if(elapsed>10){const rtb=$('r-timer-box');if(rtb)rtb.style.display='';const rtv=$('r-timer');if(rtv)rtv.textContent=fmtElapsed(elapsed);}
+  const rtb=$('r-timer-box'); if(rtb) rtb.style.display='';
+  const rtv=$('r-timer'); if(rtv) rtv.textContent=fmtElapsed(elapsed);
   const eoc=$('eoc-card-wrap');
   if(eoc) eoc.innerHTML=!early&&pct>=80?`<div style="background:linear-gradient(135deg,rgba(232,101,10,.15),rgba(232,101,10,.05));border:2px solid rgba(232,101,10,.4);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">🏅 GREAT SESSION!</div><div style="font-family:var(--font-display);font-size:1.3rem;color:var(--green)">${CFG.playerName?CFG.playerName+' · ':''}⭐ ${pct}% Accuracy ⭐</div><div style="font-size:.72rem;color:var(--text3);margin-top:4px">Real home skills - keep it up!</div></div>`:'';
   const rpa=$('r-play-again');
@@ -2993,7 +3059,11 @@ function endSession(early=false){
   if(!CFG.noMotion&&pct>=70) confetti();
   updateHomeUI();
   go('results'); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
-  setTimeout(()=>say(`${modeName} complete. You got ${ST.correct} out of ${ST.total} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`),140);
+  clearTimeout(window._fbSpeechTimer);
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  setTimeout(()=>say(early
+    ? `${modeName} ended. You got ${ST.correct} out of ${ST.total} correct, used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}, and finished in ${fmtElapsedSpeech(elapsed)}.`
+    : `${modeName} complete. You got ${ST.correct} out of ${ST.total} correct, used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}, and finished in ${fmtElapsedSpeech(elapsed)}.`),220);
 }
 
 function replayMode(){ startMode(lastMode||ST.mode||'challenge'); }
@@ -3090,137 +3160,253 @@ function clearScores(){
 // ════════════════════════════════════════════════════════
 //  COACH DASHBOARD - Charts, Goals, CSV Export
 // ════════════════════════════════════════════════════════
+
+function showCoachSaved(msg='Saved ✓'){
+  const el=$('coach-save-indicator');
+  if(!el) return;
+  el.textContent=msg;
+  el.style.display='block';
+  clearTimeout(window._coachSaveTimer);
+  window._coachSaveTimer=setTimeout(()=>{el.style.display='none';},1600);
+}
+
+function updateCoachRangeLabel(){
+  const el=$('coach-range-label');
+  if(!el) return;
+  const s=CFG.coachStartDate||'';
+  const e=CFG.coachEndDate||'';
+  if(!s && !e){
+    el.style.display='none';
+    el.textContent='';
+    return;
+  }
+  el.style.display='block';
+  el.textContent=`📅 Showing ${s||'Start'} → ${e||'Now'}`;
+}
+
+function openDateRangeModal(){
+  if($('coach-date-start')) $('coach-date-start').value = CFG.coachStartDate || '';
+  if($('coach-date-end')) $('coach-date-end').value = CFG.coachEndDate || '';
+  openM('m-date-range');
+}
+
+function saveCoachRange(){
+  CFG.coachStartDate = $('coach-date-start') ? $('coach-date-start').value : '';
+  CFG.coachEndDate = $('coach-date-end') ? $('coach-date-end').value : '';
+  saveAll();
+  closeM('m-date-range');
+  updateCoachRangeLabel();
+  renderCoach();
+  showCoachSaved('Range saved ✓');
+}
+
+function clearCoachRange(){
+  CFG.coachStartDate = '';
+  CFG.coachEndDate = '';
+  saveAll();
+  closeM('m-date-range');
+  updateCoachRangeLabel();
+  renderCoach();
+  showCoachSaved('Range cleared ✓');
+}
+
+function getFilteredSessions(cl){
+  const all = (cl && cl.sessions) ? cl.sessions : [];
+  const start = CFG.coachStartDate ? new Date(CFG.coachStartDate + 'T00:00:00').getTime() : null;
+  const end = CFG.coachEndDate ? new Date(CFG.coachEndDate + 'T23:59:59').getTime() : null;
+  return all.filter(s=>{
+    const raw = s.date || s.dat || '';
+    const t = new Date(raw).getTime();
+    if(Number.isNaN(t)) return true;
+    if(start!==null && t < start) return false;
+    if(end!==null && t > end) return false;
+    return true;
+  });
+}
+
+function toggleArchivedView(){
+  CFG.showArchived = !CFG.showArchived;
+  saveAll();
+  renderCoach();
+}
+
 function renderCoach(){
-  if(!CLIENTS.length){$('coach-wrap').innerHTML='<div class="no-data">No clients yet.<br>Tap "+ Add Client" to get started.</div>';return;}
-  $('coach-wrap').innerHTML=`<div class="ccards">${CLIENTS.map((cl,i)=>clientCard(cl,i)).join('')}</div>`;
-  CLIENTS.forEach((_,i)=>drawCharts(i));
+  updateCoachRangeLabel();
+  const showArchived = !!CFG.showArchived;
+  const toggleBtn = $('arch-toggle-btn');
+  if(toggleBtn){
+    const archivedCount = (CLIENTS||[]).filter(c=>!!c.archived).length;
+    toggleBtn.textContent = showArchived ? '📂 Show Active' : `🗂 Show Archived (${archivedCount})`;
+  }
+  if(!CLIENTS.length){
+    $('coach-wrap').innerHTML='<div class="no-data">No clients yet.<br>Tap "+ Add Client" to get started.</div>';
+    return;
+  }
+  const visible = CLIENTS.map((cl,i)=>({cl,i})).filter(({cl})=>showArchived ? !!cl.archived : !cl.archived);
+  if(!visible.length){
+    $('coach-wrap').innerHTML = `<div class="no-data">${showArchived ? 'No archived clients yet.' : 'No active clients yet.'}</div>`;
+    return;
+  }
+  $('coach-wrap').innerHTML=`<div class="ccards">${visible.map(({cl,i})=>clientCard(cl,i)).join('')}</div>`;
+  visible.forEach(({i})=>drawCharts(i));
 }
 
 function clientCard(cl,i){
-  const sk=cl.skills||{};
-  const skDefs={laundry:'🧺 Laundry',budget:'💰 Budget',safety:'🚨 Safety',food:'🍳 Food'};
-  const spHtml=Object.entries(skDefs).map(([k,n])=>`
-    <div class="sprow">
-      <div class="sp-lbl"><span>${n}</span><span class="sp-pct">${sk[k]||0}%</span></div>
-      <div class="spbg"><div class="spf" style="width:${sk[k]||0}%"></div></div>
-    </div>`).join('');
+const sk=cl.skills||{};
+const skDefs={laundry:'🧺 Laundry',budget:'💰 Budget',safety:'🚨 Safety',food:'🍳 Food Safety',independence:'🏠 Independence'};
+const spHtml=Object.entries(skDefs).map(([k,n])=>`<div class="sprow"><div class="sp-lbl"><span>${n}</span><span class="sp-pct">${sk[k]||0}%</span></div><div class="spbg"><div class="spf" style="width:${sk[k]||0}%"></div></div></div>`).join('');
 
-  // Prompt fading dots
-  const sess=(cl.sessions||[]).slice(-8);
-  const pColors={independent:'ind',verbal:'ver',gestural:'ges',physical:'phy',hoh:'hoh'};
-  const pfHtml=sess.length>0?`
-    <div class="pfchart">
-      <div class="pfc-title">PROMPT FADING (last ${sess.length} sessions)</div>
-      <div class="pfc-row">
-        <div class="pfc-label">Prompt level:</div>
-        <div class="pfc-dots">${sess.map(s=>`<div class="pfc-dot ${pColors[s.prompt]||'empty'}" title="${s.prompt||''} - ${s.date}"></div>`).join('')}</div>
-      </div>
-      <div style="font-size:.64rem;color:var(--text2);margin-top:4px">
-        <span style="color:var(--green)">● Indep</span>
-        <span style="color:var(--blue)">● Verbal</span>
-        <span style="color:var(--amber)">● Gestural</span>
-        <span style="color:var(--orange)">● Physical</span>
-        <span style="color:var(--red)">● HoH</span>
-      </div>
-    </div>`:'';
+const allSess=getFilteredSessions(cl);
+const sess=allSess.slice(-8);
+const lastFiltered = allSess.length ? allSess[allSess.length-1] : null;
 
-  // Progress chart placeholder (canvas drawn after render)
-  const allSess=cl.sessions||[];
-  const chartHtml=allSess.length>=2?`
-    <div class="chart-wrap">
-      <div class="chart-title">
-        <span>ACCURACY OVER TIME</span>
-        <span style="color:var(--text3);font-size:.58rem">${allSess.length} sessions</span>
+const promptRank={independent:5,verbal:4,gestural:3,physical:2,hoh:1};
+const promptLabel={
+  independent:'Independent',
+  verbal:'Verbal prompt',
+  gestural:'Gestural prompt',
+  physical:'Physical prompt',
+  hoh:'Hand-over-hand'
+};
+
+const scorePct=(score)=>{
+  if(!score || typeof score!=='string' || !score.includes('/')) return null;
+  const [a,b]=score.split('/');
+  const num=parseInt(a,10), den=parseInt(b,10);
+  if(Number.isNaN(num) || Number.isNaN(den) || !den) return null;
+  return Math.round((num/den)*100);
+};
+
+const skillEntries=Object.entries(skDefs).map(([k,label])=>[k,label,Number(sk[k]||0)]);
+const strongest=skillEntries.reduce((best,row)=>row[2]>best[2]?row:best, skillEntries[0]||['','','']);
+const weakest=skillEntries.reduce((worst,row)=>row[2]<worst[2]?row:worst, skillEntries[0]||['','','']);
+
+const last7Cutoff=Date.now()-(7*24*60*60*1000);
+const recent7=allSess.filter(s=>{
+  const d=new Date(s.date || s.dat || '');
+  return !Number.isNaN(d.getTime()) && d.getTime()>=last7Cutoff;
+});
+const weeklyScores=recent7.map(s=>scorePct(s.score)).filter(v=>v!==null);
+const weeklyAvg=weeklyScores.length ? Math.round(weeklyScores.reduce((a,b)=>a+b,0)/weeklyScores.length) : null;
+
+let promptTrend='No data yet';
+if(allSess.length>=2){
+  const recentPrompts=allSess.slice(-3).map(s=>promptRank[s.prompt]||0).filter(Boolean);
+  if(recentPrompts.length>=2){
+    const delta=recentPrompts[recentPrompts.length-1]-recentPrompts[0];
+    promptTrend = delta>0 ? 'Less support needed' : delta<0 ? 'More support needed' : 'Holding steady';
+  }else if(lastFiltered?.prompt){
+    promptTrend = promptLabel[lastFiltered.prompt] || lastFiltered.prompt;
+  }
+}else if(lastFiltered?.prompt){
+  promptTrend = promptLabel[lastFiltered.prompt] || lastFiltered.prompt;
+}
+
+const summaryHtml=`<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 12px">
+  <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+    <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">LAST SESSION</div>
+    <div style="font-size:.82rem;font-weight:800;color:var(--text)">${lastFiltered ? (lastFiltered.score || '—') : 'None yet'}</div>
+  </div>
+  <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+    <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">PROMPT TREND</div>
+    <div style="font-size:.82rem;font-weight:800;color:var(--text)">${promptTrend}</div>
+  </div>
+  <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+    <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">STRONGEST SKILL</div>
+    <div style="font-size:.82rem;font-weight:800;color:var(--green)">${strongest[1] || 'No data yet'}${strongest[2] || strongest[2]===0 ? ` · ${strongest[2]}%` : ''}</div>
+  </div>
+  <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+    <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">NEEDS SUPPORT</div>
+    <div style="font-size:.82rem;font-weight:800;color:var(--amber)">${weakest[1] || 'No data yet'}${weakest[2] || weakest[2]===0 ? ` · ${weakest[2]}%` : ''}</div>
+  </div>
+  <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+    <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">LAST 7 DAYS</div>
+    <div style="font-size:.82rem;font-weight:800;color:var(--text)">${recent7.length} session${recent7.length!==1?'s':''}</div>
+  </div>
+  <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+    <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">WEEKLY AVG</div>
+    <div style="font-size:.82rem;font-weight:800;color:var(--blue)">${weeklyAvg!==null ? weeklyAvg+'%' : 'No data yet'}</div>
+  </div>
+</div>`;
+
+const pColors={independent:'ind',verbal:'ver',gestural:'ges',physical:'phy',hoh:'hoh'};
+const pfHtml=sess.length>0?`<div class="pfchart"><div class="pfc-title">PROMPT FADING (last ${sess.length} sessions)</div><div class="pfc-row"><div class="pfc-label">Level:</div><div class="pfc-dots">${sess.map(s=>`<div class="pfc-dot ${pColors[s.prompt]||''}" title="${s.prompt||''}"></div>`).join('')}</div></div><div style="font-size:.64rem;color:var(--text2);margin-top:4px"><span style="color:var(--green)">● Indep</span> <span style="color:#33b5e5">● Verbal</span> <span style="color:var(--amber)">● Gestural</span> <span style="color:var(--orange)">● Physical</span> <span style="color:var(--red)">● HoH</span></div></div>`:'';
+
+const chartHtml=allSess.length>=2?`<div class="chart-wrap"><div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:2px;margin-bottom:10px">ACCURACY OVER TIME · ${allSess.length} SESSIONS</div><canvas class="chart-canvas" id="chart-${i}" width="400" height="120"></canvas></div>`:`<div class="chart-wrap"><div class="chart-no-data">Log 2+ sessions in this date range to see progress chart</div></div>`;
+
+const goals=cl.goals||[];
+const goalsHtml=goals.length>0?`<div style="margin-bottom:12px"><div class="sec-hdr">GOALS & MASTERY</div>${goals.map((g,gi)=>renderGoalCard(g,i,gi)).join('')}</div>`:'';
+
+const recentLogs=allSess.slice(-4).reverse().map(s=>`<div class="lrow"><div class="lm">${s.module}</div><div class="ls">${s.score}</div><div class="ld">${s.date||s.dat||''}${s.prompt?` · <span class="ptag">${s.prompt}</span>`:''}</div>${s.notes?`<div class="ln">${s.notes}</div>`:''}</div>`).join('')||'<div style="color:var(--text3);font-size:.78rem;padding:6px">No sessions logged in this date range.</div>';
+
+const planHtml=(()=>{
+  if(allSess.length===0){
+    return `<div style="background:var(--bg3);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-bottom:12px">
+      <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text2);letter-spacing:2px;margin-bottom:7px">📋 LAST SESSION - PLAN FROM HERE</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px">
+        <div><div style="font-size:.68rem;color:var(--text2)">Module</div><div style="font-size:.78rem;font-weight:700;color:var(--text)">-</div></div>
+        <div><div style="font-size:.68rem;color:var(--text2)">Score</div><div style="font-size:.78rem;font-weight:700;color:var(--amber)">-</div></div>
+        <div><div style="font-size:.68rem;color:var(--text2)">Prompt Level</div><div style="font-size:.78rem;font-weight:700;color:var(--text3)">Not set</div></div>
+        <div><div style="font-size:.68rem;color:var(--text2)">Date</div><div style="font-size:.78rem;color:var(--text2)">-</div></div>
       </div>
-      <canvas class="chart-canvas" id="chart-${i}" width="400" height="120"></canvas>
-      <div class="chart-legend" id="chart-legend-${i}"></div>
-    </div>`:`
-    <div class="chart-wrap">
-      <div class="chart-no-data">Log 2+ sessions to see the progress chart</div>
+      <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:12px 14px;margin-top:8px">
+        <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:2px;margin-bottom:6px">COACH RECOMMENDATION</div>
+        <div style="font-size:.78rem;font-weight:800;color:var(--text);margin-bottom:4px">Start with a short baseline session.</div>
+        <div style="font-size:.8rem;color:var(--text2);line-height:1.6">Log one guided session so HomeReady can show trends, support level, and next-step coaching guidance.</div>
+      </div>
+      <div style="margin-top:10px;font-size:.86rem;font-weight:800;color:var(--blue)">Set a baseline in any HomeReady practice area.</div>
     </div>`;
-
-  // Goals
-  const goals=(cl.goals||[]);
-  const goalsHtml=goals.length>0?`
-    <div class="goals-section">
-      <div class="sec-hdr">GOALS & MASTERY</div>
-      ${goals.map((g,gi)=>renderGoalCard(g,i,gi)).join('')}
-    </div>`:'';
-
-  // Recent sessions
-  const recentLogs=sess.slice(-4).reverse().map(s=>`
-    <div class="lrow">
-      <div class="lm">${s.module}</div>
-      <div class="ls">${s.score}</div>
-      <div class="ld">${s.date}</div>
-      ${s.prompt?`<div><span class="ptag">${s.prompt}</span></div>`:''}
-      ${s.notes?`<div class="ln">${s.notes}</div>`:''}
-    </div>`).join('')||'<div style="color:var(--text3);font-size:.78rem;padding:6px">No sessions logged yet.</div>';
-
-  return `<div class="ccard">
-    <div class="ctop">
-      <div class="cav" style="background:${cl.color||'#00c851'}">${cl.name.charAt(0)}</div>
-      <div style="flex:1">
-        <div class="cname">${cl.name}</div>
-        <div class="cmeta">${cl.program||''}</div>
-        <div style="font-size:.68rem;color:var(--text2);margin-top:2px">
-          ${(cl.sessions||[]).length} session${(cl.sessions||[]).length!==1?'s':''} logged
-          ${(cl.sessions||[]).length>0?' · Last: '+(cl.sessions[cl.sessions.length-1].date):''}
-        </div>
-      </div>
-      <div class="clvl">${(cl.level||'beginner').toUpperCase()}</div>
+  }
+  const last=allSess[allSess.length-1];
+  const promptColors={independent:'var(--green)',verbal:'var(--blue)',gestural:'var(--amber)',physical:'var(--orange)',hoh:'var(--red)'};
+  const pc=promptColors[last.prompt]||'var(--text3)';
+  const score=scorePct(last.score);
+  const recTitle = score===null ? 'Keep building baseline data.' : score>=85 ? 'Fade support where possible.' : score>=60 ? 'Repeat with one lighter prompt.' : 'Re-teach and model the skill.';
+  const recBody = score===null ? 'Use one more guided session to confirm support level and home-skill understanding.' : score>=85 ? `Focus next on ${weakest[1]} to balance strengths.` : score>=60 ? `Revisit ${last.module||'the last module'} and coach toward more independence.` : `Break ${last.module||'the task'} into smaller steps and model the routine again.`;
+  return `<div style="background:var(--bg3);border-left:4px solid ${pc};border-radius:var(--radius-sm);padding:11px 14px;margin-bottom:12px">
+    <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text2);letter-spacing:2px;margin-bottom:7px">📋 LAST SESSION - PLAN FROM HERE</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px">
+      <div><div style="font-size:.68rem;color:var(--text2)">Module</div><div style="font-size:.78rem;font-weight:700;color:var(--text)">${last.module||'-'}</div></div>
+      <div><div style="font-size:.68rem;color:var(--text2)">Score</div><div style="font-size:.78rem;font-weight:700;color:var(--amber)">${last.score||'-'}</div></div>
+      <div><div style="font-size:.68rem;color:var(--text2)">Prompt Level</div><div style="font-size:.78rem;font-weight:700;color:${pc}">${promptLabel[last.prompt]||last.prompt||'-'}</div></div>
+      <div><div style="font-size:.68rem;color:var(--text2)">Date</div><div style="font-size:.78rem;color:var(--text2)">${last.date||last.dat||'-'}</div></div>
     </div>
-
-    <!-- Last Session Planning Card -->
-    ${(()=>{
-      const sessions=cl.sessions||[];
-      if(sessions.length===0) return '';
-      const last=sessions[sessions.length-1];
-      const promptColors={independent:'var(--green)',verbal:'var(--blue)',gestural:'var(--orange)',physical:'#ff5722',hoh:'var(--red)'};
-      const pc=promptColors[last.prompt]||'var(--text3)';
-      return `<div style="background:var(--bg3);border-left:4px solid ${pc};border-radius:var(--radius-sm);padding:11px 14px;margin-bottom:12px">
-        <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text2);letter-spacing:2px;margin-bottom:7px">📋 LAST SESSION - PLAN FROM HERE</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px">
-          <div><div style="font-size:.68rem;color:var(--text2)">Module</div><div style="font-size:.78rem;font-weight:700;color:var(--text)">${last.module||'-'}</div></div>
-          <div><div style="font-size:.68rem;color:var(--text2)">Score</div><div style="font-size:.78rem;font-weight:700;color:var(--amber)">${last.score||'-'}</div></div>
-          <div><div style="font-size:.68rem;color:var(--text2)">Prompt Level</div><div style="font-size:.78rem;font-weight:700;color:${pc}">${last.prompt||'-'}</div></div>
-          <div><div style="font-size:.68rem;color:var(--text2)">Date</div><div style="font-size:.78rem;color:var(--text2)">${last.date||'-'}</div></div>
-        </div>
-        ${last.notes?`<div style="font-size:.75rem;color:var(--text2);font-style:italic;border-top:1px solid var(--border2);padding-top:6px;margin-top:2px">"${last.notes}"</div>`:''}
-      </div>`;
-    })()}
-    ${(()=>{
-      const sk=cl.skills||{};
-      const skLabels={'laundry':'Laundry','budget':'Budgeting','safety':'Home Safety','food':'Food Safety'};
-      const skEntries=Object.entries(sk).filter(([k,v])=>v>0);
-      if(skEntries.length===0) return '';
-      const [lowestKey,lowestVal]=skEntries.reduce((a,b)=>a[1]<b[1]?a:b);
-      const pct=lowestVal;
-      const emoji=pct>=80?'🌟':pct>=60?'📈':'📌';
-      const msg=pct>=80?'Great across the board - keep it up!':
-                pct>=60?`Focus on <strong>${skLabels[lowestKey]}</strong> next - at ${pct}%, close to mastery.`:
-                        `Suggested focus: <strong>${skLabels[lowestKey]}</strong> - currently at ${pct}%.`;
-      return `<div style="background:var(--bg3);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:.78rem;color:var(--text2);line-height:1.6">
-        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--green);letter-spacing:2px;display:block;margin-bottom:4px">${emoji} NEXT SESSION</span>
-        ${msg}
-      </div>`;
-    })()}
-    <div class="sec-hdr">SKILL PROGRESS <button class="cbt" style="font-size:.63rem;padding:2px 8px;min-height:22px" onclick="editSkills(${i})">EDIT</button></div>
-    <div class="spgrid">${spHtml}</div>
-    ${chartHtml}
-    ${goalsHtml}
-    ${pfHtml}
-    <div class="slog">
-      <div class="slog-t">RECENT SESSIONS</div>
-      <div class="lrows">${recentLogs}</div>
+    ${last.notes?`<div style="font-size:.75rem;color:var(--text2);font-style:italic;border-top:1px solid var(--border2);padding-top:6px;margin-top:2px">"${last.notes}"</div>`:''}
+    <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:12px 14px;margin-top:8px">
+      <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:2px;margin-bottom:6px">COACH RECOMMENDATION</div>
+      <div style="font-size:.78rem;font-weight:800;color:var(--text);margin-bottom:4px">${recTitle}</div>
+      <div style="font-size:.8rem;color:var(--text2);line-height:1.6">${recBody}</div>
     </div>
-    <div style="margin-top:10px;display:flex;gap:7px;flex-wrap:wrap">
-      <button class="cbt" onclick="printReport(${i})">🖨 Print</button>
-      <button class="cbt" onclick="exportClientCSV(${i})">📥 Export CSV</button>
-      <button class="cbt" onclick="editClient(${i})">✏ Edit</button>
-      <button class="cbt" style="color:var(--red);border-color:var(--red)" onclick="delClient(${i})">Remove</button>
-    </div>
+    <div style="margin-top:10px;font-size:.86rem;font-weight:800;color:var(--blue)">Next focus: ${weakest[1] || 'Home skills'}</div>
   </div>`;
+})();
+
+return`<div class="ccard">
+<div class="ctop">
+<div class="cav" style="background:${cl.color||'#e8650a'}">${cl.name.charAt(0)}</div>
+<div style="flex:1">
+  <div class="cname">${cl.name}</div>
+  <div class="cmeta">${cl.program||''}${cl.fullName?' · Private full name saved':''}${cl.archived?' · Archived':''}</div>
+  <div style="font-size:.68rem;color:var(--text2);margin-top:2px">${allSess.length} session${allSess.length!==1?'s':''} in range${allSess.length>0?' · Last: '+((lastFiltered?.date||lastFiltered?.dat)||''):''}${allSess.length===0?' · No sessions yet':''}</div>
+</div>
+<div class="clvl">${(cl.level||'beginner').toUpperCase()}</div>
+</div>
+${summaryHtml}
+${planHtml}
+<div class="sec-hdr">SKILL PROGRESS <button class="cbt" style="font-size:.63rem;padding:2px 8px;min-height:22px" onclick="editSkills(${i})">EDIT</button></div>
+<div class="spgrid">${spHtml}</div>
+${chartHtml}${goalsHtml}${pfHtml}
+<div class="sec-hdr">RECENT SESSIONS</div>
+<div>${recentLogs}</div>
+<div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap">
+  <button class="cbt" onclick="openLogForClient(${i})">＋ Log</button>
+  <button class="cbt" onclick="printReport(${i})">🖨 Print</button>
+  <button class="cbt" onclick="exportClientCSV(${i})">📥 Export CSV</button>
+  <button class="cbt" onclick="editClient(${i})">✏ Edit</button>
+  <button class="cbt" onclick="${cl.archived ? 'restoreClient' : 'archiveClient'}(${i})">${cl.archived ? '↩ Restore' : '🗂 Archive'}</button>
+  <button class="cbt" style="color:var(--red)" onclick="delClient(${i})">✕ Remove</button>
+</div>
+</div>`;
 }
 
 // ── PROGRESS CHART (Canvas) ──
@@ -3342,6 +3528,24 @@ function drawCharts(clientIdx){
 }
 
 // ── GOAL RENDERING ──
+function archiveClient(i){
+const cl=CLIENTS[i];
+if(!cl) return;
+cl.archived=true;
+saveAll();
+renderCoach();
+showCoachSaved('Client archived ✓');
+}
+
+function restoreClient(i){
+const cl=CLIENTS[i];
+if(!cl) return;
+cl.archived=false;
+saveAll();
+renderCoach();
+showCoachSaved('Client restored ✓');
+}
+
 function renderGoalCard(g,ci,gi){
   const cl=CLIENTS[ci];
   const sessions=(cl.sessions||[]);
@@ -3396,7 +3600,7 @@ function saveGoal(){
   };
   CLIENTS[idx].goals=CLIENTS[idx].goals||[];
   CLIENTS[idx].goals.push(goal);
-  saveAll();closeM('m-goal');renderCoach();
+  saveAll();showCoachSaved('Goal added ✓');closeM('m-goal');renderCoach();
   $('goal-desc').value='';
 }
 function deleteGoal(ci,gi){
@@ -3414,7 +3618,7 @@ function openM(id){
     openHint('No Clients Yet',
       '<p style="color:var(--text2);font-size:.88rem">You need to add a client before logging a session or setting a goal. Tap <strong style="color:var(--text)">+ Add Client</strong> to get started.</p>',
       '+ Add Client',
-      ()=>{closeM('m-hint');openM('m-client');}
+      ()=>{closeM('m-hint');openClientModal();}
     );
     return;
   }
@@ -3433,53 +3637,71 @@ function closeM(id){
   }
 }
 
+function openClientModal(i=null){
+  const isEdit = i!==null && i!==undefined;
+  const cl = isEdit ? CLIENTS[i] : null;
+  window._editingClientIndex = isEdit ? i : null;
+  const title=$('client-modal-title');
+  const saveBtn=$('client-save-btn');
+  if(title) title.textContent = isEdit ? 'EDIT CLIENT' : '+ ADD NEW CLIENT';
+  if(saveBtn){
+    saveBtn.textContent = isEdit ? 'Save Changes' : 'Add Client';
+    saveBtn.onclick = saveClient;
+  }
+  $('nc-name').value = cl?.name || '';
+  if($('nc-fullname')) $('nc-fullname').value = cl?.fullName || '';
+  $('nc-program').value = cl?.program || '';
+  $('nc-notes').value = cl?.notes || '';
+  $('nc-level').value = cl?.level || 'beginner';
+  ['nc-name','nc-fullname','nc-program','nc-notes'].forEach(id=>{ if($(id)) $(id).style.borderColor=''; });
+  $('nc-name').placeholder = isEdit ? 'Edit display name...' : 'e.g. AJ or Alex J.';
+  openM('m-client');
+  setTimeout(()=>{ const f=$('nc-name'); if(f){ f.focus(); if(f.select) f.select(); } },120);
+}
+
 function saveClient(){
   const name=$('nc-name').value.trim();
   if(!name){
     $('nc-name').style.borderColor='var(--red)';
-    $('nc-name').placeholder='← Name is required';
+    $('nc-name').placeholder='← Display name is required';
     setTimeout(()=>$('nc-name').focus(),100);
-    openHint('⚠️ Name Required','<p style="color:var(--text2);font-size:.88rem">Please enter the client\'s first name before saving.</p>','Got it',()=>{closeM('m-hint');setTimeout(()=>{openM('m-client');$('nc-name').focus();},200);});
+    openHint('⚠️ Name Required','<p style="color:var(--text2);font-size:.88rem">Please enter the client\'s display name before saving.</p>','Got it',()=>{closeM('m-hint');setTimeout(()=>{openClientModal(window._editingClientIndex);$('nc-name').focus();},200);});
     return;
   }
   const colors=['#00c851','#33b5e5','#ff9800','#9c27b0','#f44336','#009688','#ff5722'];
-  CLIENTS.push({name,level:$('nc-level').value,program:$('nc-program').value.trim(),notes:$('nc-notes').value.trim(),color:colors[CLIENTS.length%colors.length],sessions:[],skills:{laundry:0,budget:0,safety:0,food:0,independence:0},goals:[]});
-  saveAll();closeM('m-client');renderCoach();
-  ['nc-name','nc-program','nc-notes'].forEach(id=>$(id).value='');
-}
-
-function saveSession(){
-  const idx=parseInt($('log-cl').value);
-  if(isNaN(idx)||!CLIENTS[idx])return;
-  const s={module:$('log-mod').value,score:$('log-sc').value,prompt:PROMPT_SEL,notes:$('log-notes').value.trim(),date:today()};
-  CLIENTS[idx].sessions=CLIENTS[idx].sessions||[];
-  CLIENTS[idx].sessions.push(s);
-  const map={'Home Challenge':'challenge','Laundry Master':'laundry','Budget Basics':'budget','Home Safety':'safety','Food Safety':'food','Renting Basics':'renting','Daily Challenge':'challenge','Practice Mode':'challenge'};
-  const sk=map[s.module];
-  if(sk&&s.score){const p=s.score.split('/');if(p.length===2){const pct=Math.round(parseInt(p[0])/parseInt(p[1])*100);CLIENTS[idx].skills=CLIENTS[idx].skills||{};CLIENTS[idx].skills[sk]=Math.max(CLIENTS[idx].skills[sk]||0,pct);}}
-  saveAll();closeM('m-log');renderCoach();
-  $('log-sc').value='';$('log-notes').value='';
-}
-
-function selPrompt(el){
-  document.querySelectorAll('.pchip').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on');PROMPT_SEL=el.dataset.v;
+  const editing = window._editingClientIndex;
+  if(editing!==null && editing!==undefined){
+    CLIENTS[editing].name = name;
+    CLIENTS[editing].fullName = $('nc-fullname') ? $('nc-fullname').value.trim() : '';
+    CLIENTS[editing].program = $('nc-program').value.trim();
+    CLIENTS[editing].notes = $('nc-notes').value.trim();
+    CLIENTS[editing].level = $('nc-level').value;
+    CLIENTS[editing].archived = !!CLIENTS[editing].archived;
+    saveAll();showCoachSaved('Client updated ✓');closeM('m-client');renderCoach();
+  } else {
+    CLIENTS.push({
+      name,
+      fullName: $('nc-fullname') ? $('nc-fullname').value.trim() : '',
+      level: $('nc-level').value,
+      program: $('nc-program').value.trim(),
+      notes: $('nc-notes').value.trim(),
+      color: colors[CLIENTS.length%colors.length],
+      sessions: [],
+      skills: {laundry:0,budget:0,safety:0,food:0,independence:0},
+      goals: [],
+      archived: false
+    });
+    saveAll();showCoachSaved('Client added ✓');closeM('m-client');renderCoach();
+  }
+  window._editingClientIndex = null;
+  if($('client-modal-title')) $('client-modal-title').textContent = '+ ADD NEW CLIENT';
+  if($('client-save-btn')) $('client-save-btn').textContent = 'Add Client';
+  ['nc-name','nc-fullname','nc-program','nc-notes'].forEach(id=>{ if($(id)) { $(id).value=''; $(id).style.borderColor=''; } });
+  $('nc-level').value='beginner';
 }
 
 function editClient(i){
-  const cl=CLIENTS[i];
-  $('nc-name').value=cl.name;$('nc-program').value=cl.program||'';$('nc-notes').value=cl.notes||'';$('nc-level').value=cl.level||'beginner';
-  $('m-client').querySelector('.mt').textContent='✏ EDIT CLIENT';
-  $('m-client').querySelector('.msave').onclick=()=>{
-    CLIENTS[i].name=$('nc-name').value.trim()||cl.name;
-    CLIENTS[i].program=$('nc-program').value.trim();
-    CLIENTS[i].notes=$('nc-notes').value.trim();
-    CLIENTS[i].level=$('nc-level').value;
-    saveAll();closeM('m-client');renderCoach();
-    $('m-client').querySelector('.mt').textContent='+ ADD NEW CLIENT';
-    $('m-client').querySelector('.msave').onclick=saveClient;
-  };
-  openM('m-client');
+  openClientModal(i);
 }
 
 function editSkills(i){
@@ -3488,7 +3710,7 @@ function editSkills(i){
   const inp=Object.entries(names).map(([k,n])=>`<div class="fg"><label class="fl">${n} (%)</label><input class="fi" id="se-${k}" type="number" min="0" max="100" value="${sk[k]||0}"></div>`).join('');
   openHint(`Skills - ${cl.name}`,`<div>${inp}</div>`,'Save Skills',()=>{
     Object.keys(names).forEach(k=>{CLIENTS[i].skills[k]=Math.min(100,Math.max(0,parseInt($('se-'+k).value)||0));});
-    saveAll();closeM('m-hint');renderCoach();
+    saveAll();showCoachSaved('Skills updated ✓');closeM('m-hint');renderCoach();
   });
 }
 
@@ -3497,7 +3719,7 @@ function delClient(i){
     'Remove Client?',
     `<p style="color:var(--text2);font-size:.88rem">Are you sure you want to remove <strong style="color:var(--text)">${CLIENTS[i].name}</strong>? All their sessions and goals will be deleted.</p>`,
     'Yes, Remove',
-    ()=>{closeM('m-hint');CLIENTS.splice(i,1);saveAll();renderCoach();},
+    ()=>{closeM('m-hint');CLIENTS.splice(i,1);saveAll();showCoachSaved('Client removed ✓');renderCoach();},
     true
   );
 }
@@ -3507,7 +3729,7 @@ function exportCSV(){
   if(!CLIENTS.length){openHint('No Data','No clients to export yet. Add clients and log sessions first.',null,null);return;}
   let csv='Client Name,Program,Level,Date,Module,Score,Prompt Level,Notes\n';
   CLIENTS.forEach(cl=>{
-    (cl.sessions||[]).forEach(s=>{
+    getFilteredSessions(cl).forEach(s=>{
       const row=[
         `"${cl.name}"`,
         `"${cl.program||''}"`,
@@ -3527,9 +3749,9 @@ function exportCSV(){
 // ── CSV EXPORT (single client) ──
 function exportClientCSV(i){
   const cl=CLIENTS[i];
-  if(!(cl.sessions||[]).length){openHint('No Sessions','No sessions logged for '+cl.name+' yet.',null,null);return;}
+  if(!getFilteredSessions(cl).length){openHint('No Sessions','No sessions logged for '+cl.name+' in this date range yet. Try clearing the date range or logging a new session.',null,null);return;}
   let csv='Date,Module,Score,Prompt Level,Notes\n';
-  (cl.sessions||[]).forEach(s=>{
+  getFilteredSessions(cl).forEach(s=>{
     csv+=`"${s.date||s.dat||''}","${s.module}","${s.score}","${s.prompt||''}","${(s.notes||'').replace(/"/g,'""')}"\n`;
   });
   tryDownload(csv,`${cl.name.replace(/\s+/g,'-')}-Sessions-${today().replace(/\//g,'-')}.csv`,'text/csv');
@@ -3555,9 +3777,9 @@ function tryDownload(content, filename, type){
 
 function printReport(i){
   const cl=CLIENTS[i],sk=cl.skills||{};
-  const sess=(cl.sessions||[]).slice(-20).reverse();
+  const sess=getFilteredSessions(cl).slice(-20).reverse();
   const goals=(cl.goals||[]);
-  const html=`<!DOCTYPE html><html><head><title>Progress Report - ${cl.name}</title>
+  const html=`<!DOCTYPE html><html><head><title>HomeReady - ${cl.name}</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0;}
     body{font-family:Arial,sans-serif;padding:32px;max-width:720px;color:#222;font-size:14px;}
@@ -3600,7 +3822,7 @@ function printReport(i){
         Report generated: <strong>${today()}</strong>
       </div>
     </div>
-    <div class="header-badge">CashReady<br>Progress Report</div>
+    <div class="header-badge">HomeReady<br>Progress Report</div>
   </div>
 
   <h2>Skill Progress</h2>
@@ -3636,7 +3858,7 @@ ${cl.notes?`<h2>Accommodations & Notes</h2><div class="notes-box">${cl.notes}</d
   </table>`}
 
   <div class="footer">
-    <span>Generated by HomeReady - Free Life Skills Trainer</span>
+    <span>Generated by HomeReady - Free Home Skills Trainer</span>
     <span>${today()}</span>
   </bo`+`dy></ht`+`ml>`;
 
@@ -3660,7 +3882,7 @@ document.body.removeChild(a);
 setTimeout(()=>URL.revokeObjectURL(url),1000);
 }catch(e2){
 openHint('Print Report',
-'<p style="color:var(--text2);font-size:.88rem">To print this report, use the Export CSV button to save the data, or try opening CashReady in a different browser.</p>',
+'<p style="color:var(--text2);font-size:.88rem">To print this report, use the Export CSV button to save the data, or try opening HomeReady in a different browser.</p>',
 null,null);
 }
 }
@@ -3709,6 +3931,13 @@ const m=Math.floor(seconds/60);
 const s=Math.round(seconds%60);
 return `${m}:${s.toString().padStart(2,'0')}`;
 }
+function fmtElapsedSpeech(sec){
+const s=Math.max(0,Math.round(sec||0));
+const m=Math.floor(s/60), r=s%60;
+if(m && r) return `${m} minute${m!==1?'s':''} ${r} second${r!==1?'s':''}`;
+if(m) return `${m} minute${m!==1?'s':''}`;
+return `${r} second${r!==1?'s':''}`;
+}
 
 // ── Share score ──
 function copyForCoach(){
@@ -3722,8 +3951,8 @@ const text=`📋 HomeReady Session Report\n`+
 `Score: ${ST.score} points\n`+
 `Correct: ${ST.correct} / ${ST.total} (${pct}%)\n`+
 `Best Streak: ${ST.bestStreak}\n`+
-(elapsed>10?`Time: ${fmtElapsed(elapsed)}\n`:'')+
-`\nGenerated by HomeReady - Free Life Skills Trainer`;
+`Time: ${fmtElapsed(elapsed)}\n`+
+`\nGenerated by HomeReady - Free Home Skills Trainer`;
 navigator.clipboard.writeText(text).then(()=>{
 openHint('Copied for Coach! 📋','<p style="color:var(--text2);font-size:.88rem">Session report copied to clipboard. Paste it in a message, email, or notes app to share with your coach.</p>',null,null);
 }).catch(()=>{openHint('Session Report','<pre style="font-size:.75rem;color:var(--text2);white-space:pre-wrap">'+text+'</pre>',null,null);});
@@ -3769,7 +3998,7 @@ if(oc)oc.style.display=(CFG.playerNamePrompted&&!CFG.onboardingSeen)?'block':'no
 
 const bc=BADGES.size;
 $('badge-ct').textContent=bc>0?`${bc} earned`:'None yet';
-$('badge-ct').style.color=bc>0?'var(-amber)':'var(-text3)';
+$('badge-ct').style.color=bc>0?'var(--amber)':'var(-text3)';
 
 // Desktop sidebar
 const sidebar=$('desktop-sidebar');
@@ -4224,6 +4453,49 @@ window.go = go;
 // ════════════════════════════════════════════════
 //  MAKING CHANGE DRILL
 // ════════════════════════════════════════════════
+
+function showMiniGamePopupFeedback(ok, detail, nextFn, isLast, titleOk='CORRECT!', titleBad='NOT QUITE'){
+  const smartTitle = ok ? titleOk : titleBad;
+  const smartMsg = ok
+    ? (titleOk==='YOUR FIRST ONE!' ? 'Nice start!' : titleOk==='ON FIRE!' ? 'Amazing streak!' : titleOk==='GREAT JOB!' ? 'Great job!' : 'Good job.')
+    : (titleBad==='ALMOST THERE' ? 'Almost there.' : titleBad==='KEEP GOING' ? 'Keep going.' : titleBad==='GOOD TRY' ? 'Good try.' : titleBad==='STREAK PAUSED' ? 'Streak paused.' : 'Not quite.');
+
+  $('femoji').textContent = ok ? '✅' : '❌';
+  $('ftitle').textContent = smartTitle;
+  $('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
+  $('fmsg').textContent = detail || smartMsg;
+
+  const ex = $('fexplain');
+  if(ex){
+    ex.textContent = detail || '';
+    ex.style.display = detail ? 'block' : 'none';
+  }
+  const feoc = $('feoc'); if(feoc) feoc.style.display='none';
+  $('fcard').className = 'fcard' + (ok ? '' : ' wrong');
+
+  const fn = $('fnext');
+  if(fn){
+    fn.className = 'fnext ' + (ok ? '' : 'bad');
+    fn.textContent = isLast ? 'SEE RESULTS →' : 'NEXT →';
+    fn.onclick = nextFn;
+  }
+
+  $('fov').classList.add('on');
+  clearTimeout(window._fbSpeechTimer);
+  window._fbSpeechTimer = setTimeout(()=>say(smartTitle.replace(/!/g,'') + '. ' + (detail || smartMsg)), 120);
+}
+
+function sayCurrentCDQuestion(){
+  if(!CD || !CD.qs || !CD.qs[CD.idx]) return;
+  const q = CD.qs[CD.idx];
+  say(`Item costs ${fmtSay(q.price)}. Customer paid ${fmtSay(q.paid)}. How much change?`);
+}
+
+function sayCurrentBDQuestion(){
+  if(!BD || !BD.qs || !BD.qs[BD.idx]) return;
+  say(BD.qs[BD.idx].q);
+}
+
 const CD_QS=[
 {price:75,paid:100},{price:50,paid:100},{price:25,paid:100},
 {price:150,paid:200},{price:175,paid:200},{price:125,paid:200},
@@ -4231,7 +4503,7 @@ const CD_QS=[
 {price:149,paid:200},{price:299,paid:300},{price:450,paid:500},
 {price:625,paid:700},{price:199,paid:200},{price:349,paid:400},
 ];
-let CD={qs:[],idx:0,score:0,answered:false};
+let CD={qs:[],idx:0,score:0,streak:0,answered:false};
 function startChangeDrill(){go("home");}
 function buildCDDots(){
 const c=(($('cd-dots')||document.createElement('div'))||{});if(!c)return;c.innerHTML='';
@@ -4243,16 +4515,15 @@ if(i<CD.idx)d.className='pd done';else if(i===CD.idx)d.className='pd cur';else d
 }
 function renderCD(){
 CD.answered=false;
-const q=CD.qs[CD.idx];if(!q)return;
+const q=CD.qs[CD.idx]; if(!q) return;
 (($('cd-score')||document.createElement('div'))||{}).textContent=CD.score;
 updCDDots();
 const change=q.paid-q.price;
-// Generate wrong answers - nearby amounts
 const wrongs=[-25,-10,10,25,50,-50,5,-5].map(d=>change+d).filter(v=>v>0&&v!==change);
 const opts=shuf([change,...shuf(wrongs).slice(0,3)]);
 const optHTML=opts.map(o=>`<button class="qo" onclick="answerCD(${o},${change})">${fmt(o)}</button>`).join('');
-(($('cd-content')||document.createElement('div'))||{}).innerHTML=` <div class="qpanel"> <div class="qq">Item costs <strong style="color:var(--green)">${fmt(q.price)}</strong>.<br>Customer paid <strong style="color:var(--amber)">${fmt(q.paid)}</strong>.<br>How much change?</div> <div style="display:flex;gap:10px;justify-content:center;margin:10px 0 16px"> <div style="background:var(--bg3);border:2px solid var(--green);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--green)">${fmt(q.price)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Price</div> </div> <div style="font-size:1.5rem;color:var(--text3);display:flex;align-items:center">→</div> <div style="background:var(--bg3);border:2px solid var(--amber);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">${fmt(q.paid)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Paid</div> </div> </div> <div class="qopts" id="cd-opts">${optHTML}</div> <div class="qfb" id="cd-fb"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="// HomeReady uses text-based questions, not cashange?')">🔊 SAY AGAIN</button> <button class="dbtn" id="cd-next" onclick="nextCD()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button> </div>`;
-say(`Item costs ${fmtSay(q.price)}. Customer paid ${fmtSay(q.paid)}. How much change?`);
+(($('cd-content')||document.createElement('div'))||{}).innerHTML=`<div class="progress-text" id="cd-progress-text" style="font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:1px;margin:0 0 8px;text-transform:uppercase;">Question ${CD.idx+1} of ${CD.qs.length}</div><div class="qpanel"><div class="qq">Item costs <strong style="color:var(--green)">${fmt(q.price)}</strong>.<br>Customer paid <strong style="color:var(--amber)">${fmt(q.paid)}</strong>.<br>How much change?</div><div style="display:flex;gap:10px;justify-content:center;margin:10px 0 16px"><div style="background:var(--bg3);border:2px solid var(--green);border-radius:10px;padding:10px 18px;text-align:center"><div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--green)">${fmt(q.price)}</div><div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Price</div></div><div style="font-size:1.5rem;color:var(--text3);display:flex;align-items:center">→</div><div style="background:var(--bg3);border:2px solid var(--amber);border-radius:10px;padding:10px 18px;text-align:center"><div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">${fmt(q.paid)}</div><div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Paid</div></div></div><div class="qopts" id="cd-opts">${optHTML}</div></div><div style="display:flex;gap:8px;margin-top:8px"><button class="abtn" style="flex:1" onclick="sayCurrentCDQuestion()">🔊 SAY AGAIN</button></div>`;
+sayCurrentCDQuestion();
 }
 function fmtSay(cents){
 if(cents%100===0)return`${cents/100} dollar${cents/100!==1?'s':''}`;
@@ -4262,30 +4533,31 @@ function answerCD(chosen,correct){
 if(CD.answered)return;
 CD.answered=true;
 const ok=chosen===correct;
-if(ok){CD.score++;chime();if(!CFG.nomotion)confetti();}else{buzz();}
+const prevStreak=CD.streak||0;
+if(ok){CD.score++;CD.streak=(CD.streak||0)+1;chime();if(!CFG.nomotion)confetti();}else{CD.streak=0;buzz();}
 document.querySelectorAll('#cd-opts .qo').forEach(b=>{
-b.disabled=true;
-const v=Math.round(parseFloat(b.textContent.replace('$',''))*100);
-if(v===correct)b.classList.add('ok');
-else if(v===chosen&&!ok)b.classList.add('bad');
+  b.disabled=true;
+  const v=Math.round(parseFloat(b.textContent.replace('$',''))*100);
+  if(v===correct)b.classList.add('ok');
+  else if(v===chosen&&!ok)b.classList.add('bad');
 });
 (($('cd-score')||document.createElement('div'))||{}).textContent=CD.score;
-const fb=$('cd-fb');
-if(fb){
-fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
 const q=CD.qs[CD.idx];
-fb.textContent=ok?'✅ Correct! '+fmt(correct)+' change.':'❌ The correct change is '+fmt(correct)+'. ('+fmt(q.paid)+' paid - '+fmt(q.price)+' price = '+fmt(correct)+')';
-}
-const nxt=$('cd-next');
-if(nxt){nxt.style.display='block';nxt.textContent=CD.idx+1>=CD.qs.length?'SEE RESULTS →':'NEXT →';}
-say(ok?'Correct!':'Not quite. The answer is '+fmt(correct));
+const detail=ok
+  ? `${fmt(correct)} change.`
+  : `The correct change is ${fmt(correct)}. ${fmt(q.paid)} paid minus ${fmt(q.price)} price equals ${fmt(correct)}.`;
+const titleOk = CD.score===1 ? 'YOUR FIRST ONE!' : CD.streak>=5 ? 'ON FIRE!' : CD.streak>=3 ? 'GREAT JOB!' : 'CORRECT!';
+const titleBad = CD.idx===0 ? 'GOOD TRY' : prevStreak>=3 ? 'STREAK PAUSED' : rand(['NOT QUITE','ALMOST THERE','KEEP GOING']);
+showMiniGamePopupFeedback(ok, detail, nextCD, CD.idx+1>=CD.qs.length, titleOk, titleBad);
 }
 function nextCD(){
+clearPopupSpeech();
+$('fov').classList.remove('on');
 CD.idx++;
 if(CD.idx>=CD.qs.length){
 const pct=Math.round(CD.score/CD.qs.length*100);
 const grade=pct===100?'A+':pct>=90?'A':pct>=80?'B':pct>=60?'C':'D';
-const gc=pct>=80?'var(--green)':pct>=60?'var(-amber)':'var(--red)';
+const gc=pct>=80?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
 SCORES.unshift({mode:'Change Drill',score:CD.score*10,correct:CD.score,total:CD.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('change_drill_ace');
@@ -4293,7 +4565,7 @@ if(!CFG.nomotion&&pct>=80)confetti();
 say(`Done! You got ${CD.score} out of ${CD.qs.length}!`);
 updateHomeUI();
 (($('cd-dots')||document.createElement('div'))||{}).innerHTML='';
-(($('cd-content')||document.createElement('div'))||{}).innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--green);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${CD.score} of ${CD.qs.length}</strong> correct · ${pct}%</div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:0 0 18px;text-align:left"> ${pct===100?'Flawless! You\'re a change-making machine.':pct>=80?'Strong work! Enable Count-Up Guide in Settings to see the counting method.':'Try enabling Count-Up Guide in Settings - it shows you how to count forward instead of subtract.'} </div> <button class="dbtn" onclick="startChangeDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
+(($('cd-content')||document.createElement('div'))||{}).innerHTML=`<div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"><div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${grade}</div><div style="font-family:var(--font-mono);font-size:.9rem;color:var(--green);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div><div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${CD.score} of ${CD.qs.length}</strong> correct · ${pct}%</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:0 0 18px;text-align:left">${pct===100?'Flawless! You\'re a change-making machine.':pct>=80?'Strong work! Enable Count-Up Guide in Settings to see the counting method.':'Try enabling Count-Up Guide in Settings - it shows you how to count forward instead of subtract.'}</div><button class="dbtn" onclick="startChangeDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button><button class="rsec" onclick="go('home')" style="width:100%">← HOME</button></div>`;
 return;
 }
 renderCD();
@@ -4341,7 +4613,7 @@ function drawBillSVG(val){
 const b=BILL_DATA.find(x=>x.val===val)||BILL_DATA[0];
 return `<svg viewBox="0 0 280 130" width="280" height="130" style="max-width:100%;border-radius:8px;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5))"> <rect x="2" y="2" width="276" height="126" rx="8" ry="8" fill="#1a2e1a" stroke="#4a7a3a" stroke-width="3"/> <rect x="8" y="8" width="264" height="114" rx="5" ry="5" fill="none" stroke="#3a6a2a" stroke-width="1.5"/> <circle cx="140" cy="65" r="38" fill="none" stroke="#4a7a3a" stroke-width="1.5" opacity=".4"/> <circle cx="140" cy="65" r="30" fill="#2a4a2a" stroke="#4a7a3a" stroke-width="1"/> <text x="140" y="71" text-anchor="middle" font-family="serif" font-size="18" font-weight="bold" fill="#7abf6a">${b.symbol}</text> <text x="30" y="42" font-family="monospace" font-size="22" font-weight="bold" fill="#8fd080">${b.symbol}</text> <text x="222" y="42" font-family="monospace" font-size="22" font-weight="bold" fill="#8fd080">${b.symbol}</text> <text x="30" y="100" font-family="monospace" font-size="22" font-weight="bold" fill="#8fd080">${b.symbol}</text> <text x="222" y="100" font-family="monospace" font-size="22" font-weight="bold" fill="#8fd080">${b.symbol}</text> <text x="140" y="118" text-anchor="middle" font-family="serif" font-size="9" fill="#5a8a4a" letter-spacing="3">${b.back}</text> <text x="140" y="24" text-anchor="middle" font-family="serif" font-size="8" fill="#5a8a4a" letter-spacing="1">THE UNITED STATES OF AMERICA</text> </svg>`;
 }
-let BD={qs:[],idx:0,score:0,answered:false};
+let BD={qs:[],idx:0,score:0,streak:0,answered:false};
 function startBillDrill(){go("home");}
 function buildBDDots(){
 const c=(($('bd-dots')||document.createElement('div'))||{});if(!c)return;c.innerHTML='';
@@ -4353,36 +4625,37 @@ if(i<BD.idx)d.className='pd done';else if(i===BD.idx)d.className='pd cur';else d
 }
 function renderBD(){
 BD.answered=false;
-const q=BD.qs[BD.idx];if(!q)return;
+const q=BD.qs[BD.idx]; if(!q) return;
 (($('bd-score')||document.createElement('div'))||{}).textContent=BD.score;
 updBDDots();
 const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerBD('${o.replace(/'/g,"\\'")}','${q.correct.replace(/'/g,"\\'")}','${(q.explain||'').replace(/'/g,"\\'")}')">${o}</button>`).join('');
-(($('bd-content')||document.createElement('div'))||{}).innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> <div style="text-align:center;margin:10px 0 14px">${drawBillSVG(q.billVal)}</div> <div class="qopts" id="bd-opts">${optHTML}</div> <div class="qfb" id="bd-fb"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="say(BD.qs[BD.idx].q)">🔊 SAY AGAIN</button> <button class="dbtn" id="bd-next" onclick="nextBD()" style="display:none;flex:1;padding:13px;font-size:.82rem">NEXT →</button> </div>`;
-say(q.q);
+(($('bd-content')||document.createElement('div'))||{}).innerHTML=`<div class="progress-text" id="bd-progress-text" style="font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:1px;margin:0 0 8px;text-transform:uppercase;">Question ${BD.idx+1} of ${BD.qs.length}</div><div class="qpanel"><div class="qq">${q.q}</div><div style="text-align:center;margin:10px 0 14px">${drawBillSVG(q.billVal)}</div><div class="qopts" id="bd-opts">${optHTML}</div></div><div style="display:flex;gap:8px;margin-top:8px"><button class="abtn" style="flex:1" onclick="sayCurrentBDQuestion()">🔊 SAY AGAIN</button></div>`;
+sayCurrentBDQuestion();
 }
 function answerBD(chosen,correct,explain){
 if(BD.answered)return;
 BD.answered=true;
 const ok=chosen===correct;
-if(ok){BD.score++;chime();if(!CFG.nomotion)confetti();}else{buzz();}
+const prevStreak=BD.streak||0;
+if(ok){BD.score++;BD.streak=(BD.streak||0)+1;chime();if(!CFG.nomotion)confetti();}else{BD.streak=0;buzz();}
 document.querySelectorAll('#bd-opts .qo').forEach(b=>{
-b.disabled=true;
-if(b.textContent.trim()===correct)b.classList.add('ok');
-else if(b.textContent.trim()===chosen&&!ok)b.classList.add('bad');
+  b.disabled=true;
+  if(b.textContent.trim()===correct)b.classList.add('ok');
+  else if(b.textContent.trim()===chosen&&!ok)b.classList.add('bad');
 });
 (($('bd-score')||document.createElement('div'))||{}).textContent=BD.score;
-const fb=$('bd-fb');
-if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
-fb.innerHTML=(ok?'✅ Correct! ':'❌ Not quite. ')+(explain?`<div class="fexplain" style="display:block;margin-top:8px">${explain}</div>`:'');}
-const nxt=$('bd-next');
-if(nxt){nxt.style.display='block';nxt.textContent=BD.idx+1>=BD.qs.length?'SEE RESULTS →':'NEXT →';}
-say(ok?'Correct!':'Not quite. '+correct);
+const detail = explain || (ok ? 'Correct.' : `The correct answer is ${correct}.`);
+const titleOk = BD.score===1 ? 'YOUR FIRST ONE!' : BD.streak>=5 ? 'ON FIRE!' : BD.streak>=3 ? 'GREAT JOB!' : 'CORRECT!';
+const titleBad = BD.idx===0 ? 'GOOD TRY' : prevStreak>=3 ? 'STREAK PAUSED' : rand(['NOT QUITE','ALMOST THERE','KEEP GOING']);
+showMiniGamePopupFeedback(ok, detail, nextBD, BD.idx+1>=BD.qs.length, titleOk, titleBad);
 }
 function nextBD(){
+clearPopupSpeech();
+$('fov').classList.remove('on');
 BD.idx++;
 if(BD.idx>=BD.qs.length){
 const pct=Math.round(BD.score/BD.qs.length*100);
-const gc=pct>=80?'var(--green)':pct>=60?'var(-amber)':'var(--red)';
+const gc=pct>=80?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
 SCORES.unshift({mode:'Bill Recognition',score:BD.score*10,correct:BD.score,total:BD.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('bill_ace');
@@ -4390,7 +4663,7 @@ if(!CFG.nomotion&&pct>=80)confetti();
 say(`Done! You got ${BD.score} out of ${BD.qs.length}!`);
 updateHomeUI();
 (($('bd-dots')||document.createElement('div'))||{}).innerHTML='';
-(($('bd-content')||document.createElement('div'))||{}).innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${pct===100?'A+':pct>=80?'A':pct>=60?'B':'C'}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--green);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${BD.score} of ${BD.qs.length}</strong> correct · ${pct}%</div> <button class="dbtn" onclick="startBillDrill()" style="margin-bottom:10px;width:100%">💵 DRILL AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
+(($('bd-content')||document.createElement('div'))||{}).innerHTML=`<div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"><div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${pct===100?'A+':pct>=80?'A':pct>=60?'B':'C'}</div><div style="font-family:var(--font-mono);font-size:.9rem;color:var(--green);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div><div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${BD.score} of ${BD.qs.length}</strong> correct · ${pct}%</div><button class="dbtn" onclick="startBillDrill()" style="margin-bottom:10px;width:100%">💵 DRILL AGAIN</button><button class="rsec" onclick="go('home')" style="width:100%">← HOME</button></div>`;
 return;
 }
 renderBD();
@@ -4453,7 +4726,7 @@ SCORES = SCORES.slice(0, 30);
 saveAll();
 // Show results
 const grade=pct===100?'A+':pct>=90?'A':pct>=80?'B':pct>=70?'C':'D';
-const gradeColor=pct>=80?'var(--green)':pct>=70?'var(-amber)':'var(--red)';
+const gradeColor=pct>=80?'var(--green)':pct>=70?'var(--amber)':'var(--red)';
 document.getElementById('dihe-content').innerHTML = ` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:var(--font-display);font-size:4rem;color:${gradeColor};text-shadow:0 0 20px ${gradeColor}33;margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:${gradeColor};margin-bottom:4px;letter-spacing:2px"> ${pct >= 80 ? 'SMART SHOPPER!' : pct >= 60 ? 'GETTING THERE!' : 'KEEP PRACTICING!'} </div> <div style="font-size:.88rem;color:var(--text2);margin-bottom:6px"> <strong style="color:var(--amber)">${DIHE_STATE.score} out of ${DIHE_STATE.maxQ}</strong> correct · ${pct}% </div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:11px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:14px 0 20px;text-align:left"> ${pct===100?'Perfect! You always know if you have enough money - that\'s a real life skill.': pct>=80?'Great work! Knowing builds real-world skills and confidence.': pct>=60?'You\'re getting it! Keep practicing and you\'ll be a smart shopper in no time.': 'Keep going! This skill takes practice. Try the Money Guide for help with coin values.'} </div> <button class="dbtn" onclick="startDIHE()" style="margin-bottom:10px;width:100%">🔄 PLAY AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
 say(`Done! You got ${DIHE_STATE.score} out of ${DIHE_STATE.maxQ}!`);
 if(!CFG.nomotion&&pct>=80) confetti();
@@ -4484,6 +4757,19 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   });
 }
 </script>
+
+
+<div class="mow" id="m-date-range">
+  <div class="mdl">
+    <div class="mt">📅 COACH DATE RANGE</div>
+    <div class="fg"><label class="fl">Start Date</label><input class="fi" id="coach-date-start" type="date"></div>
+    <div class="fg"><label class="fl">End Date</label><input class="fi" id="coach-date-end" type="date"></div>
+    <div class="mbtns">
+      <button class="mcancel" onclick="clearCoachRange()">Clear</button>
+      <button class="msave" onclick="saveCoachRange()">Apply Range</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

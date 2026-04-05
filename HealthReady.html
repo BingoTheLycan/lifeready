@@ -13,6 +13,8 @@
 <title>HealthReady - Health &amp; Life Skills Trainer</title>
 <!-- Shared app manifest -->
 <link href="manifest.json" rel="manifest"/>
+<link href="icon_512.png" rel="icon"/>
+<link href="icon_192.png" rel="apple-touch-icon"/>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Space+Mono:wght@400;700&amp;family=Nunito:wght@400;600;700;800;900&amp;family=Fredoka+One&amp;display=swap" rel="stylesheet"/>
 <style>
 /* ═══════════════════════════════════════════════════════
@@ -1118,16 +1120,26 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div class="scr" id="scr-coach">
 <div class="coach-hdr">
+<div>
 <div class="coach-title">📋 HEALTH SKILLS COACH DASHBOARD</div>
+<div id="coach-save-indicator" style="display:none;margin-top:6px;font-family:var(--font-mono);font-size:.66rem;color:var(--green);letter-spacing:1.5px">Saved ✓</div>
+</div>
 <div class="cacts">
 <button class="cbt" onclick="printCoachReport()">🖨️ Print Report</button>
 <button class="cbt" onclick="exportCSV()" title="Download all session data as spreadsheet">📥 Export CSV</button>
+<button class="cbt" onclick="openCoachRange()">📅 Date Range</button>
 <button class="cbt" onclick="openM('m-goal')">＋ Add Goal</button>
 <button class="cbt" onclick="openM('m-log')">＋ Log Session</button>
-<button class="cbt pri" onclick="openM('m-client')">＋ Add Client</button>
+<button class="cbt pri" onclick="openClientModal()">＋ Add Client</button>
 <button class="cbt" onclick="CFG.coachWelcomeSeen=false;renderCoach();showCoachWelcome();" style="font-size:.65rem;letter-spacing:.5px">? How It Works</button>
+
+<div style="display:flex;justify-content:flex-end;margin:10px 0">
+  <button class="cbt" onclick="toggleArchivedView()" id="arch-toggle-btn">🗂 Show Archived (0)</button>
+</div>
+
 </div>
 </div>
+<div id="coach-range-label" style="display:none;margin:-4px 0 14px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);font-family:var(--font-mono);font-size:.7rem;color:var(--text2);letter-spacing:1px"></div>
 <!-- First-time welcome card -->
 <div id="coach-welcome" style="position:relative;z-index:1;display:none;background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:18px;margin-bottom:16px;animation:fadeUp .4s ease">
 <div style="font-family:var(--font-mono);font-size:.8rem;color:var(--green);letter-spacing:2px;margin-bottom:8px">👋 WELCOME, COACH!</div>
@@ -1220,8 +1232,8 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <!-- About blurb -->
 <div class="dsb-card">
-<div class="dsb-title">ℹ️ About HomeReady</div>
-<p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free home skills trainer for everyone. Practice laundry, budgeting, food safety, and independent living - at your own pace.</p>
+<div class="dsb-title">ℹ️ About HealthReady</div>
+<p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free health skills trainer for everyone. Practice prescriptions, doctor visits, insurance, emergencies, and everyday wellness - at your own pace.</p>
 <button class="rsec" onclick="go('about')" style="width:100%;font-size:.78rem;padding:8px">Read Our Story →</button>
 </div>
 </aside>
@@ -1237,10 +1249,23 @@ max-width:320px;width:calc(100% - 32px);
 <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1px;max-width:260px;text-align:center">Your shift will be waiting when you come back.</div>
 </div>
 <!-- ══ MODALS ══ -->
+<div class="mow" id="m-range">
+<div class="mdl">
+<div class="mt">📅 COACH DATE RANGE</div>
+<div class="fg"><label class="fl">Start Date</label><input class="fi" id="range-start" type="date"/></div>
+<div class="fg"><label class="fl">End Date</label><input class="fi" id="range-end" type="date"/></div>
+<div style="font-size:.76rem;color:var(--text2);line-height:1.6;margin:-4px 0 8px">Use this to focus reports, charts, and exports on a specific time period.</div>
+<div class="mbtns">
+<button class="mcancel" onclick="clearCoachRange()">Clear</button>
+<button class="msave" onclick="saveCoachRange()">Apply Range</button>
+</div>
+</div>
+</div>
 <div class="mow" id="m-client">
 <div class="mdl">
 <div class="mt">+ ADD NEW CLIENT</div>
-<div class="fg"><label class="fl">Full Name</label><input class="fi" id="nc-name" placeholder="e.g. Alex Johnson"/></div>
+<div class="fg"><label class="fl">Initials / Display Name</label><input class="fi" id="nc-name" placeholder="e.g. AJ or Alex J."/></div>
+<div class="fg"><label class="fl">Private Full Name (optional)</label><input class="fi" id="nc-fullname" placeholder="Stored privately for staff use only"/></div>
 <div class="fg"><label class="fl">Starting Level</label>
 <select class="fsel" id="nc-level">
 <option value="beginner">Beginner - Just starting out</option>
@@ -1641,8 +1666,8 @@ max-width:320px;width:calc(100% - 32px);
 </div>
 <div style="background:rgba(204,34,0,0.08);border:1px solid rgba(204,34,0,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
 <div style="font-size:1.2rem">📱</div>
-<div style="font-family:var(--font-mono);font-size:.7rem;color:#cc2200;font-weight:700;margin-top:4px">TechReady</div>
-<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Digital Skills</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#cc2200;font-weight:700;margin-top:4px">HealthReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Health Skills</div>
 </div>
 <div style="background:rgba(233,30,140,0.15);border:2px solid #e91e8c;border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
 <div style="font-size:1.2rem">🏥</div>
@@ -1910,12 +1935,12 @@ function showLTab(tab,btn){
 
 function loadAll(){
   try{
-    CFG=JSON.parse(localStorage.getItem('hlr_cfg'))||{audio:true,colorblind:false,colorblindMode:'none',largetext:false,largebtns:false,nomotion:false,breaks:false,errorless:false,countup:false,hicontrast:false,lightmode:false,speed:'normal',dailyStreak:0,lastDaily:'',playerName:null,playerNamePrompted:false,coachPin:null,coachWelcomeSeen:false,onboardingSeen:false,appOpens:0,uniqueDays:[],settingsUsed:0,settingsToggled:{},modesPlayed:{},hintlessStreak:0};
+    CFG=JSON.parse(localStorage.getItem('hlr_cfg'))||{audio:true,colorblind:false,colorblindMode:'none',largetext:false,largebtns:false,nomotion:false,breaks:false,errorless:false,countup:false,hicontrast:false,lightmode:false,speed:'normal',dailyStreak:0,lastDaily:'',playerName:null,playerNamePrompted:false,coachPin:null,coachWelcomeSeen:false,onboardingSeen:false,appOpens:0,uniqueDays:[],settingsUsed:0,settingsToggled:{},modesPlayed:{},hintlessStreak:0,coachRange:null};
     CLIENTS=JSON.parse(localStorage.getItem('hlr_clients'))||[];
     SCORES=JSON.parse(localStorage.getItem('hlr_scores'))||[];
     BADGES=new Set(JSON.parse(localStorage.getItem('hlr_badges'))||[]);
   }catch(e){
-    CFG={audio:true,colorblind:false,colorblindMode:'none',largetext:false,largebtns:false,nomotion:false,breaks:false,errorless:false,countup:false,hicontrast:false,lightmode:false,speed:'normal',dailyStreak:0,lastDaily:'',playerName:null,playerNamePrompted:false,coachPin:null,coachWelcomeSeen:false,appOpens:0,uniqueDays:[],settingsUsed:0,settingsToggled:{},modesPlayed:{},onboardingSeen:false};
+    CFG={audio:true,colorblind:false,colorblindMode:'none',largetext:false,largebtns:false,nomotion:false,breaks:false,errorless:false,countup:false,hicontrast:false,lightmode:false,speed:'normal',dailyStreak:0,lastDaily:'',playerName:null,playerNamePrompted:false,coachPin:null,coachWelcomeSeen:false,appOpens:0,uniqueDays:[],settingsUsed:0,settingsToggled:{},modesPlayed:{},onboardingSeen:false,coachRange:null};
     CLIENTS=[];SCORES=[];BADGES=new Set();
   }
 }
@@ -1957,7 +1982,7 @@ function makeTappable(screenId){
       say(txt.trim());
     });
   });
-  // guide-card elements (TechReady, HealthReady specialized guides)
+  // guide-card elements (HealthReady, HealthReady specialized guides)
   // Override any hardcoded onclick with full gc-body text
   el.querySelectorAll('.guide-card').forEach(card=>{
     card.setAttribute('data-tts','1');
@@ -2001,7 +2026,7 @@ function makeTappable(screenId){
 function go(id){
   // Cancel speech when navigating, but not if a badge is currently being announced
   const _badgeShowing=document.getElementById('badge-toast')?.classList.contains('show');
-  if(window.speechSynthesis && !_badgeShowing) window.speechSynthesis.cancel();
+  clearTimeout(window._fbSpeechTimer); if(window.speechSynthesis && !_badgeShowing) window.speechSynthesis.cancel();
   document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   const el=document.getElementById('scr-'+id);
@@ -2653,6 +2678,8 @@ function answerQ(chosen){
     if(i===correctIndex) btn.classList.add('ok');
     else if(i===chosen && !ok) btn.classList.add('bad');
   });
+  const prevStreak = ST.streak||0;
+  const attemptNum = (ST.total||0);
   if(ok){
     ST.correct++; ST.streak++; ST.bestStreak=Math.max(ST.bestStreak,ST.streak);
     if(ST.mode!=='practice') ST.score+=Math.max(10,10+ST.streak*2);
@@ -2665,7 +2692,7 @@ function answerQ(chosen){
   $('g-score').textContent=ST.score;
   {const _z=$('g-lvl');if(_z)_z.textContent=getLvl(ST.score).n;}
   const CORRECT=['Great thinking!','Correct!','That\'s right!','Nailed it!','Yes! Good health knowledge!','Right on!'];
-  const WRONG=['Not quite - the right answer is shown.','Almost! Read why below.','That\'s okay - the right answer is shown.','Not this time. Keep going!'];
+  const WRONG=['Not quite - the right answer is shown.','Almost! ','That\'s okay - the right answer is shown.','Not this time. Keep going!'];
   const explain = currentQ.explain || '';
 
   const fb=$('g-fb');
@@ -2680,12 +2707,27 @@ function answerQ(chosen){
 
   setTimeout(()=>{
     const femoji=$('femoji'), ftitle=$('ftitle'), fmsg=$('fmsg'), fexplain=$('fexplain'), fcard=$('fcard');
+    const smartTitle = ok
+      ? ((ST.correct||0)===1 ? 'YOUR FIRST ONE!' : (ST.streak>=5 ? 'ON FIRE!' : (ST.streak>=3 ? 'GREAT JOB!' : 'CORRECT!')))
+      : (attemptNum<=1 ? 'GOOD TRY' : (prevStreak>=3 ? 'STREAK PAUSED' : rand(['NOT QUITE','ALMOST THERE','KEEP GOING'])));
+    const smartMsg = ok
+      ? ((ST.correct||0)===1 ? 'Nice start!' : (ST.streak>=5 ? 'Amazing streak!' : (ST.streak>=3 ? 'Great job!' : rand(CORRECT))))
+      : (smartTitle==='GOOD TRY'
+          ? 'Good try. Keep going!'
+          : smartTitle==='STREAK PAUSED'
+            ? 'Streak paused. Keep going!'
+            : smartTitle==='ALMOST THERE'
+              ? 'Almost there. '
+              : smartTitle==='KEEP GOING'
+                ? 'Keep going. '
+                : 'Not quite. ');
+
     if(femoji) femoji.textContent = ok ? '✅' : '❌';
     if(ftitle){
-      ftitle.textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+      ftitle.textContent = smartTitle;
       ftitle.className = 'ftitle ' + (ok ? 'ok' : 'bad');
     }
-    if(fmsg) fmsg.textContent = ok ? rand(CORRECT) : rand(WRONG);
+    if(fmsg) fmsg.textContent = smartMsg;
     if(fexplain){
       fexplain.textContent = explain;
       fexplain.style.display = explain ? 'block' : 'none';
@@ -2699,9 +2741,12 @@ function answerQ(chosen){
     }
     const feoc=$('feoc'); if(feoc) feoc.style.display='none';
     $('fov').classList.add('on');
-    say(ok
-      ? ('Correct. ' + (explain || 'Great job.'))
-      : ('Not quite. ' + (explain || 'The right answer is shown.')));
+    clearTimeout(window._fbSpeechTimer);
+    window._fbSpeechTimer=setTimeout(()=>say(
+      ok
+        ? ((smartTitle.replace('!','') + '. ') + (explain || smartMsg))
+        : ((smartTitle.replace('!','') + '. ') + (explain || smartMsg))
+    ),120);
   },300);
 }
 
@@ -2717,7 +2762,7 @@ function doHint(btn){
 }
 
 function nextQ_game(){
-  $('fov').classList.remove('on');
+  clearTimeout(window._fbSpeechTimer); $('fov').classList.remove('on');
   const fb=$('g-fb'); if(fb){ fb.style.display='none'; fb.innerHTML=''; fb.className='qfb'; }
   const fx=$('fexplain'); if(fx){ fx.style.display='none'; fx.textContent=''; }
   updateProgressText();
@@ -2903,15 +2948,17 @@ function checkBadges(){
 
 
 function endSession(early=false){
-  $('fov').classList.remove('on'); txCountForBreak=0;
+  clearTimeout(window._fbSpeechTimer); $('fov').classList.remove('on'); txCountForBreak=0;
   if(ST.mode==='practice'){
     const total=ST.total||0, correct=ST.correct||0, hints=ST.hintsUsed||0;
-    const ps=$('practice-summary'); if(ps) ps.textContent=`You answered ${total} questions · ${correct} correct · Hints used: ${hints}`;
+    const elapsed=ST.startTime?(Date.now()-ST.startTime)/1000:0;
+    const ps=$('practice-summary'); if(ps) ps.textContent=`You answered ${total} questions · ${correct} correct · Hints used: ${hints} · Time: ${fmtElapsed(elapsed)}`;
+    if(window.speechSynthesis) window.speechSynthesis.cancel();
     document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
     $('scr-practice-complete').classList.add('on');
     window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
     updateHomeUI();
-    setTimeout(()=>say(`Practice mode complete. You answered ${total} questions, got ${correct} correct, and used ${hints} hint${hints!==1?'s':''}.`),140);
+    setTimeout(()=>say(`Practice mode complete. You answered ${total} questions, got ${correct} correct, used ${hints} hint${hints!==1?'s':''}, and finished in ${fmtElapsedSpeech(elapsed)}.`),220);
     return;
   }
   if(ST.mode==='daily'&&!early){
@@ -2962,7 +3009,7 @@ function endSession(early=false){
   }
   saveAll();
   // Build share text
-  _shareText=`I scored ${ST.score} points in HealthReady! 💬\n${modeName} · ${ST.correct}/${ST.total} correct · ${pct}%${elapsed>10?' · '+fmtElapsed(elapsed):''}\nHealthReady - Free Home Skills Trainer`;
+  _shareText=`I scored ${ST.score} points in HealthReady! 💬\n${modeName} · ${ST.correct}/${ST.total} correct · ${pct}%${elapsed>10?' · '+fmtElapsed(elapsed):''}\nHealthReady - Free Health Skills Trainer`;
   const shareBtn=$('r-share'); if(shareBtn) shareBtn.style.display=(!early&&ST.total>0)?'':'none';
   const coachBtn=$('r-coach-copy'); if(coachBtn) coachBtn.style.display=(!early&&ST.total>0)?'':'none';
   // Previous best
@@ -2982,7 +3029,7 @@ function endSession(early=false){
   const racc=$('r-acc'); if(racc) racc.textContent=pct+'%';
   const rcr=$('r-correct'); if(rcr) rcr.textContent=ST.correct+'/'+ST.total;
   const rstr=$('r-streak'); if(rstr) rstr.textContent=ST.bestStreak;
-  if(elapsed>10){const rtb=$('r-timer-box');if(rtb)rtb.style.display='';const rtv=$('r-timer');if(rtv)rtv.textContent=fmtElapsed(elapsed);}
+  {const rtb=$('r-timer-box');if(rtb)rtb.style.display='';const rtv=$('r-timer');if(rtv)rtv.textContent=fmtElapsed(elapsed);}
   const eoc=$('eoc-card-wrap');
   if(eoc) eoc.innerHTML=!early&&pct>=80?`<div style="background:linear-gradient(135deg,rgba(233,30,140,.15),rgba(233,30,140,.05));border:2px solid rgba(233,30,140,.4);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">🏅 GREAT SESSION!</div><div style="font-family:var(--font-display);font-size:1.3rem;color:var(--green)">${CFG.playerName?CFG.playerName+' · ':''}⭐ ${pct}% Accuracy ⭐</div><div style="font-size:.72rem;color:var(--text3);margin-top:4px">Real health knowledge - keep it up!</div></div>`:'';
   const rp=$('r-play-again');
@@ -2991,9 +3038,10 @@ function endSession(early=false){
     else { rp.textContent='▶ PLAY AGAIN'; rp.onclick=()=>startMode(lastMode||ST.mode||'challenge'); }
   }
   if(!CFG.noMotion&&pct>=70) confetti();
-  setTimeout(()=>say(`${modeName} complete. You got ${ST.correct} out of ${ST.total} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`),140);
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
   updateHomeUI();
   go('results'); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
+  setTimeout(()=>say(`${modeName} complete. You got ${ST.correct} out of ${ST.total} correct, used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}, and finished in ${fmtElapsedSpeech(elapsed)}.`),220);
 }
 
 function replayMode(){ startMode(lastMode); }
@@ -3085,9 +3133,27 @@ function clearScores(){
 //  COACH DASHBOARD - Charts, Goals, CSV Export
 // ════════════════════════════════════════════════════════
 function renderCoach(){
-  if(!CLIENTS.length){$('coach-wrap').innerHTML='<div class="no-data">No clients yet.<br>Tap "+ Add Client" to get started.</div>';return;}
-  $('coach-wrap').innerHTML=`<div class="ccards">${CLIENTS.map((cl,i)=>clientCard(cl,i)).join('')}</div>`;
-  CLIENTS.forEach((_,i)=>drawCharts(i));
+  updateCoachRangeLabel();
+  const showArchived = !!CFG.showArchived;
+  const toggleBtn = $('arch-toggle-btn');
+  if(toggleBtn){ const archivedCount = CLIENTS.filter(c=>!!c.archived).length; toggleBtn.textContent = showArchived ? '📂 Show Active' : `🗂 Show Archived (${archivedCount})`; }
+
+  if(!CLIENTS.length){
+    $('coach-wrap').innerHTML='<div class="no-data">No clients yet.<br>Tap "+ Add Client" to get started.<div style="margin-top:10px"><button class="cbt pri" onclick="openClientModal()">＋ Add Client</button></div></div>';
+    return;
+  }
+
+  const visible = CLIENTS
+    .map((cl,i)=>({cl,i}))
+    .filter(({cl}) => showArchived ? !!cl.archived : !cl.archived);
+
+  if(!visible.length){
+    $('coach-wrap').innerHTML = `<div class="no-data">${showArchived ? 'No archived clients yet.' : 'No active clients yet.'}<br>${showArchived ? 'Archived clients will appear here.' : 'Tap "+ Add Client" to get started.'}${showArchived ? '' : '<div style="margin-top:10px"><button class="cbt pri" onclick="openClientModal()">＋ Add Client</button></div>'}</div>`;
+    return;
+  }
+
+  $('coach-wrap').innerHTML = `<div class="ccards">${visible.map(({cl,i})=>clientCard(cl,i)).join('')}</div>`;
+  visible.forEach(({i})=>drawCharts(i));
 }
 
 function clientCard(cl,i){
@@ -3099,8 +3165,79 @@ function clientCard(cl,i){
       <div class="spbg"><div class="spf" style="width:${sk[k]||0}%"></div></div>
     </div>`).join('');
 
-  // Prompt fading dots
-  const sess=(cl.sessions||[]).slice(-8);
+  // Prompt fading dots + summary metrics
+  const allSess=getFilteredSessions(cl);
+  const sess=allSess.slice(-8);
+  const lastFiltered = allSess.length ? allSess[allSess.length-1] : null;
+  const promptRank={independent:5,verbal:4,gestural:3,physical:2,hoh:1};
+  const promptLabel={
+    independent:'Independent',
+    verbal:'Verbal prompt',
+    gestural:'Gestural prompt',
+    physical:'Physical prompt',
+    hoh:'Hand-over-hand'
+  };
+
+  const scorePct=(score)=>{
+    if(!score || typeof score!=='string' || !score.includes('/')) return null;
+    const [a,b]=score.split('/');
+    const num=parseInt(a,10), den=parseInt(b,10);
+    if(Number.isNaN(num) || Number.isNaN(den) || !den) return null;
+    return Math.round((num/den)*100);
+  };
+
+  const skillEntries=Object.entries(skDefs).map(([k,label])=>[k,label,Number(sk[k]||0)]);
+  const strongest=skillEntries.reduce((best,row)=>row[2]>best[2]?row:best, skillEntries[0]||['','','']);
+  const weakest=skillEntries.reduce((worst,row)=>row[2]<worst[2]?row:worst, skillEntries[0]||['','','']);
+
+  const last7Cutoff=Date.now()-(7*24*60*60*1000);
+  const recent7=allSess.filter(s=>{
+    const d = new Date(s.date || s.dat || '');
+    return !Number.isNaN(d.getTime()) && d.getTime() >= last7Cutoff;
+  });
+  const weeklyScores=recent7.map(s=>scorePct(s.score)).filter(v=>v!==null);
+  const weeklyAvg=weeklyScores.length ? Math.round(weeklyScores.reduce((a,b)=>a+b,0)/weeklyScores.length) : null;
+
+  let promptTrend='No data yet';
+  if(allSess.length>=2){
+    const recentPrompts=allSess.slice(-3).map(s=>promptRank[s.prompt]||0).filter(Boolean);
+    if(recentPrompts.length>=2){
+      const delta=recentPrompts[recentPrompts.length-1]-recentPrompts[0];
+      promptTrend = delta>0 ? 'Less support needed' : delta<0 ? 'More support needed' : 'Holding steady';
+    }else if(lastFiltered?.prompt){
+      promptTrend = promptLabel[lastFiltered.prompt] || lastFiltered.prompt;
+    }
+  }else if(lastFiltered?.prompt){
+    promptTrend = promptLabel[lastFiltered.prompt] || lastFiltered.prompt;
+  }
+
+  const summaryHtml=`<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 12px">
+    <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+      <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">LAST SESSION</div>
+      <div style="font-size:.82rem;font-weight:800;color:var(--text)">${lastFiltered ? (lastFiltered.score || '—') : 'None yet'}</div>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+      <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">PROMPT TREND</div>
+      <div style="font-size:.82rem;font-weight:800;color:var(--text)">${promptTrend}</div>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+      <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">STRONGEST SKILL</div>
+      <div style="font-size:.82rem;font-weight:800;color:var(--green)">${strongest[1] || 'No data yet'}</div>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+      <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">NEEDS SUPPORT</div>
+      <div style="font-size:.82rem;font-weight:800;color:var(--amber)">${weakest[1] || 'No data yet'}</div>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+      <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">LAST 7 DAYS</div>
+      <div style="font-size:.82rem;font-weight:800;color:var(--text)">${recent7.length} session${recent7.length!==1?'s':''}</div>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:10px 12px">
+      <div style="font-size:.62rem;color:var(--text2);letter-spacing:1.6px;font-family:var(--font-mono);margin-bottom:4px">WEEKLY AVG</div>
+      <div style="font-size:.82rem;font-weight:800;color:var(--blue)">${weeklyAvg!==null ? weeklyAvg+'%' : 'No data yet'}</div>
+    </div>
+  </div>`;
+
   const pColors={independent:'ind',verbal:'ver',gestural:'ges',physical:'phy',hoh:'hoh'};
   const pfHtml=sess.length>0?`
     <div class="pfchart">
@@ -3119,7 +3256,6 @@ function clientCard(cl,i){
     </div>`:'';
 
   // Progress chart placeholder (canvas drawn after render)
-  const allSess=cl.sessions||[];
   const chartHtml=allSess.length>=2?`
     <div class="chart-wrap">
       <div class="chart-title">
@@ -3156,15 +3292,16 @@ function clientCard(cl,i){
       <div class="cav" style="background:${cl.color||'#00c851'}">${cl.name.charAt(0)}</div>
       <div style="flex:1">
         <div class="cname">${cl.name}</div>
-        <div class="cmeta">${cl.program||''}</div>
+        <div class="cmeta">${cl.program||''}${cl.fullName?' · Private full name saved':''}${cl.archived?' · Archived':''}</div>
         <div style="font-size:.68rem;color:var(--text2);margin-top:2px">
-          ${(cl.sessions||[]).length} session${(cl.sessions||[]).length!==1?'s':''} logged
-          ${(cl.sessions||[]).length>0?' · Last: '+(cl.sessions[cl.sessions.length-1].date):''}
+          ${allSess.length} session${allSess.length!==1?'s':''} in range
+          ${lastFiltered?' · Last: '+(lastFiltered.date||lastFiltered.dat||''):''}
         </div>
       </div>
       <div class="clvl">${(cl.level||'beginner').toUpperCase()}</div>
     </div>
 
+    ${summaryHtml}
     <!-- Last Session Planning Card -->
     ${(()=>{
       const sessions=cl.sessions||[];
@@ -3212,7 +3349,8 @@ function clientCard(cl,i){
       <button class="cbt" onclick="printReport(${i})">🖨 Print</button>
       <button class="cbt" onclick="exportClientCSV(${i})">📥 Export CSV</button>
       <button class="cbt" onclick="editClient(${i})">✏ Edit</button>
-      <button class="cbt" style="color:var(--red);border-color:var(--red)" onclick="delClient(${i})">Remove</button>
+      <button class="cbt" onclick="${cl.archived ? 'restoreClient' : 'archiveClient'}(${i})">${cl.archived ? '↩ Restore' : '🗂 Archive'}</button>
+      <button class="cbt" style="color:var(--red);border-color:var(--red)" onclick="delClient(${i})">Delete</button>
     </div>
   </div>`;
 }
@@ -3232,7 +3370,7 @@ function drawCharts(clientIdx){
   const cl=CLIENTS[clientIdx];
   const canvas=document.getElementById('chart-'+clientIdx);
   if(!canvas)return;
-  const sessions=(cl.sessions||[]);
+  const sessions=getFilteredSessions(cl);
   if(sessions.length<2)return;
 
   const ctx=canvas.getContext('2d');
@@ -3340,7 +3478,7 @@ function drawCharts(clientIdx){
 // ── GOAL RENDERING ──
 function renderGoalCard(g,ci,gi){
   const cl=CLIENTS[ci];
-  const sessions=(cl.sessions||[]);
+  const sessions=getFilteredSessions(cl);
   const relevantSess=sessions.filter(s=>{
     const sk=MOD_TO_SKILL[s.module];
     return sk===g.skill && s.score;
@@ -3410,7 +3548,7 @@ function openM(id){
     openHint('No Clients Yet',
       '<p style="color:var(--text2);font-size:.88rem">You need to add a client before logging a session or setting a goal. Tap <strong style="color:var(--text)">+ Add Client</strong> to get started.</p>',
       '+ Add Client',
-      ()=>{closeM('m-hint');openM('m-client');}
+      ()=>{closeM('m-hint');openClientModal();}
     );
     return;
   }
@@ -3423,20 +3561,159 @@ function openM(id){
 }
 function closeM(id){$(id).classList.remove('on');}
 
+function toISODateValue(raw){
+  if(!raw) return '';
+  const d = new Date(raw);
+  if(!isNaN(d)) return d.toISOString().slice(0,10);
+  const m = String(raw).match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if(m){
+    const year = m[3].length===2 ? '20'+m[3] : m[3];
+    return `${year}-${String(m[1]).padStart(2,'0')}-${String(m[2]).padStart(2,'0')}`;
+  }
+  return '';
+}
+function parseSessionDate(raw){
+  if(!raw) return null;
+  const direct = new Date(raw);
+  if(!isNaN(direct)) return direct;
+  const m = String(raw).match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if(m){
+    const year = parseInt(m[3].length===2 ? '20'+m[3] : m[3],10);
+    return new Date(year, parseInt(m[1],10)-1, parseInt(m[2],10));
+  }
+  return null;
+}
+function hasCoachRange(){
+  return !!(CFG && CFG.coachRange && (CFG.coachRange.start || CFG.coachRange.end));
+}
+function sessionInCoachRange(session){
+  if(!hasCoachRange()) return true;
+  const d = parseSessionDate(session.date || session.dat);
+  if(!d) return false;
+  const s = CFG.coachRange.start ? new Date(CFG.coachRange.start + 'T00:00:00') : null;
+  const e = CFG.coachRange.end ? new Date(CFG.coachRange.end + 'T23:59:59') : null;
+  if(s && d < s) return false;
+  if(e && d > e) return false;
+  return true;
+}
+function getFilteredSessions(cl){
+  const sessions = (cl && cl.sessions) ? cl.sessions : [];
+  return sessions.filter(sessionInCoachRange);
+}
+function fmtCoachRangeLabel(){
+  if(!hasCoachRange()) return '';
+  const start = CFG.coachRange.start || '...';
+  const end = CFG.coachRange.end || '...';
+  return `📅 Showing ${start} → ${end}`;
+}
+function updateCoachRangeLabel(){
+  const el = $('coach-range-label');
+  if(!el) return;
+  if(hasCoachRange()){
+    el.style.display='block';
+    el.textContent=fmtCoachRangeLabel();
+  }else{
+    el.style.display='none';
+    el.textContent='';
+  }
+}
+let _coachSaveTimer=null;
+function showCoachSaved(msg='Saved ✓'){
+  const el=$('coach-save-indicator');
+  if(!el) return;
+  el.textContent=msg;
+  el.style.display='block';
+  clearTimeout(_coachSaveTimer);
+  _coachSaveTimer=setTimeout(()=>{ if(el) el.style.display='none'; },1800);
+}
+function openCoachRange(){
+  $('range-start').value = CFG.coachRange?.start || '';
+  $('range-end').value = CFG.coachRange?.end || '';
+  openM('m-range');
+}
+function saveCoachRange(){
+  const start = $('range-start').value || '';
+  const end = $('range-end').value || '';
+  CFG.coachRange = (start || end) ? {start,end} : null;
+  saveAll();
+  closeM('m-range');
+  renderCoach();
+  showCoachSaved('Range saved ✓');
+}
+function clearCoachRange(){
+  CFG.coachRange = null;
+  saveAll();
+  if($('range-start')) $('range-start').value='';
+  if($('range-end')) $('range-end').value='';
+  closeM('m-range');
+  renderCoach();
+  showCoachSaved('Range cleared ✓');
+}
+
+
+
+function openClientModal(clientIndex=null){
+  const isEdit = clientIndex!==null && clientIndex!==undefined;
+  const cl = isEdit ? CLIENTS[clientIndex] : null;
+  window._editingClientIndex = isEdit ? clientIndex : null;
+  $('m-client').querySelector('.mt').textContent = isEdit ? '✏ EDIT CLIENT' : '+ ADD NEW CLIENT';
+  $('m-client').querySelector('.msave').textContent = isEdit ? 'Save Changes' : 'Add Client';
+  $('m-client').querySelector('.msave').onclick = saveClient;
+  $('nc-name').value = cl ? (cl.name||'') : '';
+  if($('nc-fullname')) $('nc-fullname').value = cl ? (cl.fullName||'') : '';
+  $('nc-program').value = cl ? (cl.program||'') : '';
+  $('nc-notes').value = cl ? (cl.notes||'') : '';
+  $('nc-level').value = cl ? (cl.level||'beginner') : 'beginner';
+  $('nc-name').style.borderColor='';
+  $('nc-name').placeholder='e.g. AJ or Alex J.';
+  openM('m-client');
+  setTimeout(()=>{$('nc-name').focus();},60);
+}
+
 function saveClient(){
   const name=$('nc-name').value.trim();
   if(!name){
     $('nc-name').style.borderColor='var(--red)';
-    $('nc-name').placeholder='← Name is required';
+    $('nc-name').placeholder='← Display name is required';
     setTimeout(()=>$('nc-name').focus(),100);
-    openHint('⚠️ Name Required','<p style="color:var(--text2);font-size:.88rem">Please enter the client\'s first name before saving.</p>','Got it',()=>{closeM('m-hint');setTimeout(()=>{openM('m-client');$('nc-name').focus();},200);});
+    openHint('⚠️ Name Required','<p style="color:var(--text2);font-size:.88rem">Please enter initials or a display name before saving.</p>','Got it',()=>{closeM('m-hint');setTimeout(()=>{openClientModal(window._editingClientIndex);},200);});
     return;
   }
   const colors=['#00c851','#33b5e5','#ff9800','#9c27b0','#f44336','#009688','#ff5722'];
-  CLIENTS.push({name,level:$('nc-level').value,program:$('nc-program').value.trim(),notes:$('nc-notes').value.trim(),color:colors[CLIENTS.length%colors.length],sessions:[],skills:{prescriptions:0,doctor:0,insurance:0,emergency:0,mental:0},goals:[]});
-  saveAll();closeM('m-client');renderCoach();
-  ['nc-name','nc-program','nc-notes'].forEach(id=>$(id).value='');
+  const editIdx = (window._editingClientIndex===0 || !!window._editingClientIndex) ? window._editingClientIndex : null;
+  if(editIdx!==null){
+    const existing = CLIENTS[editIdx] || {};
+    CLIENTS[editIdx] = {
+      ...existing,
+      name,
+      fullName:$('nc-fullname') ? $('nc-fullname').value.trim() : (existing.fullName||''),
+      level:$('nc-level').value,
+      program:$('nc-program').value.trim(),
+      notes:$('nc-notes').value.trim(),
+      archived: !!existing.archived
+    };
+    saveAll(); closeM('m-client'); renderCoach(); showCoachSaved('Client updated ✓');
+  }else{
+    CLIENTS.push({
+      name,
+      fullName:$('nc-fullname') ? $('nc-fullname').value.trim() : '',
+      level:$('nc-level').value,
+      program:$('nc-program').value.trim(),
+      notes:$('nc-notes').value.trim(),
+      color:colors[CLIENTS.length%colors.length],
+      archived:false,
+      sessions:[],
+      skills:{prescriptions:0,doctor:0,insurance:0,emergency:0,mental:0},
+      goals:[]
+    });
+    saveAll(); closeM('m-client'); renderCoach(); showCoachSaved('Client added ✓');
+  }
+  window._editingClientIndex = null;
+  ['nc-name','nc-fullname','nc-program','nc-notes'].forEach(id=>{ if($(id)) $(id).value=''; });
+  $('m-client').querySelector('.mt').textContent='+ ADD NEW CLIENT';
+  $('m-client').querySelector('.msave').textContent='Add Client';
 }
+
 
 function saveSession(){
   const idx=parseInt($('log-cl').value);
@@ -3447,7 +3724,7 @@ function saveSession(){
   const map={'Health Challenge':'challenge','Prescriptions':'prescriptions','Doctor Visits':'doctor','Health Insurance':'insurance','Emergencies & First Aid':'emergency','Hygiene & Wellness':'prescriptions','Mental Health':'mental','Daily Challenge':'challenge','Practice Mode':'challenge'};
   const sk=map[s.module];
   if(sk&&s.score){const p=s.score.split('/');if(p.length===2){const pct=Math.round(parseInt(p[0])/parseInt(p[1])*100);CLIENTS[idx].skills=CLIENTS[idx].skills||{};CLIENTS[idx].skills[sk]=Math.max(CLIENTS[idx].skills[sk]||0,pct);}}
-  saveAll();closeM('m-log');renderCoach();
+  saveAll();closeM('m-log');renderCoach();showCoachSaved('Session logged ✓');
   $('log-sc').value='';$('log-notes').value='';
 }
 
@@ -3457,19 +3734,34 @@ function selPrompt(el){
 }
 
 function editClient(i){
-  const cl=CLIENTS[i];
-  $('nc-name').value=cl.name;$('nc-program').value=cl.program||'';$('nc-notes').value=cl.notes||'';$('nc-level').value=cl.level||'beginner';
-  $('m-client').querySelector('.mt').textContent='✏ EDIT CLIENT';
-  $('m-client').querySelector('.msave').onclick=()=>{
-    CLIENTS[i].name=$('nc-name').value.trim()||cl.name;
-    CLIENTS[i].program=$('nc-program').value.trim();
-    CLIENTS[i].notes=$('nc-notes').value.trim();
-    CLIENTS[i].level=$('nc-level').value;
-    saveAll();closeM('m-client');renderCoach();
-    $('m-client').querySelector('.mt').textContent='+ ADD NEW CLIENT';
-    $('m-client').querySelector('.msave').onclick=saveClient;
-  };
-  openM('m-client');
+  openClientModal(i);
+}
+
+function toggleArchivedView(){
+  CFG.showArchived = !CFG.showArchived;
+  saveAll();
+  renderCoach();
+}
+
+function archiveClient(i){
+  const cl = CLIENTS[i];
+  if(!cl) return;
+  openHint(
+    'Archive Client?',
+    `<p style="color:var(--text2);font-size:.88rem">Archive <strong style="color:var(--text)">${cl.name}</strong>? Their data will stay saved, but they will move out of the active list.</p>`,
+    'Archive',
+    ()=>{closeM('m-hint'); cl.archived = true; saveAll(); renderCoach(); showCoachSaved('Client archived ✓');},
+    true
+  );
+}
+
+function restoreClient(i){
+  const cl = CLIENTS[i];
+  if(!cl) return;
+  cl.archived = false;
+  saveAll();
+  renderCoach();
+  showCoachSaved('Client restored ✓');
 }
 
 function editSkills(i){
@@ -3497,7 +3789,7 @@ function exportCSV(){
   if(!CLIENTS.length){openHint('No Data','No clients to export yet. Add clients and log sessions first.',null,null);return;}
   let csv='Client Name,Program,Level,Date,Module,Score,Prompt Level,Notes\n';
   CLIENTS.forEach(cl=>{
-    (cl.sessions||[]).forEach(s=>{
+    getFilteredSessions(cl).forEach(s=>{
       const row=[
         `"${cl.name}"`,
         `"${cl.program||''}"`,
@@ -3519,7 +3811,7 @@ function exportClientCSV(i){
   const cl=CLIENTS[i];
   if(!(cl.sessions||[]).length){openHint('No Sessions','No sessions logged for '+cl.name+' yet.',null,null);return;}
   let csv='Date,Module,Score,Prompt Level,Notes\n';
-  (cl.sessions||[]).forEach(s=>{
+  getFilteredSessions(cl).forEach(s=>{
     csv+=`"${s.date||s.dat||''}","${s.module}","${s.score}","${s.prompt||''}","${(s.notes||'').replace(/"/g,'""')}"\n`;
   });
   tryDownload(csv,`${cl.name.replace(/\s+/g,'-')}-Sessions-${today().replace(/\//g,'-')}.csv`,'text/csv');
@@ -3545,7 +3837,8 @@ function tryDownload(content, filename, type){
 
 function printReport(i){
   const cl=CLIENTS[i],sk=cl.skills||{};
-  const sess=(cl.sessions||[]).slice(-20).reverse();
+  const filteredSessions=getFilteredSessions(cl);
+  const sess=filteredSessions.slice(-20).reverse();
   const goals=(cl.goals||[]);
   const html=`<!DOCTYPE html><html><head><title>Progress Report - ${cl.name}</title>
   <style>
@@ -3590,12 +3883,12 @@ function printReport(i){
         Report generated: <strong>${today()}</strong>
       </div>
     </div>
-    <div class="header-badge">CashReady<br>Progress Report</div>
+    <div class="header-badge">HealthReady<br>Progress Report</div>
   </div>
 
   <h2>Skill Progress</h2>
   <div class="skill-grid">
-    ${Object.entries({scams:'🚨 Scam Spotting',passwords:'🔐 Passwords',online:'🌐 Online Safety',devices:'📱 Devices'}).map(([k,n])=>`
+    ${Object.entries({prescriptions:'💊 Prescriptions',doctor:'🩺 Doctor Visits',insurance:'🪪 Insurance',emergency:'🆘 Emergencies',mental:'🧠 Mental Wellness'}).map(([k,n])=>`
       <div class="skill-row">
         <div class="skill-name">${n}<span class="skill-pct">${sk[k]||0}%</span></div>
         <div class="bar-wrap"><div class="bar-fill" style="width:${sk[k]||0}%"></div></div>
@@ -3626,7 +3919,7 @@ ${cl.notes?`<h2>Accommodations & Notes</h2><div class="notes-box">${cl.notes}</d
   </table>`}
 
   <div class="footer">
-    <span>Generated by HealthReady - Free Life Skills Trainer</span>
+    <span>Generated by HealthReady - Free Health Skills Trainer</span>
     <span>${today()}</span>
   </bo`+`dy></ht`+`ml>`;
 
@@ -3650,7 +3943,7 @@ document.body.removeChild(a);
 setTimeout(()=>URL.revokeObjectURL(url),1000);
 }catch(e2){
 openHint('Print Report',
-'<p style="color:var(--text2);font-size:.88rem">To print this report, use the Export CSV button to save the data, or try opening CashReady in a different browser.</p>',
+'<p style="color:var(--text2);font-size:.88rem">To print this report, use the Export CSV button to save the data, or try opening HealthReady in a different browser.</p>',
 null,null);
 }
 }
@@ -3700,6 +3993,14 @@ const s=Math.round(seconds%60);
 return `${m}:${s.toString().padStart(2,'0')}`;
 }
 
+function fmtElapsedSpeech(sec){
+const s=Math.max(0,Math.round(sec||0));
+const m=Math.floor(s/60), r=s%60;
+if(m && r) return `${m} minute${m!==1?'s':''} ${r} second${r!==1?'s':''}`;
+if(m) return `${m} minute${m!==1?'s':''}`;
+return `${r} second${r!==1?'s':''}`;
+}
+
 // ── Share score ──
 function copyForCoach(){
 if(!_shareText)return;
@@ -3713,7 +4014,7 @@ const text=`📋 HealthReady Session Report\n`+
 `Correct: ${ST.correct} / ${ST.total} (${pct}%)\n`+
 `Best Streak: ${ST.bestStreak}\n`+
 (elapsed>10?`Time: ${fmtElapsed(elapsed)}\n`:'')+
-`\nGenerated by HealthReady - Free Life Skills Trainer`;
+`\nGenerated by HealthReady - Free Health Skills Trainer`;
 navigator.clipboard.writeText(text).then(()=>{
 openHint('Copied for Coach! 📋','<p style="color:var(--text2);font-size:.88rem">Session report copied to clipboard. Paste it in a message, email, or notes app to share with your coach.</p>',null,null);
 }).catch(()=>{openHint('Session Report','<pre style="font-size:.75rem;color:var(--text2);white-space:pre-wrap">'+text+'</pre>',null,null);});
@@ -3996,17 +4297,18 @@ return;
 const appName=document.title.replace(' - ','\n').split('\n')[0];
 let rows='';
 CLIENTS.forEach(c=>{
-const sessCount=c.sessions?c.sessions.length:0;
-const lastSess=c.sessions&&c.sessions.length?c.sessions[c.sessions.length-1]:'';
+const filteredSessions=getFilteredSessions(c);
+const sessCount=filteredSessions.length;
+const lastSess=filteredSessions.length?filteredSessions[filteredSessions.length-1]:'';
 const lastDate=lastSess?(lastSess.date||lastSess.dat||'-'):'-';
 const lastScore=lastSess?(lastSess.score||`${lastSess.correct||0}/${lastSess.total||0}`):'-';
 const goals=c.goals&&c.goals.length?c.goals.map(g=>`<li style="font-size:12px;margin-bottom:3px"><strong>${g.skill}</strong>: ${g.target}% - ${g.notes||''}</li>`).join(''):'<li style="font-size:12px;color:#666">No goals set</li>';
-const sessRows=c.sessions&&c.sessions.length?c.sessions.slice(-5).reverse().map(s=>`<tr><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.date||s.dat||'-'}</td><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.module||'-'}</td><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.score||`${s.correct||0}/${s.total||0}`}</td><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.notes||'-'}</td></tr>`).join(''):'<tr><td colspan="4" style="padding:4px 8px;font-size:11px;color:#666">No sessions logged</td></tr>';
+const sessRows=filteredSessions.length?filteredSessions.slice(-5).reverse().map(s=>`<tr><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.date||s.dat||'-'}</td><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.module||'-'}</td><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.score||`${s.correct||0}/${s.total||0}`}</td><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.notes||'-'}</td></tr>`).join(''):'<tr><td colspan="4" style="padding:4px 8px;font-size:11px;color:#666">No sessions logged</td></tr>';
 rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-bottom:16px;page-break-inside:avoid"> <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px"> <div><strong style="font-size:15px">${c.name}</strong> <span style="font-size:12px;color:#666;margin-left:8px">${c.level||''}</span></div> <div style="font-size:11px;color:#666">${c.program||''}</div> </div> <div style="font-size:12px;color:#444;margin-bottom:8px">Sessions: ${sessCount} &nbsp;|&nbsp; Last: ${lastDate} &nbsp;|&nbsp; Last Score: ${lastScore}</div> ${c.notes?`<div style="font-size:11px;color:#555;background:#f5f5f5;padding:5px 8px;border-radius:4px;margin-bottom:8px">${c.notes}</div>`:''} <div style="margin-bottom:8px"><strong style="font-size:12px">Goals:</strong><ul style="margin:4px 0 0 16px;padding:0">${goals}</ul></div> <div><strong style="font-size:12px">Recent Sessions (last 5):</strong> <table style="width:100%;border-collapse:collapse;margin-top:4px"> <tr style="background:#f0f0f0"><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Date</th><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Module</th><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Score</th><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Notes</th></tr> ${sessRows} </table> </div> </div>`;
 });
 const w=window.open('','_blank');
 if(!w){openHint('Pop-up Blocked','<p style="color:var(--text2);font-size:.88rem">Please allow pop-ups for this page, then try again.</p>',null,null);return;}
-w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}@media print{.no-print{display:none}}</style></head><body> <div class="no-print" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">🖨️ Print / Save as PDF</button></div> <h1>${appName} - Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
+w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}@media print{.no-print{display:none}}</style></head><body> <div class="no-print" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">🖨️ Print / Save as PDF</button></div> <h1>${appName} - Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}${hasCoachRange()?` | ${fmtCoachRangeLabel().replace('📅 ','')}`:''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
 w.document.close();
 }
 

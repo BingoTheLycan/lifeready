@@ -7,6 +7,13 @@
 <meta name="theme-color" content="#0d0a07">
 <meta name="description" content="SocialReady - Social skills trainer for everyone. Practice conversations, boundaries, emotions, and real-life social situations. Free, accessible, built by someone who gets it.">
 <title>SocialReady | LifeReady</title>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SocialReady">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon_512.png" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="icon_192.png">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════
@@ -814,6 +821,23 @@ max-width:320px;width:calc(100% - 32px);
   <div id="demo-content" class="demo-wrap"></div>
 </div>
 
+
+<div id="scr-practice-complete" class="scr">
+  <div style="padding-bottom:10px;animation:fadeUp .5s ease;text-align:center">
+    <div style="background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:22px 18px;margin-bottom:12px">
+      <div style="font-size:3rem;margin-bottom:8px">💜</div>
+      <div id="pr-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:8px">PRACTICE MODE COMPLETE</div>
+      <div id="pr-sub" style="font-size:.88rem;color:var(--text2);margin-bottom:10px">Nice work. You completed a full practice session. No score, no pressure, just progress.</div>
+      <div id="pr-stats" style="font-family:var(--font-mono);font-size:.82rem;color:var(--amber);line-height:1.6"></div>
+    </div>
+    <div class="rbtns" style="margin-top:12px">
+      <button class="rpri" id="pr-again">▶ PRACTICE AGAIN</button>
+      <button class="rsec" id="pr-try-challenge">⭐ TRY SOCIAL CHALLENGE</button>
+      <button class="rsec" id="pr-main">← MAIN MENU</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══════════ RESULTS ══════════ -->
 
 <div id="scr-results" class="scr">
@@ -1045,13 +1069,17 @@ max-width:320px;width:calc(100% - 32px);
     <div class="cacts">
       <button class="cbt" onclick="printCoachReport()">🖨️ Print Report</button>
       <button class="cbt" onclick="exportCSV()" title="Download all session data as spreadsheet">📥 Export CSV</button>
+      <button class="cbt" onclick="openCoachRange()">📅 Date Range</button>
       <button class="cbt" onclick="openM('m-goal')">＋ Add Goal</button>
       <button class="cbt" onclick="openM('m-log')">＋ Log Session</button>
-      <button class="cbt pri" onclick="openM('m-client')">＋ Add Client</button>
+      <button class="cbt pri" onclick="openClientModal()">＋ Add Client</button>
 
-  <button class="cbt" onclick="CFG.coachWelcomeSeen=false;renderCoach();showCoachWelcome();" style="font-size:.65rem;letter-spacing:.5px">? How It Works</button>
+  <button class="cbt" onclick="CFG.coachWelcomeSeen=false;renderCoach();
+refreshCoachClientOptions();showCoachWelcome();" style="font-size:.65rem;letter-spacing:.5px">? How It Works</button>
 </div>
   </div>
+  <div id="coach-range-label" style="display:none;background:var(--panel);border:1px solid var(--green3);border-radius:12px;padding:8px 12px;margin-bottom:10px;font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:1px"></div>
+  <div id="save-indicator" style="display:none;background:rgba(155,48,217,.10);border:1px solid var(--green);border-radius:999px;padding:4px 10px;margin:0 0 10px auto;width:max-content;font-family:var(--font-mono);font-size:.62rem;color:var(--green);letter-spacing:1px">Saved ✓</div>
   <!-- First-time welcome card -->
   <div id="coach-welcome" style="position:relative;z-index:1;display:none;background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:18px;margin-bottom:16px;animation:fadeUp .4s ease">
     <div style="font-family:var(--font-mono);font-size:.8rem;color:var(--green);letter-spacing:2px;margin-bottom:8px">👋 WELCOME, COACH!</div>
@@ -1365,7 +1393,8 @@ max-width:320px;width:calc(100% - 32px);
 <div class="mow" id="m-client">
   <div class="mdl">
     <div class="mt">+ ADD NEW CLIENT</div>
-    <div class="fg"><label class="fl">Full Name</label><input class="fi" id="nc-name" placeholder="e.g. Alex Johnson"></div>
+    <div class="fg"><label class="fl">Initials / Display Name</label><input class="fi" id="nc-initials" placeholder="e.g. AJ or Alex J."></div>
+    <div class="fg"><label class="fl">Private Full Name (optional)</label><input class="fi" id="nc-name" placeholder="Stored privately for staff use only"></div>
     <div class="fg"><label class="fl">Starting Level</label>
       <select class="fsel" id="nc-level">
         <option value="beginner">Beginner - Just starting out</option>
@@ -1376,7 +1405,7 @@ max-width:320px;width:calc(100% - 32px);
     </div>
     <div class="fg"><label class="fl">Program / Group</label><input class="fi" id="nc-program" placeholder="e.g. Independent Living Group A"></div>
     <div class="fg"><label class="fl">Notes / Accommodations</label><textarea class="fta" id="nc-notes" placeholder="Goals, accommodations, preferences, IEP notes..."></textarea></div>
-    <div class="mbtns"><button class="mcancel" onclick="closeM('m-client')">Cancel</button><button class="msave" onclick="saveClient()">Add Client</button></div>
+    <div class="mbtns"><button class="mcancel" onclick="closeClientModalClean()">Cancel</button><button class="msave" onclick="saveClient()">Add Client</button></div>
   </div>
 </div>
 
@@ -1420,7 +1449,7 @@ max-width:320px;width:calc(100% - 32px);
       </div>
       <textarea class="fta" id="log-notes" placeholder="Tap a chip above or type your own notes..."></textarea>
     </div>
-    <div class="mbtns"><button class="mcancel" onclick="closeM('m-log')">Cancel</button><button class="msave" onclick="saveSession()">Save Session</button></div>
+    <div class="mbtns"><button class="mcancel" onclick="resetLogModal();closeM('m-log')">Cancel</button><button class="msave" onclick="saveSession()">Save Session</button></div>
   </div>
 </div>
 
@@ -1600,11 +1629,80 @@ max-width:320px;width:calc(100% - 32px);
     <div class="ftitle ok" id="ftitle">CORRECT!</div>
     <div class="fmsg" id="fmsg"></div>
     <div id="feoc" style="display:none"></div>
-    <button class="fnext" id="fnext" onclick="nextQ_game()">NEXT →</button>
+    <button class="fnext" id="fnext" onclick="return feedbackNextTap(event)">NEXT →</button>
   </div>
 </div>
 
 <script>
+
+function getWrongFeedbackPhrase(){
+  const pool=[
+    'Not quite',
+    'Almost',
+    'Nice try',
+    'Close one',
+    'Give it another go',
+    'Good try',
+    'You are getting there'
+  ];
+  let idx;
+  do { idx=Math.floor(Math.random()*pool.length); } while(idx===window.__lastWrongPhraseIdx && pool.length>1);
+  window.__lastWrongPhraseIdx=idx;
+  return pool[idx];
+}
+function beginWrongFeedback(){
+  const phrase=getWrongFeedbackPhrase();
+  window.__currentWrongFeedbackPhrase=phrase;
+  return phrase;
+}
+function currentWrongFeedbackPhrase(){
+  return window.__currentWrongFeedbackPhrase || 'Not quite';
+}
+function fmtElapsedSpeech(seconds){
+  seconds=Math.max(0,Math.round(Number(seconds)||0));
+  const h=Math.floor(seconds/3600);
+  const m=Math.floor((seconds%3600)/60);
+  const s=seconds%60;
+  const parts=[];
+  if(h>0) parts.push(`${h} hour${h===1?'':'s'}`);
+  if(m>0) parts.push(`${m} minute${m===1?'':'s'}`);
+  if(s>0 || !parts.length) parts.push(`${s} second${s===1?'':'s'}`);
+  if(parts.length===1) return parts[0];
+  if(parts.length===2) return `${parts[0]} and ${parts[1]}`;
+  return `${parts.slice(0,-1).join(', ')}, and ${parts[parts.length-1]}`;
+}
+
+function safeDispatchNext(){
+  if(ST && ST.total>=ST.maxQ){
+    endSession();
+    return;
+  }
+  if(typeof window.nextQ_game==='function'){
+    window.nextQ_game();
+    return;
+  }
+  if(typeof nextQ_game==='function'){
+    nextQ_game();
+    return;
+  }
+  console.warn('No next handler set for feedback overlay.');
+  if(typeof stopSpeech==='function') stopSpeech();
+  if(typeof resetFeedbackOverlay==='function') resetFeedbackOverlay();
+}
+let feedbackNextLastTap = 0;
+function feedbackNextTap(event){
+  if(event){
+    if(typeof event.preventDefault==='function') event.preventDefault();
+    if(typeof event.stopPropagation==='function') event.stopPropagation();
+  }
+  const now=Date.now();
+  if(now-feedbackNextLastTap<250) return false;
+  feedbackNextLastTap=now;
+  safeDispatchNext();
+  return false;
+}
+
+
 
 // ═══════════════════════════════════════════
 //  SOCIALREADY v1.0
@@ -1754,6 +1852,7 @@ function genQuestion(mode){
 let _badgeToastTimer=null;
 const STORAGE_KEYS=['sr_cfg', 'sr_clients', 'sr_scores', 'sr_badges'];
 let ST={}, CFG={}, CLIENTS=[], SCORES=[], BADGES=new Set();
+let COACH_RANGE=null;
 let _shareText=null;
 let PROMPT_SEL='independent', lastMode='challenge', aCtx, speechRate=0.9;
 
@@ -2281,8 +2380,9 @@ function pickOpener(el, idx){
     try{beep(660,80);}catch(e){}
   } else {
     el.style.background='rgba(255,68,68,0.1)'; el.style.borderColor='var(--red)';
-    if(fb) fb.innerHTML='❌ Not the best choice. '+opt.note+' Try again!';
-    say('Not quite. Try again.');
+    const phrase=beginWrongFeedback();
+    if(fb) fb.innerHTML='❌ <strong>'+phrase+'.</strong> '+opt.note+' Try again!';
+    say(`${phrase}. Try again.`);
     setTimeout(function(){
       document.querySelectorAll('#opener-choices div[onclick]').forEach(function(b){b.style.pointerEvents='auto';});
       el.style.background=''; el.style.borderColor='';
@@ -2300,8 +2400,9 @@ function pickBoundary(el, idx){
     try{beep(660,80);}catch(e){}
   } else {
     el.style.background='rgba(255,68,68,0.1)'; el.style.borderColor='var(--red)';
-    if(fb) fb.innerHTML='❌ '+opt.note+' Try again!';
-    say('Not quite. Try again.');
+    const phrase=beginWrongFeedback();
+    if(fb) fb.innerHTML='❌ <strong>'+phrase+'.</strong> '+opt.note+' Try again!';
+    say(`${phrase}. Try again.`);
     setTimeout(function(){
       document.querySelectorAll('#boundary-choices div[onclick]').forEach(function(b){b.style.pointerEvents='auto';});
       el.style.background=''; el.style.borderColor='';
@@ -2415,13 +2516,14 @@ function replayModeIntro(){
 }
 
 function startMode(mode){
-  ST.askedQs = Array.isArray(ST.askedQs) ? ST.askedQs : [];
+  if(_sessionTransitionLock) return;
   lastMode=mode;
   const isP=mode==='practice';
   ST={mode,score:0,streak:0,bestStreak:0,correct:0,total:0,
       maxQ:mode==='daily'?5:10,hintsUsed:0,answered:false,
       startTime:Date.now(),rounds:[],askedQs:[]};
   txCountForBreak=0;gameHintsUsed=0;
+  resetSessionChrome();
   {const _z=$('sbox-score');if(_z)_z.style.display=isP?'none':'';}
   {const _z=$('sbox-streak');if(_z)_z.style.display=(mode==='challenge'||mode==='daily')?'':'none';}
   {const _z=$('g-lvl');if(_z)_z.style.display=(mode==='challenge')?'':'none';}
@@ -2431,9 +2533,9 @@ function startMode(mode){
   $('gmode-lbl').textContent=labels[mode]||'SOCIAL CHALLENGE';
   CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed[mode]=true;
   awardBadge('built_diff');saveAll();
-  buildDots();go('game');
+  prepareModeLaunchUI(mode);
 
-  const launch=()=>{ genQ(); };
+  const launch=()=>{ beginModeSession(); };
 
   const intros={
     situations:    ['👁️','READING THE ROOM','#9b30d9',[['🔍','10 social situation questions.','Reading cues, knowing what to do, recognizing when something feels off.'],['💡','Real scenarios - the kind that actually happen.',''],['🔢','Graded at the end.','']],'Start Reading the Room →'],
@@ -2591,12 +2693,13 @@ function answerQ(chosen){
   const fcard=$('fcard'), femoji=$('femoji'), ftitle=$('ftitle'), fmsg=$('fmsg'), fnext=$('fnext');
   if(fcard) fcard.classList.toggle('wrong', !ok);
   if(femoji) femoji.textContent = ok ? '✅' : '❌';
+  const wrongPhrase = ok ? null : beginWrongFeedback();
   if(ftitle){
-    ftitle.textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+    ftitle.textContent = ok ? 'CORRECT!' : wrongPhrase.toUpperCase();
     ftitle.className = 'ftitle ' + (ok ? 'ok' : 'bad');
   }
   if(fmsg){
-    const top = ok ? rand(CORRECT) : rand(WRONG);
+    const top = ok ? rand(CORRECT) : `${wrongPhrase}. Read the explanation to understand why.`;
     fmsg.innerHTML = `<div style="margin-bottom:10px">${top}</div>` + (currentQ.explain ? `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:left">${currentQ.explain}</div>` : '');
   }
   if(fnext){
@@ -2608,7 +2711,7 @@ function answerQ(chosen){
   setTimeout(()=>{
     const feoc=$('feoc'); if(feoc) feoc.style.display='none';
     $('fov').classList.add('on');
-    say(ok?'Correct! Great job.':('Not quite. '+(currentQ.explain||'').split('.')[0]+'.'));
+    say(ok?'Correct! Great job.':(`${currentWrongFeedbackPhrase()}. `+(currentQ.explain||'').split('.')[0]+'.'));
   },300);
 }
 
@@ -2624,9 +2727,16 @@ function doHint(btn){
 }
 
 function nextQ_game(){
+  if(_sessionTransitionLock) return;
+  _sessionTransitionLock=true;
   $('fov').classList.remove('on');
-  if(ST.total>=ST.maxQ){ endSession(); return; }
+  if(ST.total>=ST.maxQ){
+    endSession();
+    setTimeout(()=>{ _sessionTransitionLock=false; },220);
+    return;
+  }
   genQ();
+  setTimeout(()=>{ _sessionTransitionLock=false; },180);
 }
 
 
@@ -2634,10 +2744,24 @@ function openHint(title,body,okLabel,onOk,showCancel){
   $('m-hint-title').textContent=title;
   $('m-hint-body').innerHTML=typeof body==='string'?body:body;
   const ok=$('m-hint-ok');
-  ok.textContent=okLabel||'Got it!';
-  ok.onclick=onOk?()=>{onOk();}:()=>closeM('m-hint');
   const cancel=$('m-hint-cancel');
-  if(cancel) cancel.style.display=showCancel?'block':'none';
+  if(ok){
+    ok.disabled=false;
+    ok.textContent=okLabel||'Got it!';
+    ok.onclick=()=>{
+      ok.disabled=true;
+      try{
+        if(onOk) onOk();
+        else closeM('m-hint');
+      } finally {
+        setTimeout(()=>{ ok.disabled=false; },180);
+      }
+    };
+  }
+  if(cancel){
+    cancel.onclick=()=>closeM('m-hint');
+    cancel.style.display=showCancel?'block':'none';
+  }
   openM('m-hint');
 }
 
@@ -2752,6 +2876,68 @@ function updateHintsUsedUI(){
   el.textContent=`Hints used: ${ST.hintsUsed||0}`;
 }
 
+let _sessionTransitionLock=false;
+
+function resetFeedbackOverlay(){
+  const fov=$('fov'), fcard=$('fcard'), feoc=$('feoc');
+  if(fov) fov.classList.remove('on');
+  if(fcard){
+    fcard.classList.remove('wrong');
+  }
+  if(feoc) feoc.style.display='none';
+  if($('femoji')) $('femoji').textContent='✅';
+  if($('ftitle')){
+    $('ftitle').textContent='CORRECT!';
+    $('ftitle').className='ftitle ok';
+  }
+  if($('fmsg')) $('fmsg').innerHTML='';
+  if($('fnext')){
+    $('fnext').textContent='NEXT →';
+    $('fnext').className='fnext';
+    $('fnext').disabled=false;
+  }
+}
+
+function resetSessionChrome(){
+  resetFeedbackOverlay();
+  const hintBar=$('g-hint-bar');
+  if(hintBar){
+    hintBar.style.display='none';
+    hintBar.textContent='';
+  }
+  const fb=$('g-fb');
+  if(fb){
+    fb.className='qfb';
+    fb.style.display='none';
+    fb.innerHTML='';
+  }
+  const banner=$('mode-banner');
+  if(banner){
+    banner.style.display='none';
+    banner.innerHTML='';
+  }
+  const hints=$('hints-used');
+  if(hints) hints.textContent='Hints used: 0';
+}
+
+function prepareModeLaunchUI(mode){
+  resetSessionChrome();
+  buildDots();
+  const total=(mode==='daily'?5:10);
+  const progress=$('progress-text');
+  if(progress) progress.textContent=`Question 1 of ${total}`;
+  updateHintsUsedUI();
+}
+
+function beginModeSession(){
+  if(_sessionTransitionLock) return;
+  _sessionTransitionLock=true;
+  resetSessionChrome();
+  go('game');
+  genQ();
+  setTimeout(()=>{ _sessionTransitionLock=false; },220);
+}
+
 function buildDots(){
   $('pdots').innerHTML='';
   for(let i=0;i<ST.maxQ;i++){
@@ -2791,9 +2977,37 @@ function checkBadges(){
   if(['challenge','situations','conversations','boundaries','daily'].every(m=>modes.includes(m))) awardBadge('all_modes');
 }
 
+
+function renderPracticeResults(completed=true){
+  resetSessionChrome();
+  const title=$('pr-title');
+  const sub=$('pr-sub');
+  const stats=$('pr-stats');
+  const answered=ST.total||0;
+  const correct=ST.correct||0;
+  const hints=ST.hintsUsed||0;
+  const elapsed=ST.startTime?(Date.now()-ST.startTime)/1000:0;
+  if(title) title.textContent = completed ? 'PRACTICE MODE COMPLETE' : 'PRACTICE SESSION ENDED';
+  if(sub) sub.textContent = completed
+    ? 'Nice work. You completed a full practice session. No score, no pressure, just progress.'
+    : 'Your practice session was saved here so you can stop without losing your progress.';
+  if(stats) stats.textContent = `You answered ${answered} question${answered!==1?'s':''} • ${correct} correct • Hints used: ${hints}${elapsed>10?' • Time: '+fmtElapsed(elapsed):''}`;
+  const again=$('pr-again');
+  const tryChallenge=$('pr-try-challenge');
+  const main=$('pr-main');
+  if(again) again.onclick=()=>startMode('practice');
+  if(tryChallenge) tryChallenge.onclick=()=>startMode('challenge');
+  if(main) main.onclick=()=>go('home');
+  updateHomeUI();
+  go('practice-complete');
+  window.scrollTo(0,0); const _spw=document.getElementById('page-wrap'); if(_spw)_spw.scrollTop=0;
+  const timeLine = elapsed>10 ? `, and your time was ${fmtElapsedSpeech(elapsed)}` : '';
+  setTimeout(()=>say(`${completed?'Practice mode complete':'Practice session ended'}. You answered ${answered} question${answered!==1?'s':''}, got ${correct} correct, and used ${hints} hint${hints!==1?'s':''}${timeLine}.`),120);
+}
+
 function endSession(early=false){
   $('fov').classList.remove('on'); txCountForBreak=0;
-  if(ST.mode==='practice'){ go('home'); updateHomeUI(); return; }
+  if(ST.mode==='practice'){ renderPracticeResults(!early); return; }
   if(ST.mode==='daily'&&!early){
     const t=today();
     if(CFG.lastDaily!==t){
@@ -2861,7 +3075,9 @@ function endSession(early=false){
   const racc=$('r-acc'); if(racc) racc.textContent=pct+'%';
   const rcr=$('r-correct'); if(rcr) rcr.textContent=ST.correct+'/'+ST.total;
   const rstr=$('r-streak'); if(rstr) rstr.textContent=ST.bestStreak;
-  if(elapsed>10){const rtb=$('r-timer-box');if(rtb)rtb.style.display='';const rtv=$('r-timer');if(rtv)rtv.textContent=fmtElapsed(elapsed);}
+  const rtb=$('r-timer-box');
+  if(rtb) rtb.style.display=elapsed>10?'':'none';
+  const rtv=$('r-timer'); if(rtv) rtv.textContent=elapsed>10?fmtElapsed(elapsed):'0:00';
   const eoc=$('eoc-card-wrap');
   if(eoc) eoc.innerHTML=!early&&pct>=80?`<div style="background:linear-gradient(135deg,rgba(155,48,217,.15),rgba(155,48,217,.05));border:2px solid rgba(155,48,217,.4);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">🏅 GREAT SESSION!</div><div style="font-family:var(--font-display);font-size:1.3rem;color:var(--green)">${CFG.playerName?CFG.playerName+' · ':''}⭐ ${pct}% Accuracy ⭐</div><div style="font-size:.72rem;color:var(--text3);margin-top:4px">Real social skills - keep it up!</div></div>`:'';
   if(!CFG.noMotion&&pct>=70) confetti();
@@ -2874,7 +3090,7 @@ function endSession(early=false){
   go('results'); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
   setTimeout(()=>{
     chime();
-    say(`${modeName} complete. You got ${ST.correct} out of ${ST.total} correct, and used ${gameHintsUsed||0} hint${(gameHintsUsed||0)!==1?'s':''}.`);
+    say(`${modeName} complete. You got ${ST.correct} out of ${ST.total} correct, used ${gameHintsUsed||0} hint${(gameHintsUsed||0)!==1?'s':''}${elapsed>10?`, and your time was ${fmtElapsedSpeech(elapsed)}`:''}.`);
   },120);
 }
 
@@ -2966,12 +3182,200 @@ function clearScores(){
 // ════════════════════════════════════════════════════════
 //  COACH DASHBOARD - Charts, Goals, CSV Export
 // ════════════════════════════════════════════════════════
-function renderCoach(){
-  if(!CLIENTS.length){$('coach-wrap').innerHTML='<div class="no-data">No clients yet.<br>Tap "+ Add Client" to get started.</div>';return;}
-  $('coach-wrap').innerHTML=`<div class="ccards">${CLIENTS.map((cl,i)=>clientCard(cl,i)).join('')}</div>`;
-  CLIENTS.forEach((_,i)=>drawCharts(i));
+
+
+function showSaveIndicator(msg='Saved ✓'){
+  if(typeof flashCoachSaved==='function') return flashCoachSaved(msg);
+  const el=$('save-indicator');
+  if(!el) return;
+  el.textContent=msg;
+  el.style.display='block';
+  clearTimeout(window.__saveIndicatorTimer);
+  window.__saveIndicatorTimer=setTimeout(()=>{ el.style.display='none'; },1400);
+}
+function getClientDisplayName(cl){
+  return (cl && (cl.initials || cl.name || cl.fullName)) || 'Client';
+}
+function getClientAvatarText(cl){
+  const base=getClientDisplayName(cl).trim();
+  if(!base) return '?';
+  const parts=base.split(/\s+/).filter(Boolean);
+  if(parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+  return base.slice(0,2).toUpperCase();
+}
+function getRelativeLastSessionLabel(cl){
+  const sessions=filterSessionsByRange((cl && cl.sessions) || []);
+  if(!sessions.length) return 'No sessions yet';
+  const last=sessions[sessions.length-1];
+  return `Last: ${last.date || 'Unknown date'}`;
+}
+function openLogForClient(i){
+  resetLogModal();
+  const sel=$('log-cl');
+  if(sel) sel.value=String(i);
+  const cl=CLIENTS[i];
+  const last=(cl && cl.sessions && cl.sessions.length)?cl.sessions[cl.sessions.length-1]:null;
+  if(last){
+    const mod=$('log-mod');
+    if(mod && last.module) mod.value=last.module;
+    const chips=document.querySelectorAll('#m-log .pchip');
+    chips.forEach(c=>c.classList.remove('on'));
+    const desired=last.prompt||'independent';
+    const chip=[...chips].find(c=>c.dataset.v===desired);
+    if(chip){
+      chip.classList.add('on');
+      PROMPT_SEL=desired;
+    }
+  }
+  openM('m-log');
+}
+function getClientSessionTime(s){
+  return s && s.time ? s.time : '';
 }
 
+function parseCoachDate(v){
+  if(!v) return null;
+  const d=new Date(v+'T00:00:00');
+  return isNaN(d) ? null : d;
+}
+function dateFromSession(s){
+  const raw=(s&&s.date)||'';
+  let d=new Date(raw);
+  if(!isNaN(d)) return d;
+  const m=raw.match(/(\d{4})-(\d{2})-(\d{2})/);
+  if(m) return new Date(`${m[1]}-${m[2]}-${m[3]}T00:00:00`);
+  return null;
+}
+function filterSessionsByRange(sessions){
+  if(!COACH_RANGE || (!COACH_RANGE.start && !COACH_RANGE.end)) return sessions||[];
+  return (sessions||[]).filter(s=>{
+    const d=dateFromSession(s);
+    if(!d) return false;
+    if(COACH_RANGE.start && d < COACH_RANGE.start) return false;
+    if(COACH_RANGE.end){
+      const end=new Date(COACH_RANGE.end);
+      end.setHours(23,59,59,999);
+      if(d > end) return false;
+    }
+    return true;
+  });
+}
+function coachRangeText(){
+  if(!COACH_RANGE || (!COACH_RANGE.start && !COACH_RANGE.end)) return '';
+  const fmt=d=>d?`${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`:'Any time';
+  return `📅 Showing ${fmt(COACH_RANGE.start)} → ${fmt(COACH_RANGE.end)}`;
+}
+function flashCoachSaved(msg='Saved ✓'){
+  const el=$('save-indicator');
+  if(!el) return;
+  el.textContent=msg;
+  el.style.display='block';
+  clearTimeout(window.__coachSavedTimer);
+  window.__coachSavedTimer=setTimeout(()=>{ el.style.display='none'; }, 1400);
+}
+function syncCoachRangeUI(){
+  const label=$('coach-range-label');
+  if(!label) return;
+  const txt=coachRangeText();
+  label.style.display=txt?'block':'none';
+  label.textContent=txt;
+}
+function openCoachRange(){
+  const s=$('coach-range-start'), e=$('coach-range-end');
+  if(s) s.value=COACH_RANGE && COACH_RANGE.start ? COACH_RANGE.start.toISOString().slice(0,10) : '';
+  if(e) e.value=COACH_RANGE && COACH_RANGE.end ? COACH_RANGE.end.toISOString().slice(0,10) : '';
+  openM('m-coach-range');
+}
+function saveCoachRange(){
+  const start=parseCoachDate($('coach-range-start')?.value||'');
+  const end=parseCoachDate($('coach-range-end')?.value||'');
+  COACH_RANGE={start,end};
+  closeM('m-coach-range');
+  syncCoachRangeUI();
+  renderCoach();
+  flashCoachSaved('Range applied ✓');
+}
+function clearCoachRange(){
+  COACH_RANGE=null;
+  if($('coach-range-start')) $('coach-range-start').value='';
+  if($('coach-range-end')) $('coach-range-end').value='';
+  closeM('m-coach-range');
+  syncCoachRangeUI();
+  renderCoach();
+  flashCoachSaved('Range cleared ✓');
+}
+
+
+function getCoachClients(includeArchived=false){
+  return includeArchived ? CLIENTS : CLIENTS.filter(cl=>!cl.archived);
+}
+function resetClientModal(){
+  const modal=$('m-client');
+  if(!modal) return;
+  const titleEl=modal.querySelector('.mt');
+  const saveBtn=modal.querySelector('.msave');
+  if(titleEl) titleEl.textContent='+ ADD NEW CLIENT';
+  if(saveBtn){
+    saveBtn.textContent='Add Client';
+    saveBtn.onclick=saveClient;
+  }
+  const initials=$('nc-initials');
+  if(initials){
+    initials.value='';
+    initials.style.borderColor='';
+    initials.placeholder='e.g. AJ or Alex J.';
+  }
+  const name=$('nc-name');
+  if(name){
+    name.value='';
+    name.style.borderColor='';
+    name.placeholder='Stored privately for staff use only';
+  }
+  const level=$('nc-level'); if(level) level.value='beginner';
+  const program=$('nc-program'); if(program) program.value='';
+  const notes=$('nc-notes'); if(notes) notes.value='';
+}
+function openClientModal(){
+  resetClientModal();
+  openM('m-client');
+  setTimeout(()=>{ const field=$('nc-initials'); if(field) field.focus(); },120);
+}
+function archiveClient(i){
+  CLIENTS[i].archived=true;
+  saveAll();
+  renderCoach();
+  refreshCoachClientOptions();
+  showSaveIndicator('Client archived ✓');
+}
+function restoreClient(i){
+  CLIENTS[i].archived=false;
+  saveAll();
+  renderCoach();
+  refreshCoachClientOptions();
+  showSaveIndicator('Client restored ✓');
+}
+
+function renderCoach(){
+  syncCoachRangeUI();
+  refreshCoachClientOptions();
+  CFG.coachShowArchived = !!CFG.coachShowArchived;
+  const activeClients = CLIENTS.filter(cl=>!cl.archived);
+  const archivedClients = CLIENTS.filter(cl=>cl.archived);
+  const visibleClients = CFG.coachShowArchived ? archivedClients : activeClients;
+  const toggleLabel = CFG.coachShowArchived ? `Show Active (${activeClients.length})` : `Show Archived (${archivedClients.length})`;
+  const rangeLabel = (COACH_RANGE && (COACH_RANGE.start || COACH_RANGE.end))
+    ? `<div style="font-size:.72rem;color:var(--text2);margin-right:auto">${coachRangeText().replace('📅 ','')}</div>`
+    : '<div style="margin-right:auto"></div>';
+  const toggleBtn = `<div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-bottom:12px">${rangeLabel}<button class="cbt" onclick="CFG.coachShowArchived=!CFG.coachShowArchived;saveAll();renderCoach();">${toggleLabel}</button></div>`;
+  if(!visibleClients.length){
+    const emptyTitle = CFG.coachShowArchived ? 'No archived clients.' : 'No clients yet.';
+    const emptySub = CFG.coachShowArchived ? 'Archive a client to keep their records without deleting them.' : 'Tap "+ Add Client" to get started. You can also log sessions and set goals after adding someone.';
+    $('coach-wrap').innerHTML=`${toggleBtn}<div class="no-data">${emptyTitle}<br>${emptySub}<br>${!CFG.coachShowArchived?'<button class="cbt pri" style="margin-top:12px" onclick="openClientModal()">＋ Add Client</button>':''}</div>`;
+    return;
+  }
+  $('coach-wrap').innerHTML=`${toggleBtn}<div class="ccards">${visibleClients.map(cl=>clientCard(cl,CLIENTS.indexOf(cl))).join('')}</div>`;
+  visibleClients.forEach(cl=>drawCharts(CLIENTS.indexOf(cl)));
+}
 function clientCard(cl,i){
   const sk=cl.skills||{};
   const skDefs={situations:'👁️ Situations',conversations:'💬 Conversations',boundaries:'🛡️ Boundaries',feelings:'💛 Feelings'};
@@ -2981,15 +3385,15 @@ function clientCard(cl,i){
       <div class="spbg"><div class="spf" style="width:${sk[k]||0}%"></div></div>
     </div>`).join('');
 
-  // Prompt fading dots
-  const sess=(cl.sessions||[]).slice(-8);
+  const filteredSessions=filterSessionsByRange(cl.sessions||[]);
+  const sess=filteredSessions.slice(-8);
   const pColors={independent:'ind',verbal:'ver',gestural:'ges',physical:'phy',hoh:'hoh'};
   const pfHtml=sess.length>0?`
     <div class="pfchart">
       <div class="pfc-title">PROMPT FADING (last ${sess.length} sessions)</div>
       <div class="pfc-row">
         <div class="pfc-label">Prompt level:</div>
-        <div class="pfc-dots">${sess.map(s=>`<div class="pfc-dot ${pColors[s.prompt]||'empty'}" title="${s.prompt||''} - ${s.date}"></div>`).join('')}</div>
+        <div class="pfc-dots">${sess.map(s=>`<div class="pfc-dot ${pColors[s.prompt]||'empty'}" title="${s.prompt||''} - ${s.date}${getClientSessionTime(s)?' '+getClientSessionTime(s):''}"></div>`).join('')}</div>
       </div>
       <div style="font-size:.64rem;color:var(--text2);margin-top:4px">
         <span style="color:var(--green)">● Indep</span>
@@ -3000,87 +3404,106 @@ function clientCard(cl,i){
       </div>
     </div>`:'';
 
-  // Progress chart placeholder (canvas drawn after render)
-  const allSess=cl.sessions||[];
-  const chartHtml=allSess.length>=2?`
+  const chartHtml=filteredSessions.length>=2?`
     <div class="chart-wrap">
-      <div class="chart-title">
-        <span>ACCURACY OVER TIME</span>
-        <span style="color:var(--text3);font-size:.58rem">${allSess.length} sessions</span>
-      </div>
+      <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:2px;margin-bottom:10px">ACCURACY OVER TIME</div>
       <canvas class="chart-canvas" id="chart-${i}" width="400" height="120"></canvas>
       <div class="chart-legend" id="chart-legend-${i}"></div>
-    </div>`:`
-    <div class="chart-wrap">
-      <div class="chart-no-data">Log 2+ sessions to see the progress chart</div>
-    </div>`;
+    </div>`:`<div class="chart-wrap"><div class="chart-no-data">Log 2+ sessions in this date range to see progress chart</div></div>`;
 
-  // Goals
   const goals=(cl.goals||[]);
-  const goalsHtml=goals.length>0?`
-    <div class="goals-section">
-      <div class="sec-hdr">GOALS & MASTERY</div>
-      ${goals.map((g,gi)=>renderGoalCard(g,i,gi)).join('')}
-    </div>`:'';
+  const goalsHtml=goals.length>0?`<div class="goals-section"><div class="sec-hdr">GOALS & MASTERY</div>${goals.map((g,gi)=>renderGoalCard(g,i,gi)).join('')}</div>`:'';
 
-  // Recent sessions
-  const recentLogs=sess.slice(-4).reverse().map(s=>`
+  const recentLogs=filteredSessions.slice(-4).reverse().map(s=>`
     <div class="lrow">
       <div class="lm">${s.module}</div>
       <div class="ls">${s.score}</div>
-      <div class="ld">${s.date}</div>
-      ${s.prompt?`<div><span class="ptag">${s.prompt}</span></div>`:''}
+      <div class="ld">${s.date}${getClientSessionTime(s)?' · '+getClientSessionTime(s):''}${s.prompt?` · <span class="ptag">${s.prompt}</span>`:''}</div>
       ${s.notes?`<div class="ln">${s.notes}</div>`:''}
-    </div>`).join('')||'<div style="color:var(--text3);font-size:.78rem;padding:6px">No sessions logged yet.</div>';
+    </div>`).join('') || '<div style="color:var(--text3);font-size:.78rem;padding:6px">No sessions logged in this date range.</div>';
+
+  const promptVals=filteredSessions.map(s=>Number(s.promptLevel ?? s.prompt ?? s.supportLevel ?? 0)).filter(v=>!isNaN(v));
+  let promptTrend='No data yet';
+  if(promptVals.length>=2){
+    const mid=Math.max(1, Math.floor(promptVals.length/2));
+    const avg=a=>a.length ? a.reduce((x,y)=>x+y,0)/a.length : 0;
+    const diff=avg(promptVals.slice(mid)) - avg(promptVals.slice(0,mid));
+    promptTrend = diff>0.25 ? 'Increasing support' : (diff<-0.25 ? 'Fading prompts' : 'Stable');
+  }
+  const entries=Object.entries(skDefs).map(([k,label])=>({key:k,label,score:Number(sk[k]||0)}));
+  entries.sort((a,b)=>b.score-a.score);
+  const strongest = entries.length ? entries[0] : null;
+  const weakest = [...entries].sort((a,b)=>a.score-b.score)[0] || null;
+  const cutoff=new Date(); cutoff.setDate(cutoff.getDate()-7);
+  const last7=filteredSessions.filter(s=>{ const d=dateFromSession(s); return d && d>=cutoff; }).length;
+  const scoreVals=filteredSessions.map(s=>{
+    const p=(s.score||'').split('/');
+    if(p.length===2){
+      const pct=Math.round(parseInt(p[0])/parseInt(p[1])*100);
+      return isNaN(pct) ? null : pct;
+    }
+    return null;
+  }).filter(v=>v!==null);
+  const weeklyAvg=scoreVals.length ? `${Math.round(scoreVals.reduce((a,b)=>a+b,0)/scoreVals.length)}% avg` : 'No data yet';
+  const last=filteredSessions.length ? filteredSessions[filteredSessions.length-1] : null;
+  const promptColors={independent:'var(--green)',verbal:'var(--blue)',gestural:'var(--amber)',physical:'var(--orange)',hoh:'var(--red)'};
+  const pc=last ? (promptColors[last.prompt]||'var(--text3)') : 'var(--text3)';
+
+  const summaryHtml = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
+        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Last Session</div>
+        <div style="font-size:.95rem;font-weight:800;color:var(--text)">${last ? (last.module||'Logged session') : 'None yet'}</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
+        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Prompt Trend</div>
+        <div style="font-size:.95rem;font-weight:800;color:var(--text2)">${promptTrend}</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
+        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Strongest Skill</div>
+        <div style="font-size:.95rem;font-weight:800;color:var(--green)">${strongest ? `${strongest.label.replace(/^[^\s]+\s/,'')} · ${strongest.score}%` : 'No data yet'}</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
+        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Needs Support</div>
+        <div style="font-size:.95rem;font-weight:800;color:var(--amber)">${weakest ? `${weakest.label.replace(/^[^\s]+\s/,'')} · ${weakest.score}%` : 'No data yet'}</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
+        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Last 7 Days</div>
+        <div style="font-size:.95rem;font-weight:800;color:var(--text)">${last7} session${last7!==1?'s':''}</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
+        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Weekly Avg</div>
+        <div style="font-size:.95rem;font-weight:800;color:var(--green)">${weeklyAvg}</div>
+      </div>
+    </div>`;
 
   return `<div class="ccard">
     <div class="ctop">
-      <div class="cav" style="background:${cl.color||'#00c851'}">${cl.name.charAt(0)}</div>
+      <div class="cav" style="background:${cl.color||'#00c851'}">${getClientAvatarText(cl)}</div>
       <div style="flex:1">
-        <div class="cname">${cl.name}</div>
-        <div class="cmeta">${cl.program||''}</div>
-        <div style="font-size:.68rem;color:var(--text2);margin-top:2px">
-          ${(cl.sessions||[]).length} session${(cl.sessions||[]).length!==1?'s':''} logged
-          ${(cl.sessions||[]).length>0?' · Last: '+(cl.sessions[cl.sessions.length-1].date):''}
-        </div>
+        <div class="cname">${getClientDisplayName(cl)}</div>
+        <div class="cmeta">${cl.program||''}${cl.fullName?` · <span style="opacity:.8">Private full name saved</span>`:''}</div>
+        <div style="font-size:.68rem;color:var(--text2);margin-top:2px">${filteredSessions.length} session${filteredSessions.length!==1?'s':''} in range · ${filteredSessions.length ? getRelativeLastSessionLabel(cl) : 'No sessions yet'}</div>
       </div>
       <div class="clvl">${(cl.level||'beginner').toUpperCase()}</div>
     </div>
 
-    <!-- Last Session Planning Card -->
+    ${summaryHtml}
+
     ${(()=>{
-      const sessions=cl.sessions||[];
-      if(sessions.length===0) return '';
-      const last=sessions[sessions.length-1];
-      const promptColors={independent:'var(--green)',verbal:'var(--blue)',gestural:'var(--orange)',physical:'#ff5722',hoh:'var(--red)'};
-      const pc=promptColors[last.prompt]||'var(--text3)';
+      if(!last) return '';
       return `<div style="background:var(--bg3);border-left:4px solid ${pc};border-radius:var(--radius-sm);padding:11px 14px;margin-bottom:12px">
         <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text2);letter-spacing:2px;margin-bottom:7px">📋 LAST SESSION - PLAN FROM HERE</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px">
           <div><div style="font-size:.68rem;color:var(--text2)">Module</div><div style="font-size:.78rem;font-weight:700;color:var(--text)">${last.module||'-'}</div></div>
           <div><div style="font-size:.68rem;color:var(--text2)">Score</div><div style="font-size:.78rem;font-weight:700;color:var(--amber)">${last.score||'-'}</div></div>
           <div><div style="font-size:.68rem;color:var(--text2)">Prompt Level</div><div style="font-size:.78rem;font-weight:700;color:${pc}">${last.prompt||'-'}</div></div>
-          <div><div style="font-size:.68rem;color:var(--text2)">Date</div><div style="font-size:.78rem;color:var(--text2)">${last.date||'-'}</div></div>
+          <div><div style="font-size:.68rem;color:var(--text2)">Date</div><div style="font-size:.78rem;color:var(--text2)">${last.date||'-'}${getClientSessionTime(last)?' · '+getClientSessionTime(last):''}</div></div>
         </div>
         ${last.notes?`<div style="font-size:.75rem;color:var(--text2);font-style:italic;border-top:1px solid var(--border2);padding-top:6px;margin-top:2px">"${last.notes}"</div>`:''}
       </div>`;
     })()}
-    ${(()=>{
-      const sk=cl.skills||{};
-      const skLabels={'situations':'Reading Situations','conversations':'Conversations','boundaries':'Boundaries','feelings':'Feelings & Conflict'};
-      const skEntries=Object.entries(sk).filter(([k,v])=>v>0);
-      if(skEntries.length===0) return '';
-      const [lowestKey,lowestVal]=skEntries.reduce((a,b)=>a[1]<b[1]?a:b);
-      const pct=lowestVal;
-      const emoji=pct>=80?'🌟':pct>=60?'📈':'📌';
-      const msg=pct>=80?'Great across the board - keep it up!':
-                pct>=60?`Focus on <strong>${skLabels[lowestKey]}</strong> next - at ${pct}%, close to mastery.`:
-                        `Suggested focus: <strong>${skLabels[lowestKey]}</strong> - currently at ${pct}%.`;
-      return `<div style="background:var(--bg3);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:.78rem;color:var(--text2);line-height:1.6">
-        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--green);letter-spacing:2px;display:block;margin-bottom:4px">${emoji} NEXT SESSION</span>
-        ${msg}
-      </div>`;
-    })()}
+
     <div class="sec-hdr">SKILL PROGRESS <button class="cbt" style="font-size:.63rem;padding:2px 8px;min-height:22px" onclick="editSkills(${i})">EDIT</button></div>
     <div class="spgrid">${spHtml}</div>
     ${chartHtml}
@@ -3090,11 +3513,13 @@ function clientCard(cl,i){
       <div class="slog-t">RECENT SESSIONS</div>
       <div class="lrows">${recentLogs}</div>
     </div>
-    <div style="margin-top:10px;display:flex;gap:7px;flex-wrap:wrap">
-      <button class="cbt" onclick="printReport(${i})">🖨 Print</button>
-      <button class="cbt" onclick="exportClientCSV(${i})">📥 Export CSV</button>
+    <div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap">
+      <button class="cbt pri" onclick="exportClientCSV(${i})">📥 Export</button>
+      <button class="cbt" onclick="openLogForClient(${i})">＋ Log Session</button>
+      <button class="cbt" onclick="printClientReport(${i})">🖨 Print</button>
       <button class="cbt" onclick="editClient(${i})">✏ Edit</button>
-      <button class="cbt" style="color:var(--red);border-color:var(--red)" onclick="delClient(${i})">Remove</button>
+      <button class="cbt" style="color:var(--amber)" onclick="${cl.archived ? `restoreClient(${i})` : `archiveClient(${i})`}">${cl.archived?'↩ Restore':'🗂 Archive'}</button>
+      <button class="cbt" style="color:var(--red);border-color:var(--red)" onclick="delClient(${i})">🗑 Delete</button>
     </div>
   </div>`;
 }
@@ -3113,7 +3538,7 @@ function drawCharts(clientIdx){
   const cl=CLIENTS[clientIdx];
   const canvas=document.getElementById('chart-'+clientIdx);
   if(!canvas)return;
-  const sessions=(cl.sessions||[]);
+  const sessions=filterSessionsByRange(cl.sessions||[]);
   if(sessions.length<2)return;
 
   const ctx=canvas.getContext('2d');
@@ -3221,7 +3646,7 @@ function drawCharts(clientIdx){
 // ── GOAL RENDERING ──
 function renderGoalCard(g,ci,gi){
   const cl=CLIENTS[ci];
-  const sessions=(cl.sessions||[]);
+  const sessions=filterSessionsByRange(cl.sessions||[]);
   const relevantSess=sessions.filter(s=>{
     const sk=MOD_TO_SKILL[s.module];
     return sk===g.skill && s.score;
@@ -3305,31 +3730,102 @@ function openM(id){
 function closeM(id){$(id).classList.remove('on');}
 
 function saveClient(){
-  const name=$('nc-name').value.trim();
-  if(!name){
-    $('nc-name').style.borderColor='var(--red)';
-    $('nc-name').placeholder='← Name is required';
-    setTimeout(()=>$('nc-name').focus(),100);
-    openHint('⚠️ Name Required','<p style="color:var(--text2);font-size:.88rem">Please enter the client\'s first name before saving.</p>','Got it',()=>{closeM('m-hint');setTimeout(()=>{openM('m-client');$('nc-name').focus();},200);});
+  const initialsEl=$('nc-initials');
+  const fullNameEl=$('nc-name');
+  const initials=(initialsEl?.value||'').trim();
+  const fullName=(fullNameEl?.value||'').trim();
+  if(!initials && !fullName){
+    if(initialsEl){
+      initialsEl.style.borderColor='var(--red)';
+      initialsEl.placeholder='← Initials or display name required';
+      setTimeout(()=>initialsEl.focus(),100);
+    }
+    openHint('⚠️ Name Required','<p style="color:var(--text2);font-size:.88rem">Please enter initials or a privacy-safe display name before saving.</p>','Got it',()=>{closeM('m-hint');setTimeout(()=>{openClientModal();const n=$('nc-initials');if(n)n.focus();},200);});
     return;
   }
+  if(initialsEl){
+    initialsEl.style.borderColor='';
+    initialsEl.placeholder='e.g. AJ or Alex J.';
+  }
+  if(fullNameEl){
+    fullNameEl.style.borderColor='';
+    fullNameEl.placeholder='Stored privately for staff use only';
+  }
   const colors=['#00c851','#33b5e5','#ff9800','#9c27b0','#f44336','#009688','#ff5722'];
-  CLIENTS.push({name,level:$('nc-level').value,program:$('nc-program').value.trim(),notes:$('nc-notes').value.trim(),color:colors[CLIENTS.length%colors.length],sessions:[],skills:{situations:0,conversations:0,boundaries:0,feelings:0},goals:[]});
-  saveAll();closeM('m-client');renderCoach();
-  ['nc-name','nc-program','nc-notes'].forEach(id=>$(id).value='');
+  CLIENTS.push({
+    initials: initials || '',
+    fullName: fullName || '',
+    name: initials || fullName,
+    level:$('nc-level').value,
+    program:$('nc-program').value.trim(),
+    notes:$('nc-notes').value.trim(),
+    color:colors[CLIENTS.length%colors.length],
+    sessions:[],
+    skills:{situations:0,conversations:0,boundaries:0,feelings:0},
+    goals:[],
+    archived:false
+  });
+  saveAll();closeM('m-client');renderCoach();refreshCoachClientOptions();showSaveIndicator('Client saved ✓');
+  resetClientModal();
+}
+
+
+function refreshCoachClientOptions(){
+  const sel=$('log-cl');
+  if(!sel) return;
+  const prev=sel.value;
+  const activeClients=(CLIENTS||[]).filter(cl=>!cl.archived);
+  sel.innerHTML = activeClients.length
+    ? activeClients.map(cl=>`<option value="${CLIENTS.indexOf(cl)}">${getClientDisplayName(cl)}</option>`).join('')
+    : '<option value="">No active clients</option>';
+  if(activeClients.length){
+    const stillValid=[...sel.options].some(opt=>opt.value===prev);
+    sel.value = stillValid ? prev : sel.options[0].value;
+  }
+}
+
+function resetLogModal(){
+  refreshCoachClientOptions();
+  if($('log-cl')) $('log-cl').selectedIndex = 0;
+  if($('log-mod')) $('log-mod').selectedIndex = 0;
+  if($('log-sc')) $('log-sc').value = '';
+  if($('log-notes')) $('log-notes').value = '';
+  PROMPT_SEL = 'independent';
+  const chips = document.querySelectorAll('#m-log .pchip');
+  chips.forEach(ch => ch.classList.remove('on'));
+  const first = chips[0];
+  if(first) first.classList.add('on');
+}
+function closeClientModalClean(){
+  resetClientModal();
+  closeM('m-client');
 }
 
 function saveSession(){
   const idx=parseInt($('log-cl').value);
   if(isNaN(idx)||!CLIENTS[idx])return;
-  const s={module:$('log-mod').value,score:$('log-sc').value,prompt:PROMPT_SEL,notes:$('log-notes').value.trim(),date:today()};
+  const s={
+    module:$('log-mod').value,
+    score:$('log-sc').value,
+    prompt:PROMPT_SEL,
+    notes:$('log-notes').value.trim(),
+    date:today(),
+    time:new Date().toLocaleTimeString([], {hour:'numeric', minute:'2-digit'})
+  };
   CLIENTS[idx].sessions=CLIENTS[idx].sessions||[];
   CLIENTS[idx].sessions.push(s);
-  const map={'Social Challenge':'challenge','Reading the Room':'laundry','Conversations':'budget','Boundaries':'safety','Conflict & Feelings':'food','Daily Challenge':'renting','Daily Challenge':'challenge','Practice Mode':'challenge'};
-  const sk=map[s.module];
-  if(sk&&s.score){const p=s.score.split('/');if(p.length===2){const pct=Math.round(parseInt(p[0])/parseInt(p[1])*100);CLIENTS[idx].skills=CLIENTS[idx].skills||{};CLIENTS[idx].skills[sk]=Math.max(CLIENTS[idx].skills[sk]||0,pct);}}
-  saveAll();closeM('m-log');renderCoach();
-  $('log-sc').value='';$('log-notes').value='';
+  const sk=MOD_TO_SKILL[s.module];
+  if(sk && s.score){
+    const p=s.score.split('/');
+    if(p.length===2){
+      const pct=Math.round(parseInt(p[0])/parseInt(p[1])*100);
+      if(!isNaN(pct)){
+        CLIENTS[idx].skills=CLIENTS[idx].skills||{};
+        CLIENTS[idx].skills[sk]=Math.max(CLIENTS[idx].skills[sk]||0,pct);
+      }
+    }
+  }
+  saveAll();resetLogModal();closeM('m-log');renderCoach();showSaveIndicator('Session logged ✓');
 }
 
 function selPrompt(el){
@@ -3339,20 +3835,29 @@ function selPrompt(el){
 
 function editClient(i){
   const cl=CLIENTS[i];
-  $('nc-name').value=cl.name;$('nc-program').value=cl.program||'';$('nc-notes').value=cl.notes||'';$('nc-level').value=cl.level||'beginner';
+  resetClientModal();
+  $('nc-initials').value=cl.initials||cl.name||'';
+  $('nc-name').value=cl.fullName||'';
+  $('nc-program').value=cl.program||'';
+  $('nc-notes').value=cl.notes||'';
+  $('nc-level').value=cl.level||'beginner';
   $('m-client').querySelector('.mt').textContent='✏ EDIT CLIENT';
-  $('m-client').querySelector('.msave').onclick=()=>{
-    CLIENTS[i].name=$('nc-name').value.trim()||cl.name;
+  const saveBtn=$('m-client').querySelector('.msave');
+  saveBtn.textContent='Save Changes';
+  saveBtn.onclick=()=>{
+    const displayName=($('nc-initials').value||'').trim();
+    const privateName=($('nc-name').value||'').trim();
+    CLIENTS[i].initials=displayName||CLIENTS[i].initials||'';
+    CLIENTS[i].fullName=privateName;
+    CLIENTS[i].name=displayName||privateName||cl.name;
     CLIENTS[i].program=$('nc-program').value.trim();
     CLIENTS[i].notes=$('nc-notes').value.trim();
     CLIENTS[i].level=$('nc-level').value;
-    saveAll();closeM('m-client');renderCoach();
-    $('m-client').querySelector('.mt').textContent='+ ADD NEW CLIENT';
-    $('m-client').querySelector('.msave').onclick=saveClient;
+    saveAll();closeM('m-client');renderCoach();refreshCoachClientOptions();showSaveIndicator('Client saved ✓');
+    resetClientModal();
   };
   openM('m-client');
 }
-
 function editSkills(i){
   const cl=CLIENTS[i],sk=cl.skills||{};
   const names={situations:'👁️ Situations',conversations:'💬 Conversations',boundaries:'🛡️ Boundaries',feelings:'💛 Feelings'};
@@ -3366,7 +3871,7 @@ function editSkills(i){
 function delClient(i){
   openHint(
     'Remove Client?',
-    `<p style="color:var(--text2);font-size:.88rem">Are you sure you want to remove <strong style="color:var(--text)">${CLIENTS[i].name}</strong>? All their sessions and goals will be deleted.</p>`,
+    `<p style="color:var(--text2);font-size:.88rem">Are you sure you want to permanently remove <strong style="color:var(--text)">${CLIENTS[i].name}</strong>? All their sessions and goals will be deleted. Archive is safer if you just want to hide them.</p>`,
     'Yes, Remove',
     ()=>{closeM('m-hint');CLIENTS.splice(i,1);saveAll();renderCoach();},
     true
@@ -3376,11 +3881,12 @@ function delClient(i){
 // ── CSV EXPORT (all clients) ──
 function exportCSV(){
   if(!CLIENTS.length){openHint('No Data','No clients to export yet. Add clients and log sessions first.',null,null);return;}
-  let csv='Client Name,Program,Level,Date,Module,Score,Prompt Level,Notes\n';
+  let csv='Display Name,Private Full Name,Program,Level,Date,Module,Score,Prompt Level,Notes\n';
   CLIENTS.forEach(cl=>{
     (cl.sessions||[]).forEach(s=>{
       const row=[
-        `"${cl.name}"`,
+        `"${cl.initials||cl.name||''}"`,
+        `"${cl.fullName||''}"`,
         `"${cl.program||''}"`,
         `"${cl.level||''}"`,
         `"${s.date||s.dat||''}"`,
@@ -3396,6 +3902,81 @@ function exportCSV(){
 }
 
 // ── CSV EXPORT (single client) ──
+
+function printClientReport(i){
+  const cl=CLIENTS[i];
+  if(!cl) return;
+  const filteredSessions=filterSessionsByRange(cl.sessions||[]);
+  const name=getClientDisplayName(cl);
+  const lastSession=filteredSessions.length ? filteredSessions[filteredSessions.length-1] : null;
+  const skillEntries=Object.entries(cl.skills||{});
+  const labelMap={situations:'Situations',conversations:'Conversations',boundaries:'Boundaries',feelings:'Feelings'};
+  const strongest=skillEntries.length ? [...skillEntries].sort((a,b)=>Number(b[1]||0)-Number(a[1]||0))[0] : null;
+  const weakest=skillEntries.length ? [...skillEntries].sort((a,b)=>Number(a[1]||0)-Number(b[1]||0))[0] : null;
+  const strongestTxt=strongest ? `${labelMap[strongest[0]]||strongest[0]} · ${Number(strongest[1]||0)}%` : 'No data yet';
+  const weakestTxt=weakest ? `${labelMap[weakest[0]]||weakest[0]} · ${Number(weakest[1]||0)}%` : 'No data yet';
+  const cutoff=new Date(); cutoff.setDate(cutoff.getDate()-7);
+  const last7=filteredSessions.filter(s=>{ const d=dateFromSession(s); return d && d>=cutoff; }).length;
+  const scoreVals=filteredSessions.map(s=>{
+    const p=(s.score||'').split('/');
+    if(p.length===2){
+      const pct=Math.round(parseInt(p[0])/parseInt(p[1])*100);
+      return isNaN(pct) ? null : pct;
+    }
+    return null;
+  }).filter(v=>v!==null);
+  const weeklyAvg=scoreVals.length ? `${Math.round(scoreVals.reduce((a,b)=>a+b,0)/scoreVals.length)}% avg` : 'No data yet';
+
+  const w=window.open('','_blank','width=900,height=700');
+  if(!w) return;
+  w.document.write(`
+    <html><head><title>${name} - SocialReady Coach Report</title>
+    <style>
+      body{font-family:Arial,sans-serif;padding:24px;color:#111}
+      h1{margin:0 0 8px}
+      .meta{color:#555;margin-bottom:18px}
+      .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+      .card{border:1px solid #d9d9d9;border-radius:10px;padding:12px}
+      h2{margin:20px 0 8px}
+      table{width:100%;border-collapse:collapse;margin-top:10px}
+      th,td{border:1px solid #ddd;padding:8px;text-align:left}
+      th{background:#f5f5f5}
+      .small{font-size:12px;color:#666}
+    </style></head><body>
+      <h1>${name}</h1>
+      <div class="meta">${cl.fullName ? `Private full name saved · ` : ''}${cl.program||'No program listed'} · Level: ${(cl.level||'beginner').toUpperCase()}</div>
+      <div class="grid">
+        <div class="card"><strong>Last Session</strong><br>${lastSession ? (lastSession.module||'Logged session') : 'None yet'}</div>
+        <div class="card"><strong>Sessions in Range</strong><br>${filteredSessions.length}</div>
+        <div class="card"><strong>Strongest Skill</strong><br>${strongestTxt}</div>
+        <div class="card"><strong>Needs Support</strong><br>${weakestTxt}</div>
+        <div class="card"><strong>Last 7 Days</strong><br>${last7} session${last7!==1?'s':''}</div>
+        <div class="card"><strong>Weekly Avg</strong><br>${weeklyAvg}</div>
+      </div>
+      <h2>Recent Sessions</h2>
+      <table>
+        <thead><tr><th>Date</th><th>Time</th><th>Module</th><th>Score</th><th>Prompt</th><th>Notes</th></tr></thead>
+        <tbody>
+          ${filteredSessions.slice(-8).reverse().map(s=>`
+            <tr>
+              <td>${s.date||''}</td>
+              <td>${getClientSessionTime(s)||''}</td>
+              <td>${s.module||''}</td>
+              <td>${s.score||''}</td>
+              <td>${s.prompt||''}</td>
+              <td>${s.notes||''}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+      <div class="small" style="margin-top:16px">Generated from SocialReady coach dashboard.</div>
+    </body></html>
+  `);
+  w.document.close();
+  w.focus();
+  w.print();
+}
+
 function exportClientCSV(i){
   const cl=CLIENTS[i];
   if(!(cl.sessions||[]).length){openHint('No Sessions','No sessions logged for '+cl.name+' yet.',null,null);return;}
@@ -4089,10 +4670,10 @@ else if(b.textContent.trim()===chosen&&!ok)b.classList.add('bad');
 (($('bd-score')||document.createElement('div'))||{}).textContent=BD.score;
 const fb=$('bd-fb');
 if(fb){fb.className='qfb on '+(ok?'ok':'bad');fb.style.display='block';
-fb.innerHTML=(ok?'✅ Correct! ':'❌ Not quite. ')+(explain?`<div class="fexplain" style="display:block;margin-top:8px">${explain}</div>`:'');}
+const wrongPhrase=ok?null:beginWrongFeedback(); fb.innerHTML=(ok?'✅ Correct! ':`❌ ${wrongPhrase}. `)+(explain?`<div class="fexplain" style="display:block;margin-top:8px">${explain}</div>`:'');}
 const nxt=$('bd-next');
 if(nxt){nxt.style.display='block';nxt.textContent=BD.idx+1>=BD.qs.length?'SEE RESULTS →':'NEXT →';}
-say(ok?'Correct!':'Not quite. '+correct);
+say(ok?'Correct!':(`${currentWrongFeedbackPhrase()}. `+correct));
 }
 function nextBD(){
 BD.idx++;
@@ -4201,6 +4782,29 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   });
 }
 </script>
+
+
+<div class="mow" id="m-coach-range" onclick="if(event.target===this)closeM('m-coach-range')">
+  <div class="mdl">
+    <div class="mt">📅 COACH DATE RANGE</div>
+    <div class="fg">
+      <label class="fl" for="coach-range-start">Start Date</label>
+      <input class="fi" id="coach-range-start" type="date">
+    </div>
+    <div class="fg">
+      <label class="fl" for="coach-range-end">End Date</label>
+      <input class="fi" id="coach-range-end" type="date">
+    </div>
+    <div style="font-size:.76rem;color:var(--text2);line-height:1.6">
+      Filter client cards, charts, recent sessions, and goal progress to a specific date range.
+    </div>
+    <div class="mbtns">
+      <button class="mcancel" onclick="clearCoachRange()">Clear</button>
+      <button class="mcancel" onclick="closeM('m-coach-range')">Cancel</button>
+      <button class="msave" onclick="saveCoachRange()">Apply</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

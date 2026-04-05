@@ -420,7 +420,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 /* ══ DIHE EQUIVALENT -- WHAT TIME IS IT? ══ */
 .wt-scenario{background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:12px;}
-.wt-context{font-size:.88rem;color:var(--text2);line-height:1.6;margin-bottom:14px;text-align:center;}
+.wt-context,.qq{font-size:clamp(1rem,2.6vw,1.2rem);font-weight:800;color:var(--text);line-height:1.35;margin-bottom:14px;text-align:center;}
 .wt-clock{display:flex;justify-content:center;margin:12px 0;}
 .wt-fb{padding:12px 14px;border-radius:var(--radius-sm);font-weight:700;font-size:.88rem;text-align:center;margin-top:10px;display:none;animation:popIn .3s ease;line-height:1.5;}
 .wt-fb.on{display:block;}
@@ -465,6 +465,63 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 .gc-body strong{color:var(--text);}
 .gc-body em{color:var(--text3);font-style:italic;}
 .cb-mode-btn{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap;}.cb-mode-btn.on{background:#2288ff22;border-color:#2288ff;color:#2288ff;box-shadow:0 0 12px #2288ff55;}.cb-mode-btn:hover{border-color:#2288ff88;color:#2288ff;}@media(min-width:900px){main>*{min-width:0;}#desktop-sidebar{min-width:0;}}
+
+@media (min-width:900px){
+  #scr-game .qpanel,
+  #scr-digitalclock .qpanel,
+  #scr-ampm .qpanel,
+  #scr-workschedule .qpanel,
+  #scr-alarmclock .qpanel,
+  #scr-clockquiz .qpanel,
+  #scr-wt .wt-scenario,
+  #scr-results .rst{
+    max-width:760px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  #scr-workschedule .qpanel,
+  #scr-results .rst{
+    max-width:860px;
+  }
+
+  #scr-wt .wt-clock svg,
+  #scr-clockquiz .qvis svg,
+  #scr-alarmclock .qpanel svg{
+    max-width:100%;
+    height:auto;
+  }
+}
+
+
+/* Step 17: repeated action row + detail panel cleanup */
+.action-row{
+  display:flex;
+  gap:8px;
+  margin-top:8px;
+}
+.action-row .abtn{
+  flex:1;
+}
+.detail-panel{
+  background:var(--bg3);
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+  color:var(--text2);
+  line-height:1.7;
+}
+
+
+/* Step 31: shared side-mode result card cleanup */
+.mode-result-card{
+  background:var(--bg2);
+  border:2px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px 20px;
+  text-align:center;
+  animation:fadeUp .4s ease;
+}
+
 </style>
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
 <defs>
@@ -593,12 +650,12 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
     <div class="home-group-label">LEARN</div>
     <div class="hgrid">
       <div class="hb" onclick="go('clockguide')"><div class="hi">🕐</div><div class="hl">Clock Guide</div><div class="hc">How clocks work</div></div>
-      <div class="hb" onclick="go('clockquiz')"><div class="hi">🧩</div><div class="hl">Clock Quiz</div><div class="hc">Test your knowledge</div></div>
+      <div class="hb" onclick="startClockQuiz()"><div class="hi">🧩</div><div class="hl">Clock Quiz</div><div class="hc">Test your knowledge</div></div>
       <div class="hb" onclick="startWT()"><div class="hi">🤔</div><div class="hl">What Time?</div><div class="hc">Read the clock</div></div>
-      <div class="hb" onclick="go('digitalclock')"><div class="hi">🔢</div><div class="hl">Digital Drill</div><div class="hc">Digital clock practice</div></div>
-      <div class="hb" onclick="go('ampm')"><div class="hi">🌅</div><div class="hl">AM / PM</div><div class="hc">Morning vs afternoon</div></div>
-      <div class="hb" onclick="go('workschedule')"><div class="hi">📅</div><div class="hl">Work Schedule</div><div class="hc">Read a real schedule</div></div>
-      <div class="hb" onclick="go('alarmclock')"><div class="hi">⏰</div><div class="hl">Alarm Clock</div><div class="hc">Set your alarm</div></div>
+      <div class="hb" onclick="startDigitalDrill()"><div class="hi">🔢</div><div class="hl">Digital Drill</div><div class="hc">Digital clock practice</div></div>
+      <div class="hb" onclick="startAMPMDrill()"><div class="hi">🌅</div><div class="hl">AM / PM</div><div class="hc">Morning vs afternoon</div></div>
+      <div class="hb" onclick="startWorkSchedule()"><div class="hi">📅</div><div class="hl">Work Schedule</div><div class="hc">Read a real schedule</div></div>
+      <div class="hb" onclick="startAlarmClock()"><div class="hi">⏰</div><div class="hl">Alarm Clock</div><div class="hc">Set your alarm</div></div>
       <div class="hb" onclick="go('guide')"><div class="hi">📖</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
     </div>
   </div>
@@ -631,7 +688,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-demo" class="scr">
   <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
+    <button class="back" onclick="go('home')">‹ HOME</button>
     <div class="gmode">👀 WATCH A DEMO</div>
     <div style="margin-left:auto;font-family:var(--font-mono);font-size:0.7rem;color:var(--text3)" id="demo-step-counter">Step 1 of 5</div>
   </div>
@@ -643,7 +700,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-game" class="scr">
   <div class="gtop">
-    <button class="back" id="end-btn" onclick="confirmEnd()">‹ END</button>
+    <button class="back" id="end-btn" onclick="confirmCancelGame()">‹ CANCEL</button>
     <div class="gmode" id="gmode-lbl">CHALLENGE</div>
     <button class="back" onclick="syncQS();openM('m-quick-settings')" style="margin-left:auto;padding:7px 10px;font-size:1rem;min-width:36px" title="Settings">⚙️</button>
     <button class="back" onclick="replayModeIntro()" style="padding:7px 10px;font-size:.9rem;min-width:36px;font-weight:900;color:var(--blue)" title="What is this mode?">?</button>
@@ -687,7 +744,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
     <div class="ftitle ok" id="ftitle">CORRECT!</div>
     <div class="fmsg" id="fmsg"></div>
     <div id="eoc-wrap" style="display:none"></div>
-    <button class="fnext" id="fnext" onclick="nextQ_game()">NEXT →</button>
+    <button class="fnext" id="fnext" onclick="return feedbackNextTap(event)">NEXT →</button>
   </div>
 </div>
 
@@ -764,7 +821,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-clockguide" class="scr">
   <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
+    <button class="back" onclick="go('home')">‹ HOME</button>
     <div class="gmode">🕐 CLOCK GUIDE</div>
   </div>
   <div class="gsec">
@@ -803,7 +860,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-scores" class="scr">
   <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
+    <button class="back" onclick="go('home')">‹ HOME</button>
     <div class="gmode">🏆 HIGH SCORES</div>
     <button class="abtn" onclick="clearScores()" style="margin-left:auto;padding:5px 11px;min-height:30px;font-size:0.72rem">CLEAR</button>
   </div>
@@ -826,7 +883,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-badges" class="scr">
   <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
+    <button class="back" onclick="go('home')">‹ HOME</button>
     <div class="gmode">🎖 BADGES</div>
   </div>
   <div id="bgrid"></div>
@@ -836,7 +893,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-guide" class="scr">
   <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
+    <button class="back" onclick="go('home')">‹ HOME</button>
     <div class="gmode">📖 HOW TO PLAY</div>
   </div>
   <div class="gsec">
@@ -879,7 +936,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-settings" class="scr">
   <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
+    <button class="back" onclick="go('home')">‹ HOME</button>
     <div class="gmode">⚙️ SETTINGS</div>
   </div>
   <div class="ss">
@@ -950,12 +1007,14 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 <div id="scr-coach" class="scr">
   <div class="coach-hdr">
     <div class="coach-title">📋 TIME SKILLS COACH DASHBOARD</div>
+    <div id="save-indicator" style="display:none;font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:1px;margin-top:4px">Saved ✓</div>
     <div class="cacts">
       <button class="cbt" onclick="printCoachReport()">🖨️ Print Report</button>
       <button class="cbt" onclick="exportCSV()" title="Download session data">📥 Export CSV</button>
+      <button class="cbt" onclick="openM('m-range')">📅 Date Range</button>
       <button class="cbt" onclick="openM('m-goal')">＋ Add Goal</button>
       <button class="cbt" onclick="openM('m-log')">＋ Log Session</button>
-      <button class="cbt pri" onclick="openM('m-client')">＋ Add Client</button>
+      <button class="cbt pri" onclick="openClientModal()">＋ Add Client</button>
 
   <button class="cbt" onclick="CFG.coachWelcomeSeen=false;renderCoach();showCoachWelcome();" style="font-size:.65rem;letter-spacing:.5px">? How It Works</button>
 </div>
@@ -979,7 +1038,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-clockquiz" class="scr">
   <div class="gtop">
-    <button class="back" onclick="confirmQuizExit()">‹ BACK</button>
+    <button class="back" onclick="confirmQuizExit()">‹ CANCEL</button>
     <div class="gmode">🧩 CLOCK QUIZ</div>
     <div class="gscore"><div class="sbox"><div class="sv" id="cq-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
@@ -992,7 +1051,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-digitalclock" class="scr">
   <div class="gtop">
-    <button class="back" onclick="confirmDCExit()">‹ BACK</button>
+    <button class="back" onclick="confirmDCExit()">‹ CANCEL</button>
     <div class="gmode">🔢 DIGITAL CLOCK DRILL</div>
     <div class="gscore"><div class="sbox"><div class="sv" id="dc-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
@@ -1005,7 +1064,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-ampm" class="scr">
   <div class="gtop">
-    <button class="back" onclick="confirmAMPMExit()">‹ BACK</button>
+    <button class="back" onclick="confirmAMPMExit()">‹ CANCEL</button>
     <div class="gmode">🌅 AM / PM DRILL</div>
     <div class="gscore"><div class="sbox"><div class="sv" id="ap-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
@@ -1018,7 +1077,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-workschedule" class="scr">
   <div class="gtop">
-    <button class="back" onclick="confirmWSExit()">‹ BACK</button>
+    <button class="back" onclick="confirmWSExit()">‹ CANCEL</button>
     <div class="gmode">📅 MY WORK SCHEDULE</div>
     <div class="gscore"><div class="sbox"><div class="sv" id="ws-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
@@ -1031,7 +1090,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-alarmclock" class="scr">
   <div class="gtop">
-    <button class="back" onclick="confirmACExit()">‹ BACK</button>
+    <button class="back" onclick="confirmACExit()">‹ CANCEL</button>
     <div class="gmode">⏰ ALARM CLOCK</div>
     <div class="gscore"><div class="sbox"><div class="sv" id="ac-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
@@ -1044,7 +1103,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-wt" class="scr">
   <div class="gtop">
-    <button class="back" onclick="confirmWTExit()">‹ BACK</button>
+    <button class="back" onclick="confirmWTExit()">‹ CANCEL</button>
     <div class="gmode">🤔 WHAT TIME IS IT?</div>
     <div class="gscore"><div class="sbox"><div class="sv" id="wt-score">0</div><div class="sl">SCORE</div></div></div>
   </div>
@@ -1057,7 +1116,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 
 <div id="scr-about" class="scr">
   <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
+    <button class="back" onclick="go('home')">‹ HOME</button>
     <div class="gmode">ℹ️ ABOUT</div>
   </div>
   <div style="text-align:center;padding:28px 16px 20px">
@@ -1209,7 +1268,8 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 <div class="mow" id="m-client">
   <div class="mdl">
     <div class="mt">+ ADD NEW CLIENT</div>
-    <div class="fg"><label class="fl">Full Name</label><input class="fi" id="nc-name" placeholder="e.g. Alex Johnson"></div>
+    <div class="fg"><label class="fl">Initials / Display Name</label><input class="fi" id="nc-initials" placeholder="e.g. AJ or Alex J."></div>
+    <div class="fg"><label class="fl">Private Full Name (optional)</label><input class="fi" id="nc-name" placeholder="Stored privately for staff use only"></div>
     <div class="fg"><label class="fl">Starting Level</label>
       <select class="fsel" id="nc-level">
         <option value="beginner">Beginner - Learning hours only</option>
@@ -1228,6 +1288,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
   <div class="mdl">
     <div class="mt">📝 LOG SESSION</div>
     <div class="fg"><label class="fl">Client</label><select class="fsel" id="log-cl"></select></div>
+    <div class="fg"><label class="fl">Staff Initials</label><input class="fi" id="log-staff" placeholder="e.g. JD"></div>
     <div class="fg"><label class="fl">Module Practiced</label>
       <select class="fsel" id="log-mod">
         <option>Clock School - Hours Only</option>
@@ -1241,6 +1302,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
       </select>
     </div>
     <div class="fg"><label class="fl">Score (e.g. 8/10)</label><input class="fi" id="log-sc" placeholder="8/10"></div>
+    <div class="fg"><label class="fl">Session Time</label><input class="fi" id="log-time" type="time"></div>
     <div class="fg">
       <label class="fl">Prompt Level Used</label>
       <div class="pchips" id="pchips">
@@ -1251,6 +1313,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
         <div class="pchip" data-v="hoh" onclick="selPrompt(this)">Hand-over-Hand</div>
       </div>
     </div>
+    <div class="fg"><label class="fl">Quick Note Template</label><select class="fsel" id="log-note-template" onchange="applyNoteTemplate(this)"><option value="">Choose a quick note...</option><option value="Independent today">Independent today</option><option value="Needed verbal prompts">Needed verbal prompts</option><option value="Needed gestural prompts">Needed gestural prompts</option><option value="Struggled with minutes">Struggled with minutes</option><option value="Struggled with AM/PM">Struggled with AM/PM</option><option value="Great focus">Great focus</option><option value="Improving steadily">Improving steadily</option><option value="Best session yet">Best session yet</option><option value="Generalized skill to daily routine">Generalized skill to daily routine</option></select></div>
     <div class="fg"><label class="fl">Session Notes</label>
       <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px">
         <div class="note-chip" onclick="appendNote('Independent today')">Independent today</div>
@@ -1298,7 +1361,21 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
     <div class="fg"><label class="fl">Goal Description (optional)</label>
       <input class="fi" id="goal-desc" placeholder="e.g. Read analog clock to nearest hour independently">
     </div>
+    <div class="fg"><label class="fl">Due Date (optional)</label><input class="fi" id="goal-due" type="date"></div>
     <div class="mbtns"><button class="mcancel" onclick="closeM('m-goal')">Cancel</button><button class="msave" onclick="saveGoal()">Save Goal</button></div>
+  </div>
+</div>
+
+
+<div class="mow" id="m-range">
+  <div class="mdl">
+    <div class="mt">📅 REPORT DATE RANGE</div>
+    <div class="fg"><label class="fl">Start Date</label><input class="fi" id="range-start" type="date"></div>
+    <div class="fg"><label class="fl">End Date</label><input class="fi" id="range-end" type="date"></div>
+    <div class="mbtns">
+      <button class="mcancel" onclick="clearCoachRange()">Clear</button>
+      <button class="msave" onclick="saveCoachRange()">Apply</button>
+    </div>
   </div>
 </div>
 
@@ -1509,15 +1586,108 @@ function fmtTime12(h,m){
   return `${h12}:${pad(m)} ${period}`;
 }
 
+
+function uniqueChoices(arr){
+  return [...new Set((arr||[]).filter(v=>v!==undefined&&v!==null&&String(v).trim()!==''))];
+}
+function makeFallbackChoices(correct, contextText=''){
+  const out=[];
+  const txt=String(correct||'');
+  const ctx=String(contextText||'');
+
+  const timeMatch=txt.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if(timeMatch){
+    let h=parseInt(timeMatch[1],10), m=parseInt(timeMatch[2],10), p=timeMatch[3].toUpperCase();
+    const add=(hh,mm,pp=p)=>{
+      let h12=((hh-1+12)%12)+1;
+      out.push(`${h12}:${String(mm).padStart(2,'0')} ${pp}`);
+    };
+    add(h, (m+5)%60);
+    add(h, (m+10)%60);
+    add(h===12?11:h+1, m);
+    add(h===1?12:h-1, m);
+    out.push(`${h}:${String(m).padStart(2,'0')} ${p==='AM'?'PM':'AM'}`);
+  }
+
+  const hoursMatch=txt.match(/^(\d+)\s+hour/i);
+  if(hoursMatch){
+    const n=parseInt(hoursMatch[1],10);
+    [n-1,n+1,n+2,n+3].forEach(v=>{
+      if(v>0) out.push(`${v} hour${v===1?'':'s'}`);
+    });
+  }
+
+  const daysCountMatch=txt.match(/^(\d+)\s+day/i);
+  if(daysCountMatch){
+    const n=parseInt(daysCountMatch[1],10);
+    [n-1,n+1,n+2,n+3].forEach(v=>{
+      if(v>0) out.push(`${v} day${v===1?'':'s'}`);
+    });
+  }
+
+  const weekdays=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday','Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  if(weekdays.includes(txt)){
+    weekdays.forEach(d=>{ if(d!==txt) out.push(d); });
+  }
+
+  if(txt==='AM' || txt==='PM'){
+    out.push(txt==='AM'?'PM':'AM');
+  }
+  if(txt==='Before noon' || txt==='After noon'){
+    out.push(txt==='Before noon'?'After noon':'Before noon');
+  }
+
+  if(out.length===0){
+    out.push('Option B','Option C','Option D');
+  }
+  return uniqueChoices(out).filter(v=>v!==txt);
+}
+function ensureChoiceCount(opts, correct, wanted=4, contextText=''){
+  const keepTwo = wanted===2;
+  let list = uniqueChoices([correct, ...(opts||[])]);
+  if(keepTwo){
+    return shuf(uniqueChoices(list).slice(0,2));
+  }
+  const fallback = makeFallbackChoices(correct, contextText);
+  for(const item of fallback){
+    if(!list.includes(item)) list.push(item);
+    if(list.length>=wanted) break;
+  }
+  let fillerCode = 1;
+  while(list.length < wanted){
+    const filler = `Choice ${String.fromCharCode(64 + fillerCode++)}`;
+    if(!list.includes(filler)) list.push(filler);
+  }
+  return shuf(uniqueChoices(list).slice(0,wanted));
+}
+
+
 // ════════════════════════════════════════════
 //  SPEECH & SOUND
 // ════════════════════════════════════════════
+let speechSeq = 0;
+
+function stopSpeech(){
+  if(!window.speechSynthesis) return;
+  try{
+    speechSeq++;
+    window.speechSynthesis.cancel();
+  }catch(e){}
+}
+
 function say(txt){
-  if(!CFG.audio||!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(txt);
-  u.rate=speechRate;u.pitch=1.05;u.volume=0.95;
-  window.speechSynthesis.speak(u);
+  if(!CFG.audio || !window.speechSynthesis || !txt) return;
+  try{
+    speechSeq++;
+    const currentSeq = speechSeq;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(String(txt));
+    u.rate = speechRate;
+    u.pitch = 1.05;
+    u.volume = 0.95;
+    u.onstart = ()=>{ if(currentSeq !== speechSeq) window.speechSynthesis.cancel(); };
+    window.speechSynthesis.speak(u);
+  }catch(e){}
 }
 function beep(f,d){
   if(!CFG.audio)return;
@@ -1568,9 +1738,24 @@ function showMiniHintBar(id, text){
   }, 6000);
 }
 function learningSayAgain(text){
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   if(text) say(text);
 }
+
+
+function sayGuideClock(label, desc, event){
+  if(event){
+    event.stopPropagation();
+    if(typeof event.preventDefault==='function') event.preventDefault();
+  }
+  stopSpeech();
+  const cleanLabel = cleanTTS(label||'');
+  const cleanDesc = cleanTTS(desc||'');
+  const parts = [cleanLabel];
+  if(cleanDesc) parts.push(cleanDesc);
+  say(parts.join('. '));
+}
+
 
 function readAboutBodyOnly(){
   const wrap = document.getElementById('scr-about');
@@ -1578,7 +1763,7 @@ function readAboutBodyOnly(){
   const clone = wrap.cloneNode(true);
   clone.querySelectorAll('.gtitle,.gtop,button,.back,.gmode').forEach(el=>el.remove());
   const txt = (clone.innerText || clone.textContent || '').replace(/\s+/g,' ').trim();
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   if(txt) say(txt);
 }
 
@@ -1589,6 +1774,7 @@ function makeTappable(screenId){
 
   // gcard sections - tap entire card to read ALL its content
   el.querySelectorAll('.gcard').forEach(card=>{
+    if(card.id==='guide-clocks') return;
     if(card.getAttribute('data-tts'))return;
     card.setAttribute('data-tts','1');
     card.style.cursor='pointer';
@@ -1661,23 +1847,26 @@ function makeTappable(screenId){
 }
 function go(id){
   const _badgeShowing=document.getElementById('badge-toast')?.classList.contains('show');
-  if(window.speechSynthesis&&!_badgeShowing)window.speechSynthesis.cancel();
+  if(window.speechSynthesis&&!_badgeShowing)stopSpeech();
   document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   const el=$('scr-'+id);
   if(el)el.classList.add('on');
   const nb=$('nb-'+id);
   if(nb)nb.classList.add('on');
+
+  const modeScreens=['game','clockquiz','digitalclock','ampm','workschedule','alarmclock','wt'];
+  if(!modeScreens.includes(id)){
+    window.nextQ_game = null;
+    resetFeedbackOverlay();
+  
+  }
+
   if(id==='home'){$('nb-home').classList.add('on');updateHomeUI();}
   if(id==='badges')renderBadges();
   if(id==='scores'){scoreFilter='all';document.querySelectorAll('#score-filters .sopt').forEach((b,i)=>b.classList.toggle('on',i===0));renderScores();}
   if(id==='settings'){renderSettings();updateNameSettingDisplay();}
   if(id==='clockguide')renderClockGuide();
-  if(id==='clockquiz')startClockQuiz();
-  if(id==='digitalclock')startDigitalDrill();
-  if(id==='ampm')startAMPMDrill();
-  if(id==='workschedule')startWorkSchedule();
-  if(id==='alarmclock')startAlarmClock();
   if(id==='demo')startDemo();
   window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
   if(id==='clockguide')makeTappable('scr-clockguide');
@@ -1945,14 +2134,33 @@ function genScheduleQuestion(){
   }
 
   if(type==='shiftend'){
-    const startH=rand([8,9,10,1,2,3]);const period=startH<8?'PM':'AM';const realH=period==='PM'&&startH<8?startH+12:startH;const shiftLen=rand([4,5,6,8]);const endH=realH+shiftLen;const endPeriod=endH>=12?'PM':'AM';const end12H=endH>12?endH-12:endH;const correct=`${end12H}:00 ${endPeriod}`;
-    let wrongHours=[end12H-1,end12H+1,end12H+2,end12H+3,end12H+4].filter(h=>h>0&&h<=12&&h!==end12H);
+    const startH=rand([8,9,10,1,2,3]);
+    const period=startH<8?'PM':'AM';
+    let start24 = startH;
+    if(period==='PM' && start24<12) start24 += 12;
+    if(period==='AM' && start24===12) start24 = 0;
+
+    const shiftLen=rand([4,5,6,8]);
+    const end24=(start24+shiftLen)%24;
+    const endPeriod=end24>=12?'PM':'AM';
+    const end12H=end24===0?12:end24>12?end24-12:end24;
+    const correct=`${end12H}:00 ${endPeriod}`;
+
+    let wrongHours=[
+      end12H===1?12:end12H-1,
+      end12H===12?1:end12H+1,
+      end12H>=11?end12H-2:end12H+2,
+      end12H>=10?end12H-3:end12H+3
+    ].filter(h=>h>0&&h<=12&&h!==end12H);
     wrongHours=[...new Set(wrongHours)];
     while(wrongHours.length<3){
       const candidate=((end12H+wrongHours.length+1-1)%12)+1;
       if(candidate!==end12H&&!wrongHours.includes(candidate)) wrongHours.push(candidate);
     }
-    const wrongs=wrongHours.slice(0,3).map(h=>`${h}:00 ${endPeriod}`);
+    const wrongs=[
+      ...wrongHours.slice(0,2).map(h=>`${h}:00 ${endPeriod}`),
+      `${end12H}:00 ${endPeriod==='AM'?'PM':'AM'}`
+    ];
     return{type:'shiftend',question:`Your shift starts at ${startH}:00 ${period} and lasts ${shiftLen} hours. What time does it end?`,correct,opts:shuf([correct,...wrongs]),hint:`Start at ${startH}:00 ${period} and count forward ${shiftLen} hours.`};
   }
 
@@ -1982,12 +2190,52 @@ function genScheduleQuestion(){
   }
 
   if(type==='traveltime'){
-    const shiftH=rand([8,9,10,2,3]);const period=shiftH<12?'AM':'PM';const travelMins=rand([15,20,25,30,45]);const leaveH=shiftH-(travelMins>=60?1:0);const leaveM=60-travelMins;const leaveM2=travelMins<=0?0:(60-travelMins)%60;const realLeaveH=travelMins>=60?shiftH-1:shiftH;const realLeaveM=60-travelMins>0&&travelMins<60?60-travelMins:0;const correct=`${realLeaveH}:${pad(realLeaveM===60?0:realLeaveM)} ${period}`;const wrongs=[realLeaveM+5,realLeaveM+10,realLeaveM-5].filter(m=>m>=0&&m<60&&m!==realLeaveM).map(m=>`${realLeaveH}:${pad(m)} ${period}`);
+    const shiftH=rand([8,9,10,2,3]);
+    const period=shiftH<12?'AM':'PM';
+    const travelMins=rand([15,20,25,30,45]);
+
+    let shift24 = shiftH;
+    if(period==='PM' && shift24<12) shift24 += 12;
+    if(period==='AM' && shift24===12) shift24 = 0;
+
+    const totalShiftMins = shift24 * 60;
+    const leaveTotalMins = totalShiftMins - travelMins;
+    const leave24 = Math.floor((leaveTotalMins + 24*60) % (24*60) / 60);
+    const leaveMin = ((leaveTotalMins % 60) + 60) % 60;
+    const leavePeriod = leave24 < 12 ? 'AM' : 'PM';
+    const leave12 = leave24 === 0 ? 12 : leave24 > 12 ? leave24 - 12 : leave24;
+
+    const correct=`${leave12}:${pad(leaveMin)} ${leavePeriod}`;
+    const wrongs=[
+      `${leave12}:${pad((leaveMin+5)%60)} ${leavePeriod}`,
+      `${leave12}:${pad((leaveMin+10)%60)} ${leavePeriod}`,
+      `${leave12===1?12:leave12-1}:${pad(leaveMin)} ${leavePeriod}`,
+      `${leave12}:${pad(leaveMin)} ${leavePeriod==='AM'?'PM':'AM'}`
+    ].filter(w=>w!==correct);
+
     return{type:'traveltime',question:`Your shift starts at ${shiftH}:00 ${period}. It takes you ${travelMins} minutes to get to work. What time should you leave home?`,correct,opts:shuf([correct,...wrongs.slice(0,3)]),hint:`Count back ${travelMins} minutes from ${shiftH}:00 ${period}.`};
   }
 
   // shiftstart
-  const endH=rand([1,2,3,4,5]);const period='PM';const shiftLen=rand([4,5,6,8]);const startH=endH+12-shiftLen;const startPeriod=startH<12?'AM':'PM';const start12H=startH>12?startH-12:startH===0?12:startH;const correct=`${start12H}:00 ${startPeriod}`;const wrongs=[start12H-1,start12H+1,start12H+2].filter(h=>h>0&&h<=12).map(h=>`${h}:00 ${startPeriod}`);
+  const endH=rand([1,2,3,4,5]);
+  const period='PM';
+  const shiftLen=rand([4,5,6,8]);
+  const startH=endH+12-shiftLen;
+  const startPeriod=startH<12?'AM':'PM';
+  const start12H=startH>12?startH-12:startH===0?12:startH;
+  const correct=`${start12H}:00 ${startPeriod}`;
+
+  const startWrongHours=[
+    start12H===1?12:start12H-1,
+    start12H===12?1:start12H+1,
+    start12H>=11?start12H-2:start12H+2
+  ].filter(h=>h>0&&h<=12&&h!==start12H);
+
+  const wrongs=[
+    ...startWrongHours.map(h=>`${h}:00 ${startPeriod}`),
+    `${start12H}:00 ${startPeriod==='AM'?'PM':'AM'}`
+  ];
+
   return{type:'shiftstart',question:`Your shift ends at ${endH}:00 ${period} and lasts ${shiftLen} hours. What time did it start?`,correct,opts:shuf([correct,...wrongs.slice(0,3)]),hint:`Count back ${shiftLen} hours from ${endH}:00 ${period}.`};
 }
 
@@ -2027,7 +2275,104 @@ function timeAudioFlash(btn){
   timeFlashActionButton(btn);
   timePulseButtonLabel(btn,'🔊 READING...',850);
 }
-function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
+function cancelIntroToHome(){
+  closeM('m-hint');
+  go('home');
+}
+function closeReplayIntro(){
+  closeM('m-hint');
+}
+
+function resetFeedbackOverlay(){
+  const fov=$('fov'); if(fov) fov.classList.remove('on');
+  const fcard=$('fcard'); if(fcard) fcard.className='fcard';
+  const fmsg=$('fmsg'); if(fmsg) fmsg.textContent='';
+  const ftitle=$('ftitle'); if(ftitle){ ftitle.textContent='CORRECT!'; ftitle.className='ftitle ok'; }
+  const femoji=$('femoji'); if(femoji) femoji.textContent='✅';
+  const fnext=$('fnext'); if(fnext){ fnext.className='fnext'; fnext.textContent='NEXT →'; }
+  const eoc=$('eoc-wrap'); if(eoc){ eoc.style.display='none'; eoc.innerHTML=''; }
+}
+
+function safeDispatchNext(){
+  const mainModes=['starter','practice','challenge','schedule','daily'];
+  if(ST && mainModes.includes(ST.mode) && ST.answered){
+    nextQ_game();
+    return;
+  }
+  if(typeof window.nextQ_game === 'function'){
+    window.nextQ_game();
+    return;
+  }
+  console.warn('No next handler set for feedback overlay.');
+  window.nextQ_game = null;
+  stopSpeech();
+  resetFeedbackOverlay();
+}
+
+
+let feedbackNextLastTap = 0;
+function feedbackNextTap(event){
+  if(event){
+    if(typeof event.preventDefault === 'function') event.preventDefault();
+    if(typeof event.stopPropagation === 'function') event.stopPropagation();
+  }
+  const now = Date.now();
+  if(now - feedbackNextLastTap < 250) return false;
+  feedbackNextLastTap = now;
+  safeDispatchNext();
+  return false;
+}
+
+function resetModeHintBars(){
+  ['g-hint-bar','cq-hint','dc-hint','ap-hint','ws-hint','ac-hint'].forEach(id=>{
+    const el=$(id);
+    if(el){
+      el.style.display='none';
+      el.style.opacity='0';
+      if('innerHTML' in el) el.innerHTML='';
+      if('textContent' in el) el.textContent='';
+    }
+  });
+}
+
+
+function showMainFeedbackOverlayDirect(ok){
+  try{
+    const fnext=$('fnext');
+    if(fnext){
+      fnext.className = ok ? 'fnext' : 'fnext bad';
+      fnext.textContent = ST.total>=ST.maxQ ? 'SEE RESULTS →' : 'NEXT →';
+    }
+
+    const fov=$('fov');
+    if(fov) fov.classList.add('on');
+
+    const eoc=$('eoc-wrap');
+    if(eoc){
+      if(ST.total>=ST.maxQ && ok){
+        const pct=Math.round(ST.correct/ST.maxQ*100);
+        if(pct>=80){
+          eoc.style.display='block';
+          eoc.innerHTML=`<div class="eoc"><div class="eoc-title">🏅 GREAT SESSION!</div><div class="eoc-name">${pct}% Accuracy</div><div class="eoc-sub">You answered ${ST.total} questions - real time skills!</div></div>`;
+        } else {
+          eoc.style.display='none';
+          eoc.innerHTML='';
+        }
+      } else {
+        eoc.style.display='none';
+        eoc.innerHTML='';
+      }
+    }
+  }catch(e){
+    console.warn('Main feedback popup setup failed', e);
+  }
+}
+
+
+
+
+
+function showModeIntro(icon,title,color,lines,btnLabel,onConfirm,onCancel){
   const linesHTML=lines.map(([emoji,bold,detail])=>
     `<div style="display:flex;gap:11px;align-items:flex-start;margin-bottom:9px">
       <div style="font-size:1.2rem;width:26px;flex-shrink:0;text-align:center">${emoji}</div>
@@ -2037,14 +2382,15 @@ function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
   openHint(
     `${icon} ${title}`,
     `<div style="background:linear-gradient(135deg,${color}18,${color}06);border:1px solid ${color}44;border-radius:10px;padding:13px 14px;margin-bottom:12px">${linesHTML}</div>`,
-    btnLabel||'Let\'s Go! →',
+    btnLabel||"Let's Go! →",
     onConfirm,
     true
   );
-  const spoken = [spokenTitle(title)]
-    .concat(lines.map(([_,bold,detail]) => [bold, detail].filter(Boolean).join('. ')))
-    .join('. ');
-  setTimeout(()=>{ if(typeof say==='function') say(cleanTTS(spoken)); },150);
+  const cancel=$('m-hint-cancel');
+  if(cancel) cancel.onclick=()=>{
+    if(typeof onCancel==='function') onCancel();
+    else cancelIntroToHome();
+  };
 }
 
 function replayModeIntro(){
@@ -2053,10 +2399,11 @@ function replayModeIntro(){
     practice:['🎓','PRACTICE MODE','#0066ff',[['🚫','No score. No pressure.','Practice as many clocks as you want.'],['🕐','Full clock shown - both hands, all types.',''],['💡','Hints are always available.','']]],
     challenge:['🏆','TIME CHALLENGE','#0066ff',[['🔢','10 questions, scored.','Your score is saved at the end.'],['📈','Difficulty builds as you go.','Starts with half-hours, builds to full minutes.'],['🔥','Streaks earn bonus points.','']]],
     schedule:['📋','SCHEDULE MASTER','#0066ff',[['🏢','Real job schedule questions.','Shift lengths, AM/PM, travel time.'],['🌅','AM and PM questions included.','A 9 AM shift is very different from 9 PM!'],['📖','Multiple choice - 4 options each.','']]],
-    daily:['📅','DAILY CHALLENGE','#0066ff',[['5️⃣','5 clock questions - quick and focused.','Mixed types each day.'],['🔥','Builds your daily streak.',''],['⭐','Scored and saved.','']]]
+    daily:['📅','DAILY CHALLENGE','#0066ff',[['5️⃣','5 clock questions - quick and focused.','Mixed types each day.'],['🔥','Builds your daily streak.',''],['⭐','Scored and saved.','']]],
+    clockquiz:['🧩','CLOCK QUIZ','#0066ff',[['🕐','8 clock questions.','Read the clock and choose the correct answer.'],['⭐','Scored and saved.','Your final score is added to High Scores.'],['💡','Hints are available.','Use them any time you need support.']]]
   };
   const d=intros[ST.mode];
-  if(d) showModeIntro(d[0],d[1],d[2],d[3],'Got it - Back to the game!',()=>closeM('m-hint'));
+  if(d) showModeIntro(d[0],d[1],d[2],d[3],'Got it - Back to the game!',closeReplayIntro,closeReplayIntro);
 }
 
 function startMode(mode){
@@ -2070,13 +2417,15 @@ function startMode(mode){
   ST.difficulty=mode==='starter'?1:mode==='schedule'?0:mode==='daily'?2:3;
 
   const endBtn=$('end-btn');
-  if(endBtn)endBtn.textContent=isP?'‹ DONE':'‹ END';
+  if(endBtn)endBtn.textContent='‹ CANCEL';
   $('sbox-score').style.display=isP?'none':'';
   $('sbox-streak').style.display=(mode==='challenge'||mode==='daily')?'':'none';
   $('g-lvl').style.display=(mode==='challenge')?'':'none';
   $('gmode-lbl').textContent=mode==='starter'?'CLOCK SCHOOL':mode==='practice'?'PRACTICE':mode==='daily'?'DAILY':mode==='schedule'?'SCHEDULE MASTER':'CHALLENGE';
 
   const launch=()=>{
+    window.nextQ_game = nextQ_game;
+    resetFeedbackOverlay();
     buildDots();
     go('game');
     startGameTimer();
@@ -2093,31 +2442,31 @@ function startMode(mode){
       ['🩵','The long hand shows the MINUTES.','We\'ll start without it. Once you have the hour hand down, the minute hand appears!'],
       ['💡','Hint button is always there for you.','If you\'re unsure, tap HINT and we\'ll point you in the right direction.'],
       ['⏩','Not a beginner? Try Time Challenge instead.','Clock School is designed for people just starting out.'],
-    ],'Got It - Let\'s Go! →',()=>{ closeM('m-hint'); launch(); });
+    ],'Got It - Let\'s Go! →',()=>{ closeM('m-hint'); launch(); },cancelIntroToHome);
   } else if(mode==='practice'){
     showModeIntro('🎓','PRACTICE MODE','#0066ff',[
       ['🚫','No score. No pressure.','Practice as many clocks as you want - nothing is recorded.'],
       ['🕐','Full clock shown - both hands, all types.','Analog clocks, AM/PM, and mixed questions.'],
       ['💡','Hints are always available.','Tap HINT any time to get a nudge in the right direction.'],
-    ],'Start Practice →',()=>{ closeM('m-hint'); launch(); });
+    ],'Start Practice →',()=>{ closeM('m-hint'); launch(); },cancelIntroToHome);
   } else if(mode==='challenge'){
     showModeIntro('🏆','TIME CHALLENGE','#0066ff',[
       ['🔢','10 questions, scored.','Your score and accuracy are saved at the end.'],
       ['📈','Difficulty builds as you go.','Starts with half-hours, builds up to full minutes by the end.'],
       ['🔥','Streaks earn bonus points.','Get several right in a row to boost your score.'],
-    ],'Start Challenge →',()=>{ closeM('m-hint'); launch(); });
+    ],'Start Challenge →',()=>{ closeM('m-hint'); launch(); },cancelIntroToHome);
   } else if(mode==='schedule'){
     showModeIntro('📋','SCHEDULE MASTER','#0066ff',[
       ['🏢','Real job schedule questions.','How long is this shift? What time does it end? When do you need to leave?'],
       ['🌅','AM and PM questions included.','Knowing the difference matters at work - a 9 AM shift is very different from 9 PM!'],
       ['📖','Multiple choice - 4 options each.','No math to write out. Just read, think, and pick the best answer.'],
-    ],'Start Schedule Master →',()=>{ closeM('m-hint'); launch(); });
+    ],'Start Schedule Master →',()=>{ closeM('m-hint'); launch(); },cancelIntroToHome);
   } else if(mode==='daily'){
     showModeIntro('📅','DAILY CHALLENGE','#0066ff',[
       ['5️⃣','5 clock questions - quick and focused.','Takes about 2-3 minutes. Mixed types each day.'],
       ['🔥','Builds your daily streak.','Complete it every day to keep your streak going.'],
       ['⭐','Scored and saved.','Your result is recorded in High Scores.'],
-    ],'Start Today\'s Challenge →',()=>{ closeM('m-hint'); launch(); });
+    ],'Start Today\'s Challenge →',()=>{ closeM('m-hint'); launch(); },cancelIntroToHome);
   } else {
     launch();
   }
@@ -2134,6 +2483,7 @@ function startDaily(){
 
 
 let hintTimer=null;
+let mainAutoNextTimer=null;
 
 function flashActionButton(el, kind='audio'){
   if(!el) return;
@@ -2198,7 +2548,7 @@ function showHintBar(text){
 
 function sayAgain(btn){
   if(btn) timeAudioFlash(btn);
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   let text = '';
   const qEl = document.getElementById('g-question');
   if(qEl && qEl.textContent) text = qEl.textContent.trim();
@@ -2248,6 +2598,7 @@ function updDots(){
 let currentQ=null;
 function genQuestion(){
   ST.answered=false;
+  if(mainAutoNextTimer){ clearTimeout(mainAutoNextTimer); mainAutoNextTimer=null; }
   $('g-fb').className='qfb';$('g-fb').style.display='none';
   $('g-hint-bar').style.display='none';
 
@@ -2278,8 +2629,8 @@ function genQuestion(){
     renderClockQuestion();
   }
   updDots();
-  $('g-score').textContent=ST.score;
-  $('g-lvl').textContent=getLvl(ST.score).n;
+  const gScoreEl=$('g-score'); if(gScoreEl) gScoreEl.textContent=ST.score;
+  const gLvlEl=$('g-lvl'); if(gLvlEl) gLvlEl.textContent=getLvl(ST.score).n;
 }
 
 function renderClockQuestion(){
@@ -2341,9 +2692,11 @@ function renderScheduleQuestion(){
 
 function renderOpts(opts,correct,wide=false){
   const grid=$('g-opts');
-  grid.style.gridTemplateColumns=wide?'1fr 1fr':'1fr 1fr';
+  const wanted=(currentQ&&currentQ.type==='ampm')?2:4;
+  const safeOpts=ensureChoiceCount(opts, correct, wanted, (currentQ&&currentQ.question)||'');
+  grid.style.gridTemplateColumns='1fr 1fr';
   grid.innerHTML='';
-  opts.forEach(opt=>{
+  safeOpts.forEach(opt=>{
     const btn=document.createElement('button');
     btn.className='qo'+(CFG.errorless&&opt===correct?' ok':'');
     btn.textContent=opt;
@@ -2355,6 +2708,9 @@ function renderOpts(opts,correct,wide=false){
 function answerQ(chosen,correct){
   if(ST.answered)return;
   ST.answered=true;ST.total++;
+
+  if(mainAutoNextTimer){ clearTimeout(mainAutoNextTimer); mainAutoNextTimer=null; }
+
   const ok=chosen===correct;
   const displayTime=correct;
 
@@ -2398,11 +2754,12 @@ function answerQ(chosen,correct){
     fb.className='qfb on bad';
     fb.textContent=getRandMsg(WRONG_MSGS,correct);
     buzz();
-    say(`Not quite. The correct answer was ${correct}.`);
+    const phrase=beginWrongFeedback();
+    say(`${phrase}. The correct answer was ${correct}.`);
     const fc=$('fcard');
     if(fc){
       $('femoji').textContent='❌';
-      $('ftitle').textContent='NOT QUITE';
+      $('ftitle').textContent=phrase.toUpperCase();
       $('ftitle').className='ftitle bad';
       $('fmsg').textContent=fb.textContent;
       fc.className='fcard wrong';
@@ -2412,28 +2769,13 @@ function answerQ(chosen,correct){
 
   // Update streak dots
   for(let i=0;i<5;i++){const d=$('sd'+i);if(d)d.classList.toggle('lit',i<ST.streak);}
-  $('g-score').textContent=ST.score;
-  $('g-lvl').textContent=getLvl(ST.score).n;
+  const gScoreEl=$('g-score'); if(gScoreEl) gScoreEl.textContent=ST.score;
+  const gLvlEl=$('g-lvl'); if(gLvlEl) gLvlEl.textContent=getLvl(ST.score).n;
 
   gameRounds.push({question:currentQ?.question||'Clock question',answer:correct,given:chosen,ok});
 
-  // Show next button after short delay
-  setTimeout(()=>{
-    const fnext=$('fnext');
-    if(fnext){
-      fnext.className=ok?'fnext':'fnext bad';
-      fnext.textContent=ST.total>=ST.maxQ?'SEE RESULTS →':'NEXT →';
-      $('fov').classList.add('on');
-      // EOC card
-      if(ST.total>=ST.maxQ&&ok){
-        const pct=Math.round(ST.correct/ST.maxQ*100);
-        if(pct>=80){
-          $('eoc-wrap').style.display='block';
-          $('eoc-wrap').innerHTML=`<div class="eoc"><div class="eoc-title">🏅 GREAT SESSION!</div><div class="eoc-name">${pct}% Accuracy</div><div class="eoc-sub">You answered ${ST.total} questions - real time skills!</div></div>`;
-        } else $('eoc-wrap').style.display='none';
-      } else $('eoc-wrap').style.display='none';
-    }
-  },300);
+  // Show popup immediately for the main learning modes
+  showMainFeedbackOverlayDirect(ok);
 }
 
 function updateHintsUsedDisplay(){ const el=document.getElementById('hints-used'); if(el) el.textContent=`Hints used: ${ST.hintsUsed||0}`; }
@@ -2456,14 +2798,39 @@ function doHint(btn){
     else hintText+=`The LONG hand points near ${Math.round(m/5)}, which means about ${m} minutes.`;
   }
   showHintBar(hintText);
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   say(hintText);
 }
 
 function nextQ_game(){
-  $('fov').classList.remove('on');
-  if(ST.total>=ST.maxQ)endSession();
+  stopSpeech();
+  if(mainAutoNextTimer){ clearTimeout(mainAutoNextTimer); mainAutoNextTimer=null; }
+  resetFeedbackOverlay();
+  const fnext=$('fnext'); if(fnext) fnext.onclick = safeDispatchNext;
+
+  if(!ST || typeof ST.total !== 'number'){
+    console.warn('Main game state missing, resetting to practice mode.');
+    startMode('practice');
+    return;
+  }
+
+  ST.answered = false;
+
+  if(ST.total>=ST.maxQ) endSession();
   else genQuestion();
+}
+
+function confirmCancelGame(){
+  if(ST.total>0){
+    openHint(
+      'Leave TimeReady?',
+      '<p style="color:var(--text2);font-size:.88rem">If you leave now, this session will not be saved.</p>',
+      'Leave',
+      ()=>{closeM('m-hint');go('home');}
+    );
+  } else {
+    go('home');
+  }
 }
 
 function confirmEnd(){
@@ -2480,16 +2847,18 @@ function confirmEnd(){
 }
 
 function endSession(early=false){
-  $('fov').classList.remove('on');
+  resetFeedbackOverlay();
   stopGameTimer();
   txCountForBreak=0;
   if(ST.mode==='practice'){
+    const elapsed=ST.startTime?(Date.now()-ST.startTime)/1000:0;
+    const showElapsed=elapsed>10;
     const s=$('practice-summary');
-    if(s) s.textContent=`You answered ${ST.total} question${ST.total!==1?'s':''} • ${ST.correct} correct • Hints used: ${ST.hintsUsed||0}`;
+    if(s) s.textContent=`You answered ${ST.total} question${ST.total!==1?'s':''} • ${ST.correct} correct • Hints used: ${ST.hintsUsed||0}${showElapsed?` • Time: ${fmtElapsed(elapsed)}`:''}`;
     updateHomeUI();
     go('practice-complete');
     window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
-    setTimeout(()=>{ say(`Nice work. You answered ${ST.total} question${ST.total!==1?'s':''}, got ${ST.correct} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`); },120);
+    setTimeout(()=>{ say(`Nice work. You answered ${ST.total} question${ST.total!==1?'s':''}, got ${ST.correct} correct, used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}${showElapsed?`, and your time was ${fmtElapsedSpeech(elapsed)}`:''}.`); },120);
     return;
   }
 
@@ -2651,7 +3020,7 @@ function _finishEndSession(early=false){
     $('r-play-again').onclick=()=>startMode(lastMode);
   }
 
-  setTimeout(()=>say(`${modeSpeak||'Session'} complete. You got ${ST.correct} out of ${ST.total} correct, and used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}.`),140);
+  setTimeout(()=>say(`${modeSpeak||'Session'} complete. You got ${ST.correct} out of ${ST.total} correct, used ${ST.hintsUsed||0} hint${(ST.hintsUsed||0)!==1?'s':''}${elapsed>10?`, and your time was ${fmtElapsedSpeech(elapsed)}`:''}.`),140);
   document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
   $('scr-results').classList.add('on');
   window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
@@ -2854,16 +3223,16 @@ function renderClockGuide(){
     {h:12,m:0,label:'12:00',desc:'Both hands pointing up - noon or midnight'},
     {h:9,m:15,label:'9:15',desc:'Short hand just past 9, long hand on 3'},
   ];
-  $('guide-clocks').innerHTML=`<p style="color:var(--text2);font-size:.85rem;margin-bottom:12px">Tap any clock to hear the time read aloud:</p>`+
+  $('guide-clocks').innerHTML=`<p style="color:var(--text2);font-size:.85rem;margin-bottom:12px">Tap one clock at a time to hear only that clock read aloud:</p>`+
     examples.map(ex=>`
-      <div style="display:flex;align-items:center;gap:14px;background:var(--bg3);border-radius:var(--radius-sm);padding:12px;margin-bottom:8px;cursor:pointer" onclick="say('${ex.label}')">
+      <button type="button" data-guide-clock="1" style="display:flex;align-items:center;gap:14px;background:var(--bg3);border-radius:var(--radius-sm);padding:12px;margin-bottom:8px;cursor:pointer;width:100%;border:none;text-align:left" onclick="sayGuideClock('${ex.label}','${ex.desc}', event)">
         ${drawClock(ex.h,ex.m,72,true,false)}
         <div>
           <div style="font-family:var(--font-mono);font-size:1.1rem;color:var(--cyan);font-weight:700">${ex.label}</div>
           <div style="font-size:.76rem;color:var(--text3);margin-top:3px">${ex.desc}</div>
         </div>
-        <div style="margin-left:auto;font-size:1.2rem;color:var(--text3)">🔊</div>
-      </div>`).join('');
+        <div aria-hidden="true" style="margin-left:auto;font-size:1.2rem;color:var(--text3)">🔊</div>
+      </button>`).join('');
 }
 
 // ════════════════════════════════════════════
@@ -2956,23 +3325,43 @@ function showCoachWelcome(){
     if(w) w.style.display='block';
     const cw=$('coach-wrap');if(cw)cw.style.visibility='hidden';
     document.querySelectorAll('.cacts .cbt').forEach(b=>{
-      b.disabled=true;b.style.opacity='0.35';
-      b.style.pointerEvents='none';b.title='Close the welcome message first';
+      const label=(b.textContent||'').trim();
+      const keepActive = label.includes('Add Client') || label.includes('How It Works');
+      b.disabled=!keepActive;
+      b.style.opacity=keepActive?'':'0.35';
+      b.style.pointerEvents=keepActive?'':'none';
+      if(!keepActive) b.title='Close the welcome message first';
     });
   }
 }
 function dismissCoachWelcome(){
   CFG.coachWelcomeSeen=true;saveAll();
   const w=$('coach-welcome');if(w)w.style.display='none';
+  const cw=$('coach-wrap');if(cw)cw.style.visibility='';
   document.querySelectorAll('.cacts .cbt').forEach(b=>{
     b.disabled=false;b.style.opacity='';
     b.style.pointerEvents='';b.title='';
   });
 }
 function renderCoach(){
-  if(!CLIENTS.length){$('coach-wrap').innerHTML='<div class="no-data">No clients yet.<br>Tap "+ Add Client" to get started.</div>';return;}
-  $('coach-wrap').innerHTML=`<div class="ccards">${CLIENTS.map((cl,i)=>clientCard(cl,i)).join('')}</div>`;
-  CLIENTS.forEach((_,i)=>drawCharts(i));
+  CFG.coachShowArchived = !!CFG.coachShowArchived;
+  const activeClients = CLIENTS.filter(cl=>!cl.archived);
+  const archivedClients = CLIENTS.filter(cl=>cl.archived);
+  const visibleClients = CFG.coachShowArchived ? archivedClients : activeClients;
+
+  const toggleLabel = CFG.coachShowArchived ? `Show Active (${activeClients.length})` : `Show Archived (${archivedClients.length})`;
+  const rangeLabel = (CFG.coachRangeStart||CFG.coachRangeEnd) ? `<div style="font-size:.72rem;color:var(--text2);margin-right:auto">Range: ${CFG.coachRangeStart||'Any'} to ${CFG.coachRangeEnd||'Any'}</div>` : '<div style="margin-right:auto"></div>';
+  const toggleBtn = `<div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-bottom:12px">${rangeLabel}<button class="cbt" onclick="CFG.coachShowArchived=!CFG.coachShowArchived;saveAll();renderCoach();">${toggleLabel}</button></div>`;
+
+  if(!visibleClients.length){
+    const emptyTitle = CFG.coachShowArchived ? 'No archived clients.' : 'No clients yet.';
+    const emptySub = CFG.coachShowArchived ? 'Archive a client to keep their records without deleting them.' : 'Tap "+ Add Client" to get started.';
+    $('coach-wrap').innerHTML=`${toggleBtn}<div class="no-data">${emptyTitle}<br>${emptySub}<br>${!CFG.coachShowArchived?'<button class="cbt pri" style="margin-top:12px" onclick="openClientModal()">＋ Add Client</button>':''}</div>`;
+    return;
+  }
+
+  $('coach-wrap').innerHTML=`${toggleBtn}<div class="ccards">${visibleClients.map(cl=>clientCard(cl, CLIENTS.indexOf(cl))).join('')}</div>`;
+  visibleClients.forEach(cl=>drawCharts(CLIENTS.indexOf(cl)));
 }
 
 function clientCard(cl,i){
@@ -2983,14 +3372,15 @@ function clientCard(cl,i){
       <div class="sp-lbl"><span>${n}</span><span class="sp-pct">${sk[k]||0}%</span></div>
       <div class="spbg"><div class="spf" style="width:${sk[k]||0}%"></div></div>
     </div>`).join('');
-  const sess=(cl.sessions||[]).slice(-8);
+  const filteredSessions=getFilteredSessions(cl);
+  const sess=filteredSessions.slice(-8);
   const pColors={independent:'ind',verbal:'ver',gestural:'ges',physical:'phy',hoh:'hoh'};
   const pfHtml=sess.length>0?`
     <div class="pfchart">
       <div class="pfc-title">PROMPT FADING (last ${sess.length} sessions)</div>
       <div class="pfc-row">
         <div class="pfc-label">Level:</div>
-        <div class="pfc-dots">${sess.map(s=>`<div class="pfc-dot ${pColors[s.prompt]||'empty'}" title="${s.prompt||''} - ${s.date}"></div>`).join('')}</div>
+        <div class="pfc-dots">${sess.map(s=>`<div class="pfc-dot ${pColors[s.prompt]||'empty'}" title="${s.prompt||''} - ${s.date}${getClientSessionTime(s)?' '+getClientSessionTime(s):''}"></div>`).join('')}</div>
       </div>
       <div style="font-size:.64rem;color:var(--text2);margin-top:4px">
         <span style="color:var(--green)">● Indep</span>
@@ -3000,66 +3390,72 @@ function clientCard(cl,i){
         <span style="color:var(--red)">● HoH</span>
       </div>
     </div>`:'';
-  const allSess=cl.sessions||[];
-  const chartHtml=allSess.length>=2?`
+  const chartHtml=filteredSessions.length>=2?`
     <div class="chart-wrap">
       <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:2px;margin-bottom:10px">ACCURACY OVER TIME</div>
       <canvas class="chart-canvas" id="chart-${i}" width="400" height="120"></canvas>
       <div class="chart-legend" id="chart-legend-${i}"></div>
-    </div>`:`<div class="chart-wrap"><div class="chart-no-data">Log 2+ sessions to see progress chart</div></div>`;
+    </div>`:`<div class="chart-wrap"><div class="chart-no-data">Log 2+ sessions in this date range to see progress chart</div></div>`;
   const goals=(cl.goals||[]);
   const goalsHtml=goals.length>0?`<div class="goals-section"><div class="sec-hdr">GOALS & MASTERY</div>${goals.map((g,gi)=>renderGoalCard(g,i,gi)).join('')}</div>`:'';
-  const recentLogs=(cl.sessions||[]).slice(-4).reverse().map(s=>`
+  const recentLogs=filteredSessions.slice(-4).reverse().map(s=>`
     <div class="lrow">
       <div class="lm">${s.module}</div>
       <div class="ls">${s.score}</div>
-      <div class="ld">${s.date}${s.prompt?` · <span class="ptag">${s.prompt}</span>`:''}</div>
+      <div class="ld">${s.date}${getClientSessionTime(s)?' · '+getClientSessionTime(s):''}${s.prompt?` · <span class="ptag">${s.prompt}</span>`:''}${s.staff?` · <span class="ptag">${s.staff}</span>`:''}</div>
       ${s.notes?`<div class="ln">${s.notes}</div>`:''}
-    </div>`).join('')||'<div style="color:var(--text3);font-size:.78rem;padding:6px">No sessions logged yet.</div>';
+    </div>`).join('')||'<div style="color:var(--text3);font-size:.78rem;padding:6px">No sessions logged in this date range.</div>';
+
+  const sessions=filteredSessions;
+  const last=sessions[sessions.length-1];
+  const promptColors={independent:'var(--green)',verbal:'var(--blue)',gestural:'var(--orange)',physical:'#ff5722',hoh:'var(--red)'};
+  const pc=last? (promptColors[last.prompt]||'var(--text3)') : 'var(--text3)';
+  const strongEntry=Object.entries(sk).sort((a,b)=>(b[1]||0)-(a[1]||0))[0];
+  const supportEntry=Object.entries(sk).sort((a,b)=>(a[1]||0)-(b[1]||0))[0];
+  const labelMap={analog:'Analog Clocks',digital:'Digital Clocks',ampm:'AM/PM',schedule:'Schedules'};
+  const weekAgo = Date.now() - 7*24*60*60*1000;
+  const weekSessions = sessions.filter(s=>{
+    const d=parseStoredDate(s.date||s.dat||'');
+    return d ? d.getTime() >= weekAgo : false;
+  });
+  const avgWeek = weekSessions.length ? Math.round(weekSessions.reduce((acc,s)=>{
+    const p=String(s.score||'').split('/');
+    if(p.length===2 && parseInt(p[1],10)>0) return acc + (parseInt(p[0],10)/parseInt(p[1],10)*100);
+    return acc;
+  },0)/weekSessions.length) : 0;
+  const summaryHtml=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 12px">
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">LAST SESSION</div><div style="font-size:.78rem;color:var(--text);font-weight:700">${last?`${last.module||'-'} · ${last.score||'-'}`:'None yet'}</div></div>
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">PROMPT TREND</div><div style="font-size:.78rem;color:${pc};font-weight:700">${last?(last.prompt||'Not set'):'No data yet'}</div></div>
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">STRONGEST SKILL</div><div style="font-size:.78rem;color:var(--green);font-weight:700">${strongEntry?`${labelMap[strongEntry[0]]||strongEntry[0]} · ${strongEntry[1]||0}%`:'No data yet'}</div></div>
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">NEEDS SUPPORT</div><div style="font-size:.78rem;color:var(--amber);font-weight:700">${supportEntry?`${labelMap[supportEntry[0]]||supportEntry[0]} · ${supportEntry[1]||0}%`:'No data yet'}</div></div>
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">LAST 7 DAYS</div><div style="font-size:.78rem;color:var(--text);font-weight:700">${weekSessions.length} session${weekSessions.length!==1?'s':''}</div></div>
+    <div style="background:var(--bg3);border-radius:10px;padding:10px 12px"><div style="font-size:.64rem;color:var(--text2);letter-spacing:1px">WEEKLY AVG</div><div style="font-size:.78rem;color:var(--blue);font-weight:700">${weekSessions.length?avgWeek+'%':'No data yet'}</div></div>
+  </div>`;
 
   return `<div class="ccard">
     <div class="ctop">
-      <div class="cav" style="background:${cl.color||'#0066ff'}">${cl.name.charAt(0)}</div>
+      <div class="cav" style="background:${cl.color||'#0066ff'}">${getClientAvatarText(cl)}</div>
       <div style="flex:1">
-        <div class="cname">${cl.name}</div>
-        <div class="cmeta">${cl.program||''}</div>
-        <div style="font-size:.68rem;color:var(--text2);margin-top:2px">${(cl.sessions||[]).length} session${(cl.sessions||[]).length!==1?'s':''} logged${(cl.sessions||[]).length>0?' · Last: '+cl.sessions[cl.sessions.length-1].date:''}</div>
+        <div class="cname">${getClientDisplayName(cl)}</div>
+        <div class="cmeta">${cl.program||''}${cl.fullName?` · <span style="opacity:.8">Private full name saved</span>`:''}</div>
+        <div style="font-size:.68rem;color:var(--text2);margin-top:2px">${filteredSessions.length} session${filteredSessions.length!==1?'s':''} in range · ${getRelativeLastSessionLabel(cl)}</div>
       </div>
       <div class="clvl">${(cl.level||'beginner').toUpperCase()}</div>
     </div>
 
-    <!-- Last Session Planning Card -->
+    ${summaryHtml}
+
     ${(()=>{
-      const sessions=cl.sessions||[];
-      if(sessions.length===0) return '';
-      const last=sessions[sessions.length-1];
-      const promptColors={independent:'var(--green)',verbal:'var(--blue)',gestural:'var(--orange)',physical:'#ff5722',hoh:'var(--red)'};
-      const pc=promptColors[last.prompt]||'var(--text3)';
+      if(!last) return '';
       return `<div style="background:var(--bg3);border-left:4px solid ${pc};border-radius:var(--radius-sm);padding:11px 14px;margin-bottom:12px">
         <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text2);letter-spacing:2px;margin-bottom:7px">📋 LAST SESSION - PLAN FROM HERE</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px">
           <div><div style="font-size:.68rem;color:var(--text2)">Module</div><div style="font-size:.78rem;font-weight:700;color:var(--text)">${last.module||'-'}</div></div>
           <div><div style="font-size:.68rem;color:var(--text2)">Score</div><div style="font-size:.78rem;font-weight:700;color:var(--amber)">${last.score||'-'}</div></div>
           <div><div style="font-size:.68rem;color:var(--text2)">Prompt Level</div><div style="font-size:.78rem;font-weight:700;color:${pc}">${last.prompt||'-'}</div></div>
-          <div><div style="font-size:.68rem;color:var(--text2)">Date</div><div style="font-size:.78rem;color:var(--text2)">${last.date||'-'}</div></div>
+          <div><div style="font-size:.68rem;color:var(--text2)">Date</div><div style="font-size:.78rem;color:var(--text2)">${last.date||'-'}${getClientSessionTime(last)?' · '+getClientSessionTime(last):''}</div></div>
         </div>
         ${last.notes?`<div style="font-size:.75rem;color:var(--text2);font-style:italic;border-top:1px solid var(--border2);padding-top:6px;margin-top:2px">"${last.notes}"</div>`:''}
-      </div>`;
-    })()}
-    ${(()=>{
-      const sk=cl.skills||{};
-      const skLabels={'analog':'Analog Clocks','digital':'Digital Clocks','ampm':'AM/PM','schedule':'Schedules'};
-      const skEntries=Object.entries(sk).filter(([k,v])=>v>0);
-      if(skEntries.length===0) return '';
-      const [lowestKey,lowestVal]=skEntries.reduce((a,b)=>a[1]<b[1]?a:b);
-      const pct=lowestVal;
-      const emoji=pct>=80?'🌟':pct>=60?'📈':'📌';
-      const msg=pct>=80?'Great across the board - keep it up!':
-                pct>=60?`Focus on <strong>${skLabels[lowestKey]}</strong> next - at ${pct}%, close to mastery.`:
-                        `Suggested focus: <strong>${skLabels[lowestKey]}</strong> - currently at ${pct}%.`;
-      return `<div style="background:var(--bg3);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:.78rem;color:var(--text2);line-height:1.6">
-        <span style="font-family:var(--font-mono);font-size:.6rem;color:var(--green);letter-spacing:2px;display:block;margin-bottom:4px">${emoji} NEXT SESSION</span>
-        ${msg}
       </div>`;
     })()}
     <div class="sec-hdr">SKILL PROGRESS <button class="cbt" style="font-size:.63rem;padding:2px 8px;min-height:22px" onclick="editSkills(${i})">EDIT</button></div>
@@ -3072,11 +3468,12 @@ function clientCard(cl,i){
       <div class="lrows">${recentLogs}</div>
     </div>
     <div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap">
+      <button class="cbt pri" onclick="exportClientCSV(${i})">📥 Export ${getClientDisplayName(cl)}</button>
       <button class="cbt" onclick="openLogForClient(${i})">＋ Log Session</button>
       <button class="cbt" onclick="printReport(${i})">🖨 Print</button>
-      <button class="cbt" onclick="exportClientCSV(${i})">📥 Export CSV</button>
       <button class="cbt" onclick="editClient(${i})">✏ Edit</button>
-      <button class="cbt" style="color:var(--red)" onclick="delClient(${i})">✕ Remove</button>
+      <button class="cbt" style="color:var(--amber)" onclick="archiveClient(${i})">${cl.archived?'↩ Restore':'🗂 Archive'}</button>
+      <button class="cbt" style="color:var(--red)" onclick="deleteClient(${i})">🗑 Delete</button>
     </div>
   </div>`;
 }
@@ -3092,12 +3489,11 @@ function renderGoalCard(g,ci,gi){
     </div>
     <div class="goal-progress-bar"><div class="goal-progress-fill" style="width:${progress}%"></div></div>
     <div class="goal-meta">
-      <span>Target: ${g.num}/${g.den} correct · ${g.consec} sessions in a row</span>
+      <span>Target: ${g.num}/${g.den} correct · ${g.consec} sessions in a row${g.due?` · Due ${g.due}`:''}</span>
       <button class="goal-del" onclick="deleteGoal(${ci},${gi})">✕ Remove</button>
     </div>
   </div>`;
 }
-
 
 function drawCharts(clientIdx){
   const cl=CLIENTS[clientIdx];
@@ -3158,24 +3554,50 @@ function drawCharts(clientIdx){
 //  COACH CRUD
 // ════════════════════════════════════════════
 function openM(id){
+  if(id==='m-client') resetClientModal();
+  if(id==='m-range'){
+    const rs=$('range-start'); if(rs) rs.value=toDateInputValue(CFG.coachRangeStart||'');
+    const re=$('range-end'); if(re) re.value=toDateInputValue(CFG.coachRangeEnd||'');
+  }
   if((id==='m-log'||id==='m-goal')&&!CLIENTS.length){
-    openHint('No Clients Yet','<p style="color:var(--text2);font-size:.88rem">Add a client first before logging a session or setting a goal.</p>','+ Add Client',()=>{closeM('m-hint');openM('m-client');});
+    openHint('No Clients Yet','<p style="color:var(--text2);font-size:.88rem">Add a client first before logging a session or setting a goal.</p>','+ Add Client',()=>{closeM('m-hint');openClientModal();});
     return;
   }
   if(id==='m-log'||id==='m-goal'){
     const selId=id==='m-log'?'log-cl':'goal-cl';
     const sel=$(selId);
-    if(sel)sel.innerHTML=CLIENTS.map((c,i)=>`<option value="${i}">${c.name}</option>`).join('');
+    const activeClients = CLIENTS.filter(c=>!c.archived);
+    if(sel)sel.innerHTML=activeClients.map(c=>`<option value="${CLIENTS.indexOf(c)}">${getClientDisplayName(c)}</option>`).join('');
+    if(id==='m-log'){
+      const logTime=$('log-time');
+      if(logTime && !logTime.value){
+        const d=new Date();
+        logTime.value=`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+      }
+      const ls=$('log-staff'); if(ls && CFG.coachLastStaff) ls.value=CFG.coachLastStaff;
+    }
   }
   $(id).classList.add('on');
 }
 function openLogForClient(i){
   openM('m-log');
   const sel=$('log-cl');if(sel)sel.value=i;
+  const ls=$('log-staff'); if(ls && CFG.coachLastStaff) ls.value=CFG.coachLastStaff;
+  const cl=CLIENTS[i];
+  const last=(cl && cl.sessions && cl.sessions.length)?cl.sessions[cl.sessions.length-1]:null;
+  if(last){
+    const mod=$('log-mod'); if(mod && last.module) mod.value=last.module;
+    const chips=document.querySelectorAll('#pchips .pchip');
+    chips.forEach(c=>c.classList.remove('on'));
+    const desired=last.prompt||CFG.coachLastPrompt||'independent';
+    const chip=[...chips].find(c=>c.dataset.v===desired);
+    if(chip){ chip.classList.add('on'); PROMPT_SEL=desired; }
+  }
 }
 function closeM(id){
-  if(id==='m-hint'&&window.speechSynthesis) window.speechSynthesis.cancel();
+  if(id==='m-hint'&&window.speechSynthesis) stopSpeech();
   $(id).classList.remove('on');
+  if(id==='m-client') resetClientModal();
 }
 function openHint(title,body,okLabel,okCb,showCancel){
   $('m-hint-title').textContent=title;
@@ -3201,35 +3623,240 @@ function appendNote(text){
   const n=$('log-notes');if(!n)return;
   n.value=n.value?(n.value.trim()+'. '+text):text;n.focus();
 }
-function saveClient(){
-  const name=$('nc-name').value.trim();
-  if(!name){
-    $('nc-name').style.borderColor='var(--red)';
-    $('nc-name').placeholder='← Name is required';
-    setTimeout(()=>$('nc-name').focus(),100);
-    openHint('⚠️ Name Required','<p style="color:var(--text2);font-size:.88rem">Please enter the client\'s first name before saving.</p>','Got it',()=>{closeM('m-hint');setTimeout(()=>{openM('m-client');$('nc-name').focus();},200);});
-    return;
+
+function applyNoteTemplate(sel){
+  if(!sel || !sel.value) return;
+  appendNote(sel.value);
+  sel.value='';
+}
+
+function getClientDisplayName(cl){
+  return (cl.initials||cl.name||cl.fullName||'Client').trim();
+}
+function getClientPrivateName(cl){
+  return (cl.fullName||'').trim();
+}
+function getClientAvatarText(cl){
+  const base = getClientDisplayName(cl);
+  const compact = base.replace(/[^A-Za-z0-9]/g,'').toUpperCase();
+  return compact.slice(0,2) || 'C';
+}
+function getClientSessionTime(s){
+  return (s.time||'').trim();
+}
+function toDateInputValue(str){
+  if(!str) return '';
+  const parts = String(str).split(/[\/\-]/).map(p=>p.trim()).filter(Boolean);
+  if(parts.length===3){
+    let m,d,y = parts;
+    if(y.length===4) return `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    if(parts[0].length===4) return `${parts[0]}-${String(parts[1]).padStart(2,'0')}-${String(parts[2]).padStart(2,'0')}`;
   }
-  const colors=['#0066ff','#00ccff','#ff9800','#9c27b0','#f44336','#009688'];
-  CLIENTS.push({name,level:$('nc-level').value,program:$('nc-program').value.trim(),notes:$('nc-notes').value.trim(),color:colors[CLIENTS.length%colors.length],sessions:[],skills:{analog:0,digital:0,ampm:0,schedule:0},goals:[]});
-  saveAll();closeM('m-client');renderCoach();
-  ['nc-name','nc-program','nc-notes'].forEach(id=>$(id).value='');
+  return '';
+}
+function fromDateInputValue(str){
+  if(!str) return '';
+  const parts = String(str).split('-');
+  if(parts.length!==3) return str;
+  return `${parseInt(parts[1],10)}/${parseInt(parts[2],10)}/${parts[0]}`;
+}
+
+function parseStoredDate(str){
+  if(!str) return null;
+  const raw=String(str).trim();
+  const m1=raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if(m1) return new Date(Number(m1[3]), Number(m1[1])-1, Number(m1[2]));
+  const m2=raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if(m2) return new Date(Number(m2[1]), Number(m2[2])-1, Number(m2[3]));
+  const d=new Date(raw);
+  return isNaN(d.getTime()) ? null : d;
+}
+function sessionInSelectedRange(s){
+  const start=parseStoredDate(CFG.coachRangeStart||'');
+  const end=parseStoredDate(CFG.coachRangeEnd||'');
+  if(!start && !end) return true;
+  const d=parseStoredDate(s.date||s.dat||'');
+  if(!d) return true;
+  if(start && d < start) return false;
+  if(end){
+    const endPlus=new Date(end.getFullYear(), end.getMonth(), end.getDate(), 23, 59, 59, 999);
+    if(d > endPlus) return false;
+  }
+  return true;
+}
+function getFilteredSessions(cl){
+  return (cl.sessions||[]).filter(sessionInSelectedRange);
+}
+function saveCoachRange(){
+  CFG.coachRangeStart = fromDateInputValue($('range-start').value);
+  CFG.coachRangeEnd = fromDateInputValue($('range-end').value);
+  saveAll();
+  closeM('m-range');
+  renderCoach();
+  showSaveIndicator('Range saved ✓');
+}
+function clearCoachRange(){
+  CFG.coachRangeStart = '';
+  CFG.coachRangeEnd = '';
+  const rs=$('range-start'); if(rs) rs.value='';
+  const re=$('range-end'); if(re) re.value='';
+  saveAll();
+  closeM('m-range');
+  renderCoach();
+  showSaveIndicator('Range cleared ✓');
+}
+function exportNotice(title, bodyHtml){
+  openHint(title, bodyHtml, 'OK', ()=>closeM('m-hint'), true);
+}
+function showSaveIndicator(msg='Saved ✓'){
+  const el=$('save-indicator');
+  if(!el) return;
+  el.textContent=msg;
+  el.style.display='block';
+  el.style.opacity='1';
+  clearTimeout(window.__saveIndicatorTimer);
+  window.__saveIndicatorTimer=setTimeout(()=>{
+    if(el) el.style.opacity='0';
+    setTimeout(()=>{ if(el) el.style.display='none'; }, 180);
+  }, 1400);
+}
+function withActionLock(btn, fn){
+  if(!btn || btn.dataset.busy==='1') return false;
+  btn.dataset.busy='1';
+  btn.disabled=true;
+  try{
+    fn();
+  } finally {
+    setTimeout(()=>{
+      btn.dataset.busy='0';
+      btn.disabled=false;
+    }, 800);
+  }
+  return false;
+}
+function getRelativeLastSessionLabel(cl){
+  const sessions=(cl.sessions||[]);
+  if(!sessions.length) return 'No sessions yet';
+  const last=sessions[sessions.length-1];
+  const d=parseStoredDate(last.date||last.dat||'');
+  if(!d) return `Last session: ${last.date||'Unknown date'}`;
+  const todayDate=new Date();
+  const startA=new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+  const startB=new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const diffDays=Math.round((startA-startB)/(1000*60*60*24));
+  if(diffDays<=0) return 'Last session: Today';
+  if(diffDays==1) return 'Last session: 1 day ago';
+  return `Last session: ${diffDays} days ago`;
+}
+function isValidScoreString(val){
+  const m=String(val||'').trim().match(/^(\d{1,2})\s*\/\s*(\d{1,2})$/);
+  if(!m) return false;
+  const n=parseInt(m[1],10), d=parseInt(m[2],10);
+  return d>0 && n>=0 && n<=d;
+}
+
+function getCoachClients(includeArchived=false){
+  return includeArchived ? CLIENTS : CLIENTS.filter(cl=>!cl.archived);
+}
+
+function resetClientModal(){
+  const modal=$('m-client');
+  if(!modal) return;
+  const titleEl=modal.querySelector('.mt');
+  const saveBtn=modal.querySelector('.msave');
+  if(titleEl) titleEl.textContent='+ ADD NEW CLIENT';
+  if(saveBtn){
+    saveBtn.textContent='Add Client';
+    saveBtn.onclick=saveClient;
+  }
+  const initials=$('nc-initials');
+  if(initials){
+    initials.value='';
+    initials.style.borderColor='';
+    initials.placeholder='e.g. AJ or Alex J.';
+  }
+  const name=$('nc-name');
+  if(name){
+    name.value='';
+    name.style.borderColor='';
+    name.placeholder='Stored privately for staff use only';
+  }
+  const level=$('nc-level'); if(level) level.value='beginner';
+  const program=$('nc-program'); if(program) program.value='';
+  const notes=$('nc-notes'); if(notes) notes.value='';
+}
+
+function openClientModal(){
+  resetClientModal();
+  openM('m-client');
+  setTimeout(()=>{ const name=$('nc-initials'); if(name) name.focus(); }, 120);
+}
+
+function saveClient(){
+  const saveBtn=$('m-client')?.querySelector('.msave');
+  return withActionLock(saveBtn, ()=>{
+    const initialsEl=$('nc-initials');
+    const fullNameEl=$('nc-name');
+    const initials=initialsEl.value.trim();
+    const fullName=fullNameEl.value.trim();
+    if(!initials && !fullName){
+      initialsEl.style.borderColor='var(--red)';
+      initialsEl.placeholder='← Initials or display name required';
+      setTimeout(()=>initialsEl.focus(),100);
+      openHint('⚠️ Name Required','<p style="color:var(--text2);font-size:.88rem">Please enter initials or a privacy-safe display name before saving.</p>','Got it',()=>{closeM('m-hint');setTimeout(()=>{openClientModal();const n=$('nc-initials');if(n)n.focus();},200);});
+      return;
+    }
+    initialsEl.style.borderColor='';
+    initialsEl.placeholder='e.g. AJ or Alex J.';
+    fullNameEl.style.borderColor='';
+    fullNameEl.placeholder='Stored privately for staff use only';
+    const colors=['#0066ff','#00ccff','#ff9800','#9c27b0','#f44336','#009688'];
+    CLIENTS.push({
+      initials: initials || '',
+      fullName: fullName || '',
+      name: initials || fullName,
+      level:$('nc-level').value,
+      program:$('nc-program').value.trim(),
+      notes:$('nc-notes').value.trim(),
+      color:colors[CLIENTS.length%colors.length],
+      sessions:[],
+      skills:{analog:0,digital:0,ampm:0,schedule:0},
+      goals:[],
+      archived:false
+    });
+    saveAll();closeM('m-client');renderCoach();showSaveIndicator();
+  });
 }
 function editClient(i){
   const cl=CLIENTS[i];
-  $('nc-name').value=cl.name;$('nc-level').value=cl.level||'beginner';
-  $('nc-program').value=cl.program||'';$('nc-notes').value=cl.notes||'';
-  $('m-client').querySelector('.mt').textContent='✏ EDIT CLIENT';
-  $('m-client').querySelector('.msave').textContent='Save Changes';
-  $('m-client').querySelector('.msave').onclick=()=>{
-    cl.name=$('nc-name').value.trim()||cl.name;
-    cl.level=$('nc-level').value;cl.program=$('nc-program').value.trim();cl.notes=$('nc-notes').value.trim();
-    saveAll();closeM('m-client');renderCoach();
-    $('m-client').querySelector('.mt').textContent='+ ADD NEW CLIENT';
-    $('m-client').querySelector('.msave').textContent='Add Client';
-    $('m-client').querySelector('.msave').onclick=saveClient;
-  };
-  $('m-client').classList.add('on');
+  resetClientModal();
+  $('nc-initials').value=cl.initials||cl.name||'';
+  $('nc-name').value=cl.fullName||'';
+  $('nc-level').value=cl.level||'beginner';
+  $('nc-program').value=cl.program||'';
+  $('nc-notes').value=cl.notes||'';
+  const modal=$('m-client');
+  const titleEl=modal.querySelector('.mt');
+  const saveBtn=modal.querySelector('.msave');
+  if(titleEl) titleEl.textContent='✏ EDIT CLIENT';
+  if(saveBtn){
+    saveBtn.textContent='Save Changes';
+    saveBtn.onclick=()=>withActionLock(saveBtn, ()=>{
+      const nextInitials=$('nc-initials').value.trim();
+      const nextFullName=$('nc-name').value.trim();
+      if(nextInitials || nextFullName){
+        cl.initials = nextInitials || '';
+        cl.fullName = nextFullName || '';
+        cl.name = nextInitials || nextFullName || cl.name;
+      }
+      cl.level=$('nc-level').value;
+      cl.program=$('nc-program').value.trim();
+      cl.notes=$('nc-notes').value.trim();
+      saveAll();closeM('m-client');renderCoach();showSaveIndicator();
+    });
+  }
+  modal.classList.add('on');
+  setTimeout(()=>{ const name=$('nc-initials'); if(name) name.focus(); }, 120);
 }
 function editSkills(i){
   const cl=CLIENTS[i];const sk=cl.skills||{};
@@ -3242,13 +3869,29 @@ function editSkills(i){
       </div>`).join(''),
     'Done',()=>{ closeM('m-hint');renderCoach();});
 }
-function delClient(i){
-  openHint('Remove Client?',`<p style="color:var(--text2);font-size:.88rem">Remove <strong style="color:var(--text)">${CLIENTS[i].name}</strong>? All their sessions and goals will be deleted.</p>`,'Yes, Remove',()=>{closeM('m-hint');CLIENTS.splice(i,1);saveAll();renderCoach();},true);
+function archiveClient(i){
+  const cl=CLIENTS[i];
+  const isArchived=!!cl.archived;
+  openHint(isArchived?'Restore Client?':'Archive Client?',
+    `<p style="color:var(--text2);font-size:.88rem">${isArchived?'Restore':'Archive'} <strong style="color:var(--text)">${getClientDisplayName(cl)}</strong>? ${isArchived?'They will return to the active list.':'Their sessions and goals will be kept, but they will move out of the active list.'}</p>`,
+    isArchived?'Restore':'Archive',
+    ()=>{closeM('m-hint');cl.archived=!cl.archived;saveAll();renderCoach();showSaveIndicator();},
+    true);
 }
+function deleteClient(i){
+  const cl=CLIENTS[i];
+  openHint('Delete Client?',`<p style="color:var(--text2);font-size:.88rem">Permanently delete <strong style="color:var(--text)">${getClientDisplayName(cl)}</strong>? This removes all sessions, goals, and notes.</p>`,'Delete',()=>{const btn=$('m-hint-ok'); withActionLock(btn, ()=>{closeM('m-hint');CLIENTS.splice(i,1);saveAll();renderCoach();showSaveIndicator();});},true);
+}
+
 function saveSession(){
   const idx=parseInt($('log-cl').value);
   if(isNaN(idx)||!CLIENTS[idx])return;
-  const s={module:$('log-mod').value,score:$('log-sc').value,prompt:PROMPT_SEL,notes:$('log-notes').value.trim(),date:today()};
+  let noteText=$('log-notes').value.trim();
+  if(!noteText){
+    const promptLabel={independent:'Completed independently',verbal:'Completed with verbal prompts',gestural:'Completed with gestural prompts',physical:'Completed with physical prompts',hoh:'Completed with hand-over-hand support'}[PROMPT_SEL]||'Session completed';
+    noteText=promptLabel;
+  }
+  const s={module:$('log-mod').value,score:$('log-sc').value,prompt:PROMPT_SEL,notes:noteText,date:today(),time:$('log-time').value||'',staff:$('log-staff').value.trim()};
   CLIENTS[idx].sessions=CLIENTS[idx].sessions||[];
   CLIENTS[idx].sessions.push(s);
   // Update skill progress from score
@@ -3259,14 +3902,14 @@ function saveSession(){
     if(s.score){const parts=s.score.split('/');if(parts.length===2){const n=parseInt(parts[0]),d=parseInt(parts[1]);if(n/d>=g.num/g.den){g.progress=(g.progress||0)+1;if(g.progress>=g.consec)g.met=true;}else{g.progress=0;}}}
   });
   saveAll();closeM('m-log');renderCoach();
-  $('log-sc').value='';$('log-notes').value='';
+  $('log-sc').value='';$('log-notes').value='';$('log-staff').value='';const lt=$('log-time'); if(lt) lt.value=''; const tmpl=$('log-note-template'); if(tmpl) tmpl.value='';
 }
 function saveGoal(){
   const idx=parseInt($('goal-cl').value);
   if(isNaN(idx)||!CLIENTS[idx])return;
   CLIENTS[idx].goals=CLIENTS[idx].goals||[];
-  CLIENTS[idx].goals.push({skill:$('goal-skill').value,num:parseInt($('goal-num').value)||4,den:parseInt($('goal-den').value)||5,consec:parseInt($('goal-consec').value)||3,desc:$('goal-desc').value.trim(),created:today(),progress:0,met:false});
-  saveAll();closeM('m-goal');renderCoach();$('goal-desc').value='';
+  CLIENTS[idx].goals.push({skill:$('goal-skill').value,num:parseInt($('goal-num').value)||4,den:parseInt($('goal-den').value)||5,consec:parseInt($('goal-consec').value)||3,desc:$('goal-desc').value.trim(),created:today(),due:fromDateInputValue($('goal-due').value),progress:0,met:false});
+  saveAll();closeM('m-goal');renderCoach();$('goal-desc').value='';$('goal-due').value='';$('goal-due').value='';
 }
 function deleteGoal(ci,gi){
   openHint('Remove Goal?',`<p style="color:var(--text2);font-size:.88rem">Remove this goal from ${CLIENTS[ci].name}'s dashboard?</p>`,'Yes, Remove',()=>{closeM('m-hint');CLIENTS[ci].goals.splice(gi,1);saveAll();renderCoach();});
@@ -3276,39 +3919,41 @@ function deleteGoal(ci,gi){
 //  EXPORT / PRINT
 // ════════════════════════════════════════════
 function exportCSV(){
-  if(!CLIENTS.length){openHint('No Data','No clients to export yet.',null,null);return;}
-  let csv='Client Name,Program,Level,Date,Module,Score,Prompt Level,Notes\n';
-  CLIENTS.forEach(cl=>{(cl.sessions||[]).forEach(s=>{csv+=`"${cl.name}","${cl.program||''}","${cl.level||''}","${s.date||s.dat||''}","${s.module}","${s.score}","${s.prompt||''}","${(s.notes||'').replace(/"/g,'""')}"\n`;});});
+  const exportClients = CLIENTS.filter(cl=>!cl.archived);
+  if(!exportClients.length){exportNotice('No Data','<p style="color:var(--text2);font-size:.88rem">No active clients to export yet.</p>');return;}
+  let csv='Client Display Name,Client Full Name,Program,Level,Date,Time,Module,Score,Prompt Level,Notes\n';
+  exportClients.forEach(cl=>{(cl.sessions||[]).forEach(s=>{csv+=`"${getClientDisplayName(cl)}","${getClientPrivateName(cl).replace(/"/g,'""')}","${cl.program||''}","${cl.level||''}","${s.date||s.dat||''}","${getClientSessionTime(s)}","${s.module}","${s.score}","${s.prompt||''}","${(s.notes||'').replace(/"/g,'""')}"\n`;});});
   tryDownload(csv,`TimeReady-Sessions-${today().replace(/\//g,'-')}.csv`,'text/csv');
 }
 function exportClientCSV(i){
   const cl=CLIENTS[i];
-  if(!(cl.sessions||[]).length){openHint('No Sessions','No sessions logged for '+cl.name+' yet.',null,null);return;}
-  let csv='Date,Module,Score,Prompt Level,Notes\n';
-  (cl.sessions||[]).forEach(s=>{csv+=`"${s.date||s.dat||''}","${s.module}","${s.score}","${s.prompt||''}","${(s.notes||'').replace(/"/g,'""')}"\n`;});
-  tryDownload(csv,`${cl.name.replace(/\s+/g,'-')}-Sessions-${today().replace(/\//g,'-')}.csv`,'text/csv');
+  if(!(cl.sessions||[]).length){exportNotice('No Sessions',`<p style="color:var(--text2);font-size:.88rem">No sessions logged for ${getClientDisplayName(cl)} yet.</p>`);return;}
+  let csv='Client Display Name,Client Full Name,Date,Time,Module,Score,Prompt Level,Notes\n';
+  (cl.sessions||[]).forEach(s=>{csv+=`"${getClientDisplayName(cl)}","${getClientPrivateName(cl).replace(/"/g,'""')}","${s.date||s.dat||''}","${getClientSessionTime(s)}","${s.module}","${s.score}","${s.prompt||''}","${(s.notes||'').replace(/"/g,'""')}"\n`;});
+  tryDownload(csv,`${getClientDisplayName(cl).replace(/\s+/g,'-')}-Sessions-${today().replace(/\//g,'-')}.csv`,'text/csv');
 }
 function tryDownload(content,filename,type){
   try{
     const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);
     const a=document.createElement('a');a.href=url;a.download=filename;
     document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+    exportNotice('Export Started','<p style="color:var(--text2);font-size:.84rem">Your export has been prepared. If your device blocks the download, try opening LifeReady in a desktop browser.</p>');
   }catch(e){
-    openHint('Export Ready','<p style="color:var(--text2);font-size:.84rem">Your device doesn\'t support direct downloads. Try opening CashReady in a desktop browser to export.</p>',null,null);
+    exportNotice('Export Ready','<p style="color:var(--text2);font-size:.84rem">Your device doesn\'t support direct downloads. Try opening LifeReady in a desktop browser to export.</p>');
   }
 }
 function printReport(i){
   const cl=CLIENTS[i],sk=cl.skills||{};
   const sess=(cl.sessions||[]).slice(-20).reverse();
   const goals=(cl.goals||[]);
-  const html=`<!DOCTYPE html><html><head><title>Progress Report - ${cl.name}</title>
+  const html=`<!DOCTYPE html><html><head><title>Progress Report - ${getClientDisplayName(cl)}</title>
   <style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;padding:32px;max-width:720px;color:#222;font-size:14px;}.header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;padding-bottom:14px;border-bottom:3px solid #0066ff;}.header-title{font-size:1.4rem;font-weight:900;color:#0066ff;margin-bottom:4px;}.header-badge{background:#e8f0ff;border:2px solid #0066ff;border-radius:8px;padding:8px 14px;text-align:center;font-size:.75rem;color:#0066ff;font-weight:700;}h2{color:#333;font-size:.92rem;font-weight:900;margin:20px 0 8px;text-transform:uppercase;border-left:4px solid #0066ff;padding-left:8px;}table{width:100%;border-collapse:collapse;margin-top:4px;font-size:.84rem;}th,td{padding:8px 10px;border:1px solid #ddd;text-align:left;}th{background:#e8f0ff;font-weight:700;}tr:nth-child(even){background:#fafafa;}.bar-wrap{background:#e8e8e8;border-radius:4px;height:8px;overflow:hidden;min-width:80px;}.bar-fill{height:100%;background:#0066ff;border-radius:4px;}.goal-row{background:#fff8e1;border-left:4px solid #ffb300;padding:10px 14px;margin:6px 0;border-radius:4px;font-size:.84rem;}.footer{margin-top:28px;padding-top:12px;border-top:1px solid #ddd;font-size:.72rem;color:#aaa;display:flex;justify-content:space-between;}.print-btn{background:#0066ff;color:#fff;border:none;border-radius:6px;padding:10px 24px;font-size:.9rem;font-weight:700;cursor:pointer;margin-bottom:20px;}.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch;}.skill-row{background:#f5f8ff;border:1px solid #dde8ff;border-radius:6px;padding:10px 12px;}.skill-name{font-size:.78rem;font-weight:700;color:#555;margin-bottom:5px;}.skill-pct{float:right;color:#0066ff;}@media print{.print-btn{display:none;}}.cb-mode-btn{background:var(--panel);border:1px solid var(--border);border-radius:6px;color:var(--text2);font-family:var(--font-mono);font-size:.65rem;padding:6px 4px;cursor:pointer;transition:all .2s;letter-spacing:.5px;font-weight:600;}
 .cb-mode-btn.on{background:var(--green);border-color:var(--green);color:#fff;}
 </style></head><body>
 
 <button class="print-btn" onclick="window.print()">🖨️ Print This Report</button>
 
-  <div class="header"><div><div class="header-title">⏰ ${cl.name}</div><div style="font-size:.82rem;color:#666;line-height:1.6">${cl.program?`Program: <strong>${cl.program}</strong><br>`:''}Level: <strong>${(cl.level||'Beginner').toUpperCase()}</strong><br>Generated: <strong>${today()}</strong></div></div><div class="header-badge">TimeReady<br>Progress Report</div></div>
+  <div class="header"><div><div class="header-title">⏰ ${getClientDisplayName(cl)}</div><div style="font-size:.82rem;color:#666;line-height:1.6">${cl.program?`Program: <strong>${cl.program}</strong><br>`:''}Level: <strong>${(cl.level||'Beginner').toUpperCase()}</strong><br>Generated: <strong>${today()}</strong></div></div><div class="header-badge">TimeReady<br>Progress Report</div></div>
   <h2>Skill Progress</h2>
   <div class="skill-grid">${Object.entries({analog:'🕐 Analog Clock',digital:'🔢 Digital Clock',ampm:'🌅 AM / PM',schedule:'📋 Schedule Math'}).map(([k,n])=>`<div class="skill-row"><div class="skill-name">${n}<span class="skill-pct">${sk[k]||0}%</span></div><div class="bar-wrap"><div class="bar-fill" style="width:${sk[k]||0}%"></div></div></div>`).join('')}</div>
   ${goals.length?`<h2>Goals</h2>${goals.map(g=>`<div class="goal-row"><strong>${g.desc||g.skill}</strong><div style="font-size:.75rem;color:#888;margin-top:3px">Target: ${g.num}/${g.den} · ${g.consec} sessions in a row${g.created?' · Set: '+g.created:''}</div></div>`).join('')}`:''}
@@ -3535,6 +4180,44 @@ const s=Math.round(seconds%60);
 return `${m}:${s.toString().padStart(2,'0')}`;
 }
 
+function getWrongFeedbackPhrase(){
+  const pool=[
+    'Not quite',
+    'Almost',
+    'Nice try',
+    'Close one',
+    'Give it another go',
+    'Good try',
+    'You are getting there'
+  ];
+  let idx;
+  do { idx=Math.floor(Math.random()*pool.length); } while(idx===window.__lastWrongPhraseIdx && pool.length>1);
+  window.__lastWrongPhraseIdx=idx;
+  return pool[idx];
+}
+function beginWrongFeedback(){
+  const phrase=getWrongFeedbackPhrase();
+  window.__currentWrongFeedbackPhrase=phrase;
+  return phrase;
+}
+function currentWrongFeedbackPhrase(){
+  return window.__currentWrongFeedbackPhrase || 'Not quite';
+}
+
+function fmtElapsedSpeech(seconds){
+seconds=Math.max(0,Math.round(Number(seconds)||0));
+const h=Math.floor(seconds/3600);
+const m=Math.floor((seconds%3600)/60);
+const s=seconds%60;
+const parts=[];
+if(h>0) parts.push(`${h} hour${h===1?'':'s'}`);
+if(m>0) parts.push(`${m} minute${m===1?'':'s'}`);
+if(s>0 || !parts.length) parts.push(`${s} second${s===1?'':'s'}`);
+if(parts.length===1) return parts[0];
+if(parts.length===2) return `${parts[0]} and ${parts[1]}`;
+return `${parts.slice(0,-1).join(', ')}, and ${parts[parts.length-1]}`;
+}
+
 // ── Share score ──
 let _shareData=null;
 function copyForCoach(){
@@ -3633,7 +4316,7 @@ updCQDots();
 let visHTML='';
 if(q.visual==='analog'||q.type==='analog'){visHTML=`<div class="cq-visual">${drawClock(q.h,q.m,180,true,true)}</div>`;}
 else if(q.visual==='digital'||q.type==='digital'){visHTML=`<div class="digital-display" style="margin:8px 0 12px"><div class="digital-time">${q.h}:${pad(q.m)}<span class="digital-period">${q.period}</span></div></div>`;}
-const optHTML=`<div class="qopts" id="cq-opts">${(q.opts||[q.correct,'AM','PM'].slice(0,4)).map(o=>`<button class="qo ${CFG.errorless&&o===q.correct?'ok':''}" onclick="answerCQ('${o}','${q.correct}',this)">${o}</button>`).join('')}</div>`;
+const safeOpts=ensureChoiceCount((q.opts||[q.correct,'AM','PM']),q.correct,4,q.q);const optHTML=`<div class="qopts" id="cq-opts">${safeOpts.map(o=>`<button class="qo ${CFG.errorless&&o===q.correct?'ok':''}" onclick='answerCQ(${JSON.stringify(o)},${JSON.stringify(q.correct)},this)'>${o}</button>`).join('')}</div>`;
 $('cq-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> ${visHTML} ${optHTML} <div class="qfb" id="cq-fb" style="display:none"></div> <div id="cq-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div> </div> <div class="acts" style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"> <button class="abtn" style="flex:1;display:${q.hint?'flex':'none'}" onclick="showCQHint(this)">💡 HINT</button> <button class="abtn" style="flex:1" onclick="cqSayAgain(this)">🔊 SAY AGAIN</button> </div> <button class="dbtn" id="cq-next" onclick="nextCQ()" style="display:none;margin-top:8px;width:100%">NEXT →</button>`;
 say(q.q);
 }
@@ -3654,17 +4337,24 @@ const q=CQ.qs[CQ.idx];
 const detail = (q && q.hint) ? q.hint : (ok ? ('The correct answer is ' + correct + '.') : ('The correct answer is ' + correct + '.'));
 $('eoc-wrap').style.display='none';
 $('femoji').textContent = ok ? '✅' : '❌';
-$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').textContent = ok ? 'CORRECT!' : beginWrongFeedback().toUpperCase();
 $('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
 $('fmsg').innerHTML = ok
-? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>'
-: '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>';
+? '<div style="margin-bottom:14px">Great thinking!</div><div class="detail-panel">'+detail+'</div>'
+: '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div class="detail-panel">'+detail+'</div>';
 $('fnext').textContent = CQ.idx+1>=CQ.qs.length ? 'SEE RESULTS →' : 'NEXT →';
 $('fnext').className = 'fnext ' + (ok ? '' : 'bad');
 window.nextQ_game = nextCQ;
 $('fcard').classList.toggle('wrong', !ok);
 $('fov').classList.add('on');
-say(ok?'Correct!':'Incorrect. The correct answer is '+correct+'.');
+if(!ok){
+  const phrase=beginWrongFeedback();
+  $('ftitle').textContent=phrase.toUpperCase();
+  $('fmsg').innerHTML='<div style="margin-bottom:14px">'+phrase+'. Read the explanation to understand why.</div><div class="detail-panel">'+detail+'</div>';
+  say(`${phrase}. The correct answer is ${correct}.`);
+} else {
+  say('Correct!');
+}
 }
 function showCQHint(btn){
 const q=CQ.qs[CQ.idx];if(!q?.hint)return;
@@ -3673,18 +4363,19 @@ showMiniHintBar('cq-hint', q.hint);
 say(q.hint);
 }
 function nextCQ(){
-closeM('fov');
+stopSpeech();
+resetFeedbackOverlay();
 CQ.idx++;
 if(CQ.idx>=CQ.qs.length){
 // Results
 const pct=Math.round(CQ.score/CQ.qs.length*100);
 const grade=pct===100?'A+':pct>=90?'A':pct>=80?'B':pct>=70?'C':'D';
-const gc=pct>=80?'var(-blue)':pct>=70?'var(-amber)':'var(--red)';
+const gc=pct>=80?'var(--blue)':pct>=70?'var(--amber)':'var(--red)';
 SCORES.unshift({mode:'Clock Quiz',score:CQ.score,correct:CQ.score,total:CQ.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('clock_quiz_ace');
 updateHomeUI();
-$('cq-content').innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:var(--font-display);font-size:4rem;color:${gc};text-shadow:0 0 20px ${gc}33;margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:var(--cyan);margin-bottom:4px;letter-spacing:2px">${pct>=80?'CLOCK EXPERT!':pct>=60?'GETTING THERE!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:8px"><strong style="color:var(--amber)">${CQ.score} out of ${CQ.qs.length}</strong> correct · ${pct}%</div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:11px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:14px 0 20px;text-align:left"> ${pct===100?'Perfect score! You know your clocks inside and out.':pct>=80?'Great work! Your clock reading skills are really coming together.':pct>=60?'Good effort! Check the Clock Guide for extra help with any tricky questions.':'Keep practicing! The Clock Guide is a great place to review before trying again.'} </div> <button class="dbtn" onclick="startClockQuiz()" style="margin-bottom:10px;width:100%">🔄 PLAY AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
+$('cq-content').innerHTML=` <div class="mode-result-card"> <div style="font-family:var(--font-display);font-size:4rem;color:${gc};text-shadow:0 0 20px ${gc}33;margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:var(--cyan);margin-bottom:4px;letter-spacing:2px">${pct>=80?'CLOCK EXPERT!':pct>=60?'GETTING THERE!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:8px"><strong style="color:var(--amber)">${CQ.score} out of ${CQ.qs.length}</strong> correct · ${pct}%</div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:11px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:14px 0 20px;text-align:left"> ${pct===100?'Perfect score! You know your clocks inside and out.':pct>=80?'Great work! Your clock reading skills are really coming together.':pct>=60?'Good effort! Check the Clock Guide for extra help with any tricky questions.':'Keep practicing! The Clock Guide is a great place to review before trying again.'} </div> <button class="dbtn" onclick="beginClockQuiz()" style="margin-bottom:10px;width:100%">🔄 PLAY AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
 $('cq-dots').innerHTML='';
 if(pct>=80&&!CFG.nomotion)confetti();
 say(`Done! You got ${CQ.score} out of ${CQ.qs.length}!`);
@@ -3710,7 +4401,7 @@ const minutes=[0,5,10,15,20,25,30,35,40,45,50,55];
 for(let i=0;i<12;i++){
 const h=rand(hours);
 const m=rand(minutes);
-const period=h<12?rand(['AM','PM']):(h===12?'PM':'AM');
+const period=h===12?rand(['AM','PM']):rand(['AM','PM']);
 const display=`${h}:${m.toString().padStart(2,'0')} ${period}`;
 // Wrong options: same hour diff min, same min diff hour, diff period
 const w1=`${h}:${rand(minutes.filter(x=>x!==m)).toString().padStart(2,'0')} ${period}`;
@@ -3726,12 +4417,21 @@ showModeIntro('🔢','DIGITAL CLOCK DRILL','#0066ff',[
 ['📱','Reads a digital clock display.','The display shows hours, minutes, and AM or PM - just like a phone or microwave.'],
 ['4️⃣','Pick the correct time from 4 choices.','Watch out for AM vs PM - that is often where the tricky ones hide!'],
 ['⚡','8 questions, fast and focused.','Great practice for reading clocks on a job site or in a break room.'],
-],'Start Digital Drill →',()=>{
+] ,'Start Digital Drill →',()=>{
 closeM('m-hint');
+beginDigitalDrill();
+},cancelIntroToHome);
+}
+function beginDigitalDrill(){
+stopSpeech();
+resetFeedbackOverlay();
+resetModeHintBars();
+go('digitalclock');
+window.nextQ_game = nextDC;
 DC={qs:genDigitalQs(),idx:0,score:0,answered:false};
 CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed.digital=true;saveAll();
+updateHomeUI();
 buildDCDots();renderDC();
-});
 }
 function buildDCDots(){
 const c=$('dc-dots');if(!c)return;c.innerHTML='';
@@ -3748,8 +4448,8 @@ DC.answered=false;
 const q=DC.qs[DC.idx];if(!q)return;
 $('dc-score').textContent=DC.score;
 updDCDots();
-const optHTML=q.opts.map(o=>`<button class="qo" onclick="answerDC('${o}','${q.correct}')">${o}</button>`).join('');
-$('dc-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> <div style="text-align:center;margin:10px 0 16px"> <div style="display:inline-block;background:var(--display-bg);border:3px solid var(--cyan);border-radius:12px;padding:18px 28px"> <div style="font-family:var(--font-mono);font-size:2.8rem;color:var(--cyan);letter-spacing:3px;text-shadow:0 0 20px var(--cyan-glow)">${q.h}:${q.m.toString().padStart(2,'0')}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:var(--cyan);margin-top:4px;letter-spacing:2px">${q.period}</div> </div> </div> <div class="qopts" id="dc-opts">${optHTML}</div> <div class="qfb" id="dc-fb" style="display:none"></div> <div id="dc-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="showDCHint(this)">💡 HINT</button> <button class="abtn" style="flex:1" onclick="dcSayAgain(this)">🔊 SAY AGAIN</button> </div> <button class="dbtn" id="dc-next" onclick="nextDC()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
+const safeOpts=ensureChoiceCount(q.opts,q.correct,4,q.q);const optHTML=safeOpts.map(o=>`<button class="qo" onclick='answerDC(${JSON.stringify(o)},${JSON.stringify(q.correct)})'>${o}</button>`).join('');
+$('dc-content').innerHTML=` <div class="qpanel"> <div class="qq">${q.q}</div> <div style="text-align:center;margin:10px 0 16px"> <div style="display:inline-block;background:var(--display-bg);border:3px solid var(--cyan);border-radius:12px;padding:18px 28px"> <div style="font-family:var(--font-mono);font-size:2.8rem;color:var(--cyan);letter-spacing:3px;text-shadow:0 0 20px var(--cyan-glow)">${q.h}:${q.m.toString().padStart(2,'0')}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:var(--cyan);margin-top:4px;letter-spacing:2px">${q.period}</div> </div> </div> <div class="qopts" id="dc-opts">${optHTML}</div> <div class="qfb" id="dc-fb" style="display:none"></div> <div id="dc-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div> </div> <div class="action-row"><button class="abtn" onclick="showDCHint(this)">💡 HINT</button><button class="abtn" onclick="dcSayAgain(this)">🔊 SAY AGAIN</button></div> <button class="dbtn" id="dc-next" onclick="nextDC()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(q.q);
 }
 
@@ -3775,13 +4475,13 @@ function cqAudioFlash(btn){
 }
 function dcSayAgain(btn){
   if(btn) dcAudioFlash(btn);
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   const q=DC.qs[DC.idx];
   if(q && q.q) say(q.q);
 }
 function cqSayAgain(btn){
   if(btn) cqAudioFlash(btn);
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   const q=CQ.qs[CQ.idx];
   if(q && q.q) say(q.q);
 }
@@ -3801,18 +4501,25 @@ if(nxt){nxt.style.display='block';nxt.textContent=DC.idx+1>=DC.qs.length?'SEE RE
 
 $('eoc-wrap').style.display='none';
 $('femoji').textContent = ok ? '✅' : '❌';
-$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').textContent = ok ? 'CORRECT!' : beginWrongFeedback().toUpperCase();
 $('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
 const detail = ok ? ('That digital clock reads ' + correct + '.') : ('The correct answer is ' + correct + '. Read the hours first, then the minutes, and then check AM or PM.');
 $('fmsg').innerHTML = ok
-? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>'
-: '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>';
+? '<div style="margin-bottom:14px">Great thinking!</div><div class="detail-panel">'+detail+'</div>'
+: '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div class="detail-panel">'+detail+'</div>';
 $('fnext').textContent = DC.idx+1>=DC.qs.length ? 'SEE RESULTS →' : 'NEXT →';
 $('fnext').className = 'fnext ' + (ok ? '' : 'bad');
 window.nextQ_game = nextDC;
 $('fcard').classList.toggle('wrong', !ok);
 $('fov').classList.add('on');
-say(ok?'Correct!':'Not quite. The answer is '+correct);
+if(!ok){
+  const phrase=beginWrongFeedback();
+  $('ftitle').textContent=phrase.toUpperCase();
+  $('fmsg').innerHTML='<div style="margin-bottom:14px">'+phrase+'. Read the explanation to understand why.</div><div class="detail-panel">'+detail+'</div>';
+  say(`${phrase}. The answer is ${correct}.`);
+} else {
+  say('Correct!');
+}
 if(ok&&!BADGES.has('digital_first'))awardBadge('digital_first');
 }
 function showDCHint(btn){
@@ -3823,11 +4530,12 @@ showMiniHintBar('dc-hint', hintText);
 say(hintText);
 }
 function nextDC(){
-closeM('fov');
+stopSpeech();
+resetFeedbackOverlay();
 DC.idx++;
 if(DC.idx>=DC.qs.length){
 const pct=Math.round(DC.score/DC.qs.length*100);
-const gc=pct>=80?'var(-cyan)':pct>=60?'var(-amber)':'var(--red)';
+const gc=pct>=80?'var(--cyan)':pct>=60?'var(--amber)':'var(--red)';
 SCORES.unshift({mode:'Digital Drill',score:DC.score*10,correct:DC.score,total:DC.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('digital_ace');
@@ -3835,7 +4543,7 @@ if(!CFG.nomotion&&pct>=80)confetti();
 say(`Done! You got ${DC.score} out of ${DC.qs.length}!`);
 updateHomeUI();
 $('dc-dots').innerHTML='';
-$('dc-content').innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${pct===100?'A+':pct>=80?'A':pct>=60?'B':'C'}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--cyan);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${DC.score} of ${DC.qs.length}</strong> correct · ${pct}%</div> <button class="dbtn" onclick="startDigitalDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
+$('dc-content').innerHTML=` <div class="mode-result-card"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${pct===100?'A+':pct>=80?'A':pct>=60?'B':'C'}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--cyan);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${DC.score} of ${DC.qs.length}</strong> correct · ${pct}%</div> <button class="dbtn" onclick="beginDigitalDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
 return;
 }
 renderDC();
@@ -3870,12 +4578,21 @@ showModeIntro('🌅','AM / PM DRILL','#0066ff',[
 ['🏢','Real-life examples from work and daily life.','Shift start times, lunch breaks, closing times - situations you will actually face.'],
 ['💡','A reference card is shown on every question.','AM and PM ranges are displayed so you can check while you learn.'],
 ['8️⃣','8 questions, graded.','Short, focused, and confidence-building.'],
-],'Start AM/PM Drill →',()=>{
+] ,'Start AM/PM Drill →',()=>{
 closeM('m-hint');
+beginAMPMDrill();
+},cancelIntroToHome);
+}
+function beginAMPMDrill(){
+stopSpeech();
+resetFeedbackOverlay();
+resetModeHintBars();
+go('ampm');
+window.nextQ_game = nextAP;
 AP={qs:shuf(AMPM_QS).slice(0,8),idx:0,score:0,answered:false};
 CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed.ampm_drill=true;saveAll();
+updateHomeUI();
 buildAPDots();renderAP();
-});
 }
 function buildAPDots(){
 const c=$('ap-dots');if(!c)return;c.innerHTML='';
@@ -3892,8 +4609,8 @@ AP.answered=false;
 const q=AP.qs[AP.idx];if(!q)return;
 $('ap-score').textContent=AP.score;
 updAPDots();
-const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerAP('${o}','${q.correct}','${q.explain.replace(/'/g,"\'")}')">${o}</button>`).join('');
-$('ap-content').innerHTML=`<div class="qpanel"><div class="qq">${q.q}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 4px"><div style="background:var(--display-bg);border:2px solid var(--cyan);border-radius:10px;padding:14px;text-align:center"><div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--cyan)">AM</div><div style="font-size:.7rem;color:var(--text3);margin-top:4px">Midnight → Noon<br>12:00 AM - 11:59 AM</div></div><div style="background:var(--display-bg);border:2px solid var(--amber);border-radius:10px;padding:14px;text-align:center"><div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">PM</div><div style="font-size:.7rem;color:var(--text3);margin-top:4px">Noon → Midnight<br>12:00 PM - 11:59 PM</div></div></div><div class="qopts" id="ap-opts" style="margin-top:12px">${optHTML}</div><div class="qfb" id="ap-fb" style="display:none"></div><div id="ap-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div></div><div style="display:flex;gap:8px;margin-top:8px"><button class="abtn" style="flex:1" onclick="showAPHint(this)">💡 HINT</button><button class="abtn" style="flex:1" onclick="apSayAgain(this)">🔊 SAY AGAIN</button></div><button class="dbtn" id="ap-next" onclick="nextAP()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
+const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick='answerAP(${JSON.stringify(o)},${JSON.stringify(q.correct)},${JSON.stringify(q.explain)})'>${o}</button>`).join('');
+$('ap-content').innerHTML=`<div class="qpanel"><div class="qq">${q.q}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 4px"><div style="background:var(--display-bg);border:2px solid var(--cyan);border-radius:10px;padding:14px;text-align:center"><div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--cyan)">AM</div><div style="font-size:.7rem;color:var(--text3);margin-top:4px">Midnight → Noon<br>12:00 AM - 11:59 AM</div></div><div style="background:var(--display-bg);border:2px solid var(--amber);border-radius:10px;padding:14px;text-align:center"><div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">PM</div><div style="font-size:.7rem;color:var(--text3);margin-top:4px">Noon → Midnight<br>12:00 PM - 11:59 PM</div></div></div><div class="qopts" id="ap-opts" style="margin-top:12px">${optHTML}</div><div class="qfb" id="ap-fb" style="display:none"></div><div id="ap-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div></div><div class="action-row"><button class="abtn" onclick="showAPHint(this)">💡 HINT</button><button class="abtn" onclick="apSayAgain(this)">🔊 SAY AGAIN</button></div><button class="dbtn" id="ap-next" onclick="nextAP()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(q.q);
 }
 function answerAP(chosen,correct,explain){
@@ -3912,25 +4629,32 @@ if(nxt){nxt.style.display='block';nxt.textContent=AP.idx+1>=AP.qs.length?'SEE RE
 
 $('eoc-wrap').style.display='none';
 $('femoji').textContent = ok ? '✅' : '❌';
-$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').textContent = ok ? 'CORRECT!' : beginWrongFeedback().toUpperCase();
 $('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
 $('fmsg').innerHTML = ok
-  ? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">' + explain + '</div>'
-  : '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">' + explain + '</div>';
+  ? '<div style="margin-bottom:14px">Great thinking!</div><div class="detail-panel">' + explain + '</div>'
+  : '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div class="detail-panel">' + explain + '</div>';
 $('fnext').textContent = AP.idx+1>=AP.qs.length ? 'SEE RESULTS →' : 'NEXT →';
 $('fnext').className = 'fnext ' + (ok ? '' : 'bad');
 window.nextQ_game = nextAP;
 $('fcard').classList.toggle('wrong', !ok);
 $('fov').classList.add('on');
 
-say(ok?'Correct!':'Not quite. '+correct+'.');
+if(!ok){
+  const phrase=beginWrongFeedback();
+  $('ftitle').textContent=phrase.toUpperCase();
+  $('fmsg').innerHTML='<div style="margin-bottom:14px">'+phrase+'. Read the explanation to understand why.</div><div class="detail-panel">' + explain + '</div>';
+  say(`${phrase}. ${correct}.`);
+} else {
+  say('Correct!');
+}
 if(ok&&!BADGES.has('ampm_first'))awardBadge('ampm_first');
 if(ok){CFG.ampmStreak=(CFG.ampmStreak||0)+1;if(CFG.ampmStreak>=5)awardBadge('ampm_streak');saveAll();}
 else{CFG.ampmStreak=0;saveAll();}
 }
 function apSayAgain(btn){
 if(btn) apAudioBtnFlash(btn);
-if(window.speechSynthesis) speechSynthesis.cancel();
+stopSpeech();
 const q=AP.qs[AP.idx];
 if(q && q.q) say(q.q);
 }
@@ -3944,11 +4668,12 @@ say(hintText);
 }
 
 function nextAP(){
-closeM('fov');
+stopSpeech();
+resetFeedbackOverlay();
 AP.idx++;
 if(AP.idx>=AP.qs.length){
 const pct=Math.round(AP.score/AP.qs.length*100);
-const gc=pct>=80?'var(-cyan)':pct>=60?'var(-amber)':'var(--red)';
+const gc=pct>=80?'var(--cyan)':pct>=60?'var(--amber)':'var(--red)';
 SCORES.unshift({mode:'AM/PM Drill',score:AP.score*10,correct:AP.score,total:AP.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('ampm_ace');
@@ -3956,7 +4681,7 @@ if(!CFG.nomotion&&pct>=80)confetti();
 say(`Done! You got ${AP.score} out of ${AP.qs.length}!`);
 updateHomeUI();
 $('ap-dots').innerHTML='';
-$('ap-content').innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${pct===100?'A+':pct>=80?'A':pct>=60?'B':'C'}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--cyan);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GOT IT!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:8px"><strong style="color:var(--amber)">${AP.score} of ${AP.qs.length}</strong> correct · ${pct}%</div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px;font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:16px;text-align:left"> <strong style="color:var(--cyan)">Remember:</strong> AM = midnight to noon. PM = noon to midnight. Morning = AM. Afternoon/evening = PM. </div> <button class="dbtn" onclick="startAMPMDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
+$('ap-content').innerHTML=` <div class="mode-result-card"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${pct===100?'A+':pct>=80?'A':pct>=60?'B':'C'}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--cyan);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GOT IT!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:8px"><strong style="color:var(--amber)">${AP.score} of ${AP.qs.length}</strong> correct · ${pct}%</div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px;font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:16px;text-align:left"> <strong style="color:var(--cyan)">Remember:</strong> AM = midnight to noon. PM = noon to midnight. Morning = AM. Afternoon/evening = PM. </div> <button class="dbtn" onclick="beginAMPMDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
 return;
 }
 renderAP();
@@ -3997,7 +4722,7 @@ function apAudioBtnFlash(btn){
 function wtSayAgain(btn){
 const q = document.querySelector('#wt-content .wt-context');
 if(btn) ltFlashAudioBtn(btn);
-if(window.speechSynthesis) speechSynthesis.cancel();
+stopSpeech();
 say(q ? q.textContent : 'What time does this clock show?');
 }
 
@@ -4030,9 +4755,15 @@ const shifts=shiftDays.map(d=>{
 const startH=rand([8,9,10,1,2,3]);
 const period=startH<8?'PM':'AM';
 const len=rand([4,5,6,8]);
-const endH=startH+len;
-const endP=endH>=12?'PM':'AM';
-const end12=endH>12?endH-12:endH;
+
+let start24=startH;
+if(period==='PM' && start24<12) start24+=12;
+if(period==='AM' && start24===12) start24=0;
+
+const end24=(start24+len)%24;
+const endP=end24>=12?'PM':'AM';
+const end12=end24===0?12:end24>12?end24-12:end24;
+
 return{day:d,startH,period,endH:end12,endP,len};
 });
 return shifts;
@@ -4071,7 +4802,16 @@ qs.push({q:'How many total hours do you work this week?',correct:totalHours+' ho
 
 // What time does a shift start/end
 const shift=rand(shifts);
-qs.push({q:`What time does your ${DAYS[shift.day]} shift start?`,correct:`${shift.startH}:00 ${shift.period}`,opts:shuf([`${shift.startH}:00 ${shift.period}`,...[[shift.startH-1,shift.period],[shift.startH+1,shift.period],[shift.startH,shift.period==='AM'?'PM':'AM']].map(([h,p])=>`${h}:00 ${p}`)]).slice(0,4),explain:`Look at ${DAYS[shift.day]} on the schedule. Your shift starts at ${shift.startH}:00 ${shift.period}.`});
+const shiftStartWrongHours=[
+  shift.startH===1?12:shift.startH-1,
+  shift.startH===12?1:shift.startH+1,
+  shift.startH<=10?shift.startH+2:shift.startH-2
+].filter(h=>h>0&&h<=12&&h!==shift.startH);
+const shiftStartWrongs=[
+  ...shiftStartWrongHours.map(h=>`${h}:00 ${shift.period}`),
+  `${shift.startH}:00 ${shift.period==='AM'?'PM':'AM'}`
+];
+qs.push({q:`What time does your ${DAYS[shift.day]} shift start?`,correct:`${shift.startH}:00 ${shift.period}`,opts:shuf([`${shift.startH}:00 ${shift.period}`,...shiftStartWrongs]).slice(0,4),explain:`Look at ${DAYS[shift.day]} on the schedule. Your shift starts at ${shift.startH}:00 ${shift.period}.`});
 
 // How long is a shift
 const shift2=rand(shifts);
@@ -4087,10 +4827,20 @@ showModeIntro('📅','MY WORK SCHEDULE','#0066ff',[
 ['🏢','This is exactly what you will see at a real job.','Practice reading schedules before you need to.'],
 ],'Start Work Schedule →',()=>{
 closeM('m-hint');
+beginWorkSchedule();
+},cancelIntroToHome);
+}
+function beginWorkSchedule(){
+stopSpeech();
+resetFeedbackOverlay();
+resetModeHintBars();
+go('workschedule');
+window.nextQ_game = nextWS;
 const shifts=genScheduleGrid();
 WS={qs:genWSQuestions(shifts),idx:0,score:0,answered:false,shifts};
+CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed.workschedule=true;saveAll();
+updateHomeUI();
 buildWSDots();renderWS();
-});
 }
 function buildWSDots(){
 const c=$('ws-dots');if(!c)return;c.innerHTML='';
@@ -4107,8 +4857,8 @@ WS.answered=false;
 const q=WS.qs[WS.idx];if(!q)return;
 $('ws-score').textContent=WS.score;
 updWSDots();
-const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerWS('${o.replace(/'/g,"\'")}','${q.correct.replace(/'/g,"\'")}','${(q.explain||'').replace(/'/g,"\'")}')">${o}</button>`).join('');
-$('ws-content').innerHTML=`<div class="qpanel">${renderScheduleGridHTML(WS.shifts)}<div class="qq" style="margin-top:10px">${q.q}</div><div class="qopts" id="ws-opts">${optHTML}</div><div class="qfb" id="ws-fb"></div><div id="ws-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div></div><div style="display:flex;gap:8px;margin-top:8px"><button class="abtn" style="flex:1" onclick="showWSHint(this)">💡 HINT</button><button class="abtn" style="flex:1" onclick="wsSayAgain(this)">🔊 SAY AGAIN</button></div><button class="dbtn" id="ws-next" onclick="nextWS()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
+const safeOpts=ensureChoiceCount(q.opts,q.correct,4,q.q);const optHTML=safeOpts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick='answerWS(${JSON.stringify(o)},${JSON.stringify(q.correct)},${JSON.stringify(q.explain||"")})'>${o}</button>`).join('');
+$('ws-content').innerHTML=`<div class="qpanel">${renderScheduleGridHTML(WS.shifts)}<div class="qq" style="margin-top:10px">${q.q}</div><div class="qopts" id="ws-opts">${optHTML}</div><div class="qfb" id="ws-fb"></div><div id="ws-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div></div><div class="action-row"><button class="abtn" onclick="showWSHint(this)">💡 HINT</button><button class="abtn" onclick="wsSayAgain(this)">🔊 SAY AGAIN</button></div><button class="dbtn" id="ws-next" onclick="nextWS()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(q.q);
 }
 
@@ -4138,14 +4888,14 @@ if(nxt){nxt.style.display='block';nxt.textContent=WS.idx+1>=WS.qs.length?'SEE RE
 
 $('eoc-wrap').style.display='none';
 $('femoji').textContent = ok ? '✅' : '❌';
-$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').textContent = ok ? 'CORRECT!' : beginWrongFeedback().toUpperCase();
 $('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
 
 const detail = explain || ('The correct answer is ' + correct + '.');
 
 $('fmsg').innerHTML = ok
-  ? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">' + detail + '</div>'
-  : '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">' + detail + '</div>';
+  ? '<div style="margin-bottom:14px">Great thinking!</div><div class="detail-panel">' + detail + '</div>'
+  : '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div class="detail-panel">' + detail + '</div>';
 
 $('fnext').textContent = WS.idx+1>=WS.qs.length ? 'SEE RESULTS →' : 'NEXT →';
 $('fnext').className = 'fnext ' + (ok ? '' : 'bad');
@@ -4154,11 +4904,18 @@ window.nextQ_game = nextWS;
 $('fcard').classList.toggle('wrong', !ok);
 $('fov').classList.add('on');
 
-say(ok ? 'Correct!' : ('Incorrect. The correct answer is ' + correct + '.'));
+if(!ok){
+  const phrase=beginWrongFeedback();
+  $('ftitle').textContent=phrase.toUpperCase();
+  $('fmsg').innerHTML='<div style="margin-bottom:14px">'+phrase+'. Read the explanation to understand why.</div><div class="detail-panel">' + detail + '</div>';
+  say(`${phrase}. The correct answer is ${correct}.`);
+} else {
+  say('Correct!');
+}
 }
 function wsSayAgain(btn){
 if(btn) wsAudioFlash(btn);
-if(window.speechSynthesis) speechSynthesis.cancel();
+stopSpeech();
 const q=WS.qs[WS.idx];
 if(q && q.q) say(q.q);
 }
@@ -4172,17 +4929,18 @@ say(hintText);
 }
 
 function nextWS(){
-closeM('fov');
+stopSpeech();
+resetFeedbackOverlay();
 WS.idx++;
 if(WS.idx>=WS.qs.length){
 const pct=Math.round(WS.score/WS.qs.length*100);
-const gc=pct>=80?'var(-blue)':pct>=60?'var(-amber)':'var(--red)';
+const gc=pct>=80?'var(--blue)':pct>=60?'var(--amber)':'var(--red)';
 SCORES.unshift({mode:'Work Schedule',score:WS.score*10,correct:WS.score,total:WS.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('schedule_ace');
 if(!CFG.nomotion&&pct>=80)confetti();
 $('ws-dots').innerHTML='';
-$('ws-content').innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${pct===100?'A+':pct>=80?'A':pct>=60?'B':'C'}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--cyan);letter-spacing:2px;margin-bottom:6px">${pct===100?'SCHEDULE EXPERT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${WS.score} of ${WS.qs.length}</strong> correct · ${pct}%</div> <button class="dbtn" onclick="startWorkSchedule()" style="margin-bottom:10px;width:100%">📅 NEW SCHEDULE</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
+$('ws-content').innerHTML=` <div class="mode-result-card"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${pct===100?'A+':pct>=80?'A':pct>=60?'B':'C'}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--cyan);letter-spacing:2px;margin-bottom:6px">${pct===100?'SCHEDULE EXPERT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${WS.score} of ${WS.qs.length}</strong> correct · ${pct}%</div> <button class="dbtn" onclick="beginWorkSchedule()" style="margin-bottom:10px;width:100%">📅 NEW SCHEDULE</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
 say(`Done! You got ${WS.score} out of ${WS.qs.length}!`);
 updateHomeUI();return;
 }
@@ -4215,9 +4973,13 @@ const finalM=alarmM<0?alarmM+60:alarmM;
 const alarmPeriod=finalH<12?'AM':'PM';
 const alarm12=finalH>12?finalH-12:finalH===0?12:finalH;
 const correct=`${alarm12}:${pad(finalM)} ${alarmPeriod}`;
+const alarmWrongHours=[
+  alarm12===1?12:alarm12-1,
+  alarm12===12?1:alarm12+1
+].filter(h=>h>0&&h<=12&&h!==alarm12);
 const wrongs=[
 `${alarm12}:${pad((finalM+15)%60)} ${alarmPeriod}`,
-`${alarm12===1?12:alarm12-1}:${pad(finalM)} ${alarmPeriod}`,
+...alarmWrongHours.map(h=>`${h}:${pad(finalM)} ${alarmPeriod}`),
 `${alarm12}:${pad(finalM)} ${alarmPeriod==='AM'?'PM':'AM'}`,
 ].filter(w=>w!==correct);
 qs.push({
@@ -4258,9 +5020,19 @@ showModeIntro('⏰','ALARM CLOCK','#0066ff',[
 ['💡','Count backwards from your shift start time.','Subtract your prep time to find when to wake up.'],
 ],'Start Alarm Clock →',()=>{
 closeM('m-hint');
+beginAlarmClock();
+},cancelIntroToHome);
+}
+function beginAlarmClock(){
+stopSpeech();
+resetFeedbackOverlay();
+resetModeHintBars();
+go('alarmclock');
+window.nextQ_game = nextAC;
 AC={qs:genAlarmQs(),idx:0,score:0,answered:false};
+CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed.alarmclock=true;saveAll();
+updateHomeUI();
 buildACDots();renderAC();
-});
 }
 function buildACDots(){
 const c=$('ac-dots');if(!c)return;c.innerHTML='';
@@ -4277,8 +5049,8 @@ AC.answered=false;
 const q=AC.qs[AC.idx];if(!q)return;
 $('ac-score').textContent=AC.score;
 updACDots();
-const optHTML=q.opts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick="answerAC('${o.replace(/'/g,"\'")}','${q.correct.replace(/'/g,"\'")}','${(q.explain||'').replace(/'/g,"\'")}')">${o}</button>`).join('');
-$('ac-content').innerHTML=`<div class="qpanel"><div class="qq">${q.q}</div>${drawAlarmClockSVG(q.alarmH,q.alarmM,q.alarmP)}<div class="qopts" id="ac-opts" style="margin-top:10px">${optHTML}</div><div class="qfb" id="ac-fb" style="display:none"></div><div id="ac-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div></div><div style="display:flex;gap:8px;margin-top:8px"><button class="abtn" style="flex:1" onclick="showACHint(this)">💡 HINT</button><button class="abtn" style="flex:1" onclick="acSayAgain(this)">🔊 SAY AGAIN</button></div><button class="dbtn" id="ac-next" onclick="nextAC()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
+const safeOpts=ensureChoiceCount(q.opts,q.correct,4,q.q);const optHTML=safeOpts.map(o=>`<button class="qo${CFG.errorless&&o===q.correct?' ok':''}" onclick='answerAC(${JSON.stringify(o)},${JSON.stringify(q.correct)},${JSON.stringify(q.explain||"")})'>${o}</button>`).join('');
+$('ac-content').innerHTML=`<div class="qpanel"><div class="qq">${q.q}</div>${drawAlarmClockSVG(q.alarmH,q.alarmM,q.alarmP)}<div class="qopts" id="ac-opts" style="margin-top:10px">${optHTML}</div><div class="qfb" id="ac-fb" style="display:none"></div><div id="ac-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div></div><div class="action-row"><button class="abtn" onclick="showACHint(this)">💡 HINT</button><button class="abtn" onclick="acSayAgain(this)">🔊 SAY AGAIN</button></div><button class="dbtn" id="ac-next" onclick="nextAC()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(q.q);
 }
 
@@ -4294,7 +5066,7 @@ function acAudioFlash(btn){
 }
 function acSayAgain(btn){
   if(btn) acAudioFlash(btn);
-  if(window.speechSynthesis) speechSynthesis.cancel();
+  stopSpeech();
   const q=AC.qs[AC.idx];
   if(q && q.q) say(q.q);
 }
@@ -4314,14 +5086,14 @@ if(nxt){nxt.style.display='block';nxt.textContent=AC.idx+1>=AC.qs.length?'SEE RE
 
 $('eoc-wrap').style.display='none';
 $('femoji').textContent = ok ? '✅' : '❌';
-$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').textContent = ok ? 'CORRECT!' : beginWrongFeedback().toUpperCase();
 $('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
 
 const detail = explain || ('The correct answer is ' + correct + '.');
 
 $('fmsg').innerHTML = ok
-? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>'
-: '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">'+detail+'</div>';
+? '<div style="margin-bottom:14px">Great thinking!</div><div class="detail-panel">'+detail+'</div>'
+: '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div class="detail-panel">'+detail+'</div>';
 
 $('fnext').textContent = AC.idx+1>=AC.qs.length ? 'SEE RESULTS →' : 'NEXT →';
 $('fnext').className = 'fnext ' + (ok ? '' : 'bad');
@@ -4329,7 +5101,14 @@ window.nextQ_game = nextAC;
 $('fcard').classList.toggle('wrong', !ok);
 $('fov').classList.add('on');
 
-say(ok?'Correct!':'Incorrect. The correct answer is '+correct+'.');
+if(!ok){
+  const phrase=beginWrongFeedback();
+  $('ftitle').textContent=phrase.toUpperCase();
+  $('fmsg').innerHTML='<div style="margin-bottom:14px">'+phrase+'. Read the explanation to understand why.</div><div class="detail-panel">'+detail+'</div>';
+  say(`${phrase}. The correct answer is ${correct}.`);
+} else {
+  say('Correct!');
+}
 }
 function showACHint(btn){
 if(btn) acHintFlash(btn);
@@ -4340,17 +5119,18 @@ say(hintText);
 }
 
 function nextAC(){
-closeM('fov');
+stopSpeech();
+resetFeedbackOverlay();
 AC.idx++;
 if(AC.idx>=AC.qs.length){
 const pct=Math.round(AC.score/AC.qs.length*100);
-const gc=pct>=80?'var(-blue)':pct>=60?'var(-amber)':'var(--red)';
+const gc=pct>=80?'var(--blue)':pct>=60?'var(--amber)':'var(--red)';
 SCORES.unshift({mode:'Alarm Clock',score:AC.score*10,correct:AC.score,total:AC.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('alarm_ace');
 if(!CFG.nomotion&&pct>=80)confetti();
 $('ac-dots').innerHTML='';
-$('ac-content').innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${pct===100?'A+':pct>=80?'A':pct>=60?'B':'C'}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--cyan);letter-spacing:2px;margin-bottom:6px">${pct===100?'NEVER LATE!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${AC.score} of ${AC.qs.length}</strong> correct · ${pct}%</div> <button class="dbtn" onclick="startAlarmClock()" style="margin-bottom:10px;width:100%">⏰ PLAY AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
+$('ac-content').innerHTML=` <div class="mode-result-card"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${pct===100?'A+':pct>=80?'A':pct>=60?'B':'C'}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--cyan);letter-spacing:2px;margin-bottom:6px">${pct===100?'NEVER LATE!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${AC.score} of ${AC.qs.length}</strong> correct · ${pct}%</div> <button class="dbtn" onclick="beginAlarmClock()" style="margin-bottom:10px;width:100%">⏰ PLAY AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
 say(`Done! You got ${AC.score} out of ${AC.qs.length}!`);
 updateHomeUI();return;
 }
@@ -4363,20 +5143,27 @@ openHint('Leave Alarm Clock?','<p style="color:var(--text2);font-size:.88rem">Pr
 }
 
 function startWT(){
-showModeIntro('🤔','WHAT TIME IS IT?','#0066ff',[
+showModeIntro('🤔','What Time Is It?','#0066ff',[
 ['🕐','Look at the analog clock and read the time.','Both the hour and minute hands are shown. Take your time.'],
 ['📈','Difficulty builds as you go.','Early questions use half-hours. Later ones use full minutes.'],
 ['💡','Tap HINT if you need a nudge.','We will remind you which hand to look at first.'],
 ['8️⃣','8 questions total.','Your score is saved at the end.'],
 ],'Start What Time Is It? →',()=>{
 closeM('m-hint');
-if(window.speechSynthesis) speechSynthesis.cancel();
+beginWT();
+},cancelIntroToHome);
+}
+function beginWT(){
+stopSpeech();
+resetFeedbackOverlay();
+resetModeHintBars();
+go('wt');
+window.nextQ_game = nextWT;
 WT={score:0,total:0,maxQ:8,answered:false};
 CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed.wt=true;saveAll();
+updateHomeUI();
 buildWTDots();
-go('wt');
 setTimeout(()=>{ genWT(); },120);
-});
 }
 function buildWTDots(){
 $('wt-dots').innerHTML='';
@@ -4403,16 +5190,13 @@ while(wrongs.size<3){
 const opts=shuf([correct,...wrongs]);
 $('wt-content').innerHTML=`
   <div class="wt-scenario">
-    <div class="wt-context">Look at the clock. What time does it show?</div>
+    <div class="qq">What time does this clock show?</div>
     <div class="wt-clock">${drawClock(h,m,200,diff>1,true)}</div>
-    <div class="qopts">${opts.map(o=>`<button class="qo ${CFG.errorless&&o===correct?'ok':''}" onclick="answerWT('${o}','${correct}',${h},${m})">${o}</button>`).join('')}</div>
+    <div class="qopts">${ensureChoiceCount(opts,correct,4,"What time does this clock show?").map(o=>`<button class="qo ${CFG.errorless&&o===correct?'ok':''}" onclick='answerWT(${JSON.stringify(o)},${JSON.stringify(correct)},${h},${m})'>${o}</button>`).join('')}</div>
     <div class="wt-fb" id="wt-fb" style="display:none"></div>
     <div id="wt-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,102,255,.16),rgba(0,204,255,.06));border:1px solid rgba(0,102,255,.45);border-left:4px solid var(--blue);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
   </div>
-  <div style="display:flex;gap:8px;margin-top:8px">
-    <button class="abtn" style="flex:1" onclick="showWTHint(this)">💡 HINT</button>
-    <button class="abtn" style="flex:1" onclick="wtSayAgain(this)">🔊 SAY AGAIN</button>
-  </div>
+  <div class="action-row"><button class="abtn" onclick="showWTHint(this)">💡 HINT</button><button class="abtn" onclick="wtSayAgain(this)">🔊 SAY AGAIN</button></div>
   <button class="dbtn" id="wt-next" onclick="nextWT()" style="display:none;margin-top:8px;width:100%">NEXT →</button>`;
 say('What time does this clock show?');
 }
@@ -4432,30 +5216,38 @@ const nxt=$('wt-next');if(nxt){nxt.style.display='block';nxt.textContent=WT.tota
 const fov=$('fov'), fcard=$('fcard');
 $('eoc-wrap').style.display='none';
 $('femoji').textContent = ok ? '✅' : '❌';
-$('ftitle').textContent = ok ? 'CORRECT!' : 'NOT QUITE';
+$('ftitle').textContent = ok ? 'CORRECT!' : beginWrongFeedback().toUpperCase();
 $('ftitle').className = 'ftitle ' + (ok ? 'ok' : 'bad');
 $('fmsg').innerHTML = ok
-  ? '<div style="margin-bottom:14px">Great thinking!</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">That clock shows ' + correct + '.</div>'
-  : '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text2);line-height:1.7">The correct answer was ' + correct + '. Look at the short hand for the hour first, then the long hand for the minutes.</div>';
+  ? '<div style="margin-bottom:14px">Great thinking!</div><div class="detail-panel">That clock shows ' + correct + '.</div>'
+  : '<div style="margin-bottom:14px">Almost! Read the explanation to understand why.</div><div class="detail-panel">The correct answer was ' + correct + '. Look at the short hand for the hour first, then the long hand for the minutes.</div>';
 $('fnext').textContent = WT.total>=WT.maxQ ? 'SEE RESULTS →' : 'NEXT →';
 $('fnext').className = 'fnext ' + (ok ? '' : 'bad');
 window.nextQ_game = nextWT;
 fcard.classList.toggle('wrong', !ok);
 fov.classList.add('on');
 
-say(ok ? ('Correct. The time is ' + correct + '.') : ('Not quite. The correct answer was ' + correct + '.'));
+if(!ok){
+  const phrase=beginWrongFeedback();
+  $('ftitle').textContent=phrase.toUpperCase();
+  $('fmsg').innerHTML='<div style="margin-bottom:14px">'+phrase+'. Read the explanation to understand why.</div><div class="detail-panel">' + detail + '</div>';
+  say(`${phrase}. The correct answer was ${correct}.`);
+} else {
+  say('Correct. The time is ' + correct + '.');
+}
 }
 function nextWT(){
-closeM('fov');
+stopSpeech();
+resetFeedbackOverlay();
 if(WT.total>=WT.maxQ){
 const pct=Math.round(WT.score/WT.maxQ*100);
 const grade=pct===100?'A+':pct>=90?'A':pct>=80?'B':pct>=70?'C':'D';
-const gc=pct>=80?'var(-blue)':pct>=70?'var(-amber)':'var(--red)';
+const gc=pct>=80?'var(--blue)':pct>=70?'var(--amber)':'var(--red)';
 SCORES.unshift({mode:'What Time Is It?',score:WT.score,correct:WT.score,total:WT.maxQ,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(WT.score>=7)awardBadge('wt_pro');
 updateHomeUI();
-$('wt-content').innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:var(--font-display);font-size:4rem;color:${gc};text-shadow:0 0 20px ${gc}33;margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:var(--cyan);margin-bottom:4px;letter-spacing:2px">${pct>=80?'CLOCK READER!':pct>=60?'GETTING THERE!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:8px"><strong style="color:var(--amber)">${WT.score} out of ${WT.maxQ}</strong> correct · ${pct}%</div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:11px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:14px 0 20px;text-align:left"> ${pct===100?'Perfect! You can read every clock you see - that\'s a real life skill.':pct>=80?'Excellent work! Keep practicing and you\'ll be a clock expert.':pct>=60?'Good effort! Visit the Clock Guide to brush up on any tricky spots.':'Keep going! Start with Clock School to build up your skills step by step.'} </div> <button class="dbtn" onclick="startWT()" style="margin-bottom:10px;width:100%">🔄 PLAY AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
+$('wt-content').innerHTML=` <div class="mode-result-card"> <div style="font-family:var(--font-display);font-size:4rem;color:${gc};text-shadow:0 0 20px ${gc}33;margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:1rem;color:var(--cyan);margin-bottom:4px;letter-spacing:2px">${pct>=80?'CLOCK READER!':pct>=60?'GETTING THERE!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:8px"><strong style="color:var(--amber)">${WT.score} out of ${WT.maxQ}</strong> correct · ${pct}%</div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:11px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:14px 0 20px;text-align:left"> ${pct===100?'Perfect! You can read every clock you see - that\'s a real life skill.':pct>=80?'Excellent work! Keep practicing and you\'ll be a clock expert.':pct>=60?'Good effort! Visit the Clock Guide to brush up on any tricky spots.':'Keep going! Start with Clock School to build up your skills step by step.'} </div> <button class="dbtn" onclick="beginWT()" style="margin-bottom:10px;width:100%">🔄 PLAY AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
 $('wt-dots').innerHTML='';
 if(pct>=80&&!CFG.nomotion)confetti();
 say(`Done! You got ${WT.score} out of ${WT.maxQ}!`);
@@ -4489,16 +5281,16 @@ true
 }
 function printCoachReport(){
 if(!CLIENTS||!CLIENTS.length){
-openHint('No Client Data','<p style="color:var(--text2);font-size:.88rem">Add clients and log sessions before printing a report.</p>',null,null);return;
+openHint('No Client Data','<p style="color:var(--text2);font-size:.88rem">Add active clients and log sessions before printing a report.</p>',null,null);return;
 }
 const appName=document.title||'LifeReady App';
 let rows='';
 CLIENTS.forEach(c=>{
 const sessCount=(c.sessions||[]).length;
 const last=(c.sessions||[]).slice(-1)[0];
-const goals=(c.goals||[]).length?c.goals.map(g=>`<li style="font-size:12px;margin-bottom:2px"><b>${g.skill}</b>: ${g.target}% - ${g.notes||''}</li>`).join(''):'<li style="font-size:12px;color:#666">No goals set</li>';
+const goals=(c.goals||[]).length?c.goals.map(g=>`<li style="font-size:12px;margin-bottom:2px"><b>${g.skill}</b>: ${g.num||4}/${g.den||5} · ${g.consec||3} sessions${g.due?` · Due ${g.due}`:''} · ${g.desc||''}</li>`).join(''):'<li style="font-size:12px;color:#666">No goals set</li>';
 const sessRows=(c.sessions||[]).slice(-5).reverse().map(s=>`<tr><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.date||s.dat||'-'}</td><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.module||s.mode||'-'}</td><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.score||`${s.correct||0}/${s.total||0}`}</td><td style="padding:4px 8px;border:1px solid #ddd;font-size:11px">${s.notes||'-'}</td></tr>`).join('') || '<tr><td colspan="4" style="padding:4px 8px;font-size:11px;color:#666">No sessions logged</td></tr>';
-rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-bottom:16px;page-break-inside:avoid"> <div style="display:flex;justify-content:space-between;margin-bottom:6px"><b style="font-size:15px">${c.name}</b><span style="font-size:11px;color:#666">${c.program||''}</span></div> <div style="font-size:12px;color:#444;margin-bottom:6px">Level: ${c.level||'-'} &nbsp;|&nbsp; Sessions: ${sessCount} &nbsp;|&nbsp; Last: ${last?last.date:'-'}</div> ${c.notes?`<div style="font-size:11px;background:#f5f5f5;padding:5px 8px;border-radius:4px;margin-bottom:6px">${c.notes}</div>`:''} <b style="font-size:12px">Goals:</b><ul style="margin:3px 0 8px 14px;padding:0">${goals}</ul> <b style="font-size:12px">Recent Sessions:</b> <table style="width:100%;border-collapse:collapse;margin-top:4px"> <tr style="background:#f0f0f0"><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Date</th><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Module</th><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Score</th><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Notes</th></tr> ${sessRows} </table> </div>`;
+rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-bottom:16px;page-break-inside:avoid"> <div style="display:flex;justify-content:space-between;margin-bottom:6px"><b style="font-size:15px">${getClientDisplayName(c)}</b><span style="font-size:11px;color:#666">${c.program||''}</span></div> <div style="font-size:12px;color:#444;margin-bottom:6px">Level: ${c.level||'-'} &nbsp;|&nbsp; Sessions: ${sessCount} &nbsp;|&nbsp; Last: ${last?(last.date + (getClientSessionTime(last)?' '+getClientSessionTime(last):'')):'-'}</div> ${c.notes?`<div style="font-size:11px;background:#f5f5f5;padding:5px 8px;border-radius:4px;margin-bottom:6px">${c.notes}</div>`:''} <b style="font-size:12px">Goals:</b><ul style="margin:3px 0 8px 14px;padding:0">${goals}</ul> <b style="font-size:12px">Recent Sessions:</b> <table style="width:100%;border-collapse:collapse;margin-top:4px"> <tr style="background:#f0f0f0"><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Date</th><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Module</th><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Score</th><th style="padding:4px 8px;border:1px solid #ddd;font-size:11px;text-align:left">Notes</th></tr> ${sessRows} </table> </div>`;
 });
 const w=window.open('','_blank');
 if(!w){openHint('Pop-up Blocked','<p style="color:var(--text2);font-size:.88rem">Allow pop-ups for this page then try again.</p>',null,null);return;}
@@ -4514,6 +5306,25 @@ openHint('Remove Your Name?',
 );
 }
 function startClockQuiz(){
+showModeIntro('🧩','CLOCK QUIZ','#0066ff',[
+['🕐','8 clock questions.','Read the clock and choose the correct answer.'],
+['⭐','Scored and saved.','Your final score is added to High Scores.'],
+['💡','Hints are available.','Use them any time you need support.']
+],'Start Clock Quiz →',()=>{
+closeM('m-hint');
+beginClockQuiz();
+},cancelIntroToHome);
+}
+
+function beginClockQuiz(){
+ST.mode='clockquiz';
+stopSpeech();
+resetFeedbackOverlay();
+resetModeHintBars();
+go('clockquiz');
+window.nextQ_game = nextCQ;
+CFG.modesPlayed=CFG.modesPlayed||{};CFG.modesPlayed.clockquiz=true;saveAll();
+updateHomeUI();
 // Generate 8 clock reading questions
 const times=[
 {h:3,m:0,period:'AM'},{h:7,m:15,period:'AM'},{h:10,m:30,period:'AM'},

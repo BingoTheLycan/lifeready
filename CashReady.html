@@ -1402,35 +1402,28 @@ max-width:320px;width:calc(100% - 32px);
     <div class="sr"><div class="si">🪙</div><div class="sinfo"><div class="sn">Coins Only Mode</div><div class="sd2">Limits drills to coins under $1. Great for learners just starting out.</div></div><div class="tog" id="tog-coinsonly" onclick="togSet('coinsonly')"></div></div>
     <div class="sr"><div class="si">💵</div><div class="sinfo"><div class="sn">Bills Only Mode</div><div class="sd2">Limits drills to whole dollar amounts. For learners who have mastered coins.</div></div><div class="tog" id="tog-billsonly" onclick="togSet('billsonly')"></div></div>
   </div>
+  <div class="ss">
+    <div class="st">MISSION CONTROL</div>
+    <div class="sr">
+      <div class="si">🔒</div>
+      <div class="sinfo"><div class="sn">Coach PIN</div><div class="sd2">Reset the PIN for Mission Control. At least 4 characters.</div></div>
+      <button class="cbt" onclick="resetCoachPin()" style="flex-shrink:0;font-size:.72rem">Reset PIN</button>
+    </div>
+  </div>
+  <div class="ss">
+    <div class="st">PLAYER NAME (OPTIONAL)</div>
+    <div class="sr">
+      <div class="si">👤</div>
+      <div class="sinfo"><div class="sn" id="name-setting-display">No name set</div><div class="sd2">Appears on your results card. Personal devices only.</div></div>
+      <button class="cbt" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem" id="name-setting-btn">Set Name</button>
+    </div>
+  </div>
   <div style="text-align:center;padding:12px 0 4px">
     <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text3);margin-bottom:3px">CashReady v1.0</div>
     <div style="font-size:.72rem;color:var(--green);font-weight:700">© 2026 Tristan</div>
     <div style="font-size:.68rem;color:var(--text3);margin-top:2px">Free for everyone, always 💚</div>
   </div>
   <div class="stip">TIP: All settings save automatically and are remembered next time you play.</div>
-
-  <div class="ss" style="margin-top:20px">
-    <div class="st">COACH DASHBOARD</div>
-    <div class="sr">
-      <div class="si">🔒</div>
-      <div class="sinfo">
-        <div class="sn">Coach PIN</div>
-        <div class="sd3">Mission Control is protected by a PIN. You can use letters and numbers.</div>
-      </div>
-      <button class="cbt" onclick="resetCoachPin()" style="flex-shrink:0;font-size:.72rem">Reset PIN</button>
-    </div>
-  </div>
-
-  <div class="ss" style="margin-top:4px">
-    <div class="st">PLAYER NAME (OPTIONAL)</div>
-    <div class="sr">
-      <div class="si">👤</div>
-      <div class="sinfo">
-        <div class="sn" id="name-setting-display">No name set</div>
-        <div class="sd3">First name only. <strong style="color:var(--amber)">Only use on your personal device.</strong> Do not enter client names - this is for personal use only.</div>
-      </div>
-      <button class="cbt" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem" id="name-setting-btn">Set Name</button>
-    </div>
 
 <div class="gsec" style="margin-top:24px;padding:16px;border:1px solid rgba(204,34,0,0.35);border-radius:var(--radius-sm);background:rgba(204,34,0,0.05);">
   <div class="gtitle">⚠️ DANGER ZONE</div>

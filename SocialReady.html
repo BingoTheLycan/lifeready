@@ -652,6 +652,209 @@ max-width:320px;width:calc(100% - 32px);
 .gc-body strong{color:var(--text);}
 .gc-body em{color:var(--text3);font-style:italic;}
 .cb-mode-btn{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap;}.cb-mode-btn.on{background:#9b30d922;border-color:#9b30d9;color:#9b30d9;box-shadow:0 0 12px #9b30d955;}.cb-mode-btn:hover{border-color:#9b30d988;color:#9b30d9;}@media(min-width:900px){main>*{min-width:0;}#desktop-sidebar{min-width:0;}}
+/* MISSION CONTROL 2.0 */
+.mc-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.mc-title-wrap{display:flex;flex-direction:column;gap:4px;}
+.mc-title{font-family:var(--font-mono);font-size:1.08rem;color:var(--green);letter-spacing:3px;text-shadow:0 0 12px #00c85144;}
+.mc-sub{font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:4px;}
+.mc-meta{font-size:.76rem;color:var(--amber);font-family:var(--font-mono);line-height:1.5;}
+.mc-actions{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end;}
+.mc-btn,.mc-filter{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;letter-spacing:.5px;transition:border-color .2s,color .2s,box-shadow .2s,transform .2s;}
+.mc-btn:hover,.mc-filter:hover{border-color:var(--green);color:var(--green);box-shadow:0 0 12px #00c85144;transform:translateY(-1px);}
+.mc-btn.pri{background:var(--green);border-color:var(--green);color:#000;}
+.mc-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px;}
+.mc-stat{background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:14px;padding:13px 12px;text-align:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);}
+.mc-num{font-family:var(--font-display);font-size:1.45rem;color:var(--green);line-height:1.05;}
+.mc-label{font-size:.66rem;color:var(--text2);text-transform:uppercase;letter-spacing:1.3px;font-family:var(--font-mono);margin-top:5px;}
+.mc-filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+.mc-search{flex:1;min-width:220px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:var(--font-body);font-size:.88rem;}
+.mc-search:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 2px rgba(0,200,81,.12);}
+.mc-filter.on,.mc-btn.on{background:var(--green);border-color:var(--green);color:#000;}
+.mc-welcome{position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:18px;}
+.mc-welcome-card{width:min(100%,560px);max-height:min(92vh,760px);overflow:hidden;background:linear-gradient(180deg,rgba(22,27,34,.98),rgba(13,17,23,.98));border:2px solid var(--green);border-radius:22px;padding:18px 18px 16px;box-shadow:0 0 40px rgba(0,200,81,.18),0 20px 70px rgba(0,0,0,.55);display:flex;flex-direction:column;gap:10px;}
+.mc-welcome-topline{font-family:var(--font-mono);font-size:.64rem;color:var(--green);letter-spacing:3px;text-transform:uppercase;margin-bottom:2px;text-shadow:0 0 10px #00c85155;}
+.mc-welcome-title{font-family:var(--font-display);font-size:1.3rem;color:var(--green);letter-spacing:1px;line-height:1.1;margin-bottom:2px;}
+.mc-welcome-copy{font-size:.88rem;color:var(--text);line-height:1.55;margin-bottom:2px;}
+.mc-welcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:2px;}
+.mc-welcome-step{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:10px 11px;display:flex;gap:9px;align-items:flex-start;min-height:76px;}
+.mc-welcome-stepno{width:22px;height:22px;border-radius:50%;background:var(--green);color:#000;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.68rem;font-weight:900;flex-shrink:0;margin-top:1px;}
+.mc-welcome-stepbody{font-size:.76rem;color:var(--text2);line-height:1.4;}
+.mc-welcome-stepbody strong{color:var(--text);display:block;font-size:.86rem;margin-bottom:2px;}
+.mc-welcome-note{font-size:.75rem;color:var(--text2);line-height:1.45;text-align:center;padding:0 8px;}
+.mc-welcome-foot{font-size:.74rem;color:var(--amber);font-weight:700;line-height:1.45;background:rgba(255,187,51,.08);border:1px solid rgba(255,187,51,.22);border-radius:12px;padding:9px 11px;margin-bottom:2px;}
+.mc-welcome-actions{display:flex;flex-direction:column;gap:8px;}
+.mc-welcome-actions .rsec,.mc-welcome-actions .rpri{width:100%;}
+#scr-coach.mc-welcome-open>.mc-header,#scr-coach.mc-welcome-open>.mc-stats,#scr-coach.mc-welcome-open>.mc-nextbest,#scr-coach.mc-welcome-open>.mc-filters,#scr-coach.mc-welcome-open>#coach-flash,#scr-coach.mc-welcome-open>#coach-wrap{visibility:hidden;pointer-events:none;}
+@media(max-width:420px){.mc-welcome-card{padding:16px 14px 14px;}.mc-welcome-grid{gap:7px;}.mc-welcome-step{padding:9px 9px;min-height:72px;}.mc-welcome-title{font-size:1.18rem;}.mc-welcome-copy{font-size:.83rem;}.mc-welcome-stepbody{font-size:.72rem;}.mc-welcome-stepbody strong{font-size:.81rem;}}
+@media(min-width:700px){.mc-welcome-card{width:min(100%,620px);}.mc-welcome-title{font-size:1.45rem;}.mc-welcome-copy{font-size:.92rem;}.mc-welcome-step{min-height:82px;}}
+
+.mc-sections{display:flex;flex-direction:column;gap:14px;}
+.mc-section{display:flex;flex-direction:column;gap:10px;}
+.mc-section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.mc-section-title{font-family:var(--font-mono);font-size:.78rem;color:var(--green);letter-spacing:2px;text-transform:uppercase;}
+.mc-section-sub{font-size:.74rem;color:var(--text2);}
+.mc-inline-chip{font-family:var(--font-mono);font-size:.62rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);letter-spacing:.7px;}
+.ccards{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:700px){.ccards{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:760px){.mc-stats{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+.mc-card{background:linear-gradient(180deg,var(--bg2),rgba(22,27,34,.98));border:2px solid var(--border);border-radius:18px;padding:14px 14px 12px;transition:.2s;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);}
+.mc-card.needs-attn{border-color:var(--amber);box-shadow:0 0 0 1px rgba(255,187,51,.18), 0 0 22px rgba(255,187,51,.08);}
+.mc-card.improving{border-color:rgba(0,200,81,.55);}
+.mc-card-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.mc-avatar{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:900;color:#000;box-shadow:0 0 20px rgba(212,144,10,.18);}
+.mc-identity{flex:1;min-width:0;}
+.mc-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.mc-name{font-weight:900;font-size:1rem;color:var(--text);}
+.mc-chip{font-family:var(--font-mono);font-size:.63rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);letter-spacing:.7px;}
+.mc-chip.status-review{border-color:var(--amber);background:var(--amber-light);color:var(--amber);}
+.mc-chip.status-goal{border-color:var(--green);background:rgba(212,144,10,.12);color:var(--green);}
+.mc-chip.status-new{border-color:var(--blue);background:var(--blue-light);color:var(--blue);}
+.mc-chip.status-archived{border-color:var(--text3);background:var(--bg3);color:var(--text3);}
+.mc-submeta{font-size:.74rem;color:var(--text2);margin-top:4px;line-height:1.55;}
+.mc-level{margin-left:auto;flex-shrink:0;font-family:var(--font-mono);font-size:.65rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);}
+.mc-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px;}
+.mc-mini{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:9px 11px;min-width:0;}
+.mc-mini-label{font-size:.62rem;color:var(--text2);letter-spacing:1.5px;font-family:var(--font-mono);margin-bottom:4px;text-transform:uppercase;}
+.mc-mini-val{font-size:.88rem;font-weight:800;color:var(--text);line-height:1.3;}
+.mc-mini-val.gold{color:var(--green);}
+.mc-mini-val.green{color:var(--green);}
+
+.mc-indy{background:rgba(255,255,255,.02);border-radius:12px;padding:10px 11px;margin-bottom:12px;border:1px solid rgba(255,255,255,.03);}
+.mc-indy-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px;}
+.mc-indy-title{font-size:.76rem;color:var(--text);font-weight:800;}
+.mc-indy-pct{font-family:var(--font-mono);color:var(--green);font-size:.8rem;}
+.mc-indy-trend{font-size:.72rem;color:var(--amber);font-family:var(--font-mono);}
+.mc-indy-bar{height:10px;background:var(--bg3);border-radius:999px;overflow:hidden;}
+.mc-indy-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green2),var(--amber));}
+
+.mc-skill-block{margin-bottom:12px;}
+.mc-skill-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.mc-skill-title{font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;}
+.mc-skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.mc-skill{display:flex;flex-direction:column;gap:4px;}
+.mc-skill-top{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:.72rem;color:var(--text2);font-weight:700;}
+.mc-skill-pct{color:var(--green);font-family:var(--font-mono);}
+.mc-skill-bar{background:var(--bg3);border-radius:999px;height:7px;overflow:hidden;}
+.mc-skill-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green),var(--amber));}
+
+.mc-goal-strip{background:var(--bg3);border-left:4px solid var(--amber);border-radius:12px;padding:11px 12px;margin-bottom:10px;}
+.mc-goal-strip.met{border-left-color:var(--green);}
+.mc-goal-title{font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:1.7px;margin-bottom:4px;}
+.mc-goal-copy{font-size:.82rem;font-weight:800;color:var(--text);line-height:1.45;}
+.mc-insight{font-size:.76rem;color:var(--text2);line-height:1.55;background:rgba(255,255,255,.02);border-radius:10px;padding:9px 10px;min-height:40px;border:1px solid rgba(255,255,255,.03);}
+.mc-card-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:10px;}
+.mc-card-actions .cbt{min-height:40px;padding:9px 8px;font-size:.68rem}
+.mc-attn-line{font-size:.68rem;color:var(--amber);font-family:var(--font-mono);letter-spacing:1px;margin-top:6px;}
+.mc-empty{background:var(--bg2);border:1px dashed var(--border);border-radius:14px;padding:18px;text-align:center;color:var(--text2);font-family:var(--font-mono);font-size:.78rem;line-height:1.7;}
+
+.mc-empty-cta{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;}
+.mc-empty-cta .mc-btn{min-width:150px;justify-content:center;display:inline-flex;align-items:center;}
+
+.mc-flash{display:none;background:linear-gradient(135deg,rgba(255,187,51,.12),rgba(255,187,51,.04));border:2px solid var(--amber);border-radius:14px;padding:12px 14px;margin-bottom:12px;}
+.mc-flash.on{display:block;animation:fadeUp .3s ease;}
+.mc-flash-title{font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:2px;margin-bottom:4px;}
+.mc-flash-copy{font-size:.86rem;color:var(--text);line-height:1.5;}
+.mc-detail-grid{display:grid;gap:12px;}
+.mc-detail-panel{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:14px;}
+.mc-detail-title{font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:10px;text-transform:uppercase;}
+.mc-session-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.mc-session-row:last-child{border-bottom:none;padding-bottom:0;}
+.mc-session-left,.mc-session-right{min-width:0;}
+.mc-session-name{font-size:.82rem;font-weight:800;color:var(--text);}
+.mc-session-meta{font-size:.72rem;color:var(--text2);line-height:1.45;}
+@media(max-width:540px){
+  .mc-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    justify-content:stretch;
+  }
+  .mc-actions .mc-btn{
+    width:100%;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10px 12px;
+  }
+  .mc-filters{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    align-items:stretch;
+  }
+  .mc-search{
+    grid-column:1 / -1;
+    min-width:0;
+  }
+  .mc-filter{
+    width:100%;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .mc-card-actions{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+
+
+
+/* Fix centered Coach Date Range modal without changing shared modal behavior */
+#m-date-range{
+  position:fixed !important;
+  inset:0 !important;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.6);
+  z-index:9999;
+}
+#m-date-range .mdl{
+  width:min(420px,90vw);
+  margin:auto;
+}
+
+
+/* Date range modal visibility fix */
+#m-date-range.on{
+  display:flex !important;
+}
+
+
+/* Ensure all modals open with .on class */
+.modal.on{
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+}
+
+
+/* v6 coach clarity upgrades */
+.mc-summary-note{font-family:var(--font-mono);font-size:.62rem;color:var(--text3);letter-spacing:.8px;}
+.mc-summary-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 0;}
+.mc-summary-box{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.mc-summary-box .lbl{font-size:.68rem;color:var(--text2);font-weight:800;margin-bottom:4px;}
+.mc-summary-box .val{font-size:.86rem;color:var(--text);font-weight:800;line-height:1.35;}
+.mc-skill-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px;}
+.mc-skill-state{font-family:var(--font-mono);font-size:.68rem;font-weight:700;white-space:nowrap;}
+.mc-skill-state.strong{color:var(--green);}
+.mc-skill-state.building{color:var(--amber);}
+.mc-skill-state.support{color:var(--red);}
+.mc-skill-fill.strong{background:linear-gradient(90deg,var(--green),var(--green));}
+.mc-skill-fill.building{background:linear-gradient(90deg,var(--amber),var(--green));}
+.mc-skill-fill.support{background:linear-gradient(90deg,var(--red),var(--amber));}
+.mc-detail-skills{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px;}
+#scr-coach.mc-summary-mode .mc-actions,#scr-coach.mc-summary-mode .mc-filters,#scr-coach.mc-summary-mode .mc-flash,#scr-coach.mc-summary-mode .mc-card-actions,#scr-coach.mc-summary-mode .mc-welcome,#scr-coach.mc-summary-mode .mc-nextbest{display:none!important;}
+#scr-coach.mc-summary-mode .mc-stats{grid-template-columns:repeat(2,1fr);}
+#scr-coach.mc-summary-mode .mc-section{margin-top:10px;}
+.mc-mini-val.status{font-size:.92rem;}
+
+
+
 </style>
 <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
 <defs>
@@ -1064,36 +1267,65 @@ max-width:320px;width:calc(100% - 32px);
     </div>
 </div>
 <div id="scr-coach" class="scr">
-  <div class="coach-hdr">
-    <div class="coach-title">📋 SOCIAL SKILLS COACH DASHBOARD</div>
-    <div class="cacts">
-      <button class="cbt" onclick="printCoachReport()">🖨️ Print Report</button>
-      <button class="cbt" onclick="exportCSV()" title="Download all session data as spreadsheet">📥 Export CSV</button>
-      <button class="cbt" onclick="openCoachRange()">📅 Date Range</button>
-      <button class="cbt" onclick="openM('m-goal')">＋ Add Goal</button>
-      <button class="cbt" onclick="openM('m-log')">＋ Log Session</button>
-      <button class="cbt pri" onclick="openClientModal()">＋ Add Client</button>
+  <div id="save-indicator" style="display:none;font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:1px;margin:0 0 10px">Saved ✓</div>
+  <div id="coach-range-label" style="display:none;font-family:var(--font-mono);font-size:.64rem;color:var(--amber);letter-spacing:1px;margin:0 0 10px">📅 Showing range</div>
 
-  <button class="cbt" onclick="CFG.coachWelcomeSeen=false;renderCoach();
-refreshCoachClientOptions();showCoachWelcome();" style="font-size:.65rem;letter-spacing:.5px">? How It Works</button>
-</div>
-  </div>
-  <div id="coach-range-label" style="display:none;background:var(--panel);border:1px solid var(--green3);border-radius:12px;padding:8px 12px;margin-bottom:10px;font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:1px"></div>
-  <div id="save-indicator" style="display:none;background:rgba(155,48,217,.10);border:1px solid var(--green);border-radius:999px;padding:4px 10px;margin:0 0 10px auto;width:max-content;font-family:var(--font-mono);font-size:.62rem;color:var(--green);letter-spacing:1px">Saved ✓</div>
-  <!-- First-time welcome card -->
-  <div id="coach-welcome" style="position:relative;z-index:1;display:none;background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:18px;margin-bottom:16px;animation:fadeUp .4s ease">
-    <div style="font-family:var(--font-mono);font-size:.8rem;color:var(--green);letter-spacing:2px;margin-bottom:8px">👋 WELCOME, COACH!</div>
-    <p style="font-size:.86rem;color:var(--text2);line-height:1.7;margin-bottom:12px">This is your private dashboard. Add clients, track their progress, log sessions after practice, and set mastery goals - all in one place.</p>
-    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">
-      <div style="display:flex;gap:9px;font-size:.83rem;color:var(--text2)"><span style="color:var(--green)">1.</span><span>Tap <strong style="color:var(--text)">+ Add Client</strong> to create a profile for each person you support.</span></div>
-      <div style="display:flex;gap:9px;font-size:.83rem;color:var(--text2)"><span style="color:var(--green)">2.</span><span>After each practice session, tap <strong style="color:var(--text)">+ Log Session</strong> to record what you observed.</span></div>
-      <div style="display:flex;gap:9px;font-size:.83rem;color:var(--text2)"><span style="color:var(--green)">3.</span><span>Use <strong style="color:var(--text)">+ Add Goal</strong> to set mastery targets the dashboard will track automatically.</span></div>
-      <div style="display:flex;gap:9px;font-size:.83rem;color:var(--text2)"><span style="color:var(--green)">4.</span><span>Tap <strong style="color:var(--text)">🖨 Print</strong> or <strong style="color:var(--text)">📥 CSV</strong> to export data for IEP meetings or billing.</span></div>
+  <div class="mc-header">
+    <div class="mc-title-wrap">
+      <div class="mc-title">SOCIALREADY</div>
+      <div class="mc-sub">MISSION CONTROL</div>
+      <div class="mc-meta" id="mc-meta">0 Active • 0 Need Review • 0 Sessions Today</div>
     </div>
-    <div style="font-size:.75rem;color:var(--amber);font-weight:700">🔒 This dashboard is PIN-protected. Your clients' data stays private.</div>
-    <button class="rsec" style="margin-top:12px;width:100%" onclick="dismissCoachWelcome()">Got it - Let us Get Started</button>
+
+    <div class="mc-actions">
+      <button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Client</button>
+      <button class="mc-btn" onclick="openM('m-log')">📝 Log Session</button>
+      <button class="mc-btn" onclick="openM('m-goal')">🎯 Add Goal</button>
+      <button class="mc-btn" onclick="openDateRangeModal()">📅 Date Range</button>
+      <button class="mc-btn" onclick="exportCSV()">📥 Export</button>
+      <button class="mc-btn" onclick="printCoachReport()">🖨 Print</button>
+      <button class="mc-btn" onclick="toggleCoachFilters()" id="coach-filters-btn">⚙ Filters</button>
+      <button class="mc-btn" onclick="CFG.coachWelcomeSeen=false;renderCoach();showCoachWelcome();" style="font-size:.65rem;letter-spacing:.5px">❔ Quick Start</button>
+      <button class="mc-btn" onclick="toggleArchivedView()" id="arch-toggle-btn">🗂 Archived</button>
+      <button class="mc-btn" onclick="toggleSummaryMode()" id="summary-mode-btn">📄 Presentation View</button>
+    </div>
   </div>
-  <div id="coach-wrap"><div class="no-data">No clients yet.<br>Tap "+ Add Client" to get started.</div></div>
+
+  <div class="mc-stats">
+    <div class="mc-stat"><div class="mc-num" id="stat-clients">0</div><div class="mc-label">Active Clients</div></div>
+    <div class="mc-stat"><div class="mc-num" id="stat-sessions">0</div><div class="mc-label">Sessions Today</div></div>
+    <div class="mc-stat"><div class="mc-num" id="stat-goals">0</div><div class="mc-label">Goals Met</div></div>
+    <div class="mc-stat"><div class="mc-num" id="stat-independence">Baseline</div><div class="mc-label">Avg Independence</div></div>
+  </div>
+
+  <div class="mc-filters" id="coach-filters-bar">
+    <input id="coach-search" class="mc-search" placeholder="🔍 Search clients..." oninput="setCoachSearch(this.value)">
+    <button class="mc-filter" id="coach-needs-attn-btn" onclick="toggleNeedsAttention()">⚠ Needs Attention</button>
+    <button class="mc-filter" id="coach-clear-btn" onclick="clearCoachSearch()" style="display:none">Clear Search</button>
+  </div>
+
+  <div id="coach-welcome" class="mc-welcome" style="display:none">
+    <div class="mc-welcome-card">
+      <div class="mc-welcome-topline">SOCIALREADY · COACH TOOLS</div>
+      <div class="mc-welcome-title">👋 Welcome to Mission Control</div>
+      <p class="mc-welcome-copy">Track social-skill progress, spot support needs, and generate reports without extra data entry.</p>
+      <div class="mc-welcome-grid">
+        <div class="mc-welcome-step"><div class="mc-welcome-stepno">1</div><div class="mc-welcome-stepbody"><strong>Add Client</strong>Create one profile for each client or student.</div></div>
+        <div class="mc-welcome-step"><div class="mc-welcome-stepno">2</div><div class="mc-welcome-stepbody"><strong>Log Session</strong>Record the skill, prompt level, score, and a quick note.</div></div>
+        <div class="mc-welcome-step"><div class="mc-welcome-stepno">3</div><div class="mc-welcome-stepbody"><strong>Set Objective</strong> Add a goal once. Mission Control tracks progress automatically.</div></div>
+        <div class="mc-welcome-step"><div class="mc-welcome-stepno">4</div><div class="mc-welcome-stepbody"><strong>Smart Guidance</strong>Watch for Needs Attention, support needs, and next best actions.</div></div>
+      </div>
+      <div class="mc-welcome-note">Mission Control learns from sessions, so staff spend less time typing and more time teaching.</div>
+      <div class="mc-welcome-foot">🔒 PIN protected. Data stays on this device unless you choose to export or print a report.</div>
+      <div class="mc-welcome-actions">
+        <button class="rpri" onclick="dismissCoachWelcome()">Enter Mission Control</button>
+        <button class="rsec" onclick="dismissCoachWelcome();setTimeout(()=>openClientModalSafe(),120)">Start by Adding a Client</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="coach-flash" class="mc-flash"><div class="mc-flash-title">SESSION REPLAY</div><div class="mc-flash-copy" id="coach-flash-copy"></div></div>
+  <div id="coach-wrap"><div class="mc-empty">No clients yet.<br>Add a client to start Mission Control.<div class="mc-empty-cta"><button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Client</button><button class="mc-btn" onclick="showCoachWelcome()">❔ Quick Start</button></div></div></div>
 </div>
 
 <div id="scr-situationsguide" class="scr">
@@ -3355,175 +3587,220 @@ function restoreClient(i){
   showSaveIndicator('Client restored ✓');
 }
 
+
+function openClientModalSafe(){ openClientModal(); }
+function openDateRangeModal(){ openCoachRange(); }
+function toggleArchivedView(){ CFG.coachShowArchived=!CFG.coachShowArchived; saveAll(); renderCoach(); }
+function toggleCoachFilters(){
+  const bar=$('coach-filters-bar'); const btn=$('coach-filters-btn'); if(!bar) return;
+  const hidden = bar.style.display==='none';
+  bar.style.display = hidden ? '' : 'none';
+  if(btn) btn.classList.toggle('on', hidden);
+}
+function setCoachSearch(v){ CFG.coachSearch=(v||'').trim(); saveAll(); renderCoach(); }
+function clearCoachSearch(){ CFG.coachSearch=''; CFG.coachNeedsAttentionOnly=false; if($('coach-search')) $('coach-search').value=''; renderCoach(); }
+function toggleNeedsAttention(){ CFG.coachNeedsAttentionOnly=!CFG.coachNeedsAttentionOnly; saveAll(); renderCoach(); }
+function toggleSummaryMode(){ CFG.coachSummaryMode=!CFG.coachSummaryMode; if($('scr-coach')) $('scr-coach').classList.toggle('mc-summary-mode', !!CFG.coachSummaryMode); saveAll(); renderCoach(); }
+function getFilteredSessions(cl){
+  const sessions=(cl.sessions||[]).slice();
+  if(!COACH_RANGE || (!COACH_RANGE.start && !COACH_RANGE.end)) return sessions;
+  return sessions.filter(s=>{
+    const d=dateFromSession(s); if(!d) return true;
+    const start=COACH_RANGE.start ? new Date(COACH_RANGE.start+'T00:00:00') : null;
+    const end=COACH_RANGE.end ? new Date(COACH_RANGE.end+'T23:59:59') : null;
+    return (!start || d>=start) && (!end || d<=end);
+  });
+}
+function updateCoachRangeLabel(){
+  const el=$('coach-range-label'); if(!el) return;
+  const txt=(COACH_RANGE && (COACH_RANGE.start||COACH_RANGE.end)) ? coachRangeText() : '';
+  el.style.display = txt ? 'block' : 'none';
+  if(txt) el.textContent = txt;
+}
+function needsAttention(cl,sessions){
+  if(!sessions.length) return true;
+  const low=(cl.skills||{});
+  return Object.values(low).some(v=>Number(v||0)<50);
+}
+function improvementReason(cl,sessions){
+  if(sessions.length<2) return '';
+  const vals=Object.values(cl.skills||{}).map(v=>Number(v||0));
+  const avg=vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : 0;
+  return avg>=50 ? 'Momentum building' : '';
+}
+function getCoachFilteredClients(){
+  const q=(CFG.coachSearch||'').toLowerCase();
+  const showArchived=!!CFG.coachShowArchived;
+  return CLIENTS.map((cl,i)=>({cl,i}))
+    .filter(({cl})=> showArchived ? !!cl.archived : !cl.archived)
+    .filter(({cl})=>{
+      if(!q) return true;
+      return [cl.name, cl.fullName, cl.program, cl.notes].filter(Boolean).join(' ').toLowerCase().includes(q);
+    })
+    .filter(({cl})=> !CFG.coachNeedsAttentionOnly || needsAttention(cl,getFilteredSessions(cl)));
+}
+function updateCoachDashboardStats(visible){
+  const active=CLIENTS.filter(c=>!c.archived).length;
+  const sessionsToday=CLIENTS.reduce((n,c)=>n + (getFilteredSessions(c).filter(s=>s.date===today()).length),0);
+  const goalsMet=CLIENTS.reduce((n,c)=>n + ((c.goals||[]).filter(g=>g.met).length),0);
+  const skills=CLIENTS.filter(c=>!c.archived).flatMap(c=>Object.values(c.skills||{}).map(v=>Number(v||0)));
+  const avg=skills.length?Math.round(skills.reduce((a,b)=>a+b,0)/skills.length):0;
+  if($('stat-clients')) $('stat-clients').textContent=String(active);
+  if($('stat-sessions')) $('stat-sessions').textContent=String(sessionsToday);
+  if($('stat-goals')) $('stat-goals').textContent=String(goalsMet);
+  if($('stat-independence')) $('stat-independence').textContent= avg>=75 ? 'High' : avg>=50 ? 'Building' : 'Baseline';
+  if($('mc-meta')) $('mc-meta').textContent=`${active} Active • ${visible.filter(({cl})=>needsAttention(cl,getFilteredSessions(cl))).length} Need Review • ${sessionsToday} Sessions Today`;
+  if($('coach-needs-attn-btn')) $('coach-needs-attn-btn').classList.toggle('on', !!CFG.coachNeedsAttentionOnly);
+  if($('coach-clear-btn')) $('coach-clear-btn').style.display = (CFG.coachSearch||'') ? '' : 'none';
+  if($('coach-search')) $('coach-search').value = CFG.coachSearch||'';
+}
+
 function renderCoach(){
-  syncCoachRangeUI();
+  updateCoachRangeLabel();
   refreshCoachClientOptions();
   CFG.coachShowArchived = !!CFG.coachShowArchived;
-  const activeClients = CLIENTS.filter(cl=>!cl.archived);
-  const archivedClients = CLIENTS.filter(cl=>cl.archived);
-  const visibleClients = CFG.coachShowArchived ? archivedClients : activeClients;
-  const toggleLabel = CFG.coachShowArchived ? `Show Active (${activeClients.length})` : `Show Archived (${archivedClients.length})`;
-  const rangeLabel = (COACH_RANGE && (COACH_RANGE.start || COACH_RANGE.end))
-    ? `<div style="font-size:.72rem;color:var(--text2);margin-right:auto">${coachRangeText().replace('📅 ','')}</div>`
-    : '<div style="margin-right:auto"></div>';
-  const toggleBtn = `<div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-bottom:12px">${rangeLabel}<button class="cbt" onclick="CFG.coachShowArchived=!CFG.coachShowArchived;saveAll();renderCoach();">${toggleLabel}</button></div>`;
-  if(!visibleClients.length){
-    const emptyTitle = CFG.coachShowArchived ? 'No archived clients.' : 'No clients yet.';
-    const emptySub = CFG.coachShowArchived ? 'Archive a client to keep their records without deleting them.' : 'Tap "+ Add Client" to get started. You can also log sessions and set goals after adding someone.';
-    $('coach-wrap').innerHTML=`${toggleBtn}<div class="no-data">${emptyTitle}<br>${emptySub}<br>${!CFG.coachShowArchived?'<button class="cbt pri" style="margin-top:12px" onclick="openClientModal()">＋ Add Client</button>':''}</div>`;
-    return;
-  }
-  $('coach-wrap').innerHTML=`${toggleBtn}<div class="ccards">${visibleClients.map(cl=>clientCard(cl,CLIENTS.indexOf(cl))).join('')}</div>`;
-  visibleClients.forEach(cl=>drawCharts(CLIENTS.indexOf(cl)));
+  const visible = getCoachFilteredClients();
+  updateCoachDashboardStats(visible);
+  if($('scr-coach')) $('scr-coach').classList.toggle('mc-summary-mode', !!CFG.coachSummaryMode);
+  const archivedCount=CLIENTS.filter(c=>!!c.archived).length;
+  if($('arch-toggle-btn')) $('arch-toggle-btn').textContent = CFG.coachShowArchived ? '📂 Active' : `🗂 Archived (${archivedCount})`;
+  if(!CLIENTS.length){ $('coach-wrap').innerHTML='<div class="mc-empty">No clients yet.<br>Add a client to start Mission Control.<div class="mc-empty-cta"><button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Client</button><button class="mc-btn" onclick="showCoachWelcome()">❔ Quick Start</button></div></div>'; return; }
+  if(!visible.length){ $('coach-wrap').innerHTML=`<div class="mc-empty">${CFG.coachShowArchived ? 'No archived clients match this view.' : 'No clients match this view.'}${CFG.coachShowArchived ? '' : '<div style="margin-top:10px"><button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Client</button></div>'}</div>`; return; }
+  $('coach-wrap').innerHTML=`<div class="ccards">${visible.map(({cl,i})=>clientCard(cl,i)).join('')}</div>`;
+}
+
+function socialSkillDefs(){
+  return {situations:'👁️ Situations',conversations:'💬 Conversations',boundaries:'🛡️ Boundaries',feelings:'💛 Feelings'};
+}
+function strongestWeakestSkillSocial(sk){
+  const defs=socialSkillDefs();
+  const entries=Object.entries(defs).map(([key,label])=>({key,label,score:Number(sk[key]||0)}));
+  const maxScore=Math.max(0,...entries.map(e=>e.score));
+  if(maxScore<=0) return {strongest:'Not enough data yet', weakest:'Not enough data yet'};
+  const strongest=[...entries].sort((a,b)=>b.score-a.score)[0];
+  const weakest=[...entries].sort((a,b)=>a.score-b.score)[0];
+  return {
+    strongest:`${strongest.label.replace(/^[^\s]+\s/,'')} · ${strongest.score}%`,
+    weakest:`${weakest.label.replace(/^[^\s]+\s/,'')} · ${weakest.score}%`
+  };
+}
+function coachTrendTextSocial(sessions){
+  const promptVals=(sessions||[]).map(s=>String(s.prompt||'').toLowerCase());
+  if(promptVals.length<2) return '→ Baseline';
+  const map={independent:0,verbal:1,gestural:2,physical:3,hoh:4};
+  const nums=promptVals.map(v=>map[v]).filter(v=>v!==undefined);
+  if(nums.length<2) return '→ Baseline';
+  const mid=Math.max(1,Math.floor(nums.length/2));
+  const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
+  const diff=avg(nums.slice(mid))-avg(nums.slice(0,mid));
+  return diff < -0.25 ? '↘ Fading prompts' : diff > 0.25 ? '↗ More support' : '→ Baseline';
+}
+function coachCompactProgressSocial(cl){
+  const sessions=filterSessionsByRange(cl.sessions||[]);
+  const defs=socialSkillDefs();
+  const avgPct=Object.keys(defs).length ? Math.round(Object.keys(defs).reduce((a,k)=>a+Number((cl.skills||{})[k]||0),0)/Object.keys(defs).length) : 0;
+  const label=coachAvgIndependenceLabelSocial(cl);
+  const msg=sessions.length ? `${avgPct}% average across social skills` : '→ Start with a real session';
+  return `<div class="mc-indy"><div class="mc-indy-top"><div class="mc-indy-title">Independence</div><div class="mc-indy-trend">${msg}</div></div><div class="mc-mini-val" style="margin-bottom:8px">${label}</div><div class="mc-indy-bar"><div class="mc-indy-fill" style="width:${Math.max(8,avgPct)}%"></div></div></div>`;
+}
+function coachSkillGridSocial(sk){
+  const defs=socialSkillDefs();
+  return `<div class="mc-skill-block"><div class="mc-skill-head"><div class="mc-skill-title">Skill Snapshot</div></div><div class="mc-skill-grid">${Object.entries(defs).map(([key,label])=>{
+    const score=Number(sk[key]||0);
+    const state = score >= 80 ? 'Strong' : score >= 50 ? 'Building' : 'Needs Support';
+    const cls = score >= 80 ? 'strong' : score >= 50 ? 'building' : 'support';
+    return `<div class="mc-skill"><div class="mc-skill-top"><span>${label}</span><span class="mc-skill-state ${cls}">${state}</span></div><div class="mc-skill-bar"><div class="mc-skill-fill ${cls}" style="width:${score}%"></div></div></div>`;
+  }).join('')}</div></div>`;
 }
 function clientCard(cl,i){
   const sk=cl.skills||{};
-  const skDefs={situations:'👁️ Situations',conversations:'💬 Conversations',boundaries:'🛡️ Boundaries',feelings:'💛 Feelings'};
-  const spHtml=Object.entries(skDefs).map(([k,n])=>`
-    <div class="sprow">
-      <div class="sp-lbl"><span>${n}</span><span class="sp-pct">${sk[k]||0}%</span></div>
-      <div class="spbg"><div class="spf" style="width:${sk[k]||0}%"></div></div>
-    </div>`).join('');
-
+  const defs=socialSkillDefs();
   const filteredSessions=filterSessionsByRange(cl.sessions||[]);
-  const sess=filteredSessions.slice(-8);
-  const pColors={independent:'ind',verbal:'ver',gestural:'ges',physical:'phy',hoh:'hoh'};
-  const pfHtml=sess.length>0?`
-    <div class="pfchart">
-      <div class="pfc-title">PROMPT FADING (last ${sess.length} sessions)</div>
-      <div class="pfc-row">
-        <div class="pfc-label">Prompt level:</div>
-        <div class="pfc-dots">${sess.map(s=>`<div class="pfc-dot ${pColors[s.prompt]||'empty'}" title="${s.prompt||''} - ${s.date}${getClientSessionTime(s)?' '+getClientSessionTime(s):''}"></div>`).join('')}</div>
+  const lastFiltered=filteredSessions.length ? filteredSessions[filteredSessions.length-1] : null;
+  const weeklyCount=filteredSessions.filter(s=>{ const d=dateFromSession(s); return d && d >= new Date(Date.now()-(7*24*60*60*1000)); }).length;
+  const sw=strongestWeakestSkillSocial(sk);
+  const insight = filteredSessions.length ? `Recent focus: ${lastFiltered ? (lastFiltered.module||'Logged session') : 'Logged session'}. Keep momentum going with another short practice.` : 'New client profile. Start with a quick session to generate guidance.';
+  const chipLabel = cl.archived ? 'Archived' : (filteredSessions.length ? 'Active' : 'New');
+  return `<div class="mc-card ${!filteredSessions.length ? 'needs-attn' : ''}">
+    <div class="mc-card-head">
+      <div class="mc-avatar" style="background:${cl.color||'#9b30d9'}">${getClientAvatarText(cl)}</div>
+      <div class="mc-identity">
+        <div class="mc-name-row"><div class="mc-name">${getClientDisplayName(cl)}</div><div class="mc-chip">${chipLabel}</div></div>
+        <div class="mc-submeta">${cl.program||'No program set'} • Last session: ${coachLastSessionTextSocial(filteredSessions)}</div>
       </div>
-      <div style="font-size:.64rem;color:var(--text2);margin-top:4px">
-        <span style="color:var(--green)">● Indep</span>
-        <span style="color:var(--blue)">● Verbal</span>
-        <span style="color:var(--amber)">● Gestural</span>
-        <span style="color:var(--orange)">● Physical</span>
-        <span style="color:var(--red)">● HoH</span>
-      </div>
-    </div>`:'';
-
-  const chartHtml=filteredSessions.length>=2?`
-    <div class="chart-wrap">
-      <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:2px;margin-bottom:10px">ACCURACY OVER TIME</div>
-      <canvas class="chart-canvas" id="chart-${i}" width="400" height="120"></canvas>
-      <div class="chart-legend" id="chart-legend-${i}"></div>
-    </div>`:`<div class="chart-wrap"><div class="chart-no-data">Log 2+ sessions in this date range to see progress chart</div></div>`;
-
-  const goals=(cl.goals||[]);
-  const goalsHtml=goals.length>0?`<div class="goals-section"><div class="sec-hdr">GOALS & MASTERY</div>${goals.map((g,gi)=>renderGoalCard(g,i,gi)).join('')}</div>`:'';
-
-  const recentLogs=filteredSessions.slice(-4).reverse().map(s=>`
-    <div class="lrow">
-      <div class="lm">${s.module}</div>
-      <div class="ls">${s.score}</div>
-      <div class="ld">${s.date}${getClientSessionTime(s)?' · '+getClientSessionTime(s):''}${s.prompt?` · <span class="ptag">${s.prompt}</span>`:''}</div>
-      ${s.notes?`<div class="ln">${s.notes}</div>`:''}
-    </div>`).join('') || '<div style="color:var(--text3);font-size:.78rem;padding:6px">No sessions logged in this date range.</div>';
-
-  const promptVals=filteredSessions.map(s=>Number(s.promptLevel ?? s.prompt ?? s.supportLevel ?? 0)).filter(v=>!isNaN(v));
-  let promptTrend='No data yet';
-  if(promptVals.length>=2){
-    const mid=Math.max(1, Math.floor(promptVals.length/2));
-    const avg=a=>a.length ? a.reduce((x,y)=>x+y,0)/a.length : 0;
-    const diff=avg(promptVals.slice(mid)) - avg(promptVals.slice(0,mid));
-    promptTrend = diff>0.25 ? 'Increasing support' : (diff<-0.25 ? 'Fading prompts' : 'Stable');
-  }
-  const entries=Object.entries(skDefs).map(([k,label])=>({key:k,label,score:Number(sk[k]||0)}));
-  entries.sort((a,b)=>b.score-a.score);
-  const strongest = entries.length ? entries[0] : null;
-  const weakest = [...entries].sort((a,b)=>a.score-b.score)[0] || null;
-  const cutoff=new Date(); cutoff.setDate(cutoff.getDate()-7);
-  const last7=filteredSessions.filter(s=>{ const d=dateFromSession(s); return d && d>=cutoff; }).length;
-  const scoreVals=filteredSessions.map(s=>{
-    const p=(s.score||'').split('/');
-    if(p.length===2){
-      const pct=Math.round(parseInt(p[0])/parseInt(p[1])*100);
-      return isNaN(pct) ? null : pct;
-    }
-    return null;
-  }).filter(v=>v!==null);
-  const weeklyAvg=scoreVals.length ? `${Math.round(scoreVals.reduce((a,b)=>a+b,0)/scoreVals.length)}% avg` : 'No data yet';
-  const last=filteredSessions.length ? filteredSessions[filteredSessions.length-1] : null;
-  const promptColors={independent:'var(--green)',verbal:'var(--blue)',gestural:'var(--amber)',physical:'var(--orange)',hoh:'var(--red)'};
-  const pc=last ? (promptColors[last.prompt]||'var(--text3)') : 'var(--text3)';
-
-  const summaryHtml = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
-      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
-        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Last Session</div>
-        <div style="font-size:.95rem;font-weight:800;color:var(--text)">${last ? (last.module||'Logged session') : 'None yet'}</div>
-      </div>
-      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
-        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Prompt Trend</div>
-        <div style="font-size:.95rem;font-weight:800;color:var(--text2)">${promptTrend}</div>
-      </div>
-      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
-        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Strongest Skill</div>
-        <div style="font-size:.95rem;font-weight:800;color:var(--green)">${strongest ? `${strongest.label.replace(/^[^\s]+\s/,'')} · ${strongest.score}%` : 'No data yet'}</div>
-      </div>
-      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
-        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Needs Support</div>
-        <div style="font-size:.95rem;font-weight:800;color:var(--amber)">${weakest ? `${weakest.label.replace(/^[^\s]+\s/,'')} · ${weakest.score}%` : 'No data yet'}</div>
-      </div>
-      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
-        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Last 7 Days</div>
-        <div style="font-size:.95rem;font-weight:800;color:var(--text)">${last7} session${last7!==1?'s':''}</div>
-      </div>
-      <div style="background:var(--bg3);border-radius:14px;padding:14px 16px">
-        <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Weekly Avg</div>
-        <div style="font-size:.95rem;font-weight:800;color:var(--green)">${weeklyAvg}</div>
-      </div>
-    </div>`;
-
-  return `<div class="ccard">
-    <div class="ctop">
-      <div class="cav" style="background:${cl.color||'#00c851'}">${getClientAvatarText(cl)}</div>
-      <div style="flex:1">
-        <div class="cname">${getClientDisplayName(cl)}</div>
-        <div class="cmeta">${cl.program||''}${cl.fullName?` · <span style="opacity:.8">Private full name saved</span>`:''}</div>
-        <div style="font-size:.68rem;color:var(--text2);margin-top:2px">${filteredSessions.length} session${filteredSessions.length!==1?'s':''} in range · ${filteredSessions.length ? getRelativeLastSessionLabel(cl) : 'No sessions yet'}</div>
-      </div>
-      <div class="clvl">${(cl.level||'beginner').toUpperCase()}</div>
+      <div class="mc-level">${(cl.level||'beginner').toUpperCase()}</div>
     </div>
-
-    ${summaryHtml}
-
-    ${(()=>{
-      if(!last) return '';
-      return `<div style="background:var(--bg3);border-left:4px solid ${pc};border-radius:var(--radius-sm);padding:11px 14px;margin-bottom:12px">
-        <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text2);letter-spacing:2px;margin-bottom:7px">📋 LAST SESSION - PLAN FROM HERE</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px">
-          <div><div style="font-size:.68rem;color:var(--text2)">Module</div><div style="font-size:.78rem;font-weight:700;color:var(--text)">${last.module||'-'}</div></div>
-          <div><div style="font-size:.68rem;color:var(--text2)">Score</div><div style="font-size:.78rem;font-weight:700;color:var(--amber)">${last.score||'-'}</div></div>
-          <div><div style="font-size:.68rem;color:var(--text2)">Prompt Level</div><div style="font-size:.78rem;font-weight:700;color:${pc}">${last.prompt||'-'}</div></div>
-          <div><div style="font-size:.68rem;color:var(--text2)">Date</div><div style="font-size:.78rem;color:var(--text2)">${last.date||'-'}${getClientSessionTime(last)?' · '+getClientSessionTime(last):''}</div></div>
-        </div>
-        ${last.notes?`<div style="font-size:.75rem;color:var(--text2);font-style:italic;border-top:1px solid var(--border2);padding-top:6px;margin-top:2px">"${last.notes}"</div>`:''}
-      </div>`;
-    })()}
-
-    <div class="sec-hdr">SKILL PROGRESS <button class="cbt" style="font-size:.63rem;padding:2px 8px;min-height:22px" onclick="editSkills(${i})">EDIT</button></div>
-    <div class="spgrid">${spHtml}</div>
-    ${chartHtml}
-    ${goalsHtml}
-    ${pfHtml}
-    <div class="slog">
-      <div class="slog-t">RECENT SESSIONS</div>
-      <div class="lrows">${recentLogs}</div>
+    <div class="mc-metrics">
+      <div class="mc-mini"><div class="mc-mini-label">Last Session</div><div class="mc-mini-val">${coachLastSessionTextSocial(filteredSessions)}</div></div>
+      <div class="mc-mini"><div class="mc-mini-label">Last Worked On</div><div class="mc-mini-val green">${lastFiltered ? (defs[MOD_TO_SKILL[lastFiltered.module]]||lastFiltered.module||'No data yet').replace(/^[^\s]+\s/,'') : 'No data yet'}</div></div>
+      <div class="mc-mini"><div class="mc-mini-label">Sessions This Week</div><div class="mc-mini-val">${weeklyCount}</div></div>
+      <div class="mc-mini"><div class="mc-mini-label">Trend</div><div class="mc-mini-val">${coachTrendTextSocial(filteredSessions)}</div></div>
     </div>
-    <div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap">
-      <button class="cbt pri" onclick="exportClientCSV(${i})">📥 Export</button>
-      <button class="cbt" onclick="openLogForClient(${i})">＋ Log Session</button>
-      <button class="cbt" onclick="printClientReport(${i})">🖨 Print</button>
-      <button class="cbt" onclick="editClient(${i})">✏ Edit</button>
-      <button class="cbt" style="color:var(--amber)" onclick="${cl.archived ? `restoreClient(${i})` : `archiveClient(${i})`}">${cl.archived?'↩ Restore':'🗂 Archive'}</button>
-      <button class="cbt" style="color:var(--red);border-color:var(--red)" onclick="delClient(${i})">🗑 Delete</button>
+    <div class="mc-summary-row">
+      <div class="mc-summary-box"><div class="lbl">Strongest Skill</div><div class="val">${sw.strongest}</div></div>
+      <div class="mc-summary-box"><div class="lbl">Needs Support</div><div class="val">${sw.weakest}</div></div>
+    </div>
+    ${coachCompactProgressSocial(cl)}
+    ${coachSkillGridSocial(sk)}
+    ${renderClientGoalStripSocial(cl,i)}
+    <div class="mc-insight">${insight}</div>
+    <div class="mc-card-actions">
+      <button class="cbt pri" onclick="openLogForClient(${i})">📝 Log</button>
+      <button class="cbt" onclick="clientDetailPanel(${i})">🛰 View</button>
+      <button class="cbt" onclick="openGoalForClient(${i})">🎯 Goal</button>
+      <button class="cbt" onclick="openClientMenu(${i})">⋯ More</button>
     </div>
   </div>`;
 }
 
+function coachLastSessionTextSocial(sessions){
+  if(!sessions || !sessions.length) return 'No session yet';
+  const last=sessions[sessions.length-1];
+  return last.module || 'Logged session';
+}
+function coachAvgIndependenceLabelSocial(cl){
+  const sessions=filterSessionsByRange(cl.sessions||[]);
+  if(!sessions.length) return 'Baseline';
+  const map={independent:100,verbal:75,gestural:50,physical:25,hoh:10};
+  const vals=sessions.map(s=>map[String(s.prompt||'').toLowerCase()]).filter(v=>v!==undefined);
+  if(!vals.length) return 'Baseline';
+  const avg=Math.round(vals.reduce((a,b)=>a+b,0)/vals.length);
+  if(avg>=85) return 'High';
+  if(avg>=65) return 'Building';
+  if(avg>=40) return 'Emerging';
+  return 'Baseline';
+}
+function renderClientGoalStripSocial(cl,i){
+  const goals=(cl.goals||[]);
+  if(!goals.length) return '<div class="mc-goal-strip"><div class="mc-goal-title">Objective</div><div class="mc-goal-copy">No active objective. Set a goal to track progress in this skill area.</div></div>';
+  const g=goals[0];
+  return `<div class="mc-goal-strip ${goals.some(goal=>goal.met)?'met':''}"><div class="mc-goal-title">Objective</div><div class="mc-goal-copy">${g.desc||'Goal ready to track.'}</div></div>`;
+}
+function clientDetailPanel(i){
+  const cl=CLIENTS[i]; if(!cl) return;
+  const sk=cl.skills||{};
+  const defs=socialSkillDefs();
+  const sessions=filterSessionsByRange(cl.sessions||[]);
+  const recent=sessions.slice(-4).reverse();
+  const goals=(cl.goals||[]);
+  const sw=strongestWeakestSkillSocial(sk);
+  const body = `<div class="mc-detail-grid"><div class="mc-card"><div class="mc-card-head"><div class="mc-avatar" style="background:${cl.color||'#9b30d9'}">${getClientAvatarText(cl)}</div><div class="mc-identity"><div class="mc-name-row"><div class="mc-name">${getClientDisplayName(cl)}</div><div class="mc-chip">${sessions.length ? 'Active' : 'New'}</div></div><div class="mc-submeta">${cl.program||'No program'} • ${cl.level||'beginner'}</div></div></div><div class="mc-metrics"><div class="mc-mini"><div class="mc-mini-label">Strongest Skill</div><div class="mc-mini-val">${sw.strongest}</div></div><div class="mc-mini"><div class="mc-mini-label">Needs Support</div><div class="mc-mini-val">${sw.weakest}</div></div><div class="mc-mini"><div class="mc-mini-label">Last Worked On</div><div class="mc-mini-val green">${sessions[sessions.length-1] ? (defs[MOD_TO_SKILL[sessions[sessions.length-1].module]]||sessions[sessions.length-1].module).replace(/^[^\s]+\s/,'') : 'No session yet'}</div></div><div class="mc-mini"><div class="mc-mini-label">Trend</div><div class="mc-mini-val">${coachTrendTextSocial(sessions)}</div></div></div>${coachCompactProgressSocial(cl)}<div class="mc-detail-skills">${coachSkillGridSocial(sk)}</div><div class="mc-goal-strip ${goals.some(g=>g.met)?'met':''}"><div class="mc-goal-title">COACH INSIGHT</div><div class="mc-goal-copy">${sessions.length ? 'Coach insight updates as new sessions are logged.' : 'New client profile. Start with a quick session to generate guidance.'}</div></div></div><div class="mc-detail-panel"><div class="mc-detail-title">Recent Sessions</div>${recent.length ? recent.map(s=>`<div class="mc-session-row"><div class="mc-session-left"><div class="mc-session-name">${s.module||'Session'}</div><div class="mc-session-meta">${s.date||''}${getClientSessionTime(s)?' • '+getClientSessionTime(s):''}</div></div><div class="mc-session-right"><div class="mc-session-name">${s.score||'-'}</div><div class="mc-session-meta">${s.prompt||''}</div></div></div>${s.notes?`<div class="mc-session-meta" style="padding-top:6px">${s.notes}</div>`:''}`).join('') : '<div class="chart-no-data">No sessions logged yet.</div>'}</div><div class="mc-detail-panel"><div class="mc-detail-title">Objectives</div>${goals.length ? goals.map((g,gi)=>renderGoalCard(g,i,gi)).join('') : '<div class="chart-no-data">No goals set yet.</div>'}</div></div>`;
+  openHint('🛰 CLIENT COMMAND PANEL', body, 'Close', ()=>closeM('m-hint'));
+}
+function openGoalForClient(i){
+  const cl=CLIENTS[i]; if(!cl) return;
+  openM('m-goal');
+  setTimeout(()=>{
+    if($('goal-cl')) $('goal-cl').value=String(i);
+    if($('goal-skill')) $('goal-skill').value='situations';
+    if($('goal-desc')) $('goal-desc').value=`${getClientDisplayName(cl)} will build social independence with steady progress across sessions.`;
+  },20);
+}
+function openClientMenu(i){
+  const cl=CLIENTS[i]; if(!cl) return;
+  const body=`<div style="display:grid;gap:8px"><button class="abtn" onclick="clientDetailPanel(${i});closeM('m-hint')">🛰 View Panel</button><button class="abtn" onclick="editClient(${i});closeM('m-hint')">✏️ Edit Client</button><button class="abtn" onclick="printClientReport(${i});closeM('m-hint')">🖨 Print Client Report</button><button class="abtn" onclick="exportClientCSV(${i});closeM('m-hint')">📥 Export Client CSV</button><button class="abtn" onclick="${cl.archived ? 'restoreClient' : 'archiveClient'}(${i});closeM('m-hint')">${cl.archived ? '↩ Restore Client' : '🗂 Archive Client'}</button><button class="abtn" style="border-color:var(--red);color:var(--red)" onclick="closeM('m-hint');setTimeout(()=>delClient(${i}),120)">🗑 Remove Client</button></div>`;
+  openHint(`${getClientDisplayName(cl)} · MORE`, body, 'Close', ()=>closeM('m-hint'));
+}
 // ── PROGRESS CHART (Canvas) ──
 const SKILL_COLORS={situations:'#9b30d9',conversations:'#cc44ff',boundaries:'#6600cc',feelings:'#ff88dd',challenge:'#7a20b8'};
 const SKILL_NAMES={situations:'👁️ Situations',conversations:'💬 Conversations',boundaries:'🛡️ Boundaries',feelings:'💛 Feelings',challenge:'⭐ General'};
@@ -3942,7 +4219,210 @@ function printClientReport(i){
       th,td{border:1px solid #ddd;padding:8px;text-align:left}
       th{background:#f5f5f5}
       .small{font-size:12px;color:#666}
-    </style></head><body>
+    /* MISSION CONTROL 2.0 */
+.mc-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.mc-title-wrap{display:flex;flex-direction:column;gap:4px;}
+.mc-title{font-family:var(--font-mono);font-size:1.08rem;color:var(--green);letter-spacing:3px;text-shadow:0 0 12px #00c85144;}
+.mc-sub{font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:4px;}
+.mc-meta{font-size:.76rem;color:var(--amber);font-family:var(--font-mono);line-height:1.5;}
+.mc-actions{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end;}
+.mc-btn,.mc-filter{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;letter-spacing:.5px;transition:border-color .2s,color .2s,box-shadow .2s,transform .2s;}
+.mc-btn:hover,.mc-filter:hover{border-color:var(--green);color:var(--green);box-shadow:0 0 12px #00c85144;transform:translateY(-1px);}
+.mc-btn.pri{background:var(--green);border-color:var(--green);color:#000;}
+.mc-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px;}
+.mc-stat{background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:14px;padding:13px 12px;text-align:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);}
+.mc-num{font-family:var(--font-display);font-size:1.45rem;color:var(--green);line-height:1.05;}
+.mc-label{font-size:.66rem;color:var(--text2);text-transform:uppercase;letter-spacing:1.3px;font-family:var(--font-mono);margin-top:5px;}
+.mc-filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+.mc-search{flex:1;min-width:220px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:var(--font-body);font-size:.88rem;}
+.mc-search:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 2px rgba(0,200,81,.12);}
+.mc-filter.on,.mc-btn.on{background:var(--green);border-color:var(--green);color:#000;}
+.mc-welcome{position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:18px;}
+.mc-welcome-card{width:min(100%,560px);max-height:min(92vh,760px);overflow:hidden;background:linear-gradient(180deg,rgba(22,27,34,.98),rgba(13,17,23,.98));border:2px solid var(--green);border-radius:22px;padding:18px 18px 16px;box-shadow:0 0 40px rgba(0,200,81,.18),0 20px 70px rgba(0,0,0,.55);display:flex;flex-direction:column;gap:10px;}
+.mc-welcome-topline{font-family:var(--font-mono);font-size:.64rem;color:var(--green);letter-spacing:3px;text-transform:uppercase;margin-bottom:2px;text-shadow:0 0 10px #00c85155;}
+.mc-welcome-title{font-family:var(--font-display);font-size:1.3rem;color:var(--green);letter-spacing:1px;line-height:1.1;margin-bottom:2px;}
+.mc-welcome-copy{font-size:.88rem;color:var(--text);line-height:1.55;margin-bottom:2px;}
+.mc-welcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:2px;}
+.mc-welcome-step{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:10px 11px;display:flex;gap:9px;align-items:flex-start;min-height:76px;}
+.mc-welcome-stepno{width:22px;height:22px;border-radius:50%;background:var(--green);color:#000;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.68rem;font-weight:900;flex-shrink:0;margin-top:1px;}
+.mc-welcome-stepbody{font-size:.76rem;color:var(--text2);line-height:1.4;}
+.mc-welcome-stepbody strong{color:var(--text);display:block;font-size:.86rem;margin-bottom:2px;}
+.mc-welcome-note{font-size:.75rem;color:var(--text2);line-height:1.45;text-align:center;padding:0 8px;}
+.mc-welcome-foot{font-size:.74rem;color:var(--amber);font-weight:700;line-height:1.45;background:rgba(255,187,51,.08);border:1px solid rgba(255,187,51,.22);border-radius:12px;padding:9px 11px;margin-bottom:2px;}
+.mc-welcome-actions{display:flex;flex-direction:column;gap:8px;}
+.mc-welcome-actions .rsec,.mc-welcome-actions .rpri{width:100%;}
+#scr-coach.mc-welcome-open>.mc-header,#scr-coach.mc-welcome-open>.mc-stats,#scr-coach.mc-welcome-open>.mc-nextbest,#scr-coach.mc-welcome-open>.mc-filters,#scr-coach.mc-welcome-open>#coach-flash,#scr-coach.mc-welcome-open>#coach-wrap{visibility:hidden;pointer-events:none;}
+@media(max-width:420px){.mc-welcome-card{padding:16px 14px 14px;}.mc-welcome-grid{gap:7px;}.mc-welcome-step{padding:9px 9px;min-height:72px;}.mc-welcome-title{font-size:1.18rem;}.mc-welcome-copy{font-size:.83rem;}.mc-welcome-stepbody{font-size:.72rem;}.mc-welcome-stepbody strong{font-size:.81rem;}}
+@media(min-width:700px){.mc-welcome-card{width:min(100%,620px);}.mc-welcome-title{font-size:1.45rem;}.mc-welcome-copy{font-size:.92rem;}.mc-welcome-step{min-height:82px;}}
+
+.mc-sections{display:flex;flex-direction:column;gap:14px;}
+.mc-section{display:flex;flex-direction:column;gap:10px;}
+.mc-section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.mc-section-title{font-family:var(--font-mono);font-size:.78rem;color:var(--green);letter-spacing:2px;text-transform:uppercase;}
+.mc-section-sub{font-size:.74rem;color:var(--text2);}
+.mc-inline-chip{font-family:var(--font-mono);font-size:.62rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);letter-spacing:.7px;}
+.ccards{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:700px){.ccards{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:760px){.mc-stats{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+.mc-card{background:linear-gradient(180deg,var(--bg2),rgba(22,27,34,.98));border:2px solid var(--border);border-radius:18px;padding:14px 14px 12px;transition:.2s;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);}
+.mc-card.needs-attn{border-color:var(--amber);box-shadow:0 0 0 1px rgba(255,187,51,.18), 0 0 22px rgba(255,187,51,.08);}
+.mc-card.improving{border-color:rgba(0,200,81,.55);}
+.mc-card-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.mc-avatar{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:900;color:#000;box-shadow:0 0 20px rgba(212,144,10,.18);}
+.mc-identity{flex:1;min-width:0;}
+.mc-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.mc-name{font-weight:900;font-size:1rem;color:var(--text);}
+.mc-chip{font-family:var(--font-mono);font-size:.63rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);letter-spacing:.7px;}
+.mc-chip.status-review{border-color:var(--amber);background:var(--amber-light);color:var(--amber);}
+.mc-chip.status-goal{border-color:var(--green);background:rgba(212,144,10,.12);color:var(--green);}
+.mc-chip.status-new{border-color:var(--blue);background:var(--blue-light);color:var(--blue);}
+.mc-chip.status-archived{border-color:var(--text3);background:var(--bg3);color:var(--text3);}
+.mc-submeta{font-size:.74rem;color:var(--text2);margin-top:4px;line-height:1.55;}
+.mc-level{margin-left:auto;flex-shrink:0;font-family:var(--font-mono);font-size:.65rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);}
+.mc-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px;}
+.mc-mini{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:9px 11px;min-width:0;}
+.mc-mini-label{font-size:.62rem;color:var(--text2);letter-spacing:1.5px;font-family:var(--font-mono);margin-bottom:4px;text-transform:uppercase;}
+.mc-mini-val{font-size:.88rem;font-weight:800;color:var(--text);line-height:1.3;}
+.mc-mini-val.gold{color:var(--green);}
+.mc-mini-val.green{color:var(--green);}
+
+.mc-indy{background:rgba(255,255,255,.02);border-radius:12px;padding:10px 11px;margin-bottom:12px;border:1px solid rgba(255,255,255,.03);}
+.mc-indy-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px;}
+.mc-indy-title{font-size:.76rem;color:var(--text);font-weight:800;}
+.mc-indy-pct{font-family:var(--font-mono);color:var(--green);font-size:.8rem;}
+.mc-indy-trend{font-size:.72rem;color:var(--amber);font-family:var(--font-mono);}
+.mc-indy-bar{height:10px;background:var(--bg3);border-radius:999px;overflow:hidden;}
+.mc-indy-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green2),var(--amber));}
+
+.mc-skill-block{margin-bottom:12px;}
+.mc-skill-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.mc-skill-title{font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;}
+.mc-skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.mc-skill{display:flex;flex-direction:column;gap:4px;}
+.mc-skill-top{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:.72rem;color:var(--text2);font-weight:700;}
+.mc-skill-pct{color:var(--green);font-family:var(--font-mono);}
+.mc-skill-bar{background:var(--bg3);border-radius:999px;height:7px;overflow:hidden;}
+.mc-skill-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green),var(--amber));}
+
+.mc-goal-strip{background:var(--bg3);border-left:4px solid var(--amber);border-radius:12px;padding:11px 12px;margin-bottom:10px;}
+.mc-goal-strip.met{border-left-color:var(--green);}
+.mc-goal-title{font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:1.7px;margin-bottom:4px;}
+.mc-goal-copy{font-size:.82rem;font-weight:800;color:var(--text);line-height:1.45;}
+.mc-insight{font-size:.76rem;color:var(--text2);line-height:1.55;background:rgba(255,255,255,.02);border-radius:10px;padding:9px 10px;min-height:40px;border:1px solid rgba(255,255,255,.03);}
+.mc-card-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:10px;}
+.mc-card-actions .cbt{min-height:40px;padding:9px 8px;font-size:.68rem}
+.mc-attn-line{font-size:.68rem;color:var(--amber);font-family:var(--font-mono);letter-spacing:1px;margin-top:6px;}
+.mc-empty{background:var(--bg2);border:1px dashed var(--border);border-radius:14px;padding:18px;text-align:center;color:var(--text2);font-family:var(--font-mono);font-size:.78rem;line-height:1.7;}
+
+.mc-empty-cta{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;}
+.mc-empty-cta .mc-btn{min-width:150px;justify-content:center;display:inline-flex;align-items:center;}
+
+.mc-flash{display:none;background:linear-gradient(135deg,rgba(255,187,51,.12),rgba(255,187,51,.04));border:2px solid var(--amber);border-radius:14px;padding:12px 14px;margin-bottom:12px;}
+.mc-flash.on{display:block;animation:fadeUp .3s ease;}
+.mc-flash-title{font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:2px;margin-bottom:4px;}
+.mc-flash-copy{font-size:.86rem;color:var(--text);line-height:1.5;}
+.mc-detail-grid{display:grid;gap:12px;}
+.mc-detail-panel{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:14px;}
+.mc-detail-title{font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:10px;text-transform:uppercase;}
+.mc-session-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.mc-session-row:last-child{border-bottom:none;padding-bottom:0;}
+.mc-session-left,.mc-session-right{min-width:0;}
+.mc-session-name{font-size:.82rem;font-weight:800;color:var(--text);}
+.mc-session-meta{font-size:.72rem;color:var(--text2);line-height:1.45;}
+@media(max-width:540px){
+  .mc-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    justify-content:stretch;
+  }
+  .mc-actions .mc-btn{
+    width:100%;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10px 12px;
+  }
+  .mc-filters{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    align-items:stretch;
+  }
+  .mc-search{
+    grid-column:1 / -1;
+    min-width:0;
+  }
+  .mc-filter{
+    width:100%;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .mc-card-actions{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+
+
+
+/* Fix centered Coach Date Range modal without changing shared modal behavior */
+#m-date-range{
+  position:fixed !important;
+  inset:0 !important;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.6);
+  z-index:9999;
+}
+#m-date-range .mdl{
+  width:min(420px,90vw);
+  margin:auto;
+}
+
+
+/* Date range modal visibility fix */
+#m-date-range.on{
+  display:flex !important;
+}
+
+
+/* Ensure all modals open with .on class */
+.modal.on{
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+}
+
+
+/* v6 coach clarity upgrades */
+.mc-summary-note{font-family:var(--font-mono);font-size:.62rem;color:var(--text3);letter-spacing:.8px;}
+.mc-summary-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 0;}
+.mc-summary-box{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.mc-summary-box .lbl{font-size:.68rem;color:var(--text2);font-weight:800;margin-bottom:4px;}
+.mc-summary-box .val{font-size:.86rem;color:var(--text);font-weight:800;line-height:1.35;}
+.mc-skill-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px;}
+.mc-skill-state{font-family:var(--font-mono);font-size:.68rem;font-weight:700;white-space:nowrap;}
+.mc-skill-state.strong{color:var(--green);}
+.mc-skill-state.building{color:var(--amber);}
+.mc-skill-state.support{color:var(--red);}
+.mc-skill-fill.strong{background:linear-gradient(90deg,var(--green),var(--green));}
+.mc-skill-fill.building{background:linear-gradient(90deg,var(--amber),var(--green));}
+.mc-skill-fill.support{background:linear-gradient(90deg,var(--red),var(--amber));}
+.mc-detail-skills{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px;}
+#scr-coach.mc-summary-mode .mc-actions,#scr-coach.mc-summary-mode .mc-filters,#scr-coach.mc-summary-mode .mc-flash,#scr-coach.mc-summary-mode .mc-card-actions,#scr-coach.mc-summary-mode .mc-welcome,#scr-coach.mc-summary-mode .mc-nextbest{display:none!important;}
+#scr-coach.mc-summary-mode .mc-stats{grid-template-columns:repeat(2,1fr);}
+#scr-coach.mc-summary-mode .mc-section{margin-top:10px;}
+.mc-mini-val.status{font-size:.92rem;}
+
+
+
+</style></head><body>
       <h1>${name}</h1>
       <div class="meta">${cl.fullName ? `Private full name saved · ` : ''}${cl.program||'No program listed'} · Level: ${(cl.level||'beginner').toUpperCase()}</div>
       <div class="grid">
@@ -4039,6 +4519,209 @@ function printReport(i){
     .prompt-ind{color:#00a041;} .prompt-ver{color:#2196F3;} .prompt-ges{color:#FF9800;} .prompt-phy{color:#FF5722;} .prompt-hoh{color:#F44336;}
   .cb-mode-btn{background:var(--panel);border:1px solid var(--border);border-radius:6px;color:var(--text2);font-family:var(--font-mono);font-size:.65rem;padding:6px 4px;cursor:pointer;transition:all .2s;letter-spacing:.5px;font-weight:600;}
 .cb-mode-btn.on{background:var(--green);border-color:var(--green);color:#fff;}
+/* MISSION CONTROL 2.0 */
+.mc-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.mc-title-wrap{display:flex;flex-direction:column;gap:4px;}
+.mc-title{font-family:var(--font-mono);font-size:1.08rem;color:var(--green);letter-spacing:3px;text-shadow:0 0 12px #00c85144;}
+.mc-sub{font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:4px;}
+.mc-meta{font-size:.76rem;color:var(--amber);font-family:var(--font-mono);line-height:1.5;}
+.mc-actions{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end;}
+.mc-btn,.mc-filter{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;letter-spacing:.5px;transition:border-color .2s,color .2s,box-shadow .2s,transform .2s;}
+.mc-btn:hover,.mc-filter:hover{border-color:var(--green);color:var(--green);box-shadow:0 0 12px #00c85144;transform:translateY(-1px);}
+.mc-btn.pri{background:var(--green);border-color:var(--green);color:#000;}
+.mc-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px;}
+.mc-stat{background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:14px;padding:13px 12px;text-align:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);}
+.mc-num{font-family:var(--font-display);font-size:1.45rem;color:var(--green);line-height:1.05;}
+.mc-label{font-size:.66rem;color:var(--text2);text-transform:uppercase;letter-spacing:1.3px;font-family:var(--font-mono);margin-top:5px;}
+.mc-filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+.mc-search{flex:1;min-width:220px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:var(--font-body);font-size:.88rem;}
+.mc-search:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 2px rgba(0,200,81,.12);}
+.mc-filter.on,.mc-btn.on{background:var(--green);border-color:var(--green);color:#000;}
+.mc-welcome{position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:18px;}
+.mc-welcome-card{width:min(100%,560px);max-height:min(92vh,760px);overflow:hidden;background:linear-gradient(180deg,rgba(22,27,34,.98),rgba(13,17,23,.98));border:2px solid var(--green);border-radius:22px;padding:18px 18px 16px;box-shadow:0 0 40px rgba(0,200,81,.18),0 20px 70px rgba(0,0,0,.55);display:flex;flex-direction:column;gap:10px;}
+.mc-welcome-topline{font-family:var(--font-mono);font-size:.64rem;color:var(--green);letter-spacing:3px;text-transform:uppercase;margin-bottom:2px;text-shadow:0 0 10px #00c85155;}
+.mc-welcome-title{font-family:var(--font-display);font-size:1.3rem;color:var(--green);letter-spacing:1px;line-height:1.1;margin-bottom:2px;}
+.mc-welcome-copy{font-size:.88rem;color:var(--text);line-height:1.55;margin-bottom:2px;}
+.mc-welcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:2px;}
+.mc-welcome-step{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:10px 11px;display:flex;gap:9px;align-items:flex-start;min-height:76px;}
+.mc-welcome-stepno{width:22px;height:22px;border-radius:50%;background:var(--green);color:#000;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.68rem;font-weight:900;flex-shrink:0;margin-top:1px;}
+.mc-welcome-stepbody{font-size:.76rem;color:var(--text2);line-height:1.4;}
+.mc-welcome-stepbody strong{color:var(--text);display:block;font-size:.86rem;margin-bottom:2px;}
+.mc-welcome-note{font-size:.75rem;color:var(--text2);line-height:1.45;text-align:center;padding:0 8px;}
+.mc-welcome-foot{font-size:.74rem;color:var(--amber);font-weight:700;line-height:1.45;background:rgba(255,187,51,.08);border:1px solid rgba(255,187,51,.22);border-radius:12px;padding:9px 11px;margin-bottom:2px;}
+.mc-welcome-actions{display:flex;flex-direction:column;gap:8px;}
+.mc-welcome-actions .rsec,.mc-welcome-actions .rpri{width:100%;}
+#scr-coach.mc-welcome-open>.mc-header,#scr-coach.mc-welcome-open>.mc-stats,#scr-coach.mc-welcome-open>.mc-nextbest,#scr-coach.mc-welcome-open>.mc-filters,#scr-coach.mc-welcome-open>#coach-flash,#scr-coach.mc-welcome-open>#coach-wrap{visibility:hidden;pointer-events:none;}
+@media(max-width:420px){.mc-welcome-card{padding:16px 14px 14px;}.mc-welcome-grid{gap:7px;}.mc-welcome-step{padding:9px 9px;min-height:72px;}.mc-welcome-title{font-size:1.18rem;}.mc-welcome-copy{font-size:.83rem;}.mc-welcome-stepbody{font-size:.72rem;}.mc-welcome-stepbody strong{font-size:.81rem;}}
+@media(min-width:700px){.mc-welcome-card{width:min(100%,620px);}.mc-welcome-title{font-size:1.45rem;}.mc-welcome-copy{font-size:.92rem;}.mc-welcome-step{min-height:82px;}}
+
+.mc-sections{display:flex;flex-direction:column;gap:14px;}
+.mc-section{display:flex;flex-direction:column;gap:10px;}
+.mc-section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.mc-section-title{font-family:var(--font-mono);font-size:.78rem;color:var(--green);letter-spacing:2px;text-transform:uppercase;}
+.mc-section-sub{font-size:.74rem;color:var(--text2);}
+.mc-inline-chip{font-family:var(--font-mono);font-size:.62rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);letter-spacing:.7px;}
+.ccards{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:700px){.ccards{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:760px){.mc-stats{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+.mc-card{background:linear-gradient(180deg,var(--bg2),rgba(22,27,34,.98));border:2px solid var(--border);border-radius:18px;padding:14px 14px 12px;transition:.2s;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);}
+.mc-card.needs-attn{border-color:var(--amber);box-shadow:0 0 0 1px rgba(255,187,51,.18), 0 0 22px rgba(255,187,51,.08);}
+.mc-card.improving{border-color:rgba(0,200,81,.55);}
+.mc-card-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.mc-avatar{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:900;color:#000;box-shadow:0 0 20px rgba(212,144,10,.18);}
+.mc-identity{flex:1;min-width:0;}
+.mc-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.mc-name{font-weight:900;font-size:1rem;color:var(--text);}
+.mc-chip{font-family:var(--font-mono);font-size:.63rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);letter-spacing:.7px;}
+.mc-chip.status-review{border-color:var(--amber);background:var(--amber-light);color:var(--amber);}
+.mc-chip.status-goal{border-color:var(--green);background:rgba(212,144,10,.12);color:var(--green);}
+.mc-chip.status-new{border-color:var(--blue);background:var(--blue-light);color:var(--blue);}
+.mc-chip.status-archived{border-color:var(--text3);background:var(--bg3);color:var(--text3);}
+.mc-submeta{font-size:.74rem;color:var(--text2);margin-top:4px;line-height:1.55;}
+.mc-level{margin-left:auto;flex-shrink:0;font-family:var(--font-mono);font-size:.65rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);}
+.mc-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px;}
+.mc-mini{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:9px 11px;min-width:0;}
+.mc-mini-label{font-size:.62rem;color:var(--text2);letter-spacing:1.5px;font-family:var(--font-mono);margin-bottom:4px;text-transform:uppercase;}
+.mc-mini-val{font-size:.88rem;font-weight:800;color:var(--text);line-height:1.3;}
+.mc-mini-val.gold{color:var(--green);}
+.mc-mini-val.green{color:var(--green);}
+
+.mc-indy{background:rgba(255,255,255,.02);border-radius:12px;padding:10px 11px;margin-bottom:12px;border:1px solid rgba(255,255,255,.03);}
+.mc-indy-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px;}
+.mc-indy-title{font-size:.76rem;color:var(--text);font-weight:800;}
+.mc-indy-pct{font-family:var(--font-mono);color:var(--green);font-size:.8rem;}
+.mc-indy-trend{font-size:.72rem;color:var(--amber);font-family:var(--font-mono);}
+.mc-indy-bar{height:10px;background:var(--bg3);border-radius:999px;overflow:hidden;}
+.mc-indy-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green2),var(--amber));}
+
+.mc-skill-block{margin-bottom:12px;}
+.mc-skill-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.mc-skill-title{font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;}
+.mc-skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.mc-skill{display:flex;flex-direction:column;gap:4px;}
+.mc-skill-top{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:.72rem;color:var(--text2);font-weight:700;}
+.mc-skill-pct{color:var(--green);font-family:var(--font-mono);}
+.mc-skill-bar{background:var(--bg3);border-radius:999px;height:7px;overflow:hidden;}
+.mc-skill-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green),var(--amber));}
+
+.mc-goal-strip{background:var(--bg3);border-left:4px solid var(--amber);border-radius:12px;padding:11px 12px;margin-bottom:10px;}
+.mc-goal-strip.met{border-left-color:var(--green);}
+.mc-goal-title{font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:1.7px;margin-bottom:4px;}
+.mc-goal-copy{font-size:.82rem;font-weight:800;color:var(--text);line-height:1.45;}
+.mc-insight{font-size:.76rem;color:var(--text2);line-height:1.55;background:rgba(255,255,255,.02);border-radius:10px;padding:9px 10px;min-height:40px;border:1px solid rgba(255,255,255,.03);}
+.mc-card-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:10px;}
+.mc-card-actions .cbt{min-height:40px;padding:9px 8px;font-size:.68rem}
+.mc-attn-line{font-size:.68rem;color:var(--amber);font-family:var(--font-mono);letter-spacing:1px;margin-top:6px;}
+.mc-empty{background:var(--bg2);border:1px dashed var(--border);border-radius:14px;padding:18px;text-align:center;color:var(--text2);font-family:var(--font-mono);font-size:.78rem;line-height:1.7;}
+
+.mc-empty-cta{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;}
+.mc-empty-cta .mc-btn{min-width:150px;justify-content:center;display:inline-flex;align-items:center;}
+
+.mc-flash{display:none;background:linear-gradient(135deg,rgba(255,187,51,.12),rgba(255,187,51,.04));border:2px solid var(--amber);border-radius:14px;padding:12px 14px;margin-bottom:12px;}
+.mc-flash.on{display:block;animation:fadeUp .3s ease;}
+.mc-flash-title{font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:2px;margin-bottom:4px;}
+.mc-flash-copy{font-size:.86rem;color:var(--text);line-height:1.5;}
+.mc-detail-grid{display:grid;gap:12px;}
+.mc-detail-panel{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:14px;}
+.mc-detail-title{font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:10px;text-transform:uppercase;}
+.mc-session-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.mc-session-row:last-child{border-bottom:none;padding-bottom:0;}
+.mc-session-left,.mc-session-right{min-width:0;}
+.mc-session-name{font-size:.82rem;font-weight:800;color:var(--text);}
+.mc-session-meta{font-size:.72rem;color:var(--text2);line-height:1.45;}
+@media(max-width:540px){
+  .mc-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    justify-content:stretch;
+  }
+  .mc-actions .mc-btn{
+    width:100%;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10px 12px;
+  }
+  .mc-filters{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    align-items:stretch;
+  }
+  .mc-search{
+    grid-column:1 / -1;
+    min-width:0;
+  }
+  .mc-filter{
+    width:100%;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .mc-card-actions{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+
+
+
+/* Fix centered Coach Date Range modal without changing shared modal behavior */
+#m-date-range{
+  position:fixed !important;
+  inset:0 !important;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.6);
+  z-index:9999;
+}
+#m-date-range .mdl{
+  width:min(420px,90vw);
+  margin:auto;
+}
+
+
+/* Date range modal visibility fix */
+#m-date-range.on{
+  display:flex !important;
+}
+
+
+/* Ensure all modals open with .on class */
+.modal.on{
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+}
+
+
+/* v6 coach clarity upgrades */
+.mc-summary-note{font-family:var(--font-mono);font-size:.62rem;color:var(--text3);letter-spacing:.8px;}
+.mc-summary-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 0;}
+.mc-summary-box{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.mc-summary-box .lbl{font-size:.68rem;color:var(--text2);font-weight:800;margin-bottom:4px;}
+.mc-summary-box .val{font-size:.86rem;color:var(--text);font-weight:800;line-height:1.35;}
+.mc-skill-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px;}
+.mc-skill-state{font-family:var(--font-mono);font-size:.68rem;font-weight:700;white-space:nowrap;}
+.mc-skill-state.strong{color:var(--green);}
+.mc-skill-state.building{color:var(--amber);}
+.mc-skill-state.support{color:var(--red);}
+.mc-skill-fill.strong{background:linear-gradient(90deg,var(--green),var(--green));}
+.mc-skill-fill.building{background:linear-gradient(90deg,var(--amber),var(--green));}
+.mc-skill-fill.support{background:linear-gradient(90deg,var(--red),var(--amber));}
+.mc-detail-skills{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px;}
+#scr-coach.mc-summary-mode .mc-actions,#scr-coach.mc-summary-mode .mc-filters,#scr-coach.mc-summary-mode .mc-flash,#scr-coach.mc-summary-mode .mc-card-actions,#scr-coach.mc-summary-mode .mc-welcome,#scr-coach.mc-summary-mode .mc-nextbest{display:none!important;}
+#scr-coach.mc-summary-mode .mc-stats{grid-template-columns:repeat(2,1fr);}
+#scr-coach.mc-summary-mode .mc-section{margin-top:10px;}
+.mc-mini-val.status{font-size:.92rem;}
+
+
+
 </style></head><body>
 
 <button class="print-btn" onclick="window.print()">🖨️ Print This Report</button>
@@ -4336,33 +5019,15 @@ return pool[idx].replace(/{change}/g,fmt(change));
 //  COACH WELCOME
 // ════════════════════════════════════════════════════════
 function showCoachWelcome(){
-if(!CFG.coachWelcomeSeen){
-const w=$('coach-welcome');
-if(w) w.style.display='block';
-const cw=$('coach-wrap');if(cw)cw.style.visibility='hidden';
-// Disable action buttons until welcome is dismissed
-document.querySelectorAll('.cacts .cbt').forEach(b=>{
-b.disabled=true;
-b.style.opacity='0.35';
-b.style.pointerEvents='none';
-b.title='Close the welcome message first';
-});
-}
+  if(CFG.coachWelcomeSeen) return;
+  const w=$('coach-welcome'); if(w) w.style.display='flex';
+  const sc=$('scr-coach'); if(sc) sc.classList.add('mc-welcome-open');
 }
 function dismissCoachWelcome(){
-CFG.coachWelcomeSeen=true;
-saveAll();
-const w=$('coach-welcome');
-if(w){w.style.display='none';}
-const cw=$('coach-wrap');if(cw)cw.style.visibility='visible';
-renderCoach();
-// Re-enable action buttons
-document.querySelectorAll('.cacts .cbt').forEach(b=>{
-b.disabled=false;
-b.style.opacity='';
-b.style.pointerEvents='';
-b.title='';
-});
+  CFG.coachWelcomeSeen=true; saveAll();
+  const w=$('coach-welcome'); if(w) w.style.display='none';
+  const sc=$('scr-coach'); if(sc) sc.classList.remove('mc-welcome-open');
+  renderCoach();
 }
 
 // ════════════════════════════════════════════════════════
@@ -4468,7 +5133,210 @@ rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-b
 });
 const w=window.open('','_blank');
 if(!w){openHint('Pop-up Blocked','<p style="color:var(--text2);font-size:.88rem">Please allow pop-ups for this page, then try again.</p>',null,null);return;}
-w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}@media print{.no-print{display:none}}</style></head><body> <div class="no-print" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">🖨️ Print / Save as PDF</button></div> <h1>${appName} - Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
+w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}@media print{.no-print{display:none}}/* MISSION CONTROL 2.0 */
+.mc-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.mc-title-wrap{display:flex;flex-direction:column;gap:4px;}
+.mc-title{font-family:var(--font-mono);font-size:1.08rem;color:var(--green);letter-spacing:3px;text-shadow:0 0 12px #00c85144;}
+.mc-sub{font-family:var(--font-mono);font-size:.68rem;color:var(--text2);letter-spacing:4px;}
+.mc-meta{font-size:.76rem;color:var(--amber);font-family:var(--font-mono);line-height:1.5;}
+.mc-actions{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end;}
+.mc-btn,.mc-filter{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-family:var(--font-mono);font-size:.7rem;color:var(--text2);cursor:pointer;letter-spacing:.5px;transition:border-color .2s,color .2s,box-shadow .2s,transform .2s;}
+.mc-btn:hover,.mc-filter:hover{border-color:var(--green);color:var(--green);box-shadow:0 0 12px #00c85144;transform:translateY(-1px);}
+.mc-btn.pri{background:var(--green);border-color:var(--green);color:#000;}
+.mc-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px;}
+.mc-stat{background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:14px;padding:13px 12px;text-align:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);}
+.mc-num{font-family:var(--font-display);font-size:1.45rem;color:var(--green);line-height:1.05;}
+.mc-label{font-size:.66rem;color:var(--text2);text-transform:uppercase;letter-spacing:1.3px;font-family:var(--font-mono);margin-top:5px;}
+.mc-filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+.mc-search{flex:1;min-width:220px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--text);font-family:var(--font-body);font-size:.88rem;}
+.mc-search:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 2px rgba(0,200,81,.12);}
+.mc-filter.on,.mc-btn.on{background:var(--green);border-color:var(--green);color:#000;}
+.mc-welcome{position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:18px;}
+.mc-welcome-card{width:min(100%,560px);max-height:min(92vh,760px);overflow:hidden;background:linear-gradient(180deg,rgba(22,27,34,.98),rgba(13,17,23,.98));border:2px solid var(--green);border-radius:22px;padding:18px 18px 16px;box-shadow:0 0 40px rgba(0,200,81,.18),0 20px 70px rgba(0,0,0,.55);display:flex;flex-direction:column;gap:10px;}
+.mc-welcome-topline{font-family:var(--font-mono);font-size:.64rem;color:var(--green);letter-spacing:3px;text-transform:uppercase;margin-bottom:2px;text-shadow:0 0 10px #00c85155;}
+.mc-welcome-title{font-family:var(--font-display);font-size:1.3rem;color:var(--green);letter-spacing:1px;line-height:1.1;margin-bottom:2px;}
+.mc-welcome-copy{font-size:.88rem;color:var(--text);line-height:1.55;margin-bottom:2px;}
+.mc-welcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:2px;}
+.mc-welcome-step{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:10px 11px;display:flex;gap:9px;align-items:flex-start;min-height:76px;}
+.mc-welcome-stepno{width:22px;height:22px;border-radius:50%;background:var(--green);color:#000;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.68rem;font-weight:900;flex-shrink:0;margin-top:1px;}
+.mc-welcome-stepbody{font-size:.76rem;color:var(--text2);line-height:1.4;}
+.mc-welcome-stepbody strong{color:var(--text);display:block;font-size:.86rem;margin-bottom:2px;}
+.mc-welcome-note{font-size:.75rem;color:var(--text2);line-height:1.45;text-align:center;padding:0 8px;}
+.mc-welcome-foot{font-size:.74rem;color:var(--amber);font-weight:700;line-height:1.45;background:rgba(255,187,51,.08);border:1px solid rgba(255,187,51,.22);border-radius:12px;padding:9px 11px;margin-bottom:2px;}
+.mc-welcome-actions{display:flex;flex-direction:column;gap:8px;}
+.mc-welcome-actions .rsec,.mc-welcome-actions .rpri{width:100%;}
+#scr-coach.mc-welcome-open>.mc-header,#scr-coach.mc-welcome-open>.mc-stats,#scr-coach.mc-welcome-open>.mc-nextbest,#scr-coach.mc-welcome-open>.mc-filters,#scr-coach.mc-welcome-open>#coach-flash,#scr-coach.mc-welcome-open>#coach-wrap{visibility:hidden;pointer-events:none;}
+@media(max-width:420px){.mc-welcome-card{padding:16px 14px 14px;}.mc-welcome-grid{gap:7px;}.mc-welcome-step{padding:9px 9px;min-height:72px;}.mc-welcome-title{font-size:1.18rem;}.mc-welcome-copy{font-size:.83rem;}.mc-welcome-stepbody{font-size:.72rem;}.mc-welcome-stepbody strong{font-size:.81rem;}}
+@media(min-width:700px){.mc-welcome-card{width:min(100%,620px);}.mc-welcome-title{font-size:1.45rem;}.mc-welcome-copy{font-size:.92rem;}.mc-welcome-step{min-height:82px;}}
+
+.mc-sections{display:flex;flex-direction:column;gap:14px;}
+.mc-section{display:flex;flex-direction:column;gap:10px;}
+.mc-section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.mc-section-title{font-family:var(--font-mono);font-size:.78rem;color:var(--green);letter-spacing:2px;text-transform:uppercase;}
+.mc-section-sub{font-size:.74rem;color:var(--text2);}
+.mc-inline-chip{font-family:var(--font-mono);font-size:.62rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);letter-spacing:.7px;}
+.ccards{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:700px){.ccards{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:760px){.mc-stats{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+.mc-card{background:linear-gradient(180deg,var(--bg2),rgba(22,27,34,.98));border:2px solid var(--border);border-radius:18px;padding:14px 14px 12px;transition:.2s;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);}
+.mc-card.needs-attn{border-color:var(--amber);box-shadow:0 0 0 1px rgba(255,187,51,.18), 0 0 22px rgba(255,187,51,.08);}
+.mc-card.improving{border-color:rgba(0,200,81,.55);}
+.mc-card-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.mc-avatar{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:900;color:#000;box-shadow:0 0 20px rgba(212,144,10,.18);}
+.mc-identity{flex:1;min-width:0;}
+.mc-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.mc-name{font-weight:900;font-size:1rem;color:var(--text);}
+.mc-chip{font-family:var(--font-mono);font-size:.63rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);letter-spacing:.7px;}
+.mc-chip.status-review{border-color:var(--amber);background:var(--amber-light);color:var(--amber);}
+.mc-chip.status-goal{border-color:var(--green);background:rgba(212,144,10,.12);color:var(--green);}
+.mc-chip.status-new{border-color:var(--blue);background:var(--blue-light);color:var(--blue);}
+.mc-chip.status-archived{border-color:var(--text3);background:var(--bg3);color:var(--text3);}
+.mc-submeta{font-size:.74rem;color:var(--text2);margin-top:4px;line-height:1.55;}
+.mc-level{margin-left:auto;flex-shrink:0;font-family:var(--font-mono);font-size:.65rem;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--amber);}
+.mc-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px;}
+.mc-mini{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:9px 11px;min-width:0;}
+.mc-mini-label{font-size:.62rem;color:var(--text2);letter-spacing:1.5px;font-family:var(--font-mono);margin-bottom:4px;text-transform:uppercase;}
+.mc-mini-val{font-size:.88rem;font-weight:800;color:var(--text);line-height:1.3;}
+.mc-mini-val.gold{color:var(--green);}
+.mc-mini-val.green{color:var(--green);}
+
+.mc-indy{background:rgba(255,255,255,.02);border-radius:12px;padding:10px 11px;margin-bottom:12px;border:1px solid rgba(255,255,255,.03);}
+.mc-indy-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px;}
+.mc-indy-title{font-size:.76rem;color:var(--text);font-weight:800;}
+.mc-indy-pct{font-family:var(--font-mono);color:var(--green);font-size:.8rem;}
+.mc-indy-trend{font-size:.72rem;color:var(--amber);font-family:var(--font-mono);}
+.mc-indy-bar{height:10px;background:var(--bg3);border-radius:999px;overflow:hidden;}
+.mc-indy-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green2),var(--amber));}
+
+.mc-skill-block{margin-bottom:12px;}
+.mc-skill-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.mc-skill-title{font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;}
+.mc-skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.mc-skill{display:flex;flex-direction:column;gap:4px;}
+.mc-skill-top{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:.72rem;color:var(--text2);font-weight:700;}
+.mc-skill-pct{color:var(--green);font-family:var(--font-mono);}
+.mc-skill-bar{background:var(--bg3);border-radius:999px;height:7px;overflow:hidden;}
+.mc-skill-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green),var(--amber));}
+
+.mc-goal-strip{background:var(--bg3);border-left:4px solid var(--amber);border-radius:12px;padding:11px 12px;margin-bottom:10px;}
+.mc-goal-strip.met{border-left-color:var(--green);}
+.mc-goal-title{font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:1.7px;margin-bottom:4px;}
+.mc-goal-copy{font-size:.82rem;font-weight:800;color:var(--text);line-height:1.45;}
+.mc-insight{font-size:.76rem;color:var(--text2);line-height:1.55;background:rgba(255,255,255,.02);border-radius:10px;padding:9px 10px;min-height:40px;border:1px solid rgba(255,255,255,.03);}
+.mc-card-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:10px;}
+.mc-card-actions .cbt{min-height:40px;padding:9px 8px;font-size:.68rem}
+.mc-attn-line{font-size:.68rem;color:var(--amber);font-family:var(--font-mono);letter-spacing:1px;margin-top:6px;}
+.mc-empty{background:var(--bg2);border:1px dashed var(--border);border-radius:14px;padding:18px;text-align:center;color:var(--text2);font-family:var(--font-mono);font-size:.78rem;line-height:1.7;}
+
+.mc-empty-cta{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;}
+.mc-empty-cta .mc-btn{min-width:150px;justify-content:center;display:inline-flex;align-items:center;}
+
+.mc-flash{display:none;background:linear-gradient(135deg,rgba(255,187,51,.12),rgba(255,187,51,.04));border:2px solid var(--amber);border-radius:14px;padding:12px 14px;margin-bottom:12px;}
+.mc-flash.on{display:block;animation:fadeUp .3s ease;}
+.mc-flash-title{font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:2px;margin-bottom:4px;}
+.mc-flash-copy{font-size:.86rem;color:var(--text);line-height:1.5;}
+.mc-detail-grid{display:grid;gap:12px;}
+.mc-detail-panel{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:14px;}
+.mc-detail-title{font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:10px;text-transform:uppercase;}
+.mc-session-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.mc-session-row:last-child{border-bottom:none;padding-bottom:0;}
+.mc-session-left,.mc-session-right{min-width:0;}
+.mc-session-name{font-size:.82rem;font-weight:800;color:var(--text);}
+.mc-session-meta{font-size:.72rem;color:var(--text2);line-height:1.45;}
+@media(max-width:540px){
+  .mc-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    justify-content:stretch;
+  }
+  .mc-actions .mc-btn{
+    width:100%;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10px 12px;
+  }
+  .mc-filters{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    align-items:stretch;
+  }
+  .mc-search{
+    grid-column:1 / -1;
+    min-width:0;
+  }
+  .mc-filter{
+    width:100%;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .mc-card-actions{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+
+
+
+/* Fix centered Coach Date Range modal without changing shared modal behavior */
+#m-date-range{
+  position:fixed !important;
+  inset:0 !important;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.6);
+  z-index:9999;
+}
+#m-date-range .mdl{
+  width:min(420px,90vw);
+  margin:auto;
+}
+
+
+/* Date range modal visibility fix */
+#m-date-range.on{
+  display:flex !important;
+}
+
+
+/* Ensure all modals open with .on class */
+.modal.on{
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+}
+
+
+/* v6 coach clarity upgrades */
+.mc-summary-note{font-family:var(--font-mono);font-size:.62rem;color:var(--text3);letter-spacing:.8px;}
+.mc-summary-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 0;}
+.mc-summary-box{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.mc-summary-box .lbl{font-size:.68rem;color:var(--text2);font-weight:800;margin-bottom:4px;}
+.mc-summary-box .val{font-size:.86rem;color:var(--text);font-weight:800;line-height:1.35;}
+.mc-skill-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px;}
+.mc-skill-state{font-family:var(--font-mono);font-size:.68rem;font-weight:700;white-space:nowrap;}
+.mc-skill-state.strong{color:var(--green);}
+.mc-skill-state.building{color:var(--amber);}
+.mc-skill-state.support{color:var(--red);}
+.mc-skill-fill.strong{background:linear-gradient(90deg,var(--green),var(--green));}
+.mc-skill-fill.building{background:linear-gradient(90deg,var(--amber),var(--green));}
+.mc-skill-fill.support{background:linear-gradient(90deg,var(--red),var(--amber));}
+.mc-detail-skills{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px;}
+#scr-coach.mc-summary-mode .mc-actions,#scr-coach.mc-summary-mode .mc-filters,#scr-coach.mc-summary-mode .mc-flash,#scr-coach.mc-summary-mode .mc-card-actions,#scr-coach.mc-summary-mode .mc-welcome,#scr-coach.mc-summary-mode .mc-nextbest{display:none!important;}
+#scr-coach.mc-summary-mode .mc-stats{grid-template-columns:repeat(2,1fr);}
+#scr-coach.mc-summary-mode .mc-section{margin-top:10px;}
+.mc-mini-val.status{font-size:.92rem;}
+
+
+
+</style></head><body> <div class="no-print" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">🖨️ Print / Save as PDF</button></div> <h1>${appName} - Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} client${CLIENTS.length!==1?'s':''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
 w.document.close();
 }
 
@@ -4564,7 +5432,7 @@ setTimeout(()=>{const i=$('pin-input');if(i)i.focus();},300);
 function openPinReset(){
 closeM('m-pin');
 openHint('Reset PIN?',
-'<p style="color:var(--text2);font-size:.88rem">Your current PIN will be removed. You will need to create a new one the next time you open the Coach Dashboard.</p>',
+'<p style="color:var(--text2);font-size:.88rem">Your current PIN will be removed. You will need to create a new one the next time you open Mission Control.</p>',
 'Yes, Reset PIN',
 ()=>{closeM('m-hint');CFG.coachPin=null;CFG.coachWelcomeSeen=false;saveAll();openPinSetup();}
 );
@@ -4608,7 +5476,7 @@ document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
 $('scr-coach').classList.add('on');
 $('nb-coach').classList.add('on');
 renderCoach();showCoachWelcome();window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
-say('PIN created. Welcome to the coach dashboard.');
+say('PIN created. Welcome to Mission Control.');
 } else {
 $('pin-error').textContent="PINs do not match. Try again.";
 inp.value='';buzz();
@@ -4625,7 +5493,7 @@ function pinError(){}
 // Also expose PIN reset from settings
 function resetCoachPin(){
 openHint('Remove Coach PIN?',
-'<p style="color:var(--text2);font-size:.88rem">The dashboard will be unprotected until a new PIN is set. You will be asked to create a new one next time you open the Coach Dashboard.</p>',
+'<p style="color:var(--text2);font-size:.88rem">Mission Control will be unprotected until a new PIN is set. You will be asked to create a new one next time you open Mission Control.</p>',
 'Yes, Remove PIN',
 ()=>{closeM('m-hint');CFG.coachPin=null;CFG.coachWelcomeSeen=false;saveAll();}
 );

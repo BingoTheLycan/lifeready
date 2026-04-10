@@ -87,6 +87,20 @@ body::after{
   line-height:1;
   margin-bottom:10px;
   text-shadow:0 0 18px rgba(255,255,255,.06);
+  animation:bootGlow .7s ease-out;
+}
+
+@keyframes bootGlow{
+  0%{
+    opacity:0;
+    filter:blur(6px);
+    transform:scale(.96);
+  }
+  100%{
+    opacity:1;
+    filter:blur(0);
+    transform:scale(1);
+  }
 }
 .hero-logo .lr-life{color:var(--amber);text-shadow:0 0 40px rgba(255,187,51,0.4);}
 .hero-logo .lr-ready{color:var(--text);}
@@ -155,7 +169,10 @@ main{
 }
 .app-card:active{transform:scale(.96);}
 @media(hover:hover){
-  .app-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 8px 32px rgba(0,0,0,0.4);}
+  .app-card:hover{
+    transform:translateY(-6px) scale(1.02);
+    box-shadow:0 12px 36px rgba(0,0,0,0.5);
+  }
 }
 .app-card::before{
   content:'';position:absolute;inset:0;
@@ -251,7 +268,12 @@ main{
   opacity:.4;
   transition:opacity .2s, transform .2s;
 }
-@media(hover:hover){.app-card:hover .app-arrow{opacity:.9;transform:translate(2px,-1px);}}
+@media(hover:hover){
+  .app-card:hover .app-arrow{
+    opacity:1;
+    transform:translateX(4px);
+  }
+}
 
 .free-badge{
   display:flex;align-items:center;justify-content:center;gap:10px;
@@ -439,7 +461,6 @@ main{
   .coach-banner-text{font-size:.97rem; line-height:1.68;}
 }
 
-
 .trust-line{
   margin-top:10px;
   font-family:var(--font-mono);
@@ -561,7 +582,6 @@ main{
   backdrop-filter:blur(6px);
 }
 
-
 .info-divider{
   margin:16px 0 12px;
   height:1px;
@@ -584,37 +604,35 @@ main{
     <span class="lr-life">LIFE</span><span class="lr-ready">READY</span>
   </div>
   <div class="hero-tagline">- LIFE SKILLS SUITE -</div>
-  <div class="hero-desc">Real skills for real life. Free tools designed to feel welcoming, modern, and worth coming back to.</div>
+  <div class="hero-desc">Real skills for real life. Free tools designed to feel welcoming, modern, and worth coming back to.<br/><br/></div>
   <div class="hero-sub">PRESS START ON REAL LIFE</div>
   <div class="trust-line">Designed for real-world independence · Simple, repeatable, and judgment-free</div>
 </div>
 
 <main>
-  <div class="section-label">CHOOSE YOUR MODE</div>
+  <div class="section-label">CHOOSE YOUR MISSION</div>
   <div class="top-copy">Choose the skill area you want to work on and build confidence in a space that feels more inviting than instructional.</div>
 
   <div class="app-grid">
-    <a aria-label="CashReady" class="app-card card-cash" href="CashReady.html"><span class="app-icon">💵</span><div class="app-name">CASHREADY</div><div class="app-sub">Count coins &amp; bills, make change, practice real cashier skills</div><div class="app-pill">MONEY SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="TimeReady" class="app-card card-time" href="TimeReady.html"><span class="app-icon">🕐</span><div class="app-name">TIMEREADY</div><div class="app-sub">Read clocks, follow schedules, learn AM/PM and time on the job</div><div class="app-pill">TIME SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="JobReady" class="app-card card-job" href="JobReady.html"><span class="app-icon">💼</span><div class="app-name">JOBREADY</div><div class="app-sub">Interview skills, workplace rules, pay stubs, rights &amp; responsibilities</div><div class="app-pill">WORK SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="HomeReady" class="app-card card-home" href="HomeReady.html"><span class="app-icon">🏠</span><div class="app-name">HOMEREADY</div><div class="app-sub">Laundry, budgeting, food safety, renting, and handling emergencies</div><div class="app-pill">HOME SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="TravelReady" class="app-card card-travel" href="TravelReady.html"><span class="app-icon">🗺️</span><div class="app-name">TRAVELREADY</div><div class="app-sub">Read bus schedules, pay fares, navigate routes, plan safe trips</div><div class="app-pill">TRAVEL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="SocialReady" class="app-card card-social" href="SocialReady.html"><span class="app-icon">💬</span><div class="app-name">SOCIALREADY</div><div class="app-sub">Start conversations, read social cues, set limits, handle conflict</div><div class="app-pill">SOCIAL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="TechReady" class="app-card card-tech" href="TechReady.html"><span class="app-icon">📱</span><div class="app-name">TECHREADY</div><div class="app-sub">Spot scams, stay safe online &amp; master digital skills</div><div class="app-pill">DIGITAL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="HealthReady" class="app-card card-health" href="HealthReady.html"><span class="app-icon">🏥</span><div class="app-name">HEALTHREADY</div><div class="app-sub">Read prescriptions, navigate the doctor &amp; know what to do in an emergency</div><div class="app-pill">HEALTH SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="CashReady" class="app-card card-cash" href="CashReady.html"><span class="app-icon">💵</span><div class="app-name">CASHREADY</div><div class="app-sub">Count money, make change, and practice real cashier skills</div><div class="app-pill">MONEY SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="TimeReady" class="app-card card-time" href="TimeReady.html"><span class="app-icon">🕐</span><div class="app-name">TIMEREADY</div><div class="app-sub">Read clocks, follow schedules, and understand real-world time</div><div class="app-pill">TIME SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="JobReady" class="app-card card-job" href="JobReady.html"><span class="app-icon">💼</span><div class="app-name">JOBREADY</div><div class="app-sub">Practice interviews, workplace behavior, and job readiness skills</div><div class="app-pill">WORK SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="HomeReady" class="app-card card-home" href="HomeReady.html"><span class="app-icon">🏠</span><div class="app-name">HOMEREADY</div><div class="app-sub">Build independence with home, safety, and daily living skills</div><div class="app-pill">HOME SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="TravelReady" class="app-card card-travel" href="TravelReady.html"><span class="app-icon">🗺️</span><div class="app-name">TRAVELREADY</div><div class="app-sub">Navigate transit, read routes, and plan safe independent travel</div><div class="app-pill">TRAVEL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="SocialReady" class="app-card card-social" href="SocialReady.html"><span class="app-icon">💬</span><div class="app-name">SOCIALREADY</div><div class="app-sub">Start conversations, read cues, and handle real social situations</div><div class="app-pill">SOCIAL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="TechReady" class="app-card card-tech" href="TechReady.html"><span class="app-icon">📱</span><div class="app-name">TECHREADY</div><div class="app-sub">Stay safe online, avoid scams, and build digital confidence</div><div class="app-pill">DIGITAL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
+    <a aria-label="HealthReady" class="app-card card-health" href="HealthReady.html"><span class="app-icon">🏥</span><div class="app-name">HEALTHREADY</div><div class="app-sub">Manage health needs, understand care, and respond to emergencies</div><div class="app-pill">HEALTH SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
   </div>
 
   <div class="free-badge">🆓 &nbsp; ALL APPS FREE · NO ADS · NO ACCOUNTS · NO PAYWALLS</div>
 
-
   <div class="coach-banner">
     <span class="coach-banner-label">🎓 For Coaches &amp; Teachers</span>
     <div class="coach-banner-text">
-      Every app includes a built-in <strong>Coach Dashboard</strong> to log sessions, track accuracy, set mastery goals,
-      monitor prompt fading, and print progress reports for your clients or students. Tap <strong>COACH</strong> in any app header to get started.
+      Every module includes built-in <strong>Mission Control</strong> to log sessions, track accuracy, set mastery goals,
+      monitor prompt fading, and print progress reports for your clients or students. Tap <strong>COACH</strong> in any module header to get started.
     </div>
   </div>
-
 
   <div class="info-grid">
     <div class="info-card">

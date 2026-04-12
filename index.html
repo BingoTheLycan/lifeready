@@ -189,6 +189,72 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
   content:''; flex:1; height:1px; background:var(--border2);
 }
 
+.section-banner{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:0 0 18px;
+  padding:12px 16px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(135deg,rgba(22,27,34,.92),rgba(18,23,31,.96));
+  box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.02);
+  overflow:hidden;
+}
+.section-banner::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at top right, rgba(255,255,255,.035) 0%, transparent 34%),
+    linear-gradient(90deg, transparent 0 24px, rgba(255,255,255,.016) 24px 25px, transparent 25px 100%),
+    linear-gradient(0deg, transparent 0 24px, rgba(255,255,255,.016) 24px 25px, transparent 25px 100%);
+  background-size:auto, 28px 28px, 28px 28px;
+  opacity:.35;
+  pointer-events:none;
+}
+.section-banner::after{
+  content:'';
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--amber),transparent);
+  opacity:.95;
+}
+.section-banner .label{
+  position:relative;
+  z-index:1;
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:var(--amber);
+  text-shadow:0 0 16px rgba(255,187,51,.18);
+}
+.section-banner .icon{
+  position:relative;
+  z-index:1;
+  font-size:.9rem;
+  color:var(--amber);
+  text-shadow:0 0 14px rgba(255,187,51,.22);
+}
+.section-banner.start{
+  margin-top:2px;
+}
+.section-banner.mission{
+  margin-bottom:14px;
+  padding:14px 18px;
+  border-left:3px solid var(--amber);
+  box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.02), 0 0 24px rgba(255,187,51,.05);
+}
+.section-banner.mission .label{
+  font-size:.92rem;
+  letter-spacing:6px;
+}
+
+
 .quickstart{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -196,21 +262,69 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
   margin:0 0 18px;
 }
 .quick-card{
-  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  position:relative;
+  background:linear-gradient(135deg,rgba(22,27,34,.94),rgba(18,23,31,.96));
   border:1px solid var(--border);
-  border-radius:var(--radius-sm);
+  border-radius:18px;
   padding:16px 16px 15px;
-  box-shadow:var(--shadow);
+  box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.02);
+  overflow:hidden;
 }
+.quick-card::before{
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at top right, rgba(255,255,255,.03) 0%, transparent 34%),
+    linear-gradient(90deg, transparent 0 22px, rgba(255,255,255,.014) 22px 23px, transparent 23px 100%),
+    linear-gradient(0deg, transparent 0 22px, rgba(255,255,255,.014) 22px 23px, transparent 23px 100%);
+  background-size:auto, 26px 26px, 26px 26px;
+  opacity:.34;
+  pointer-events:none;
+}
+.quick-card::after{
+  content:'';
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:3px;
+  opacity:.95;
+}
+.quick-card:nth-child(1)::after{background:linear-gradient(90deg,var(--amber),transparent)}
+.quick-card:nth-child(2)::after{background:linear-gradient(90deg,var(--time),transparent)}
+.quick-card:nth-child(3)::after{background:linear-gradient(90deg,var(--social),transparent)}
+.quick-card .corner{
+  position:absolute;
+  width:12px;height:12px;
+  border-color:rgba(255,255,255,.16);
+  border-style:solid;
+  pointer-events:none;
+  z-index:1;
+}
+.quick-card .corner.tl{left:8px;top:8px;border-width:1px 0 0 1px}
+.quick-card .corner.tr{right:8px;top:8px;border-width:1px 1px 0 0}
+.quick-card .corner.bl{left:8px;bottom:8px;border-width:0 0 1px 1px}
+.quick-card .corner.br{right:8px;bottom:8px;border-width:0 1px 1px 0}
 .quick-number{
+  position:relative;
+  z-index:1;
   width:30px;height:30px;border-radius:999px;
   display:flex;align-items:center;justify-content:center;
   background:rgba(255,187,51,.08); border:1px solid rgba(255,187,51,.16);
   color:var(--amber); font-family:var(--font-mono); font-size:.74rem;
   margin-bottom:10px;
+  box-shadow:0 0 16px rgba(255,187,51,.08);
 }
-.quick-card strong{display:block; margin-bottom:5px; font-size:1rem}
-.quick-card p{color:var(--text2); line-height:1.55; font-size:.92rem}
+.quick-card:nth-child(2) .quick-number{color:var(--time); border-color:rgba(34,136,255,.18); background:rgba(34,136,255,.08); box-shadow:0 0 16px rgba(34,136,255,.08)}
+.quick-card:nth-child(3) .quick-number{color:var(--social); border-color:rgba(155,48,217,.18); background:rgba(155,48,217,.08); box-shadow:0 0 16px rgba(155,48,217,.08)}
+.quick-card strong{
+  position:relative;
+  z-index:1;
+  display:block; margin-bottom:6px; font-size:1rem; color:var(--text)
+}
+.quick-card p{
+  position:relative;
+  z-index:1;
+  color:var(--text2); line-height:1.55; font-size:.92rem
+}
 
 .grid-wrap{
   background:linear-gradient(135deg,rgba(22,27,34,.9),rgba(18,23,31,.92));
@@ -241,6 +355,7 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
   color:var(--text2);
   max-width:620px;
   line-height:1.65;
+  text-shadow:0 0 10px rgba(255,255,255,.04);
 }
 .grid-top-copy strong{color:var(--text)}
 .app-grid{
@@ -519,26 +634,56 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
 .shared-device a:hover,.shared-device a:focus-visible{text-decoration:underline}
 
 .footer-utility{
+  position:relative;
   margin-top:20px;
-  padding:18px 0 10px;
-  border-top:1px solid var(--border);
+  padding:20px 16px 14px;
+  border:1px solid var(--border);
+  border-radius:24px;
   text-align:center;
+  background:linear-gradient(135deg,rgba(22,27,34,.94),rgba(18,23,31,.96));
+  box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.02);
+  overflow:hidden;
+}
+.footer-utility::before{
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at top right, rgba(255,255,255,.03) 0%, transparent 34%),
+    linear-gradient(90deg, transparent 0 22px, rgba(255,255,255,.014) 22px 23px, transparent 23px 100%),
+    linear-gradient(0deg, transparent 0 22px, rgba(255,255,255,.014) 22px 23px, transparent 23px 100%);
+  background-size:auto, 26px 26px, 26px 26px;
+  opacity:.32;
+  pointer-events:none;
 }
 .footer-link-row{
+  position:relative;
+  z-index:1;
   display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:8px;
 }
 .footer-link-row a{
   color:var(--text); text-decoration:none;
-  background:var(--bg2); border:1px solid var(--border);
-  padding:8px 12px; border-radius:999px;
+  background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.03));
+  border:1px solid var(--border);
+  padding:9px 13px; border-radius:999px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
-.footer-link-row a:hover{border-color:#e91e8c}
+.footer-link-row a:hover{
+  transform:translateY(-1px);
+  border-color:#e91e8c;
+  box-shadow:0 0 18px rgba(233,30,140,.10);
+}
 .footer-meta{
-  color:var(--text2); font-size:.92rem; line-height:1.6; margin-top:10px;
+  position:relative;
+  z-index:1;
+  color:var(--text2); font-size:.92rem; line-height:1.6; margin-top:12px;
 }
 .footer-signature{
-  margin-top:18px;
-  padding:18px 10px 4px;
+  position:relative;
+  z-index:1;
+  max-width:620px;
+  margin:18px auto 0;
+  padding:18px 14px 10px;
   border-top:1px solid var(--border2);
   text-align:center;
   animation:fadeUp .8s ease both;
@@ -551,15 +696,21 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
 }
 .footer-name{
   font-family:var(--font-sig);
-  font-size:clamp(1.9rem,4vw,2.8rem);
+  font-size:clamp(2rem,4vw,2.9rem);
   line-height:1.05;
   color:var(--amber);
   text-shadow:0 0 24px rgba(255,187,51,.18);
 }
 .footer-role{
   margin-top:4px;
+  color:var(--text);
+  font-size:1rem;
+}
+.footer-motto{
+  margin-top:8px;
   color:var(--text2);
-  font-size:.98rem;
+  font-size:.96rem;
+  line-height:1.55;
 }
 .footer-line{
   margin-top:10px;
@@ -637,6 +788,30 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
 .card-social.pressed{border-color:#9c27b0 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(156,39,176,.35) !important;}
 .card-tech.pressed{border-color:#cc2200 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(204,34,0,.40) !important;}
 .card-health.pressed{border-color:#e91e8c !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(233,30,140,.40) !important;}
+.app-card.launching{
+  transform:translateY(2px) scale(.982) !important;
+  filter:brightness(1.06) saturate(1.08);
+}
+.app-card.launching::after{
+  opacity:1 !important;
+  background:linear-gradient(105deg, transparent 15%, rgba(255,255,255,.22) 46%, rgba(255,255,255,.08) 56%, transparent 78%) !important;
+}
+.app-card.launching .glowbar{
+  width:100% !important;
+}
+.app-card.launching .app-arrow{
+  opacity:1 !important;
+  transform:translateX(6px);
+}
+.card-cash.launching{border-color:#00c851 !important;box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 42px rgba(0,200,81,.48) !important;}
+.card-time.launching{border-color:#33b5e5 !important;box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 42px rgba(51,181,229,.48) !important;}
+.card-job.launching{border-color:#ffbb33 !important;box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 42px rgba(255,187,51,.48) !important;}
+.card-home.launching{border-color:#ff8800 !important;box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 42px rgba(255,136,0,.48) !important;}
+.card-travel.launching{border-color:#00bcd4 !important;box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 42px rgba(0,188,212,.48) !important;}
+.card-social.launching{border-color:#9c27b0 !important;box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 42px rgba(156,39,176,.48) !important;}
+.card-tech.launching{border-color:#cc2200 !important;box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 42px rgba(204,34,0,.52) !important;}
+.card-health.launching{border-color:#e91e8c !important;box-shadow:0 6px 24px rgba(0,0,0,.5),0 0 42px rgba(233,30,140,.52) !important;}
+
 
 @media(max-width:860px){
   .duo{grid-template-columns:1fr}
@@ -675,19 +850,19 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
 </div>
 
 <main>
-  <div class="section-label" id="how-it-works">Start Here</div>
+  <div class="section-banner start" id="how-it-works"><span class="icon">✦</span><span class="label">Start Here</span><span class="icon">✦</span></div>
   <section class="quickstart" aria-label="How LifeReady works">
-    <div class="quick-card">
+    <div class="quick-card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <div class="quick-number">1</div>
       <strong>Pick a world</strong>
       <p>Choose the skill area you want to practice right now. Each module has its own theme, but they all work the same way.</p>
     </div>
-    <div class="quick-card">
+    <div class="quick-card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <div class="quick-number">2</div>
       <strong>Play and repeat</strong>
       <p>Try the daily challenge, play a mode, and come back as often as you want. Repetition is built in on purpose.</p>
     </div>
-    <div class="quick-card">
+    <div class="quick-card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <div class="quick-number">3</div>
       <strong>Use Mission Control</strong>
       <p>Tap <strong>COACH</strong> inside any module to add learners, log sessions, and track progress on this device.</p>
@@ -697,7 +872,7 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
   <section class="grid-wrap" id="missions">
     <div class="grid-top">
       <div>
-        <div class="section-label" style="margin-bottom:8px;border-bottom:none;padding-bottom:0;justify-content:flex-start"><span>Choose Your Mission</span></div>
+        <div class="section-banner mission"><span class="icon">◢</span><span class="label">Choose Your Mission</span><span class="icon">◣</span></div>
       </div>
       <div class="grid-top-copy">
         Choose the skill area you want to work on and build confidence in a space that feels more inviting than instructional.
@@ -812,7 +987,7 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
   </section>
 
   <section class="shared-device" aria-labelledby="shared-device-heading">
-    <div class="shared-device-label">⚠ Shared Device Notice</div>
+    <div class="shared-device-label">SHARED DEVICE NOTICE</div>
     <h2 id="shared-device-heading">Using a shared device?</h2>
     <p>LifeReady can save progress, preferences, and notes on the device being used. On a school, program, family, or work device, other people may be able to see saved activity unless it is cleared later.</p>
     <p><strong>Need to reset things later?</strong> Clear this site’s browser data on the device you used.</p>
@@ -833,9 +1008,9 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
     <div class="footer-signature">
       <div class="footer-star">★</div>
       <div class="footer-name">Tristan Beck</div>
-      <div class="footer-role">Made with stubborn optimism for real people doing real-life stuff.</div>
-      <div class="footer-line">TRISTAN BECK · CREATOR OF THE LIFEREADY SUITE</div>
-      <div class="footer-line" style="margin-top:6px">FREE FOR EVERYONE · ALWAYS</div>
+      <div class="footer-role">Creator of the LifeReady Suite</div>
+      <div class="footer-motto">Made with stubborn optimism for real people doing real-life stuff.</div>
+      <div class="footer-line">FREE FOR EVERYONE · ALWAYS</div>
     </div>
   </footer>
 </main>
@@ -855,6 +1030,27 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
     card.addEventListener('mouseleave', off);
     card.addEventListener('blur', off);
     card.addEventListener('dragstart', off);
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const cards = document.querySelectorAll('.app-card[href]');
+  cards.forEach(card => {
+    card.addEventListener('click', function(e){
+      if (e.defaultPrevented) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (card.target && card.target.toLowerCase() === '_blank') return;
+      const href = card.getAttribute('href');
+      if (!href) return;
+      e.preventDefault();
+      card.classList.remove('pressed');
+      card.classList.add('launching');
+      setTimeout(() => {
+        window.location.href = href;
+      }, 120);
+    });
   });
 })();
 </script>

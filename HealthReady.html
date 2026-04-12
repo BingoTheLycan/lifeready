@@ -9,7 +9,7 @@
 <meta content="yes" name="mobile-web-app-capable"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
-<meta name="apple-mobile-web-app-title" content="LifeReady"/>
+<meta content="LifeReady" name="apple-mobile-web-app-title"/>
 <title>HealthReady | LifeReady</title>
 <!-- Shared app manifest -->
 <link href="manifest.json" rel="manifest"/>
@@ -246,11 +246,73 @@ pointer-events:none;
 @keyframes coinDrop{from{transform:translateY(-20px) scale(.7);opacity:0}to{transform:none;opacity:1}}
 
 /* ══ GAME TOP ══ */
-.gtop{display:flex;align-items:center;gap:9px;margin-bottom:12px;flex-wrap:wrap;}
+.gtop{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:9px;margin-bottom:12px;}
 .back{background:var(--bg2);border:1px solid #e91e8c55;color:#e91e8c;border-radius:8px;padding:7px 14px;font-family:var(--font-mono);font-size:.75rem;letter-spacing:1px;cursor:pointer;transition:box-shadow .2s,border-color .2s;}.back:hover{box-shadow:0 0 12px #e91e8c44;border-color:#e91e8c;}
 .back:hover{border-color:var(--green);color:var(--green);}
-.gmode{font-family:var(--font-mono);font-size:0.75rem;color:var(--green);letter-spacing:2px;font-weight:700;}
+.gmode{font-family:var(--font-mono);font-size:0.75rem;color:var(--green);letter-spacing:2px;font-weight:700;min-width:0;}
 .gscore{margin-left:auto;display:flex;gap:12px;align-items:center;}
+.game-top{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:start;
+  gap:10px 12px;
+  margin-bottom:12px;
+}
+.game-top .gmain{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+.game-top .gmode{
+  min-width:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.game-top .gside{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:8px;
+}
+.game-top .gtools{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+}
+.game-top .giconbtn{
+  min-width:42px;
+  min-height:42px;
+  padding:7px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  line-height:1;
+}
+.game-top .ghelpbtn{
+  font-weight:900;
+}
+.game-top .gscore{
+  margin-left:0;
+  justify-content:flex-end;
+  gap:10px;
+}
+@media(max-width:640px){
+  .game-top .gmain{gap:8px}
+  .game-top .giconbtn{
+    min-width:40px;
+    min-height:40px;
+    padding:7px 9px;
+  }
+  .game-top .gmode{
+    font-size:.74rem;
+    letter-spacing:1.5px;
+  }
+  .game-top .gside{gap:6px}
+}
 .sbox{text-align:center;}
 .sv{font-family:var(--font-mono);font-weight:700;font-size:1.05rem;color:var(--green);}
 .sl{font-size:0.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;}
@@ -933,6 +995,185 @@ textarea:focus-visible,
   #desktop-sidebar{display:none!important;}
   #scr-game.on,#scr-results.on{grid-column:auto!important;}
 }
+
+/* === STANDARDIZED SCORES === */
+.scores-summary{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin:0 0 12px;
+}
+.score-stat{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:12px 14px;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-stat-label{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text2);
+  margin-bottom:6px;
+}
+.score-stat-value{
+  font-family:var(--font-display);
+  font-size:1.45rem;
+  line-height:1;
+  color:var(--amber);
+}
+#score-filters{
+  display:flex;
+  gap:7px !important;
+  flex-wrap:wrap;
+  margin-bottom:12px !important;
+}
+.sopt{
+  background:linear-gradient(135deg,var(--bg3),rgba(255,255,255,0.02));
+  border:2px solid var(--border);
+  border-radius:12px;
+  padding:7px 12px;
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  font-weight:700;
+  color:var(--text2);
+  cursor:pointer;
+  transition:.2s;
+  min-height:40px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.sopt.on{
+  background:var(--green);
+  border-color:var(--green);
+  color:#000;
+  box-shadow:0 0 16px color-mix(in srgb, var(--green) 28%, transparent);
+}
+#read-scores-btn{
+  margin:10px 0 10px !important;
+}
+.slist{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.se{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:14px 16px;
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  gap:12px;
+  align-items:center;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.se.best{
+  border-color:var(--amber);
+  background:linear-gradient(135deg,rgba(255,187,51,.06),var(--bg2));
+}
+.se-rank{
+  width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:12px;
+  font-family:var(--font-display);
+  font-size:1rem;
+  color:var(--green);
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+}
+.se.best .se-rank{
+  color:var(--amber);
+  border-color:rgba(255,187,51,.35);
+  background:rgba(255,187,51,.08);
+}
+.se-main{min-width:0;}
+.se-m{
+  font-family:var(--font-mono);
+  font-size:0.86rem;
+  color:var(--green);
+  font-weight:700;
+  letter-spacing:.5px;
+  line-height:1.35;
+}
+.se-best{
+  color:var(--amber);
+  font-size:.6rem;
+  margin-left:6px;
+}
+.se-d{
+  font-size:0.74rem;
+  color:var(--text2);
+  margin-top:4px;
+  line-height:1.45;
+}
+.se-side{
+  text-align:right;
+}
+.se-v{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.5rem;
+  color:var(--amber);
+  line-height:1;
+}
+.se-meta{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:1px;
+  color:var(--text2);
+  margin-top:6px;
+  text-transform:uppercase;
+}
+.score-empty{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-empty-title{
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  margin-bottom:10px;
+}
+.score-empty-sub{
+  color:var(--text2);
+  line-height:1.7;
+  font-size:.96rem;
+}
+.no-data{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  color:var(--text2);
+  font-family:var(--font-body);
+  font-size:.96rem;
+  line-height:1.7;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.no-data strong{
+  display:block;
+  margin-bottom:10px;
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  text-transform:uppercase;
+}
+@media(max-width:640px){
+  .scores-summary{grid-template-columns:1fr;}
+  .se{grid-template-columns:38px 1fr;align-items:start;}
+  .se-rank{width:38px;height:38px;}
+  .se-side{grid-column:2; text-align:left; margin-top:2px;}
+}
+
 </style>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
 <defs>
@@ -955,7 +1196,7 @@ textarea:focus-visible,
 <nav class="hdr-nav">
 <button class="nb on" id="nb-home" onclick="go('home')">HOME</button>
 <button class="nb" id="nb-coach" onclick="coachNav()">COACH</button>
-<button class="aa-btn" id="aa-btn" onclick="toggleFontSize()" title="Toggle large text" aria-label="Toggle large text">Aa</button>
+<button aria-label="Toggle large text" class="aa-btn" id="aa-btn" onclick="toggleFontSize()" title="Toggle large text">Aa</button>
 </nav>
 </header>
 <main>
@@ -967,23 +1208,17 @@ textarea:focus-visible,
 </div>
 <div class="home-tagline">- HEALTH &amp; LIFE SKILLS TRAINER -</div>
 <div class="home-sub" id="home-sub">Practice routines, safety, and everyday health skills.</div>
-<button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-size:.65rem;color:#e91e8c;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #e91e8c44;background:transparent;border:1px solid #e91e8c55;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB &nbsp;·&nbsp; All Apps</button>
-
+<button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-size:.65rem;color:#e91e8c;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #e91e8c44;background:transparent;border:1px solid #e91e8c55;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB  ·  All Apps</button>
 <!-- HEALTH DISCLAIMER (DO NOT REMOVE) -->
 <div class="health-disclaimer-card">
-  <div class="hd-title">Important</div>
-  
-
-
+<div class="hd-title">Important</div>
 <div class="hd-text">
     HealthReady is for education and practice only. It is <strong>not medical advice</strong>, not a diagnosis tool, and not emergency care.
     For urgent symptoms, medication questions, or emergencies, contact a qualified healthcare professional or emergency services.
   </div>
-  <a href="health-disclaimer.html" class="hd-link">Read the full health disclaimer</a>
+<a class="hd-link" href="health-disclaimer.html">Read the full health disclaimer</a>
 </div>
-
 </div>
-
 <div id="onboarding-card" style="display:none;background:linear-gradient(135deg,var(--panel),var(--panel2));border:2px solid var(--green);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;animation:fadeUp .5s ease">
 <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:8px">👋 WELCOME TO HEALTHREADY!</div>
 <p style="font-size:.84rem;color:var(--text2);line-height:1.6;margin-bottom:12px">New here? Start with <strong style="color:var(--text)">Watch a Demo</strong> to see how HealthReady works - then try <strong style="color:var(--text)">Practice Mode</strong> when you are ready.</p>
@@ -992,20 +1227,17 @@ textarea:focus-visible,
 <button class="rsec" onclick="dismissOnboarding()" style="flex:1;padding:11px;font-size:.8rem">Got It ✓</button>
 </div>
 </div>
-
 <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;margin-top:4px;text-shadow:0 0 10px #e91e8c55">🎮 PLAY</div>
 <div class="daily-card" id="daily-card" onclick="startDaily()">
 <div class="daily-icon">📅</div>
 <div class="daily-info">
 <div class="daily-eyebrow">DAILY CHALLENGE</div>
-      <div class="daily-title">Med Bay Check-In</div>
-      <div class="daily-desc">5 health questions · Build safe daily habits</div>
+<div class="daily-title">Med Bay Check-In</div>
+<div class="daily-desc">5 health questions · Build safe daily habits</div>
 </div>
 <div class="daily-streak" id="daily-streak-disp">🔥0</div>
 </div>
-
 <div class="home-divider"></div>
-
 <div class="home-group">
 <div class="home-group-label">START HERE</div>
 <div class="mode-list" style="margin-top:0">
@@ -1023,7 +1255,6 @@ textarea:focus-visible,
 </div>
 </div>
 </div>
-
 <div class="home-group">
 <div class="home-group-label">SKILL TRACKS</div>
 <div class="mode-list" style="margin-top:0">
@@ -1065,7 +1296,6 @@ textarea:focus-visible,
 </div>
 </div>
 </div>
-
 <div class="home-group">
 <div class="home-group-label">LEARN THE FLOW</div>
 <div class="mode-list" style="margin-top:0">
@@ -1077,10 +1307,8 @@ textarea:focus-visible,
 </div>
 </div>
 </div>
-
 <div class="home-divider"></div>
 <div class="home-tools-label">🧠 <span>LEARNING TOOLS</span></div>
-
 <div class="home-group">
 <div class="home-group-label">LEARN</div>
 <div class="hgrid">
@@ -1093,7 +1321,6 @@ textarea:focus-visible,
 <div class="hb" onclick="go('guide')"><div class="hi">📖</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
 </div>
 </div>
-
 <div class="home-group">
 <div class="home-group-label">PROGRESS</div>
 <div class="hgrid">
@@ -1102,7 +1329,6 @@ textarea:focus-visible,
 <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Mission Control</div><div class="hc">Track learner progress</div></div>
 </div>
 </div>
-
 <div class="home-group">
 <div class="home-group-label">APP</div>
 <div class="hgrid">
@@ -1110,7 +1336,6 @@ textarea:focus-visible,
 <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
 </div>
 </div>
-
 <div class="tagline" id="tagline">HEALTH SKILLS FOR REAL LIFE</div>
 </div>
 <div class="scr" id="scr-demo">
@@ -1206,20 +1431,19 @@ textarea:focus-visible,
 <div class="gmode">🏆 HIGH SCORES</div>
 <button class="abtn" onclick="clearScores()" style="margin-left:auto;padding:5px 11px;min-height:30px;font-size:0.72rem">CLEAR</button>
 </div>
-<div id="score-filters" style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">
-<button class="sopt on" onclick="filterScores('all',this)">All</button>
+<div id="score-filters"><button class="sopt on" onclick="filterScores('all',this)">All</button>
 <button class="sopt" onclick="filterScores('Health Challenge',this)">Challenge</button>
 <button class="sopt" onclick="filterScores('Prescriptions',this)">Rx</button>
 <button class="sopt" onclick="filterScores('Doctor Visits',this)">Doctor</button>
 <button class="sopt" onclick="filterScores('Health Insurance',this)">Insurance</button>
 <button class="sopt" onclick="filterScores('Emergencies',this)">Emergency</button>
-<button class="sopt" onclick="filterScores('Hygiene & Wellness',this)">Hygiene</button>
+<button class="sopt" onclick="filterScores('Hygiene &amp; Wellness',this)">Hygiene</button>
 <button class="sopt" onclick="filterScores('Mental Health',this)">Mental</button>
 <button class="sopt" onclick="filterScores('Daily Challenge',this)">Daily</button>
-<button class="sopt" onclick="filterScores('Practice Mode',this)">Practice</button>
-</div>
+<button class="sopt" onclick="filterScores('Practice Mode',this)">Practice</button></div>
+<div class="scores-summary" id="scores-summary" style="display:none"></div>
 <button id="read-scores-btn" style="display:block;width:100%;margin:10px 0 4px;padding:9px 16px;background:transparent;border:1px solid #e91e8c55;border-radius:20px;color:#e91e8c;font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px #e91e8c44">🔊  READ MY SCORES ALOUD</button>
-<div id="scores-wrap"><div class="no-data">No scores yet.<br/>Complete a shift to see your best!</div></div>
+<div id="scores-wrap"><div class="score-empty"><div class="score-empty-title">NO SCORES YET</div><div class="score-empty-sub">Complete a shift to see your best!</div></div></div>
 </div>
 <!-- ══════════ BADGES ══════════ -->
 <div class="scr" id="scr-badges">
@@ -1227,7 +1451,7 @@ textarea:focus-visible,
 <button class="back" onclick="go('home')">‹ BACK</button>
 <div class="gmode">🎖 BADGES</div>
 </div>
-<div class="bgrid2" id="bgrid"></div>
+<div id="bgrid"></div>
 </div>
 <!-- ══════════ GUIDE ══════════ -->
 <div class="scr" id="scr-guide">
@@ -1348,66 +1572,60 @@ textarea:focus-visible,
 <button onclick="resetApp()" style="width:100%;background:rgba(255,68,68,0.1);border:1px solid var(--red);border-radius:var(--radius-sm);color:var(--red);font-family:var(--font-mono);font-size:.75rem;padding:12px;cursor:pointer;letter-spacing:1px;font-weight:700">RESET APP - CLEAR ALL DATA</button>
 </div>
 </div>
-<div id="scr-coach" class="scr">
-  <div id="coach-save-indicator" style="display:none;font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:1px;margin:0 0 10px">Saved ✓</div>
-  <div id="coach-range-label" style="display:none;font-family:var(--font-mono);font-size:.64rem;color:var(--amber);letter-spacing:1px;margin:0 0 10px">📅 Showing range</div>
-
-  <div class="mc-header">
-    <div class="mc-title-wrap">
-      <div class="mc-title">HEALTHREADY</div>
-      <div class="mc-sub">MISSION CONTROL</div>
-      <div class="mc-meta" id="mc-meta">0 Active • 0 Need Review • 0 Sessions Today</div>
-    </div>
-
-    <div class="mc-actions">
-      <button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Learner</button>
-      <button class="mc-btn" onclick="openM('m-log')">📝 Log Session</button>
-      <button class="mc-btn" onclick="openM('m-goal')">🎯 Add Goal</button>
-      <button class="mc-btn" onclick="openM('m-date-range')">📅 Date Range</button>
-      <button class="mc-btn" onclick="exportCSV()">📥 Export</button>
-      <button class="mc-btn" onclick="printCoachReport()">🖨 Print</button>
-      <button class="mc-btn" onclick="toggleCoachFilters()" id="coach-filters-btn">⚙ Filters</button>
-      <button class="mc-btn" onclick="CFG.coachWelcomeSeen=false;renderCoach();showCoachWelcome(true);" style="font-size:.65rem;letter-spacing:.5px">❔ Quick Start</button>
-      <button class="mc-btn" onclick="toggleArchivedView()" id="arch-toggle-btn">🗂 Archived</button>
-      <button class="mc-btn" onclick="toggleSummaryMode()" id="summary-mode-btn">📄 Presentation View</button>
-    </div>
-  </div>
-
-  <div class="mc-stats">
-    <div class="mc-stat"><div class="mc-num" id="stat-clients">0</div><div class="mc-label">Active Learners</div></div>
-    <div class="mc-stat"><div class="mc-num" id="stat-sessions">0</div><div class="mc-label">Sessions Today</div></div>
-    <div class="mc-stat"><div class="mc-num" id="stat-goals">0</div><div class="mc-label">Goals Met</div></div>
-    <div class="mc-stat"><div class="mc-num" id="stat-independence">Baseline</div><div class="mc-label">Avg Independence</div></div>
-  </div>
-
-  <div class="mc-filters" id="coach-filters-bar">
-    <input id="coach-search" class="mc-search" placeholder="🔍 Search learners..." oninput="setCoachSearch(this.value)">
-    <button class="mc-filter" id="coach-needs-attn-btn" onclick="toggleNeedsAttention()">⚠ Needs Attention</button>
-    <button class="mc-filter" id="coach-clear-btn" onclick="clearCoachSearch()" style="display:none">Clear Search</button>
-  </div>
-
-  <div id="coach-welcome" class="mc-welcome" style="display:none">
-    <div class="mc-welcome-card">
-      <div class="mc-welcome-topline">HEALTHREADY · COACH TOOLS</div>
-      <div class="mc-welcome-title">👋 Welcome to Mission Control</div>
-      <p class="mc-welcome-copy">Track learner progress, spot support needs, and generate reports without extra data entry.</p>
-      <div class="mc-welcome-grid">
-        <div class="mc-welcome-step"><div class="mc-welcome-stepno">1</div><div class="mc-welcome-stepbody"><strong>Add Learner</strong> Create one profile for each learner.</div></div>
-        <div class="mc-welcome-step"><div class="mc-welcome-stepno">2</div><div class="mc-welcome-stepbody"><strong>Log Session</strong> Record the skill, prompt level, score, and a quick note.</div></div>
-        <div class="mc-welcome-step"><div class="mc-welcome-stepno">3</div><div class="mc-welcome-stepbody"><strong>Set Objective</strong> Add a goal once. Mission Control tracks progress automatically.</div></div>
-        <div class="mc-welcome-step"><div class="mc-welcome-stepno">4</div><div class="mc-welcome-stepbody"><strong>Smart Guidance</strong> Watch for Needs Attention, support needs, and next best actions.</div></div>
-      </div>
-      <div class="mc-welcome-note">Use initials or learner nicknames on shared devices. Mission Control keeps progress organized so staff spend less time typing and more time teaching.</div>
-      <div class="mc-welcome-foot">🔒 PIN protected. Data stays on this device unless you choose to export or print a report.</div>
-      <div class="mc-welcome-actions">
-        <button class="rpri" onclick="dismissCoachWelcome()">Enter Mission Control</button>
-        <button class="rsec" onclick="dismissCoachWelcome();setTimeout(()=>openClientModalSafe(),120)">Start by Adding a Learner</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="coach-flash" class="mc-flash"><div class="mc-flash-title">SESSION REPLAY</div><div class="mc-flash-copy" id="coach-flash-copy"></div></div>
-  <div id="coach-wrap"><div class="mc-empty">No learners yet.<br>Add a learner to start Mission Control.<div class="mc-empty-cta"><button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Learner</button><button class="mc-btn" onclick="showCoachWelcome()">❔ Quick Start</button></div></div></div>
+<div class="scr" id="scr-coach">
+<div id="coach-save-indicator" style="display:none;font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:1px;margin:0 0 10px">Saved ✓</div>
+<div id="coach-range-label" style="display:none;font-family:var(--font-mono);font-size:.64rem;color:var(--amber);letter-spacing:1px;margin:0 0 10px">📅 Showing range</div>
+<div class="mc-header">
+<div class="mc-title-wrap">
+<div class="mc-title">HEALTHREADY</div>
+<div class="mc-sub">MISSION CONTROL</div>
+<div class="mc-meta" id="mc-meta">0 Active • 0 Need Review • 0 Sessions Today</div>
+</div>
+<div class="mc-actions">
+<button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Learner</button>
+<button class="mc-btn" onclick="openM('m-log')">📝 Log Session</button>
+<button class="mc-btn" onclick="openM('m-goal')">🎯 Add Goal</button>
+<button class="mc-btn" onclick="openM('m-date-range')">📅 Date Range</button>
+<button class="mc-btn" onclick="exportCSV()">📥 Export</button>
+<button class="mc-btn" onclick="printCoachReport()">🖨 Print</button>
+<button class="mc-btn" id="coach-filters-btn" onclick="toggleCoachFilters()">⚙ Filters</button>
+<button class="mc-btn" onclick="CFG.coachWelcomeSeen=false;renderCoach();showCoachWelcome(true);" style="font-size:.65rem;letter-spacing:.5px">❔ Quick Start</button>
+<button class="mc-btn" id="arch-toggle-btn" onclick="toggleArchivedView()">🗂 Archived</button>
+<button class="mc-btn" id="summary-mode-btn" onclick="toggleSummaryMode()">📄 Presentation View</button>
+</div>
+</div>
+<div class="mc-stats">
+<div class="mc-stat"><div class="mc-num" id="stat-clients">0</div><div class="mc-label">Active Learners</div></div>
+<div class="mc-stat"><div class="mc-num" id="stat-sessions">0</div><div class="mc-label">Sessions Today</div></div>
+<div class="mc-stat"><div class="mc-num" id="stat-goals">0</div><div class="mc-label">Goals Met</div></div>
+<div class="mc-stat"><div class="mc-num" id="stat-independence">Baseline</div><div class="mc-label">Avg Independence</div></div>
+</div>
+<div class="mc-filters" id="coach-filters-bar">
+<input class="mc-search" id="coach-search" oninput="setCoachSearch(this.value)" placeholder="🔍 Search learners..."/>
+<button class="mc-filter" id="coach-needs-attn-btn" onclick="toggleNeedsAttention()">⚠ Needs Attention</button>
+<button class="mc-filter" id="coach-clear-btn" onclick="clearCoachSearch()" style="display:none">Clear Search</button>
+</div>
+<div class="mc-welcome" id="coach-welcome" style="display:none">
+<div class="mc-welcome-card">
+<div class="mc-welcome-topline">HEALTHREADY · COACH TOOLS</div>
+<div class="mc-welcome-title">👋 Welcome to Mission Control</div>
+<p class="mc-welcome-copy">Track learner progress, spot support needs, and generate reports without extra data entry.</p>
+<div class="mc-welcome-grid">
+<div class="mc-welcome-step"><div class="mc-welcome-stepno">1</div><div class="mc-welcome-stepbody"><strong>Add Learner</strong> Create one profile for each learner.</div></div>
+<div class="mc-welcome-step"><div class="mc-welcome-stepno">2</div><div class="mc-welcome-stepbody"><strong>Log Session</strong> Record the skill, prompt level, score, and a quick note.</div></div>
+<div class="mc-welcome-step"><div class="mc-welcome-stepno">3</div><div class="mc-welcome-stepbody"><strong>Set Objective</strong> Add a goal once. Mission Control tracks progress automatically.</div></div>
+<div class="mc-welcome-step"><div class="mc-welcome-stepno">4</div><div class="mc-welcome-stepbody"><strong>Smart Guidance</strong> Watch for Needs Attention, support needs, and next best actions.</div></div>
+</div>
+<div class="mc-welcome-note">Use initials or learner nicknames on shared devices. Mission Control keeps progress organized so staff spend less time typing and more time teaching.</div>
+<div class="mc-welcome-foot">🔒 PIN protected. Data stays on this device unless you choose to export or print a report.</div>
+<div class="mc-welcome-actions">
+<button class="rpri" onclick="dismissCoachWelcome()">Enter Mission Control</button>
+<button class="rsec" onclick="dismissCoachWelcome();setTimeout(()=&gt;openClientModalSafe(),120)">Start by Adding a Learner</button>
+</div>
+</div>
+</div>
+<div class="mc-flash" id="coach-flash"><div class="mc-flash-title">SESSION REPLAY</div><div class="mc-flash-copy" id="coach-flash-copy"></div></div>
+<div id="coach-wrap"><div class="mc-empty">No learners yet.<br/>Add a learner to start Mission Control.<div class="mc-empty-cta"><button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Learner</button><button class="mc-btn" onclick="showCoachWelcome()">❔ Quick Start</button></div></div></div>
 </div>
 <div class="scr" id="scr-mentalguide">
 <div class="gtop"><button class="back" onclick="go('guide')">‹ BACK</button><div class="gmode">🧠 MENTAL HEALTH GUIDE</div></div>
@@ -1440,7 +1658,7 @@ textarea:focus-visible,
 </div>
 <div class="guide-card" onclick="say('Script for asking your doctor to explain something. Say: I am sorry, I did not quite understand that. Could you explain it in simpler terms? Or could you write it down for me?')">
 <div class="gc-icon">🙋</div><div><div class="gc-title">ASKING FOR CLARIFICATION</div>
-<div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8">"I am sorry - I did not quite understand that. Could you explain it in simpler terms?" <br/><br/>"Could you write that down for me?"</div></div>
+<div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8">"I am sorry - I did not quite understand that. Could you explain it in simpler terms?" <br><br/>"Could you write that down for me?"</br></div></div>
 </div>
 <div class="guide-card" onclick="say('Script for canceling a doctor appointment. Say: Hi, I have an appointment scheduled for and I need to cancel or reschedule. I am sorry for the short notice. What is the earliest available time to rebook?')">
 <div class="gc-icon">📆</div><div><div class="gc-title">CANCELING OR RESCHEDULING</div>
@@ -1695,12 +1913,17 @@ textarea:focus-visible,
 </div>
 </div>
 <div class="scr" id="scr-game">
-<div class="gtop">
+<div class="gtop game-top">
+<div class="gmain">
 <button class="back" id="end-btn" onclick="confirmEnd()">‹ END</button>
 <div class="gmode" id="gmode-lbl">HEALTH CHALLENGE</div>
-<button class="back" onclick="syncQS();openM('m-quick-settings')" style="margin-left:auto;padding:7px 10px;font-size:1rem;min-width:36px" title="Settings">⚙️</button>
-<button class="back" onclick="replayModeIntro()" style="padding:7px 10px;font-size:.9rem;min-width:36px;font-weight:900;color:var(--green)" title="What is this mode?">?</button>
-<button class="back" onclick="requestBreak()" style="padding:7px 10px;font-size:.9rem;min-width:36px" title="I need a break">☕</button>
+</div>
+<div class="gside">
+<div class="gtools">
+<button class="back giconbtn" onclick="syncQS();openM('m-quick-settings')" title="Settings">⚙️</button>
+<button class="back giconbtn ghelpbtn" onclick="replayModeIntro()" title="What is this mode?">?</button>
+<button class="back giconbtn" onclick="requestBreak()" title="I need a break">☕</button>
+</div>
 <div class="gscore">
 <div class="sbox" id="sbox-score"><div class="sv" id="g-score">0</div><div class="sl">SCORE</div></div>
 <div class="sbox" id="sbox-streak">
@@ -1714,9 +1937,10 @@ textarea:focus-visible,
 <div class="lvl" id="g-lvl">BEGINNER</div>
 </div>
 </div>
+</div>
 <div class="pdots" id="pdots"></div>
-<div id="progress-text" class="progress-text" style="font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:1px;margin:-2px 0 8px;text-transform:uppercase;">Question 1 of 10</div>
-<div id="hint-counter" class="hint-counter" style="display:block;font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:1px;margin-bottom:8px;opacity:.85;">Hints used: 0</div>
+<div class="progress-text" id="progress-text" style="font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:1px;margin:-2px 0 8px;text-transform:uppercase;">Question 1 of 10</div>
+<div class="hint-counter" id="hint-counter" style="display:block;font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:1px;margin-bottom:8px;opacity:.85;">Hints used: 0</div>
 <div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
 <div class="qpanel" id="qpanel">
 <div id="g-question" style="font-size:.95rem;font-weight:800;color:var(--text);line-height:1.55;margin-bottom:14px;font-family:var(--font-mono)"></div>
@@ -1862,7 +2086,6 @@ textarea:focus-visible,
 <div class="guide-card" onclick="say('When sick, stay home until fever-free for 24 to 48 hours without medication and your symptoms are clearly improving.')"><div class="gc-icon">🤒</div><div><div class="gc-title">WHEN YOU ARE SICK</div><div class="gc-body">Stay home until: fever-free for 24-48 hours without fever-reducing medication AND symptoms clearly improving. Cough or sneeze into your elbow or a tissue, not your hands.</div></div></div>
 </div>
 </div>
-
 <div class="scr" id="scr-about">
 <div class="gtop">
 <button class="back" onclick="go('home')">‹ BACK</button>
@@ -1884,97 +2107,83 @@ textarea:focus-visible,
 <p style="font-size:.88rem;color:var(--text2);line-height:1.8">For the job coaches, support workers, nurses, and special educators who know that health independence is real independence. And for everyone who has ever left a doctor's office confused, been handed a prescription they could not read, or faced a health situation and had no idea what to do. You can. You will.</p>
 <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-top:10px">If any of the topics in this app bring up something you are going through personally - please talk to someone. Call or text <strong style="color:var(--text)">988</strong> any time. You do not have to figure it out alone.</p>
 </div></div>
-    <div class="gsec">
-      <div class="gtitle">🏥 PART OF THE LIFEREADY SUITE</div>
-      <div class="gcard">
-        <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">HealthReady is part of the LifeReady suite - a growing set of free, accessible life skills trainers built by the same person, for the same purpose.</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch">
-        <div style="background:rgba(0,200,81,0.08);border:1px solid rgba(0,200,81,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">💵</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#00c851;font-weight:700;margin-top:4px">CashReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Money Skills</div>
-        </div>
-        <div style="background:rgba(34,136,255,0.08);border:1px solid rgba(34,136,255,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">🕐</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#2288ff;font-weight:700;margin-top:4px">TimeReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Time Skills</div>
-        </div>
-        <div style="background:rgba(212,144,10,0.08);border:1px solid rgba(212,144,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">💼</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#d4900a;font-weight:700;margin-top:4px">JobReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Work Skills</div>
-        </div>
-        <div style="background:rgba(232,101,10,0.08);border:1px solid rgba(232,101,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">🏠</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#e8650a;font-weight:700;margin-top:4px">HomeReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Home Skills</div>
-        </div>
-        <div style="background:rgba(10,147,150,0.08);border:1px solid rgba(10,147,150,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">🗺️</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#0a9396;font-weight:700;margin-top:4px">TravelReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Travel Skills</div>
-        </div>
-        <div style="background:rgba(155,48,217,0.08);border:1px solid rgba(155,48,217,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">💬</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#9b30d9;font-weight:700;margin-top:4px">SocialReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Social Skills</div>
-        </div>
-        <div style="background:rgba(204,34,0,0.08);border:1px solid rgba(204,34,0,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">📱</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#cc2200;font-weight:700;margin-top:4px">TechReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Digital Skills</div>
-        </div>
-        <div style="background:rgba(233,30,140,0.15);border:2px solid #e91e8c;border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">🏥</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#e91e8c;font-weight:700;margin-top:4px">HealthReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Health & Life Skills</div>
-          <div style="font-size:.62rem;color:#e91e8c;margin-top:3px;font-weight:700">← You are here</div>
-        </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gsec">
-      <div class="gtitle">🆓 ALWAYS FREE</div>
-      <div class="gcard" style="text-align:center;padding:20px">
-        <div style="font-size:2rem;margin-bottom:10px">🆓</div>
-        <p style="font-size:.88rem;color:var(--text2);line-height:1.8">HealthReady is a free med bay for everyone. No accounts. No ads. No paywalls. Progress and preferences stay on this device. Practice appointments, medicine safety, body awareness, and everyday health routines at your own pace.</p>
-      </div>
-    </div>
-
-    <div style="text-align:center;padding:20px 0 8px">
-      <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;margin-bottom:4px">HealthReady v1.0</div>
-      <div style="font-size:.82rem;color:var(--text2);line-height:1.6;max-width:260px;margin:0 auto">Built with love, by someone who gets it. Free for everyone. Always.</div>
-    </div>
-    <div style="margin:0 0 20px;padding:18px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
-      <div style="font-size:1.6rem;margin-bottom:8px">🏥</div>
-      <div style="font-family:'Dancing Script',cursive;font-size:2.6rem;color:#e91e8c;line-height:1.1;margin-bottom:6px;text-shadow:0 0 30px rgba(233,30,140,0.4)">Tristan Beck</div>
-      <div style="font-size:.8rem;color:var(--text2);line-height:1.7;margin-bottom:6px">HealthReady - Health & Life Skills Trainer</div>
-      <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px">FREE FOR EVERYONE · ALWAYS</div>
-    </div>
-    <div style="text-align:center;padding:20px 0 8px">
-      <a href="index.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;text-decoration:none;color:#e91e8c;border:1px solid #e91e8c55;border-radius:20px;padding:8px 22px;display:inline-block;text-shadow:0 0 10px #e91e8c44;transition:box-shadow .2s,border-color .2s" onclick="event.preventDefault();window.open('index.html','_self')">← BACK TO LIFEREADY HUB</a>
-    </div>
+<div class="gsec">
+<div class="gtitle">🏥 PART OF THE LIFEREADY SUITE</div>
+<div class="gcard">
+<p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">HealthReady is part of the LifeReady suite - a growing set of free, accessible life skills trainers built by the same person, for the same purpose.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch">
+<div style="background:rgba(0,200,81,0.08);border:1px solid rgba(0,200,81,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">💵</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#00c851;font-weight:700;margin-top:4px">CashReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Money Skills</div>
+</div>
+<div style="background:rgba(34,136,255,0.08);border:1px solid rgba(34,136,255,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">🕐</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#2288ff;font-weight:700;margin-top:4px">TimeReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Time Skills</div>
+</div>
+<div style="background:rgba(212,144,10,0.08);border:1px solid rgba(212,144,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">💼</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#d4900a;font-weight:700;margin-top:4px">JobReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Work Skills</div>
+</div>
+<div style="background:rgba(232,101,10,0.08);border:1px solid rgba(232,101,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">🏠</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#e8650a;font-weight:700;margin-top:4px">HomeReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Home Skills</div>
+</div>
+<div style="background:rgba(10,147,150,0.08);border:1px solid rgba(10,147,150,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">🗺️</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#0a9396;font-weight:700;margin-top:4px">TravelReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Travel Skills</div>
+</div>
+<div style="background:rgba(155,48,217,0.08);border:1px solid rgba(155,48,217,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">💬</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#9b30d9;font-weight:700;margin-top:4px">SocialReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Social Skills</div>
+</div>
+<div style="background:rgba(204,34,0,0.08);border:1px solid rgba(204,34,0,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">📱</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#cc2200;font-weight:700;margin-top:4px">TechReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Digital Skills</div>
+</div>
+<div style="background:rgba(233,30,140,0.15);border:2px solid #e91e8c;border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">🏥</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#e91e8c;font-weight:700;margin-top:4px">HealthReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Health &amp; Life Skills</div>
+<div style="font-size:.62rem;color:#e91e8c;margin-top:3px;font-weight:700">← You are here</div>
+</div>
+</div>
+</div>
+</div>
+<div class="gsec">
+<div class="gtitle">🆓 ALWAYS FREE</div>
+<div class="gcard" style="text-align:center;padding:20px">
+<div style="font-size:2rem;margin-bottom:10px">🆓</div>
+<p style="font-size:.88rem;color:var(--text2);line-height:1.8">HealthReady is a free med bay for everyone. No accounts. No ads. No paywalls. Progress and preferences stay on this device. Practice appointments, medicine safety, body awareness, and everyday health routines at your own pace.</p>
+</div>
+</div>
+<div style="text-align:center;padding:20px 0 8px">
+<div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;margin-bottom:4px">HealthReady v1.0</div>
+<div style="font-size:.82rem;color:var(--text2);line-height:1.6;max-width:260px;margin:0 auto">Built with love, by someone who gets it. Free for everyone. Always.</div>
+</div>
+<div style="margin:0 0 20px;padding:18px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
+<div style="font-size:1.6rem;margin-bottom:8px">🏥</div>
+<div style="font-family:'Dancing Script',cursive;font-size:2.6rem;color:#e91e8c;line-height:1.1;margin-bottom:6px;text-shadow:0 0 30px rgba(233,30,140,0.4)">Tristan Beck</div>
+<div style="font-size:.8rem;color:var(--text2);line-height:1.7;margin-bottom:6px">HealthReady - Health &amp; Life Skills Trainer</div>
+<div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px">FREE FOR EVERYONE · ALWAYS</div>
+</div>
+<div style="text-align:center;padding:20px 0 8px">
+<a href="index.html" onclick="event.preventDefault();window.open('index.html','_self')" style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;text-decoration:none;color:#e91e8c;border:1px solid #e91e8c55;border-radius:20px;padding:8px 22px;display:inline-block;text-shadow:0 0 10px #e91e8c44;transition:box-shadow .2s,border-color .2s">← BACK TO LIFEREADY HUB</a>
+</div>
 <!-- ══ DESKTOP SIDEBAR (hidden on mobile) ══ -->
-
-
 <!-- ══ BREAK SCREEN ══ -->
-
 <!-- ══ MODALS ══ -->
-
-
-
-
 <!-- ══ COACH PIN ══ -->
-
 <!-- ══ NAME PROMPT ══ -->
-
 <!-- ══ STREAK MILESTONE ══ -->
-
 <!-- ══ QUICK SETTINGS (mid-game) ══ -->
-
 <!-- ══ BADGE TOAST ══ -->
-
 </div>
 <script>
 
@@ -2870,7 +3079,43 @@ function genQuestionDedup(mode){
   return picked;
 }
 
+
+function renderQuestionFallback(msg){
+  currentQ={
+    q: msg || "Let's keep going.",
+    opts:['Continue','Try again','Skip for now','Back'],
+    correct:0,
+    explain:'The question did not load correctly, so a fallback was used to keep the module running.',
+    hint:'Tap Continue to move on.'
+  };
+  updateGameMeta();
+  if(typeof updDots==='function') updDots();
+  const scoreEl=$('g-score'); if(scoreEl) scoreEl.textContent=ST.score;
+  const lvlEl=$('g-lvl'); if(lvlEl) lvlEl.textContent=getLvl(ST.score).n;
+  const qEl=$('g-question'); if(qEl) qEl.textContent=currentQ.q;
+  const vis=$('g-visual'); if(vis) vis.innerHTML='';
+  const opts=$('g-opts');
+  if(opts){
+    opts.innerHTML='';
+    const shuffled=currentQ.opts.map((t,i)=>({t,i})).sort(()=>Math.random()-.5);
+    const correctIdx=shuffled.findIndex(x=>x.i===currentQ.correct);
+    currentQ._shuffledCorrect=correctIdx;
+    shuffled.forEach(({t},newIdx)=>{
+      const btn=document.createElement('button');
+      btn.className='qo'+(CFG.errorless&&newIdx===correctIdx?' ok':'');
+      btn.textContent=t;
+      btn.onclick=()=>answerQ(newIdx);
+      opts.appendChild(btn);
+    });
+  }
+  const fb=$('g-fb'); if(fb){ fb.className='qfb'; fb.style.display='none'; fb.innerHTML=''; }
+  const hb=$('g-hint-bar'); if(hb) hb.style.display='none';
+  const hintBtn=$('hint-btn'); if(hintBtn) hintBtn.disabled=false;
+  say(currentQ.q);
+}
+
 function genQ(){
+  try{
   ST.answered=false;
   if(CFG.breaks && txCountForBreak>=5 && ST.total<ST.maxQ && ST.mode!=='daily'){
     const msgs=[
@@ -2903,6 +3148,12 @@ function genQ(){
     else{mb.style.display='none';}
   }
   currentQ=genQuestionDedup(ST.mode);
+  if(!currentQ || !currentQ.q || !Array.isArray(currentQ.opts) || !currentQ.opts.length){
+    currentQ=genQuestion(ST.mode);
+  }
+  if(!currentQ || !currentQ.q || !Array.isArray(currentQ.opts) || !currentQ.opts.length){
+    currentQ={q:'Let\'s try the next question.',opts:['Continue','Try again','Skip for now','Back'],correct:0,explain:'The question did not load correctly, so a fallback was used to keep the module running.',hint:'Tap Continue to move on.'};
+  }
   updateProgressText();
   updateHintCounter();
   updDots();
@@ -2925,6 +3176,10 @@ function genQ(){
   {const _z=$('g-hint-bar');if(_z)_z.style.display='none';}
   if($('hint-btn')) $('hint-btn').disabled=false;
   say(currentQ.q);
+  }catch(e){
+    console.warn('Question render fallback', e);
+    renderQuestionFallback("Let's keep going.");
+  }
 }
 
 function answerQ(chosen){
@@ -3339,19 +3594,9 @@ function filterScores(mode,el){
   renderScores();
 }
 function renderScores(){
-  if(!SCORES.length){$('scores-wrap').innerHTML='<div class="no-data">No scores yet.<br>Complete a session to see your best!</div>';return;}
-  // Filter
-  let filtered=SCORES;
-  if(scoreFilter!=='all'){
-    filtered=SCORES.filter(s=>s.mode.toLowerCase().includes(scoreFilter.toLowerCase()));
-  }
-  if(!filtered.length){$('scores-wrap').innerHTML='<div class="no-data">No scores for this mode yet.</div>';return;}
-  // Find personal bests per mode
-  const bests={};
-  SCORES.forEach(s=>{if(!bests[s.mode]||s.score>bests[s.mode])bests[s.mode]=s.score;});
-  
-  // Read scores button
+  const summaryEl=$('scores-summary');
   const readBtn=document.getElementById('read-scores-btn');
+
   if(readBtn && !readBtn.getAttribute('data-tts')){
     readBtn.setAttribute('data-tts','1');
     readBtn.addEventListener('click',()=>{
@@ -3367,16 +3612,67 @@ function renderScores(){
       say(txt.trim());
     });
   }
-$('scores-wrap').innerHTML=`<div class="slist">${filtered.map((s,i)=>{
-    const isPB=s.score===bests[s.mode]&&filtered.filter(x=>x.mode===s.mode).indexOf(s)===0;
-    const pct=s.total>0?Math.round(s.correct/s.total*100):0;
-    const hasStreak=s.streak>0;
-    return `<div class="se" style="${isPB?'border-color:var(--amber);background:rgba(255,187,51,.05)':''}">
-      <div>
-        <div class="se-m">${s.mode.toUpperCase()}${isPB?' <span style="color:var(--amber);font-size:.6rem">★ BEST</span>':''}</div>
-        <div class="se-d">${s.date} · ${s.correct}/${s.total} correct · ${pct}%${hasStreak?' · streak '+s.streak:''}</div>
+
+  if(!SCORES.length){
+    if(summaryEl){ summaryEl.style.display='none'; summaryEl.innerHTML=''; }
+    $('scores-wrap').innerHTML='<div class="score-empty"><div class="score-empty-title">NO SCORES YET</div><div class="score-empty-sub">Complete a shift to see your best!</div></div>';
+    return;
+  }
+
+  let filtered = scoreFilter==='all' ? [...SCORES] : SCORES.filter(s=>String(s.mode||'').toLowerCase().includes(String(scoreFilter).toLowerCase()));
+  filtered = filtered.slice().sort((a,b)=>{
+    const sa=Number(a.score)||0, sb=Number(b.score)||0;
+    if(sb!==sa) return sb-sa;
+    const pa=(a.total>0)?((a.correct||0)/(a.total||1)):0;
+    const pb=(b.total>0)?((b.correct||0)/(b.total||1)):0;
+    return pb-pa;
+  });
+
+  if(!filtered.length){
+    if(summaryEl){ summaryEl.style.display='none'; summaryEl.innerHTML=''; }
+    $('scores-wrap').innerHTML='<div class="score-empty"><div class="score-empty-title">NO SCORES FOR THIS MODE</div><div class="score-empty-sub">Try another filter or play this mode to add a score here.</div></div>';
+    return;
+  }
+
+  const bests={};
+  SCORES.forEach(s=>{ if(!bests[s.mode] || (Number(s.score)||0) > bests[s.mode]) bests[s.mode] = Number(s.score)||0; });
+
+  const topScore = Math.max(...filtered.map(s=>Number(s.score)||0));
+  const avgPct = Math.round(filtered.reduce((n,s)=>n + ((s.total>0)?Math.round((s.correct||0)/(s.total||1)*100):0), 0) / filtered.length);
+  const entries = filtered.length;
+
+  if(summaryEl){
+    summaryEl.style.display='grid';
+    summaryEl.innerHTML = `
+      <div class="score-stat">
+        <div class="score-stat-label">Top Score</div>
+        <div class="score-stat-value">${topScore}</div>
       </div>
-      <div class="se-v" style="${isPB?'color:var(--amber)':''}">${s.score}</div>
+      <div class="score-stat">
+        <div class="score-stat-label">Entries</div>
+        <div class="score-stat-value">${entries}</div>
+      </div>
+      <div class="score-stat">
+        <div class="score-stat-label">Avg Accuracy</div>
+        <div class="score-stat-value">${avgPct}%</div>
+      </div>`;
+  }
+
+  $('scores-wrap').innerHTML = `<div class="slist">${filtered.map((s,i)=>{
+    const scoreVal = Number(s.score)||0;
+    const pct = s.total>0 ? Math.round((s.correct||0)/(s.total||1)*100) : 0;
+    const isPB = scoreVal === bests[s.mode];
+    const streakText = (s.streak && s.streak>0) ? ' · streak '+s.streak : '';
+    return `<div class="se ${isPB?'best':''}">
+      <div class="se-rank">#${i+1}</div>
+      <div class="se-main">
+        <div class="se-m">${String(s.mode||'SESSION').toUpperCase()}${isPB?'<span class="se-best">★ BEST</span>':''}</div>
+        <div class="se-d">${s.date||'No date'} · ${(s.correct||0)}/${(s.total||0)} correct${streakText}</div>
+      </div>
+      <div class="se-side">
+        <div class="se-v">${scoreVal}</div>
+        <div class="se-meta">${pct}% accuracy</div>
+      </div>
     </div>`;
   }).join('')}</div>`;
 }
@@ -3724,7 +4020,8 @@ function openM(id){
   }
   $(id).classList.add('on');
 }
-function closeM(id){$(id).classList.remove('on');}
+function closeM(id){
+  if(id==='m-hint' && window.speechSynthesis) window.speechSynthesis.cancel();$(id).classList.remove('on');}
 
 function toISODateValue(raw){
   if(!raw) return '';
@@ -4202,6 +4499,185 @@ function printReport(i){
 .mc-empty,.no-data{background:var(--panel);border:2px dashed var(--border2);border-radius:var(--radius);padding:28px 18px;text-align:center;color:var(--text2);line-height:1.65;}
 .mc-flash{display:none;}
 
+
+
+/* === STANDARDIZED SCORES === */
+.scores-summary{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin:0 0 12px;
+}
+.score-stat{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:12px 14px;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-stat-label{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text2);
+  margin-bottom:6px;
+}
+.score-stat-value{
+  font-family:var(--font-display);
+  font-size:1.45rem;
+  line-height:1;
+  color:var(--amber);
+}
+#score-filters{
+  display:flex;
+  gap:7px !important;
+  flex-wrap:wrap;
+  margin-bottom:12px !important;
+}
+.sopt{
+  background:linear-gradient(135deg,var(--bg3),rgba(255,255,255,0.02));
+  border:2px solid var(--border);
+  border-radius:12px;
+  padding:7px 12px;
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  font-weight:700;
+  color:var(--text2);
+  cursor:pointer;
+  transition:.2s;
+  min-height:40px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.sopt.on{
+  background:var(--green);
+  border-color:var(--green);
+  color:#000;
+  box-shadow:0 0 16px color-mix(in srgb, var(--green) 28%, transparent);
+}
+#read-scores-btn{
+  margin:10px 0 10px !important;
+}
+.slist{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.se{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:14px 16px;
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  gap:12px;
+  align-items:center;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.se.best{
+  border-color:var(--amber);
+  background:linear-gradient(135deg,rgba(255,187,51,.06),var(--bg2));
+}
+.se-rank{
+  width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:12px;
+  font-family:var(--font-display);
+  font-size:1rem;
+  color:var(--green);
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+}
+.se.best .se-rank{
+  color:var(--amber);
+  border-color:rgba(255,187,51,.35);
+  background:rgba(255,187,51,.08);
+}
+.se-main{min-width:0;}
+.se-m{
+  font-family:var(--font-mono);
+  font-size:0.86rem;
+  color:var(--green);
+  font-weight:700;
+  letter-spacing:.5px;
+  line-height:1.35;
+}
+.se-best{
+  color:var(--amber);
+  font-size:.6rem;
+  margin-left:6px;
+}
+.se-d{
+  font-size:0.74rem;
+  color:var(--text2);
+  margin-top:4px;
+  line-height:1.45;
+}
+.se-side{
+  text-align:right;
+}
+.se-v{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.5rem;
+  color:var(--amber);
+  line-height:1;
+}
+.se-meta{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:1px;
+  color:var(--text2);
+  margin-top:6px;
+  text-transform:uppercase;
+}
+.score-empty{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-empty-title{
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  margin-bottom:10px;
+}
+.score-empty-sub{
+  color:var(--text2);
+  line-height:1.7;
+  font-size:.96rem;
+}
+.no-data{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  color:var(--text2);
+  font-family:var(--font-body);
+  font-size:.96rem;
+  line-height:1.7;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.no-data strong{
+  display:block;
+  margin-bottom:10px;
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  text-transform:uppercase;
+}
+@media(max-width:640px){
+  .scores-summary{grid-template-columns:1fr;}
+  .se{grid-template-columns:38px 1fr;align-items:start;}
+  .se-rank{width:38px;height:38px;}
+  .se-side{grid-column:2; text-align:left; margin-top:2px;}
+}
 
 </style></head><body>
 
@@ -4809,6 +5285,185 @@ w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</t
 .mc-flash{display:none;}
 
 
+
+/* === STANDARDIZED SCORES === */
+.scores-summary{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin:0 0 12px;
+}
+.score-stat{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:12px 14px;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-stat-label{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text2);
+  margin-bottom:6px;
+}
+.score-stat-value{
+  font-family:var(--font-display);
+  font-size:1.45rem;
+  line-height:1;
+  color:var(--amber);
+}
+#score-filters{
+  display:flex;
+  gap:7px !important;
+  flex-wrap:wrap;
+  margin-bottom:12px !important;
+}
+.sopt{
+  background:linear-gradient(135deg,var(--bg3),rgba(255,255,255,0.02));
+  border:2px solid var(--border);
+  border-radius:12px;
+  padding:7px 12px;
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  font-weight:700;
+  color:var(--text2);
+  cursor:pointer;
+  transition:.2s;
+  min-height:40px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.sopt.on{
+  background:var(--green);
+  border-color:var(--green);
+  color:#000;
+  box-shadow:0 0 16px color-mix(in srgb, var(--green) 28%, transparent);
+}
+#read-scores-btn{
+  margin:10px 0 10px !important;
+}
+.slist{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.se{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:14px 16px;
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  gap:12px;
+  align-items:center;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.se.best{
+  border-color:var(--amber);
+  background:linear-gradient(135deg,rgba(255,187,51,.06),var(--bg2));
+}
+.se-rank{
+  width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:12px;
+  font-family:var(--font-display);
+  font-size:1rem;
+  color:var(--green);
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+}
+.se.best .se-rank{
+  color:var(--amber);
+  border-color:rgba(255,187,51,.35);
+  background:rgba(255,187,51,.08);
+}
+.se-main{min-width:0;}
+.se-m{
+  font-family:var(--font-mono);
+  font-size:0.86rem;
+  color:var(--green);
+  font-weight:700;
+  letter-spacing:.5px;
+  line-height:1.35;
+}
+.se-best{
+  color:var(--amber);
+  font-size:.6rem;
+  margin-left:6px;
+}
+.se-d{
+  font-size:0.74rem;
+  color:var(--text2);
+  margin-top:4px;
+  line-height:1.45;
+}
+.se-side{
+  text-align:right;
+}
+.se-v{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.5rem;
+  color:var(--amber);
+  line-height:1;
+}
+.se-meta{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:1px;
+  color:var(--text2);
+  margin-top:6px;
+  text-transform:uppercase;
+}
+.score-empty{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-empty-title{
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  margin-bottom:10px;
+}
+.score-empty-sub{
+  color:var(--text2);
+  line-height:1.7;
+  font-size:.96rem;
+}
+.no-data{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  color:var(--text2);
+  font-family:var(--font-body);
+  font-size:.96rem;
+  line-height:1.7;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.no-data strong{
+  display:block;
+  margin-bottom:10px;
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  text-transform:uppercase;
+}
+@media(max-width:640px){
+  .scores-summary{grid-template-columns:1fr;}
+  .se{grid-template-columns:38px 1fr;align-items:start;}
+  .se-rank{width:38px;height:38px;}
+  .se-side{grid-column:2; text-align:left; margin-top:2px;}
+}
+
 </style></head><body> <div class="no-print" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">🖨️ Print / Save as PDF</button></div> <h1>${appName} - Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} learner${CLIENTS.length!==1?'s':''}${hasCoachRange()?` | ${fmtCoachRangeLabel().replace('📅 ','')}`:''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
 w.document.close();
 }
@@ -5219,5 +5874,5 @@ function initHomeCardWiring(){
 initHomeCardWiring();
 document.addEventListener('DOMContentLoaded', initHomeCardWiring);
 </script>
-</body>
+</div></div></body>
 </html>

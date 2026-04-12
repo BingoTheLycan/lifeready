@@ -2,20 +2,20 @@
 
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#0d0a07">
-<meta name="description" content="TechReady - Digital skills trainer for everyone. Practice phone safety, messaging, online basics, and everyday technology skills. Free, accessible.">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="LifeReady">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta content="#0d0a07" name="theme-color"/>
+<meta content="TechReady - Digital skills trainer for everyone. Practice phone safety, messaging, online basics, and everyday technology skills. Free, accessible." name="description"/>
+<meta content="yes" name="mobile-web-app-capable"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="LifeReady" name="apple-mobile-web-app-title"/>
 <title>TechReady | LifeReady</title>
 <!-- Shared app manifest -->
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon_512.png">
-<link rel="apple-touch-icon" href="icon_192.png">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<link href="manifest.json" rel="manifest"/>
+<link href="icon_512.png" rel="icon"/>
+<link href="icon_192.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Space+Mono:wght@400;700&amp;family=Nunito:wght@400;600;700;800;900&amp;family=Fredoka+One&amp;display=swap" rel="stylesheet"/>
 <style>
 /* ═══════════════════════════════════════════════════════
    TechReady v1.0
@@ -100,7 +100,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 /* ══ SCREENS ══ */
 .scr{display:none;} .scr.on{display:block;}
 .scr:not(.on) *{pointer-events:none!important;}
-#fov:not(.show){pointer-events:none!important;}
+#fov:not(.on){pointer-events:none!important;}
 .mow:not(.on){pointer-events:none!important;}
 
 main{max-width:480px;margin:0 auto;padding:14px 12px 90px;}
@@ -246,11 +246,73 @@ pointer-events:none;
 @keyframes coinDrop{from{transform:translateY(-20px) scale(.7);opacity:0}to{transform:none;opacity:1}}
 
 /* ══ GAME TOP ══ */
-.gtop{display:flex;align-items:center;gap:9px;margin-bottom:12px;flex-wrap:wrap;}
+.gtop{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:9px;margin-bottom:12px;}
 .back{background:var(--bg2);border:1px solid #cc220055;color:#cc2200;border-radius:8px;padding:7px 14px;font-family:var(--font-mono);font-size:.75rem;letter-spacing:1px;cursor:pointer;transition:box-shadow .2s,border-color .2s;}.back:hover{box-shadow:0 0 12px #cc220044;border-color:#cc2200;}
 .back:hover{border-color:var(--green);color:var(--green);}
-.gmode{font-family:var(--font-mono);font-size:0.75rem;color:var(--green);letter-spacing:2px;font-weight:700;}
+.gmode{font-family:var(--font-mono);font-size:0.75rem;color:var(--green);letter-spacing:2px;font-weight:700;min-width:0;}
 .gscore{margin-left:auto;display:flex;gap:12px;align-items:center;}
+.game-top{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:start;
+  gap:10px 12px;
+  margin-bottom:12px;
+}
+.game-top .gmain{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+.game-top .gmode{
+  min-width:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.game-top .gside{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:8px;
+}
+.game-top .gtools{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+}
+.game-top .giconbtn{
+  min-width:42px;
+  min-height:42px;
+  padding:7px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  line-height:1;
+}
+.game-top .ghelpbtn{
+  font-weight:900;
+}
+.game-top .gscore{
+  margin-left:0;
+  justify-content:flex-end;
+  gap:10px;
+}
+@media(max-width:640px){
+  .game-top .gmain{gap:8px}
+  .game-top .giconbtn{
+    min-width:40px;
+    min-height:40px;
+    padding:7px 9px;
+  }
+  .game-top .gmode{
+    font-size:.74rem;
+    letter-spacing:1.5px;
+  }
+  .game-top .gside{gap:6px}
+}
 .sbox{text-align:center;}
 .sv{font-family:var(--font-mono);font-weight:700;font-size:1.05rem;color:var(--green);}
 .sl{font-size:0.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;}
@@ -914,1113 +976,1198 @@ textarea:focus-visible,
   #desktop-sidebar{display:none!important;}
   #scr-game.on,#scr-results.on{grid-column:auto!important;}
 }
+
+/* === STANDARDIZED SCORES === */
+.scores-summary{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin:0 0 12px;
+}
+.score-stat{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:12px 14px;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-stat-label{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text2);
+  margin-bottom:6px;
+}
+.score-stat-value{
+  font-family:var(--font-display);
+  font-size:1.45rem;
+  line-height:1;
+  color:var(--amber);
+}
+#score-filters{
+  display:flex;
+  gap:7px !important;
+  flex-wrap:wrap;
+  margin-bottom:12px !important;
+}
+.sopt{
+  background:linear-gradient(135deg,var(--bg3),rgba(255,255,255,0.02));
+  border:2px solid var(--border);
+  border-radius:12px;
+  padding:7px 12px;
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  font-weight:700;
+  color:var(--text2);
+  cursor:pointer;
+  transition:.2s;
+  min-height:40px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.sopt.on{
+  background:var(--green);
+  border-color:var(--green);
+  color:#000;
+  box-shadow:0 0 16px color-mix(in srgb, var(--green) 28%, transparent);
+}
+#read-scores-btn{
+  margin:10px 0 10px !important;
+}
+.slist{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.se{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:14px 16px;
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  gap:12px;
+  align-items:center;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.se.best{
+  border-color:var(--amber);
+  background:linear-gradient(135deg,rgba(255,187,51,.06),var(--bg2));
+}
+.se-rank{
+  width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:12px;
+  font-family:var(--font-display);
+  font-size:1rem;
+  color:var(--green);
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+}
+.se.best .se-rank{
+  color:var(--amber);
+  border-color:rgba(255,187,51,.35);
+  background:rgba(255,187,51,.08);
+}
+.se-main{min-width:0;}
+.se-m{
+  font-family:var(--font-mono);
+  font-size:0.86rem;
+  color:var(--green);
+  font-weight:700;
+  letter-spacing:.5px;
+  line-height:1.35;
+}
+.se-best{
+  color:var(--amber);
+  font-size:.6rem;
+  margin-left:6px;
+}
+.se-d{
+  font-size:0.74rem;
+  color:var(--text2);
+  margin-top:4px;
+  line-height:1.45;
+}
+.se-side{
+  text-align:right;
+}
+.se-v{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.5rem;
+  color:var(--amber);
+  line-height:1;
+}
+.se-meta{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:1px;
+  color:var(--text2);
+  margin-top:6px;
+  text-transform:uppercase;
+}
+.score-empty{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-empty-title{
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  margin-bottom:10px;
+}
+.score-empty-sub{
+  color:var(--text2);
+  line-height:1.7;
+  font-size:.96rem;
+}
+.no-data{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  color:var(--text2);
+  font-family:var(--font-body);
+  font-size:.96rem;
+  line-height:1.7;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.no-data strong{
+  display:block;
+  margin-bottom:10px;
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  text-transform:uppercase;
+}
+@media(max-width:640px){
+  .scores-summary{grid-template-columns:1fr;}
+  .se{grid-template-columns:38px 1fr;align-items:start;}
+  .se-rank{width:38px;height:38px;}
+  .se-side{grid-column:2; text-align:left; margin-top:2px;}
+}
+
 </style>
-<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
 <defs>
-<filter id="cb-proto" color-interpolation-filters="sRGB">
-<feColorMatrix type="matrix" values="0.567 0.433 0 0 0  0.558 0.442 0 0 0  0 0.242 0.758 0 0  0 0 0 1 0"/>
+<filter color-interpolation-filters="sRGB" id="cb-proto">
+<fecolormatrix type="matrix" values="0.567 0.433 0 0 0  0.558 0.442 0 0 0  0 0.242 0.758 0 0  0 0 0 1 0"></fecolormatrix>
 </filter>
-<filter id="cb-deuter" color-interpolation-filters="sRGB">
-<feColorMatrix type="matrix" values="0.625 0.375 0 0 0  0.700 0.300 0 0 0  0 0.300 0.700 0 0  0 0 0 1 0"/>
+<filter color-interpolation-filters="sRGB" id="cb-deuter">
+<fecolormatrix type="matrix" values="0.625 0.375 0 0 0  0.700 0.300 0 0 0  0 0.300 0.700 0 0  0 0 0 1 0"></fecolormatrix>
 </filter>
-<filter id="cb-trita" color-interpolation-filters="sRGB">
-<feColorMatrix type="matrix" values="0.950 0.050 0 0 0  0 0.433 0.567 0 0  0 0.475 0.525 0 0  0 0 0 1 0"/>
+<filter color-interpolation-filters="sRGB" id="cb-trita">
+<fecolormatrix type="matrix" values="0.950 0.050 0 0 0  0 0.433 0.567 0 0  0 0.475 0.525 0 0  0 0 0 1 0"></fecolormatrix>
 </filter>
 </defs>
 </svg>
-
 </head>
 <body>
 <div id="page-wrap">
-
 <header class="hdr">
-  <div class="hdr-logo"><span style="color:var(--green)">T</span><span style="color:var(--text2)">ECH</span><span style="color:var(--green)">RE</span><span style="color:var(--text2)">ADY</span> <small>v1.0</small></div>
-  <nav class="hdr-nav">
-    <button class="nb on" id="nb-home" onclick="go('home')">HOME</button>
-    <button class="nb" id="nb-coach" onclick="coachNav()">COACH</button>
-    <button class="aa-btn" id="aa-btn" onclick="toggleFontSize()" title="Toggle large text" aria-label="Toggle large text">Aa</button>
-  </nav>
+<div class="hdr-logo"><span style="color:var(--green)">T</span><span style="color:var(--text2)">ECH</span><span style="color:var(--green)">RE</span><span style="color:var(--text2)">ADY</span> <small>v1.0</small></div>
+<nav class="hdr-nav">
+<button class="nb on" id="nb-home" onclick="go('home')">HOME</button>
+<button class="nb" id="nb-coach" onclick="coachNav()">COACH</button>
+<button aria-label="Toggle large text" class="aa-btn" id="aa-btn" onclick="toggleFontSize()" title="Toggle large text">Aa</button>
+</nav>
 </header>
-
 <main>
-
 <!-- ══════════ HOME ══════════ -->
-
-<div id="scr-home" class="scr on">
-  <div class="home-hero">
-    <div class="home-title" id="techready-logo">
-      <span class="cr-cash">TECH</span><span class="cr-ready">READY</span>
-    </div>
-    <div class="home-tagline">- TECH SKILLS TRAINER -</div>
-    <div class="home-sub" id="home-sub">Practice digital safety and everyday tech skills.</div>
-  <button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-size:.65rem;color:#cc2200;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #cc220044;background:transparent;border:1px solid #cc220055;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB &nbsp;·&nbsp; All Apps</button>
-  </div>
-  <div id="onboarding-card" style="display:none;background:linear-gradient(135deg,var(--panel),var(--panel2));border:2px solid var(--green);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;animation:fadeUp .5s ease">
-    <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:8px">👋 WELCOME TO TECHREADY!</div>
-    <p style="font-size:.84rem;color:var(--text2);line-height:1.6;margin-bottom:12px">New here? Start with <strong style="color:var(--text)">Watch a Demo</strong> to see how TechReady works - then try <strong style="color:var(--text)">Practice Mode</strong> when you are ready.</p>
-    <div style="display:flex;gap:8px">
-      <button class="dbtn" style="flex:1;padding:11px;font-size:.8rem" onclick="go('demo');dismissOnboarding()">👀 Watch Demo</button>
-      <button class="rsec" style="flex:1;padding:11px;font-size:.8rem" onclick="dismissOnboarding()">Got It ✓</button>
-    </div>
-  </div>
-
-  <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;margin-top:4px;text-shadow:0 0 10px #cc220055">🎮 PLAY</div>
-  <div class="daily-card" onclick="startDaily()" id="daily-card">
-    <div class="daily-icon">📅</div>
-    <div class="daily-info">
-      <div class="daily-eyebrow">DAILY CHALLENGE</div>
-      <div class="daily-title">Cyber Check</div>
-      <div class="daily-desc">5 digital safety questions · Spot risks and stay secure</div>
-    </div>
-    <div class="daily-streak" id="daily-streak-disp">🔥0</div>
-  </div>
-
-  <div class="home-divider"></div>
-
-  <div class="home-group">
-    <div class="home-group-label">START HERE</div>
-    <div class="mode-list" style="margin-top:0">
-      <div class="mc star" onclick="startMode('challenge')">
-        <div class="mc-icon">⭐</div>
-        <div class="mc-body"><div class="mc-name">TECH CHALLENGE</div>
-        <div class="mc-desc">Score · Streaks · Levels · Mixed digital skills · 10 questions</div></div>
-        <div class="mc-arr">›</div>
-      </div>
-      <div class="mc" onclick="startMode('practice')">
-        <div class="mc-icon">🎓</div>
-        <div class="mc-body"><div class="mc-name">PRACTICE MODE</div>
-        <div class="mc-desc">No score · Unlimited hints · Take your time · All tech topics</div></div>
-        <div class="mc-arr">›</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="home-group">
-    <div class="home-group-label">SKILL TRACKS</div>
-    <div class="mode-list" style="margin-top:0">
-      <div class="mc" onclick="startMode('scams')">
-        <div class="mc-icon">🚨</div>
-        <div class="mc-body"><div class="mc-name">SPOT THE SCAM</div>
-        <div class="mc-desc">Texts · Calls · Emails · Prizes · Urgent threats · 10 questions</div></div>
-        <div class="mc-arr">›</div>
-      </div>
-      <div class="mc" onclick="startMode('passwords')">
-        <div class="mc-icon">🔐</div>
-        <div class="mc-body"><div class="mc-name">PASSWORDS</div>
-        <div class="mc-desc">Strong passwords · 2FA · Password managers · Sharing safely · 10 questions</div></div>
-        <div class="mc-arr">›</div>
-      </div>
-      <div class="mc" onclick="startMode('communication')">
-        <div class="mc-icon">💬</div>
-        <div class="mc-body"><div class="mc-name">COMMUNICATION</div>
-        <div class="mc-desc">Emails · Texts · Social media · Workplace messaging · 10 questions</div></div>
-        <div class="mc-arr">›</div>
-      </div>
-      <div class="mc" onclick="startMode('online')">
-        <div class="mc-icon">🌐</div>
-        <div class="mc-body"><div class="mc-name">ONLINE SAFETY</div>
-        <div class="mc-desc">Safe browsing · Public WiFi · Downloads · Oversharing · 10 questions</div></div>
-        <div class="mc-arr">›</div>
-      </div>
-      <div class="mc" onclick="startMode('devices')">
-        <div class="mc-icon">📱</div>
-        <div class="mc-body"><div class="mc-name">YOUR DEVICES</div>
-        <div class="mc-desc">Phones · Computers · Updates · Backups · App safety · 10 questions</div></div>
-        <div class="mc-arr">›</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="home-group">
-    <div class="home-group-label">LEARN THE FLOW</div>
-    <div class="mode-list" style="margin-top:0">
-      <div class="mc" onclick="go('demo')">
-        <div class="mc-icon">👀</div>
-        <div class="mc-body"><div class="mc-name">WATCH A DEMO</div>
-        <div class="mc-desc">See exactly how TechReady works before you start</div></div>
-        <div class="mc-arr">›</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="home-divider"></div>
-  <div class="home-tools-label">🧠 <span>LEARNING TOOLS</span></div>
-  <div class="home-group">
-    <div class="home-group-label">LEARN</div>
-    <div class="hgrid">
-      <div class="hb" onclick="go('scamsguide')"><div class="hi">🚨</div><div class="hl">Scam Guide</div><div class="hc">Spot &amp; avoid scams</div></div>
-      <div class="hb" onclick="go('passwordsguide')"><div class="hi">🔐</div><div class="hl">Passwords Guide</div><div class="hc">Strong passwords &amp; 2FA</div></div>
-      <div class="hb" onclick="go('onlineguide')"><div class="hi">🌐</div><div class="hl">Online Safety</div><div class="hc">Stay safe online</div></div>
-      <div class="hb" onclick="go('commguide')"><div class="hi">💬</div><div class="hl">Communication</div><div class="hc">Professional digital comm</div></div>
-      <div class="hb" onclick="go('devicesguide')"><div class="hi">📱</div><div class="hl">Devices Guide</div><div class="hc">Phones &amp; computers</div></div>
-      <div class="hb" onclick="go('callscripts')"><div class="hi">📞</div><div class="hl">Call Scripts</div><div class="hc">What to say</div></div>
-      <div class="hb" onclick="go('guide')"><div class="hi">📖</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
-    </div>
-  </div>
-  <div class="home-group">
-    <div class="home-group-label">PROGRESS</div>
-    <div class="hgrid">
-      <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best sessions</div></div>
-      <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct">None yet</span></div></div>
-      <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Mission Control</div><div class="hc">Track learner progress</div></div>
-    </div>
-  </div>
-  <div class="home-group">
-    <div class="home-group-label">APP</div>
-    <div class="hgrid">
-      <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
-      <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
-    </div>
-  </div>
-  <div class="tagline" id="tagline">DIGITAL SKILLS FOR REAL LIFE</div>
+<div class="scr on" id="scr-home">
+<div class="home-hero">
+<div class="home-title" id="techready-logo">
+<span class="cr-cash">TECH</span><span class="cr-ready">READY</span>
 </div>
-<div id="scr-demo" class="scr">
-  <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
-    <div class="gmode">WATCH A DEMO</div>
-    <div style="margin-left:auto;font-family:var(--font-mono);font-size:0.7rem;color:var(--text3)" id="demo-step-counter">Step 1 of 5</div>
-  </div>
-  <div class="demo-dots" id="demo-dots"></div>
-  <div id="demo-content" class="demo-wrap"></div>
+<div class="home-tagline">- TECH SKILLS TRAINER -</div>
+<div class="home-sub" id="home-sub">Practice digital safety and everyday tech skills.</div>
+<button onclick="window.open('index.html','_self')" style="width:100%;background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-family:var(--font-mono);font-size:.65rem;color:#cc2200;letter-spacing:2px;cursor:pointer;margin:12px auto 4px;display:block;text-align:center;text-shadow:0 0 10px #cc220044;background:transparent;border:1px solid #cc220055;border-radius:20px;padding:7px 20px;transition:box-shadow .2s,border-color .2s">← LIFEREADY HUB  ·  All Apps</button>
 </div>
-
-
-<div id="scr-practice-complete" class="scr">
-  <div style="padding-bottom:10px;animation:fadeUp .5s ease;text-align:center">
-    <div style="background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:22px 18px;margin-bottom:12px">
-      <div style="font-size:3rem;margin-bottom:8px">📱</div>
-      <div id="pr-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:8px">PRACTICE MODE COMPLETE</div>
-      <div id="pr-sub" style="font-size:.88rem;color:var(--text2);margin-bottom:10px">Nice work. You completed a full practice session. No score, no pressure, just progress.</div>
-      <div id="practice-summary" style="font-family:var(--font-mono);font-size:.82rem;color:var(--amber);line-height:1.6"></div>
-    </div>
-    <div class="rbtns" style="margin-top:12px">
-      <button class="rpri" onclick="startMode('practice')">▶ PRACTICE AGAIN</button>
-      <button class="rsec" onclick="startMode('challenge')">⭐ TRY CHALLENGE</button>
-      <button class="rsec" onclick="go('home')">← MAIN MENU</button>
-    </div>
-  </div>
+<div id="onboarding-card" style="display:none;background:linear-gradient(135deg,var(--panel),var(--panel2));border:2px solid var(--green);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;animation:fadeUp .5s ease">
+<div style="font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:8px">👋 WELCOME TO TECHREADY!</div>
+<p style="font-size:.84rem;color:var(--text2);line-height:1.6;margin-bottom:12px">New here? Start with <strong style="color:var(--text)">Watch a Demo</strong> to see how TechReady works - then try <strong style="color:var(--text)">Practice Mode</strong> when you are ready.</p>
+<div style="display:flex;gap:8px">
+<button class="dbtn" onclick="go('demo');dismissOnboarding()" style="flex:1;padding:11px;font-size:.8rem">👀 Watch Demo</button>
+<button class="rsec" onclick="dismissOnboarding()" style="flex:1;padding:11px;font-size:.8rem">Got It ✓</button>
 </div>
-
+</div>
+<div style="font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;margin-bottom:8px;margin-top:4px;text-shadow:0 0 10px #cc220055">🎮 PLAY</div>
+<div class="daily-card" id="daily-card" onclick="startDaily()">
+<div class="daily-icon">📅</div>
+<div class="daily-info">
+<div class="daily-eyebrow">DAILY CHALLENGE</div>
+<div class="daily-title">Cyber Check</div>
+<div class="daily-desc">5 digital safety questions · Spot risks and stay secure</div>
+</div>
+<div class="daily-streak" id="daily-streak-disp">🔥0</div>
+</div>
+<div class="home-divider"></div>
+<div class="home-group">
+<div class="home-group-label">START HERE</div>
+<div class="mode-list" style="margin-top:0">
+<div class="mc star" onclick="startMode('challenge')">
+<div class="mc-icon">⭐</div>
+<div class="mc-body"><div class="mc-name">TECH CHALLENGE</div>
+<div class="mc-desc">Score · Streaks · Levels · Mixed digital skills · 10 questions</div></div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="startMode('practice')">
+<div class="mc-icon">🎓</div>
+<div class="mc-body"><div class="mc-name">PRACTICE MODE</div>
+<div class="mc-desc">No score · Unlimited hints · Take your time · All tech topics</div></div>
+<div class="mc-arr">›</div>
+</div>
+</div>
+</div>
+<div class="home-group">
+<div class="home-group-label">SKILL TRACKS</div>
+<div class="mode-list" style="margin-top:0">
+<div class="mc" onclick="startMode('scams')">
+<div class="mc-icon">🚨</div>
+<div class="mc-body"><div class="mc-name">SPOT THE SCAM</div>
+<div class="mc-desc">Texts · Calls · Emails · Prizes · Urgent threats · 10 questions</div></div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="startMode('passwords')">
+<div class="mc-icon">🔐</div>
+<div class="mc-body"><div class="mc-name">PASSWORDS</div>
+<div class="mc-desc">Strong passwords · 2FA · Password managers · Sharing safely · 10 questions</div></div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="startMode('communication')">
+<div class="mc-icon">💬</div>
+<div class="mc-body"><div class="mc-name">COMMUNICATION</div>
+<div class="mc-desc">Emails · Texts · Social media · Workplace messaging · 10 questions</div></div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="startMode('online')">
+<div class="mc-icon">🌐</div>
+<div class="mc-body"><div class="mc-name">ONLINE SAFETY</div>
+<div class="mc-desc">Safe browsing · Public WiFi · Downloads · Oversharing · 10 questions</div></div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="startMode('devices')">
+<div class="mc-icon">📱</div>
+<div class="mc-body"><div class="mc-name">YOUR DEVICES</div>
+<div class="mc-desc">Phones · Computers · Updates · Backups · App safety · 10 questions</div></div>
+<div class="mc-arr">›</div>
+</div>
+</div>
+</div>
+<div class="home-group">
+<div class="home-group-label">LEARN THE FLOW</div>
+<div class="mode-list" style="margin-top:0">
+<div class="mc" onclick="go('demo')">
+<div class="mc-icon">👀</div>
+<div class="mc-body"><div class="mc-name">WATCH A DEMO</div>
+<div class="mc-desc">See exactly how TechReady works before you start</div></div>
+<div class="mc-arr">›</div>
+</div>
+</div>
+</div>
+<div class="home-divider"></div>
+<div class="home-tools-label">🧠 <span>LEARNING TOOLS</span></div>
+<div class="home-group">
+<div class="home-group-label">LEARN</div>
+<div class="hgrid">
+<div class="hb" onclick="go('scamsguide')"><div class="hi">🚨</div><div class="hl">Scam Guide</div><div class="hc">Spot &amp; avoid scams</div></div>
+<div class="hb" onclick="go('passwordsguide')"><div class="hi">🔐</div><div class="hl">Passwords Guide</div><div class="hc">Strong passwords &amp; 2FA</div></div>
+<div class="hb" onclick="go('onlineguide')"><div class="hi">🌐</div><div class="hl">Online Safety</div><div class="hc">Stay safe online</div></div>
+<div class="hb" onclick="go('commguide')"><div class="hi">💬</div><div class="hl">Communication</div><div class="hc">Professional digital comm</div></div>
+<div class="hb" onclick="go('devicesguide')"><div class="hi">📱</div><div class="hl">Devices Guide</div><div class="hc">Phones &amp; computers</div></div>
+<div class="hb" onclick="go('callscripts')"><div class="hi">📞</div><div class="hl">Call Scripts</div><div class="hc">What to say</div></div>
+<div class="hb" onclick="go('guide')"><div class="hi">📖</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
+</div>
+</div>
+<div class="home-group">
+<div class="home-group-label">PROGRESS</div>
+<div class="hgrid">
+<div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best sessions</div></div>
+<div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct">None yet</span></div></div>
+<div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Mission Control</div><div class="hc">Track learner progress</div></div>
+</div>
+</div>
+<div class="home-group">
+<div class="home-group-label">APP</div>
+<div class="hgrid">
+<div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
+<div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
+</div>
+</div>
+<div class="tagline" id="tagline">DIGITAL SKILLS FOR REAL LIFE</div>
+</div>
+<div class="scr" id="scr-demo">
+<div class="gtop">
+<button class="back" onclick="go('home')">‹ BACK</button>
+<div class="gmode">WATCH A DEMO</div>
+<div id="demo-step-counter" style="margin-left:auto;font-family:var(--font-mono);font-size:0.7rem;color:var(--text3)">Step 1 of 5</div>
+</div>
+<div class="demo-dots" id="demo-dots"></div>
+<div class="demo-wrap" id="demo-content"></div>
+</div>
+<div class="scr" id="scr-practice-complete">
+<div style="padding-bottom:10px;animation:fadeUp .5s ease;text-align:center">
+<div style="background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:22px 18px;margin-bottom:12px">
+<div style="font-size:3rem;margin-bottom:8px">📱</div>
+<div id="pr-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:8px">PRACTICE MODE COMPLETE</div>
+<div id="pr-sub" style="font-size:.88rem;color:var(--text2);margin-bottom:10px">Nice work. You completed a full practice session. No score, no pressure, just progress.</div>
+<div id="practice-summary" style="font-family:var(--font-mono);font-size:.82rem;color:var(--amber);line-height:1.6"></div>
+</div>
+<div class="rbtns" style="margin-top:12px">
+<button class="rpri" onclick="startMode('practice')">▶ PRACTICE AGAIN</button>
+<button class="rsec" onclick="startMode('challenge')">⭐ TRY CHALLENGE</button>
+<button class="rsec" onclick="go('home')">← MAIN MENU</button>
+</div>
+</div>
+</div>
 <!-- ══════════ RESULTS ══════════ -->
-
-<div id="scr-results" class="scr">
-  <div style="padding-bottom:10px;animation:fadeUp .5s ease">
-
+<div class="scr" id="scr-results">
+<div style="padding-bottom:10px;animation:fadeUp .5s ease">
 <!-- HERO: Grade Arc -->
 <div style="background:var(--panel);border:2px solid var(--green);border-radius:var(--radius);padding:22px 18px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,200,81,.13),transparent 68%);pointer-events:none"></div>
-  <div style="position:relative;width:140px;height:78px;margin:0 auto 10px">
-    <svg viewBox="0 0 140 80" style="width:140px;height:80px;display:block">
-      <path d="M15,75 A55,55 0 0,1 125,75" fill="none" stroke="#1c2330" stroke-width="13" stroke-linecap="round"/>
-      <path id="arc-fill" d="M15,75 A55,55 0 0,1 125,75" fill="none" stroke="#00c851" stroke-width="13" stroke-linecap="round" stroke-dasharray="173" stroke-dashoffset="173"/>
-    </svg>
-    <div id="grade-letter" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--green);text-shadow:0 0 20px rgba(0,200,81,.5);line-height:1">A+</div>
-  </div>
-  <div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">TECH CHALLENGE COMPLETE</div>
-  <div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You answered 10 questions!</div>
-  <div id="r-level-badge" style="display:inline-block;background:rgba(255,187,51,.14);border:1px solid var(--amber);border-radius:20px;padding:3px 14px;font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:1px">BEGINNER</div>
+<div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,200,81,.13),transparent 68%);pointer-events:none"></div>
+<div style="position:relative;width:140px;height:78px;margin:0 auto 10px">
+<svg style="width:140px;height:80px;display:block" viewbox="0 0 140 80">
+<path d="M15,75 A55,55 0 0,1 125,75" fill="none" stroke="#1c2330" stroke-linecap="round" stroke-width="13"></path>
+<path d="M15,75 A55,55 0 0,1 125,75" fill="none" id="arc-fill" stroke="#00c851" stroke-dasharray="173" stroke-dashoffset="173" stroke-linecap="round" stroke-width="13"></path>
+</svg>
+<div id="grade-letter" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-family:'Fredoka One',cursive;font-size:2.4rem;color:var(--green);text-shadow:0 0 20px rgba(0,200,81,.5);line-height:1">A+</div>
 </div>
-
+<div id="r-title" style="font-family:var(--font-mono);font-size:1.25rem;color:var(--green);letter-spacing:3px;margin-bottom:4px">TECH CHALLENGE COMPLETE</div>
+<div id="r-sub" style="font-size:.87rem;color:var(--text2);margin-bottom:8px">You answered 10 questions!</div>
+<div id="r-level-badge" style="display:inline-block;background:rgba(255,187,51,.14);border:1px solid var(--amber);border-radius:20px;padding:3px 14px;font-family:var(--font-mono);font-size:.68rem;color:var(--amber);letter-spacing:1px">BEGINNER</div>
+</div>
 <!-- Personal Best Banner (hidden by default) -->
 <div id="pb-banner" style="display:none;background:linear-gradient(135deg,rgba(255,187,51,.14),rgba(255,187,51,.04));border:2px solid var(--amber);border-radius:var(--radius-sm);padding:9px 14px;text-align:center;margin-bottom:10px;font-family:var(--font-mono);font-size:.78rem;color:var(--amber);font-weight:700"></div>
-
 <!-- EOC Card -->
 <div id="eoc-card-wrap" style="margin-bottom:10px"></div>
-
 <!-- Stats Grid -->
 <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:12px">
-  <div class="rst"><div class="rsv" id="r-score">0</div><div class="rsl">Score</div></div>
-  <div class="rst"><div class="rsv" id="r-acc">0%</div><div class="rsl">Accuracy</div></div>
-  <div class="rst"><div class="rsv" id="r-correct">0/0</div><div class="rsl">Correct</div></div>
-  <div class="rst"><div class="rsv" id="r-streak">0</div><div class="rsl">Best Streak</div></div>
-  <div class="rst" id="r-timer-box" style="display:none"><div class="rsv" id="r-timer">0:00</div><div class="rsl">Time</div></div>
+<div class="rst"><div class="rsv" id="r-score">0</div><div class="rsl">Score</div></div>
+<div class="rst"><div class="rsv" id="r-acc">0%</div><div class="rsl">Accuracy</div></div>
+<div class="rst"><div class="rsv" id="r-correct">0/0</div><div class="rsl">Correct</div></div>
+<div class="rst"><div class="rsv" id="r-streak">0</div><div class="rsl">Best Streak</div></div>
+<div class="rst" id="r-timer-box" style="display:none"><div class="rsv" id="r-timer">0:00</div><div class="rsl">Time</div></div>
 </div>
-
 <!-- Badges -->
 <div id="r-badges-sec" style="display:none;margin-bottom:12px">
-  <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text3);letter-spacing:2px;margin-bottom:7px">🎖 BADGES EARNED THIS SHIFT</div>
-  <div class="ebadges" id="r-badges"></div>
+<div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text3);letter-spacing:2px;margin-bottom:7px">🎖 BADGES EARNED THIS SHIFT</div>
+<div class="ebadges" id="r-badges"></div>
 </div>
-
 <!-- Tabs -->
 <div class="r-tabs">
-  <button class="r-tab on" onclick="showRTab('summary',this)">SUMMARY</button>
-  <button class="r-tab" id="rounds-tab-btn" onclick="showRTab('rounds',this)">ROUNDS (0)</button>
-  <button class="r-tab" onclick="showRTab('nextsteps',this)">NEXT STEPS</button>
+<button class="r-tab on" onclick="showRTab('summary',this)">SUMMARY</button>
+<button class="r-tab" id="rounds-tab-btn" onclick="showRTab('rounds',this)">ROUNDS (0)</button>
+<button class="r-tab" onclick="showRTab('nextsteps',this)">NEXT STEPS</button>
 </div>
-
 <!-- Tab: Summary (level progress) -->
-<div id="rtab-summary" class="r-tab-pane on">
-  <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--border)">LEVEL PROGRESS</div>
-  <div id="lvl-prog" style="display:flex;align-items:center;gap:5px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none"></div>
+<div class="r-tab-pane on" id="rtab-summary">
+<div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--border)">LEVEL PROGRESS</div>
+<div id="lvl-prog" style="display:flex;align-items:center;gap:5px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none"></div>
 </div>
-
 <!-- Tab: Rounds log -->
-<div id="rtab-rounds" class="r-tab-pane">
-  <div id="rounds-log"></div>
+<div class="r-tab-pane" id="rtab-rounds">
+<div id="rounds-log"></div>
 </div>
-
 <!-- Tab: What to work on next -->
-<div id="rtab-nextsteps" class="r-tab-pane">
-  <div id="wtw-card" style="background:var(--bg3);border-radius:var(--radius-sm);padding:14px;border-left:4px solid var(--amber)"></div>
+<div class="r-tab-pane" id="rtab-nextsteps">
+<div id="wtw-card" style="background:var(--bg3);border-radius:var(--radius-sm);padding:14px;border-left:4px solid var(--amber)"></div>
 </div>
-
 <!-- Buttons -->
 <div class="rbtns" style="margin-top:12px">
-  <button class="rpri" id="r-play-again">▶ PLAY AGAIN</button>
-  <button class="rsec" id="r-share" onclick="shareScore()" style="display:none">📤 SHARE MY SCORE</button>
-  <button class="rsec" id="r-coach-copy" onclick="copyForCoach()" style="display:none">📋 COPY SESSION SUMMARY</button>
-  <button class="rsec" onclick="go('home')">← MAIN MENU</button>
+<button class="rpri" id="r-play-again">▶ PLAY AGAIN</button>
+<button class="rsec" id="r-share" onclick="shareScore()" style="display:none">📤 SHARE MY SCORE</button>
+<button class="rsec" id="r-coach-copy" onclick="copyForCoach()" style="display:none">📋 COPY SESSION SUMMARY</button>
+<button class="rsec" onclick="go('home')">← MAIN MENU</button>
 </div>
-  </div>
 </div>
-
+</div>
 <!-- ══════════ SCORES ══════════ -->
-
-<div id="scr-scores" class="scr">
-  <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
-    <div class="gmode">🏆 HIGH SCORES</div>
-    <button class="abtn" onclick="clearScores()" style="margin-left:auto;padding:5px 11px;min-height:30px;font-size:0.72rem">CLEAR</button>
-  </div>
-  <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px" id="score-filters">
-    <button class="sopt on" onclick="filterScores('all',this)">All</button>
-    <button class="sopt" onclick="filterScores('Tech Challenge',this)">Challenge</button>
-    <button class="sopt" onclick="filterScores('Spot the Scam',this)">Scams</button>
-    <button class="sopt" onclick="filterScores('Passwords',this)">Passwords</button>
-    <button class="sopt" onclick="filterScores('Online Safety',this)">Online</button>
-    <button class="sopt" onclick="filterScores('Communication',this)">Comm</button>
-    <button class="sopt" onclick="filterScores('Your Devices',this)">Devices</button>
-    <button class="sopt" onclick="filterScores('Daily Challenge',this)">Daily</button>
-    <button class="sopt" onclick="filterScores('Practice Mode',this)">Practice</button>
-  </div>
-  <button id="read-scores-btn" style="display:block;width:100%;margin:10px 0 4px;padding:9px 16px;background:transparent;border:1px solid #cc220055;border-radius:20px;color:#cc2200;font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px #cc220044">🔊  READ MY SCORES ALOUD</button>
-  <div id="scores-wrap"><div class="no-data">No scores yet.<br>Complete a shift to see your best!</div></div>
+<div class="scr" id="scr-scores">
+<div class="gtop">
+<button class="back" onclick="go('home')">‹ BACK</button>
+<div class="gmode">🏆 HIGH SCORES</div>
+<button class="abtn" onclick="clearScores()" style="margin-left:auto;padding:5px 11px;min-height:30px;font-size:0.72rem">CLEAR</button>
 </div>
-
+<div id="score-filters"><button class="sopt on" onclick="filterScores('all',this)">All</button>
+<button class="sopt" onclick="filterScores('Tech Challenge',this)">Challenge</button>
+<button class="sopt" onclick="filterScores('Spot the Scam',this)">Scams</button>
+<button class="sopt" onclick="filterScores('Passwords',this)">Passwords</button>
+<button class="sopt" onclick="filterScores('Online Safety',this)">Online</button>
+<button class="sopt" onclick="filterScores('Communication',this)">Comm</button>
+<button class="sopt" onclick="filterScores('Your Devices',this)">Devices</button>
+<button class="sopt" onclick="filterScores('Daily Challenge',this)">Daily</button>
+<button class="sopt" onclick="filterScores('Practice Mode',this)">Practice</button></div>
+<div class="scores-summary" id="scores-summary" style="display:none"></div>
+<button id="read-scores-btn" style="display:block;width:100%;margin:10px 0 4px;padding:9px 16px;background:transparent;border:1px solid #cc220055;border-radius:20px;color:#cc2200;font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px #cc220044">🔊  READ MY SCORES ALOUD</button>
+<div id="scores-wrap"><div class="score-empty"><div class="score-empty-title">NO SCORES YET</div><div class="score-empty-sub">Complete a shift to see your best!</div></div></div>
+</div>
 <!-- ══════════ BADGES ══════════ -->
-
-<div id="scr-badges" class="scr">
-  <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
-    <div class="gmode">🎖 BADGES</div>
-  </div>
-  <div class="bgrid2" id="bgrid"></div>
+<div class="scr" id="scr-badges">
+<div class="gtop">
+<button class="back" onclick="go('home')">‹ BACK</button>
+<div class="gmode">🎖 BADGES</div>
 </div>
-
+<div id="bgrid"></div>
+</div>
 <!-- ══════════ GUIDE ══════════ -->
-
-<div id="scr-guide" class="scr">
-  <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
-    <div class="gmode">📖 HOW TO PLAY</div>
-  </div>
-  <div class="gsec">
-    <div class="gtitle">📱 WHAT IS TECHREADY?</div>
-    <div class="gcard">
-      <div class="gstep"><div class="gnum" style="background:var(--amber)">★</div><div>TechReady helps you build <strong>real digital life skills</strong> - spotting scams, protecting passwords, staying safe online, communicating professionally, and understanding your devices. Free for everyone, no account needed.</div></div>
-    </div>
-  </div>
-  <div class="gsec">
-    <div class="gtitle">🎮 THE MODES</div>
-    <div class="gcard">
-      <div class="gstep"><div class="gnum" style="background:var(--amber);font-size:.7rem">🎓</div><div><strong>Practice Mode</strong> - No score, no pressure, unlimited hints. All digital topics.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🛡️</div><div><strong>Tech Challenge</strong> - 10 questions, scored. Mixed topics, levels up as you improve.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🚨</div><div><strong>Spot the Scam</strong> - 10 scam recognition questions. Texts, calls, emails, and fake prizes.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🔐</div><div><strong>Passwords</strong> - 10 questions. Strong passwords, 2FA, and safe sharing.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🌐</div><div><strong>Online Safety</strong> - 10 questions. Safe browsing, public WiFi, and downloads.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">💬</div><div><strong>Communication</strong> - 10 questions. Professional emails, texting, and social media.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">📱</div><div><strong>Your Devices</strong> - 10 questions. Phones, tablets, computers, updates, and backups.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--amber);font-size:.7rem">📅</div><div><strong>Daily Challenge</strong> - 5 quick questions every day. Build a streak!</div></div>
-    </div>
-  </div>
-  <div class="gsec">
-    <div class="gtitle">📚 TOPIC GUIDES</div>
-    <div class="gcard">
-      <div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">📖</div><div>Tap <strong>LEARN</strong> on the home screen to open in-depth guides for scam spotting, passwords, online safety, digital communication, your devices, and call scripts.</div></div>
-    </div>
-  </div>
-  <div class="gsec">
-    <div class="gtitle">💡 HOW QUESTIONS WORK</div>
-    <div class="gcard">
-      <div class="gstep"><div class="gnum">1</div><div>Read the question and tap one of the 4 answer choices.</div></div>
-      <div class="gstep"><div class="gnum">2</div><div><strong style="color:#00c851">Green</strong> = correct. <strong style="color:var(--red)">Red</strong> = not quite. You always see why.</div></div>
-      <div class="gstep"><div class="gnum">3</div><div>Tap <strong>💡 HINT</strong> any time - no penalty, ever.</div></div>
-      <div class="gstep"><div class="gnum">4</div><div>Tap <strong>🔊 SAY AGAIN</strong> to hear the question read aloud.</div></div>
-      <div class="gstep"><div class="gnum">5</div><div>Tap <strong>?</strong> at the top to replay the mode introduction.</div></div>
-      <div class="gstep"><div class="gnum">6</div><div>Tap <strong>☕</strong> any time to take a break.</div></div>
-    </div>
-  </div>
-  <div class="gsec">
-    <div class="gtitle">📈 LEVELS</div>
-    <div class="gcard">
-      <div class="gstep"><div class="gnum" style="background:var(--text3)">0</div><div><strong>Newcomer</strong> - Everyone starts here.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--green)">50</div><div><strong>Cautious</strong> - You are learning to spot the warning signs.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--green)">150</div><div><strong>Aware</strong> - You understand how digital threats work.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--amber)">300</div><div><strong>Savvy</strong> - Solid, consistent digital skills.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--amber)">600</div><div><strong>Tech Smart</strong> - You handle digital situations with confidence.</div></div>
-      <div class="gstep"><div class="gnum" style="background:var(--amber)">1000</div><div><strong>Digitally Ready</strong> - The highest level. You have earned it.</div></div>
-    </div>
-  </div>
+<div class="scr" id="scr-guide">
+<div class="gtop">
+<button class="back" onclick="go('home')">‹ BACK</button>
+<div class="gmode">📖 HOW TO PLAY</div>
 </div>
-<div id="scr-settings" class="scr">
-  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">⚙️ SETTINGS</div></div>
-  <div class="ss">
-    <div class="st">AUDIO</div>
-    <div class="sr"><div class="si">🔊</div><div class="sinfo"><div class="sn">Audio On</div><div class="sd2">Spoken questions, sound effects, and badge announcements.</div></div><div class="tog on" id="tog-audio" onclick="togSet('audio')"></div></div>
-    <div class="sr"><div class="si">⚡</div><div class="sinfo"><div class="sn">Speech Speed</div><div class="sd2">Slow is great if you need more time to listen.</div></div>
-      <div class="sopts">
-        <div class="sopt" onclick="setSpeed('slow',this)">🐢 Slow</div>
-        <div class="sopt on" onclick="setSpeed('normal',this)">Normal</div>
-        <div class="sopt" onclick="setSpeed('fast',this)">⚡ Fast</div>
-      </div>
-    </div>
-  </div>
-  <div class="ss">
-    <div class="st">VISION</div>
-    <div class="sr"><div class="si">👁</div><div class="sinfo"><div class="sn">Colorblind Mode</div><div class="sd2">Choose the mode that matches your color vision.</div><div id="cb-current-mode" style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);font-weight:700;margin-top:4px;margin-bottom:2px">Current: None</div>
-      <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
-        <button id="cb-btn-none"    class="cb-mode-btn on"  onclick="setColorblindMode('none')"         style="flex:1;min-width:60px">None</button>
-        <button id="cb-btn-proto"   class="cb-mode-btn"     onclick="setColorblindMode('protanopia')"   style="flex:1;min-width:60px">Protan</button>
-        <button id="cb-btn-deuter"  class="cb-mode-btn"     onclick="setColorblindMode('deuteranopia')" style="flex:1;min-width:60px">Deuter</button>
-        <button id="cb-btn-trita"   class="cb-mode-btn"     onclick="setColorblindMode('tritanopia')"   style="flex:1;min-width:60px">Tritan</button>
-      </div>
-    </div></div>
-    <div class="sr"><div class="si">⬛</div><div class="sinfo"><div class="sn">High Contrast</div><div class="sd2">Black background, white text, maximum contrast. Best for low vision or visual processing differences.</div></div><div class="tog" id="tog-hicontrast" onclick="togSet('hicontrast')"></div></div>
-    <div class="sr"><div class="si">☀️</div><div class="sinfo"><div class="sn">Light Mode</div><div class="sd2">Light background with accents. Easier to read in bright environments or for those who prefer light screens.</div></div><div class="tog" id="tog-lightmode" onclick="togSet('lightmode')"></div></div>
-    <div class="sr"><div class="si">T</div><div class="sinfo"><div class="sn">Large Text</div><div class="sd2">Bigger text and larger buttons everywhere.</div></div><div class="tog" id="tog-largetext" onclick="togSet('largetext')"></div></div>
-  </div>
-  <div class="ss">
-    <div class="st">MOTOR &amp; SENSORY</div>
-    <div class="sr"><div class="si">♿</div><div class="sinfo"><div class="sn">Extra-Large Buttons</div><div class="sd2">Makes all tap targets bigger and easier to hit.</div></div><div class="tog" id="tog-largebtns" onclick="togSet('largebtns')"></div></div>
-    <div class="sr"><div class="si">🌀</div><div class="sinfo"><div class="sn">Reduce Animations</div><div class="sd2">Turns off all bouncing and motion effects.</div></div><div class="tog" id="tog-nomotion" onclick="togSet('nomotion')"></div></div>
-    <div class="sr"><div class="si">🛑</div><div class="sinfo"><div class="sn">Break Reminder</div><div class="sd2">Suggests a break every 5 questions to rest and refocus.</div></div><div class="tog" id="tog-breaks" onclick="togSet('breaks')"></div></div>
-  </div>
-  <div class="ss">
-    <div class="st">LEARNING AIDS</div>
-    <div class="sr"><div class="si">✨</div><div class="sinfo"><div class="sn">Errorless Learning</div><div class="sd2">Highlights the correct answer to build recognition before recall.</div></div><div class="tog" id="tog-errorless" onclick="togSet('errorless')"></div></div>
-  </div>
-  <div class="ss">
-    <div class="st">MISSION CONTROL</div>
-    <div class="sr">
-      <div class="si">🔒</div>
-      <div class="sinfo"><div class="sn">Mission Control PIN</div><div class="sd2">Reset the PIN for Mission Control. At least 4 characters.</div></div>
-      <button class="cbt" onclick="resetCoachPin()" style="flex-shrink:0;font-size:.72rem">Reset PIN</button>
-    </div>
-  </div>
-  <div class="ss">
-    <div class="st">PLAYER NAME (OPTIONAL)</div>
-    <div class="sr">
-      <div class="si">👤</div>
-      <div class="sinfo"><div class="sn" id="name-setting-display">No name set</div><div class="sd2">Appears on your results card. Personal devices only.</div></div>
-      <button class="cbt" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem" id="name-setting-btn">Set Name</button>
-    </div>
-  </div>
-  <div style="text-align:center;padding:12px 0 4px">
-    <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text3);margin-bottom:3px">TechReady v1.0</div>
-    <div style="font-size:.72rem;color:var(--green);font-weight:700">© 2026 Tristan</div>
-    <div style="font-size:.68rem;color:var(--text3);margin-top:2px">Free for everyone, always ❤️</div>
-  </div>
-  <div class="stip">TIP: All settings save automatically and are remembered next time you play.</div>
-  <div class="gsec" style="margin-top:24px;padding:16px;border:1px solid rgba(204,34,0,0.35);border-radius:var(--radius-sm);background:rgba(204,34,0,0.05);">
-      <div class="gtitle">⚠️ DANGER ZONE</div>
-      <button onclick="resetApp()" style="width:100%;background:rgba(255,68,68,0.1);border:1px solid var(--red);border-radius:var(--radius-sm);color:var(--red);font-family:var(--font-mono);font-size:.75rem;padding:12px;cursor:pointer;letter-spacing:1px;font-weight:700">RESET APP - CLEAR ALL DATA</button>
-    </div>
+<div class="gsec">
+<div class="gtitle">📱 WHAT IS TECHREADY?</div>
+<div class="gcard">
+<div class="gstep"><div class="gnum" style="background:var(--amber)">★</div><div>TechReady helps you build <strong>real digital life skills</strong> - spotting scams, protecting passwords, staying safe online, communicating professionally, and understanding your devices. Free for everyone, no account needed.</div></div>
 </div>
-<div id="scr-coach" class="scr">
-  <div id="coach-save-indicator" style="display:none;font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:1px;margin:0 0 10px">Saved ✓</div>
-  <div id="coach-range-label" style="display:none;font-family:var(--font-mono);font-size:.64rem;color:var(--amber);letter-spacing:1px;margin:0 0 10px">📅 Showing range</div>
-
-  <div class="mc-header">
-    <div class="mc-title-wrap">
-      <div class="mc-title">TECHREADY</div>
-      <div class="mc-sub">MISSION CONTROL</div>
-      <div class="mc-meta" id="mc-meta">0 Active • 0 Need Review • 0 Sessions Today</div>
-    </div>
-
-    <div class="mc-actions">
-      <button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Learner</button>
-      <button class="mc-btn" onclick="openM('m-log')">📝 Log Session</button>
-      <button class="mc-btn" onclick="openM('m-goal')">🎯 Add Goal</button>
-      <button class="mc-btn" onclick="openDateRangeModal()">📅 Date Range</button>
-      <button class="mc-btn" onclick="exportCSV()">📥 Export</button>
-      <button class="mc-btn" onclick="printCoachReport()">🖨 Print</button>
-      <button class="mc-btn" onclick="toggleCoachFilters()" id="coach-filters-btn">⚙ Filters</button>
-      <button class="mc-btn" onclick="CFG.coachWelcomeSeen=false;renderCoach();showCoachWelcome(true);" style="font-size:.65rem;letter-spacing:.5px">❔ Quick Start</button>
-      <button class="mc-btn" onclick="toggleArchivedView()" id="arch-toggle-btn">🗂 Archived</button>
-      <button class="mc-btn" onclick="toggleSummaryMode()" id="summary-mode-btn">📄 Presentation View</button>
-    </div>
-  </div>
-
-  <div class="mc-stats">
-    <div class="mc-stat"><div class="mc-num" id="stat-clients">0</div><div class="mc-label">Active Learners</div></div>
-    <div class="mc-stat"><div class="mc-num" id="stat-sessions">0</div><div class="mc-label">Sessions Today</div></div>
-    <div class="mc-stat"><div class="mc-num" id="stat-goals">0</div><div class="mc-label">Goals Met</div></div>
-    <div class="mc-stat"><div class="mc-num" id="stat-independence">Baseline</div><div class="mc-label">Avg Independence</div></div>
-  </div>
-
-  <div class="mc-filters" id="coach-filters-bar">
-    <input id="coach-search" class="mc-search" placeholder="🔍 Search learners..." oninput="setCoachSearch(this.value)">
-    <button class="mc-filter" id="coach-needs-attn-btn" onclick="toggleNeedsAttention()">⚠ Needs Attention</button>
-    <button class="mc-filter" id="coach-clear-btn" onclick="clearCoachSearch()" style="display:none">Clear Search</button>
-  </div>
-
-  <div id="coach-welcome" class="mc-welcome" style="display:none">
-    <div class="mc-welcome-card">
-      <div class="mc-welcome-topline">TECHREADY · COACH TOOLS</div>
-      <div class="mc-welcome-title">👋 Welcome to Mission Control</div>
-      <p class="mc-welcome-copy">Track learner progress, spot support needs, and generate reports without extra data entry.</p>
-      <div class="mc-welcome-grid">
-        <div class="mc-welcome-step"><div class="mc-welcome-stepno">1</div><div class="mc-welcome-stepbody"><strong>Add Learner</strong>Create one profile for each learner.</div></div>
-        <div class="mc-welcome-step"><div class="mc-welcome-stepno">2</div><div class="mc-welcome-stepbody"><strong>Log Session</strong>Record the skill, prompt level, score, and a quick note.</div></div>
-        <div class="mc-welcome-step"><div class="mc-welcome-stepno">3</div><div class="mc-welcome-stepbody"><strong>Set Objective</strong>Add a goal once. Mission Control tracks progress automatically.</div></div>
-        <div class="mc-welcome-step"><div class="mc-welcome-stepno">4</div><div class="mc-welcome-stepbody"><strong>Smart Guidance</strong>Watch for Needs Attention, support needs, and next best actions.</div></div>
-      </div>
-      <div class="mc-welcome-note">Use initials or learner nicknames on shared devices. Mission Control keeps progress organized so staff spend less time typing and more time teaching.</div>
-      <div class="mc-welcome-foot">🔒 PIN protected. Data stays on this device unless you choose to export or print a report.</div>
-      <div class="mc-welcome-actions">
-        <button class="rpri" onclick="dismissCoachWelcome()">Enter Mission Control</button>
-        <button class="rsec" onclick="dismissCoachWelcome();setTimeout(()=>openClientModalSafe(),120)">Start by Adding a Learner</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="coach-flash" class="mc-flash"><div class="mc-flash-title">SESSION REPLAY</div><div class="mc-flash-copy" id="coach-flash-copy"></div></div>
-  <div id="coach-wrap"><div class="mc-empty">No learners yet.<br>Add a learner to start Mission Control.<div class="mc-empty-cta"><button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Learner</button><button class="mc-btn" onclick="showCoachWelcome()">❔ Quick Start</button></div></div></div>
 </div>
-
-<div id="scr-scamsguide" class="scr">
-  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🚨 SCAM SPOTTING GUIDE</div></div>
-
-  <div class="gsec">
-    <div class="gtitle">HOW TO SPOT A SCAM</div>
-    <p style="font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px">Scammers are good at what they do. But they almost always leave clues. Here are the most common warning signs.</p>
-    <div class="guide-tab-row">
-      <button class="guide-tab on" onclick="showLTab('warning',this)">⚠️ Warning Signs</button>
-      <button class="guide-tab" onclick="showLTab('types',this)">🎭 Scam Types</button>
-      <button class="guide-tab" onclick="showLTab('got',this)">🆘 If You Were Scammed</button>
-    </div>
-
+<div class="gsec">
+<div class="gtitle">🎮 THE MODES</div>
+<div class="gcard">
+<div class="gstep"><div class="gnum" style="background:var(--amber);font-size:.7rem">🎓</div><div><strong>Practice Mode</strong> - No score, no pressure, unlimited hints. All digital topics.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🛡️</div><div><strong>Tech Challenge</strong> - 10 questions, scored. Mixed topics, levels up as you improve.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🚨</div><div><strong>Spot the Scam</strong> - 10 scam recognition questions. Texts, calls, emails, and fake prizes.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🔐</div><div><strong>Passwords</strong> - 10 questions. Strong passwords, 2FA, and safe sharing.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">🌐</div><div><strong>Online Safety</strong> - 10 questions. Safe browsing, public WiFi, and downloads.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">💬</div><div><strong>Communication</strong> - 10 questions. Professional emails, texting, and social media.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">📱</div><div><strong>Your Devices</strong> - 10 questions. Phones, tablets, computers, updates, and backups.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--amber);font-size:.7rem">📅</div><div><strong>Daily Challenge</strong> - 5 quick questions every day. Build a streak!</div></div>
+</div>
+</div>
+<div class="gsec">
+<div class="gtitle">📚 TOPIC GUIDES</div>
+<div class="gcard">
+<div class="gstep"><div class="gnum" style="background:var(--green);font-size:.7rem">📖</div><div>Tap <strong>LEARN</strong> on the home screen to open in-depth guides for scam spotting, passwords, online safety, digital communication, your devices, and call scripts.</div></div>
+</div>
+</div>
+<div class="gsec">
+<div class="gtitle">💡 HOW QUESTIONS WORK</div>
+<div class="gcard">
+<div class="gstep"><div class="gnum">1</div><div>Read the question and tap one of the 4 answer choices.</div></div>
+<div class="gstep"><div class="gnum">2</div><div><strong style="color:#00c851">Green</strong> = correct. <strong style="color:var(--red)">Red</strong> = not quite. You always see why.</div></div>
+<div class="gstep"><div class="gnum">3</div><div>Tap <strong>💡 HINT</strong> any time - no penalty, ever.</div></div>
+<div class="gstep"><div class="gnum">4</div><div>Tap <strong>🔊 SAY AGAIN</strong> to hear the question read aloud.</div></div>
+<div class="gstep"><div class="gnum">5</div><div>Tap <strong>?</strong> at the top to replay the mode introduction.</div></div>
+<div class="gstep"><div class="gnum">6</div><div>Tap <strong>☕</strong> any time to take a break.</div></div>
+</div>
+</div>
+<div class="gsec">
+<div class="gtitle">📈 LEVELS</div>
+<div class="gcard">
+<div class="gstep"><div class="gnum" style="background:var(--text3)">0</div><div><strong>Newcomer</strong> - Everyone starts here.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--green)">50</div><div><strong>Cautious</strong> - You are learning to spot the warning signs.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--green)">150</div><div><strong>Aware</strong> - You understand how digital threats work.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--amber)">300</div><div><strong>Savvy</strong> - Solid, consistent digital skills.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--amber)">600</div><div><strong>Tech Smart</strong> - You handle digital situations with confidence.</div></div>
+<div class="gstep"><div class="gnum" style="background:var(--amber)">1000</div><div><strong>Digitally Ready</strong> - The highest level. You have earned it.</div></div>
+</div>
+</div>
+</div>
+<div class="scr" id="scr-settings">
+<div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">⚙️ SETTINGS</div></div>
+<div class="ss">
+<div class="st">AUDIO</div>
+<div class="sr"><div class="si">🔊</div><div class="sinfo"><div class="sn">Audio On</div><div class="sd2">Spoken questions, sound effects, and badge announcements.</div></div><div class="tog on" id="tog-audio" onclick="togSet('audio')"></div></div>
+<div class="sr"><div class="si">⚡</div><div class="sinfo"><div class="sn">Speech Speed</div><div class="sd2">Slow is great if you need more time to listen.</div></div>
+<div class="sopts">
+<div class="sopt" onclick="setSpeed('slow',this)">🐢 Slow</div>
+<div class="sopt on" onclick="setSpeed('normal',this)">Normal</div>
+<div class="sopt" onclick="setSpeed('fast',this)">⚡ Fast</div>
+</div>
+</div>
+</div>
+<div class="ss">
+<div class="st">VISION</div>
+<div class="sr"><div class="si">👁</div><div class="sinfo"><div class="sn">Colorblind Mode</div><div class="sd2">Choose the mode that matches your color vision.</div><div id="cb-current-mode" style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);font-weight:700;margin-top:4px;margin-bottom:2px">Current: None</div>
+<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+<button class="cb-mode-btn on" id="cb-btn-none" onclick="setColorblindMode('none')" style="flex:1;min-width:60px">None</button>
+<button class="cb-mode-btn" id="cb-btn-proto" onclick="setColorblindMode('protanopia')" style="flex:1;min-width:60px">Protan</button>
+<button class="cb-mode-btn" id="cb-btn-deuter" onclick="setColorblindMode('deuteranopia')" style="flex:1;min-width:60px">Deuter</button>
+<button class="cb-mode-btn" id="cb-btn-trita" onclick="setColorblindMode('tritanopia')" style="flex:1;min-width:60px">Tritan</button>
+</div>
+</div></div>
+<div class="sr"><div class="si">⬛</div><div class="sinfo"><div class="sn">High Contrast</div><div class="sd2">Black background, white text, maximum contrast. Best for low vision or visual processing differences.</div></div><div class="tog" id="tog-hicontrast" onclick="togSet('hicontrast')"></div></div>
+<div class="sr"><div class="si">☀️</div><div class="sinfo"><div class="sn">Light Mode</div><div class="sd2">Light background with accents. Easier to read in bright environments or for those who prefer light screens.</div></div><div class="tog" id="tog-lightmode" onclick="togSet('lightmode')"></div></div>
+<div class="sr"><div class="si">T</div><div class="sinfo"><div class="sn">Large Text</div><div class="sd2">Bigger text and larger buttons everywhere.</div></div><div class="tog" id="tog-largetext" onclick="togSet('largetext')"></div></div>
+</div>
+<div class="ss">
+<div class="st">MOTOR &amp; SENSORY</div>
+<div class="sr"><div class="si">♿</div><div class="sinfo"><div class="sn">Extra-Large Buttons</div><div class="sd2">Makes all tap targets bigger and easier to hit.</div></div><div class="tog" id="tog-largebtns" onclick="togSet('largebtns')"></div></div>
+<div class="sr"><div class="si">🌀</div><div class="sinfo"><div class="sn">Reduce Animations</div><div class="sd2">Turns off all bouncing and motion effects.</div></div><div class="tog" id="tog-nomotion" onclick="togSet('nomotion')"></div></div>
+<div class="sr"><div class="si">🛑</div><div class="sinfo"><div class="sn">Break Reminder</div><div class="sd2">Suggests a break every 5 questions to rest and refocus.</div></div><div class="tog" id="tog-breaks" onclick="togSet('breaks')"></div></div>
+</div>
+<div class="ss">
+<div class="st">LEARNING AIDS</div>
+<div class="sr"><div class="si">✨</div><div class="sinfo"><div class="sn">Errorless Learning</div><div class="sd2">Highlights the correct answer to build recognition before recall.</div></div><div class="tog" id="tog-errorless" onclick="togSet('errorless')"></div></div>
+</div>
+<div class="ss">
+<div class="st">MISSION CONTROL</div>
+<div class="sr">
+<div class="si">🔒</div>
+<div class="sinfo"><div class="sn">Mission Control PIN</div><div class="sd2">Reset the PIN for Mission Control. At least 4 characters.</div></div>
+<button class="cbt" onclick="resetCoachPin()" style="flex-shrink:0;font-size:.72rem">Reset PIN</button>
+</div>
+</div>
+<div class="ss">
+<div class="st">PLAYER NAME (OPTIONAL)</div>
+<div class="sr">
+<div class="si">👤</div>
+<div class="sinfo"><div class="sn" id="name-setting-display">No name set</div><div class="sd2">Appears on your results card. Personal devices only.</div></div>
+<button class="cbt" id="name-setting-btn" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem">Set Name</button>
+</div>
+</div>
+<div style="text-align:center;padding:12px 0 4px">
+<div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text3);margin-bottom:3px">TechReady v1.0</div>
+<div style="font-size:.72rem;color:var(--green);font-weight:700">© 2026 Tristan</div>
+<div style="font-size:.68rem;color:var(--text3);margin-top:2px">Free for everyone, always ❤️</div>
+</div>
+<div class="stip">TIP: All settings save automatically and are remembered next time you play.</div>
+<div class="gsec" style="margin-top:24px;padding:16px;border:1px solid rgba(204,34,0,0.35);border-radius:var(--radius-sm);background:rgba(204,34,0,0.05);">
+<div class="gtitle">⚠️ DANGER ZONE</div>
+<button onclick="resetApp()" style="width:100%;background:rgba(255,68,68,0.1);border:1px solid var(--red);border-radius:var(--radius-sm);color:var(--red);font-family:var(--font-mono);font-size:.75rem;padding:12px;cursor:pointer;letter-spacing:1px;font-weight:700">RESET APP - CLEAR ALL DATA</button>
+</div>
+</div>
+<div class="scr" id="scr-coach">
+<div id="coach-save-indicator" style="display:none;font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:1px;margin:0 0 10px">Saved ✓</div>
+<div id="coach-range-label" style="display:none;font-family:var(--font-mono);font-size:.64rem;color:var(--amber);letter-spacing:1px;margin:0 0 10px">📅 Showing range</div>
+<div class="mc-header">
+<div class="mc-title-wrap">
+<div class="mc-title">TECHREADY</div>
+<div class="mc-sub">MISSION CONTROL</div>
+<div class="mc-meta" id="mc-meta">0 Active • 0 Need Review • 0 Sessions Today</div>
+</div>
+<div class="mc-actions">
+<button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Learner</button>
+<button class="mc-btn" onclick="openM('m-log')">📝 Log Session</button>
+<button class="mc-btn" onclick="openM('m-goal')">🎯 Add Goal</button>
+<button class="mc-btn" onclick="openDateRangeModal()">📅 Date Range</button>
+<button class="mc-btn" onclick="exportCSV()">📥 Export</button>
+<button class="mc-btn" onclick="printCoachReport()">🖨 Print</button>
+<button class="mc-btn" id="coach-filters-btn" onclick="toggleCoachFilters()">⚙ Filters</button>
+<button class="mc-btn" onclick="CFG.coachWelcomeSeen=false;renderCoach();showCoachWelcome(true);" style="font-size:.65rem;letter-spacing:.5px">❔ Quick Start</button>
+<button class="mc-btn" id="arch-toggle-btn" onclick="toggleArchivedView()">🗂 Archived</button>
+<button class="mc-btn" id="summary-mode-btn" onclick="toggleSummaryMode()">📄 Presentation View</button>
+</div>
+</div>
+<div class="mc-stats">
+<div class="mc-stat"><div class="mc-num" id="stat-clients">0</div><div class="mc-label">Active Learners</div></div>
+<div class="mc-stat"><div class="mc-num" id="stat-sessions">0</div><div class="mc-label">Sessions Today</div></div>
+<div class="mc-stat"><div class="mc-num" id="stat-goals">0</div><div class="mc-label">Goals Met</div></div>
+<div class="mc-stat"><div class="mc-num" id="stat-independence">Baseline</div><div class="mc-label">Avg Independence</div></div>
+</div>
+<div class="mc-filters" id="coach-filters-bar">
+<input class="mc-search" id="coach-search" oninput="setCoachSearch(this.value)" placeholder="🔍 Search learners..."/>
+<button class="mc-filter" id="coach-needs-attn-btn" onclick="toggleNeedsAttention()">⚠ Needs Attention</button>
+<button class="mc-filter" id="coach-clear-btn" onclick="clearCoachSearch()" style="display:none">Clear Search</button>
+</div>
+<div class="mc-welcome" id="coach-welcome" style="display:none">
+<div class="mc-welcome-card">
+<div class="mc-welcome-topline">TECHREADY · COACH TOOLS</div>
+<div class="mc-welcome-title">👋 Welcome to Mission Control</div>
+<p class="mc-welcome-copy">Track learner progress, spot support needs, and generate reports without extra data entry.</p>
+<div class="mc-welcome-grid">
+<div class="mc-welcome-step"><div class="mc-welcome-stepno">1</div><div class="mc-welcome-stepbody"><strong>Add Learner</strong>Create one profile for each learner.</div></div>
+<div class="mc-welcome-step"><div class="mc-welcome-stepno">2</div><div class="mc-welcome-stepbody"><strong>Log Session</strong>Record the skill, prompt level, score, and a quick note.</div></div>
+<div class="mc-welcome-step"><div class="mc-welcome-stepno">3</div><div class="mc-welcome-stepbody"><strong>Set Objective</strong>Add a goal once. Mission Control tracks progress automatically.</div></div>
+<div class="mc-welcome-step"><div class="mc-welcome-stepno">4</div><div class="mc-welcome-stepbody"><strong>Smart Guidance</strong>Watch for Needs Attention, support needs, and next best actions.</div></div>
+</div>
+<div class="mc-welcome-note">Use initials or learner nicknames on shared devices. Mission Control keeps progress organized so staff spend less time typing and more time teaching.</div>
+<div class="mc-welcome-foot">🔒 PIN protected. Data stays on this device unless you choose to export or print a report.</div>
+<div class="mc-welcome-actions">
+<button class="rpri" onclick="dismissCoachWelcome()">Enter Mission Control</button>
+<button class="rsec" onclick="dismissCoachWelcome();setTimeout(()=&gt;openClientModalSafe(),120)">Start by Adding a Learner</button>
+</div>
+</div>
+</div>
+<div class="mc-flash" id="coach-flash"><div class="mc-flash-title">SESSION REPLAY</div><div class="mc-flash-copy" id="coach-flash-copy"></div></div>
+<div id="coach-wrap"><div class="mc-empty">No learners yet.<br/>Add a learner to start Mission Control.<div class="mc-empty-cta"><button class="mc-btn pri" onclick="openClientModalSafe()">＋ Add Learner</button><button class="mc-btn" onclick="showCoachWelcome()">❔ Quick Start</button></div></div></div>
+</div>
+<div class="scr" id="scr-scamsguide">
+<div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🚨 SCAM SPOTTING GUIDE</div></div>
+<div class="gsec">
+<div class="gtitle">HOW TO SPOT A SCAM</div>
+<p style="font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px">Scammers are good at what they do. But they almost always leave clues. Here are the most common warning signs.</p>
+<div class="guide-tab-row">
+<button class="guide-tab on" onclick="showLTab('warning',this)">⚠️ Warning Signs</button>
+<button class="guide-tab" onclick="showLTab('types',this)">🎭 Scam Types</button>
+<button class="guide-tab" onclick="showLTab('got',this)">🆘 If You Were Scammed</button>
+</div>
 <div id="lpane-warning" style="display:block">
-  <div class="guide-card" onclick="say('Warning sign: Urgency. The message says you must act NOW or something bad will happen.')">
-    <div class="gc-icon">⏱️</div><div><div class="gc-title">URGENCY</div><div class="gc-body">"Act NOW or lose your account!" Scammers create panic so you react before you think. Real companies do not threaten you like this.</div></div>
-  </div>
-  <div class="guide-card" onclick="say('Warning sign: Too good to be true. You won something you never entered.')">
-    <div class="gc-icon">🎁</div><div><div class="gc-title">TOO GOOD TO BE TRUE</div><div class="gc-body">You won a prize you never entered. You get a huge reward for doing almost nothing. Free money, free laptops, free vacations - all want your information first.</div></div>
-  </div>
-  <div class="guide-card" onclick="say('Warning sign: Payment in gift cards. No real business or government agency takes gift cards as payment.')">
-    <div class="gc-icon">🎴</div><div><div class="gc-title">GIFT CARD PAYMENT</div><div class="gc-body">Anyone demanding payment in gift cards is always a scammer. The IRS, courts, utility companies, and police NEVER ask for gift cards. Never.</div></div>
-  </div>
-  <div class="guide-card" onclick="say('Warning sign: Requests for personal information. Real companies already know your account number.')">
-    <div class="gc-icon">📋</div><div><div class="gc-title">ASKS FOR PERSONAL INFO</div><div class="gc-body">Requests for your SSN, passwords, full credit card numbers, or banking details out of the blue. Real companies already have your info and do not ask this way.</div></div>
-  </div>
-  <div class="guide-card" onclick="say('Warning sign: Spelling mistakes and bad grammar in official-looking messages.')">
-    <div class="gc-icon">✏️</div><div><div class="gc-title">SPELLING MISTAKES</div><div class="gc-body">Scam messages are often written quickly. Look for typos, odd phrasing, or sentences that do not quite make sense for a real company.</div></div>
-  </div>
+<div class="guide-card" onclick="say('Warning sign: Urgency. The message says you must act NOW or something bad will happen.')">
+<div class="gc-icon">⏱️</div><div><div class="gc-title">URGENCY</div><div class="gc-body">"Act NOW or lose your account!" Scammers create panic so you react before you think. Real companies do not threaten you like this.</div></div>
 </div>
-
+<div class="guide-card" onclick="say('Warning sign: Too good to be true. You won something you never entered.')">
+<div class="gc-icon">🎁</div><div><div class="gc-title">TOO GOOD TO BE TRUE</div><div class="gc-body">You won a prize you never entered. You get a huge reward for doing almost nothing. Free money, free laptops, free vacations - all want your information first.</div></div>
+</div>
+<div class="guide-card" onclick="say('Warning sign: Payment in gift cards. No real business or government agency takes gift cards as payment.')">
+<div class="gc-icon">🎴</div><div><div class="gc-title">GIFT CARD PAYMENT</div><div class="gc-body">Anyone demanding payment in gift cards is always a scammer. The IRS, courts, utility companies, and police NEVER ask for gift cards. Never.</div></div>
+</div>
+<div class="guide-card" onclick="say('Warning sign: Requests for personal information. Real companies already know your account number.')">
+<div class="gc-icon">📋</div><div><div class="gc-title">ASKS FOR PERSONAL INFO</div><div class="gc-body">Requests for your SSN, passwords, full credit card numbers, or banking details out of the blue. Real companies already have your info and do not ask this way.</div></div>
+</div>
+<div class="guide-card" onclick="say('Warning sign: Spelling mistakes and bad grammar in official-looking messages.')">
+<div class="gc-icon">✏️</div><div><div class="gc-title">SPELLING MISTAKES</div><div class="gc-body">Scam messages are often written quickly. Look for typos, odd phrasing, or sentences that do not quite make sense for a real company.</div></div>
+</div>
+</div>
 <div id="lpane-types" style="display:none">
-  <div class="guide-card" onclick="say('Phishing: Fake emails or texts pretending to be your bank, Amazon, or the IRS to steal your login.')">
-    <div class="gc-icon">🎣</div><div><div class="gc-title">PHISHING</div><div class="gc-body">Fake emails or texts that look like they come from your bank, Amazon, PayPal, or the IRS. They link to fake websites that steal your password.</div></div>
-  </div>
-  <div class="guide-card" onclick="say('Tech support scam: A fake pop-up or call saying your device has a virus. They want remote access to steal from you.')">
-    <div class="gc-icon">💻</div><div><div class="gc-title">FAKE TECH SUPPORT</div><div class="gc-body">Pop-ups or calls claiming your device has a virus and you must call a number. They want remote access to your computer to steal money or install real malware.</div></div>
-  </div>
-  <div class="guide-card" onclick="say('Romance scam: Someone online builds a relationship and then asks for money, often gift cards or wire transfer.')">
-    <div class="gc-icon">💔</div><div><div class="gc-title">ROMANCE SCAM</div><div class="gc-body">Someone online builds a friendship or romance, often using a fake military or professional profile, then eventually asks for money or gift cards.</div></div>
-  </div>
-  <div class="guide-card" onclick="say('Lottery scam: You won a prize but must pay a fee first. Real lotteries never require fees.')">
-    <div class="gc-icon">🏆</div><div><div class="gc-title">FAKE LOTTERY / PRIZE</div><div class="gc-body">You won something - but you have to pay a "processing fee" or "taxes" first. Real prizes do not work this way. You never pay to receive something you won.</div></div>
-  </div>
-  <div class="guide-card" onclick="say('Impersonation scam: Someone pretends to be a government official, police officer, or family member in trouble to get money from you.')">
-    <div class="gc-icon">🎭</div><div><div class="gc-title">IMPERSONATION</div><div class="gc-body">Someone pretends to be a police officer, the IRS, Social Security, or even a grandchild in trouble. They create fear or urgency to get you to send money fast.</div></div>
-  </div>
+<div class="guide-card" onclick="say('Phishing: Fake emails or texts pretending to be your bank, Amazon, or the IRS to steal your login.')">
+<div class="gc-icon">🎣</div><div><div class="gc-title">PHISHING</div><div class="gc-body">Fake emails or texts that look like they come from your bank, Amazon, PayPal, or the IRS. They link to fake websites that steal your password.</div></div>
 </div>
-
+<div class="guide-card" onclick="say('Tech support scam: A fake pop-up or call saying your device has a virus. They want remote access to steal from you.')">
+<div class="gc-icon">💻</div><div><div class="gc-title">FAKE TECH SUPPORT</div><div class="gc-body">Pop-ups or calls claiming your device has a virus and you must call a number. They want remote access to your computer to steal money or install real malware.</div></div>
+</div>
+<div class="guide-card" onclick="say('Romance scam: Someone online builds a relationship and then asks for money, often gift cards or wire transfer.')">
+<div class="gc-icon">💔</div><div><div class="gc-title">ROMANCE SCAM</div><div class="gc-body">Someone online builds a friendship or romance, often using a fake military or professional profile, then eventually asks for money or gift cards.</div></div>
+</div>
+<div class="guide-card" onclick="say('Lottery scam: You won a prize but must pay a fee first. Real lotteries never require fees.')">
+<div class="gc-icon">🏆</div><div><div class="gc-title">FAKE LOTTERY / PRIZE</div><div class="gc-body">You won something - but you have to pay a "processing fee" or "taxes" first. Real prizes do not work this way. You never pay to receive something you won.</div></div>
+</div>
+<div class="guide-card" onclick="say('Impersonation scam: Someone pretends to be a government official, police officer, or family member in trouble to get money from you.')">
+<div class="gc-icon">🎭</div><div><div class="gc-title">IMPERSONATION</div><div class="gc-body">Someone pretends to be a police officer, the IRS, Social Security, or even a grandchild in trouble. They create fear or urgency to get you to send money fast.</div></div>
+</div>
+</div>
 <div id="lpane-got" style="display:none">
-  <div style="background:rgba(204,34,0,0.08);border:1px solid rgba(204,34,0,0.3);border-radius:12px;padding:14px 16px;margin-bottom:12px">
-    <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:10px">IF YOU THINK YOU WERE SCAMMED</div>
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div><div style="font-size:.84rem;color:var(--text2);line-height:1.5"><strong style="color:var(--text)">Do not panic.</strong> Act quickly but calmly. The faster you move, the more you can limit the damage.</div></div>
-      <div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div><div style="font-size:.84rem;color:var(--text2);line-height:1.5"><strong style="color:var(--text)">Change your passwords</strong> on any affected accounts immediately.</div></div>
-      <div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div><div style="font-size:.84rem;color:var(--text2);line-height:1.5"><strong style="color:var(--text)">Call your bank</strong> using the number on the back of your card if any financial information was shared.</div></div>
-      <div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div><div style="font-size:.84rem;color:var(--text2);line-height:1.5"><strong style="color:var(--text)">Tell a trusted person</strong> - a family member, job coach, or support worker. You do not have to handle this alone.</div></div>
-      <div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">5</div><div style="font-size:.84rem;color:var(--text2);line-height:1.5"><strong style="color:var(--text)">Report it</strong> to the FTC at reportfraud.ftc.gov or call 1-877-382-4357.</div></div>
-    </div>
-  </div>
-  <div class="guide-card" onclick="say('Remember: Being scammed is not your fault. Scammers are professionals who trick millions of people every year.')">
-    <div class="gc-icon">💛</div><div><div class="gc-title">IT IS NOT YOUR FAULT</div><div class="gc-body">Being scammed is not a sign of weakness or stupidity. Scammers are professionals who fool millions of people every year. What matters is what you do next.</div></div>
-  </div>
+<div style="background:rgba(204,34,0,0.08);border:1px solid rgba(204,34,0,0.3);border-radius:12px;padding:14px 16px;margin-bottom:12px">
+<div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:10px">IF YOU THINK YOU WERE SCAMMED</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div><div style="font-size:.84rem;color:var(--text2);line-height:1.5"><strong style="color:var(--text)">Do not panic.</strong> Act quickly but calmly. The faster you move, the more you can limit the damage.</div></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div><div style="font-size:.84rem;color:var(--text2);line-height:1.5"><strong style="color:var(--text)">Change your passwords</strong> on any affected accounts immediately.</div></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div><div style="font-size:.84rem;color:var(--text2);line-height:1.5"><strong style="color:var(--text)">Call your bank</strong> using the number on the back of your card if any financial information was shared.</div></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div><div style="font-size:.84rem;color:var(--text2);line-height:1.5"><strong style="color:var(--text)">Tell a trusted person</strong> - a family member, job coach, or support worker. You do not have to handle this alone.</div></div>
+<div style="display:flex;gap:10px;align-items:flex-start"><div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0">5</div><div style="font-size:.84rem;color:var(--text2);line-height:1.5"><strong style="color:var(--text)">Report it</strong> to the FTC at reportfraud.ftc.gov or call 1-877-382-4357.</div></div>
 </div>
-  </div>
-
 </div>
-
-<div id="scr-passwordsguide" class="scr">
-  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🔐 PASSWORDS GUIDE</div></div>
-
-  <div class="gsec">
-    <div class="gtitle">PASSWORD SAFETY</div>
-    <p style="font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px">Your passwords are the keys to your digital life. Here is how to keep them strong and safe.</p>
-    <div class="guide-card" onclick="say('A strong password is long, random, and mixes uppercase letters, lowercase letters, numbers, and symbols.')">
-      <div class="gc-icon">💪</div><div><div class="gc-title">WHAT MAKES A STRONG PASSWORD</div><div class="gc-body">Long (12+ characters), random, with uppercase, lowercase, numbers, and symbols. <span style="color:var(--green);font-family:var(--font-mono)">T#9kL!mP2@vQ</span> is strong. <span style="color:var(--red);font-family:var(--font-mono)">password123</span> is not.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Never use your birthday, pet name, or any personal information as a password. Those are too easy to guess.')">
-      <div class="gc-icon">🚫</div><div><div class="gc-title">NEVER USE PERSONAL INFO</div><div class="gc-body">Birthdays, pet names, your child's name, your town - all of these are easy to guess. Avoid using anything that appears on your social media.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Use a different password for every account. If one account gets hacked, the others stay safe.')">
-      <div class="gc-icon">🔑</div><div><div class="gc-title">ONE PASSWORD PER ACCOUNT</div><div class="gc-body">Using the same password everywhere means one breach = all accounts compromised. A password manager makes this easy - it remembers all your passwords for you.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Two-factor authentication sends a code to your phone as a second check. Even if someone knows your password, they cannot get in without your phone.')">
-      <div class="gc-icon">📱</div><div><div class="gc-title">TURN ON 2-FACTOR AUTH (2FA)</div><div class="gc-body">2FA sends a code to your phone when you log in. Even if someone steals your password, they cannot get in without your phone. Enable it on your email and bank apps first.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Never share your passwords with anyone. Real customer service agents will never ask for your password.')">
-      <div class="gc-icon">🤐</div><div><div class="gc-title">NEVER SHARE YOUR PASSWORDS</div><div class="gc-body">No legitimate company - your bank, Apple, Google, or a tech support agent - will ever ask for your password. If they do, it is a scam.</div></div>
-    </div>
-  </div>
-
+<div class="guide-card" onclick="say('Remember: Being scammed is not your fault. Scammers are professionals who trick millions of people every year.')">
+<div class="gc-icon">💛</div><div><div class="gc-title">IT IS NOT YOUR FAULT</div><div class="gc-body">Being scammed is not a sign of weakness or stupidity. Scammers are professionals who fool millions of people every year. What matters is what you do next.</div></div>
 </div>
-
-<div id="scr-onlineguide" class="scr">
-  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🌐 ONLINE SAFETY GUIDE</div></div>
-
-  <div class="gsec">
-    <div class="gtitle">STAYING SAFE ONLINE</div>
-    <p style="font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px">What you do online can affect your safety, privacy, and finances. These habits keep you protected.</p>
-    <div class="guide-card" onclick="say('Always look for https with a padlock icon before entering any personal information on a website.')">
-      <div class="gc-icon">🔒</div><div><div class="gc-title">LOOK FOR HTTPS</div><div class="gc-body">Before entering any personal info, check that the website address starts with <span style="color:var(--green);font-family:var(--font-mono)">https://</span> (with a padlock icon). The "s" means secure and encrypted.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Never do banking or enter passwords on public WiFi. Public networks can be monitored by others.')">
-      <div class="gc-icon">📶</div><div><div class="gc-title">BE CAREFUL WITH PUBLIC WIFI</div><div class="gc-body">Coffee shops, airports, and libraries often have unsecured WiFi. Anyone on the same network could potentially see what you are doing. Never bank or log into sensitive accounts on public WiFi.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Only download apps from the official App Store or Google Play Store, not from random websites.')">
-      <div class="gc-icon">📲</div><div><div class="gc-title">ONLY DOWNLOAD FROM OFFICIAL STORES</div><div class="gc-body">The App Store (iPhone) and Google Play (Android) review apps for safety. Apps from random websites can contain malware. Stick to the official stores.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Think before you post. Information you share online can be seen by people you never intended to reach it.')">
-      <div class="gc-icon">🤔</div><div><div class="gc-title">THINK BEFORE YOU POST</div><div class="gc-body">Once something is online, it is hard to take back. Avoid posting your home address, daily schedule, financial situation, or anything you would not want a stranger to know.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Always log out of accounts on shared or public computers. Just closing the tab does NOT log you out.')">
-      <div class="gc-icon">🚪</div><div><div class="gc-title">ALWAYS LOG OUT</div><div class="gc-body">On any shared device, always click "Sign Out" or "Log Out" when you are done. Just closing the browser window does NOT log you out.</div></div>
-    </div>
-  </div>
-
 </div>
-
-<div id="scr-commguide" class="scr">
-  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">💬 DIGITAL COMMUNICATION GUIDE</div></div>
-
-  <div class="gsec">
-    <div class="gtitle">PROFESSIONAL DIGITAL COMMUNICATION</div>
-    <p style="font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px">How you communicate digitally represents you. These habits make a good impression at work and in daily life.</p>
-    <div class="guide-card" onclick="say('A professional email has a greeting, clear content, and a polite sign-off. No slang, no all caps, and no text abbreviations.')">
-      <div class="gc-icon">📧</div><div><div class="gc-title">PROFESSIONAL EMAIL FORMAT</div><div class="gc-body"><strong style="color:var(--text)">Do:</strong> Greet by name, use full sentences, check spelling, add a polite sign-off.<br><strong style="color:var(--red)">Do not:</strong> Use slang, ALL CAPS, text abbreviations (lol, omg), or forget a subject line.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Reply to work emails within one business day. If you need more time, send a quick acknowledgment.')">
-      <div class="gc-icon">⏱️</div><div><div class="gc-title">REPLY WITHIN ONE BUSINESS DAY</div><div class="gc-body">Responding within 24 hours during work days is the professional standard. Even a quick "Thank you, I will look into this" shows respect and reliability.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('ALL CAPS in a message means you are shouting. It comes across as aggressive even if that was not your intention.')">
-      <div class="gc-icon">📢</div><div><div class="gc-title">ALL CAPS = SHOUTING</div><div class="gc-body">Writing in all capital letters is widely understood to mean you are angry or shouting. Even if you are just excited, it comes across poorly in professional settings.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Your social media is visible to employers. Think before you post anything about your job, coworkers, or workplace conflicts.')">
-      <div class="gc-icon">👔</div><div><div class="gc-title">YOUR EMPLOYER CAN SEE YOUR SOCIAL MEDIA</div><div class="gc-body">Many employers check social media before hiring and after. Avoid posting about workplace conflicts, complaining about your job, or anything you would not say to your boss's face.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Always re-read your email before sending. Reading it out loud helps catch tone issues and mistakes.')">
-      <div class="gc-icon">✅</div><div><div class="gc-title">READ BEFORE YOU SEND</div><div class="gc-body">Read every work email out loud before sending. This catches spelling errors, unintended tone, and missing information. You cannot un-send an email.</div></div>
-    </div>
-  </div>
-
 </div>
-
-<div id="scr-devicesguide" class="scr">
-  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">📱💻 YOUR DEVICES GUIDE</div></div>
-
-  <div class="gsec">
-    <div class="gtitle">PHONES, TABLETS &amp; COMPUTERS</div>
-    <p style="font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px">These habits keep all your devices - phones, tablets, and computers - running well and your information safe.</p>
-    <div class="guide-card" onclick="say('Keep every device updated. Updates fix security holes on phones, tablets, and computers alike.')">
-      <div class="gc-icon">🔄</div><div><div class="gc-title">KEEP ALL DEVICES UPDATED</div><div class="gc-body">Software updates fix security vulnerabilities on phones, tablets, AND computers. iPhone: Settings → General → Software Update. Android: Settings → System → Update. Windows: Settings → Update &amp; Security. Mac: Apple menu → System Settings → Software Update.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Back up everything. iCloud and Google back up phones. OneDrive and Time Machine back up computers.')">
-      <div class="gc-icon">☁️</div><div><div class="gc-title">BACK UP EVERYTHING</div><div class="gc-body"><strong style="color:var(--text)">Phone/tablet:</strong> iCloud (iPhone) or Google Backup (Android) - turns on in Settings.<br><strong style="color:var(--text)">Computer:</strong> OneDrive or iCloud Drive for files. Windows Backup or Time Machine (Mac) for full backups.<br>A backup means a lost or broken device is an inconvenience, not a disaster.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Lock every device with a PIN, fingerprint, or password. Without it, a stranger who finds your device has access to everything.')">
-      <div class="gc-icon">🔐</div><div><div class="gc-title">LOCK EVERY DEVICE</div><div class="gc-body">Phones and tablets: use a PIN, fingerprint, or face unlock. Computers: set a login password and enable screen lock after inactivity (Settings → Lock Screen). Without a lock, anyone who picks up your device has instant access to your accounts and files.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Only download apps and programs from official sources - the App Store, Google Play, or the developer's official website.')">
-      <div class="gc-icon">📲</div><div><div class="gc-title">DOWNLOAD FROM OFFICIAL SOURCES ONLY</div><div class="gc-body"><strong style="color:var(--text)">Phone/tablet:</strong> App Store (iPhone) or Google Play (Android) only.<br><strong style="color:var(--text)">Computer:</strong> Download programs only from the developer's official website or the Microsoft/Mac App Store. Random websites offering free software are a major source of viruses and malware.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('When your computer or phone is slow, restart it first. Restarting clears background processes and fixes most common problems.')">
-      <div class="gc-icon">🔁</div><div><div class="gc-title">RESTART FIXES MOST PROBLEMS</div><div class="gc-body">Device running slow? Apps crashing? Battery draining? Restart first - it works for phones AND computers. On a computer it also installs pending updates. Make it your first response to any technical problem.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Never plug in a USB drive you found or that was given to you by a stranger. It could instantly install malware on your computer.')">
-      <div class="gc-icon">🚫</div><div><div class="gc-title">NEVER PLUG IN UNKNOWN USB DRIVES</div><div class="gc-body">USB drives found in parking lots, lobbies, or sent unsolicited are a classic hacker technique. Plugging one into your computer can instantly install malware. This does not apply to phones (USB-C cables are fine), but any USB storage device from an unknown source is dangerous.</div></div>
-    </div>
-    <div class="guide-card" onclick="say('Review app and browser permissions. Only grant access to your camera, microphone, and location when the app actually needs it.')">
-      <div class="gc-icon">🔎</div><div><div class="gc-title">REVIEW PERMISSIONS</div><div class="gc-body"><strong style="color:var(--text)">Phone:</strong> Settings → Privacy → review Camera, Microphone, Location for each app.<br><strong style="color:var(--text)">Computer:</strong> Browsers also ask for camera and microphone access - only allow for sites you trust like video call apps. A recipe website does not need your microphone.</div></div>
-    </div>
-  </div>
-
 </div>
-
-<div id="scr-callscripts" class="scr">
-  <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">📞 CALL SCRIPTS</div></div>
-  <div style="padding:0 16px 80px">
-    <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:4px;margin-top:4px">WHAT TO SAY</div>
-    <div style="font-size:.82rem;color:var(--text2);margin-bottom:16px;line-height:1.7">Real scripts for real situations. Practice these so the words feel natural when you need them.</div>
-
+<div class="scr" id="scr-passwordsguide">
+<div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🔐 PASSWORDS GUIDE</div></div>
+<div class="gsec">
+<div class="gtitle">PASSWORD SAFETY</div>
+<p style="font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px">Your passwords are the keys to your digital life. Here is how to keep them strong and safe.</p>
+<div class="guide-card" onclick="say('A strong password is long, random, and mixes uppercase letters, lowercase letters, numbers, and symbols.')">
+<div class="gc-icon">💪</div><div><div class="gc-title">WHAT MAKES A STRONG PASSWORD</div><div class="gc-body">Long (12+ characters), random, with uppercase, lowercase, numbers, and symbols. <span style="color:var(--green);font-family:var(--font-mono)">T#9kL!mP2@vQ</span> is strong. <span style="color:var(--red);font-family:var(--font-mono)">password123</span> is not.</div></div>
+</div>
+<div class="guide-card" onclick="say('Never use your birthday, pet name, or any personal information as a password. Those are too easy to guess.')">
+<div class="gc-icon">🚫</div><div><div class="gc-title">NEVER USE PERSONAL INFO</div><div class="gc-body">Birthdays, pet names, your child's name, your town - all of these are easy to guess. Avoid using anything that appears on your social media.</div></div>
+</div>
+<div class="guide-card" onclick="say('Use a different password for every account. If one account gets hacked, the others stay safe.')">
+<div class="gc-icon">🔑</div><div><div class="gc-title">ONE PASSWORD PER ACCOUNT</div><div class="gc-body">Using the same password everywhere means one breach = all accounts compromised. A password manager makes this easy - it remembers all your passwords for you.</div></div>
+</div>
+<div class="guide-card" onclick="say('Two-factor authentication sends a code to your phone as a second check. Even if someone knows your password, they cannot get in without your phone.')">
+<div class="gc-icon">📱</div><div><div class="gc-title">TURN ON 2-FACTOR AUTH (2FA)</div><div class="gc-body">2FA sends a code to your phone when you log in. Even if someone steals your password, they cannot get in without your phone. Enable it on your email and bank apps first.</div></div>
+</div>
+<div class="guide-card" onclick="say('Never share your passwords with anyone. Real customer service agents will never ask for your password.')">
+<div class="gc-icon">🤐</div><div><div class="gc-title">NEVER SHARE YOUR PASSWORDS</div><div class="gc-body">No legitimate company - your bank, Apple, Google, or a tech support agent - will ever ask for your password. If they do, it is a scam.</div></div>
+</div>
+</div>
+</div>
+<div class="scr" id="scr-onlineguide">
+<div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🌐 ONLINE SAFETY GUIDE</div></div>
+<div class="gsec">
+<div class="gtitle">STAYING SAFE ONLINE</div>
+<p style="font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px">What you do online can affect your safety, privacy, and finances. These habits keep you protected.</p>
+<div class="guide-card" onclick="say('Always look for https with a padlock icon before entering any personal information on a website.')">
+<div class="gc-icon">🔒</div><div><div class="gc-title">LOOK FOR HTTPS</div><div class="gc-body">Before entering any personal info, check that the website address starts with <span style="color:var(--green);font-family:var(--font-mono)">https://</span> (with a padlock icon). The "s" means secure and encrypted.</div></div>
+</div>
+<div class="guide-card" onclick="say('Never do banking or enter passwords on public WiFi. Public networks can be monitored by others.')">
+<div class="gc-icon">📶</div><div><div class="gc-title">BE CAREFUL WITH PUBLIC WIFI</div><div class="gc-body">Coffee shops, airports, and libraries often have unsecured WiFi. Anyone on the same network could potentially see what you are doing. Never bank or log into sensitive accounts on public WiFi.</div></div>
+</div>
+<div class="guide-card" onclick="say('Only download apps from the official App Store or Google Play Store, not from random websites.')">
+<div class="gc-icon">📲</div><div><div class="gc-title">ONLY DOWNLOAD FROM OFFICIAL STORES</div><div class="gc-body">The App Store (iPhone) and Google Play (Android) review apps for safety. Apps from random websites can contain malware. Stick to the official stores.</div></div>
+</div>
+<div class="guide-card" onclick="say('Think before you post. Information you share online can be seen by people you never intended to reach it.')">
+<div class="gc-icon">🤔</div><div><div class="gc-title">THINK BEFORE YOU POST</div><div class="gc-body">Once something is online, it is hard to take back. Avoid posting your home address, daily schedule, financial situation, or anything you would not want a stranger to know.</div></div>
+</div>
+<div class="guide-card" onclick="say('Always log out of accounts on shared or public computers. Just closing the tab does NOT log you out.')">
+<div class="gc-icon">🚪</div><div><div class="gc-title">ALWAYS LOG OUT</div><div class="gc-body">On any shared device, always click "Sign Out" or "Log Out" when you are done. Just closing the browser window does NOT log you out.</div></div>
+</div>
+</div>
+</div>
+<div class="scr" id="scr-commguide">
+<div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">💬 DIGITAL COMMUNICATION GUIDE</div></div>
+<div class="gsec">
+<div class="gtitle">PROFESSIONAL DIGITAL COMMUNICATION</div>
+<p style="font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px">How you communicate digitally represents you. These habits make a good impression at work and in daily life.</p>
+<div class="guide-card" onclick="say('A professional email has a greeting, clear content, and a polite sign-off. No slang, no all caps, and no text abbreviations.')">
+<div class="gc-icon">📧</div><div><div class="gc-title">PROFESSIONAL EMAIL FORMAT</div><div class="gc-body"><strong style="color:var(--text)">Do:</strong> Greet by name, use full sentences, check spelling, add a polite sign-off.<br/><strong style="color:var(--red)">Do not:</strong> Use slang, ALL CAPS, text abbreviations (lol, omg), or forget a subject line.</div></div>
+</div>
+<div class="guide-card" onclick="say('Reply to work emails within one business day. If you need more time, send a quick acknowledgment.')">
+<div class="gc-icon">⏱️</div><div><div class="gc-title">REPLY WITHIN ONE BUSINESS DAY</div><div class="gc-body">Responding within 24 hours during work days is the professional standard. Even a quick "Thank you, I will look into this" shows respect and reliability.</div></div>
+</div>
+<div class="guide-card" onclick="say('ALL CAPS in a message means you are shouting. It comes across as aggressive even if that was not your intention.')">
+<div class="gc-icon">📢</div><div><div class="gc-title">ALL CAPS = SHOUTING</div><div class="gc-body">Writing in all capital letters is widely understood to mean you are angry or shouting. Even if you are just excited, it comes across poorly in professional settings.</div></div>
+</div>
+<div class="guide-card" onclick="say('Your social media is visible to employers. Think before you post anything about your job, coworkers, or workplace conflicts.')">
+<div class="gc-icon">👔</div><div><div class="gc-title">YOUR EMPLOYER CAN SEE YOUR SOCIAL MEDIA</div><div class="gc-body">Many employers check social media before hiring and after. Avoid posting about workplace conflicts, complaining about your job, or anything you would not say to your boss's face.</div></div>
+</div>
+<div class="guide-card" onclick="say('Always re-read your email before sending. Reading it out loud helps catch tone issues and mistakes.')">
+<div class="gc-icon">✅</div><div><div class="gc-title">READ BEFORE YOU SEND</div><div class="gc-body">Read every work email out loud before sending. This catches spelling errors, unintended tone, and missing information. You cannot un-send an email.</div></div>
+</div>
+</div>
+</div>
+<div class="scr" id="scr-devicesguide">
+<div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">📱💻 YOUR DEVICES GUIDE</div></div>
+<div class="gsec">
+<div class="gtitle">PHONES, TABLETS &amp; COMPUTERS</div>
+<p style="font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px">These habits keep all your devices - phones, tablets, and computers - running well and your information safe.</p>
+<div class="guide-card" onclick="say('Keep every device updated. Updates fix security holes on phones, tablets, and computers alike.')">
+<div class="gc-icon">🔄</div><div><div class="gc-title">KEEP ALL DEVICES UPDATED</div><div class="gc-body">Software updates fix security vulnerabilities on phones, tablets, AND computers. iPhone: Settings → General → Software Update. Android: Settings → System → Update. Windows: Settings → Update &amp; Security. Mac: Apple menu → System Settings → Software Update.</div></div>
+</div>
+<div class="guide-card" onclick="say('Back up everything. iCloud and Google back up phones. OneDrive and Time Machine back up computers.')">
+<div class="gc-icon">☁️</div><div><div class="gc-title">BACK UP EVERYTHING</div><div class="gc-body"><strong style="color:var(--text)">Phone/tablet:</strong> iCloud (iPhone) or Google Backup (Android) - turns on in Settings.<br/><strong style="color:var(--text)">Computer:</strong> OneDrive or iCloud Drive for files. Windows Backup or Time Machine (Mac) for full backups.<br/>A backup means a lost or broken device is an inconvenience, not a disaster.</div></div>
+</div>
+<div class="guide-card" onclick="say('Lock every device with a PIN, fingerprint, or password. Without it, a stranger who finds your device has access to everything.')">
+<div class="gc-icon">🔐</div><div><div class="gc-title">LOCK EVERY DEVICE</div><div class="gc-body">Phones and tablets: use a PIN, fingerprint, or face unlock. Computers: set a login password and enable screen lock after inactivity (Settings → Lock Screen). Without a lock, anyone who picks up your device has instant access to your accounts and files.</div></div>
+</div>
+<div class="guide-card" onclick="say('Only download apps and programs from official sources - the App Store, Google Play, or the developer's official website.')">
+<div class="gc-icon">📲</div><div><div class="gc-title">DOWNLOAD FROM OFFICIAL SOURCES ONLY</div><div class="gc-body"><strong style="color:var(--text)">Phone/tablet:</strong> App Store (iPhone) or Google Play (Android) only.<br/><strong style="color:var(--text)">Computer:</strong> Download programs only from the developer's official website or the Microsoft/Mac App Store. Random websites offering free software are a major source of viruses and malware.</div></div>
+</div>
+<div class="guide-card" onclick="say('When your computer or phone is slow, restart it first. Restarting clears background processes and fixes most common problems.')">
+<div class="gc-icon">🔁</div><div><div class="gc-title">RESTART FIXES MOST PROBLEMS</div><div class="gc-body">Device running slow? Apps crashing? Battery draining? Restart first - it works for phones AND computers. On a computer it also installs pending updates. Make it your first response to any technical problem.</div></div>
+</div>
+<div class="guide-card" onclick="say('Never plug in a USB drive you found or that was given to you by a stranger. It could instantly install malware on your computer.')">
+<div class="gc-icon">🚫</div><div><div class="gc-title">NEVER PLUG IN UNKNOWN USB DRIVES</div><div class="gc-body">USB drives found in parking lots, lobbies, or sent unsolicited are a classic hacker technique. Plugging one into your computer can instantly install malware. This does not apply to phones (USB-C cables are fine), but any USB storage device from an unknown source is dangerous.</div></div>
+</div>
+<div class="guide-card" onclick="say('Review app and browser permissions. Only grant access to your camera, microphone, and location when the app actually needs it.')">
+<div class="gc-icon">🔎</div><div><div class="gc-title">REVIEW PERMISSIONS</div><div class="gc-body"><strong style="color:var(--text)">Phone:</strong> Settings → Privacy → review Camera, Microphone, Location for each app.<br/><strong style="color:var(--text)">Computer:</strong> Browsers also ask for camera and microphone access - only allow for sites you trust like video call apps. A recipe website does not need your microphone.</div></div>
+</div>
+</div>
+</div>
+<div class="scr" id="scr-callscripts">
+<div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">📞 CALL SCRIPTS</div></div>
+<div style="padding:0 16px 80px">
+<div style="font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:4px;margin-top:4px">WHAT TO SAY</div>
+<div style="font-size:.82rem;color:var(--text2);margin-bottom:16px;line-height:1.7">Real scripts for real situations. Practice these so the words feel natural when you need them.</div>
 <div class="guide-card" onclick="say('Script: How to hang up on a scammer. Say: I need to verify this is real. I will call you back using the number on your official website. Then hang up.')">
-  <div class="gc-icon">📵</div><div><div class="gc-title">HANGING UP ON A POSSIBLE SCAMMER</div>
-  <div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8">"I need to verify this is real. I will call you back using the number on your official website."<br><span style="color:var(--text3);font-size:.7rem">Then hang up. You do not owe them an explanation.</span></div></div>
+<div class="gc-icon">📵</div><div><div class="gc-title">HANGING UP ON A POSSIBLE SCAMMER</div>
+<div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8">"I need to verify this is real. I will call you back using the number on your official website."<br/><span style="color:var(--text3);font-size:.7rem">Then hang up. You do not owe them an explanation.</span></div></div>
 </div>
 <div class="guide-card" onclick="say('Script: Calling your bank after a possible scam. Say: I think I may have given my information to a scammer. Can you check my account for unusual activity?')">
-  <div class="gc-icon">🏦</div><div><div class="gc-title">CALLING YOUR BANK AFTER A SCAM</div>
-  <div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8">"Hi, I think I may have given my information to a scammer. Can you check my account for unusual activity and help me secure it?"</div></div>
+<div class="gc-icon">🏦</div><div><div class="gc-title">CALLING YOUR BANK AFTER A SCAM</div>
+<div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8">"Hi, I think I may have given my information to a scammer. Can you check my account for unusual activity and help me secure it?"</div></div>
 </div>
 <div class="guide-card" onclick="say('Script: Telling a trusted person. Say: Something happened online and I am not sure if it was a scam. Can you help me figure out what to do?')">
-  <div class="gc-icon">🤝</div><div><div class="gc-title">TELLING A TRUSTED PERSON</div>
-  <div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8">"Something happened online and I am not sure if it was a scam. Can you help me figure out what to do next?"</div></div>
+<div class="gc-icon">🤝</div><div><div class="gc-title">TELLING A TRUSTED PERSON</div>
+<div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8">"Something happened online and I am not sure if it was a scam. Can you help me figure out what to do next?"</div></div>
 </div>
 <div class="guide-card" onclick="say('Script: Sending a professional email when you are sick. Subject: Out Sick Today. Message: Hi Name, I am not feeling well and will not be able to come in today. I will keep you updated. Thank you.')">
-  <div class="gc-icon">📧</div><div><div class="gc-title">CALLING IN SICK BY EMAIL</div>
-  <div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8"><span style="color:var(--text3)">Subject:</span> Out Sick Today<br><br>Hi [Name],<br><br>I am not feeling well and will not be able to come in today. I will keep you updated on my recovery.<br><br>Thank you,<br>[Your Name]</div></div>
+<div class="gc-icon">📧</div><div><div class="gc-title">CALLING IN SICK BY EMAIL</div>
+<div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8"><span style="color:var(--text3)">Subject:</span> Out Sick Today<br/><br/>Hi [Name],<br/><br/>I am not feeling well and will not be able to come in today. I will keep you updated on my recovery.<br/><br/>Thank you,<br/>[Your Name]</div></div>
 </div>
-  </div>
 </div>
-
+</div>
 <!-- ══ DESKTOP SIDEBAR (hidden on mobile) ══ -->
-
 <aside id="desktop-sidebar" style="display:none">
-  <!-- Quick stats -->
-  <div class="dsb-card">
-    <div class="dsb-title">📊 Your Stats</div>
-    <div class="dsb-stat"><span class="dsb-stat-label">Daily Streak</span><span class="dsb-stat-value" id="dsb-streak">🔥0</span></div>
-    <div class="dsb-stat"><span class="dsb-stat-label">Badges Earned</span><span class="dsb-stat-value" id="dsb-badges">0</span></div>
-    <div class="dsb-stat"><span class="dsb-stat-label">Total Sessions</span><span class="dsb-stat-value" id="dsb-sessions">0</span></div>
-  </div>
-  <!-- Today's progress -->
-  <div class="dsb-card" id="dsb-today-wrap" style="display:none">
-    <div class="dsb-title">⚡ Today's Progress</div>
-    <div id="dsb-today"></div>
-  </div>
-  <!-- Quick links -->
-  <div class="dsb-card">
-    <div class="dsb-title">🔗 Quick Links</div>
-    <div style="display:flex;flex-direction:column;gap:7px">
-      <button class="rsec" onclick="go('guide')" style="text-align:left;padding:9px 12px;font-size:.8rem">📖 How To Play</button>
-      <button class="rsec" onclick="go('guide')" style="text-align:left;padding:9px 12px;font-size:.8rem">📖 Tech Guides</button>
-      <button class="rsec" onclick="go('badges')" style="text-align:left;padding:9px 12px;font-size:.8rem">🎖 View Badges</button>
-      <button class="rsec" onclick="go('scores')" style="text-align:left;padding:9px 12px;font-size:.8rem">🏆 High Scores</button>
-    </div>
-  </div>
-  <!-- About blurb -->
-  <div class="dsb-card">
-    <div class="dsb-title">ℹ️ About TechReady</div>
-    <p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free digital skills trainer for everyone. Practice phone safety, passwords, messaging, online safety, devices, and everyday technology skills - at your own pace.</p>
-    <button class="rsec" onclick="go('about')" style="width:100%;font-size:.78rem;padding:8px">Read Our Story →</button>
-  </div>
+<!-- Quick stats -->
+<div class="dsb-card">
+<div class="dsb-title">📊 Your Stats</div>
+<div class="dsb-stat"><span class="dsb-stat-label">Daily Streak</span><span class="dsb-stat-value" id="dsb-streak">🔥0</span></div>
+<div class="dsb-stat"><span class="dsb-stat-label">Badges Earned</span><span class="dsb-stat-value" id="dsb-badges">0</span></div>
+<div class="dsb-stat"><span class="dsb-stat-label">Total Sessions</span><span class="dsb-stat-value" id="dsb-sessions">0</span></div>
+</div>
+<!-- Today's progress -->
+<div class="dsb-card" id="dsb-today-wrap" style="display:none">
+<div class="dsb-title">⚡ Today's Progress</div>
+<div id="dsb-today"></div>
+</div>
+<!-- Quick links -->
+<div class="dsb-card">
+<div class="dsb-title">🔗 Quick Links</div>
+<div style="display:flex;flex-direction:column;gap:7px">
+<button class="rsec" onclick="go('guide')" style="text-align:left;padding:9px 12px;font-size:.8rem">📖 How To Play</button>
+<button class="rsec" onclick="go('guide')" style="text-align:left;padding:9px 12px;font-size:.8rem">📖 Tech Guides</button>
+<button class="rsec" onclick="go('badges')" style="text-align:left;padding:9px 12px;font-size:.8rem">🎖 View Badges</button>
+<button class="rsec" onclick="go('scores')" style="text-align:left;padding:9px 12px;font-size:.8rem">🏆 High Scores</button>
+</div>
+</div>
+<!-- About blurb -->
+<div class="dsb-card">
+<div class="dsb-title">ℹ️ About TechReady</div>
+<p style="font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:10px">Free digital skills trainer for everyone. Practice phone safety, passwords, messaging, online safety, devices, and everyday technology skills - at your own pace.</p>
+<button class="rsec" onclick="go('about')" style="width:100%;font-size:.78rem;padding:8px">Read Our Story →</button>
+</div>
 </aside>
-
 </main>
-
 <!-- ══ BREAK SCREEN ══ -->
-
 <div class="break-scr" id="break-scr">
-  <div class="break-emoji" id="break-emoji">☕</div>
-  <div class="break-title" id="break-title">GREAT WORK!</div>
-  <div class="break-sub" id="break-sub">You have done 5 questions in a row. Want to take a short break or keep going?</div>
-  <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:12px 18px;max-width:280px;font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6" id="break-tip"></div>
-  <button class="dbtn" style="max-width:260px" onclick="closeBreak(false)">Keep Going →</button>
-  <button class="rsec" style="max-width:260px" onclick="closeBreak(true)">Take a Break ☕</button>
-  <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1px;max-width:260px;text-align:center">Your shift will be waiting when you come back.</div>
+<div class="break-emoji" id="break-emoji">☕</div>
+<div class="break-title" id="break-title">GREAT WORK!</div>
+<div class="break-sub" id="break-sub">You have done 5 questions in a row. Want to take a short break or keep going?</div>
+<div id="break-tip" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:12px 18px;max-width:280px;font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6"></div>
+<button class="dbtn" onclick="closeBreak(false)" style="max-width:260px">Keep Going →</button>
+<button class="rsec" onclick="closeBreak(true)" style="max-width:260px">Take a Break ☕</button>
+<div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1px;max-width:260px;text-align:center">Your shift will be waiting when you come back.</div>
 </div>
-
 <!-- ══ MODALS ══ -->
-
 <div class="mow" id="m-client">
-  <div class="mdl">
-    <div class="mt" id="clientModalTitle">+ ADD NEW LEARNER</div>
-    <div class="fg"><label class="fl">Initials / Display Name</label><input class="fi" id="nc-name" placeholder="e.g. AJ or Alex J."></div>
-    <div class="fg"><label class="fl">Private Full Name (optional)</label><input class="fi" id="nc-fullname" placeholder="Stored privately for staff use only"></div>
-    <div class="fg"><label class="fl">Starting Level</label>
-      <select class="fsel" id="nc-level">
-        <option value="beginner">Beginner - Learning basics</option>
-        <option value="developing">Developing - Building basic skills</option>
-        <option value="proficient">Proficient - Practicing independently</option>
-        <option value="advanced">Advanced - Mostly independent</option>
-      </select>
-    </div>
-    <div class="fg"><label class="fl">Program / Group</label><input class="fi" id="nc-program" placeholder="e.g. Independent Living Group A"></div>
-    <div class="fg"><label class="fl">Notes / Accommodations</label><textarea class="fta" id="nc-notes" placeholder="Goals, accommodations, preferences..."></textarea></div>
-    <div class="mbtns"><button class="mcancel" onclick="closeM('m-client')">Cancel</button><button class="msave" id="clientSaveBtn" onclick="saveClient()">Add Learner</button></div>
-  </div>
+<div class="mdl">
+<div class="mt" id="clientModalTitle">+ ADD NEW LEARNER</div>
+<div class="fg"><label class="fl">Initials / Display Name</label><input class="fi" id="nc-name" placeholder="e.g. AJ or Alex J."/></div>
+<div class="fg"><label class="fl">Private Full Name (optional)</label><input class="fi" id="nc-fullname" placeholder="Stored privately for staff use only"/></div>
+<div class="fg"><label class="fl">Starting Level</label>
+<select class="fsel" id="nc-level">
+<option value="beginner">Beginner - Learning basics</option>
+<option value="developing">Developing - Building basic skills</option>
+<option value="proficient">Proficient - Practicing independently</option>
+<option value="advanced">Advanced - Mostly independent</option>
+</select>
 </div>
-
+<div class="fg"><label class="fl">Program / Group</label><input class="fi" id="nc-program" placeholder="e.g. Independent Living Group A"/></div>
+<div class="fg"><label class="fl">Notes / Accommodations</label><textarea class="fta" id="nc-notes" placeholder="Goals, accommodations, preferences..."></textarea></div>
+<div class="mbtns"><button class="mcancel" onclick="closeM('m-client')">Cancel</button><button class="msave" id="clientSaveBtn" onclick="saveClient()">Add Learner</button></div>
+</div>
+</div>
 <div class="mow" id="m-log">
-  <div class="mdl">
-    <div class="mt">📝 LOG SESSION</div>
-    <div class="fg"><label class="fl">Client</label><select class="fsel" id="log-cl"></select></div>
-    <div class="fg"><label class="fl">Module Practiced</label>
-      <select class="fi" id="log-mod">
-        <option>Spot the Scam</option>
-        <option>Passwords</option>
-        <option>Online Safety</option>
-        <option>Digital Communication</option>
-        <option>Your Devices</option>
-        <option>Tech Challenge</option>
-        <option>Daily Challenge</option>
-        <option>Practice Mode</option>
-        <option>Tech Guide Review</option>
-      </select>
-    </div>
-    <div class="fg"><label class="fl">Score (e.g. 8/10)</label><input class="fi" id="log-sc" placeholder="8/10"></div>
-    <div class="fg">
-      <label class="fl">Prompt Level Used</label>
-      <div class="pchips" id="pchips">
-        <div class="pchip on" data-v="independent" onclick="selPrompt(this)">Independent</div>
-        <div class="pchip" data-v="verbal" onclick="selPrompt(this)">Verbal</div>
-        <div class="pchip" data-v="gestural" onclick="selPrompt(this)">Gestural</div>
-        <div class="pchip" data-v="physical" onclick="selPrompt(this)">Physical</div>
-        <div class="pchip" data-v="hoh" onclick="selPrompt(this)">Hand-over-Hand</div>
-      </div>
-    </div>
-    <div class="fg"><label class="fl">Session Notes</label>
-      <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px">
-        <div class="note-chip" onclick="appendNote('Independent today')">Independent today</div>
-        <div class="note-chip" onclick="appendNote('Needed verbal prompts')">Needed verbal prompts</div>
-        <div class="note-chip" onclick="appendNote('Great focus')">Great focus</div>
-        <div class="note-chip" onclick="appendNote('Struggled with scam recognition')">Scam recognition</div>
-        <div class="note-chip" onclick="appendNote('Good with food safety')">Food safety strength</div>
-        <div class="note-chip" onclick="appendNote('Improving steadily')">Improving steadily</div>
-        <div class="note-chip" onclick="appendNote('Best session yet')">Best session yet</div>
-        <div class="note-chip" onclick="appendNote('Short attention today')">Short attention today</div>
-      </div>
-      <textarea class="fta" id="log-notes" placeholder="Tap a chip above or type your own notes..."></textarea>
-    </div>
-    <div class="mbtns"><button class="mcancel" onclick="closeM('m-log')">Cancel</button><button class="msave" onclick="saveSession()">Save Session</button></div>
-  </div>
+<div class="mdl">
+<div class="mt">📝 LOG SESSION</div>
+<div class="fg"><label class="fl">Client</label><select class="fsel" id="log-cl"></select></div>
+<div class="fg"><label class="fl">Module Practiced</label>
+<select class="fi" id="log-mod">
+<option>Spot the Scam</option>
+<option>Passwords</option>
+<option>Online Safety</option>
+<option>Digital Communication</option>
+<option>Your Devices</option>
+<option>Tech Challenge</option>
+<option>Daily Challenge</option>
+<option>Practice Mode</option>
+<option>Tech Guide Review</option>
+</select>
 </div>
-
+<div class="fg"><label class="fl">Score (e.g. 8/10)</label><input class="fi" id="log-sc" placeholder="8/10"/></div>
+<div class="fg">
+<label class="fl">Prompt Level Used</label>
+<div class="pchips" id="pchips">
+<div class="pchip on" data-v="independent" onclick="selPrompt(this)">Independent</div>
+<div class="pchip" data-v="verbal" onclick="selPrompt(this)">Verbal</div>
+<div class="pchip" data-v="gestural" onclick="selPrompt(this)">Gestural</div>
+<div class="pchip" data-v="physical" onclick="selPrompt(this)">Physical</div>
+<div class="pchip" data-v="hoh" onclick="selPrompt(this)">Hand-over-Hand</div>
+</div>
+</div>
+<div class="fg"><label class="fl">Session Notes</label>
+<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:7px">
+<div class="note-chip" onclick="appendNote('Independent today')">Independent today</div>
+<div class="note-chip" onclick="appendNote('Needed verbal prompts')">Needed verbal prompts</div>
+<div class="note-chip" onclick="appendNote('Great focus')">Great focus</div>
+<div class="note-chip" onclick="appendNote('Struggled with scam recognition')">Scam recognition</div>
+<div class="note-chip" onclick="appendNote('Good with food safety')">Food safety strength</div>
+<div class="note-chip" onclick="appendNote('Improving steadily')">Improving steadily</div>
+<div class="note-chip" onclick="appendNote('Best session yet')">Best session yet</div>
+<div class="note-chip" onclick="appendNote('Short attention today')">Short attention today</div>
+</div>
+<textarea class="fta" id="log-notes" placeholder="Tap a chip above or type your own notes..."></textarea>
+</div>
+<div class="mbtns"><button class="mcancel" onclick="closeM('m-log')">Cancel</button><button class="msave" onclick="saveSession()">Save Session</button></div>
+</div>
+</div>
 <div class="mow" id="m-goal">
-  <div class="mdl">
-    <div class="mt">🎯 ADD SESSION GOAL</div>
-    <div class="fg"><label class="fl">Client</label><select class="fsel" id="goal-cl"></select></div>
-    <div class="fg"><label class="fl">Skill Area</label>
-      <select class="fi" id="goal-skill">
-          <option value="scams">🚨 Scam Spotting</option>
-          <option value="passwords">🔐 Passwords</option>
-          <option value="online">🌐 Online Safety</option>
-          <option value="devices">📱 Devices</option>
-        </select>
-    </div>
-    <div class="fg"><label class="fl">Target Score (e.g. 4/5 correct)</label>
-      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center">
-        <input class="fi" id="goal-num" type="number" min="1" max="10" value="4" placeholder="4">
-        <span style="color:var(--text2);font-weight:700;text-align:center">out of</span>
-        <input class="fi" id="goal-den" type="number" min="1" max="10" value="5" placeholder="5">
-      </div>
-    </div>
-    <div class="fg"><label class="fl">Consecutive Sessions Required</label>
-      <select class="fsel" id="goal-consec">
-        <option value="1">1 session</option>
-        <option value="2">2 sessions in a row</option>
-        <option value="3" selected>3 sessions in a row</option>
-        <option value="4">4 sessions in a row</option>
-        <option value="5">5 sessions in a row</option>
-      </select>
-    </div>
-    <div class="fg"><label class="fl">Goal Description (optional)</label>
-      <input class="fi" id="goal-desc" placeholder="e.g. Score 80% on Spot the Scam independently">
-    </div>
-    <div class="mbtns"><button class="mcancel" onclick="closeM('m-goal')">Cancel</button><button class="msave" onclick="saveGoal()">Save Goal</button></div>
-  </div>
+<div class="mdl">
+<div class="mt">🎯 ADD SESSION GOAL</div>
+<div class="fg"><label class="fl">Client</label><select class="fsel" id="goal-cl"></select></div>
+<div class="fg"><label class="fl">Skill Area</label>
+<select class="fi" id="goal-skill">
+<option value="scams">🚨 Scam Spotting</option>
+<option value="passwords">🔐 Passwords</option>
+<option value="online">🌐 Online Safety</option>
+<option value="devices">📱 Devices</option>
+</select>
 </div>
-
-
+<div class="fg"><label class="fl">Target Score (e.g. 4/5 correct)</label>
+<div style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center">
+<input class="fi" id="goal-num" max="10" min="1" placeholder="4" type="number" value="4"/>
+<span style="color:var(--text2);font-weight:700;text-align:center">out of</span>
+<input class="fi" id="goal-den" max="10" min="1" placeholder="5" type="number" value="5"/>
+</div>
+</div>
+<div class="fg"><label class="fl">Consecutive Sessions Required</label>
+<select class="fsel" id="goal-consec">
+<option value="1">1 session</option>
+<option value="2">2 sessions in a row</option>
+<option selected="" value="3">3 sessions in a row</option>
+<option value="4">4 sessions in a row</option>
+<option value="5">5 sessions in a row</option>
+</select>
+</div>
+<div class="fg"><label class="fl">Goal Description (optional)</label>
+<input class="fi" id="goal-desc" placeholder="e.g. Score 80% on Spot the Scam independently"/>
+</div>
+<div class="mbtns"><button class="mcancel" onclick="closeM('m-goal')">Cancel</button><button class="msave" onclick="saveGoal()">Save Goal</button></div>
+</div>
+</div>
 <div class="mow" id="m-range">
-  <div class="mdl">
-    <div class="mt">📅 DATE RANGE</div>
-    <div class="fg"><label class="fl">Start Date</label><input class="fi" id="coach-range-start" type="date"></div>
-    <div class="fg"><label class="fl">End Date</label><input class="fi" id="coach-range-end" type="date"></div>
-    <div class="mbtns">
-      <button class="mcancel" onclick="clearCoachRange()">Clear</button>
-      <button class="msave" onclick="applyCoachRange()">Apply Range</button>
-    </div>
-  </div>
+<div class="mdl">
+<div class="mt">📅 DATE RANGE</div>
+<div class="fg"><label class="fl">Start Date</label><input class="fi" id="coach-range-start" type="date"/></div>
+<div class="fg"><label class="fl">End Date</label><input class="fi" id="coach-range-end" type="date"/></div>
+<div class="mbtns">
+<button class="mcancel" onclick="clearCoachRange()">Clear</button>
+<button class="msave" onclick="applyCoachRange()">Apply Range</button>
 </div>
-
+</div>
+</div>
 <div class="mow" id="m-client-detail">
-  <div class="mdl" style="max-width:720px">
-    <div class="mt">🛰 CLIENT COMMAND PANEL</div>
-    <div id="client-detail-body"></div>
-    <div class="mbtns"><button class="mcancel" onclick="closeM('m-client-detail')">Close</button></div>
-  </div>
+<div class="mdl" style="max-width:720px">
+<div class="mt">🛰 CLIENT COMMAND PANEL</div>
+<div id="client-detail-body"></div>
+<div class="mbtns"><button class="mcancel" onclick="closeM('m-client-detail')">Close</button></div>
 </div>
-
+</div>
 <div class="mow" id="m-date-range">
-  <div class="mdl">
-    <div class="mt">📅 DATE RANGE</div>
-    <div class="fg"><label class="fl">Start Date</label><input class="fi" id="coach-date-start" type="date"></div>
-    <div class="fg"><label class="fl">End Date</label><input class="fi" id="coach-date-end" type="date"></div>
-    <div class="mbtns">
-      <button class="mcancel" onclick="clearCoachRange()">Clear</button>
-      <button class="msave" onclick="saveCoachRange()">Apply Range</button>
-    </div>
-  </div>
+<div class="mdl">
+<div class="mt">📅 DATE RANGE</div>
+<div class="fg"><label class="fl">Start Date</label><input class="fi" id="coach-date-start" type="date"/></div>
+<div class="fg"><label class="fl">End Date</label><input class="fi" id="coach-date-end" type="date"/></div>
+<div class="mbtns">
+<button class="mcancel" onclick="clearCoachRange()">Clear</button>
+<button class="msave" onclick="saveCoachRange()">Apply Range</button>
 </div>
-
+</div>
+</div>
 <div class="mow" id="m-hint">
-  <div class="mdl">
-    <div class="mt" id="m-hint-title">💡 HINT</div>
-    <div id="m-hint-body" style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:16px;"></div>
-    <button class="msave" style="width:100%;margin-bottom:8px" id="m-hint-ok" onclick="closeM('m-hint')">Got it!</button>
-    <button class="rsec" id="m-hint-cancel" style="width:100%;display:none" onclick="closeM('m-hint')">Cancel</button>
-  </div>
+<div class="mdl">
+<div class="mt" id="m-hint-title">💡 HINT</div>
+<div id="m-hint-body" style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:16px;"></div>
+<button class="msave" id="m-hint-ok" onclick="closeM('m-hint')" style="width:100%;margin-bottom:8px">Got it!</button>
+<button class="rsec" id="m-hint-cancel" onclick="closeM('m-hint')" style="width:100%;display:none">Cancel</button>
 </div>
-
+</div>
 <!-- ══ COACH PIN ══ -->
-
 <div class="mow" id="m-pin">
-  <div class="mdl" style="max-width:320px;text-align:center">
-    <div style="font-size:2rem;margin-bottom:6px">🔒</div>
-    <div class="mt" id="pin-title" style="text-align:center;justify-content:center">MISSION CONTROL ACCESS</div>
-    <div id="pin-subtitle" style="font-size:.82rem;color:var(--text2);margin-bottom:16px;line-height:1.5">Enter your PIN to access Mission Control.</div>
-    <input id="pin-input" type="password" class="fi" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
-      placeholder="Enter PIN"
-      style="text-align:center;font-size:1.3rem;letter-spacing:4px;font-family:var(--font-mono);margin-bottom:10px"
-      oninput="pinInputChange()" onkeydown="if(event.key==='Enter')handlePinSubmit()">
-    <div id="pin-error" style="color:var(--red);font-size:.78rem;font-weight:700;margin-bottom:10px;min-height:18px;font-family:var(--font-mono)"></div>
-    <button class="dbtn" onclick="handlePinSubmit()" style="margin-bottom:8px">Submit →</button>
-    <button class="rsec" onclick="closeM('m-pin');go('home')" style="font-size:.8rem">Cancel</button>
-    <div id="pin-footer" style="margin-top:12px;font-size:.72rem;color:var(--text3);line-height:1.5"></div>
-  </div>
+<div class="mdl" style="max-width:320px;text-align:center">
+<div style="font-size:2rem;margin-bottom:6px">🔒</div>
+<div class="mt" id="pin-title" style="text-align:center;justify-content:center">MISSION CONTROL ACCESS</div>
+<div id="pin-subtitle" style="font-size:.82rem;color:var(--text2);margin-bottom:16px;line-height:1.5">Enter your PIN to access Mission Control.</div>
+<input autocapitalize="none" autocomplete="off" autocorrect="off" class="fi" id="pin-input" oninput="pinInputChange()" onkeydown="if(event.key==='Enter')handlePinSubmit()" placeholder="Enter PIN" spellcheck="false" style="text-align:center;font-size:1.3rem;letter-spacing:4px;font-family:var(--font-mono);margin-bottom:10px" type="password"/>
+<div id="pin-error" style="color:var(--red);font-size:.78rem;font-weight:700;margin-bottom:10px;min-height:18px;font-family:var(--font-mono)"></div>
+<button class="dbtn" onclick="handlePinSubmit()" style="margin-bottom:8px">Submit →</button>
+<button class="rsec" onclick="closeM('m-pin');go('home')" style="font-size:.8rem">Cancel</button>
+<div id="pin-footer" style="margin-top:12px;font-size:.72rem;color:var(--text3);line-height:1.5"></div>
 </div>
-
+</div>
 <!-- ══ NAME PROMPT ══ -->
-
 <div class="mow" id="m-name">
-  <div class="mdl" style="max-width:340px">
-    <div style="text-align:center;font-size:2rem;margin-bottom:8px">👋</div>
-    <div class="mt" style="text-align:center;justify-content:center">WHAT'S YOUR NAME?</div>
-    <p style="font-size:.83rem;color:var(--text2);margin-bottom:16px;line-height:1.6">Your first name will appear on your results when you do a great job!</p>
-    <div style="background:var(--amber-light);border:1px solid var(--amber);border-radius:var(--radius-sm);padding:9px 13px;font-size:.76rem;color:var(--amber);font-weight:700;margin-bottom:16px;line-height:1.5">
+<div class="mdl" style="max-width:340px">
+<div style="text-align:center;font-size:2rem;margin-bottom:8px">👋</div>
+<div class="mt" style="text-align:center;justify-content:center">WHAT'S YOUR NAME?</div>
+<p style="font-size:.83rem;color:var(--text2);margin-bottom:16px;line-height:1.6">Your first name will appear on your results when you do a great job!</p>
+<div style="background:var(--amber-light);border:1px solid var(--amber);border-radius:var(--radius-sm);padding:9px 13px;font-size:.76rem;color:var(--amber);font-weight:700;margin-bottom:16px;line-height:1.5">
       ⚠️ Only use your name if this is your <strong>personal device</strong>. Do not enter learner names on shared devices.
     </div>
-    <div class="fg">
-      <label class="fl">First name only</label>
-      <input class="fi" id="name-input" placeholder="e.g. Alex" maxlength="20" style="font-size:1.1rem;text-align:center">
-    </div>
-    <div class="mbtns" style="flex-direction:column;gap:8px">
-      <button class="msave" style="width:100%;padding:13px" onclick="saveName()">Save My Name ✓</button>
-      <button class="mcancel" style="width:100%;padding:11px;text-align:center" onclick="skipName()">Skip - No Thanks</button>
-      <button class="mcancel" id="clear-name-btn" onclick="clearName()" style="width:100%;padding:9px;text-align:center;font-size:.75rem;color:var(--red);display:none">Remove My Name</button>
-    </div>
-  </div>
+<div class="fg">
+<label class="fl">First name only</label>
+<input class="fi" id="name-input" maxlength="20" placeholder="e.g. Alex" style="font-size:1.1rem;text-align:center"/>
 </div>
-
+<div class="mbtns" style="flex-direction:column;gap:8px">
+<button class="msave" onclick="saveName()" style="width:100%;padding:13px">Save My Name ✓</button>
+<button class="mcancel" onclick="skipName()" style="width:100%;padding:11px;text-align:center">Skip - No Thanks</button>
+<button class="mcancel" id="clear-name-btn" onclick="clearName()" style="width:100%;padding:9px;text-align:center;font-size:.75rem;color:var(--red);display:none">Remove My Name</button>
+</div>
+</div>
+</div>
 <!-- ══ STREAK MILESTONE ══ -->
-
 <div class="mow" id="m-streak">
-  <div class="mdl" style="max-width:320px;text-align:center">
-    <div id="streak-milestone-emoji" style="font-size:3.5rem;margin-bottom:10px">🔥</div>
-    <div id="streak-milestone-title" style="font-family:var(--font-mono);font-size:1.1rem;color:var(--amber);letter-spacing:3px;margin-bottom:8px">3-DAY STREAK!</div>
-    <div id="streak-milestone-msg" style="font-size:.88rem;color:var(--text2);line-height:1.6;margin-bottom:16px"></div>
-    <div id="streak-milestone-badge" style="background:var(--amber-light);border:2px solid var(--amber);border-radius:var(--radius);padding:14px;margin-bottom:18px">
-      <div style="font-size:2rem;margin-bottom:5px">☀️</div>
-      <div style="font-family:var(--font-mono);font-size:.75rem;color:var(--amber);font-weight:700;letter-spacing:1px">BADGE EARNED!</div>
-      <div id="streak-badge-name" style="font-size:.88rem;color:var(--text);font-weight:700;margin-top:3px"></div>
-    </div>
-    <button class="dbtn" onclick="closeM('m-streak')">Keep Going! →</button>
-  </div>
+<div class="mdl" style="max-width:320px;text-align:center">
+<div id="streak-milestone-emoji" style="font-size:3.5rem;margin-bottom:10px">🔥</div>
+<div id="streak-milestone-title" style="font-family:var(--font-mono);font-size:1.1rem;color:var(--amber);letter-spacing:3px;margin-bottom:8px">3-DAY STREAK!</div>
+<div id="streak-milestone-msg" style="font-size:.88rem;color:var(--text2);line-height:1.6;margin-bottom:16px"></div>
+<div id="streak-milestone-badge" style="background:var(--amber-light);border:2px solid var(--amber);border-radius:var(--radius);padding:14px;margin-bottom:18px">
+<div style="font-size:2rem;margin-bottom:5px">☀️</div>
+<div style="font-family:var(--font-mono);font-size:.75rem;color:var(--amber);font-weight:700;letter-spacing:1px">BADGE EARNED!</div>
+<div id="streak-badge-name" style="font-size:.88rem;color:var(--text);font-weight:700;margin-top:3px"></div>
 </div>
-
+<button class="dbtn" onclick="closeM('m-streak')">Keep Going! →</button>
+</div>
+</div>
 <!-- ══ QUICK SETTINGS (mid-game) ══ -->
-
 <div class="mow" id="m-quick-settings">
-  <div class="mdl" style="max-width:340px">
-    <div class="mt">⚙️ QUICK SETTINGS</div>
-    <p style="font-size:.78rem;color:var(--text2);margin-bottom:14px">Changes apply instantly. Your session continues.</p>
-    <div class="sr" style="margin-bottom:8px"><div class="si">🔊</div><div class="sinfo"><div class="sn">Audio</div><div class="sd2">Spoken instructions &amp; sounds</div></div><div class="tog" id="qs-tog-audio" onclick="qsToggle('audio','qs-tog-audio')"></div></div>
-    <div class="sr" style="margin-bottom:8px"><div class="si">T</div><div class="sinfo"><div class="sn">Large Text</div><div class="sd2">Bigger text &amp; buttons</div></div><div class="tog" id="qs-tog-lt" onclick="qsToggle('largetext','qs-tog-lt')"></div></div>
-    <div class="sr" style="margin-bottom:8px"><div class="si">👁</div><div class="sinfo"><div class="sn">Colorblind Mode</div><div class="sd2">Orange/blue instead of red/green</div></div><div class="tog" id="qs-tog-cb" onclick="qsToggle('colorblind','qs-tog-cb')"></div></div>
-    <div class="sr" style="margin-bottom:8px"><div class="si">☀️</div><div class="sinfo"><div class="sn">Light Mode</div><div class="sd2">Light background, easier in bright light</div></div><div class="tog" id="qs-tog-lm" onclick="qsToggle('lightmode','qs-tog-lm')"></div></div>
-    <div class="sr" style="margin-bottom:8px"><div class="si">🌀</div><div class="sinfo"><div class="sn">Reduce Animations</div><div class="sd2">Turns off motion effects</div></div><div class="tog" id="qs-tog-nm" onclick="qsToggle('nomotion','qs-tog-nm')"></div></div>
-    <div class="sr" style="margin-bottom:8px"><div class="si">💡</div><div class="sinfo"><div class="sn">Errorless Hints</div><div class="sd2">Highlights the correct answer before you tap</div></div><div class="tog" id="qs-tog-el" onclick="qsToggle('errorless','qs-tog-el')"></div></div>
-    <div style="margin-top:8px">
-      <button class="msave" style="width:100%" onclick="closeM('m-quick-settings')">Done - Resume Session ▶</button>
-    </div>
-    <p style="font-size:.68rem;color:var(--text3);text-align:center;margin-top:9px">For all settings, visit the home screen grid.</p>
-  </div>
+<div class="mdl" style="max-width:340px">
+<div class="mt">⚙️ QUICK SETTINGS</div>
+<p style="font-size:.78rem;color:var(--text2);margin-bottom:14px">Changes apply instantly. Your session continues.</p>
+<div class="sr" style="margin-bottom:8px"><div class="si">🔊</div><div class="sinfo"><div class="sn">Audio</div><div class="sd2">Spoken instructions &amp; sounds</div></div><div class="tog" id="qs-tog-audio" onclick="qsToggle('audio','qs-tog-audio')"></div></div>
+<div class="sr" style="margin-bottom:8px"><div class="si">T</div><div class="sinfo"><div class="sn">Large Text</div><div class="sd2">Bigger text &amp; buttons</div></div><div class="tog" id="qs-tog-lt" onclick="qsToggle('largetext','qs-tog-lt')"></div></div>
+<div class="sr" style="margin-bottom:8px"><div class="si">👁</div><div class="sinfo"><div class="sn">Colorblind Mode</div><div class="sd2">Orange/blue instead of red/green</div></div><div class="tog" id="qs-tog-cb" onclick="qsToggle('colorblind','qs-tog-cb')"></div></div>
+<div class="sr" style="margin-bottom:8px"><div class="si">☀️</div><div class="sinfo"><div class="sn">Light Mode</div><div class="sd2">Light background, easier in bright light</div></div><div class="tog" id="qs-tog-lm" onclick="qsToggle('lightmode','qs-tog-lm')"></div></div>
+<div class="sr" style="margin-bottom:8px"><div class="si">🌀</div><div class="sinfo"><div class="sn">Reduce Animations</div><div class="sd2">Turns off motion effects</div></div><div class="tog" id="qs-tog-nm" onclick="qsToggle('nomotion','qs-tog-nm')"></div></div>
+<div class="sr" style="margin-bottom:8px"><div class="si">💡</div><div class="sinfo"><div class="sn">Errorless Hints</div><div class="sd2">Highlights the correct answer before you tap</div></div><div class="tog" id="qs-tog-el" onclick="qsToggle('errorless','qs-tog-el')"></div></div>
+<div style="margin-top:8px">
+<button class="msave" onclick="closeM('m-quick-settings')" style="width:100%">Done - Resume Session ▶</button>
 </div>
-
+<p style="font-size:.68rem;color:var(--text3);text-align:center;margin-top:9px">For all settings, visit the home screen grid.</p>
+</div>
+</div>
 <!-- ══ BADGE TOAST ══ -->
-
 <div id="badge-toast">
-  <div id="badge-toast-icon">🎖</div>
-  <div id="badge-toast-body">
-    <div id="badge-toast-label">🎉 BADGE UNLOCKED!</div>
-    <div id="badge-toast-name"></div>
-    <div id="badge-toast-desc"></div>
-  </div>
+<div id="badge-toast-icon">🎖</div>
+<div id="badge-toast-body">
+<div id="badge-toast-label">🎉 BADGE UNLOCKED!</div>
+<div id="badge-toast-name"></div>
+<div id="badge-toast-desc"></div>
 </div>
-
-<div id="scr-game" class="scr">
-  <div class="gtop">
-    <button class="back" id="end-btn" onclick="confirmEnd()">‹ END</button>
-    <div class="gmode" id="gmode-lbl">TECH CHALLENGE</div>
-    <button class="back" onclick="syncQS();openM('m-quick-settings')" style="margin-left:auto;padding:7px 10px;font-size:1rem;min-width:36px" title="Settings">⚙️</button>
-    <button class="back" onclick="replayModeIntro()" style="padding:7px 10px;font-size:.9rem;min-width:36px;font-weight:900;color:var(--green)" title="What is this mode?">?</button>
-    <button class="back" onclick="requestBreak()" style="padding:7px 10px;font-size:.9rem;min-width:36px" title="I need a break">☕</button>
-    <div class="gscore">
-      <div class="sbox" id="sbox-score"><div class="sv" id="g-score">0</div><div class="sl">SCORE</div></div>
-      <div class="sbox" id="sbox-streak">
-        <div class="sdots" id="sdots">
-          <div class="sd" id="sd0"></div><div class="sd" id="sd1"></div>
-          <div class="sd" id="sd2"></div><div class="sd" id="sd3"></div>
-          <div class="sd" id="sd4"></div>
-        </div>
-        <div class="sl">STREAK</div>
-      </div>
-      <div class="lvl" id="g-lvl">BEGINNER</div>
-    </div>
-  </div>
-  <div class="pdots" id="pdots"></div>
-  <div id="progress-text" class="progress-text" style="font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:1px;margin:-2px 0 8px;text-transform:uppercase;">Question 1 of 10</div>
-  <div id="hint-counter" class="hint-counter" style="display:block;font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:1px;margin-bottom:8px;opacity:.85;">Hints used: 0</div>
-  <div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
-
-  <div class="qpanel" id="qpanel">
-    <div id="g-question" style="font-size:.95rem;font-weight:800;color:var(--text);line-height:1.55;margin-bottom:14px;font-family:var(--font-mono)"></div>
-    <div id="g-visual"></div>
-    <div id="g-opts" class="qopts"></div>
-    <div id="g-fb" class="qfb" style="display:none"></div>
-  </div>
-
-  <div id="g-hint-bar" style="display:none;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:8px;font-size:.85rem;color:var(--text2);line-height:1.5;background:rgba(204,34,0,.08);"></div>
-
-  <div style="display:flex;gap:8px;margin-top:8px">
-    <button class="abtn" id="hint-btn" onclick="doHint(this)" style="flex:1">💡 HINT</button>
-    <button class="abtn" id="say-again-btn" onclick="gameSayAgain(this)" style="flex:1">🔊 SAY AGAIN</button>
-  </div>
+</div>
+<div class="scr" id="scr-game">
+<div class="gtop game-top">
+<div class="gmain">
+<button class="back" id="end-btn" onclick="confirmEnd()">‹ END</button>
+<div class="gmode" id="gmode-lbl">TECH CHALLENGE</div>
+</div>
+<div class="gside">
+<div class="gtools">
+<button class="back giconbtn" onclick="syncQS();openM('m-quick-settings')" title="Settings">⚙️</button>
+<button class="back giconbtn ghelpbtn" onclick="replayModeIntro()" title="What is this mode?">?</button>
+<button class="back giconbtn" onclick="requestBreak()" title="I need a break">☕</button>
+</div>
+<div class="gscore">
+<div class="sbox" id="sbox-score"><div class="sv" id="g-score">0</div><div class="sl">SCORE</div></div>
+<div class="sbox" id="sbox-streak">
+<div class="sdots" id="sdots">
+<div class="sd" id="sd0"></div><div class="sd" id="sd1"></div>
+<div class="sd" id="sd2"></div><div class="sd" id="sd3"></div>
+<div class="sd" id="sd4"></div>
+</div>
+<div class="sl">STREAK</div>
+</div>
+<div class="lvl" id="g-lvl">BEGINNER</div>
+</div>
+</div>
+</div>
+<div class="pdots" id="pdots"></div>
+<div class="progress-text" id="progress-text" style="font-family:var(--font-mono);font-size:.72rem;color:var(--amber);letter-spacing:1px;margin:-2px 0 8px;text-transform:uppercase;">Question 1 of 10</div>
+<div class="hint-counter" id="hint-counter" style="display:block;font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:1px;margin-bottom:8px;opacity:.85;">Hints used: 0</div>
+<div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
+<div class="qpanel" id="qpanel">
+<div id="g-question" style="font-size:.95rem;font-weight:800;color:var(--text);line-height:1.55;margin-bottom:14px;font-family:var(--font-mono)"></div>
+<div id="g-visual"></div>
+<div class="qopts" id="g-opts"></div>
+<div class="qfb" id="g-fb" style="display:none"></div>
+</div>
+<div id="g-hint-bar" style="display:none;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:8px;font-size:.85rem;color:var(--text2);line-height:1.5;background:rgba(204,34,0,.08);"></div>
+<div style="display:flex;gap:8px;margin-top:8px">
+<button class="abtn" id="hint-btn" onclick="doHint(this)" style="flex:1">💡 HINT</button>
+<button class="abtn" id="say-again-btn" onclick="gameSayAgain(this)" style="flex:1">🔊 SAY AGAIN</button>
+</div>
 </div>
 <!-- ══════════ FEEDBACK ══════════ -->
 <div class="fov" id="fov">
-  <div class="fcard" id="fcard">
-    <div class="femoji" id="femoji">✅</div>
-    <div class="ftitle ok" id="ftitle">CORRECT!</div>
-    <div class="fmsg" id="fmsg"></div>
-    <div id="fexplain" style="display:none;font-size:.82rem;color:var(--text2);background:var(--bg3);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:14px;line-height:1.65;text-align:left;border-left:3px solid var(--green)"></div>
-    <div id="feoc" style="display:none"></div>
-    <button class="fnext" id="fnext" onclick="nextQ_game()">NEXT →</button>
-  </div>
+<div class="fcard" id="fcard">
+<div class="femoji" id="femoji">✅</div>
+<div class="ftitle ok" id="ftitle">CORRECT!</div>
+<div class="fmsg" id="fmsg"></div>
+<div id="fexplain" style="display:none;font-size:.82rem;color:var(--text2);background:var(--bg3);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:14px;line-height:1.65;text-align:left;border-left:3px solid var(--green)"></div>
+<div id="feoc" style="display:none"></div>
+<button class="fnext" id="fnext" onclick="nextQ_game()">NEXT →</button>
 </div>
-
+</div>
 <!-- ══════════ RESULTS ══════════ -->
-
 <!-- ══════════ SCORES ══════════ -->
-
 <!-- ══════════ BADGES ══════════ -->
-
 <!-- ══════════ GUIDE ══════════ -->
-
 <!-- ══════════ BILLS GUIDE ══════════ -->
-
 <!-- ══════════ TECH GUIDES ══════════ -->
-
 <!-- ══════════ CALL SCRIPTS ══════════ -->
-
 <!-- ══════════ ABOUT ══════════ -->
-
-<div id="scr-about" class="scr">
-  <div class="gtop">
-    <button class="back" onclick="go('home')">‹ BACK</button>
-    <div class="gmode">ℹ️ ABOUT</div>
-  </div>
-  <div style="padding:0 16px 80px">
-    <div style="text-align:center;padding:24px 0 16px">
-      <div style="font-family:var(--font-mono);font-size:2rem;font-weight:700;letter-spacing:6px;color:var(--green);text-shadow:0 0 30px rgba(204,34,0,0.4)">TECH<span style="color:var(--text2)">READY</span></div>
-      <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:3px;margin-top:6px">DIGITAL LIFE SKILLS TRAINER</div>
-    </div>
-    <div class="gsec"><div class="gtitle">❤️ THE STORY</div><div class="gcard">
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">TechReady was built as the seventh piece of the LifeReady suite. Digital life skills are some of the most important - and most overlooked - skills there are. Recognizing a scam, protecting your passwords, knowing what to post and what to keep private: these things affect your safety and independence every single day.</p>
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-top:10px">This app was built because digital literacy training does not always happen. Scammers specifically target people who haven't had it. TechReady is here to change that - free, available anytime, built with the same care as every other app in the suite.</p>
-    </div></div>
-    <div class="gsec"><div class="gtitle">🚀 THE MISSION</div><div class="gcard">
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">Digital safety should not be a privilege. TechReady helps people practice the real skills of digital life - spotting scams, protecting passwords, staying safe online, communicating professionally, and understanding their devices. Free, accessible, and built for everyone.</p>
-    </div></div>
-    <div class="gsec"><div class="gtitle">🤝 A DEDICATION</div><div class="gcard" style="border-left:4px solid var(--amber)">
-      <p style="font-size:.88rem;color:var(--text2);line-height:1.8">For the job coaches, support workers, and educators who know that digital independence is real independence. And for everyone who has ever been tricked online, felt confused by technology, or wondered if they could ever feel confident in the digital world. You can. You will.</p>
-    </div></div>
-        <div class="gsec">
-      <div class="gtitle">📱 PART OF THE LIFEREADY SUITE</div>
-      <div class="gcard">
-        <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">TechReady is part of the LifeReady suite - a growing set of free, accessible life skills trainers built by the same person, for the same purpose.</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch">
-        <div style="background:rgba(0,200,81,0.08);border:1px solid rgba(0,200,81,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">💵</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#00c851;font-weight:700;margin-top:4px">CashReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Money Skills</div>
-        </div>
-        <div style="background:rgba(34,136,255,0.08);border:1px solid rgba(34,136,255,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">🕐</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#2288ff;font-weight:700;margin-top:4px">TimeReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Time Skills</div>
-        </div>
-        <div style="background:rgba(212,144,10,0.08);border:1px solid rgba(212,144,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">💼</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#d4900a;font-weight:700;margin-top:4px">JobReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Work Skills</div>
-        </div>
-        <div style="background:rgba(232,101,10,0.08);border:1px solid rgba(232,101,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">🏠</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#e8650a;font-weight:700;margin-top:4px">HomeReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Home Skills</div>
-        </div>
-        <div style="background:rgba(10,147,150,0.08);border:1px solid rgba(10,147,150,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">🗺️</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#0a9396;font-weight:700;margin-top:4px">TravelReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Travel Skills</div>
-        </div>
-        <div style="background:rgba(155,48,217,0.08);border:1px solid rgba(155,48,217,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">💬</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#9b30d9;font-weight:700;margin-top:4px">SocialReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Social Skills</div>
-        </div>
-        <div style="background:rgba(204,34,0,0.15);border:2px solid #cc2200;border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">📱</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#cc2200;font-weight:700;margin-top:4px">TechReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Digital Skills</div>
-          <div style="font-size:.62rem;color:#cc2200;margin-top:3px;font-weight:700">← You are here</div>
-        </div>
-        <div style="background:rgba(233,30,140,0.08);border:1px solid rgba(233,30,140,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
-          <div style="font-size:1.2rem">🏥</div>
-          <div style="font-family:var(--font-mono);font-size:.7rem;color:#e91e8c;font-weight:700;margin-top:4px">HealthReady</div>
-          <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Health & Life Skills</div>
-        </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gsec">
-      <div class="gtitle">🆓 ALWAYS FREE</div>
-      <div class="gcard" style="text-align:center;padding:20px">
-        <div style="font-size:2rem;margin-bottom:10px">🆓</div>
-        <p style="font-size:.88rem;color:var(--text2);line-height:1.8">TechReady is a free cyber lab for everyone. No accounts. No ads. No paywalls. Progress and preferences stay on this device. Practice phone safety, messaging, online basics, and digital confidence at your own pace.</p>
-      </div>
-    </div>
-
-    <div style="text-align:center;padding:20px 0 8px">
-      <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;margin-bottom:4px">TechReady v1.0</div>
-      <div style="font-size:.82rem;color:var(--text2);line-height:1.6;max-width:260px;margin:0 auto">Built with love, by someone who gets it. Free for everyone. Always.</div>
-    </div>
-    <div style="margin:0 0 20px;padding:18px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
-      <div style="font-size:1.6rem;margin-bottom:8px">📱</div>
-      <div style="font-family:'Dancing Script',cursive;font-size:2.6rem;color:#cc2200;line-height:1.1;margin-bottom:6px;text-shadow:0 0 30px rgba(204,34,0,0.4)">Tristan Beck</div>
-      <div style="font-size:.8rem;color:var(--text2);line-height:1.7;margin-bottom:6px">TechReady - Digital Life Skills Trainer</div>
-      <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px">FREE FOR EVERYONE · ALWAYS</div>
-    </div>
-    <div style="text-align:center;padding:20px 0 8px">
-      <a href="index.html" style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;text-decoration:none;color:#cc2200;border:1px solid #cc220055;border-radius:20px;padding:8px 22px;display:inline-block;text-shadow:0 0 10px #cc220044;transition:box-shadow .2s,border-color .2s" onclick="event.preventDefault();window.open('index.html','_self')">← BACK TO LIFEREADY HUB</a>
-    </div>
+<div class="scr" id="scr-about">
+<div class="gtop">
+<button class="back" onclick="go('home')">‹ BACK</button>
+<div class="gmode">ℹ️ ABOUT</div>
+</div>
+<div style="padding:0 16px 80px">
+<div style="text-align:center;padding:24px 0 16px">
+<div style="font-family:var(--font-mono);font-size:2rem;font-weight:700;letter-spacing:6px;color:var(--green);text-shadow:0 0 30px rgba(204,34,0,0.4)">TECH<span style="color:var(--text2)">READY</span></div>
+<div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:3px;margin-top:6px">DIGITAL LIFE SKILLS TRAINER</div>
+</div>
+<div class="gsec"><div class="gtitle">❤️ THE STORY</div><div class="gcard">
+<p style="font-size:.88rem;color:var(--text2);line-height:1.8">TechReady was built as the seventh piece of the LifeReady suite. Digital life skills are some of the most important - and most overlooked - skills there are. Recognizing a scam, protecting your passwords, knowing what to post and what to keep private: these things affect your safety and independence every single day.</p>
+<p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-top:10px">This app was built because digital literacy training does not always happen. Scammers specifically target people who haven't had it. TechReady is here to change that - free, available anytime, built with the same care as every other app in the suite.</p>
+</div></div>
+<div class="gsec"><div class="gtitle">🚀 THE MISSION</div><div class="gcard">
+<p style="font-size:.88rem;color:var(--text2);line-height:1.8">Digital safety should not be a privilege. TechReady helps people practice the real skills of digital life - spotting scams, protecting passwords, staying safe online, communicating professionally, and understanding their devices. Free, accessible, and built for everyone.</p>
+</div></div>
+<div class="gsec"><div class="gtitle">🤝 A DEDICATION</div><div class="gcard" style="border-left:4px solid var(--amber)">
+<p style="font-size:.88rem;color:var(--text2);line-height:1.8">For the job coaches, support workers, and educators who know that digital independence is real independence. And for everyone who has ever been tricked online, felt confused by technology, or wondered if they could ever feel confident in the digital world. You can. You will.</p>
+</div></div>
+<div class="gsec">
+<div class="gtitle">📱 PART OF THE LIFEREADY SUITE</div>
+<div class="gcard">
+<p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">TechReady is part of the LifeReady suite - a growing set of free, accessible life skills trainers built by the same person, for the same purpose.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch">
+<div style="background:rgba(0,200,81,0.08);border:1px solid rgba(0,200,81,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">💵</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#00c851;font-weight:700;margin-top:4px">CashReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Money Skills</div>
+</div>
+<div style="background:rgba(34,136,255,0.08);border:1px solid rgba(34,136,255,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">🕐</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#2288ff;font-weight:700;margin-top:4px">TimeReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Time Skills</div>
+</div>
+<div style="background:rgba(212,144,10,0.08);border:1px solid rgba(212,144,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">💼</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#d4900a;font-weight:700;margin-top:4px">JobReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Work Skills</div>
+</div>
+<div style="background:rgba(232,101,10,0.08);border:1px solid rgba(232,101,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">🏠</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#e8650a;font-weight:700;margin-top:4px">HomeReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Home Skills</div>
+</div>
+<div style="background:rgba(10,147,150,0.08);border:1px solid rgba(10,147,150,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">🗺️</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#0a9396;font-weight:700;margin-top:4px">TravelReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Travel Skills</div>
+</div>
+<div style="background:rgba(155,48,217,0.08);border:1px solid rgba(155,48,217,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">💬</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#9b30d9;font-weight:700;margin-top:4px">SocialReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Social Skills</div>
+</div>
+<div style="background:rgba(204,34,0,0.15);border:2px solid #cc2200;border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">📱</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#cc2200;font-weight:700;margin-top:4px">TechReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Digital Skills</div>
+<div style="font-size:.62rem;color:#cc2200;margin-top:3px;font-weight:700">← You are here</div>
+</div>
+<div style="background:rgba(233,30,140,0.08);border:1px solid rgba(233,30,140,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div style="font-size:1.2rem">🏥</div>
+<div style="font-family:var(--font-mono);font-size:.7rem;color:#e91e8c;font-weight:700;margin-top:4px">HealthReady</div>
+<div style="font-size:.65rem;color:var(--text3);margin-top:2px">Health &amp; Life Skills</div>
+</div>
+</div>
+</div>
+</div>
+<div class="gsec">
+<div class="gtitle">🆓 ALWAYS FREE</div>
+<div class="gcard" style="text-align:center;padding:20px">
+<div style="font-size:2rem;margin-bottom:10px">🆓</div>
+<p style="font-size:.88rem;color:var(--text2);line-height:1.8">TechReady is a free cyber lab for everyone. No accounts. No ads. No paywalls. Progress and preferences stay on this device. Practice phone safety, messaging, online basics, and digital confidence at your own pace.</p>
+</div>
+</div>
+<div style="text-align:center;padding:20px 0 8px">
+<div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;margin-bottom:4px">TechReady v1.0</div>
+<div style="font-size:.82rem;color:var(--text2);line-height:1.6;max-width:260px;margin:0 auto">Built with love, by someone who gets it. Free for everyone. Always.</div>
+</div>
+<div style="margin:0 0 20px;padding:18px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
+<div style="font-size:1.6rem;margin-bottom:8px">📱</div>
+<div style="font-family:'Dancing Script',cursive;font-size:2.6rem;color:#cc2200;line-height:1.1;margin-bottom:6px;text-shadow:0 0 30px rgba(204,34,0,0.4)">Tristan Beck</div>
+<div style="font-size:.8rem;color:var(--text2);line-height:1.7;margin-bottom:6px">TechReady - Digital Life Skills Trainer</div>
+<div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px">FREE FOR EVERYONE · ALWAYS</div>
+</div>
+<div style="text-align:center;padding:20px 0 8px">
+<a href="index.html" onclick="event.preventDefault();window.open('index.html','_self')" style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;text-decoration:none;color:#cc2200;border:1px solid #cc220055;border-radius:20px;padding:8px 22px;display:inline-block;text-shadow:0 0 10px #cc220044;transition:box-shadow .2s,border-color .2s">← BACK TO LIFEREADY HUB</a>
+</div>
 <script>
 
 // ═══════════════════════════════════════════
@@ -2946,7 +3093,81 @@ function genQuestionDedup(mode){
   return picked;
 }
 
+
+
+function ensureTechQuestionUI(msg){
+  const panel=$('qpanel');
+  const qEl=$('g-question');
+  const vis=$('g-visual');
+  const opts=$('g-opts');
+
+  if(panel){
+    panel.style.display='block';
+    panel.style.visibility='visible';
+    panel.style.opacity='1';
+  }
+  if(qEl){
+    qEl.style.display='block';
+    qEl.style.visibility='visible';
+    qEl.style.opacity='1';
+  }
+  if(vis){
+    vis.style.display='block';
+    vis.style.visibility='visible';
+    vis.style.opacity='1';
+  }
+  if(opts){
+    opts.style.display='grid';
+    opts.style.visibility='visible';
+    opts.style.opacity='1';
+  }
+
+  if(!qEl || !String(qEl.textContent||'').trim() || !opts || !opts.children.length){
+    renderQuestionFallback(msg || "Let's keep going.");
+    return false;
+  }
+  return true;
+}
+
+function renderQuestionFallback(msg){
+  currentQ={
+    q: msg || "Let's keep going.",
+    opts:['Continue','Try again','Skip for now','Back'],
+    correct:0,
+    explain:'The question did not load correctly, so a fallback was used to keep the module running.',
+    hint:'Tap Continue to move on.'
+  };
+  updateGameMeta();
+  if(typeof updDots==='function') updDots();
+  const scoreEl=$('g-score'); if(scoreEl) scoreEl.textContent=ST.score;
+  const lvlEl=$('g-lvl'); if(lvlEl) lvlEl.textContent=getLvl(ST.score).n;
+  const qEl=$('g-question'); if(qEl){ qEl.textContent=currentQ.q; qEl.style.display='block'; qEl.style.visibility='visible'; qEl.style.opacity='1'; }
+  const vis=$('g-visual'); if(vis){ vis.innerHTML=''; vis.style.display='block'; vis.style.visibility='visible'; vis.style.opacity='1'; }
+  const opts=$('g-opts');
+  if(opts){
+    opts.style.display='grid';
+    opts.style.visibility='visible';
+    opts.style.opacity='1';
+    opts.innerHTML='';
+    const shuffled=currentQ.opts.map((t,i)=>({t,i})).sort(()=>Math.random()-.5);
+    const correctIdx=shuffled.findIndex(x=>x.i===currentQ.correct);
+    currentQ._shuffledCorrect=correctIdx;
+    shuffled.forEach(({t},newIdx)=>{
+      const btn=document.createElement('button');
+      btn.className='qo'+(CFG.errorless&&newIdx===correctIdx?' ok':'');
+      btn.textContent=t;
+      btn.onclick=()=>answerQ(newIdx);
+      opts.appendChild(btn);
+    });
+  }
+  const fb=$('g-fb'); if(fb){ fb.className='qfb'; fb.style.display='none'; fb.innerHTML=''; }
+  const hb=$('g-hint-bar'); if(hb) hb.style.display='none';
+  const hintBtn=$('hint-btn'); if(hintBtn) hintBtn.disabled=false;
+  say(currentQ.q);
+}
+
 function genQ(){
+  try{
   ST.answered=false;
   if(CFG.breaks && txCountForBreak>=5 && ST.total<ST.maxQ && ST.mode!=='daily'){
     const msgs=[
@@ -2976,6 +3197,12 @@ function genQ(){
     else{mb.style.display='none';}
   }
   currentQ=genQuestionDedup(ST.mode);
+  if(!currentQ || !currentQ.q || !Array.isArray(currentQ.opts) || !currentQ.opts.length){
+    currentQ=genQuestion(ST.mode);
+  }
+  if(!currentQ || !currentQ.q || !Array.isArray(currentQ.opts) || !currentQ.opts.length){
+    currentQ={q:'Let\'s try the next question.',opts:['Continue','Try again','Skip for now','Back'],correct:0,explain:'The question did not load correctly, so a fallback was used to keep the module running.',hint:'Tap Continue to move on.'};
+  }
   updateGameMeta();
   updDots();
   $('g-score').textContent=ST.score;
@@ -2997,6 +3224,10 @@ function genQ(){
   {const _z=$('g-hint-bar');if(_z)_z.style.display='none';}
   if($('hint-btn')) $('hint-btn').disabled=false;
   say(currentQ.q);
+  }catch(e){
+    console.warn('Question render fallback', e);
+    renderQuestionFallback("Let's keep going.");
+  }
 }
 
 function answerQ(chosen){
@@ -3093,6 +3324,9 @@ function nextQ_game(){
   updateHintCounter();
   if(ST.total>=ST.maxQ){ endSession(); return; }
   genQ();
+  ensureTechQuestionUI("Let's keep going.");
+  setTimeout(()=>ensureTechQuestionUI("Let's keep going."), 60);
+  setTimeout(()=>ensureTechQuestionUI("Let's keep going."), 180);
   updateProgressText();
   updateHintCounter();
 }
@@ -3110,6 +3344,13 @@ function openHint(title,body,okLabel,onOk,showCancel){
     cancel.onclick=()=>{ if(window.speechSynthesis) speechSynthesis.cancel(); closeM('m-hint'); };
   }
   openM('m-hint');
+  const mh=$('m-hint');
+  if(mh){
+    mh.classList.add('on');
+    mh.style.display='flex';
+    mh.style.pointerEvents='auto';
+    mh.style.zIndex='9999';
+  }
 }
 
 function awardBadge(id){
@@ -3439,19 +3680,9 @@ function filterScores(mode,el){
   renderScores();
 }
 function renderScores(){
-  if(!SCORES.length){$('scores-wrap').innerHTML='<div class="no-data">No scores yet.<br>Complete a session to see your best!</div>';return;}
-  // Filter
-  let filtered=SCORES;
-  if(scoreFilter!=='all'){
-    filtered=SCORES.filter(s=>s.mode.toLowerCase().includes(scoreFilter.toLowerCase()));
-  }
-  if(!filtered.length){$('scores-wrap').innerHTML='<div class="no-data">No scores for this mode yet.</div>';return;}
-  // Find personal bests per mode
-  const bests={};
-  SCORES.forEach(s=>{if(!bests[s.mode]||s.score>bests[s.mode])bests[s.mode]=s.score;});
-  
-  // Read scores button
+  const summaryEl=$('scores-summary');
   const readBtn=document.getElementById('read-scores-btn');
+
   if(readBtn && !readBtn.getAttribute('data-tts')){
     readBtn.setAttribute('data-tts','1');
     readBtn.addEventListener('click',()=>{
@@ -3467,16 +3698,67 @@ function renderScores(){
       say(txt.trim());
     });
   }
-$('scores-wrap').innerHTML=`<div class="slist">${filtered.map((s,i)=>{
-    const isPB=s.score===bests[s.mode]&&filtered.filter(x=>x.mode===s.mode).indexOf(s)===0;
-    const pct=s.total>0?Math.round(s.correct/s.total*100):0;
-    const hasStreak=s.streak>0;
-    return `<div class="se" style="${isPB?'border-color:var(--amber);background:rgba(255,187,51,.05)':''}">
-      <div>
-        <div class="se-m">${s.mode.toUpperCase()}${isPB?' <span style="color:var(--amber);font-size:.6rem">★ BEST</span>':''}</div>
-        <div class="se-d">${s.date} · ${s.correct}/${s.total} correct · ${pct}%${hasStreak?' · streak '+s.streak:''}</div>
+
+  if(!SCORES.length){
+    if(summaryEl){ summaryEl.style.display='none'; summaryEl.innerHTML=''; }
+    $('scores-wrap').innerHTML='<div class="score-empty"><div class="score-empty-title">NO SCORES YET</div><div class="score-empty-sub">Complete a shift to see your best!</div></div>';
+    return;
+  }
+
+  let filtered = scoreFilter==='all' ? [...SCORES] : SCORES.filter(s=>String(s.mode||'').toLowerCase().includes(String(scoreFilter).toLowerCase()));
+  filtered = filtered.slice().sort((a,b)=>{
+    const sa=Number(a.score)||0, sb=Number(b.score)||0;
+    if(sb!==sa) return sb-sa;
+    const pa=(a.total>0)?((a.correct||0)/(a.total||1)):0;
+    const pb=(b.total>0)?((b.correct||0)/(b.total||1)):0;
+    return pb-pa;
+  });
+
+  if(!filtered.length){
+    if(summaryEl){ summaryEl.style.display='none'; summaryEl.innerHTML=''; }
+    $('scores-wrap').innerHTML='<div class="score-empty"><div class="score-empty-title">NO SCORES FOR THIS MODE</div><div class="score-empty-sub">Try another filter or play this mode to add a score here.</div></div>';
+    return;
+  }
+
+  const bests={};
+  SCORES.forEach(s=>{ if(!bests[s.mode] || (Number(s.score)||0) > bests[s.mode]) bests[s.mode] = Number(s.score)||0; });
+
+  const topScore = Math.max(...filtered.map(s=>Number(s.score)||0));
+  const avgPct = Math.round(filtered.reduce((n,s)=>n + ((s.total>0)?Math.round((s.correct||0)/(s.total||1)*100):0), 0) / filtered.length);
+  const entries = filtered.length;
+
+  if(summaryEl){
+    summaryEl.style.display='grid';
+    summaryEl.innerHTML = `
+      <div class="score-stat">
+        <div class="score-stat-label">Top Score</div>
+        <div class="score-stat-value">${topScore}</div>
       </div>
-      <div class="se-v" style="${isPB?'color:var(--amber)':''}">${s.score}</div>
+      <div class="score-stat">
+        <div class="score-stat-label">Entries</div>
+        <div class="score-stat-value">${entries}</div>
+      </div>
+      <div class="score-stat">
+        <div class="score-stat-label">Avg Accuracy</div>
+        <div class="score-stat-value">${avgPct}%</div>
+      </div>`;
+  }
+
+  $('scores-wrap').innerHTML = `<div class="slist">${filtered.map((s,i)=>{
+    const scoreVal = Number(s.score)||0;
+    const pct = s.total>0 ? Math.round((s.correct||0)/(s.total||1)*100) : 0;
+    const isPB = scoreVal === bests[s.mode];
+    const streakText = (s.streak && s.streak>0) ? ' · streak '+s.streak : '';
+    return `<div class="se ${isPB?'best':''}">
+      <div class="se-rank">#${i+1}</div>
+      <div class="se-main">
+        <div class="se-m">${String(s.mode||'SESSION').toUpperCase()}${isPB?'<span class="se-best">★ BEST</span>':''}</div>
+        <div class="se-d">${s.date||'No date'} · ${(s.correct||0)}/${(s.total||0)} correct${streakText}</div>
+      </div>
+      <div class="se-side">
+        <div class="se-v">${scoreVal}</div>
+        <div class="se-meta">${pct}% accuracy</div>
+      </div>
     </div>`;
   }).join('')}</div>`;
 }
@@ -3795,7 +4077,19 @@ function openM(id){
   }
   $(id).classList.add('on');
 }
-function closeM(id){$(id).classList.remove('on');if(id==='m-client')resetClientModal();}
+function closeM(id){
+  if(id==='m-hint' && window.speechSynthesis) window.speechSynthesis.cancel();
+  const el=$(id);
+  if(el){
+    el.classList.remove('on');
+    if(id==='m-hint'){
+      el.style.display='';
+      el.style.pointerEvents='';
+      el.style.zIndex='';
+    }
+  }
+  if(id==='m-client') resetClientModal();
+}
 
 function saveClient(){
   const displayNameEl=$('nc-name');
@@ -4009,6 +4303,185 @@ function printReport(i){
     .prompt-ind{color:#00a041;} .prompt-ver{color:#2196F3;} .prompt-ges{color:#FF9800;} .prompt-phy{color:#FF5722;} .prompt-hoh{color:#F44336;}
   .cb-mode-btn{background:var(--panel);border:1px solid var(--border);border-radius:6px;color:var(--text2);font-family:var(--font-mono);font-size:.65rem;padding:6px 4px;cursor:pointer;transition:all .2s;letter-spacing:.5px;font-weight:600;}
 .cb-mode-btn.on{background:var(--green);border-color:var(--green);color:#fff;}
+
+/* === STANDARDIZED SCORES === */
+.scores-summary{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin:0 0 12px;
+}
+.score-stat{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:12px 14px;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-stat-label{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text2);
+  margin-bottom:6px;
+}
+.score-stat-value{
+  font-family:var(--font-display);
+  font-size:1.45rem;
+  line-height:1;
+  color:var(--amber);
+}
+#score-filters{
+  display:flex;
+  gap:7px !important;
+  flex-wrap:wrap;
+  margin-bottom:12px !important;
+}
+.sopt{
+  background:linear-gradient(135deg,var(--bg3),rgba(255,255,255,0.02));
+  border:2px solid var(--border);
+  border-radius:12px;
+  padding:7px 12px;
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  font-weight:700;
+  color:var(--text2);
+  cursor:pointer;
+  transition:.2s;
+  min-height:40px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.sopt.on{
+  background:var(--green);
+  border-color:var(--green);
+  color:#000;
+  box-shadow:0 0 16px color-mix(in srgb, var(--green) 28%, transparent);
+}
+#read-scores-btn{
+  margin:10px 0 10px !important;
+}
+.slist{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.se{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:14px 16px;
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  gap:12px;
+  align-items:center;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.se.best{
+  border-color:var(--amber);
+  background:linear-gradient(135deg,rgba(255,187,51,.06),var(--bg2));
+}
+.se-rank{
+  width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:12px;
+  font-family:var(--font-display);
+  font-size:1rem;
+  color:var(--green);
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+}
+.se.best .se-rank{
+  color:var(--amber);
+  border-color:rgba(255,187,51,.35);
+  background:rgba(255,187,51,.08);
+}
+.se-main{min-width:0;}
+.se-m{
+  font-family:var(--font-mono);
+  font-size:0.86rem;
+  color:var(--green);
+  font-weight:700;
+  letter-spacing:.5px;
+  line-height:1.35;
+}
+.se-best{
+  color:var(--amber);
+  font-size:.6rem;
+  margin-left:6px;
+}
+.se-d{
+  font-size:0.74rem;
+  color:var(--text2);
+  margin-top:4px;
+  line-height:1.45;
+}
+.se-side{
+  text-align:right;
+}
+.se-v{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.5rem;
+  color:var(--amber);
+  line-height:1;
+}
+.se-meta{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:1px;
+  color:var(--text2);
+  margin-top:6px;
+  text-transform:uppercase;
+}
+.score-empty{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-empty-title{
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  margin-bottom:10px;
+}
+.score-empty-sub{
+  color:var(--text2);
+  line-height:1.7;
+  font-size:.96rem;
+}
+.no-data{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  color:var(--text2);
+  font-family:var(--font-body);
+  font-size:.96rem;
+  line-height:1.7;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.no-data strong{
+  display:block;
+  margin-bottom:10px;
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  text-transform:uppercase;
+}
+@media(max-width:640px){
+  .scores-summary{grid-template-columns:1fr;}
+  .se{grid-template-columns:38px 1fr;align-items:start;}
+  .se-rank{width:38px;height:38px;}
+  .se-side{grid-column:2; text-align:left; margin-top:2px;}
+}
+
 </style></head><body>
 
 <button class="print-btn" onclick="window.print()">🖨️ Print This Report</button>
@@ -4451,7 +4924,186 @@ rows+=`<div style="border:1px solid #ccc;border-radius:6px;padding:14px;margin-b
 });
 const w=window.open('','_blank');
 if(!w){openHint('Pop-up Blocked','<p style="color:var(--text2);font-size:.88rem">Please allow pop-ups for this page, then try again.</p>',null,null);return;}
-w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}@media print{.no-print{display:none}}</style></head><body> <div class="no-print" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">🖨️ Print / Save as PDF</button></div> <h1>${appName} - Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} learner${CLIENTS.length!==1?'s':''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
+w.document.write(`<!DOCTYPE html><html><head><title>${appName} - Coach Report</title><style>body{font-family:Arial,sans-serif;padding:24px;max-width:800px;margin:0 auto;color:#222;}h1{font-size:20px;margin-bottom:4px;}@media print{.no-print{display:none}}
+/* === STANDARDIZED SCORES === */
+.scores-summary{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin:0 0 12px;
+}
+.score-stat{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:12px 14px;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-stat-label{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text2);
+  margin-bottom:6px;
+}
+.score-stat-value{
+  font-family:var(--font-display);
+  font-size:1.45rem;
+  line-height:1;
+  color:var(--amber);
+}
+#score-filters{
+  display:flex;
+  gap:7px !important;
+  flex-wrap:wrap;
+  margin-bottom:12px !important;
+}
+.sopt{
+  background:linear-gradient(135deg,var(--bg3),rgba(255,255,255,0.02));
+  border:2px solid var(--border);
+  border-radius:12px;
+  padding:7px 12px;
+  font-family:var(--font-mono);
+  font-size:0.72rem;
+  font-weight:700;
+  color:var(--text2);
+  cursor:pointer;
+  transition:.2s;
+  min-height:40px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.sopt.on{
+  background:var(--green);
+  border-color:var(--green);
+  color:#000;
+  box-shadow:0 0 16px color-mix(in srgb, var(--green) 28%, transparent);
+}
+#read-scores-btn{
+  margin:10px 0 10px !important;
+}
+.slist{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.se{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:14px 16px;
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  gap:12px;
+  align-items:center;
+  box-shadow:0 10px 28px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.se.best{
+  border-color:var(--amber);
+  background:linear-gradient(135deg,rgba(255,187,51,.06),var(--bg2));
+}
+.se-rank{
+  width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:12px;
+  font-family:var(--font-display);
+  font-size:1rem;
+  color:var(--green);
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+}
+.se.best .se-rank{
+  color:var(--amber);
+  border-color:rgba(255,187,51,.35);
+  background:rgba(255,187,51,.08);
+}
+.se-main{min-width:0;}
+.se-m{
+  font-family:var(--font-mono);
+  font-size:0.86rem;
+  color:var(--green);
+  font-weight:700;
+  letter-spacing:.5px;
+  line-height:1.35;
+}
+.se-best{
+  color:var(--amber);
+  font-size:.6rem;
+  margin-left:6px;
+}
+.se-d{
+  font-size:0.74rem;
+  color:var(--text2);
+  margin-top:4px;
+  line-height:1.45;
+}
+.se-side{
+  text-align:right;
+}
+.se-v{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.5rem;
+  color:var(--amber);
+  line-height:1;
+}
+.se-meta{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  letter-spacing:1px;
+  color:var(--text2);
+  margin-top:6px;
+  text-transform:uppercase;
+}
+.score-empty{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.score-empty-title{
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  margin-bottom:10px;
+}
+.score-empty-sub{
+  color:var(--text2);
+  line-height:1.7;
+  font-size:.96rem;
+}
+.no-data{
+  background:linear-gradient(135deg,var(--bg2),rgba(255,255,255,0.02));
+  border:1px dashed color-mix(in srgb, var(--green) 45%, var(--border));
+  border-radius:22px;
+  padding:28px 18px;
+  text-align:center;
+  color:var(--text2);
+  font-family:var(--font-body);
+  font-size:.96rem;
+  line-height:1.7;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.no-data strong{
+  display:block;
+  margin-bottom:10px;
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:3px;
+  color:var(--text);
+  text-transform:uppercase;
+}
+@media(max-width:640px){
+  .scores-summary{grid-template-columns:1fr;}
+  .se{grid-template-columns:38px 1fr;align-items:start;}
+  .se-rank{width:38px;height:38px;}
+  .se-side{grid-column:2; text-align:left; margin-top:2px;}
+}
+
+</style></head><body> <div class="no-print" style="margin-bottom:16px"><button onclick="window.print()" style="padding:10px 20px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px">🖨️ Print / Save as PDF</button></div> <h1>${appName} - Coach Report</h1> <div style="font-size:12px;color:#666;margin-bottom:16px">Generated: ${new Date().toLocaleDateString()} | ${CLIENTS.length} learner${CLIENTS.length!==1?'s':''}</div> ${rows} </bo`+`dy></ht`+`ml>`);
 w.document.close();
 }
 
@@ -4748,15 +5400,12 @@ genDIHE();
 // Service worker disabled for file:// compatibility
 
 </script>
-
 <script>
 document.addEventListener('touchstart',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});
 document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});
 document.addEventListener('gesturestart',function(e){e.preventDefault();});
 let _lt=0;document.addEventListener('touchend',function(e){const n=Date.now();if(n-_lt<300)e.preventDefault();_lt=n;},false);
 </script>
-
-
 <script id="lifeready-shared-sw">
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   window.addEventListener('load', function () {
@@ -4764,7 +5413,6 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   });
 }
 </script>
-
 <script>
 (function(){
   function applyAccessibilityEnhancements(root){
@@ -4869,5 +5517,5 @@ function initHomeCardWiring(){
 initHomeCardWiring();
 document.addEventListener('DOMContentLoaded', initHomeCardWiring);
 </script>
-</body>
+</div></div></div></body>
 </html>

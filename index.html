@@ -9,43 +9,41 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="LifeReady"/>
-<title>LifeReady - Press Start On Real Life</title>
+<title>LifeReady | Real-Life Skills Game Hub</title>
 <link rel="manifest" href="manifest.json"/>
 <link rel="apple-touch-icon" href="icon_192.png"/>
 <link rel="icon" href="icon_512.png" sizes="512x512" type="image/png"/>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Mono:wght@400;700&family=Nunito:wght@400;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet"/>
 <style>
-:root {
+:root{
   --bg:#0d1117; --bg2:#161b22; --bg3:#1c2330; --bg4:#21262d;
   --border:#2a3040; --border2:#1e2530;
-  --text:#e8edf5; --text2:#8b98b0; --text3:#4a5568; --text4:#2d3748;
-  --amber:#ffbb33; --amber2:#e6a800; --amber-light:rgba(255,187,51,0.12);
-  --shadow:0 8px 32px rgba(0,0,0,0.6);
-  --radius:18px; --radius-sm:12px;
+  --text:#e8edf5; --text2:#8b98b0; --text3:#5f6f8b;
+  --amber:#ffbb33; --amber2:#e6a800; --amber-light:rgba(255,187,51,.12);
+  --shadow:0 10px 32px rgba(0,0,0,.48);
+  --radius:20px; --radius-sm:12px;
   --font-mono:'Space Mono','Courier New',monospace;
   --font-body:'Nunito',-apple-system,sans-serif;
   --font-sig:'Dancing Script',cursive;
-
-  --cash:#00c851;   --cash-glow:rgba(0,200,81,0.25);   --cash-light:rgba(0,200,81,0.10);
-  --time:#2288ff;   --time-glow:rgba(34,136,255,0.25);  --time-light:rgba(34,136,255,0.10);
-  --job:#d4900a;    --job-glow:rgba(212,144,10,0.25);   --job-light:rgba(212,144,10,0.10);
-  --home:#e8650a;   --home-glow:rgba(232,101,10,0.25);  --home-light:rgba(232,101,10,0.10);
-  --travel:#0a9396; --travel-glow:rgba(10,147,150,0.25);  --travel-light:rgba(10,147,150,0.10);
-  --social:#9b30d9; --social-glow:rgba(155,48,217,0.25);  --social-light:rgba(155,48,217,0.10);
-  --tech:#cc2200;   --tech-glow:rgba(204,34,0,0.25); --tech-light:rgba(204,34,0,0.10);
-  --health:#e91e8c; --health-glow:rgba(233,30,140,0.25); --health-light:rgba(233,30,140,0.10);
+  --cash:#00c851; --cash-glow:rgba(0,200,81,.25); --cash-light:rgba(0,200,81,.09);
+  --time:#2288ff; --time-glow:rgba(34,136,255,.25); --time-light:rgba(34,136,255,.09);
+  --job:#d4900a; --job-glow:rgba(212,144,10,.25); --job-light:rgba(212,144,10,.09);
+  --home:#e8650a; --home-glow:rgba(232,101,10,.25); --home-light:rgba(232,101,10,.09);
+  --travel:#0a9396; --travel-glow:rgba(10,147,150,.25); --travel-light:rgba(10,147,150,.09);
+  --social:#9b30d9; --social-glow:rgba(155,48,217,.25); --social-light:rgba(155,48,217,.09);
+  --tech:#cc2200; --tech-glow:rgba(204,34,0,.25); --tech-light:rgba(204,34,0,.09);
+  --health:#e91e8c; --health-glow:rgba(233,30,140,.25); --health-light:rgba(233,30,140,.09);
 }
-
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html{scroll-behavior:smooth;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
 body{
   font-family:var(--font-body);
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,187,51,0.06) 0%, transparent 70%),
-    radial-gradient(circle at 15% 15%, rgba(34,136,255,0.08) 0%, transparent 22%),
-    radial-gradient(circle at 85% 10%, rgba(155,48,217,0.07) 0%, transparent 22%),
-    var(--bg);
   color:var(--text);
+  background:
+    radial-gradient(ellipse 70% 52% at 50% 0%, rgba(255,187,51,.07) 0%, transparent 72%),
+    radial-gradient(circle at 18% 14%, rgba(34,136,255,.08) 0%, transparent 22%),
+    radial-gradient(circle at 84% 12%, rgba(155,48,217,.07) 0%, transparent 24%),
+    var(--bg);
   min-height:100vh;
   overflow-x:hidden;
 }
@@ -61,237 +59,320 @@ body::before{
   z-index:0;
 }
 body::after{
-  content:'';position:fixed;inset:0;
-  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.018) 3px,rgba(0,0,0,0.018) 4px);
-  pointer-events:none;z-index:9000;
+  content:'';
+  position:fixed; inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.018) 3px,rgba(0,0,0,.018) 4px);
+  pointer-events:none; z-index:9000;
 }
-
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+a,button{font:inherit}
+button{border:none;background:none}
+img{max-width:100%}
+main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-index:1}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:999px}
 
 .hero{
-  text-align:center;
-  padding:48px 20px 30px;
   position:relative;
-  overflow:hidden;
+  text-align:center;
+  padding:52px 20px 28px;
   z-index:1;
 }
+.hero::before{
+  content:'';
+  position:absolute;
+  left:50%;
+  top:18px;
+  width:min(760px,92vw);
+  height:220px;
+  transform:translateX(-50%);
+  border-radius:999px;
+  background:
+    radial-gradient(circle at center, rgba(255,187,51,.10) 0%, rgba(255,187,51,.03) 35%, transparent 70%),
+    radial-gradient(circle at 30% 35%, rgba(34,136,255,.10) 0%, transparent 30%),
+    radial-gradient(circle at 70% 35%, rgba(155,48,217,.08) 0%, transparent 28%);
+  filter:blur(10px);
+  pointer-events:none;
+}
 .hero-badge{
-  display:inline-block;font-family:var(--font-mono);font-size:.62rem;color:var(--text2);letter-spacing:3px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;margin-bottom:16px;background:rgba(255,255,255,0.04);
+  display:inline-flex; align-items:center; gap:10px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.04);
+  border-radius:999px;
+  padding:6px 14px;
+  color:var(--text2);
+  font-family:var(--font-mono);
+  font-size:.62rem; letter-spacing:3px;
+  margin-bottom:18px;
 }
 .hero-logo{
   font-family:var(--font-mono);
-  font-size:clamp(2.2rem,8vw,3.8rem);
-  font-weight:700;
-  letter-spacing:6px;
-  line-height:1;
-  margin-bottom:10px;
+  font-size:clamp(2.5rem,8vw,4.4rem);
+  letter-spacing:6px; line-height:1;
   text-shadow:0 0 18px rgba(255,255,255,.06);
-  animation:bootGlow .7s ease-out;
+  animation:bootGlow .8s ease-out both;
 }
-
-@keyframes bootGlow{
-  0%{
-    opacity:0;
-    filter:blur(6px);
-    transform:scale(.96);
-  }
-  100%{
-    opacity:1;
-    filter:blur(0);
-    transform:scale(1);
-  }
-}
-.hero-logo .lr-life{color:var(--amber);text-shadow:0 0 40px rgba(255,187,51,0.4);}
-.hero-logo .lr-ready{color:var(--text);}
+.hero-logo .life{color:var(--amber);text-shadow:0 0 40px rgba(255,187,51,.35), 0 0 80px rgba(255,187,51,.14)}
+.hero-logo .ready{color:var(--text);text-shadow:0 0 24px rgba(255,255,255,.08)}
 .hero-tagline{
-  font-family:var(--font-mono);font-size:.72rem;color:var(--text2);letter-spacing:4px;text-transform:uppercase;margin:8px 0 12px;text-shadow:0 0 14px rgba(255,255,255,0.2);
-}
-.hero-desc{
-  font-size:.96rem;color:var(--text);max-width:620px;margin:0 auto;line-height:1.65;text-align:center;
-}
-.hero-sub{
   margin-top:12px;
   font-family:var(--font-mono);
-  font-size:.7rem;
-  letter-spacing:3px;
-  color:var(--amber);
-  text-shadow:0 0 14px rgba(255,187,51,.18);
+  color:var(--text2);
+  font-size:.74rem;
+  letter-spacing:4px;
+  text-transform:uppercase;
 }
-
-main{
-  max-width:900px;
-  margin:0 auto;
-  padding:0 14px 60px;
-  position:relative;
-  z-index:1;
+.hero-copy{
+  max-width:720px;
+  margin:18px auto 0;
+  color:var(--text);
+  font-size:1rem;
+  line-height:1.7;
+  animation:fadeUp .7s ease both;
+}
+.hero-copy strong{color:var(--amber)}
+.hero-subline{
+  margin-top:18px;
+  font-family:var(--font-mono);
+  font-size:.84rem;
+  letter-spacing:5px;
+  color:var(--amber);
+  text-transform:uppercase;
+  text-shadow:0 0 18px rgba(255,187,51,.28);
+  animation:pulseGlow 2.8s ease-in-out infinite;
+}
+.hero-trust{
+  margin-top:14px;
+  color:var(--text3);
+  font-family:var(--font-mono);
+  font-size:.64rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  animation:fadeUp .9s ease both;
+}
+.hero-actions{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
+  margin-top:22px;
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:48px; padding:12px 18px;
+  border-radius:999px; text-decoration:none;
+  font-family:var(--font-mono); font-size:.74rem; letter-spacing:1px;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, opacity .18s ease;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(135deg,var(--amber),var(--amber2)); color:#111; box-shadow:0 0 18px var(--amber-light)}
+.btn-secondary{background:rgba(255,255,255,.04); border:1px solid var(--border); color:var(--text)}
+.btn-secondary:hover{border-color:#4a5d7d}
+.install-note{
+  margin-top:10px;
+  color:var(--text3);
+  text-align:center;
+  font-size:.84rem;
 }
 
 .section-label{
-  font-family:var(--font-mono);font-size:.65rem;color:var(--text2);letter-spacing:4px;text-transform:uppercase;text-align:center;margin:0 0 18px;padding-bottom:8px;border-bottom:1px solid var(--border);text-shadow:0 0 12px rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;gap:12px;
-}
-.section-label::before,.section-label::after{content:''; flex:1; height:1px; background:var(--border2);}
-
-.top-copy{
+  display:flex; align-items:center; justify-content:center; gap:12px;
   text-align:center;
-  max-width:560px;
-  margin:0 auto 18px;
+  font-family:var(--font-mono);
   color:var(--text2);
-  font-size:.95rem;
-  line-height:1.6;
-  padding:0 6px;
+  font-size:.65rem;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin:0 0 18px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+  text-shadow:0 0 12px rgba(255,255,255,.12);
+}
+.section-label::before,.section-label::after{
+  content:''; flex:1; height:1px; background:var(--border2);
 }
 
+.quickstart{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin:0 0 18px;
+}
+.quick-card{
+  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:16px 16px 15px;
+  box-shadow:var(--shadow);
+}
+.quick-number{
+  width:30px;height:30px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,187,51,.08); border:1px solid rgba(255,187,51,.16);
+  color:var(--amber); font-family:var(--font-mono); font-size:.74rem;
+  margin-bottom:10px;
+}
+.quick-card strong{display:block; margin-bottom:5px; font-size:1rem}
+.quick-card p{color:var(--text2); line-height:1.55; font-size:.92rem}
+
+.grid-wrap{
+  background:linear-gradient(135deg,rgba(22,27,34,.9),rgba(18,23,31,.92));
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:16px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+  position:relative;
+  overflow:hidden;
+}
+.grid-wrap::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg, transparent 0, transparent 24px, rgba(255,255,255,.02) 24px, transparent 25px),
+    linear-gradient(0deg, transparent 0, transparent 24px, rgba(255,255,255,.02) 24px, transparent 25px);
+  background-size:28px 28px;
+  opacity:.25;
+  pointer-events:none;
+}
+.grid-top{
+  display:flex; align-items:end; justify-content:space-between; gap:12px;
+  margin-bottom:14px;
+}
+.grid-top-copy{
+  color:var(--text2);
+  max-width:620px;
+  line-height:1.65;
+}
+.grid-top-copy strong{color:var(--text)}
 .app-grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:14px;
-  margin-bottom:22px;
 }
-
 .app-card{
   position:relative;
-  border-radius:var(--radius);
+  min-height:210px;
   padding:22px 16px 18px;
-  cursor:pointer;
+  border-radius:18px;
+  border:2px solid transparent;
   text-decoration:none;
   display:flex;
   flex-direction:column;
   align-items:center;
   text-align:center;
   justify-content:space-between;
-  min-height:220px;
-  transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease, border-color .2s;
   overflow:hidden;
-  border:2px solid transparent;
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease, border-color .2s ease, filter .2s ease;
   -webkit-user-select:none;
   user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  will-change:transform, box-shadow, border-color, filter;
 }
-.app-card:active{transform:scale(.96);}
-@media(hover:hover){
-  .app-card:hover{
-    transform:translateY(-6px) scale(1.02);
-    box-shadow:0 12px 36px rgba(0,0,0,0.5);
-  }
+.app-card .corner{
+  position:absolute;
+  width:14px;height:14px;
+  border-color:rgba(255,255,255,.22);
+  border-style:solid;
+  pointer-events:none;
 }
+.app-card .corner.tl{left:9px;top:9px;border-width:1px 0 0 1px}
+.app-card .corner.tr{right:9px;top:9px;border-width:1px 1px 0 0}
+.app-card .corner.bl{left:9px;bottom:9px;border-width:0 0 1px 1px}
+.app-card .corner.br{right:9px;bottom:9px;border-width:0 1px 1px 0}
 .app-card::before{
-  content:'';position:absolute;inset:0;
-  opacity:0;transition:opacity .3s;
-  border-radius:calc(var(--radius) - 2px);
+  content:'';
+  position:absolute; inset:0;
+  opacity:0; transition:opacity .25s ease;
+  border-radius:inherit;
 }
-@media(hover:hover){.app-card:hover::before{opacity:1;}}
-
-.card-cash{background:linear-gradient(145deg,#0d1a0f,#111d13);border-color:rgba(0,200,81,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
-.card-cash::before{background:radial-gradient(ellipse at 50% 0%,rgba(0,200,81,0.08),transparent 70%);}
-@media(hover:hover){.card-cash:hover{border-color:var(--cash);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--cash-glow);}}
-
-.card-time{background:linear-gradient(145deg,#0a0f1a,#0d1220);border-color:rgba(34,136,255,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
-.card-time::before{background:radial-gradient(ellipse at 50% 0%,rgba(34,136,255,0.08),transparent 70%);}
-@media(hover:hover){.card-time:hover{border-color:var(--time);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--time-glow);}}
-
-.card-job{background:linear-gradient(145deg,#1a1205,#1c1408);border-color:rgba(212,144,10,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
-.card-job::before{background:radial-gradient(ellipse at 50% 0%,rgba(212,144,10,0.08),transparent 70%);}
-@media(hover:hover){.card-job:hover{border-color:var(--job);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--job-glow);}}
-
-.card-home{background:linear-gradient(145deg,#1a0e05,#1c1008);border-color:rgba(232,101,10,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
-.card-home::before{background:radial-gradient(ellipse at 50% 0%,rgba(232,101,10,0.08),transparent 70%);}
-@media(hover:hover){.card-home:hover{border-color:var(--home);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--home-glow);}}
-
-.card-travel{background:linear-gradient(145deg,#061a1a,#081f1f);border-color:rgba(10,147,150,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
-.card-travel::before{background:radial-gradient(ellipse at 50% 0%,rgba(10,147,150,0.08),transparent 70%);}
-@media(hover:hover){.card-travel:hover{border-color:var(--travel);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--travel-glow);}}
-
-.card-social{background:linear-gradient(145deg,#0f071a,#130a22);border-color:rgba(155,48,217,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
-.card-social::before{background:radial-gradient(ellipse at 50% 0%,rgba(155,48,217,0.08),transparent 70%);}
-@media(hover:hover){.card-social:hover{border-color:var(--social);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--social-glow);}}
-
-.card-tech{background:linear-gradient(145deg,#1a0505,#200808);border-color:rgba(204,34,0,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
-.card-tech::before{background:radial-gradient(ellipse at 50% 0%,rgba(204,34,0,0.08),transparent 70%);}
-@media(hover:hover){.card-tech:hover{border-color:var(--tech);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--tech-glow);}}
-
-.card-health{background:linear-gradient(145deg,#1a0515,#200820);border-color:rgba(233,30,140,0.35);box-shadow:0 4px 24px rgba(0,0,0,0.4);}
-.card-health::before{background:radial-gradient(ellipse at 50% 0%,rgba(233,30,140,0.08),transparent 70%);}
-@media(hover:hover){.card-health:hover{border-color:var(--health);box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px var(--health-glow);}}
-
-.app-icon{
-  font-size:2.4rem;
-  margin-bottom:12px;
-  display:block;
-  line-height:1;
-  filter:drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+.app-card::after{
+  content:'';
+  position:absolute; inset:0;
+  border-radius:inherit;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.055),transparent);
+  opacity:0; transition:opacity .25s ease;
 }
+.app-card .glowbar{
+  position:absolute;
+  left:0; bottom:0;
+  height:3px; width:0%;
+  transition:width .28s ease;
+  opacity:.95;
+}
+@media(hover:hover){
+  .app-card:hover{transform:translateY(-6px) scale(1.02); box-shadow:0 12px 36px rgba(0,0,0,.5)}
+  .app-card:hover::before,.app-card:hover::after{opacity:1}
+}
+.app-card:active{transform:translateY(3px) scale(.98)}
+.app-icon{font-size:2.4rem;line-height:1;margin-bottom:12px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
 .app-name{
   font-family:var(--font-mono);
-  font-size:1rem;
-  font-weight:700;
-  letter-spacing:2px;
-  margin-bottom:6px;
-  line-height:1;
+  font-size:1rem; font-weight:700; letter-spacing:2px; line-height:1.05;
+  margin-bottom:8px;
 }
-.card-cash .app-name{color:var(--cash);}
-.card-time .app-name{color:var(--time);}
-.card-job .app-name{color:var(--job);}
-.card-home .app-name{color:var(--home);}
-.card-travel .app-name{color:var(--travel);}
-.card-social .app-name{color:var(--social);}
-.card-tech .app-name{color:var(--tech);}
-.card-health .app-name{color:var(--health);}
-
-.app-sub{
-  font-size:.95rem;
-  line-height:1.5;
-  color:var(--text2);
-  margin-bottom:12px;
-  flex:1;
-}
+.app-sub{flex:1; color:var(--text2); font-size:.95rem; line-height:1.52; margin-bottom:12px}
 .app-pill{
   font-family:var(--font-mono);
-  font-size:.58rem;
-  letter-spacing:1px;
-  padding:3px 10px;
-  border-radius:20px;
-  font-weight:700;
+  font-size:.58rem; letter-spacing:1px;
+  padding:4px 10px; border-radius:999px; font-weight:700;
 }
-.card-cash .app-pill{background:var(--cash-light);color:var(--cash);border:1px solid rgba(0,200,81,0.25);}
-.card-time .app-pill{background:var(--time-light);color:var(--time);border:1px solid rgba(34,136,255,0.25);}
-.card-job .app-pill{background:var(--job-light);color:var(--job);border:1px solid rgba(212,144,10,0.25);}
-.card-home .app-pill{background:var(--home-light);color:var(--home);border:1px solid rgba(232,101,10,0.25);}
-.card-travel .app-pill{background:var(--travel-light);color:var(--travel);border:1px solid rgba(10,147,150,0.25);}
-.card-social .app-pill{background:var(--social-light);color:var(--social);border:1px solid rgba(155,48,217,0.25);}
-.card-tech .app-pill{background:var(--tech-light);color:var(--tech);border:1px solid rgba(204,34,0,0.25);}
-.card-health .app-pill{background:var(--health-light);color:var(--health);border:1px solid rgba(233,30,140,0.25);}
-
 .app-arrow{
-  position:absolute;
-  bottom:12px;right:14px;
-  font-size:.9rem;
-  opacity:.4;
-  transition:opacity .2s, transform .2s;
+  position:absolute; right:14px; bottom:12px;
+  opacity:.4; font-size:.9rem; transition:transform .2s ease, opacity .2s ease;
 }
-@media(hover:hover){
-  .app-card:hover .app-arrow{
-    opacity:1;
-    transform:translateX(4px);
-  }
-}
+@media(hover:hover){.app-card:hover .app-arrow{opacity:1; transform:translateX(4px)}}
 
-.free-badge{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  background:rgba(255,187,51,0.06);
-  border:1px solid rgba(255,187,51,0.2);
-  border-radius:var(--radius-sm);
-  padding:12px 16px;
-  margin-bottom:18px;
-  font-family:var(--font-mono);
-  font-size:.65rem;
-  color:var(--amber);
-  letter-spacing:2px;
-}
+.card-cash{background:linear-gradient(145deg,#0d1a0f,#111d13);border-color:rgba(0,200,81,.34)}
+.card-cash::before{background:radial-gradient(ellipse at 50% 0%,rgba(0,200,81,.08),transparent 70%)}
+.card-cash .app-name,.card-cash .mini-title{color:var(--cash)}
+.card-cash .app-pill{background:var(--cash-light);color:var(--cash);border:1px solid rgba(0,200,81,.24)}
+@media(hover:hover){.card-cash:hover{border-color:var(--cash);box-shadow:0 12px 36px rgba(0,0,0,.5),0 0 22px var(--cash-glow)}}
 
-.info-grid{
+.card-time{background:linear-gradient(145deg,#0a0f1a,#0d1220);border-color:rgba(34,136,255,.34)}
+.card-time::before{background:radial-gradient(ellipse at 50% 0%,rgba(34,136,255,.08),transparent 70%)}
+.card-time .app-name,.card-time .mini-title{color:var(--time)}
+.card-time .app-pill{background:var(--time-light);color:var(--time);border:1px solid rgba(34,136,255,.24)}
+@media(hover:hover){.card-time:hover{border-color:var(--time);box-shadow:0 12px 36px rgba(0,0,0,.5),0 0 22px var(--time-glow)}}
+
+.card-job{background:linear-gradient(145deg,#1a1205,#1c1408);border-color:rgba(212,144,10,.34)}
+.card-job::before{background:radial-gradient(ellipse at 50% 0%,rgba(212,144,10,.08),transparent 70%)}
+.card-job .app-name,.card-job .mini-title{color:var(--job)}
+.card-job .app-pill{background:var(--job-light);color:var(--job);border:1px solid rgba(212,144,10,.24)}
+@media(hover:hover){.card-job:hover{border-color:var(--job);box-shadow:0 12px 36px rgba(0,0,0,.5),0 0 22px var(--job-glow)}}
+
+.card-home{background:linear-gradient(145deg,#1a0e05,#1c1008);border-color:rgba(232,101,10,.34)}
+.card-home::before{background:radial-gradient(ellipse at 50% 0%,rgba(232,101,10,.08),transparent 70%)}
+.card-home .app-name,.card-home .mini-title{color:var(--home)}
+.card-home .app-pill{background:var(--home-light);color:var(--home);border:1px solid rgba(232,101,10,.24)}
+@media(hover:hover){.card-home:hover{border-color:var(--home);box-shadow:0 12px 36px rgba(0,0,0,.5),0 0 22px var(--home-glow)}}
+
+.card-travel{background:linear-gradient(145deg,#061a1a,#081f1f);border-color:rgba(10,147,150,.34)}
+.card-travel::before{background:radial-gradient(ellipse at 50% 0%,rgba(10,147,150,.08),transparent 70%)}
+.card-travel .app-name,.card-travel .mini-title{color:var(--travel)}
+.card-travel .app-pill{background:var(--travel-light);color:var(--travel);border:1px solid rgba(10,147,150,.24)}
+@media(hover:hover){.card-travel:hover{border-color:var(--travel);box-shadow:0 12px 36px rgba(0,0,0,.5),0 0 22px var(--travel-glow)}}
+
+.card-social{background:linear-gradient(145deg,#0f071a,#130a22);border-color:rgba(155,48,217,.34)}
+.card-social::before{background:radial-gradient(ellipse at 50% 0%,rgba(155,48,217,.08),transparent 70%)}
+.card-social .app-name,.card-social .mini-title{color:var(--social)}
+.card-social .app-pill{background:var(--social-light);color:var(--social);border:1px solid rgba(155,48,217,.24)}
+@media(hover:hover){.card-social:hover{border-color:var(--social);box-shadow:0 12px 36px rgba(0,0,0,.5),0 0 22px var(--social-glow)}}
+
+.card-tech{background:linear-gradient(145deg,#1a0505,#200808);border-color:rgba(204,34,0,.34)}
+.card-tech::before{background:radial-gradient(ellipse at 50% 0%,rgba(204,34,0,.08),transparent 70%)}
+.card-tech .app-name,.card-tech .mini-title{color:var(--tech)}
+.card-tech .app-pill{background:var(--tech-light);color:var(--tech);border:1px solid rgba(204,34,0,.24)}
+@media(hover:hover){.card-tech:hover{border-color:var(--tech);box-shadow:0 12px 36px rgba(0,0,0,.5),0 0 22px var(--tech-glow)}}
+
+.card-health{background:linear-gradient(145deg,#1a0515,#200820);border-color:rgba(233,30,140,.34)}
+.card-health::before{background:radial-gradient(ellipse at 50% 0%,rgba(233,30,140,.08),transparent 70%)}
+.card-health .app-name,.card-health .mini-title{color:var(--health)}
+.card-health .app-pill{background:var(--health-light);color:var(--health);border:1px solid rgba(233,30,140,.24)}
+@media(hover:hover){.card-health:hover{border-color:var(--health);box-shadow:0 12px 36px rgba(0,0,0,.5),0 0 22px var(--health-glow)}}
+
+.duo{
   display:grid;
-  grid-template-columns:1.15fr .95fr;
+  grid-template-columns:1.05fr .95fr;
   gap:16px;
   margin-bottom:18px;
 }
@@ -302,96 +383,153 @@ main{
   padding:20px 18px;
   position:relative;
   overflow:hidden;
-  box-shadow:var(--shadow),0 0 0 1px rgba(255,255,255,0.02) inset;
+  box-shadow:var(--shadow),0 0 0 1px rgba(255,255,255,.02) inset;
 }
 .info-card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at top right, rgba(255,255,255,0.03) 0%, transparent 34%);
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(circle at top right, rgba(255,255,255,.03) 0%, transparent 34%);
   pointer-events:none;
 }
 .info-title{
   font-family:var(--font-mono);
-  font-size:.64rem;
-  color:var(--amber);
-  letter-spacing:3px;
-  text-transform:uppercase;
-  margin-bottom:12px;
+  font-size:.64rem; letter-spacing:3px; text-transform:uppercase;
+  color:var(--amber); margin-bottom:12px;
 }
-.info-card h2{
-  font-size:1.22rem;
-  line-height:1.15;
-  margin-bottom:10px;
-  text-shadow:0 0 18px rgba(255,255,255,0.05);
-}
-.info-card p{
-  color:var(--text2);
-  line-height:1.7;
-}
-.info-list{
+.info-card h2{font-size:1.18rem; line-height:1.18; margin-bottom:10px}
+.info-card p{color:var(--text2); line-height:1.68}
+.mini-grid{
   display:grid;
-  gap:10px;
-  margin-top:12px;
+  grid-template-columns:1fr 1fr;
+  gap:10px; margin-top:14px;
 }
-.info-item{
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-  padding-top:10px;
-  border-top:1px solid var(--border2);
+.mini{
+  border:1px solid var(--border2);
+  border-radius:14px;
+  background:rgba(255,255,255,.02);
+  padding:12px;
 }
-.info-item:first-child{border-top:none;padding-top:0;}
-.info-mark{font-size:.95rem;color:var(--amber);}
-.info-item strong{display:block;margin-bottom:4px;}
-.info-item span{color:var(--text2);font-size:.92rem;line-height:1.55;}
+.mini-title{
+  font-family:var(--font-mono);
+  font-size:.62rem; letter-spacing:2px;
+  text-transform:uppercase; margin-bottom:6px;
+}
+.mini p{font-size:.9rem; line-height:1.55}
+.mission-list{display:grid; gap:10px; margin-top:14px}
+.mission-item{
+  display:flex; gap:12px; align-items:flex-start;
+  padding-top:10px; border-top:1px solid var(--border2);
+}
+.mission-item:first-child{border-top:none; padding-top:0}
+.mission-mark{color:var(--amber)}
+.mission-item strong{display:block; margin-bottom:4px}
+.mission-item span{color:var(--text2); font-size:.92rem; line-height:1.55}
 
-.install-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-.btn{
-  appearance:none;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;
-  padding:12px 16px;border-radius:999px;font-family:var(--font-mono);font-size:.74rem;letter-spacing:1px;min-height:46px;
-  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+.shared-device{
+  margin:0 0 18px;
+  padding:18px 18px 20px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(135deg,rgba(17,24,39,.88),rgba(22,27,34,.94));
+  box-shadow:0 12px 36px rgba(0,0,0,.28);
 }
-.btn:hover{transform:translateY(-1px)}
-.btn-primary{background:linear-gradient(135deg,var(--amber),var(--amber2));color:#111;box-shadow:0 0 18px var(--amber-light)}
-.btn-secondary{background:rgba(255,255,255,0.03);color:var(--text);border:1px solid var(--border)}
-.install-note{color:var(--text3);font-size:.84rem;margin-top:10px}
-.signature{margin-top:14px;color:var(--text2);font-size:.95rem}
-.signature em{font-family:var(--font-sig);font-size:1.2rem;color:var(--amber)}
+.shared-device h2{font-size:1.12rem; margin-bottom:8px}
+.shared-device p{color:var(--text2); line-height:1.68; margin-bottom:10px}
+.shared-device strong{color:var(--text)}
+.shared-device a{color:var(--amber); font-weight:800; text-decoration:none}
+.shared-device a:hover,.shared-device a:focus-visible{text-decoration:underline}
 
-.shared-device-box{
-  max-width:980px;margin:0 auto 18px;padding:18px 18px 20px;border:1px solid rgba(255,255,255,0.12);border-radius:22px;background:linear-gradient(135deg,rgba(17,24,39,0.88),rgba(22,27,34,0.94));box-shadow:0 12px 36px rgba(0,0,0,0.28)
+.footer-utility{
+  margin-top:20px; padding:18px 0 10px; border-top:1px solid var(--border);
+  text-align:center;
 }
-.shared-device-box h2{margin:0 0 8px;font-size:1.15rem}
-.shared-device-box p{margin:0 0 10px;color:var(--text2);line-height:1.7}
-.shared-device-link{display:inline-block;color:var(--amber);font-weight:800;text-decoration:none}
-.shared-device-link:hover,.shared-device-link:focus-visible{text-decoration:underline}
-
-.footer-utility{margin-top:20px;padding:18px 0 10px;border-top:1px solid var(--border);text-align:center;}
-.footer-meta{color:var(--text2);font-size:.92rem;line-height:1.6;margin-top:10px;}
-.footer-link-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px;}
+.footer-link-row{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:8px;
+}
 .footer-link-row a{
-  color:var(--text);text-decoration:none;background:var(--bg2);border:1px solid var(--border);padding:8px 12px;border-radius:999px;
+  color:var(--text); text-decoration:none;
+  background:var(--bg2); border:1px solid var(--border);
+  padding:8px 12px; border-radius:999px;
 }
-.footer-link-row a:hover{border-color:#e91e8c;}
+.footer-link-row a:hover{border-color:#e91e8c}
+.footer-meta{
+  color:var(--text2); font-size:.92rem; line-height:1.6; margin-top:10px;
+}
+.footer-signature{
+  margin-top:18px;
+  padding:18px 10px 4px;
+  border-top:1px solid var(--border2);
+  text-align:center;
+  animation:fadeUp .8s ease both;
+}
+.footer-star{
+  font-size:1.35rem;
+  color:var(--amber);
+  margin-bottom:6px;
+  text-shadow:0 0 18px rgba(255,187,51,.35);
+}
+.footer-name{
+  font-family:var(--font-sig);
+  font-size:clamp(1.9rem,4vw,2.8rem);
+  line-height:1.05;
+  color:var(--amber);
+  text-shadow:0 0 24px rgba(255,187,51,.18);
+}
+.footer-role{
+  margin-top:4px;
+  color:var(--text2);
+  font-size:.98rem;
+}
+.footer-line{
+  margin-top:10px;
+  font-family:var(--font-mono);
+  font-size:.65rem;
+  letter-spacing:3px;
+  color:var(--text3);
+}
 
-@media(min-width:640px){
-  main{max-width:900px;}
-  .hero{padding:60px 20px 40px;}
-  .hero-logo{font-size:4rem;}
-}
-@media(max-width:760px){
-  .info-grid{grid-template-columns:1fr;}
-}
-@media(max-width:640px){
-  .app-grid{grid-template-columns:1fr;gap:12px;}
-  .hero-desc{max-width:460px;font-size:.92rem;}
-  .top-copy{font-size:.9rem;}
+:focus-visible{
+  outline:2px solid var(--amber);
+  outline-offset:2px;
 }
 
-.app-card{
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
-  will-change:transform, box-shadow, border-color, filter;
+
+@keyframes bootGlow{
+  0%{opacity:0; filter:blur(6px); transform:scale(.97)}
+  100%{opacity:1; filter:blur(0); transform:scale(1)}
 }
+@keyframes pulseGlow{
+  0%,100%{opacity:.9; text-shadow:0 0 18px rgba(255,187,51,.22)}
+  50%{opacity:1; text-shadow:0 0 34px rgba(255,187,51,.42)}
+}
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(10px)}
+  to{opacity:1; transform:translateY(0)}
+}
+.grid-wrap::after{
+  content:'';
+  position:absolute;
+  inset:-20%;
+  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.02) 48%,transparent 52%,transparent 100%);
+  transform:translateX(-100%);
+  animation:gridSweep 10s linear infinite;
+  pointer-events:none;
+}
+@keyframes gridSweep{
+  from{transform:translateX(-100%)}
+  to{transform:translateX(100%)}
+}
+.card-cash .glowbar{background:linear-gradient(90deg,var(--cash),transparent)}
+.card-time .glowbar{background:linear-gradient(90deg,var(--time),transparent)}
+.card-job .glowbar{background:linear-gradient(90deg,var(--job),transparent)}
+.card-home .glowbar{background:linear-gradient(90deg,var(--home),transparent)}
+.card-travel .glowbar{background:linear-gradient(90deg,var(--travel),transparent)}
+.card-social .glowbar{background:linear-gradient(90deg,var(--social),transparent)}
+.card-tech .glowbar{background:linear-gradient(90deg,var(--tech),transparent)}
+.card-health .glowbar{background:linear-gradient(90deg,var(--health),transparent)}
+@media(hover:hover){
+  .app-card:hover .glowbar{width:100%}
+}
+
 .app-card:active{
   transform:translateY(4px) scale(.965) !important;
   box-shadow:0 4px 20px rgba(0,0,0,.5) !important;
@@ -418,272 +556,182 @@ main{
 .card-tech.pressed{border-color:#cc2200 !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(204,34,0,.40) !important;}
 .card-health.pressed{border-color:#e91e8c !important;box-shadow:0 4px 20px rgba(0,0,0,.5),0 0 30px rgba(233,30,140,.40) !important;}
 
-.coach-banner{
-  position:relative;
-  margin:0 0 18px;
-  padding:18px 18px 18px 20px;
-  border-radius:var(--radius);
-  border:1px solid rgba(34,136,255,0.24);
-  border-left:4px solid var(--time);
-  background:linear-gradient(135deg,#0d1520,#101a28);
-  box-shadow:var(--shadow), 0 0 0 1px rgba(255,255,255,0.02) inset, 0 0 22px rgba(34,136,255,0.10);
-  overflow:hidden;
+@media(max-width:860px){
+  .duo{grid-template-columns:1fr}
 }
-.coach-banner::before{
-  content:'';
-  position:absolute; inset:0;
-  background:radial-gradient(circle at top right, rgba(34,136,255,0.10) 0%, transparent 36%);
-  pointer-events:none;
-}
-.coach-banner-label{
-  position:relative;
-  z-index:1;
-  display:block;
-  margin-bottom:10px;
-  font-family:var(--font-mono);
-  font-size:.64rem;
-  color:var(--time);
-  letter-spacing:3px;
-  text-transform:uppercase;
-}
-.coach-banner-text{
-  position:relative;
-  z-index:1;
-  color:var(--text2);
-  font-size:1rem;
-  line-height:1.72;
-}
-.coach-banner-text strong{
-  color:var(--text);
-  font-weight:800;
+@media(max-width:760px){
+  .quickstart{grid-template-columns:1fr}
 }
 @media(max-width:640px){
-  .coach-banner{padding:16px 16px 16px 18px;}
-  .coach-banner-text{font-size:.97rem; line-height:1.68;}
-}
-
-.trust-line{
-  margin-top:10px;
-  font-family:var(--font-mono);
-  font-size:.62rem;
-  letter-spacing:2px;
-  color:var(--text3);
-  text-transform:uppercase;
-}
-
-.hero-sub{
-  animation:pulseGlow 2.8s ease-in-out infinite;
-}
-@keyframes pulseGlow{
-  0%,100%{opacity:.88;text-shadow:0 0 12px rgba(255,187,51,.18);}
-  50%{opacity:1;text-shadow:0 0 24px rgba(255,187,51,.40);}
-}
-
-.app-grid{
-  position:relative;
-  overflow:visible;
-}
-.app-grid::before{
-  content:'';
-  position:absolute;
-  inset:-6px;
-  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,0.00) 35%,rgba(255,255,255,0.035) 50%,rgba(255,255,255,0.00) 65%,transparent 100%);
-  animation:gridSweep 7s linear infinite;
-  pointer-events:none;
-  z-index:0;
-}
-@keyframes gridSweep{
-  0%{transform:translateX(-105%);}
-  100%{transform:translateX(105%);}
-}
-.app-grid > *{
-  position:relative;
-  z-index:1;
-}
-
-.app-card{
-  overflow:hidden;
-}
-.app-card::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.055),transparent);
-  opacity:0;
-  transition:opacity .25s;
-  pointer-events:none;
-}
-.app-card .app-progress{
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:0%;
-  height:3px;
-  transition:width .28s ease;
-  opacity:.95;
-}
-.card-cash{--accent:var(--cash);}
-.card-time{--accent:var(--time);}
-.card-job{--accent:var(--job);}
-.card-home{--accent:var(--home);}
-.card-travel{--accent:var(--travel);}
-.card-social{--accent:var(--social);}
-.card-tech{--accent:var(--tech);}
-.card-health{--accent:var(--health);}
-.app-card .app-progress{
-  background:linear-gradient(90deg,var(--accent),transparent);
-}
-@media(hover:hover){
-  .app-card:hover::after{opacity:1;}
-  .app-card:hover .app-progress{width:100%;}
-}
-.app-card:active{
-  transform:translateY(4px) scale(.965) !important;
-}
-
-.signature-block{
-  margin-top:18px;
-  text-align:center;
-  padding:16px 10px 6px;
-  border-top:1px solid var(--border2);
-  animation:fadeInUp .6s ease both;
-}
-.sig-star{
-  font-size:1.4rem;
-  color:var(--amber);
-  margin-bottom:6px;
-  text-shadow:0 0 18px rgba(255,187,51,.4);
-}
-.sig-name{
-  font-family:var(--font-sig);
-  font-size:clamp(1.9rem,4vw,2.8rem);
-  color:var(--amber);
-  line-height:1.05;
-  text-shadow:0 0 24px rgba(255,187,51,.18);
-}
-.sig-sub{
-  font-size:.98rem;
-  color:var(--text2);
-  margin-top:4px;
-}
-.sig-line{
-  font-family:var(--font-mono);
-  font-size:.65rem;
-  letter-spacing:3px;
-  color:var(--text3);
-  margin-top:10px;
-}
-@keyframes fadeInUp{
-  from{opacity:0;transform:translateY(10px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-.coach-banner{
-  backdrop-filter:blur(6px);
-}
-
-.info-divider{
-  margin:16px 0 12px;
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--border),transparent);
-  opacity:.6;
-}
-
-.info-closing-line{
-  font-size:.95rem;
-  color:var(--text2);
-  line-height:1.6;
-}
-
-
-/* ══ ACCESSIBILITY POLISH ══ */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-[tabindex]:focus-visible{
-  outline:3px solid var(--amber);
-  outline-offset:3px;
-  box-shadow:0 0 0 4px rgba(255,187,51,0.18);
+  .hero{padding:42px 16px 24px}
+  .hero-copy{font-size:.95rem}
+  .grid-wrap{padding:14px}
+  .grid-top{display:block}
+  .grid-top-copy{margin-top:8px}
+  .app-grid{grid-template-columns:1fr}
+  .mini-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 <div class="hero">
   <div class="hero-badge">FREE · ACCESSIBLE · FOR EVERYONE</div>
-  <div class="hero-logo">
-    <span class="lr-life">LIFE</span><span class="lr-ready">READY</span>
-  </div>
+  <div class="hero-logo"><span class="life">LIFE</span><span class="ready">READY</span></div>
   <div class="hero-tagline">- LIFE SKILLS SUITE -</div>
-  <div class="hero-desc">Real skills for real life. Free tools designed to feel welcoming, modern, and worth coming back to.<br/><br/></div>
-  <div class="hero-sub">PRESS START ON REAL LIFE</div>
-  <div class="trust-line">Designed for real-world independence · Simple, repeatable, and judgment-free</div>
+  <div class="hero-copy">
+    Real skills for real life. Free tools designed to feel welcoming, modern, and worth coming back to.
+  </div>
+  <div class="hero-subline">PRESS START ON REAL LIFE</div>
+  <div class="hero-trust">Designed for real-world independence · Simple, repeatable, and judgment-free</div>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="#missions">Choose a Mission</a>
+    <button class="btn btn-secondary" id="installBtn" type="button">Install LifeReady</button>
+    <a class="btn btn-secondary" href="#how-it-works">How It Works</a>
+  </div>
+  <div class="install-note" id="installNote">On iPhone use Share → Add to Home Screen. On Android use Install app or Add to Home Screen.</div>
 </div>
 
 <main>
-  <div class="section-label">CHOOSE YOUR MISSION</div>
-  <div class="top-copy">Choose the skill area you want to work on and build confidence in a space that feels more inviting than instructional.</div>
-
-  <div class="app-grid">
-    <a aria-label="CashReady" class="app-card card-cash" href="CashReady.html"><span class="app-icon">💵</span><div class="app-name">CASHREADY</div><div class="app-sub">Count money, make change, and practice real cashier skills</div><div class="app-pill">MONEY SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="TimeReady" class="app-card card-time" href="TimeReady.html"><span class="app-icon">🕐</span><div class="app-name">TIMEREADY</div><div class="app-sub">Read clocks, follow schedules, and understand real-world time</div><div class="app-pill">TIME SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="JobReady" class="app-card card-job" href="JobReady.html"><span class="app-icon">💼</span><div class="app-name">JOBREADY</div><div class="app-sub">Practice interviews, workplace behavior, and job readiness skills</div><div class="app-pill">WORK SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="HomeReady" class="app-card card-home" href="HomeReady.html"><span class="app-icon">🏠</span><div class="app-name">HOMEREADY</div><div class="app-sub">Build independence with home, safety, and daily living skills</div><div class="app-pill">HOME SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="TravelReady" class="app-card card-travel" href="TravelReady.html"><span class="app-icon">🗺️</span><div class="app-name">TRAVELREADY</div><div class="app-sub">Navigate transit, read routes, and plan safe independent travel</div><div class="app-pill">TRAVEL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="SocialReady" class="app-card card-social" href="SocialReady.html"><span class="app-icon">💬</span><div class="app-name">SOCIALREADY</div><div class="app-sub">Start conversations, read cues, and handle real social situations</div><div class="app-pill">SOCIAL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="TechReady" class="app-card card-tech" href="TechReady.html"><span class="app-icon">📱</span><div class="app-name">TECHREADY</div><div class="app-sub">Stay safe online, avoid scams, and build digital confidence</div><div class="app-pill">DIGITAL SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-    <a aria-label="HealthReady" class="app-card card-health" href="HealthReady.html"><span class="app-icon">🏥</span><div class="app-name">HEALTHREADY</div><div class="app-sub">Manage health needs, understand care, and respond to emergencies</div><div class="app-pill">HEALTH SKILLS</div><div class="app-arrow">›</div><div class="app-progress"></div></a>
-  </div>
-
-  <div class="free-badge">🆓 &nbsp; ALL APPS FREE · NO ADS · NO ACCOUNTS · NO PAYWALLS</div>
-
-  <div class="coach-banner">
-    <span class="coach-banner-label">🎓 For Coaches &amp; Teachers</span>
-    <div class="coach-banner-text">
-      Every module includes built-in <strong>Mission Control</strong> to log sessions, track accuracy, set mastery goals,
-      monitor prompt fading, and print progress reports for your clients or students. Tap <strong>COACH</strong> in any module header to get started.
+  <div class="section-label" id="how-it-works">Start Here</div>
+  <section class="quickstart" aria-label="How LifeReady works">
+    <div class="quick-card">
+      <div class="quick-number">1</div>
+      <strong>Pick a world</strong>
+      <p>Choose the skill area you want to practice right now. Each module has its own theme, but they all work the same way.</p>
     </div>
-  </div>
+    <div class="quick-card">
+      <div class="quick-number">2</div>
+      <strong>Play and repeat</strong>
+      <p>Try the daily challenge, play a mode, and come back as often as you want. Repetition is built in on purpose.</p>
+    </div>
+    <div class="quick-card">
+      <div class="quick-number">3</div>
+      <strong>Use Mission Control</strong>
+      <p>Tap <strong>COACH</strong> inside any module to add learners, log sessions, and track progress on this device.</p>
+    </div>
+  </section>
 
-  <div class="info-grid">
+  <section class="grid-wrap" id="missions">
+    <div class="grid-top">
+      <div>
+        <div class="section-label" style="margin-bottom:8px;border-bottom:none;padding-bottom:0;justify-content:flex-start"><span>Choose Your Mission</span></div>
+      </div>
+      <div class="grid-top-copy">
+        Choose the skill area you want to work on and build confidence in a space that feels more inviting than instructional.
+      </div>
+    </div>
+
+    <div class="app-grid">
+      <a aria-label="Open CashReady" class="app-card card-cash" href="CashReady.html">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><span class="app-icon">💵</span>
+        <div class="app-name">CASHREADY</div>
+        <div class="app-sub">Count money, make change, and practice real cashier skills.</div>
+        <div class="app-pill">NEON CHECKOUT DECK</div>
+        <div class="app-arrow">›</div>
+        <div class="glowbar"></div>
+      </a>
+      <a aria-label="Open TimeReady" class="app-card card-time" href="TimeReady.html">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><span class="app-icon">🕐</span>
+        <div class="app-name">TIMEREADY</div>
+        <div class="app-sub">Read clocks, follow schedules, and understand real-world time.</div>
+        <div class="app-pill">DEEP-SPACE CLOCK DECK</div>
+        <div class="app-arrow">›</div>
+        <div class="glowbar"></div>
+      </a>
+      <a aria-label="Open JobReady" class="app-card card-job" href="JobReady.html">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><span class="app-icon">💼</span>
+        <div class="app-name">JOBREADY</div>
+        <div class="app-sub">Practice interviews, workplace behavior, and real job readiness.</div>
+        <div class="app-pill">CAREER COMMAND CENTER</div>
+        <div class="app-arrow">›</div>
+        <div class="glowbar"></div>
+      </a>
+      <a aria-label="Open HomeReady" class="app-card card-home" href="HomeReady.html">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><span class="app-icon">🏠</span>
+        <div class="app-name">HOMEREADY</div>
+        <div class="app-sub">Build daily living, home, safety, and independence skills.</div>
+        <div class="app-pill">HABITAT SYSTEMS</div>
+        <div class="app-arrow">›</div>
+        <div class="glowbar"></div>
+      </a>
+      <a aria-label="Open TravelReady" class="app-card card-travel" href="TravelReady.html">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><span class="app-icon">🗺️</span>
+        <div class="app-name">TRAVELREADY</div>
+        <div class="app-sub">Read routes, plan trips, and practice safe independent travel.</div>
+        <div class="app-pill">TRANSIT COMMAND CONSOLE</div>
+        <div class="app-arrow">›</div>
+        <div class="glowbar"></div>
+      </a>
+      <a aria-label="Open SocialReady" class="app-card card-social" href="SocialReady.html">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><span class="app-icon">💬</span>
+        <div class="app-name">SOCIALREADY</div>
+        <div class="app-sub">Practice conversations, boundaries, and real social situations.</div>
+        <div class="app-pill">COMMUNICATIONS LOUNGE</div>
+        <div class="app-arrow">›</div>
+        <div class="glowbar"></div>
+      </a>
+      <a aria-label="Open TechReady" class="app-card card-tech" href="TechReady.html">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><span class="app-icon">📱</span>
+        <div class="app-name">TECHREADY</div>
+        <div class="app-sub">Build digital confidence, device skills, and online safety.</div>
+        <div class="app-pill">CYBER LAB</div>
+        <div class="app-arrow">›</div>
+        <div class="glowbar"></div>
+      </a>
+      <a aria-label="Open HealthReady" class="app-card card-health" href="HealthReady.html">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><span class="app-icon">🏥</span>
+        <div class="app-name">HEALTHREADY</div>
+        <div class="app-sub">Practice routines, appointments, safety, and everyday health skills.</div>
+        <div class="app-pill">MED BAY</div>
+        <div class="app-arrow">›</div>
+        <div class="glowbar"></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="duo">
     <div class="info-card">
-      <div class="info-title">Mission Brief</div>
-      <h2>Life skills should feel like unlocking levels, not sitting through another lesson.</h2>
-      <p>LifeReady is built for learners building independence, and for the teachers, families, coaches, and support people helping along the way. The goal is simple: make real-life practice feel inviting, rewarding, and worth coming back to.</p>
-      <div class="info-list">
-        <div class="info-item"><div class="info-mark">✦</div><div><strong>For players</strong><span>Jump into any world, play at your own pace, and build confidence one win at a time.</span></div></div>
-        <div class="info-item"><div class="info-mark">✦</div><div><strong>For coaches and educators</strong><span>Use the modules as guided practice, discussion starters, or confidence-building warmups.</span></div></div>
-        <div class="info-item"><div class="info-mark">✦</div><div><strong>Built for real life</strong><span>Practical skills, arcade energy, and zero talking down to people.</span></div></div>
+      <div class="info-title">Why It Works</div>
+      <h2>Life skills practice should feel clear, repeatable, and worth coming back to.</h2>
+      <p>LifeReady is built to reduce pressure without reducing purpose. It supports repetition, straightforward feedback, strong visual structure, and a game-like feel without talking down to people.</p>
+      <div class="mission-list">
+        <div class="mission-item"><div class="mission-mark">✦</div><div><strong>For learners</strong><span>Play independently or with support, repeat what helps, and build confidence one skill at a time.</span></div></div>
+        <div class="mission-item"><div class="mission-mark">✦</div><div><strong>For coaches, educators, and support teams</strong><span>Use the modules as practice tools, discussion starters, transition supports, or warmups in schools, day programs, and community settings.</span></div></div>
+        <div class="mission-item"><div class="mission-mark">✦</div><div><strong>For real life</strong><span>Everything points back to practical independence, not just points on a screen.</span></div></div>
       </div>
-      <div class="info-divider"></div>
-      <div class="info-closing-line">Made with stubborn optimism for real people trying to do real-life stuff.</div>
-      <div class="signature-block">
-        <div class="sig-star">★</div>
-        <div class="sig-name">Tristan Beck</div>
-        <div class="sig-sub">Creator of the LifeReady Suite</div>
-        <div class="sig-line">FREE FOR EVERYONE · ALWAYS</div>
-      </div>
+      <div class="signature">Made with stubborn optimism for real people trying to do real-life stuff.</div>
     </div>
 
     <div class="info-card">
-      <div class="info-title">Install / Add to Home Screen</div>
-      <h2>Turn the hub into an actual app.</h2>
-      <p>Add LifeReady to your home screen for the cleanest game-hub feel. On iPhone, use Share → Add to Home Screen. On Android, open the browser menu and use Install app or Add to Home Screen.</p>
-      <div class="install-actions">
-        <button class="btn btn-primary" id="installBtn" type="button">Install LifeReady</button>
-        <a class="btn btn-secondary" href="contact.html">Send Feedback</a>
+      <div class="info-title">Mission Control</div>
+      <h2>Mission Control stays simple.</h2>
+      <p>Every module includes the same Mission Control system so coaches, educators, and support teams are not relearning the interface every time.</p>
+      <div class="mini-grid">
+        <div class="mini">
+          <div class="mini-title">Track</div>
+          <p>Log sessions, watch progress, and keep things organized on one device.</p>
+        </div>
+        <div class="mini">
+          <div class="mini-title">Support</div>
+          <p>Use learner names or initials and keep things clear on shared devices.</p>
+        </div>
+        <div class="mini">
+          <div class="mini-title">Review</div>
+          <p>Copy session summaries and look at progress without a giant admin panel.</p>
+        </div>
+        <div class="mini">
+          <div class="mini-title">Repeat</div>
+          <p>Jump between modules without losing the logic of how Mission Control works.</p>
+        </div>
       </div>
-      <div class="install-note" id="installNote">If install does not appear, refresh once after the app finishes loading.</div>
     </div>
-  </div>
+  </section>
 
-  <section class="shared-device-box" aria-labelledby="shared-device-heading">
+  <section class="shared-device" aria-labelledby="shared-device-heading">
     <h2 id="shared-device-heading">Using a shared device?</h2>
-    <p>LifeReady can save progress, preferences, and notes on the device you are using. On a shared school, work, family, or program device, other people using that same device may be able to see saved activity unless it is cleared.</p>
-    <p><strong style="color:var(--text)">Need to reset things later?</strong> You can clear local LifeReady data by clearing this site's browser data on the device you used.</p>
-    <p><a class="shared-device-link" href="privacy.html">Read the privacy page for details and data-clearing info.</a></p>
+    <p>LifeReady can save progress, preferences, and notes on the device being used. On a school, program, family, or work device, other people may be able to see saved activity unless it is cleared later.</p>
+    <p><strong>Need to reset things later?</strong> Clear this site’s browser data on the device you used.</p>
+    <p><a href="privacy.html">Read the privacy page for local storage details and data-clearing info.</a></p>
   </section>
 
   <footer class="footer-utility">
@@ -694,16 +742,17 @@ textarea:focus-visible,
       <a href="health-disclaimer.html">Health Disclaimer</a>
     </div>
     <div class="footer-meta">
-      LifeReady is a practical life-skills learning suite built to be useful right now on phones, tablets, and computers.<br>
+      LifeReady is a practical life-skills learning suite built for phones, tablets, and computers.<br/>
       No accounts. No ads. No paywalls.
+    </div>
+    <div class="footer-signature">
+      <div class="footer-star">★</div>
+      <div class="footer-name">Tristan Beck</div>
+      <div class="footer-role">Creator of the LifeReady Suite</div>
+      <div class="footer-line">FREE FOR EVERYONE · ALWAYS</div>
     </div>
   </footer>
 </main>
-
-<script>
-document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});
-var _lt=0;document.addEventListener('touchend',function(e){var n=Date.now();if(n-_lt<300)e.preventDefault();_lt=n;},false);
-</script>
 
 <script>
 (function(){
@@ -732,121 +781,34 @@ var _lt=0;document.addEventListener('touchend',function(e){var n=Date.now();if(n
   window.addEventListener('beforeinstallprompt', function(e){
     e.preventDefault();
     deferredPrompt = e;
-    if(installBtn) installBtn.hidden = false;
-    if(installNote) installNote.textContent = 'Install is ready. Tap the button above if your browser supports it.';
+    if (installBtn) installBtn.hidden = false;
+    if (installNote) installNote.textContent = 'Install is ready. Tap the button above if your browser supports it.';
   });
-  if(installBtn){
+  if (installBtn){
     installBtn.addEventListener('click', async function(){
       if(!deferredPrompt){
-        if(installNote) installNote.textContent = 'On iPhone: Share → Add to Home Screen. On Android: browser menu → Install app or Add to Home Screen.';
+        if (installNote) installNote.textContent = 'On iPhone: Share → Add to Home Screen. On Android: browser menu → Install app or Add to Home Screen.';
         return;
       }
       deferredPrompt.prompt();
       try { await deferredPrompt.userChoice; } catch(e) {}
       deferredPrompt = null;
       installBtn.hidden = true;
-      if(installNote) installNote.textContent = 'If install did not appear, your browser may require using its menu instead.';
+      if (installNote) installNote.textContent = 'If install did not appear, your browser may require using its menu instead.';
     });
   }
   window.addEventListener('appinstalled', function(){
-    if(installBtn) installBtn.hidden = true;
+    if (installBtn) installBtn.hidden = true;
   });
 })();
 </script>
 
-<script id="lifeready-shared-sw">
+<script>
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('./sw.js').catch(function(){});
   });
 }
-</script>
-<script>
-(function(){
-  function applyAccessibilityEnhancements(root){
-    const scope = root && root.querySelectorAll ? root : document;
-
-    scope.querySelectorAll('button[title]:not([aria-label]),a[title]:not([aria-label]),input[title]:not([aria-label]),select[title]:not([aria-label]),textarea[title]:not([aria-label])').forEach((el)=>{
-      const title = (el.getAttribute('title') || '').trim();
-      if(title) el.setAttribute('aria-label', title);
-    });
-
-    scope.querySelectorAll('.aa-btn').forEach((btn)=>{
-      btn.setAttribute('aria-label','Toggle large text');
-      btn.setAttribute('title','Toggle large text');
-      btn.setAttribute('aria-pressed', document.body.classList.contains('large-text') ? 'true' : 'false');
-    });
-
-    scope.querySelectorAll('[onclick]').forEach((el)=>{
-      if(el.matches('button,a,input,select,textarea')) return;
-      if(!el.hasAttribute('role')) el.setAttribute('role','button');
-      if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0');
-      if(!el.dataset.lrKeybound){
-        el.addEventListener('keydown', (e)=>{
-          if(e.key === 'Enter' || e.key === ' '){
-            e.preventDefault();
-            el.click();
-          }
-        });
-        el.dataset.lrKeybound = '1';
-      }
-    });
-
-    scope.querySelectorAll('button, a, [role="button"]').forEach((el)=>{
-      const rawText = (el.textContent || '').replace(/\s+/g,' ').trim();
-      const title = (el.getAttribute('title') || '').trim();
-
-      if(!el.hasAttribute('aria-label')){
-        if(el.classList.contains('aa-btn')){
-          el.setAttribute('aria-label','Toggle large text');
-        } else if(title){
-          el.setAttribute('aria-label', title);
-        } else if(rawText === '⚙️' || rawText === '⚙'){
-          el.setAttribute('aria-label','Open quick settings');
-          el.setAttribute('title','Open quick settings');
-        } else if(rawText === '✕' || rawText === '×'){
-          el.setAttribute('aria-label','Close');
-        } else if(rawText === '❔'){
-          el.setAttribute('aria-label','Quick start');
-        } else if(rawText === '🖨' || rawText === '🖨️'){
-          el.setAttribute('aria-label','Print');
-        }
-      }
-    });
-  }
-
-  function syncAaState(){
-    document.querySelectorAll('.aa-btn').forEach((btn)=>{
-      btn.setAttribute('aria-pressed', document.body.classList.contains('large-text') ? 'true' : 'false');
-    });
-  }
-
-  applyAccessibilityEnhancements(document);
-  syncAaState();
-
-  const observer = new MutationObserver((mutations)=>{
-    mutations.forEach((mutation)=>{
-      mutation.addedNodes.forEach((node)=>{
-        if(node.nodeType === 1){
-          applyAccessibilityEnhancements(node);
-        }
-      });
-    });
-    syncAaState();
-  });
-  observer.observe(document.body, {childList:true, subtree:true});
-
-  const originalToggleFontSize = window.toggleFontSize;
-  if(typeof originalToggleFontSize === 'function' && !originalToggleFontSize.__lrWrapped){
-    const wrapped = function(){
-      const result = originalToggleFontSize.apply(this, arguments);
-      syncAaState();
-      return result;
-    };
-    wrapped.__lrWrapped = true;
-    window.toggleFontSize = wrapped;
-  }
-})();
 </script>
 </body>
 </html>

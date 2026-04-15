@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v10 - safer offline caching, desktop-friendly)
+// LifeReady Service Worker (v12 - TimeReady schedule master next fix)
 
-const VERSION = 'v10';
+const VERSION = 'v12';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

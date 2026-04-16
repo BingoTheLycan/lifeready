@@ -1185,6 +1185,7 @@ function loadHubState(){
   state.rangeStart = state.rangeStart || '';
   state.rangeEnd = state.rangeEnd || '';
   state.profiles = state.profiles || {};
+  state.ignoreLegacyPins = !!state.ignoreLegacyPins;
   return state;
 }
 function saveHubState(message='Saved locally'){
@@ -1838,7 +1839,7 @@ function unlockMissionControl(){
 function maybeMigrateLegacyPin(){
   const pins = APP.importedPins;
   const note = $('#legacy-pin-note');
-  if(!pins.length) return;
+  if(!pins.length || HUB.ignoreLegacyPins) return;
   if(!HUB.pin && pins.length === 1){
     HUB.pin = pins[0];
     saveHubState('Imported legacy access code');
@@ -1846,12 +1847,11 @@ function maybeMigrateLegacyPin(){
   if(note){
     if(pins.length > 1){
       note.textContent = `Legacy module codes were found (${pins.length} different PINs). Create one new Mission Control code here so staff do not have to remember a whole cursed collection.`;
-      note.classList.remove('hidden');
-      $('#pin-remove-legacy-btn').classList.remove('hidden');
     }else{
       note.textContent = 'A legacy module PIN was found and imported as your unified Mission Control access code.';
-      note.classList.remove('hidden');
     }
+    note.classList.remove('hidden');
+    $('#pin-remove-legacy-btn').classList.remove('hidden');
   }
 }
 function handleLockSubmit(){
@@ -2447,8 +2447,16 @@ document.addEventListener('keydown', e=>{
 $('#pin-submit-btn').addEventListener('click', handleLockSubmit);
 $('#pin-remove-legacy-btn').addEventListener('click', ()=>{
   APP.importedPins = [];
+  HUB.pin = '';
+  HUB.pinHint = '';
+  HUB.ignoreLegacyPins = true;
+  saveHubState('Legacy module codes ignored');
   $('#legacy-pin-note').classList.add('hidden');
   $('#pin-remove-legacy-btn').classList.add('hidden');
+  $('#pin-error').textContent = '';
+  $('#pin-input').value = '';
+  $('#pin-create-btn').classList.remove('hidden');
+  $('#lock-copy').textContent = 'Create one educator access code for the full Mission Control hub. No more separate module PINs unless chaos is your hobby.';
 });
 $('#learner-search').addEventListener('input', e=>{ APP.search = e.target.value; renderRoster(); ensureSelection(); renderAll(); });
 $('#module-filter').addEventListener('change', e=>{
@@ -2502,6 +2510,7 @@ $('#save-pin-btn').addEventListener('click', ()=>{
     if(pin.length < 4) return $('#pin-manage-error').textContent = 'Use at least 4 characters.';
     if(pin !== confirm) return $('#pin-manage-error').textContent = 'Those codes do not match.';
     HUB.pin = pin;
+    HUB.ignoreLegacyPins = false;
   }
   HUB.pinHint = hint;
   HUB.autoLockMinutes = auto;
@@ -2513,6 +2522,7 @@ $('#save-pin-btn').addEventListener('click', ()=>{
 $('#remove-pin-btn').addEventListener('click', ()=>{
   HUB.pin = '';
   HUB.pinHint = '';
+  HUB.ignoreLegacyPins = true;
   saveHubState('Access code removed');
   hideOverlay('#pin-overlay');
   renderAll();

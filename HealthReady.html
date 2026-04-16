@@ -7321,14 +7321,27 @@ document.addEventListener('DOMContentLoaded',()=>{
       const state = JSON.parse(raw);
       state.pin = '';
       state.pinHint = '';
+      state.ignoreLegacyPins = true;
       localStorage.setItem('lr_mc_hub_v1', JSON.stringify(state));
     }catch(err){
       localStorage.removeItem('lr_mc_hub_v1');
     }
+    try{
+      ['cr_cfg','hlr_cfg','hr_cfg','jr_cfg','sr_cfg','tc_cfg','tr_cfg','tr5_cfg'].forEach(function(key){
+        const raw = localStorage.getItem(key);
+        if(!raw) return;
+        const cfg = JSON.parse(raw);
+        if(cfg && typeof cfg === 'object'){
+          cfg.coachPin = null;
+          cfg.coachWelcomeSeen = false;
+          localStorage.setItem(key, JSON.stringify(cfg));
+        }
+      });
+    }catch(err){}
     if(typeof openHint === 'function'){
       openHint(
         'Unified Mission Control PIN Removed',
-        '<p style="color:var(--text2);font-size:.88rem;line-height:1.6">The shared Mission Control access code has been cleared for the full hub. You can create a new one the next time you open Mission Control.</p>',
+        '<p style="color:var(--text2);font-size:.88rem;line-height:1.6">The shared Mission Control access code and any old module PINs saved in this browser have been cleared. You can create a new one the next time you open Mission Control.</p>',
         'Open Mission Control',
         function(){ if(typeof closeM === "function") closeM("m-hint"); openUnifiedMissionControl("security"); }
       );

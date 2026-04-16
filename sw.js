@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v20 - Deeper pass phase 2)
+// LifeReady Service Worker (v22 - Mission Control command deck rebuild)
 
-const VERSION = 'v21';
+const VERSION = 'v22';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

@@ -682,6 +682,381 @@ a{color:inherit;text-decoration:none}
   .topbar{margin-bottom:12px}
   .panel-inner{padding:16px}
 }
+
+/* ===== Mission Control Command Deck Rebuild ===== */
+:root{
+  --mc-blue:#37b3ff;
+  --mc-cyan:#56f0ff;
+  --mc-green:#5cff8d;
+  --mc-gold:#ffbf3c;
+  --mc-orange:#ff7a3d;
+  --mc-purple:#b96aff;
+  --mc-red:#ff5e7c;
+}
+body{
+  background:
+    radial-gradient(circle at 12% 12%, rgba(55,179,255,.18), transparent 22%),
+    radial-gradient(circle at 85% 10%, rgba(185,106,255,.16), transparent 22%),
+    radial-gradient(circle at 50% 0%, rgba(255,191,60,.12), transparent 30%),
+    linear-gradient(180deg,#08101b 0%, #09111d 28%, #07111c 100%);
+}
+.topbar.command-topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  padding:10px 14px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg,rgba(11,19,32,.94),rgba(11,18,28,.88));
+  box-shadow:0 16px 40px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.03);
+  backdrop-filter:blur(10px);
+}
+.command-topbar .topbar-right{gap:8px}
+.command-topbar .btn{
+  min-height:42px;
+  padding:10px 14px;
+}
+.command-topbar .btn.primary{
+  background:linear-gradient(135deg,var(--mc-gold),#ff9d1f);
+  color:#11131a;
+}
+.mission-hero{
+  padding-bottom:16px;
+  background:
+    linear-gradient(180deg,rgba(15,22,38,.96),rgba(12,18,28,.98)),
+    radial-gradient(circle at top left, rgba(55,179,255,.12), transparent 28%),
+    radial-gradient(circle at top right, rgba(185,106,255,.14), transparent 24%);
+}
+.mission-hero .eyebrow{color:var(--mc-cyan)}
+.mission-hero .hero-title .life{color:var(--mc-gold)}
+.mission-hero .hero-title .mc{color:#f5f8ff;text-shadow:0 0 18px rgba(255,255,255,.08)}
+.mission-hero .hero-copy{max-width:800px}
+.mission-hero::after{
+  background:linear-gradient(90deg,var(--mc-gold),var(--mc-cyan),var(--mc-purple),transparent);
+}
+.hero-grid .hero-stat:nth-child(1){border-color:rgba(55,179,255,.26)}
+.hero-grid .hero-stat:nth-child(2){border-color:rgba(255,191,60,.26)}
+.hero-grid .hero-stat:nth-child(3){border-color:rgba(185,106,255,.26)}
+.hero-grid .hero-stat:nth-child(4){border-color:rgba(92,255,141,.26)}
+.quick-tabs{
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  max-width:540px;
+}
+.tabbtn{
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(12,19,31,.75);
+  color:var(--text2);
+  border-radius:999px;
+  min-height:42px;
+  padding:10px 16px;
+  font-family:var(--mono);
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  font-size:.78rem;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.tabbtn[data-jump="overview"]{border-color:rgba(55,179,255,.24)}
+.tabbtn[data-jump="objectives"]{border-color:rgba(255,191,60,.24)}
+.tabbtn[data-jump="sessions"]{border-color:rgba(92,255,141,.24)}
+.tabbtn[data-jump="reports"]{border-color:rgba(185,106,255,.24)}
+.tabbtn[data-jump="security"]{border-color:rgba(255,94,124,.24)}
+.tabbtn.active,.tabbtn:hover{
+  color:#fff;
+  transform:translateY(-1px);
+  box-shadow:0 0 0 1px rgba(255,255,255,.03), 0 12px 20px rgba(0,0,0,.18);
+}
+.tabbtn[data-jump="overview"].active,.tabbtn[data-jump="overview"]:hover{background:rgba(55,179,255,.12)}
+.tabbtn[data-jump="objectives"].active,.tabbtn[data-jump="objectives"]:hover{background:rgba(255,191,60,.12)}
+.tabbtn[data-jump="sessions"].active,.tabbtn[data-jump="sessions"]:hover{background:rgba(92,255,141,.10)}
+.tabbtn[data-jump="reports"].active,.tabbtn[data-jump="reports"]:hover{background:rgba(185,106,255,.12)}
+.tabbtn[data-jump="security"].active,.tabbtn[data-jump="security"]:hover{background:rgba(255,94,124,.10)}
+.command-dock{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(280px,1.2fr) minmax(0,2fr);
+  gap:14px;
+  margin-top:16px;
+}
+.selected-learner-panel{
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(180deg,rgba(9,18,31,.92),rgba(10,15,24,.98)),
+    radial-gradient(circle at top left, rgba(55,179,255,.16), transparent 26%);
+  padding:16px 18px;
+  min-height:112px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.selected-learner-panel .eyebrow{margin-bottom:8px;font-size:.68rem;letter-spacing:3px;color:var(--mc-gold)}
+.selected-learner-name{
+  font-family:var(--mono);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:1.15rem;
+  margin-bottom:8px;
+}
+.selected-learner-meta{color:var(--text2);line-height:1.55}
+.selected-learner-tokens{
+  display:flex;gap:8px;flex-wrap:wrap;margin-top:12px
+}
+.command-actions{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.command-actions .btn{
+  justify-content:center;
+  border-radius:18px;
+  min-height:50px;
+}
+.command-actions .btn.primary{
+  background:linear-gradient(135deg,var(--mc-gold),#ffa82f);
+}
+.command-actions .btn.ghost{
+  background:linear-gradient(180deg,rgba(15,24,40,.9),rgba(10,16,27,.96));
+}
+.command-actions .btn.danger{
+  background:linear-gradient(180deg,rgba(80,18,30,.9),rgba(42,10,18,.95));
+  border-color:rgba(255,94,124,.3);
+}
+.main-shell.mission-shell{
+  align-items:start;
+  grid-template-columns:320px minmax(0,1fr);
+}
+.sidebar.mission-sidebar{
+  position:sticky;
+  top:96px;
+}
+.roster-panel .panel-inner{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.roster-panel .mini-actions{display:flex;flex-wrap:wrap}
+.roster-panel .panel-title h2{
+  font-size:1.1rem;
+  letter-spacing:1px;
+}
+.search, select, input, textarea{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.09);
+}
+.learner-list{
+  display:grid;
+  gap:10px;
+  max-height:46vh;
+  overflow:auto;
+  padding-right:4px;
+}
+.learner-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(180deg,rgba(13,21,35,.96),rgba(11,16,26,.98)),
+    radial-gradient(circle at top right, rgba(255,255,255,.04), transparent 28%);
+  padding:14px;
+}
+.learner-card::after{
+  content:'';
+  position:absolute;
+  inset:auto 0 0 0;
+  height:2px;
+  background:linear-gradient(90deg,var(--mc-cyan),var(--mc-purple),transparent);
+  opacity:.75;
+}
+.learner-card.active{
+  border-color:rgba(255,191,60,.34);
+  box-shadow:0 0 0 1px rgba(255,191,60,.12), 0 12px 26px rgba(255,191,60,.08);
+  background:
+    linear-gradient(180deg,rgba(28,20,8,.68),rgba(12,17,28,.98)),
+    radial-gradient(circle at top right, rgba(255,191,60,.09), transparent 30%);
+}
+.learner-card .avatar{
+  box-shadow:0 0 0 1px rgba(255,255,255,.08), 0 10px 20px rgba(0,0,0,.25);
+}
+.learner-name{
+  font-family:var(--mono);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+}
+.learner-rank .token{background:rgba(255,255,255,.04)}
+.panel{
+  background:
+    linear-gradient(180deg,rgba(13,19,30,.96),rgba(10,15,24,.99)),
+    radial-gradient(circle at top left, rgba(55,179,255,.08), transparent 26%);
+}
+.panel::after{
+  content:'';
+  position:absolute;
+  inset:auto 12px 0 12px;
+  height:2px;
+  background:linear-gradient(90deg,rgba(255,191,60,.8),rgba(55,179,255,.65),rgba(185,106,255,.6),transparent);
+  opacity:.65;
+}
+.sticky-nav.section-links{
+  top:84px;
+  z-index:9;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:10px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg,rgba(11,18,31,.92),rgba(10,15,24,.96));
+  box-shadow:0 16px 34px rgba(0,0,0,.16);
+}
+.sticky-nav.section-links .tabbtn{
+  flex:1 1 140px;
+  justify-content:center;
+}
+.mission-main .mc-page{display:none}
+.mission-main .mc-page.active{display:block}
+.mission-main .mc-page .panel-inner{padding:20px}
+.mission-main .mc-page .panel-title h2{
+  font-size:1.2rem;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-family:var(--mono);
+}
+#overview .panel-title h2{color:var(--mc-cyan)}
+#objectives .panel-title h2{color:var(--mc-gold)}
+#sessions .panel-title h2{color:var(--mc-green)}
+#reports .panel-title h2{color:var(--mc-purple)}
+#security .panel-title h2{color:#ff839b}
+.info-card, .metric-card, .module-card, .objective-card, .session-card, .report-card, .security-card, .milestone-card{
+  background:
+    linear-gradient(180deg,rgba(16,23,36,.96),rgba(11,16,26,.98)),
+    radial-gradient(circle at top right, rgba(255,255,255,.03), transparent 24%);
+  border:1px solid rgba(255,255,255,.08);
+}
+.info-card:nth-child(1){border-color:rgba(55,179,255,.24)}
+.info-card:nth-child(2){border-color:rgba(255,191,60,.24)}
+.info-card:nth-child(3){border-color:rgba(185,106,255,.24)}
+#overview-body .quick-grid .info-card:nth-child(1){border-color:rgba(55,179,255,.3)}
+#overview-body .quick-grid .info-card:nth-child(2){border-color:rgba(255,191,60,.3)}
+#overview-body .quick-grid .info-card:nth-child(3){border-color:rgba(92,255,141,.28)}
+.metric-card:nth-child(1){border-color:rgba(55,179,255,.24)}
+.metric-card:nth-child(2){border-color:rgba(255,191,60,.24)}
+.metric-card:nth-child(3){border-color:rgba(92,255,141,.24)}
+.metric-card:nth-child(4){border-color:rgba(185,106,255,.24)}
+.module-grid{
+  max-height:430px;
+  overflow:auto;
+  padding-right:4px;
+}
+.timeline, .objective-list, .session-list, .security-list, .report-list, .milestone-list{
+  max-height:420px;
+  overflow:auto;
+  padding-right:4px;
+}
+.report-output{
+  max-height:320px;
+  overflow:auto;
+  background:linear-gradient(180deg,rgba(13,20,34,.94),rgba(9,14,22,.98));
+  border:1px solid rgba(255,255,255,.08);
+}
+.note{
+  border-color:rgba(255,191,60,.28);
+  background:linear-gradient(180deg,rgba(55,41,12,.32),rgba(18,15,22,.96));
+}
+.modal{
+  max-width:980px;
+  background:
+    linear-gradient(180deg,rgba(13,20,34,.98),rgba(10,14,24,.98)),
+    radial-gradient(circle at top right, rgba(185,106,255,.14), transparent 24%),
+    radial-gradient(circle at top left, rgba(55,179,255,.14), transparent 24%);
+  border-color:rgba(255,255,255,.1);
+}
+.modal::before{opacity:.35}
+.modal-head h3{
+  font-family:var(--mono);
+  text-transform:uppercase;
+  letter-spacing:3px;
+}
+#help-overlay .quick-grid,
+#intro-overlay .quick-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+#help-overlay .info-card:nth-child(1),
+#intro-overlay .info-card:nth-child(1){border-color:rgba(55,179,255,.3)}
+#help-overlay .info-card:nth-child(2),
+#intro-overlay .info-card:nth-child(2){border-color:rgba(255,191,60,.3)}
+#help-overlay .info-card:nth-child(3),
+#intro-overlay .info-card:nth-child(3){border-color:rgba(92,255,141,.28)}
+#help-overlay .info-card:nth-child(4),
+#intro-overlay .info-card:nth-child(4){border-color:rgba(185,106,255,.28)}
+.guide-legend{
+  display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;
+}
+.quick-token{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 12px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.09); background:rgba(255,255,255,.04);
+  font-family:var(--mono); font-size:.74rem; letter-spacing:1px; text-transform:uppercase;
+}
+.guide-note{
+  margin-top:16px;
+  padding:16px 18px;
+  border-radius:18px;
+  border:1px solid rgba(255,191,60,.22);
+  background:linear-gradient(180deg,rgba(55,41,12,.28),rgba(16,16,24,.95));
+  color:#ffe0a3;
+}
+.lock-card{
+  background:
+    linear-gradient(180deg,rgba(14,22,38,.96),rgba(11,17,28,.98)),
+    radial-gradient(circle at top left, rgba(55,179,255,.14), transparent 24%),
+    radial-gradient(circle at top right, rgba(185,106,255,.14), transparent 24%);
+  border-color:rgba(255,255,255,.1);
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
+}
+.lock-card::after{
+  background:linear-gradient(90deg,var(--mc-gold),var(--mc-cyan),var(--mc-purple),transparent);
+}
+.quickstart-panel{display:none !important}
+.empty{
+  border-style:dashed;
+  background:rgba(255,255,255,.03);
+}
+@media (max-width: 1100px){
+  .command-dock{grid-template-columns:1fr}
+  .command-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .main-shell.mission-shell{grid-template-columns:1fr}
+  .sidebar.mission-sidebar{position:static}
+  .learner-list{max-height:280px}
+}
+@media (max-width: 760px){
+  .page{padding:14px 12px 38px}
+  .command-topbar{position:static}
+  .command-topbar .topbar-left,.command-topbar .topbar-right{width:100%}
+  .command-topbar .topbar-right{justify-content:flex-start}
+  .quick-tabs{max-width:none}
+  .hero-top{gap:16px}
+  .command-actions{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #help-overlay .quick-grid,#intro-overlay .quick-grid{grid-template-columns:1fr}
+  .sticky-nav.section-links{top:auto; position:static}
+}
+@media print{
+  body{background:#fff !important;color:#000 !important}
+  body::before, body::after, .sidebar, .topbar, .sticky-nav, .command-actions, .quick-tabs, #lock-view, .toast, .overlay{display:none !important}
+  .page{max-width:none;padding:0}
+  .hero-card, .panel, .report-output, .report-card, .security-card, .info-card, .metric-card, .module-card, .objective-card, .session-card{
+    background:#fff !important;
+    color:#000 !important;
+    box-shadow:none !important;
+    border:1px solid #bbb !important;
+  }
+  .mission-main .mc-page{display:none !important}
+  #reports{display:block !important}
+  #reports .btn, #copy-summary-btn-2, #download-report-btn-2, #print-report-btn-2{display:none !important}
+}
+
 </style>
 </head>
 <body>
@@ -706,69 +1081,88 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
+
 <div id="app-view" class="hidden">
   <div class="page">
-    <div class="topbar">
+    <div class="topbar command-topbar">
       <div class="topbar-left">
         <a class="btn ghost" href="index.html" id="suite-link">← LifeReady Hub</a>
         <a class="btn ghost hidden" href="#" id="return-link">↩ Return to Module</a>
         <div class="pill save-indicator" id="save-indicator">SYSTEM STABLE · Saved locally</div>
       </div>
       <div class="topbar-right">
+        <button class="btn primary" id="add-learner-btn">＋ Add Learner</button>
+        <button class="btn ghost" id="log-session-btn">📝 Log Session</button>
+        <button class="btn ghost" id="add-objective-btn">◎ Add Objective</button>
         <button class="btn ghost" id="help-btn">❔ How It Works</button>
         <button class="btn ghost" id="lock-btn">🔒 Lock</button>
       </div>
     </div>
 
-    <section class="hero-card">
+    <section class="hero-card mission-hero">
       <div class="hero-top">
         <div class="hero-title-block">
-          <div class="eyebrow">Unified Educator Dashboard</div>
+          <div class="eyebrow">Unified Educator Command Deck</div>
           <div class="hero-title">
             <div class="mark">🛰</div>
             <h1><span class="life">Mission</span> <span class="mc">Control</span></h1>
           </div>
-          <div class="hero-copy">One command deck for every LifeReady module. Track growth, log sessions, monitor support needs, write cleaner reports, and keep the whole thing calm enough for real schools, programs, and day-to-day coaching.</div>
+          <div class="hero-copy">The central bridge for every learner, every module, and every piece of progress evidence. Built to feel like a sci-fi command deck, not a filing cabinet with trust issues.</div>
         </div>
         <div class="quick-tabs">
-          <button class="tabbtn active" data-jump="overview">Overview</button>
+          <button class="tabbtn active" data-jump="overview">Command Deck</button>
           <button class="tabbtn" data-jump="objectives">Objectives</button>
-          <button class="tabbtn" data-jump="sessions">Progress Log</button>
+          <button class="tabbtn" data-jump="sessions">Flight Log</button>
           <button class="tabbtn" data-jump="reports">Reports</button>
           <button class="tabbtn" data-jump="security">Security</button>
         </div>
       </div>
       <div class="hero-grid" id="hero-grid"></div>
+      <div class="command-dock">
+        <div class="selected-learner-panel" id="selected-learner-card">
+          <div class="eyebrow">Active Learner</div>
+          <div class="selected-learner-name">No Learner Selected</div>
+          <div class="selected-learner-meta">Pick someone from the roster to load their command deck, reports, session log, and objectives.</div>
+        </div>
+        <div class="command-actions">
+          <button class="btn ghost" id="copy-summary-btn">⧉ Copy Summary</button>
+          <button class="btn ghost" id="download-report-btn">⬇ Download Report</button>
+          <button class="btn ghost" id="download-csv-btn">⬇ Export CSV</button>
+          <button class="btn ghost" id="print-report-btn">🖨 Print Brief</button>
+          <button class="btn ghost" id="manage-pin-btn-top">🔑 Access Code</button>
+          <button class="btn danger" id="court-martial-btn">⚠ Court-Martial Learner</button>
+        </div>
+      </div>
     </section>
 
-    <div class="main-shell">
-      <aside class="sidebar">
-        <section class="panel">
+    <div class="main-shell mission-shell">
+      <aside class="sidebar mission-sidebar">
+        <section class="panel roster-panel">
           <div class="panel-inner">
             <div class="panel-title">
               <div>
                 <h2>Command Roster</h2>
-                <p>Choose a learner once and Mission Control pulls in their progress across the whole suite.</p>
+                <p>Compact learner cards at the ready. Select one pilot, then switch pages instead of endlessly scrolling through the void.</p>
               </div>
               <span class="pill" id="roster-count">0 Learners</span>
             </div>
-            <input class="search" id="learner-search" type="search" placeholder="Search learner, program, note, or rank"/>
+
+            <input class="search" id="learner-search" type="search" placeholder="Search learner, program, notes, or rank"/>
+
             <div class="mini-actions">
-              <button class="btn primary slim" id="add-learner-btn">＋ Add Learner</button>
+              <button class="btn slim primary" id="add-learner-btn-sidebar">＋ Add Learner</button>
               <button class="btn slim" id="refresh-btn">↻ Refresh Data</button>
             </div>
-            <div class="learner-list" id="learner-list"></div>
-          </div>
-        </section>
 
-        <section class="panel">
-          <div class="panel-inner">
-            <div class="panel-title">
+            <div class="learner-list" id="learner-list"></div>
+
+            <div class="panel-title" style="margin-top:4px">
               <div>
-                <h3>Focus Filters</h3>
-                <p>Keep one learner selected, then narrow the view when you want a specific module or report range.</p>
+                <h3>Bridge Filters</h3>
+                <p>Focus the dashboard by module or date range without burying the controls at the bottom of the page like a gremlin.</p>
               </div>
             </div>
+
             <div class="field">
               <label for="module-filter">Module focus</label>
               <select id="module-filter"></select>
@@ -786,48 +1180,25 @@ a{color:inherit;text-decoration:none}
             <div class="mini-actions">
               <button class="btn slim" id="clear-filters-btn">Clear Filters</button>
             </div>
-            <div class="small-note" id="filter-note" style="margin-top:12px">Showing all modules and all recorded dates.</div>
-          </div>
-        </section>
-
-        <section class="panel">
-          <div class="panel-inner">
-            <div class="panel-title">
-              <div>
-                <h3>Quick Start</h3>
-                <p>Because staff should not have to guess how your command center works.</p>
-              </div>
-            </div>
-            <div class="info-card">
-              <h3>1. Pick a learner</h3>
-              <p>Mission Control merges learner information from every module into one dashboard instead of scattering it across eight tiny empires.</p>
-            </div>
-            <div class="info-card" style="margin-top:12px">
-              <h3>2. Log what happened</h3>
-              <p>Record sessions, support level, staff initials, setting, and notes so progress tells a real story.</p>
-            </div>
-            <div class="info-card" style="margin-top:12px">
-              <h3>3. Export what matters</h3>
-              <p>Generate summaries that supervisors and state reviewers can actually understand without decoding game scores.</p>
-            </div>
+            <div class="small-note" id="filter-note">Showing all modules and all recorded dates.</div>
           </div>
         </section>
       </aside>
 
-      <main class="stack">
+      <main class="stack mission-main">
         <nav class="sticky-nav section-links">
-          <button class="btn slim ghost" id="log-session-btn">＋ Log Session</button>
-          <button class="btn slim ghost" id="add-objective-btn">◎ Add Objective</button>
-          <button class="btn slim ghost" id="copy-summary-btn">⧉ Copy Summary</button>
-          <button class="btn slim ghost" id="download-report-btn">⬇ Download Report</button>
-          <button class="btn slim ghost" id="download-csv-btn">⬇ Export CSV</button>
+          <button class="tabbtn active" data-jump="overview">Command Deck</button>
+          <button class="tabbtn" data-jump="objectives">Objectives</button>
+          <button class="tabbtn" data-jump="sessions">Flight Log</button>
+          <button class="tabbtn" data-jump="reports">Reports</button>
+          <button class="tabbtn" data-jump="security">Security</button>
         </nav>
 
-        <section class="panel" id="overview">
+        <section class="panel mc-page active" id="overview">
           <div class="panel-inner">
             <div class="panel-title">
               <div>
-                <h2>Command Overview</h2>
+                <h2>Command Deck</h2>
                 <p id="overview-sub">Choose a learner to load the command deck.</p>
               </div>
               <span class="pill" id="current-view-pill">All Modules</span>
@@ -836,12 +1207,12 @@ a{color:inherit;text-decoration:none}
           </div>
         </section>
 
-        <section class="panel" id="objectives">
+        <section class="panel mc-page" id="objectives">
           <div class="panel-inner">
             <div class="panel-title">
               <div>
                 <h2>Objectives & Milestones</h2>
-                <p>Auto-track practical goals, imported module goals, promotions, and the little signs that independence is actually growing.</p>
+                <p>Track practical goals, promotions, and imported module goals without drowning the page in every single detail at once.</p>
               </div>
               <button class="btn slim primary" id="add-objective-btn-2">＋ New Objective</button>
             </div>
@@ -850,12 +1221,12 @@ a{color:inherit;text-decoration:none}
           </div>
         </section>
 
-        <section class="panel" id="sessions">
+        <section class="panel mc-page" id="sessions">
           <div class="panel-inner">
             <div class="panel-title">
               <div>
-                <h2>Progress Log</h2>
-                <p>See sessions over time with score, support level, staff initials, notes, and where the skill showed up in real life.</p>
+                <h2>Flight Log</h2>
+                <p>Record support level, setting, staff initials, score, and notes so progress sounds like evidence instead of random trivia.</p>
               </div>
               <button class="btn slim primary" id="log-session-btn-2">＋ New Session</button>
             </div>
@@ -863,16 +1234,17 @@ a{color:inherit;text-decoration:none}
           </div>
         </section>
 
-        <section class="panel" id="reports">
+        <section class="panel mc-page" id="reports">
           <div class="panel-inner">
             <div class="panel-title">
               <div>
                 <h2>Report Center</h2>
-                <p>Plain-language summaries for supervisors, day program teams, schools, job coaches, and anyone else who needs evidence without a scavenger hunt.</p>
+                <p>Everything export-related lives here too, because teachers should not need a scavenger hunt to find the useful stuff.</p>
               </div>
               <div class="mini-actions">
                 <button class="btn slim ghost" id="copy-summary-btn-2">⧉ Copy Summary</button>
                 <button class="btn slim ghost" id="download-report-btn-2">⬇ Download Report</button>
+                <button class="btn slim ghost" id="print-report-btn-2">🖨 Print Brief</button>
               </div>
             </div>
             <div class="report-list" id="report-list"></div>
@@ -880,12 +1252,12 @@ a{color:inherit;text-decoration:none}
           </div>
         </section>
 
-        <section class="panel" id="security">
+        <section class="panel mc-page" id="security">
           <div class="panel-inner">
             <div class="panel-title">
               <div>
                 <h2>Security & System Status</h2>
-                <p>One educator code, local-device storage, auto-lock timing, and a clean explanation of what Mission Control is doing under the hood.</p>
+                <p>One educator code, local-device storage, import status, and lock timing in one clean control panel.</p>
               </div>
               <button class="btn slim ghost" id="manage-pin-btn">🔑 Manage Access Code</button>
             </div>
@@ -897,37 +1269,50 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
+
 <div class="toast" id="toast">
   <div class="eyebrow">Promotion Unlocked</div>
   <h4 id="toast-title">Rank Updated</h4>
   <p id="toast-copy"></p>
 </div>
 
+
 <div class="overlay" id="help-overlay">
   <div class="modal">
     <div class="modal-inner">
       <div class="modal-head">
         <div>
-          <div class="eyebrow">Mission Control Guide</div>
+          <div class="eyebrow">Command Briefing</div>
           <h3>How Mission Control Works</h3>
         </div>
         <button class="btn slim ghost" data-close="#help-overlay">Close</button>
       </div>
       <div class="quick-grid">
         <div class="info-card">
-          <h3>One learner. One dashboard.</h3>
-          <p>Mission Control reads progress from every LifeReady module and keeps it in one educator-friendly view. No more module hopping just to explain how one person is doing.</p>
+          <h3>Bridge</h3>
+          <p>Pick a learner from the roster and Mission Control loads one compact command deck instead of eight separate module bunkers.</p>
         </div>
         <div class="info-card">
-          <h3>Log what matters.</h3>
-          <p>Add session notes, staff initials, setting, score, and support level. That turns game activity into usable evidence instead of a pile of disconnected numbers.</p>
+          <h3>Flight Log</h3>
+          <p>Use <strong>Log Session</strong> to track score, setting, staff initials, prompt level, and notes. That is the evidence engine.</p>
         </div>
         <div class="info-card">
-          <h3>Use objectives and reports.</h3>
-          <p>Track progress toward practical goals, watch rank progression, and export summaries that are clean enough for meetings, supervisors, and state review.</p>
+          <h3>Objectives</h3>
+          <p>Store active goals, promotions, milestones, and module imports in one place so staff can see what is moving and what is stalled.</p>
+        </div>
+        <div class="info-card">
+          <h3>Reports</h3>
+          <p>Print, copy, and export from the command deck or the Report Center. Important controls now live up top where people can actually find them.</p>
         </div>
       </div>
-      <div class="note" style="margin-top:16px">Learner data stays on this device unless you choose to export a report or CSV. The sci-fi glow is for morale. The professionalism is still very much on purpose.</div>
+      <div class="guide-legend">
+        <span class="quick-token">＋ Add Learner</span>
+        <span class="quick-token">📝 Log Session</span>
+        <span class="quick-token">⬇ Export</span>
+        <span class="quick-token">🖨 Print Brief</span>
+        <span class="quick-token">⚠ Court-Martial Learner</span>
+      </div>
+      <div class="guide-note">Learner data stays on this device unless you intentionally export it. The glow, ranks, and command-deck styling are there because educators deserve interfaces that do not look like beige punishment.</div>
     </div>
   </div>
 </div>
@@ -937,22 +1322,26 @@ a{color:inherit;text-decoration:none}
     <div class="modal-inner">
       <div class="modal-head">
         <div>
-          <div class="eyebrow">First-Time Walkthrough</div>
+          <div class="eyebrow">Bridge Walkthrough</div>
           <h3>Welcome to Mission Control</h3>
         </div>
       </div>
       <div class="quick-grid">
         <div class="info-card">
-          <h3>Track everything in one place</h3>
-          <p>Every module can feed this dashboard so educators see one learner story instead of eight disconnected progress cards.</p>
+          <h3>One learner. One command deck.</h3>
+          <p>Every module funnels into one hub so educators can understand the full picture without card-juggling across the suite.</p>
         </div>
         <div class="info-card">
-          <h3>Log support, not just score</h3>
-          <p>Prompt level, setting, and notes matter. They help prove increasing independence, not just right answers.</p>
+          <h3>Use the roster first.</h3>
+          <p>Select a learner, then jump between Command Deck, Objectives, Flight Log, Reports, and Security with the tabs at the top.</p>
         </div>
         <div class="info-card">
-          <h3>Report clearly</h3>
-          <p>Mission Control turns raw sessions into summaries that higher-ups can actually understand without sitting through a software séance.</p>
+          <h3>Top controls are the important stuff.</h3>
+          <p>Add Learner, Log Session, export, print, and court-martial controls now live near the top so nobody has to excavate the page.</p>
+        </div>
+        <div class="info-card">
+          <h3>Fun, but still legit.</h3>
+          <p>Mission Control should feel like piloting a sci-fi command center while still giving teachers and supervisors clean, usable evidence.</p>
         </div>
       </div>
       <div class="actions">
@@ -964,6 +1353,7 @@ a{color:inherit;text-decoration:none}
 </div>
 
 <div class="overlay" id="learner-overlay">
+
   <div class="modal">
     <div class="modal-inner">
       <div class="modal-head">
@@ -1153,13 +1543,15 @@ let APP = {
   returnFile: '',
   returnModule: '',
   initialView: '',
-  saveTick: null
+  saveTick: null,
+  currentView: 'overview'
 };
 const qs = new URLSearchParams(location.search);
 APP.selectedModule = qs.get('module') || HUB.selectedModule || 'All Modules';
 APP.returnFile = qs.get('return') || '';
 APP.returnModule = qs.get('module') || '';
 APP.initialView = qs.get('view') || '';
+APP.currentView = APP.initialView || HUB.selectedView || 'overview';
 APP.rangeStart = HUB.rangeStart || '';
 APP.rangeEnd = HUB.rangeEnd || '';
 
@@ -1184,8 +1576,9 @@ function loadHubState(){
   state.selectedModule = state.selectedModule || 'All Modules';
   state.rangeStart = state.rangeStart || '';
   state.rangeEnd = state.rangeEnd || '';
-  state.profiles = state.profiles || {};
+  state.selectedView = state.selectedView || 'overview';
   state.ignoreLegacyPins = !!state.ignoreLegacyPins;
+  state.profiles = state.profiles || {};
   return state;
 }
 function saveHubState(message='Saved locally'){
@@ -1770,18 +2163,32 @@ function downloadFile(name, text, type='text/plain'){
   a.remove();
   setTimeout(()=>URL.revokeObjectURL(url), 500);
 }
+
+function showView(id, persist=true){
+  const allowed = new Set(['overview','objectives','sessions','reports','security']);
+  const next = allowed.has(id) ? id : 'overview';
+  APP.currentView = next;
+  $all('.mission-main .mc-page').forEach(section=>section.classList.toggle('active', section.id === next));
+  $all('.tabbtn').forEach(btn=>btn.classList.toggle('active', btn.dataset.jump === next));
+  if(persist){
+    HUB.selectedView = next;
+    saveHubState(`View changed to ${next}`);
+  }
+  requestAnimationFrame(()=>{
+    document.getElementById(next)?.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+}
 function scrollToSection(id){
-  document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+  showView(id);
 }
 function activateJumpTab(id){
   $all('.tabbtn').forEach(btn=>btn.classList.toggle('active', btn.dataset.jump === id));
 }
 function applyInitialView(){
   const allowed = new Set(['overview','objectives','sessions','reports','security']);
-  if(!allowed.has(APP.initialView)) return;
-  activateJumpTab(APP.initialView);
-  setTimeout(()=>scrollToSection(APP.initialView), 120);
+  const next = allowed.has(APP.initialView) ? APP.initialView : (APP.currentView || 'overview');
   APP.initialView = '';
+  showView(next, false);
 }
 function showOverlay(id){
   $(id).classList.add('show');
@@ -1789,6 +2196,7 @@ function showOverlay(id){
 function hideOverlay(id){
   $(id).classList.remove('show');
 }
+
 function selectedLearner(){
   return APP.learners.find(l=>l.key === APP.selectedKey) || null;
 }
@@ -1836,10 +2244,14 @@ function unlockMissionControl(){
   applyInitialView();
   if(!HUB.introSeen) showOverlay('#intro-overlay');
 }
+
 function maybeMigrateLegacyPin(){
   const pins = APP.importedPins;
   const note = $('#legacy-pin-note');
-  if(!pins.length || HUB.ignoreLegacyPins) return;
+  if(!pins.length || HUB.ignoreLegacyPins){
+    if(note) note.classList.add('hidden');
+    return;
+  }
   if(!HUB.pin && pins.length === 1){
     HUB.pin = pins[0];
     saveHubState('Imported legacy access code');
@@ -1854,6 +2266,7 @@ function maybeMigrateLegacyPin(){
     $('#pin-remove-legacy-btn').classList.remove('hidden');
   }
 }
+
 function handleLockSubmit(){
   const input = $('#pin-input').value;
   if(HUB.pin){
@@ -2244,6 +2657,68 @@ function renderSecurity(){
     </div>
   `;
 }
+
+function renderCommandDeck(){
+  const el = $('#selected-learner-card');
+  if(!el) return;
+  const learner = selectedLearner();
+  if(!learner){
+    el.innerHTML = `
+      <div class="eyebrow">Active Learner</div>
+      <div class="selected-learner-name">No Learner Selected</div>
+      <div class="selected-learner-meta">Pick someone from the roster to load their command deck, reports, session log, and objectives.</div>
+    `;
+    return;
+  }
+  const sessions = filteredSessions(learner);
+  const objectives = evaluateObjectives(learner);
+  const last = sessions[sessions.length - 1];
+  el.innerHTML = `
+    <div class="eyebrow">Active Learner</div>
+    <div class="selected-learner-name">${escapeHtml(learner.displayName)}</div>
+    <div class="selected-learner-meta">${escapeHtml(learner.program || learner.level || 'Profile ready')} · ${escapeHtml(learner.metrics.rank.title)} · ${learner.metrics.readiness} readiness${last ? ` · last log ${formatDate(last.date)}` : ''}</div>
+    <div class="selected-learner-tokens">
+      <span class="token">${sessions.length} session${sessions.length===1?'':'s'}</span>
+      <span class="token">${objectives.met} objective${objectives.met===1?'':'s'} met</span>
+      <span class="token">${learner.metrics.acc}% accuracy</span>
+      <span class="token">${learner.metrics.ind}% independence</span>
+    </div>
+  `;
+}
+function printBrief(){
+  const learner = selectedLearner();
+  if(!learner) return alert('Select a learner first.');
+  showView('reports');
+  setTimeout(()=>window.print(), 120);
+}
+function courtMartialLearner(){
+  const learner = selectedLearner();
+  if(!learner) return alert('Select a learner first.');
+  const ok = window.confirm(`Court-martial ${learner.displayName} from the active roster on this device? Their imported module data stays in the modules, but Mission Control will hide them here until you restore them manually later.`);
+  if(!ok) return;
+  const profile = HUB.profiles[learner.key] || (HUB.profiles[learner.key] = {});
+  profile.displayName = profile.displayName || learner.displayName;
+  profile.fullName = profile.fullName || learner.fullName || '';
+  profile.initials = profile.initials || learner.initials || initialsFor(learner.displayName);
+  profile.program = profile.program || learner.program || '';
+  profile.level = profile.level || learner.level || 'developing';
+  profile.color = profile.color || learner.color || colorFor(learner.key);
+  profile.notes = profile.notes || learner.coachNotes || learner.notes || '';
+  profile.createdAt = profile.createdAt || learner.createdAt || TODAY;
+  profile.objectives = profile.objectives || learner.objectives || [];
+  profile.manualSessions = profile.manualSessions || learner.manualSessions || [];
+  profile.archived = true;
+  HUB.lastLearnerKey = '';
+  APP.selectedKey = '';
+  saveHubState('Learner court-martialed');
+  const indicator = $('#save-indicator');
+  if(indicator){
+    indicator.textContent = 'COURT-MARTIAL COMPLETE · Learner hidden from roster';
+    setTimeout(()=>{ if(indicator) indicator.textContent = 'SYSTEM STABLE · Saved locally'; }, 1800);
+  }
+  renderAll();
+}
+
 function maybeShowPromotionToast(learner){
   if(!learner) return;
   const profile = HUB.profiles[learner.key] || (HUB.profiles[learner.key] = {});
@@ -2283,6 +2758,7 @@ function renderAll(){
   ensureSelection();
   const learner = selectedLearner();
   renderHero();
+  renderCommandDeck();
   renderRoster();
   renderOverview();
   renderObjectives();
@@ -2427,8 +2903,7 @@ document.addEventListener('click', e=>{
   }
   const jump = e.target.closest('[data-jump]');
   if(jump){
-    $all('.tabbtn').forEach(btn=>btn.classList.toggle('active', btn === jump));
-    scrollToSection(jump.dataset.jump);
+    showView(jump.dataset.jump);
   }
 });
 document.addEventListener('keydown', e=>{
@@ -2479,6 +2954,7 @@ $('#clear-filters-btn').addEventListener('click', ()=>{
 });
 $('#refresh-btn').addEventListener('click', ()=>{ renderAll(); });
 $('#add-learner-btn').addEventListener('click', ()=>{ showOverlay('#learner-overlay'); });
+$('#add-learner-btn-sidebar')?.addEventListener('click', ()=>{ showOverlay('#learner-overlay'); });
 $('#save-learner-btn').addEventListener('click', addLearner);
 $('#log-session-btn').addEventListener('click', ()=>{ populateForms(); showOverlay('#session-overlay'); });
 $('#log-session-btn-2').addEventListener('click', ()=>{ populateForms(); showOverlay('#session-overlay'); });
@@ -2493,6 +2969,7 @@ $('#intro-finish-btn').addEventListener('click', ()=>{
   hideOverlay('#intro-overlay');
 });
 $('#lock-btn').addEventListener('click', lockMissionControl);
+$('#manage-pin-btn-top')?.addEventListener('click', ()=>$('#manage-pin-btn').click());
 $('#manage-pin-btn').addEventListener('click', ()=>{
   $('#new-pin').value = '';
   $('#new-pin-confirm').value = '';
@@ -2532,6 +3009,9 @@ $('#copy-summary-btn-2').addEventListener('click', copySummary);
 $('#download-report-btn').addEventListener('click', downloadReport);
 $('#download-report-btn-2').addEventListener('click', downloadReport);
 $('#download-csv-btn').addEventListener('click', downloadCSV);
+$('#print-report-btn')?.addEventListener('click', printBrief);
+$('#print-report-btn-2')?.addEventListener('click', printBrief);
+$('#court-martial-btn')?.addEventListener('click', courtMartialLearner);
 
 APP.learners = buildLearners();
 maybeMigrateLegacyPin();
@@ -2550,6 +3030,7 @@ if(HUB.pin && APP.importedPins.length){
   $('#pin-error').textContent = '';
 }
 renderAll();
+showView(APP.currentView || 'overview', false);
 </script>
 </body>
 </html>

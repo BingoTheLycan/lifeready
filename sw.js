@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v12 - TimeReady schedule master next fix)
+// LifeReady Service Worker (v20 - Deeper pass phase 2)
 
-const VERSION = 'v12';
+const VERSION = 'v21';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 
@@ -21,6 +21,7 @@ const APP_SHELL = [
   './SocialReady.html',
   './TechReady.html',
   './HealthReady.html',
+  './MissionControl.html',
 
   './icon_192.png',
   './icon_512.png'

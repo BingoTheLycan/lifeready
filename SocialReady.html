@@ -97,7 +97,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .nb:hover,.nb.on{background:var(--green);color:#000;border-color:var(--green);box-shadow:var(--glow);}
 
 /* ══ SCREENS ══ */
-.scr{display:none;} .scr.on{display:block;}
+main > .scr{display:none !important;} main > .scr.on{display:block !important;}
 main{max-width:480px;margin:0 auto;padding:14px 12px 90px;}
 
 /* ══ DESKTOP RESPONSIVE LAYOUT ══ */
@@ -542,6 +542,63 @@ pointer-events:none;
 .sec-hdr{font-family:var(--font-mono);font-size:.68rem;color:var(--green);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;text-shadow:0 0 10px #9b30d955;}
 .no-data{text-align:center;padding:28px 12px;color:var(--text2);font-family:var(--font-mono);font-size:0.78rem;line-height:1.8;}
 
+/* ══ SCOREBOARD UPGRADE ══ */
+#score-filters{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 14px;}
+#scr-scores .gtop{align-items:center;gap:10px;}
+#scr-scores .gmode{letter-spacing:2px;}
+.sr-read-btn{display:block;width:100%;margin:8px 0 4px;padding:12px 16px;background:linear-gradient(180deg,var(--bg3),var(--bg2));border:1px solid rgba(255,255,255,.08);border-radius:16px;color:var(--green)!important;font-family:var(--font-mono);font-size:.7rem;letter-spacing:2px;cursor:pointer;text-shadow:0 0 8px rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.03),0 12px 24px rgba(0,0,0,.22);}
+.sr-read-btn:hover{transform:translateY(-1px);}
+.sr-shell{display:flex;flex-direction:column;gap:14px;}
+.sr-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(255,255,255,.03) 0%,var(--bg2) 48%,var(--bg3) 100%);border:1px solid var(--border);border-radius:22px;padding:18px 18px 16px;box-shadow:var(--shadow),0 0 30px rgba(255,255,255,.04);}
+.sr-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(255,255,255,.08),transparent 38%),linear-gradient(90deg,transparent 0 72%,rgba(255,255,255,.03) 72% 73%,transparent 73% 100%);pointer-events:none;}
+.sr-kicker{font-family:var(--font-mono);font-size:.68rem;letter-spacing:3px;color:var(--green);text-transform:uppercase;margin-bottom:8px;text-shadow:0 0 10px rgba(255,255,255,.08);}
+.sr-title{font-family:var(--font-display);font-size:1.5rem;line-height:1;color:var(--text);margin-bottom:7px;text-shadow:0 0 18px rgba(255,255,255,.08);}
+.sr-sub{max-width:54ch;font-size:.9rem;line-height:1.6;color:var(--text2);}
+.sr-chipline{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+.sr-chip{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-family:var(--font-mono);font-size:.68rem;color:var(--text2);}
+.sr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.sr-stat{background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:18px;padding:14px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);min-height:94px;}
+.sr-stat-label{font-family:var(--font-mono);font-size:.66rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;display:block;}
+.sr-stat-value{font-family:var(--font-display);font-size:1.4rem;line-height:1;color:var(--text);display:block;margin-bottom:6px;}
+.sr-stat-note{font-size:.76rem;line-height:1.45;color:var(--text2);}
+.sr-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.sr-panel{background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-radius:20px;padding:15px;box-shadow:var(--shadow);}
+.sr-panel-title{font-family:var(--font-mono);font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:10px;}
+.sr-feature{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.sr-feature-mode{font-family:var(--font-display);font-size:1.08rem;line-height:1.2;color:var(--text);margin-bottom:6px;}
+.sr-feature-meta{font-size:.8rem;line-height:1.55;color:var(--text2);}
+.sr-feature-score{font-family:var(--font-display);font-size:2rem;line-height:1;color:var(--amber);text-shadow:0 0 14px rgba(255,187,51,.18);white-space:nowrap;}
+.sr-feature-score small{display:block;font-family:var(--font-mono);font-size:.58rem;letter-spacing:2px;color:var(--text3);margin-top:6px;text-transform:uppercase;}
+.sr-bar{height:9px;background:rgba(255,255,255,.05);border-radius:999px;overflow:hidden;margin-top:12px;border:1px solid rgba(255,255,255,.04);}
+.sr-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green),var(--amber));box-shadow:0 0 20px rgba(255,255,255,.05);}
+.sr-section{background:linear-gradient(180deg,var(--bg2),rgba(255,255,255,.015));border:1px solid var(--border);border-radius:20px;padding:14px 14px 8px;box-shadow:var(--shadow);}
+.sr-sec-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.sr-sec-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--green);}
+.sr-sec-meta{font-size:.72rem;color:var(--text2);}
+.sr-runlist{display:flex;flex-direction:column;gap:10px;}
+.sr-run-card{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:linear-gradient(180deg,var(--bg3),rgba(255,255,255,.02));border:1px solid var(--border);border-radius:18px;padding:12px;}
+.sr-rank{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-family:var(--font-display);font-size:.92rem;color:var(--green);}
+.sr-run-mode{font-family:var(--font-display);font-size:1rem;line-height:1.2;color:var(--text);margin-bottom:4px;}
+.sr-run-badges{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 7px;}
+.sr-mini{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:999px;padding:4px 8px;font-family:var(--font-mono);font-size:.62rem;letter-spacing:1px;color:var(--text2);text-transform:uppercase;}
+.sr-mini.pb{color:var(--amber);border-color:rgba(255,187,51,.32);background:rgba(255,187,51,.08);}
+.sr-run-meta{font-size:.76rem;line-height:1.5;color:var(--text2);}
+.sr-run-score{text-align:right;min-width:86px;}
+.sr-run-score strong{display:block;font-family:var(--font-display);font-size:1.5rem;line-height:1;color:var(--amber);}
+.sr-run-score span{display:block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:1.4px;color:var(--text3);text-transform:uppercase;margin-top:4px;}
+.sr-empty{background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px dashed var(--border);border-radius:22px;padding:26px 16px;text-align:center;box-shadow:var(--shadow);}
+.sr-empty-icon{font-size:2rem;margin-bottom:10px;display:block;}
+.sr-empty-title{font-family:var(--font-display);font-size:1.18rem;color:var(--text);margin-bottom:7px;}
+.sr-empty-copy{font-size:.86rem;line-height:1.7;color:var(--text2);max-width:36ch;margin:0 auto;}
+@media (max-width:720px){
+  .sr-grid,.sr-duo{grid-template-columns:1fr;}
+  .sr-run-card{grid-template-columns:1fr;}
+  .sr-rank{display:none;}
+  .sr-run-score{text-align:left;display:flex;align-items:center;gap:10px;}
+  .sr-run-score span{margin-top:0;}
+}
+
+
 /* ══ CONFETTI ══ */
 .cfp{position:fixed;top:-20px;border-radius:4px;animation:cfFall linear forwards;pointer-events:none;z-index:9998;}
 @keyframes cfFall{to{transform:translateY(110vh) rotate(720deg);opacity:0;}}
@@ -943,6 +1000,996 @@ textarea:focus-visible,
 @media(min-width:900px){#scr-coach .mc-primary-actions{grid-template-columns:repeat(4,minmax(0,1fr)) !important;}#scr-coach .mc-stats{grid-template-columns:repeat(4,minmax(0,1fr)) !important;}}
 @media(max-width:760px){#scr-coach .mc-topcopy{flex-direction:column;gap:8px;}#scr-coach .mc-search{min-width:0 !important;width:100% !important;}}
 
+
+/* ===== HOME SCREEN ARCADE COMMAND-DECK REDESIGN v1 ===== */
+#scr-home{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  padding-top:8px;
+}
+#scr-home::before{
+  content:'';
+  position:absolute;
+  inset:0 0 auto 0;
+  height:340px;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 14% 10%, color-mix(in srgb, var(--green) 16%, transparent), transparent 38%),
+    radial-gradient(circle at 88% 0%, color-mix(in srgb, var(--amber) 10%, transparent), transparent 34%),
+    linear-gradient(180deg, color-mix(in srgb, var(--green) 5%, transparent), transparent 70%);
+  opacity:.95;
+}
+#scr-home > *{position:relative;z-index:1;}
+#scr-home .home-hero{
+  position:relative;
+  text-align:left;
+  padding:24px 18px 16px;
+  border:1px solid var(--border);
+  border-radius:28px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg2) 92%, transparent), color-mix(in srgb, var(--bg3) 92%, transparent));
+  box-shadow:0 14px 50px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.03);
+  overflow:hidden;
+}
+#scr-home .home-hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(130deg, transparent 56%, color-mix(in srgb, var(--green) 10%, transparent) 56%, transparent 74%),
+    repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(255,255,255,.025) 24px, rgba(255,255,255,.025) 25px);
+  opacity:.8;
+}
+#scr-home .home-hero::after{
+  content:'';
+  position:absolute;
+  inset:14px;
+  border:1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  border-radius:20px;
+  pointer-events:none;
+  opacity:.8;
+}
+#scr-home .home-title,
+#scr-home .jr-logo,
+#scr-home #timeready-logo{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:10px;
+  justify-content:flex-start;
+  position:relative;
+  z-index:1;
+}
+#scr-home .home-title,
+#scr-home .jr-logo,
+#scr-home #timeready-logo{
+  font-family:var(--font-display);
+  font-size:clamp(2rem,8vw,2.7rem);
+  line-height:.95;
+  letter-spacing:.06em;
+  text-shadow:0 0 20px color-mix(in srgb, var(--green) 24%, transparent);
+}
+#scr-home .home-tagline{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:12px;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid color-mix(in srgb, var(--border) 85%, transparent);
+  background:color-mix(in srgb, var(--bg) 72%, transparent);
+  font-size:.68rem;
+  letter-spacing:4px;
+  text-shadow:none;
+  animation:none;
+}
+#scr-home .home-tagline::before{
+  content:'MISSION';
+  color:var(--amber);
+  letter-spacing:2px;
+}
+#scr-home .home-sub{
+  margin-top:14px;
+  max-width:40ch;
+  font-size:1rem;
+  line-height:1.55;
+  color:var(--text);
+  text-wrap:pretty;
+}
+#scr-home .home-hero > button{
+  width:auto !important;
+  margin:16px 0 0 !important;
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 16px !important;
+  border-radius:999px !important;
+  border:1px solid color-mix(in srgb, var(--green) 45%, var(--border)) !important;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg3) 92%, transparent), color-mix(in srgb, var(--bg2) 92%, transparent)) !important;
+  color:var(--text) !important;
+  text-shadow:none !important;
+  box-shadow:0 0 0 1px rgba(255,255,255,.03), 0 0 20px color-mix(in srgb, var(--green) 12%, transparent);
+  font-size:.68rem !important;
+  letter-spacing:2px !important;
+  font-weight:800;
+}
+#scr-home .home-hero > button:hover,
+#scr-home .home-hero > button:focus-visible{
+  border-color:var(--green) !important;
+  box-shadow:0 0 0 1px rgba(255,255,255,.04), 0 0 26px color-mix(in srgb, var(--green) 22%, transparent) !important;
+}
+#scr-home .health-disclaimer-card{
+  margin-top:16px;
+  border-radius:18px;
+  padding:14px 14px 12px;
+  border:1px solid color-mix(in srgb, var(--amber) 36%, var(--border));
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg2) 90%, transparent), color-mix(in srgb, var(--bg3) 90%, transparent));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+#scr-home .daily-card,
+#scr-home #onboarding-card{
+  border-radius:24px;
+  border:1px solid color-mix(in srgb, var(--amber) 44%, var(--border));
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg2) 92%, transparent), color-mix(in srgb, var(--bg3) 92%, transparent));
+  box-shadow:0 10px 32px rgba(0,0,0,.22), inset 0 0 0 1px rgba(255,255,255,.03);
+}
+#scr-home .daily-card{
+  padding:18px 18px;
+  margin:0;
+}
+#scr-home .daily-card:hover{transform:translateY(-2px);}
+#scr-home .daily-eyebrow{
+  font-family:var(--font-mono);
+  font-size:.66rem;
+  letter-spacing:2px;
+  color:var(--amber);
+}
+#scr-home .daily-title{font-family:var(--font-display);font-size:1.08rem;color:var(--text);}
+#scr-home .daily-desc{font-size:.84rem;color:var(--text2);line-height:1.5;}
+#scr-home .daily-streak{
+  min-width:58px;
+  text-align:center;
+  border-radius:999px;
+  padding:8px 10px;
+  border:1px solid color-mix(in srgb, var(--amber) 46%, var(--border));
+  background:color-mix(in srgb, var(--bg) 74%, transparent);
+  color:var(--amber);
+  box-shadow:0 0 18px color-mix(in srgb, var(--amber) 12%, transparent);
+}
+#scr-home .home-divider{
+  height:1px;
+  margin:4px 0 0;
+  background:linear-gradient(90deg, transparent, color-mix(in srgb, var(--border) 94%, transparent) 10%, color-mix(in srgb, var(--border) 94%, transparent) 90%, transparent);
+  opacity:1;
+}
+#scr-home .home-tools-label,
+#scr-home .home-group-label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0;
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  color:var(--text2);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  text-shadow:none;
+}
+#scr-home .home-group{
+  margin-top:0;
+  padding:16px;
+  border-radius:24px;
+  border:1px solid color-mix(in srgb, var(--border) 86%, transparent);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg2) 94%, transparent), color-mix(in srgb, var(--bg3) 94%, transparent));
+  box-shadow:0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+#scr-home .home-group + .home-group{margin-top:2px;}
+#scr-home .home-group-label::before,
+#scr-home .home-tools-label::before{
+  content:'';
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 14px color-mix(in srgb, var(--green) 42%, transparent);
+  flex:none;
+}
+#scr-home .home-tools-label::before{background:var(--amber);box-shadow:0 0 14px color-mix(in srgb, var(--amber) 42%, transparent);}
+#scr-home .mode-list,
+#scr-home .hgrid{
+  margin:14px 0 0 !important;
+}
+#scr-home .mode-list{gap:12px;}
+#scr-home .mc{
+  min-height:72px;
+  padding:16px 16px;
+  border-radius:22px;
+  border:1px solid color-mix(in srgb, var(--border) 90%, transparent);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg) 10%, var(--bg2)), color-mix(in srgb, var(--bg3) 94%, transparent));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025), 0 8px 22px rgba(0,0,0,.18);
+  transform:none;
+}
+#scr-home .mc::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, transparent 58%, color-mix(in srgb, var(--green) 8%, transparent) 58%, transparent 76%);
+}
+#scr-home .mc:hover,
+#scr-home .mc:focus-visible{
+  transform:translateY(-2px);
+  border-color:var(--green);
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--green) 18%, transparent), 0 0 24px color-mix(in srgb, var(--green) 18%, transparent);
+}
+#scr-home .mc.star{
+  border-color:color-mix(in srgb, var(--green) 55%, var(--border));
+  background:linear-gradient(180deg, color-mix(in srgb, var(--green) 9%, var(--bg2)), color-mix(in srgb, var(--bg3) 96%, transparent));
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--green) 18%, transparent), 0 0 26px color-mix(in srgb, var(--green) 12%, transparent);
+}
+#scr-home .mc-icon{
+  width:46px;
+  height:46px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  background:color-mix(in srgb, var(--bg) 65%, transparent);
+  border:1px solid color-mix(in srgb, var(--border) 90%, transparent);
+  font-size:1.35rem;
+}
+#scr-home .mc-name{font-size:.86rem;letter-spacing:1.8px;}
+#scr-home .mc-desc{font-size:.79rem;line-height:1.45;color:var(--text2);}
+#scr-home .mc-arr{
+  width:28px;
+  height:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  border:1px solid color-mix(in srgb, var(--green) 42%, var(--border));
+  background:color-mix(in srgb, var(--bg) 70%, transparent);
+}
+#scr-home .hgrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+@media(min-width:680px){
+  #scr-home .hgrid{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+#scr-home .hb{
+  min-height:126px;
+  padding:14px 12px;
+  border-radius:22px;
+  border:1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg2) 94%, transparent), color-mix(in srgb, var(--bg3) 94%, transparent));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025), 0 8px 20px rgba(0,0,0,.14);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  position:relative;
+  overflow:hidden;
+}
+#scr-home .hb::before{
+  content:'';
+  position:absolute;
+  inset:auto -24px -24px auto;
+  width:86px;
+  height:86px;
+  border-radius:50%;
+  background:color-mix(in srgb, var(--green) 12%, transparent);
+  filter:blur(20px);
+  opacity:.55;
+}
+#scr-home .hb:hover,
+#scr-home .hb:focus-visible{
+  transform:translateY(-2px);
+  border-color:var(--green);
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--green) 20%, transparent), 0 0 22px color-mix(in srgb, var(--green) 12%, transparent);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg2) 90%, transparent), color-mix(in srgb, var(--bg3) 90%, transparent));
+}
+#scr-home .hb .hi{font-size:1.5rem;margin-bottom:6px;}
+#scr-home .hb .hl{font-size:.82rem;line-height:1.18;color:var(--text);letter-spacing:1px;}
+#scr-home .hb .hc{font-size:.72rem;line-height:1.35;color:var(--text2);margin-top:2px;}
+#scr-home .tagline{
+  margin-top:6px;
+  padding:14px 18px;
+  border-radius:18px;
+  border:1px dashed color-mix(in srgb, var(--green) 46%, var(--border));
+  background:color-mix(in srgb, var(--bg2) 86%, transparent);
+  color:var(--text);
+  font-size:.72rem;
+  letter-spacing:3px;
+  text-shadow:none;
+  animation:none;
+}
+#scr-home #today-progress{
+  margin-top:0 !important;
+  border-radius:22px !important;
+  border:1px solid color-mix(in srgb, var(--border) 90%, transparent) !important;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg2) 94%, transparent), color-mix(in srgb, var(--bg3) 94%, transparent)) !important;
+}
+body.hi-contrast #scr-home .home-hero,
+body.hi-contrast #scr-home .home-group,
+body.hi-contrast #scr-home .daily-card,
+body.hi-contrast #scr-home .hb,
+body.hi-contrast #scr-home .mc,
+body.hi-contrast #scr-home .tagline,
+body.hi-contrast #scr-home #today-progress,
+body.hi-contrast #scr-home .health-disclaimer-card{
+  background:#000 !important;
+  box-shadow:none !important;
+}
+body.hi-contrast #scr-home .home-hero > button,
+body.hi-contrast #scr-home .mc-arr,
+body.hi-contrast #scr-home .daily-streak,
+body.hi-contrast #scr-home .mc-icon{
+  background:#000 !important;
+}
+body.hi-contrast #scr-home .home-group-label::before,
+body.hi-contrast #scr-home .home-tools-label::before{box-shadow:none !important;}
+body.hi-contrast #scr-home .hb::before,
+body.hi-contrast #scr-home::before,
+body.hi-contrast #scr-home .home-hero::before,
+body.hi-contrast #scr-home .home-hero::after{display:none !important;}
+
+/* GUIDE STANDARDIZATION V1 */
+.scr[id*="guide"] .gtop{
+  position:sticky;top:0;z-index:12;
+  backdrop-filter:blur(12px);
+  background:linear-gradient(180deg,rgba(5,9,20,.96),rgba(5,9,20,.72));
+  border-bottom:1px solid rgba(255,255,255,.08);
+  margin:0 -16px 16px;padding:12px 16px;
+}
+.scr[id*="guide"] .gmode{
+  padding:.55rem .95rem;border:1px solid rgba(255,255,255,.12);border-radius:999px;
+  background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+  letter-spacing:2px;box-shadow:0 0 0 1px rgba(255,255,255,.02) inset,0 10px 30px rgba(0,0,0,.18);
+}
+.scr[id*="guide"] .back{
+  border-radius:999px; min-height:42px; padding:0 18px;
+}
+#scr-guide.guide-standardized{
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--amber) 16%, transparent), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0) 22%),
+    repeating-linear-gradient(180deg, rgba(255,255,255,.025) 0 1px, transparent 1px 18px),
+    var(--bg);
+}
+#scr-guide.guide-standardized .guide-launchpad,
+#scr-guide.guide-standardized .guide-quickplan{
+  margin:0 0 18px;
+  border:1px solid var(--border);
+  border-radius:calc(var(--radius) + 2px);
+  padding:16px;
+  background:linear-gradient(160deg, color-mix(in srgb, var(--bg2) 92%, var(--amber) 8%), rgba(255,255,255,.015));
+  box-shadow:0 14px 36px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.04);
+  position:relative;overflow:hidden;
+}
+#scr-guide.guide-standardized .guide-launchpad::before,
+#scr-guide.guide-standardized .guide-quickplan::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(120deg, transparent 0 52%, color-mix(in srgb,var(--amber) 16%, transparent) 52% 66%, transparent 66%);
+  opacity:.55;pointer-events:none;
+}
+#scr-guide.guide-standardized .guide-label{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;
+  padding:6px 12px;border-radius:999px;font-family:var(--font-mono);font-size:.68rem;font-weight:800;letter-spacing:2px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--text2);
+}
+#scr-guide.guide-standardized .guide-launch-title{
+  font-family:var(--font-display);font-size:1.38rem;line-height:1.15;color:var(--text);
+  text-shadow:0 0 22px color-mix(in srgb,var(--amber) 36%, transparent);
+  margin-bottom:8px;
+}
+#scr-guide.guide-standardized .guide-launch-copy,
+#scr-guide.guide-standardized .guide-quickplan-copy{
+  color:var(--text2);font-size:.94rem;line-height:1.75;margin-bottom:14px;max-width:62ch;
+}
+#scr-guide.guide-standardized .guide-signal-grid,
+#scr-guide.guide-standardized .guide-plan-grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
+}
+#scr-guide.guide-standardized .guide-signal,
+#scr-guide.guide-standardized .guide-plan-card{
+  position:relative;z-index:1;display:block;text-align:left;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:12px 13px;
+  min-height:88px;box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+}
+#scr-guide.guide-standardized button.guide-signal{cursor:pointer;transition:transform .16s ease, border-color .16s ease, box-shadow .16s ease;}
+#scr-guide.guide-standardized button.guide-signal:hover,
+#scr-guide.guide-standardized button.guide-signal:focus-visible{
+  transform:translateY(-1px);border-color:color-mix(in srgb,var(--amber) 55%, rgba(255,255,255,.1));
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--amber) 18%, transparent), 0 10px 24px rgba(0,0,0,.18);
+}
+#scr-guide.guide-standardized .guide-signal-kicker,
+#scr-guide.guide-standardized .guide-plan-kicker{
+  display:block;font-family:var(--font-mono);font-size:.62rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:6px;
+}
+#scr-guide.guide-standardized .guide-signal-copy,
+#scr-guide.guide-standardized .guide-plan-copy{font-size:.88rem;line-height:1.55;color:var(--text);}
+#scr-guide.guide-standardized .guide-jumpbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;position:relative;z-index:1;}
+#scr-guide.guide-standardized .guide-jumpbtn{
+  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--text2);
+  border-radius:999px;padding:8px 12px;font-family:var(--font-mono);font-size:.68rem;font-weight:800;letter-spacing:1.4px;
+}
+#scr-guide.guide-standardized .guide-jumpbtn:hover,
+#scr-guide.guide-standardized .guide-jumpbtn:focus-visible{border-color:color-mix(in srgb,var(--amber) 45%, rgba(255,255,255,.1));color:var(--text);}
+#scr-guide.guide-standardized .guide-helpnote{margin-top:12px;color:var(--text3);font-size:.78rem;line-height:1.5;position:relative;z-index:1;}
+#scr-guide.guide-standardized .gsec{
+  position:relative;margin-bottom:16px;padding:0;
+}
+#scr-guide.guide-standardized .gtitle{
+  margin:0 0 10px;background:transparent;border:none;padding:0;
+}
+#scr-guide.guide-standardized .guide-section-head{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+  padding:10px 12px;border:1px solid var(--border);border-radius:18px 18px 12px 12px;
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));
+}
+#scr-guide.guide-standardized .guide-kicker{
+  font-family:var(--font-mono);font-size:.6rem;font-weight:800;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-bottom:4px;
+}
+#scr-guide.guide-standardized .guide-title-line{font-family:var(--font-display);font-size:1.02rem;line-height:1.2;color:var(--text);}
+#scr-guide.guide-standardized .guide-readbtn{
+  flex:0 0 auto;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text2);
+  border-radius:999px;padding:8px 12px;font-family:var(--font-mono);font-size:.64rem;font-weight:800;letter-spacing:1.5px;min-height:38px;
+}
+#scr-guide.guide-standardized .guide-panel,
+.scr[id*="guide"] .guide-card,
+.scr[id*="guide"] .gcard{
+  border:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));
+  border-radius:0 0 calc(var(--radius) + 2px) calc(var(--radius) + 2px);
+  box-shadow:0 14px 32px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.03);
+}
+.scr[id*="guide"] .guide-card:hover,.scr[id*="guide"] .guide-card:active{transform:none;}
+#scr-guide.guide-standardized .guide-step-upgrade,
+.scr[id*="guide"] .gstep{
+  align-items:flex-start; gap:12px; padding:4px 0;
+}
+#scr-guide.guide-standardized .gnum,
+.scr[id*="guide"] .gnum{
+  flex:0 0 auto; min-width:36px; min-height:36px; border-radius:12px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.04) inset;
+}
+#scr-guide.guide-standardized .guide-quickplan{margin-top:18px;}
+.scr[id*="guide"] .gc-icon{font-size:1.5rem;min-width:44px;display:flex;justify-content:center;align-items:center;}
+.scr[id*="guide"] .gc-title{font-family:var(--font-mono);font-size:.82rem;font-weight:800;letter-spacing:1.7px;color:var(--text);margin-bottom:5px;}
+.scr[id*="guide"] .gc-body{font-size:.9rem;line-height:1.7;color:var(--text2);}
+@media (max-width:760px){
+  #scr-guide.guide-standardized .guide-signal-grid,
+  #scr-guide.guide-standardized .guide-plan-grid{grid-template-columns:1fr;}
+  #scr-guide.guide-standardized .guide-section-head{align-items:flex-start;}
+  #scr-guide.guide-standardized .guide-readbtn{padding:8px 10px;}
+}
+
+
+/* ══ ABOUT SCREEN RETRO RESKIN ══ */
+#scr-about.about-screen{position:relative;padding-bottom:10px;}
+#scr-about.about-screen::before{
+  content:'';
+  position:absolute;
+  inset:0 0 auto 0;
+  height:320px;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 14% 10%, color-mix(in srgb, var(--green) 18%, transparent), transparent 40%),
+    radial-gradient(circle at 88% 0%, color-mix(in srgb, var(--amber) 10%, transparent), transparent 34%),
+    linear-gradient(180deg, color-mix(in srgb, var(--green) 6%, transparent), transparent 72%);
+  opacity:.95;
+}
+#scr-about.about-screen > *{position:relative;z-index:1;}
+#scr-about.about-screen .about-shell{padding:0 0 20px;}
+#scr-about.about-screen .about-hero{
+  position:relative;
+  margin:0 0 14px;
+  padding:24px 18px 18px !important;
+  border:1px solid var(--border);
+  border-radius:28px;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg2) 92%, transparent), color-mix(in srgb, var(--bg3) 92%, transparent));
+  box-shadow:0 14px 50px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.03);
+  overflow:hidden;
+  text-align:left !important;
+}
+#scr-about.about-screen .about-hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(130deg, transparent 56%, color-mix(in srgb, var(--green) 10%, transparent) 56%, transparent 74%),
+    repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(255,255,255,.025) 24px, rgba(255,255,255,.025) 25px);
+  opacity:.8;
+}
+#scr-about.about-screen .about-hero::after{
+  content:'';
+  position:absolute;
+  inset:14px;
+  border:1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  border-radius:20px;
+  pointer-events:none;
+  opacity:.8;
+}
+#scr-about.about-screen .about-logo{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:10px;
+  justify-content:flex-start;
+  font-family:var(--font-display) !important;
+  font-size:clamp(2rem,8vw,2.7rem) !important;
+  line-height:.95 !important;
+  letter-spacing:.06em !important;
+  text-shadow:0 0 20px color-mix(in srgb, var(--green) 24%, transparent) !important;
+  margin-bottom:0 !important;
+}
+#scr-about.about-screen .about-logo > *{position:relative;z-index:1;}
+#scr-about.about-screen .about-kicker{
+  position:relative;
+  z-index:1;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:12px;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid color-mix(in srgb, var(--border) 85%, transparent);
+  background:color-mix(in srgb, var(--bg) 72%, transparent);
+  font-family:var(--font-mono) !important;
+  font-size:.68rem !important;
+  color:var(--text) !important;
+  letter-spacing:4px !important;
+  text-shadow:none !important;
+}
+#scr-about.about-screen .about-kicker::before{content:'SYSTEM';color:var(--amber);letter-spacing:2px;}
+#scr-about.about-screen .about-section{
+  margin-top:0;
+  padding:16px;
+  border-radius:24px;
+  border:1px solid color-mix(in srgb, var(--border) 86%, transparent);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg2) 94%, transparent), color-mix(in srgb, var(--bg3) 94%, transparent));
+  box-shadow:0 8px 24px rgba(0,0,0,.18), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+#scr-about.about-screen .about-section + .about-section{margin-top:2px;}
+#scr-about.about-screen .about-section-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0;
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  color:var(--text2);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  text-shadow:none;
+}
+#scr-about.about-screen .about-section-title::before{
+  content:'';
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 14px color-mix(in srgb, var(--green) 42%, transparent);
+  flex:none;
+}
+#scr-about.about-screen .about-card{
+  margin-top:14px;
+  padding:18px !important;
+  border-radius:22px;
+  border:1px solid color-mix(in srgb, var(--border) 90%, transparent);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg) 10%, var(--bg2)), color-mix(in srgb, var(--bg3) 94%, transparent));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025), 0 8px 22px rgba(0,0,0,.18);
+}
+#scr-about.about-screen .about-card[style*="border-left"]{border-left-width:4px !important;}
+#scr-about.about-screen .about-suite-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  gap:10px !important;
+  margin-top:8px !important;
+  align-items:stretch !important;
+}
+#scr-about.about-screen .about-suite-tile{
+  position:relative;
+  padding:14px 12px !important;
+  border-radius:18px !important;
+  min-height:96px !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025), 0 8px 22px rgba(0,0,0,.14);
+  overflow:hidden;
+}
+#scr-about.about-screen .about-suite-tile::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, transparent 58%, rgba(255,255,255,.05) 58%, transparent 78%);
+  pointer-events:none;
+}
+#scr-about.about-screen .about-suite-tile > *{position:relative;z-index:1;}
+#scr-about.about-screen .about-free-card{text-align:center;}
+#scr-about.about-screen .about-version{text-align:center !important;padding:18px 0 8px !important;}
+#scr-about.about-screen .about-version > div:first-child{
+  font-family:var(--font-mono) !important;
+  font-size:.65rem !important;
+  color:var(--text3) !important;
+  letter-spacing:2px !important;
+  margin-bottom:4px !important;
+}
+#scr-about.about-screen .about-version > div:last-child{
+  font-size:.82rem !important;
+  color:var(--text2) !important;
+  line-height:1.6 !important;
+  max-width:260px;
+  margin:0 auto;
+}
+#scr-about.about-screen > .about-shell .about-signature,
+#scr-about.about-screen .about-shell > .about-signature,
+#scr-about.about-screen .about-shell .about-version,
+#scr-about.about-screen .about-shell .about-hub{}
+#scr-about.about-screen .about-signature{
+  margin:0 0 20px !important;
+  padding:20px 16px !important;
+  border-radius:24px !important;
+  border:1px solid color-mix(in srgb, var(--green) 30%, var(--border)) !important;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg2) 92%, transparent), color-mix(in srgb, var(--bg3) 92%, transparent)) !important;
+  box-shadow:0 10px 32px rgba(0,0,0,.22), inset 0 0 0 1px rgba(255,255,255,.03);
+  text-align:center !important;
+}
+#scr-about.about-screen .about-signature::before{
+  content:'';
+  display:block;
+  height:1px;
+  width:72px;
+  margin:0 auto 12px;
+  background:linear-gradient(90deg, transparent, color-mix(in srgb, var(--green) 80%, transparent), transparent);
+}
+#scr-about.about-screen .about-hub{padding:6px 0 8px !important;text-align:center !important;}
+#scr-about.about-screen .about-hub a{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 16px !important;
+  border-radius:999px !important;
+  border:1px solid color-mix(in srgb, var(--green) 45%, var(--border)) !important;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg3) 92%, transparent), color-mix(in srgb, var(--bg2) 92%, transparent)) !important;
+  color:var(--text) !important;
+  text-shadow:none !important;
+  box-shadow:0 0 0 1px rgba(255,255,255,.03), 0 0 20px color-mix(in srgb, var(--green) 12%, transparent);
+  font-family:var(--font-mono) !important;
+  font-size:.68rem !important;
+  letter-spacing:2px !important;
+  font-weight:800;
+  text-decoration:none !important;
+}
+#scr-about.about-screen .about-hub a:hover,
+#scr-about.about-screen .about-hub a:focus-visible{
+  border-color:var(--green) !important;
+  box-shadow:0 0 0 1px rgba(255,255,255,.04), 0 0 26px color-mix(in srgb, var(--green) 22%, transparent) !important;
+}
+@media (min-width:900px){
+  #scr-about.about-screen{grid-column:1;}
+}
+
+
+/* ══ SETTINGS RETRO RESKIN ══ */
+#scr-settings{
+  position:relative;
+  padding-bottom:10px;
+  isolation:isolate;
+}
+#scr-settings::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:26px;
+  background:
+    radial-gradient(circle at top right,var(--green-light),transparent 34%),
+    linear-gradient(180deg,rgba(255,255,255,.02),transparent 28%);
+  pointer-events:none;
+  opacity:.9;
+}
+#scr-settings > *{position:relative;z-index:1;}
+#scr-settings .gtop{
+  position:relative;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:center;
+  gap:14px;
+  margin:0 0 18px;
+  padding:18px 20px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at top right,rgba(255,255,255,.08),transparent 34%),
+    linear-gradient(135deg,rgba(255,255,255,.02),rgba(255,255,255,.01) 35%,transparent 100%),
+    linear-gradient(180deg,var(--panel),var(--bg2));
+  box-shadow:var(--shadow),0 0 28px var(--green-light),inset 0 0 0 1px rgba(255,255,255,.03);
+  overflow:hidden;
+}
+#scr-settings .gtop::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,transparent 0 72%,rgba(255,255,255,.03) 72% 73%,transparent 73% 100%),
+    repeating-linear-gradient(180deg,rgba(255,255,255,.03) 0 1px,transparent 1px 8px);
+  opacity:.4;
+  pointer-events:none;
+}
+#scr-settings .gtop::after{
+  content:'SYSTEM SETTINGS';
+  position:absolute;
+  right:18px;
+  top:14px;
+  font-family:var(--font-mono);
+  font-size:.58rem;
+  letter-spacing:3px;
+  color:var(--text3);
+  text-transform:uppercase;
+}
+#scr-settings .back{
+  min-height:44px;
+  border-radius:999px;
+  padding:8px 16px;
+  background:linear-gradient(180deg,var(--bg3),var(--bg2));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),0 0 14px var(--green-light);
+}
+#scr-settings .gmode{
+  font-family:var(--font-mono);
+  font-size:clamp(1rem,4.8vw,1.32rem);
+  letter-spacing:5px;
+  color:var(--green);
+  text-shadow:0 0 18px var(--green-glow);
+  padding-right:118px;
+}
+#scr-settings .ss{
+  position:relative;
+  margin-bottom:18px;
+  padding:14px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  background:
+    radial-gradient(circle at top right,rgba(255,255,255,.04),transparent 38%),
+    linear-gradient(180deg,rgba(255,255,255,.015),transparent 45%),
+    linear-gradient(180deg,var(--panel),var(--bg2));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),0 10px 26px rgba(0,0,0,.28);
+}
+#scr-settings .ss::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.02) 0 1px,transparent 1px 10px);
+  opacity:.22;
+  pointer-events:none;
+}
+#scr-settings .ss > *{position:relative;z-index:1;}
+#scr-settings .st{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+  padding:0 2px 10px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  letter-spacing:4px;
+  color:var(--green);
+  text-transform:uppercase;
+  text-shadow:0 0 12px var(--green-glow);
+}
+#scr-settings .sr{
+  position:relative;
+  margin-bottom:10px;
+  padding:14px 15px;
+  border-radius:16px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0)),
+    linear-gradient(180deg,var(--bg2),var(--bg3));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),0 10px 24px rgba(0,0,0,.18);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+#scr-settings .sr:hover,
+#scr-settings .sr:active{
+  transform:translateY(-1px);
+  border-color:var(--green);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03),0 0 0 1px rgba(255,255,255,.02),0 0 20px var(--green-light),0 14px 24px rgba(0,0,0,.24);
+}
+#scr-settings .si{
+  display:grid;
+  place-items:center;
+  width:42px;
+  min-width:42px;
+  height:42px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.01));
+  box-shadow:0 0 14px var(--green-light),inset 0 0 0 1px rgba(255,255,255,.02);
+  font-size:1.18rem;
+}
+#scr-settings .sinfo{min-width:0;}
+#scr-settings .sn{
+  font-size:.92rem;
+  color:var(--text);
+  letter-spacing:.3px;
+  text-shadow:0 0 10px rgba(255,255,255,.06);
+}
+#scr-settings .sd2{
+  margin-top:4px;
+  line-height:1.5;
+  color:var(--text2);
+  max-width:56ch;
+}
+#scr-settings #cb-current-mode{
+  display:inline-flex !important;
+  align-items:center;
+  gap:6px;
+  padding:5px 10px;
+  border-radius:999px;
+  background:rgba(0,0,0,.2);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--green) !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+#scr-settings .tog{
+  width:56px;
+  height:30px;
+  border-radius:999px;
+  background:linear-gradient(180deg,var(--bg4),var(--bg2));
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:inset 0 1px 4px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.02);
+}
+#scr-settings .tog::after{
+  width:22px;
+  height:22px;
+  top:3px;
+  left:3px;
+  background:linear-gradient(180deg,#d9dce1,#9098a4);
+  box-shadow:0 2px 8px rgba(0,0,0,.35);
+}
+#scr-settings .tog.on{
+  background:linear-gradient(180deg,var(--green),var(--green));
+  border-color:var(--green);
+  box-shadow:0 0 18px var(--green-glow),inset 0 1px 4px rgba(255,255,255,.18);
+}
+#scr-settings .tog.on::after{
+  transform:translateX(26px);
+  background:linear-gradient(180deg,#ffffff,#dff6e6);
+}
+#scr-settings .sopts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+#scr-settings .sopt,
+#scr-settings .cb-mode-btn,
+#scr-settings .cbt{
+  border-radius:999px;
+  padding:8px 12px;
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.09);
+  color:var(--text2);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+#scr-settings .sopt:hover,
+#scr-settings .cb-mode-btn:hover,
+#scr-settings .cbt:hover{
+  transform:translateY(-1px);
+  border-color:var(--green);
+  color:var(--green);
+  box-shadow:0 0 16px var(--green-light),inset 0 0 0 1px rgba(255,255,255,.02);
+}
+#scr-settings .sopt.on,
+#scr-settings .cb-mode-btn.on,
+#scr-settings .cbt.pri{
+  background:linear-gradient(180deg,var(--green),var(--green));
+  border-color:var(--green);
+  color:#06110a;
+  box-shadow:0 0 18px var(--green-glow),inset 0 1px 4px rgba(255,255,255,.18);
+}
+#scr-settings .cbt{
+  font-size:.72rem;
+  letter-spacing:1px;
+}
+#scr-settings .stip{
+  margin-top:16px;
+  padding:14px 16px;
+  border-radius:18px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.03),transparent 55%),
+    linear-gradient(180deg,var(--panel),var(--bg2));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),0 0 18px var(--green-light);
+  color:var(--green);
+}
+#scr-settings .gsec{
+  position:relative;
+  overflow:hidden;
+  margin-top:24px !important;
+  padding:16px !important;
+  border:1px solid rgba(255,68,68,.35) !important;
+  border-radius:22px !important;
+  background:
+    radial-gradient(circle at top right,rgba(255,68,68,.12),transparent 38%),
+    linear-gradient(180deg,rgba(255,255,255,.02),transparent 45%),
+    linear-gradient(180deg,rgba(70,14,14,.95),rgba(36,10,10,.95)) !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),0 0 26px rgba(255,68,68,.12);
+}
+#scr-settings .gsec::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.03) 0 1px,transparent 1px 10px);
+  opacity:.16;
+  pointer-events:none;
+}
+#scr-settings .gsec > *{position:relative;z-index:1;}
+#scr-settings .gtitle{
+  border-bottom-color:rgba(255,68,68,.22);
+  color:#ff8080;
+  text-shadow:0 0 12px rgba(255,68,68,.2);
+}
+#scr-settings .gsec button{
+  width:100%;
+  border-radius:999px !important;
+  background:linear-gradient(180deg,rgba(255,68,68,.18),rgba(255,68,68,.08)) !important;
+  box-shadow:0 0 20px rgba(255,68,68,.08),inset 0 0 0 1px rgba(255,255,255,.02);
+}
+#scr-settings .gsec button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 0 24px rgba(255,68,68,.16),inset 0 0 0 1px rgba(255,255,255,.02);
+}
+#scr-settings > div[style*="text-align:center"]{
+  margin-top:2px;
+  padding:12px 14px 4px !important;
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);
+  border:1px solid rgba(255,255,255,.06);
+}
+@media (max-width:640px){
+  #scr-settings .gtop{
+    grid-template-columns:1fr;
+    gap:10px;
+    padding:56px 16px 16px;
+  }
+  #scr-settings .gtop::after{
+    left:16px;
+    right:auto;
+    top:14px;
+  }
+  #scr-settings .back{
+    position:absolute;
+    left:16px;
+    top:16px;
+  }
+  #scr-settings .gmode{
+    padding-right:0;
+    letter-spacing:3px;
+  }
+  #scr-settings .sr{
+    flex-wrap:wrap;
+    align-items:flex-start;
+  }
+  #scr-settings .sinfo{
+    width:calc(100% - 54px);
+  }
+  #scr-settings .sr > .tog,
+  #scr-settings .sr > .cbt{
+    margin-left:auto;
+  }
+}
+
 </style>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
 <defs>
@@ -1145,7 +2192,7 @@ textarea:focus-visible,
 <div class="scr" id="scr-scores">
 <div class="gtop">
 <button class="back" onclick="go('home')">‹ BACK</button>
-<div class="gmode">🏆 HIGH SCORES</div>
+<div class="gmode">🏆 SCOREBOARD</div>
 <button class="abtn" onclick="clearScores()" style="margin-left:auto;padding:5px 11px;min-height:30px;font-size:0.72rem">CLEAR</button>
 </div>
 <div id="score-filters" style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">
@@ -1494,65 +2541,65 @@ textarea:focus-visible,
 </div>
 </div>
 </div>
-<div class="scr" id="scr-about">
+<div class="scr about-screen" id="scr-about">
 <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">ℹ️ ABOUT</div></div>
-<div style="padding:0 16px 80px">
-<div style="text-align:center;padding:24px 0 16px">
-<div style="font-family:var(--font-mono);font-size:2rem;font-weight:700;letter-spacing:6px;color:var(--green);text-shadow:0 0 30px rgba(155,48,217,0.4)">SOCIAL<span style="color:var(--text2)">READY</span></div>
-<div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:3px;margin-top:6px">SOCIAL SKILLS TRAINER</div>
+<div class="about-shell" style="padding:0 16px 80px">
+<div class="about-hero" style="text-align:center;padding:24px 0 16px">
+<div class="about-logo" style="font-family:var(--font-mono);font-size:2rem;font-weight:700;letter-spacing:6px;color:var(--green);text-shadow:0 0 30px rgba(155,48,217,0.4)">SOCIAL<span style="color:var(--text2)">READY</span></div>
+<div class="about-kicker" style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:3px;margin-top:6px">SOCIAL SKILLS TRAINER</div>
 </div>
-<div class="gsec"><div class="gtitle">💜 THE STORY</div><div class="gcard">
+<div class="gsec about-section"><div class="gtitle about-section-title">💜 THE STORY</div><div class="gcard about-card">
 <p style="font-size:.88rem;color:var(--text2);line-height:1.8">SocialReady was built as the sixth piece of the LifeReady suite. Social skills are some of the most important - and most personal - life skills there are. Reading a room, setting a boundary, working through conflict, knowing what to say and when: these things matter in every relationship, every setting, every day.</p>
 <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-top:10px">This app was built because social skills class does not always happen as often as it should. SocialReady is here to fill the gap - free, available anytime, built with the same care as every other app in the suite.</p>
 </div></div>
-<div class="gsec"><div class="gtitle">🚀 THE MISSION</div><div class="gcard">
+<div class="gsec about-section"><div class="gtitle about-section-title">🚀 THE MISSION</div><div class="gcard about-card">
 <p style="font-size:.88rem;color:var(--text2);line-height:1.8">Social connection should not be a mystery. SocialReady helps people practice the real skills behind connection - reading situations, having healthy conversations, setting limits, handling conflict, and understanding their own feelings. Free, accessible, and built for everyone.</p>
 </div></div>
-<div class="gsec"><div class="gtitle">🤝 A DEDICATION</div><div class="gcard" style="border-left:4px solid var(--amber)">
+<div class="gsec about-section"><div class="gtitle about-section-title">🤝 A DEDICATION</div><div class="gcard about-card" style="border-left:4px solid var(--amber)">
 <p style="font-size:.88rem;color:var(--text2);line-height:1.8">For the behaviorists, counselors, social workers, and support staff who show up every day to help people understand themselves and each other. And for everyone who has ever felt out of place in a social situation and wondered if they would ever figure it out. You will.</p>
 </div></div>
-<div class="gsec">
-<div class="gtitle">💬 PART OF THE LIFEREADY SUITE</div>
-<div class="gcard">
+<div class="gsec about-section">
+<div class="gtitle about-section-title">💬 PART OF THE LIFEREADY SUITE</div>
+<div class="gcard about-card">
 <p style="font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:14px">SocialReady is part of the LifeReady suite - a growing set of free, accessible life skills trainers built by the same person, for the same purpose.</p>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch">
-<div style="background:rgba(0,200,81,0.08);border:1px solid rgba(0,200,81,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div class="about-suite-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;align-items:stretch">
+<div class="about-suite-tile" style="background:rgba(0,200,81,0.08);border:1px solid rgba(0,200,81,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
 <div style="font-size:1.2rem">💵</div>
 <div style="font-family:var(--font-mono);font-size:.7rem;color:#00c851;font-weight:700;margin-top:4px">CashReady</div>
 <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Money Skills</div>
 </div>
-<div style="background:rgba(34,136,255,0.08);border:1px solid rgba(34,136,255,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div class="about-suite-tile" style="background:rgba(34,136,255,0.08);border:1px solid rgba(34,136,255,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
 <div style="font-size:1.2rem">🕐</div>
 <div style="font-family:var(--font-mono);font-size:.7rem;color:#2288ff;font-weight:700;margin-top:4px">TimeReady</div>
 <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Time Skills</div>
 </div>
-<div style="background:rgba(212,144,10,0.08);border:1px solid rgba(212,144,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div class="about-suite-tile" style="background:rgba(212,144,10,0.08);border:1px solid rgba(212,144,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
 <div style="font-size:1.2rem">💼</div>
 <div style="font-family:var(--font-mono);font-size:.7rem;color:#d4900a;font-weight:700;margin-top:4px">JobReady</div>
 <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Work Skills</div>
 </div>
-<div style="background:rgba(232,101,10,0.08);border:1px solid rgba(232,101,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div class="about-suite-tile" style="background:rgba(232,101,10,0.08);border:1px solid rgba(232,101,10,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
 <div style="font-size:1.2rem">🏠</div>
 <div style="font-family:var(--font-mono);font-size:.7rem;color:#e8650a;font-weight:700;margin-top:4px">HomeReady</div>
 <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Home Skills</div>
 </div>
-<div style="background:rgba(10,147,150,0.08);border:1px solid rgba(10,147,150,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div class="about-suite-tile" style="background:rgba(10,147,150,0.08);border:1px solid rgba(10,147,150,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
 <div style="font-size:1.2rem">🗺️</div>
 <div style="font-family:var(--font-mono);font-size:.7rem;color:#0a9396;font-weight:700;margin-top:4px">TravelReady</div>
 <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Travel Skills</div>
 </div>
-<div style="background:rgba(155,48,217,0.15);border:2px solid #9b30d9;border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div class="about-suite-tile" style="background:rgba(155,48,217,0.15);border:2px solid #9b30d9;border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
 <div style="font-size:1.2rem">💬</div>
 <div style="font-family:var(--font-mono);font-size:.7rem;color:#9b30d9;font-weight:700;margin-top:4px">SocialReady</div>
 <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Social Skills</div>
 <div style="font-size:.62rem;color:#9b30d9;margin-top:3px;font-weight:700">← You are here</div>
 </div>
-<div style="background:rgba(204,34,0,0.08);border:1px solid rgba(204,34,0,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div class="about-suite-tile" style="background:rgba(204,34,0,0.08);border:1px solid rgba(204,34,0,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
 <div style="font-size:1.2rem">📱</div>
 <div style="font-family:var(--font-mono);font-size:.7rem;color:#cc2200;font-weight:700;margin-top:4px">TechReady</div>
 <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Digital Skills</div>
 </div>
-<div style="background:rgba(233,30,140,0.08);border:1px solid rgba(233,30,140,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
+<div class="about-suite-tile" style="background:rgba(233,30,140,0.08);border:1px solid rgba(233,30,140,0.3);border-radius:10px;padding:12px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:90px">
 <div style="font-size:1.2rem">🏥</div>
 <div style="font-family:var(--font-mono);font-size:.7rem;color:#e91e8c;font-weight:700;margin-top:4px">HealthReady</div>
 <div style="font-size:.65rem;color:var(--text3);margin-top:2px">Health &amp; Life Skills</div>
@@ -1560,24 +2607,24 @@ textarea:focus-visible,
 </div>
 </div>
 </div>
-<div class="gsec">
-<div class="gtitle">🆓 ALWAYS FREE</div>
-<div class="gcard" style="text-align:center;padding:20px">
+<div class="gsec about-section">
+<div class="gtitle about-section-title">🆓 ALWAYS FREE</div>
+<div class="gcard about-card about-free-card" style="text-align:center;padding:20px">
 <div style="font-size:2rem;margin-bottom:10px">🆓</div>
 <p style="font-size:.88rem;color:var(--text2);line-height:1.8">SocialReady is a free communications lounge for everyone. No accounts. No ads. No paywalls. Progress and preferences stay on this device. Practice conversations, boundaries, emotions, and real-life social situations at your own pace.</p>
 </div>
 </div>
-<div style="text-align:center;padding:20px 0 8px">
+<div class="about-version" style="text-align:center;padding:20px 0 8px">
 <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;margin-bottom:4px">SocialReady v1.0</div>
 <div style="font-size:.82rem;color:var(--text2);line-height:1.6;max-width:260px;margin:0 auto">Built with love, by someone who gets it. Free for everyone. Always.</div>
 </div>
-<div style="margin:0 0 20px;padding:18px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
+<div class="about-signature" style="margin:0 0 20px;padding:18px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
 <div style="font-size:1.6rem;margin-bottom:8px">💬</div>
 <div style="font-family:'Dancing Script',cursive;font-size:2.6rem;color:#9b30d9;line-height:1.1;margin-bottom:6px;text-shadow:0 0 30px rgba(155,48,217,0.4)">Tristan Beck</div>
 <div style="font-size:.8rem;color:var(--text2);line-height:1.7;margin-bottom:6px">SocialReady - Social Skills Trainer</div>
 <div style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px">FREE FOR EVERYONE · ALWAYS</div>
 </div>
-<div style="text-align:center;padding:20px 0 8px">
+<div class="about-hub" style="text-align:center;padding:20px 0 8px">
 <a href="index.html" onclick="event.preventDefault();window.open('index.html','_self')" style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;text-decoration:none;color:#9b30d9;border:1px solid #9b30d955;border-radius:20px;padding:8px 22px;display:inline-block;text-shadow:0 0 10px #9b30d944;transition:box-shadow .2s,border-color .2s">← BACK TO LIFEREADY HUB</a>
 </div>
 <!-- ══ DESKTOP SIDEBAR (hidden on mobile) ══ -->
@@ -1611,7 +2658,44 @@ textarea:focus-visible,
 <button class="rsec" onclick="go('about')" style="width:100%;font-size:.78rem;padding:8px">Read Our Story →</button>
 </div>
 </aside>
-</div></div></main>
+</div></div>
+<div class="scr" id="scr-game">
+<div class="gtop">
+<button class="back" id="end-btn" onclick="confirmEnd()">‹ END</button>
+<div class="gmode" id="gmode-lbl">SOCIAL CHALLENGE</div>
+<button class="back" onclick="syncQS();openM('m-quick-settings')" style="margin-left:auto;padding:7px 10px;font-size:1rem;min-width:36px" title="Settings">⚙️</button>
+<button class="back" onclick="replayModeIntro()" style="padding:7px 10px;font-size:.9rem;min-width:36px;font-weight:900;color:var(--green)" title="What is this mode?">?</button>
+<button class="back" onclick="requestBreak()" style="padding:7px 10px;font-size:.9rem;min-width:36px" title="I need a break">☕</button>
+<div class="gscore">
+<div class="sbox" id="sbox-score"><div class="sv" id="g-score">0</div><div class="sl">SCORE</div></div>
+<div class="sbox" id="sbox-streak">
+<div class="sdots" id="sdots">
+<div class="sd" id="sd0"></div><div class="sd" id="sd1"></div>
+<div class="sd" id="sd2"></div><div class="sd" id="sd3"></div>
+<div class="sd" id="sd4"></div>
+</div>
+<div class="sl">STREAK</div>
+</div>
+<div class="lvl" id="g-lvl">BEGINNER</div>
+</div>
+</div>
+<div class="pdots" id="pdots"></div>
+<div class="progress-text" id="progress-text">Question 1 of 10</div>
+<div class="progress-text" id="hints-used" style="font-size:.64rem;color:var(--text2);margin-top:-8px;margin-bottom:10px">Hints used: 0</div>
+<div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
+<div class="qpanel" id="qpanel">
+<div id="g-question" style="font-size:.95rem;font-weight:800;color:var(--text);line-height:1.55;margin-bottom:14px;font-family:var(--font-mono)"></div>
+<div id="g-visual"></div>
+<div class="qopts" id="g-opts"></div>
+<div class="qfb" id="g-fb" style="display:none"></div>
+</div>
+<div id="g-hint-bar" style="display:none;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:8px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
+<div style="display:flex;gap:8px;margin-top:8px">
+<button class="abtn" id="hint-btn" onclick="doHint(this)" style="flex:1">💡 HINT</button>
+<button class="abtn" id="sayagain-btn" onclick="socialSayAgain(this)" style="flex:1">🔊 SAY AGAIN</button>
+</div>
+</div>
+</main>
 <!-- ══ BREAK SCREEN ══ -->
 <div class="break-scr" id="break-scr">
 <div class="break-emoji" id="break-emoji">☕</div>
@@ -1799,42 +2883,7 @@ textarea:focus-visible,
 <div id="badge-toast-desc"></div>
 </div>
 </div>
-<div class="scr" id="scr-game">
-<div class="gtop">
-<button class="back" id="end-btn" onclick="confirmEnd()">‹ END</button>
-<div class="gmode" id="gmode-lbl">SOCIAL CHALLENGE</div>
-<button class="back" onclick="syncQS();openM('m-quick-settings')" style="margin-left:auto;padding:7px 10px;font-size:1rem;min-width:36px" title="Settings">⚙️</button>
-<button class="back" onclick="replayModeIntro()" style="padding:7px 10px;font-size:.9rem;min-width:36px;font-weight:900;color:var(--green)" title="What is this mode?">?</button>
-<button class="back" onclick="requestBreak()" style="padding:7px 10px;font-size:.9rem;min-width:36px" title="I need a break">☕</button>
-<div class="gscore">
-<div class="sbox" id="sbox-score"><div class="sv" id="g-score">0</div><div class="sl">SCORE</div></div>
-<div class="sbox" id="sbox-streak">
-<div class="sdots" id="sdots">
-<div class="sd" id="sd0"></div><div class="sd" id="sd1"></div>
-<div class="sd" id="sd2"></div><div class="sd" id="sd3"></div>
-<div class="sd" id="sd4"></div>
-</div>
-<div class="sl">STREAK</div>
-</div>
-<div class="lvl" id="g-lvl">BEGINNER</div>
-</div>
-</div>
-<div class="pdots" id="pdots"></div>
-<div class="progress-text" id="progress-text">Question 1 of 10</div>
-<div class="progress-text" id="hints-used" style="font-size:.64rem;color:var(--text2);margin-top:-8px;margin-bottom:10px">Hints used: 0</div>
-<div id="mode-banner" style="display:none;border-radius:8px;padding:7px 12px;margin-bottom:8px;align-items:center;gap:8px"></div>
-<div class="qpanel" id="qpanel">
-<div id="g-question" style="font-size:.95rem;font-weight:800;color:var(--text);line-height:1.55;margin-bottom:14px;font-family:var(--font-mono)"></div>
-<div id="g-visual"></div>
-<div class="qopts" id="g-opts"></div>
-<div class="qfb" id="g-fb" style="display:none"></div>
-</div>
-<div id="g-hint-bar" style="display:none;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:8px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div>
-<div style="display:flex;gap:8px;margin-top:8px">
-<button class="abtn" id="hint-btn" onclick="doHint(this)" style="flex:1">💡 HINT</button>
-<button class="abtn" id="sayagain-btn" onclick="socialSayAgain(this)" style="flex:1">🔊 SAY AGAIN</button>
-</div>
-</div>
+
 <!-- ══════════ FEEDBACK ══════════ -->
 <div class="fov" id="fov">
 <div class="fcard" id="fcard">
@@ -1973,90 +3022,142 @@ const BADGES_DEF=[
 
 // ── QUESTION BANKS ──
 const SITUATIONS_Qs=[
-  {q:'You are sitting on the bus and someone sits very close to you even though many seats are empty. You feel uncomfortable. What is the best thing to do?',opts:['Do nothing - it would be rude to move','Calmly move to another seat','Yell at them to move away','Get off the bus immediately'],correct:1,explain:'You always have the right to move to a more comfortable spot. You do not need to explain why.',hint:'You are allowed to move without saying anything. Your comfort matters.'},
-  {q:'A friend keeps pressuring you to do something you are not comfortable with. They say "come on, everyone does it." What should you do?',opts:['Go along with it so they still like you','Say "No thanks, I\'m not comfortable with that" and mean it','Leave without saying anything','Agree but feel bad about it later'],correct:1,explain:'Saying no is always okay. A real friend will respect your answer.',hint:'No means no - and you do not need to justify it or apologize for it.'},
-  {q:'You are in a group conversation and someone keeps interrupting you. What is a good response?',opts:['Stop talking and let them take over','Raise your voice to talk over them','Calmly say "I wasn\'t finished yet - can I finish?" and continue','Leave the conversation'],correct:2,explain:'Politely but clearly stating you were not finished is assertive and appropriate.',hint:'You can speak up for yourself calmly. Saying "I wasn\'t finished" is not rude.'},
-  {q:'Someone online sends you a message that makes you feel uncomfortable or scared. What should you do?',opts:['Reply and try to handle it yourself','Block the person and tell a trusted adult right away','Ignore it and hope it stops','Share the message publicly'],correct:1,explain:'Block the person immediately and tell a trusted adult. You should never have to manage threatening messages alone.',hint:'Block, do not reply, and tell someone you trust right away.'},
-  {q:'A coworker always takes credit for your ideas in meetings. This has happened three times. What is the best approach?',opts:['Say nothing - it is not worth the conflict','Speak to your coworker privately and let them know how it makes you feel','Announce it loudly in the next meeting','Stop sharing ideas altogether'],correct:1,explain:'Addressing the situation privately and directly is the most respectful and effective approach.',hint:'Talk to the person privately first. Clear, calm, direct.'},
-  {q:'A friend shares a secret with you. Another friend asks what it was. What should you do?',opts:['Tell them - secrets are hard to keep','Make something up','Say "I can\'t share that - it\'s not mine to tell"','Change the subject'],correct:2,explain:'Keeping someone\'s confidence builds trust.',hint:'It\'s not your secret to share. A simple "I can\'t tell you that" is perfectly fine.'},
-  {q:'You arrive at a gathering where you only know one person and they are busy. What is a good way to connect with new people?',opts:['Stand alone and wait for people to come to you','Leave immediately','Find someone who also looks alone and introduce yourself','Interrupt the biggest conversation to get noticed'],correct:2,explain:'Looking for someone who also seems alone makes it easier to start a conversation.',hint:'Find someone who looks approachable or who is also alone. A simple introduction goes a long way.'},
-  {q:'Your neighbor plays loud music late at night regularly. You have not said anything yet. What is the best first step?',opts:['Call the police right away','Politely let them know it has been affecting your sleep','Leave an angry note','Start playing your own music loudly'],correct:1,explain:'A calm, direct, polite conversation is always the right first step.',hint:'Talk to them first, calmly and directly.'},
-  {q:'Someone gives you a compliment. What is a simple, appropriate response?',opts:['Deny it and say something negative about yourself','Just stare at them','Say "Thank you, that means a lot"','Change the subject immediately'],correct:2,explain:'Accepting a compliment gracefully with a simple thank you is appropriate and kind.',hint:'A simple "thank you" is always enough.'},
-  {q:'You are in a conversation and realize you do not understand what the other person is talking about. What should you do?',opts:['Pretend you understand and nod along','Say "I\'m not sure I follow - can you explain differently?"','Change the subject','Stay quiet and hope they stop'],correct:1,explain:'Asking for clarification is a sign of engagement and confidence, not weakness.',hint:'Asking someone to explain is respectful and shows you are paying attention.'},
+  {q:'You are on the bus and there are many open seats. A stranger sits shoulder-to-shoulder with you anyway. What is the best next step?',opts:['Stay there so you do not seem rude','Calmly move to another open seat','Yell at the person to back up','Get off the bus right away even if it is not your stop'],correct:1,explain:'You are allowed to move when someone is too close. Choosing a safer or more comfortable seat is a simple healthy boundary.',hint:'Your comfort matters. Moving seats is okay.'},
+  {q:'A friend says, "Come on, everybody is doing it," about something that feels wrong to you. Which reply is strongest?',opts:['"Okay, but only this one time"','"No thanks. I am not comfortable with that"','"Maybe later" even though you mean no','Say nothing and go along with it'],correct:1,explain:'A calm direct no is the clearest and healthiest response. You do not need to explain or apologize for protecting yourself.',hint:'A clear no is enough.'},
+  {q:'In a group conversation, someone cuts you off three times. What would be the best thing to say?',opts:['"Never mind" and stop talking','Talk louder until they give up','"I was not finished yet. Can I finish my thought?"','Leave without saying anything'],correct:2,explain:'That response is assertive without being rude. It protects your turn while keeping the conversation respectful.',hint:'Speak up calmly, not aggressively.'},
+  {q:'You open a message online that says, "Send me a picture right now or else." What should you do first?',opts:['Reply so the person does not get mad','Block the person and tell a trusted adult or support person','Post the message publicly to embarrass them','Keep reading and hope it goes away'],correct:1,explain:'Threatening messages should not be handled alone. Blocking and telling a trusted person protects your safety.',hint:'Do not reply. Block and tell someone safe.'},
+  {q:'At work, a coworker shares your idea in a meeting and acts like it was theirs. This keeps happening. What is the healthiest first move?',opts:['Stop sharing ideas forever','Talk to the coworker privately and explain the problem','Call them out loudly during the next meeting','Complain to everyone except the coworker'],correct:1,explain:'A private direct conversation is usually the best first step. It gives the person a chance to correct the behavior without creating a bigger scene.',hint:'Start calm and direct, in private.'},
+  {q:'A friend tells you a private family problem and says, "Please do not repeat this." Later another friend asks what is going on. Which answer shows respect?',opts:['Tell them, but make them promise not to repeat it','Make up a different story','"It is not my story to share"','Ignore the question and walk away'],correct:2,explain:'That response protects your friend’s privacy without being dramatic. Trust grows when people know you can keep personal information private.',hint:'It is not your secret to tell.'},
+  {q:'You arrive at a club meeting and only know one person. They are busy talking to someone else. What is the best way to handle it?',opts:['Stand in a corner and wait silently the whole time','Go home right away','Find one approachable person and say, "Hi, I am new here"','Interrupt the largest group so everyone notices you'],correct:2,explain:'Starting with one approachable person is easier and more comfortable than forcing yourself into a big group all at once.',hint:'One calm introduction is enough to get started.'},
+  {q:'Your neighbor plays loud music late at night. It has happened several nights in a row. What is the best first step?',opts:['Blast your own music back at them','Leave an angry note with insults','Politely tell them it has been affecting your sleep','Call the police before speaking to them'],correct:2,explain:'A calm respectful conversation is the best first move in many everyday conflicts. It gives the other person a chance to fix the problem.',hint:'Try a calm direct conversation first.'},
+  {q:'Someone says, "Your presentation was really good." Which reply works best?',opts:['"No it was terrible"','Say nothing and look away','"Thank you, I appreciate that"','Quickly change the subject because compliments are awkward'],correct:2,explain:'A simple thank-you accepts the compliment respectfully. You do not need to argue with the person or put yourself down.',hint:'A short thank-you is enough.'},
+  {q:'You are talking with someone and realize you do not understand what they mean. What is the strongest response?',opts:['Pretend you understand so you do not look confused','"I am not sure I follow. Can you explain that another way?"','Nod until the conversation ends','Change the subject fast'],correct:1,explain:'Asking for clarification shows engagement and honesty. It is better to ask than to pretend.',hint:'It is okay to ask for a clearer explanation.'},
 ];
 
 const CONVERSATIONS_Qs=[
-  {q:'You want to join a conversation two people are already having. What is the most appropriate way?',opts:['Interrupt loudly and start talking','Wait for a natural pause, make eye contact, and join in','Tap one person repeatedly until they stop','Just start talking over them'],correct:1,explain:'Waiting for a natural pause and using eye contact shows you are respectful and aware of others.',hint:'Wait for a pause, make eye contact, then gently step in.'},
-  {q:'During a conversation, the other person keeps checking their phone and giving short answers. What does this likely mean?',opts:['They are very interested','They are probably distracted or need to wrap up','They are testing you','You said something wrong'],correct:1,explain:'Short answers and phone checking are signals that someone may need to go or is distracted.',hint:'Short answers and distraction usually mean someone needs to end the conversation.'},
-  {q:'How long should you talk about yourself in a conversation with someone you just met?',opts:['As long as you want','Balance it - ask about them too and listen as much as you talk','Never talk about yourself','Only if they bring it up first'],correct:1,explain:'Good conversations are balanced. Asking questions and listening shows genuine interest.',hint:'Balance talking with listening. Ask questions and show interest in the other person too.'},
-  {q:'Someone tells you some sad news. Which response is most appropriate?',opts:['"I had something worse happen to me once."','"That sounds really hard. I\'m sorry you\'re going through that."','"Why are you upset? It\'s not a big deal."','"Let me know if there\'s anything I can do, but I\'m very busy."'],correct:1,explain:'Acknowledging feelings without comparing or minimizing them is empathetic and supportive.',hint:'Acknowledge how they feel. Don\'t compare or minimize. Just be present.'},
-  {q:'You are texting someone and they take a long time to respond. What should you do?',opts:['Send multiple follow-up messages until they reply','Assume they hate you','Wait patiently - people are busy','Call them immediately to find out why'],correct:2,explain:'People have busy lives and respond in their own time.',hint:'One message is enough. Give people time and space to respond.'},
-  {q:'What does it mean to be a good listener?',opts:['Waiting silently until it\'s your turn','Paying attention, making eye contact, nodding, and responding to what was actually said','Giving advice after every sentence','Looking at your phone but saying "mmhmm"'],correct:1,explain:'Active listening means being fully present.',hint:'Good listening is active. It means showing you\'re engaged - eyes, nods, and real responses.'},
-  {q:'How do you end a conversation politely when you need to leave?',opts:['Stop responding and walk away','Say "It was great talking to you, I need to get going - take care!"','Just keep talking until they leave','Say "This conversation is over now"'],correct:1,explain:'A warm closing that acknowledges the person is respectful and leaves a good impression.',hint:'A simple warm goodbye is all you need.'},
-  {q:'Someone says something you strongly disagree with. What is the most respectful response?',opts:['Tell them they are wrong','Stay completely quiet','Say "I see it differently - can I share my perspective?" and also listen to theirs','Start listing all the reasons they are incorrect'],correct:2,explain:'Sharing a different perspective respectfully while staying open to theirs is how healthy disagreements work.',hint:'You can disagree without being unkind. "I see it differently" opens a real conversation.'},
-  {q:'A new person starts at your workplace or program. What can you do to make them feel welcome?',opts:['Wait for them to come to you','Introduce yourself and include them in conversation when you can','Ignore them','Tell them all the problems with the place right away'],correct:1,explain:'A small gesture of welcome can make a huge difference to someone new.',hint:'A simple introduction and including them goes a long way for someone new.'},
-  {q:'When is it appropriate to share personal information with someone you just met?',opts:['Never - always keep everything private','Share everything immediately to build trust','Gradually, as trust builds over time','Only if they share first'],correct:2,explain:'Trust is built gradually. Sharing too much too soon can feel overwhelming.',hint:'Let trust build over time. You don\'t need to share everything right away.'},
+  {q:'Two people are already talking near the snack table. You want to join in. What is the best move?',opts:['Interrupt with a totally new topic','Wait for a pause, make eye contact, and say something brief to join','Tap one of them until they stop talking','Stand very close without saying anything'],correct:1,explain:'Waiting for a pause shows awareness and respect. A small opening line works better than jumping in over people.',hint:'Pause, eye contact, brief entry.'},
+  {q:'You are chatting with someone and they keep glancing at the clock, giving short answers, and packing up their bag. What is that usually a sign of?',opts:['They want you to talk more','They are probably distracted or need to leave soon','They are trying to be mysterious','You have definitely done something wrong'],correct:1,explain:'Body language and short answers often mean someone needs to wrap up. Not every short conversation means you did something wrong.',hint:'Notice the clues, not just the words.'},
+  {q:'You just met someone at a community event. Which conversation choice is most balanced?',opts:['Talk only about yourself so they get to know you fast','Ask a question, share a little about yourself, then listen to their answer','Stay silent the whole time','Ask many personal questions right away'],correct:1,explain:'Balanced conversation includes sharing and listening. It should feel like a back-and-forth, not an interview or a speech.',hint:'Share a little, ask a little, listen a lot.'},
+  {q:'A classmate says, "My dog died yesterday." Which response is most supportive?',opts:['"That happened to me too, let me tell you everything"','"That sounds really painful. I am sorry"','"At least it was only a dog"','"Try not to think about it"'],correct:1,explain:'The best response acknowledges the person’s pain without comparing, minimizing, or rushing them past it.',hint:'Acknowledge the feeling first.'},
+  {q:'You send one text asking, "Are we still meeting at 4?" and do not get a reply for an hour. What is the healthiest choice?',opts:['Send six more texts with question marks','Assume they are upset with you','Wait and give them time to answer','Call repeatedly until they pick up'],correct:2,explain:'People are often busy and cannot answer immediately. Giving them time shows patience and respect.',hint:'One message is enough for now.'},
+  {q:'Which behavior shows active listening during a conversation?',opts:['Thinking about what you will say next the whole time','Looking at your phone but saying "uh-huh"','Paying attention, noticing key details, and responding to what was actually said','Giving advice before the person finishes talking'],correct:2,explain:'Active listening means being present. Your response should connect to what the person actually said, not just what you expected to hear.',hint:'Listen with your eyes, ears, and response.'},
+  {q:'You need to leave a conversation to catch your ride. Which closing sounds most respectful?',opts:['Walk away without saying anything','"I have to head out, but it was nice talking with you"','"This is taking too long"','Keep talking until the other person leaves first'],correct:1,explain:'A short warm goodbye ends the conversation clearly without making the other person feel dismissed.',hint:'Clear and kind beats awkward and sudden.'},
+  {q:'Someone says something you strongly disagree with during lunch. Which response keeps the conversation respectful?',opts:['"That is ridiculous"','Stay silent but roll your eyes','"I see it differently. Want to hear my view?"','List everything wrong with their opinion without letting them reply'],correct:2,explain:'That response allows disagreement without turning the moment into a fight. It leaves room for both people to be heard.',hint:'You can disagree without attacking.'},
+  {q:'A new student or coworker joins your group. What is one simple way to help them feel welcome?',opts:['Wait to see if they talk first','Introduce yourself and include them in a small conversation','Ignore them so they can settle in alone','Tell them every problem with the place on day one'],correct:1,explain:'A small welcome can reduce stress for someone new. It helps them feel included without putting them on the spot.',hint:'Small kindness counts.'},
+  {q:'When is it smartest to share very personal information with someone new?',opts:['Right away, so they trust you','Never under any circumstance','Gradually, as trust builds over time','Only if they tell you something personal first'],correct:2,explain:'Healthy trust grows over time. Sharing gradually helps you stay safe and comfortable.',hint:'Trust grows in steps, not all at once.'},
 ];
 
 const BOUNDARIES_Qs=[
-  {q:'What is a personal boundary?',opts:['A rule someone else makes for you','A limit you set about what you are and are not comfortable with in relationships','A wall that keeps people away permanently','Something you only need if someone has hurt you'],correct:1,explain:'Boundaries are healthy limits you define for yourself.',hint:'A boundary is your own limit - what you\'re comfortable with and what you\'re not.'},
-  {q:'A friend keeps borrowing money and never pays it back. You feel uncomfortable but have said nothing. What is a healthy response?',opts:['Keep lending money so they stay happy','Stop answering their calls','Calmly say "I\'m not comfortable lending money anymore" and hold to that','Lend the money but complain to others'],correct:2,explain:'Stating your boundary clearly and calmly is the healthy approach.',hint:'You are allowed to say no to lending money. State it clearly and stick to it.'},
-  {q:'Someone keeps hugging you even though you have told them you do not like being hugged. What is this called?',opts:['Being friendly','Ignoring a boundary you set','Being affectionate','A misunderstanding you should ignore'],correct:1,explain:'Continuing a physical action after someone has clearly said they do not want it is a boundary violation.',hint:'When you have clearly said no and someone continues anyway, that is a boundary violation.'},
-  {q:'How should you feel about setting a boundary with someone?',opts:['Guilty - you might hurt their feelings','Nervous - they might leave you','Okay - boundaries are healthy and you have the right to set them','Selfish - it\'s only about what you want'],correct:2,explain:'Setting boundaries is a normal, healthy part of any relationship.',hint:'You have the right to set boundaries. It\'s not selfish - it\'s healthy.'},
-  {q:'A family member reads your private messages without asking. What can you do?',opts:['Nothing - family can do whatever they want','Accept it - privacy is not important','Calmly tell them your messages are private and you would like them to ask before looking','Become very secretive and stop talking to them'],correct:2,explain:'Privacy is a right, even within families.',hint:'Privacy matters even with family. Calmly stating your boundary is appropriate.'},
-  {q:'What does it mean to respect someone else\'s boundary?',opts:['Agreeing with every rule they make','Stopping or changing your behavior when someone tells you they are uncomfortable','Only following their rules when you feel like it','Asking them to explain their boundaries in detail'],correct:1,explain:'Respecting a boundary means stopping the behavior when asked, without argument.',hint:'Respect means stopping when asked, even if you don\'t fully understand why.'},
-  {q:'Your partner gets upset if you spend time with other friends and wants you available at all times. Is this healthy?',opts:['Yes - that\'s what love looks like','No - healthy relationships allow both people to have their own friendships and time alone','Maybe - it depends how much they love you','Yes - it means they trust you'],correct:1,explain:'Healthy relationships include independence. Needing someone available at all times is a sign of an unhealthy relationship.',hint:'Healthy relationships allow both people space, friendships, and independence.'},
-  {q:'Someone online keeps sending you messages after you asked them to stop. What should you do?',opts:['Keep responding hoping they will stop','Block them, report if necessary, and tell a trusted adult if you feel unsafe','Apologize to them for asking them to stop','Meet them in person to sort it out'],correct:1,explain:'You have the right to not be contacted after asking someone to stop.',hint:'Block, report if needed, and tell someone you trust. You have the right to not be contacted.'},
-  {q:'What is the difference between a boundary and a rule?',opts:['They are the same thing','A rule is set by someone in authority; a boundary is set by you about your own comfort','Boundaries are only for relationships; rules are for workplaces','Rules are negotiable; boundaries are not'],correct:1,explain:'Rules come from outside. Boundaries come from you - they reflect what you need.',hint:'Rules come from outside. Boundaries come from you - they reflect what you need to feel safe.'},
-  {q:'A friend consistently cancels plans at the last minute. You feel hurt. What is a healthy way to handle this?',opts:['Stop making plans but never explain why','Say "It really hurts when plans get cancelled last minute - can we talk about it?"','Immediately end the friendship','Post about it publicly'],correct:1,explain:'Expressing how the behavior affects you - calmly and directly - gives the friendship a chance to improve.',hint:'Tell them how it makes you feel, calmly and directly. Give the friendship a chance.'},
+  {q:'Which statement is the clearest example of a boundary?',opts:['"Do whatever you want"','"I am not okay with being yelled at"','"You need to make me happy"','"I guess it is fine"'],correct:1,explain:'A boundary clearly states what you are or are not okay with. It is about your limit, not controlling someone else.',hint:'A boundary sounds clear and specific.'},
+  {q:'A friend asks to borrow money again even though they still have not paid you back from last time. What is a healthy response?',opts:['Keep saying yes so they do not get upset','Ghost them and never explain why','"I am not comfortable lending money right now"','Lend it again, then complain about them to other people'],correct:2,explain:'That response is direct, calm, and honest. Healthy boundaries do not require a long explanation.',hint:'Clear and calm is enough.'},
+  {q:'Someone keeps trying to hug you after you already said, "I do not want hugs." What is happening?',opts:['They are just being extra friendly','They are ignoring a boundary you already set','You should let it happen to avoid awkwardness','It is only a problem if they meant to upset you'],correct:1,explain:'When you clearly say no to touch and someone continues anyway, that is a boundary violation.',hint:'No touching means no touching.'},
+  {q:'You tell a classmate, "Please do not joke about my speech." They laugh and do it again the next day. What would be the healthiest next step?',opts:['Say nothing and hope it stops','Calmly repeat the boundary and get support from an adult or supervisor if needed','Make fun of them back','Pretend it does not bother you'],correct:1,explain:'Repeating the boundary and getting support when needed protects you. You do not have to handle repeated disrespect alone.',hint:'Repeat the boundary, then get support if it continues.'},
+  {q:'A family member reads your private messages without asking. Which response best protects your privacy?',opts:['"It is fine. I do not deserve privacy"','Hide everything and stop talking to them forever','"My messages are private. Please ask before looking at my phone"','Read their messages back to get even'],correct:2,explain:'That response is calm, clear, and focused on the behavior. Privacy matters, even in close relationships.',hint:'State the privacy limit clearly.'},
+  {q:'What does respecting someone else\'s boundary look like?',opts:['Arguing with them until they explain it better','Stopping or changing your behavior when they say they are uncomfortable','Only respecting it if you agree with it','Teasing them about it'],correct:1,explain:'Respect means changing your behavior when someone states a limit. You do not have to fully understand their reason to respect it.',hint:'Respect means stop when asked.'},
+  {q:'Your partner gets upset every time you spend time with friends and expects you to answer instantly. Is that healthy?',opts:['Yes, it proves they care','No, healthy relationships allow space, friendships, and independence','Maybe, if they miss you a lot','Yes, because couples should do everything together'],correct:1,explain:'Healthy relationships include trust and independence. Wanting total access to your time is not the same as caring.',hint:'Healthy love still allows space.'},
+  {q:'Someone online keeps messaging you after you already said, "Stop contacting me." What should you do next?',opts:['Keep replying so they calm down','Block them, report if needed, and tell a trusted person if you feel unsafe','Apologize for being too harsh','Meet them in person to clear things up'],correct:1,explain:'You have the right to end contact. Blocking and reporting can be the safest next step when someone ignores that boundary.',hint:'You do not owe continued contact.'},
+  {q:'What is the difference between a rule and a boundary?',opts:['They mean the same thing','A rule is usually set by a system or authority; a boundary is a limit you set for your own comfort or safety','Rules matter more than boundaries','Boundaries are only for dating relationships'],correct:1,explain:'Rules usually come from outside systems, like school or work. Boundaries come from your own needs, comfort, and safety.',hint:'Rule = outside. Boundary = personal limit.'},
+  {q:'A friend cancels plans at the last minute again, and you feel hurt. Which response gives the friendship the best chance to improve?',opts:['Post about it online','Never make plans again but never explain why','"It hurts when plans change last minute. Can we talk about that?"','End the friendship immediately'],correct:2,explain:'That response is honest and specific without attacking the person. It gives them a chance to understand the impact and do better.',hint:'Name the behavior and how it affects you.'},
 ];
 
 const FEELINGS_Qs=[
-  {q:'You are feeling really frustrated and feel like you might say something you\'ll regret. What is the best first step?',opts:['Say everything you\'re feeling immediately','Walk away or take a few deep breaths before responding','Bottle it up and never say anything','Text the person everything right now'],correct:1,explain:'Taking a pause before responding when frustrated helps you respond rather than react.',hint:'When frustrated, pause before you respond. A few deep breaths can change everything.'},
-  {q:'What does it mean to name your feelings?',opts:['Writing your emotions in a diary','Telling another person every feeling you have','Identifying and putting words to what you are experiencing emotionally','Giving your feelings nicknames'],correct:2,explain:'Naming your feelings helps you understand yourself better.',hint:'Naming a feeling means putting a word to it - "I feel frustrated, sad, nervous."'},
-  {q:'A friend said something that hurt your feelings and you have not told them. How does this usually affect a friendship?',opts:['It helps by avoiding conflict','It usually causes the hurt to grow and creates distance over time','It protects both of you from discomfort','It always resolves itself naturally'],correct:1,explain:'Unspoken hurt tends to grow. A calm, honest conversation gives the friendship a chance to heal.',hint:'Unexpressed hurt usually grows. A calm honest conversation is better in the long run.'},
-  {q:'How can you tell if someone might be upset even if they say they are fine?',opts:['You cannot - always take people at their word','Look at body language: crossed arms, little eye contact, shorter answers, tone of voice','Ask them repeatedly until they tell you the truth','Assume they are fine and move on'],correct:1,explain:'Communication is more than words. Body language often tells a truer story.',hint:'Watch body language - crossed arms, tone, eye contact - it often says more than words.'},
-  {q:'You feel angry about something that happened. What is a healthy way to manage that anger?',opts:['Take it out on someone nearby','Pretend you are not angry','Take a walk, write about it, talk to someone you trust, or do something physical','Hold it in until it goes away'],correct:2,explain:'Healthy anger management means finding a release that does not harm you or others.',hint:'Healthy release: walk, write, talk to someone safe. Let it out without taking it out on others.'},
-  {q:'A friend says your feelings are not a big deal and others have it worse. How does this response usually make people feel?',opts:['Better - it gives perspective','Understood and supported','Dismissed - like their feelings do not matter','Inspired to be more positive'],correct:2,explain:'Comparing pain or telling someone how to feel is dismissive, even when well-intentioned.',hint:'Comparing pain or telling someone to feel differently usually makes them feel dismissed.'},
-  {q:'What is the difference between reacting and responding to a difficult situation?',opts:['They are the same thing','Reacting is immediate and emotional; responding is thoughtful and intentional after a pause','Responding means agreeing; reacting means disagreeing','Reacting is always wrong'],correct:1,explain:'A reaction is immediate and driven by emotion. A response involves pausing and choosing how to engage.',hint:'Reaction = immediate and emotional. Response = pause first, then engage thoughtfully.'},
-  {q:'Someone criticizes your work harshly in front of others. You feel embarrassed. What is a healthy way to handle this?',opts:['Cry immediately to show how hurt you are','Lash out at them in front of the group','Take a breath, feel it privately, and address it calmly when ready','Pretend it did not affect you at all'],correct:2,explain:'Acknowledging your feelings privately and addressing the situation calmly is mature and effective.',hint:'It\'s okay to feel it. Deal with it privately and address the situation when you\'re calm.'},
-  {q:'What does empathy mean?',opts:['Feeling the exact same thing as another person','Feeling sorry for someone because they are weaker','Understanding and sharing in someone else\'s feelings - seeing it from their perspective','Agreeing with everything someone feels'],correct:2,explain:'Empathy means trying to understand how someone else is feeling and acknowledging that experience.',hint:'Empathy = understanding and acknowledging how someone else feels, from their perspective.'},
-  {q:'You notice you have been feeling low, sad, or hopeless for several weeks. What should you do?',opts:['Wait for it to pass on its own','Tell yourself to stop being negative','Talk to a trusted person - a doctor, support worker, or counselor','Isolate yourself until you feel better'],correct:2,explain:'Persistent low mood is worth talking to someone about. Reaching out is a sign of strength.',hint:'Feeling low for weeks is worth talking to someone about. Reaching out is always the right move.'},
+  {q:'You are so frustrated that you feel yourself getting louder. What is the best first step?',opts:['Say everything immediately before you explode','Pause, breathe, or step away for a minute before responding','Pretend you are not upset at all','Send an angry text right away'],correct:1,explain:'Pausing gives your brain time to settle so you can respond instead of react. That protects both you and the conversation.',hint:'Pause first. Then decide what to say.'},
+  {q:'You notice your stomach feels tight, your hands are sweaty, and your mind keeps racing before a meeting. Which feeling fits best?',opts:['Excited','Embarrassed','Nervous or anxious','Bored'],correct:2,explain:'Those body signals often match anxiety or nervousness. Naming the feeling can help you choose the right support strategy.',hint:'Look at the body clues.'},
+  {q:'A friend made a joke that hurt your feelings, but you never mention it. What often happens next?',opts:['The hurt usually fades right away on its own','The problem often grows because the other person does not know they hurt you','The friendship gets stronger because you avoided conflict','Nothing changes at all'],correct:1,explain:'Unspoken hurt often builds into distance or resentment. Calm honest communication gives the friendship a chance to recover.',hint:'Unspoken hurt usually grows.'},
+  {q:'Someone says, "I\'m fine," but they avoid eye contact, cross their arms, and answer with one-word replies. What is the best reading of the situation?',opts:['They are definitely fine','They may be upset, uncomfortable, or not ready to talk','They want you to keep asking over and over','They are being rude on purpose'],correct:1,explain:'Words matter, but body language and tone matter too. Those clues suggest the person may not actually be okay.',hint:'Pay attention to the nonverbal signals.'},
+  {q:'You are angry after an argument and need a healthy release. Which choice helps most?',opts:['Take it out on the next person you see','Hold it in until you feel numb','Walk, breathe, write, or talk to someone safe','Post about the person online'],correct:2,explain:'Healthy coping helps you release emotion without hurting yourself or someone else. Physical movement, writing, and safe conversation all help.',hint:'Release the feeling without causing harm.'},
+  {q:'You tell someone you are upset and they reply, "Other people have it worse." How does that usually land?',opts:['Supportive and calming','Helpful because it fixes the problem','Dismissive, like your feelings do not matter','Funny and lighthearted'],correct:2,explain:'Comparing pain usually makes people feel brushed off. Feeling heard matters more than being told your feelings are too small.',hint:'Being compared usually feels dismissive.'},
+  {q:'What is the difference between reacting and responding?',opts:['There is no difference','Reacting is immediate and emotional; responding happens after a pause and choice','Responding means agreeing with the other person','Reacting is always wrong and responding is always easy'],correct:1,explain:'A reaction happens fast. A response gives you a moment to think about what will help instead of what your strongest emotion wants right away.',hint:'Response includes a pause.'},
+  {q:'A supervisor criticizes your work in front of others and you feel embarrassed. What is the healthiest move?',opts:['Embarrass them back immediately','Pretend you feel nothing and carry on','Take a breath, steady yourself, and address it privately when you are ready','Quit on the spot without saying anything'],correct:2,explain:'Your feelings are real, but handling the issue calmly later usually works better than reacting in the moment. It protects your dignity and your message.',hint:'Feel it first. Address it when calm.'},
+  {q:'A friend says, "I keep messing everything up." Which response shows empathy?',opts:['"That is not true. Stop talking like that"','"I know exactly how you feel" even if you do not','"That sounds really heavy. Do you want to talk about it?"','"At least you still have other good things"'],correct:2,explain:'Empathy sounds like presence and curiosity, not fixing, minimizing, or making it about you. It helps the other person feel understood.',hint:'Lead with understanding, not fixing.'},
+  {q:'You have felt sad, low, or hopeless for weeks and it is not really improving. What is the best next step?',opts:['Keep it to yourself and wait longer','Tell yourself to toughen up','Reach out to a trusted adult, doctor, counselor, or support person','Isolate until it disappears'],correct:2,explain:'Long-lasting low mood deserves support. Asking for help is a healthy action, not a failure.',hint:'Ongoing sadness is worth support.'},
 ];
 
 const CONFLICT_Qs=[
-  {q:'What is the first thing you should do when you feel a conflict starting with someone?',opts:['Raise your voice so they understand you are serious','Take a breath, stay calm, and focus on the issue - not the person','Give them the silent treatment until they apologize','Involve as many other people as possible'],correct:1,explain:'Staying calm and focusing on the issue rather than the person is the foundation of resolving conflict well.',hint:'Stay calm. Focus on the issue, not the person.'},
-  {q:'You and a friend disagree about plans. Neither wants to change their mind. What is a healthy approach?',opts:['One person has to give in completely','Find a compromise that works for both of you','Stop being friends','Do both things separately and never talk about it'],correct:1,explain:'Compromise - finding something that works for both people - is the foundation of healthy disagreement.',hint:'Look for a middle ground. A good compromise means both people feel heard.'},
-  {q:'What does it mean to use "I" statements in a conflict?',opts:['Starting every sentence with the word I','Saying "I feel hurt when..." instead of "You always..." to express yourself without blaming','Only talking about your own feelings','Using I to show you are the more important person'],correct:1,explain:'"I feel hurt when you cancel plans" is very different from "You always cancel."',hint:'"I feel..." instead of "You always..." keeps the conversation open instead of defensive.'},
-  {q:'A conflict has escalated and both people are very upset. What is sometimes the best thing to do?',opts:['Keep pushing until someone admits they are wrong','Take a break and come back when both people are calmer','Never leave the conversation - always finish it','Bring in as many people as possible to take your side'],correct:1,explain:'Taking a break prevents things from being said that cannot be taken back.',hint:'It\'s okay to pause a conflict. A break to cool down often leads to a much better conversation.'},
-  {q:'What does it mean to apologize sincerely?',opts:['Saying sorry so the other person stops being upset','Acknowledging specifically what you did, how it affected them, and that you will try not to do it again','Explaining all the reasons why you did what you did','Saying sorry only if you think you were wrong'],correct:1,explain:'A real apology acknowledges the specific action, recognizes the impact, and includes intention to change.',hint:'A real apology names what happened, acknowledges the impact, and shows intention to change.'},
-  {q:'Someone is very angry at you and raising their voice. What is the best response?',opts:['Match their energy and raise your voice back','Walk away without saying anything','Stay calm and say "I want to talk about this but not while we\'re both this upset"','Tell them to stop being so emotional'],correct:2,explain:'Staying calm when someone else escalates is difficult but effective.',hint:'Stay calm. Matching their energy escalates things. Suggest talking when both are calmer.'},
-  {q:'After a conflict is resolved, what is a good next step?',opts:['Never bring it up again under any circumstances','Pretend it never happened','Check in with the other person and make sure you\'re both okay','Tell others about how you handled the argument'],correct:2,explain:'A brief check-in after a resolved conflict shows care for the relationship.',hint:'A short check-in after resolution shows you care about the relationship, not just the argument.'},
-  {q:'What is the difference between assertive and aggressive communication?',opts:['They are the same - being firm is always aggressive','Assertive means expressing your needs clearly and respectfully; aggressive means attacking or threatening','Assertive means you are always right; aggressive means you are wrong','Aggressive is just assertive with more emotion'],correct:1,explain:'Assertiveness communicates your needs while respecting the other person.',hint:'Assertive = clear, firm, respectful. Aggressive = attacking, threatening, or overriding the other person.'},
-  {q:'A conflict has been ongoing and you cannot seem to resolve it alone. What is a healthy option?',opts:['Give up on the relationship entirely','Keep repeating the same argument','Seek support from a counselor or trusted person who can help facilitate','Involve as many people as possible to pressure the other person'],correct:2,explain:'Seeking outside support is a mature and healthy option when two people are stuck.',hint:'If you\'re stuck, it\'s okay to seek support from someone trusted to help mediate.'},
-  {q:'What does it mean to forgive someone?',opts:['Pretending what they did never happened','Saying the behavior was okay','Deciding to release the ongoing pain for your own wellbeing - it does not mean you must trust them or continue the relationship','Always welcoming them back into your life'],correct:2,explain:'Forgiveness is for you, not them. It means releasing the weight of ongoing anger or pain.',hint:'Forgiveness is for your own wellbeing. It doesn\'t mean what happened was okay.'},
+  {q:'You can feel an argument starting and your body is getting tense. What should happen first?',opts:['Raise your voice so you do not lose control','Pause, breathe, and focus on the problem instead of attacking the person','Bring in other people right away','Stop speaking to them forever'],correct:1,explain:'Staying calm at the start of a conflict gives you a much better chance of solving the real issue instead of creating a bigger one.',hint:'Problem first, person second.'},
+  {q:'You want to see a movie. Your friend wants to go bowling. Neither of you likes the other idea. What is the healthiest next move?',opts:['One person should always give in completely','Find a compromise, like choosing one today and one next time','Cancel everything and go home angry','Keep arguing until someone gives up'],correct:1,explain:'Compromise helps both people feel considered. It protects the relationship and solves the problem at the same time.',hint:'Look for a middle ground.'},
+  {q:'Which sentence is the best example of an "I" statement?',opts:['"You always ruin everything"','"I feel frustrated when plans change at the last minute"','"I think you are selfish"','"You need to stop doing that right now"'],correct:1,explain:'"I" statements focus on your experience instead of attacking the other person. That makes it easier for them to listen instead of getting defensive.',hint:'Describe your feeling and the behavior.'},
+  {q:'A disagreement is getting hotter and both people are starting to yell. What is often the best move?',opts:['Keep going until someone wins','Take a break and come back when both people are calmer','Call more people into the argument','Say something extra sharp so they understand you'],correct:1,explain:'A short break can keep the conflict from turning into damage. It creates space to think and settle your nervous system.',hint:'Pause can be healthy, not avoidant.'},
+  {q:'You snapped at someone and now you know you were unfair. Which apology is strongest?',opts:['"Sorry, but you made me mad"','"I am sorry I snapped at you. That was not fair, and I will try to handle it better next time"','"Sorry if you were offended"','"Let us just forget it"'],correct:1,explain:'A strong apology names what happened, takes responsibility, and shows a plan to do better. It does not hide behind excuses.',hint:'Own it clearly. No “but.”'},
+  {q:'Someone is angry and raising their voice at you. Which response is most likely to calm the situation instead of making it worse?',opts:['Match their tone so they know you are serious','Walk away without saying a word','"I want to talk about this, but not while we are both this upset"','"You are overreacting"'],correct:2,explain:'That response sets a limit without insulting the person. It protects the conversation from spiraling further.',hint:'Set a calm boundary around the conversation.'},
+  {q:'After a conflict is mostly resolved, what is a good follow-up?',opts:['Pretend it never happened','Tell other people how well you handled it','Check in later and make sure both of you are okay','Bring it up again to prove your point one more time'],correct:2,explain:'A brief check-in shows you care about the relationship, not just about ending the argument. It helps rebuild trust.',hint:'Repair matters after the conflict too.'},
+  {q:'Which choice is assertive instead of aggressive?',opts:['"Do it my way or else"','"Here is what I need, and I want to hear your side too"','"Whatever, I do not care"','"You never listen, so why bother"'],correct:1,explain:'Assertive communication is clear and respectful. It states your need without attacking, threatening, or disappearing.',hint:'Clear + respectful = assertive.'},
+  {q:'You keep having the same conflict with someone and nothing changes. What is a healthy option?',opts:['Keep repeating the same argument forever','Get support from a counselor, supervisor, or trusted person to help you work through it','Give up and disappear without explanation','Pressure the person by involving lots of other people'],correct:1,explain:'Outside support can help when two people are stuck. Asking for help is often a mature next step, not a failure.',hint:'Sometimes stuck problems need support.'},
+  {q:'What does healthy forgiveness really mean?',opts:['Pretending nothing happened','Deciding the behavior was okay','Choosing to let go of ongoing anger for your own wellbeing, without forcing yourself to trust the person again','Letting the person back into your life no matter what'],correct:2,explain:'Forgiveness is about your own healing. It does not require forgetting, excusing the harm, or rebuilding trust before you are ready.',hint:'Forgiveness is not the same as trust.'},
 ];
 
 const GENERAL_Qs=[
-  {q:'What does it mean to show respect to someone?',opts:['Agreeing with everything they say','Treating them with dignity and consideration, even if you disagree','Only being kind to people you like','Giving them compliments regularly'],correct:1,explain:'Respect means treating people with basic dignity regardless of whether you agree with them.',hint:'Respect means dignity and consideration - even toward people you disagree with.'},
-  {q:'You realize you said something that accidentally hurt someone\'s feelings. What should you do?',opts:['Pretend it did not happen','Say "I didn\'t mean to hurt you, but..."','Genuinely apologize and check how they are doing','Explain all the reasons why what you said was actually fine'],correct:2,explain:'A genuine apology without "but" goes much further than a qualified one.',hint:'Apologize genuinely, without "but." Check on how they are doing.'},
-  {q:'What is the difference between being alone and being lonely?',opts:['They are exactly the same thing','Being alone is a physical state; loneliness is an emotional feeling - you can feel lonely in a crowd','Being alone always leads to loneliness','Loneliness only happens when someone rejects you'],correct:1,explain:'You can be alone and feel fine. You can also be surrounded by people and feel lonely.',hint:'Being alone = physical. Loneliness = emotional. They are not the same.'},
-  {q:'Someone tells you they are struggling. You do not know what to say. What is the best response?',opts:['"I\'m sure it\'ll be fine, don\'t worry."','"You should try to be more positive."','"I\'m here. You don\'t have to go through this alone." and just listen','"I had a similar problem once - let me tell you about it."'],correct:2,explain:'Often people who are struggling just need to feel heard and not alone.',hint:'Sometimes the best thing you can say is "I\'m here." Just listen.'},
-  {q:'What is active listening?',opts:['Listening while doing something else','Fully paying attention - making eye contact, not interrupting, and responding to what was actually said','Listening for the parts that relate to you','Waiting for the other person to finish so you can share your opinion'],correct:1,explain:'Active listening is engaged, present, and responsive.',hint:'Active listening = eyes on them, no interrupting, responding to what they actually said.'},
-  {q:'What does it mean for a relationship to be healthy?',opts:['Both people always agree and never argue','One person makes decisions for both','Both people feel safe, respected, heard, and free to be themselves','Both people spend every moment together'],correct:2,explain:'Healthy relationships are built on mutual respect, safety, and the freedom to be yourself.',hint:'Healthy = both people feel safe, respected, and free to be themselves.'},
-  {q:'A person you know always talks about themselves and never asks about you. What does this suggest about the friendship?',opts:['You should be grateful they share so much','The friendship is very balanced','The friendship may be one-sided - good friendships involve mutual interest','You should try harder to be more interesting'],correct:2,explain:'Friendships should be mutual - interest, care, and sharing should go both ways.',hint:'Friendships should go both ways. Mutual interest and care are signs of a healthy connection.'},
-  {q:'What does it mean to be assertive?',opts:['Being aggressive when you need something','Expressing your needs and feelings clearly and respectfully, without apologizing for having them','Always putting others first','Demanding what you want loudly'],correct:1,explain:'Assertiveness is the confident, respectful expression of your needs and boundaries.',hint:'Assertive = clear, confident, respectful. Not passive, not aggressive.'},
-  {q:'You disagree with a group decision. What is an appropriate way to handle it?',opts:['Go along with it and say nothing even if you feel strongly','Refuse to participate until the decision changes','Voice your perspective calmly once, then respect the group\'s decision','Keep bringing it up until the group changes their mind'],correct:2,explain:'Sharing your view clearly and once is assertive and appropriate.',hint:'Say your piece once, clearly and calmly. Then respect the decision even if you disagree.'},
-  {q:'What is one of the most important ingredients in any strong relationship?',opts:['Always agreeing with each other','Spending as much time together as possible','Trust - built through honesty, reliability, and following through on what you say','Having known each other for a long time'],correct:2,explain:'Trust is built through consistent honesty and reliability over time.',hint:'Trust - built through honesty and showing up consistently - is the foundation of every strong relationship.'},
+  {q:'A classmate shares an opinion you do not agree with. What does respect look like in that moment?',opts:['Agreeing even though you do not mean it','Treating them with dignity while sharing your own view respectfully','Rolling your eyes and mocking them later','Only being polite if they agree with you first'],correct:1,explain:'Respect is not the same as agreement. It means speaking and listening in a way that keeps the other person’s dignity intact.',hint:'Respect can exist with disagreement.'},
+  {q:'You realize a joke you made hurt someone\'s feelings. What is the best response?',opts:['Act like nothing happened','"I am sorry I hurt you" and check in without adding excuses','Explain why they should not feel hurt','Say "I was only joking" and move on'],correct:1,explain:'A direct apology works better than defending the joke. When impact matters, excuses usually make the hurt feel bigger.',hint:'Own the impact. Skip the excuse.'},
+  {q:'What is the difference between being alone and feeling lonely?',opts:['They are exactly the same','Being alone describes where you are; loneliness describes how you feel','Being alone always causes loneliness','Loneliness only happens after rejection'],correct:1,explain:'You can be alone and peaceful, or with other people and still feel lonely. One is about situation; the other is about feeling.',hint:'Situation and feeling are not the same thing.'},
+  {q:'Someone says, "I am really struggling right now," and you do not know what to say. Which reply is most helpful?',opts:['"It will be fine"','"You need to stay positive"','"I am here with you. Want to talk about it?"','"That reminds me of something that happened to me"'],correct:2,explain:'Being present and open is often more helpful than trying to fix the feeling right away. Support starts with listening.',hint:'Presence beats quick advice.'},
+  {q:'Which choice best shows active listening?',opts:['Waiting for your turn to speak','Looking busy while saying "yeah" now and then','Paying attention, not interrupting, and responding to the main point','Changing the subject to something related to you'],correct:2,explain:'Active listening means you are tracking what the other person actually said. Your response should show that you were present.',hint:'Listen to understand, not just to reply.'},
+  {q:'Which description sounds most like a healthy relationship or friendship?',opts:['One person makes most of the decisions','Both people feel safe, respected, heard, and free to be themselves','They never disagree about anything','They spend all their time together'],correct:1,explain:'Healthy relationships are built on safety, respect, and room for both people to be themselves. Total agreement is not the goal.',hint:'Healthy does not mean perfect. It means safe and respectful.'},
+  {q:'A person you know talks about themselves every time you meet and never asks about you. What does that suggest?',opts:['You should work harder to be interesting','The connection may be one-sided','That is what all good friendships are like','You should be thankful they talk at all'],correct:1,explain:'Balanced relationships include mutual interest. If one person never shows curiosity about you, the connection may not be very mutual.',hint:'Healthy connection goes both ways.'},
+  {q:'What does it mean to be assertive?',opts:['Demanding what you want loudly','Expressing your needs clearly and respectfully without apologizing for having them','Always putting others first','Getting aggressive when people ignore you'],correct:1,explain:'Assertiveness is the middle ground between passivity and aggression. It respects both your needs and the other person’s dignity.',hint:'Clear + respectful + honest.'},
+  {q:'Your group chooses a plan you would not have picked. What is an appropriate way to handle that?',opts:['Stay angry and keep bringing it up','Share your opinion calmly once, then respect the group decision','Refuse to participate at all','Agree out loud and complain later'],correct:1,explain:'You are allowed to voice your opinion, but healthy group participation also means accepting the final decision when it is time to move on.',hint:'Say your view. Then move forward.'},
+  {q:'What helps build strong trust in a relationship over time?',opts:['Always agreeing with each other','Knowing each other for many years, even without honesty','Honesty, reliability, and following through on what you say','Spending every possible minute together'],correct:2,explain:'Trust grows when people are honest and dependable again and again. Time alone does not build trust unless actions support it.',hint:'Trust is built by what people do consistently.'},
 ];
 
+
+function __vpHash(s){let h=0;for(let i=0;i<(s||'').length;i++){h=((h<<5)-h)+(s.charCodeAt(i)||0);h|=0;}return Math.abs(h);}
+function __vpPick(seed,arr){return arr[__vpHash(seed)%arr.length];}
+function __vpTrim(t){return String(t||'').replace(/\s+/g,' ').trim();}
+function __vpScenarioReady(t){return /^(You|Your|A |An |At |On |During |After |Before |Someone|A friend|A coworker|A classmate|A neighbor|Two people|One of your friends|You just|You are|It is|The group|The conversation|Your group)/i.test(__vpTrim(t));}
+function __vpCorrectText(q){if(!q)return 'the best answer'; if(typeof q.correct==='number'&&Array.isArray(q.opts)) return q.opts[q.correct]||'the best answer'; return q.correct||'the best answer';}
+function varietyPolishSocialReady(raw, mode){
+  if(!raw) return raw;
+  if(raw.__varietyPolished==='deep-social-v2') return raw;
+  const q={...raw,__varietyPolished:'deep-social-v2'};
+  const text=__vpTrim(q.q||'');
+  const blob=(text+' '+(q.explain||'')+' '+(q.hint||'')+' '+(Array.isArray(q.opts)?q.opts.join(' '):'')).toLowerCase();
+  const needsLead=/^(what is|which of these|what should|when is|how do|why is|which response|what helps)/i.test(text);
+  const leadMap={
+    situations:['You are in a real social situation and need the healthiest next step: ','A social clue shows up in front of you. What would help most? ','Think about what would keep this moment respectful and safe: '],
+    conversations:['You are talking with someone and need the strongest response: ','A conversation moment comes up. What keeps it balanced? ','Think about what helps the conversation feel clear and respectful: '],
+    boundaries:['A boundary is being tested here. What is the healthiest response? ','Someone pushes past a limit and you need to decide what to do: ','Think about the choice that protects comfort, privacy, or safety: '],
+    feelings:['Someone is feeling something important. What response helps most? ','An emotion shows up in the moment. What is the healthiest next move? ','Think about what would feel respectful, calm, and supportive here: '],
+    conflict:['A conflict is building and your response matters. What works best here? ','You need to handle disagreement without making the problem bigger. What should happen next? ','Think about the response that is clear, calm, and respectful: '],
+    _default:['A real social moment comes up. What is the healthiest next step? ','Think about what would keep this situation respectful and safe: ','A people problem shows up. What response works best? ']
+  };
+  const leadChoices=leadMap[mode]||leadMap._default;
+  q.q=__vpTrim((needsLead && !__vpScenarioReady(text) ? __vpPick((mode||'default')+'|'+text, leadChoices) : '') + text);
+  const anchor=(()=>{
+    if(/boundary|personal space|private|touch|no thanks|not comfortable|yelled at/.test(blob)) return 'boundaries protect your body, your feelings, and your private information';
+    if(/trust|stranger|someone new|personal information|share very personal|online/.test(blob)) return 'trust grows in steps - you do not owe quick closeness';
+    if(/listen|conversation|question|compliment|clarification|join|goodbye/.test(blob)) return 'share a little, listen a lot, and keep it clear';
+    if(/sad|grief|struggling|painful|sorry|feeling/.test(blob)) return 'notice the feeling first before trying to fix it';
+    if(/conflict|angry|yell|argument|apology|i statement|compromise/.test(blob)) return 'calm, respectful, and direct works better than louder';
+    return 'healthy social choices protect safety, respect, and clear communication';
+  })();
+  const teaching=(()=>{
+    if(mode==='boundaries') return 'A good boundary answer is usually clear, calm, and focused on your limit instead of on controlling the other person.';
+    if(mode==='conversations') return 'Strong conversation skills usually sound simple: join respectfully, listen carefully, and respond to what was actually said.';
+    if(mode==='feelings') return 'Supportive social choices often start by noticing the feeling instead of rushing to solve it.';
+    if(mode==='conflict') return 'Healthy conflict skills protect the relationship and the problem-solving at the same time.';
+    return 'Social skills get easier when you picture the real moment instead of just memorizing a rule.';
+  })();
+  const baseExplain=__vpTrim(q.explain||`The best answer is ${__vpCorrectText(q)}.`);
+  q.explain=/remember:/i.test(baseExplain)?baseExplain:__vpTrim(baseExplain+' '+teaching+' Remember: '+anchor+'.');
+  const shortHint=(()=>{
+    if(/boundary|personal space|private|touch|not comfortable/.test(blob)) return 'Clear boundary. Calm voice.';
+    if(/trust|stranger|personal information|online/.test(blob)) return 'Trust grows in steps.';
+    if(/listen|conversation|compliment|clarification|join|goodbye/.test(blob)) return 'Share a little. Listen a lot.';
+    if(/sad|grief|struggling|painful|sorry|feeling/.test(blob)) return 'Notice the feeling first.';
+    if(/conflict|angry|yell|argument|apology|compromise/.test(blob)) return 'Calm, respectful, direct.';
+    return 'Choose the response that protects respect and safety.';
+  })();
+  q.hint=shortHint;
+  return q;
+}
+
 function genQuestion(mode){
-  if(mode==='situations')    return rand(SITUATIONS_Qs);
-  if(mode==='conversations') return rand(CONVERSATIONS_Qs);
-  if(mode==='boundaries')    return rand(BOUNDARIES_Qs);
-  if(mode==='feelings')      return rand(FEELINGS_Qs);
-  if(mode==='conflict')      return rand(CONFLICT_Qs);
-  return rand([...SITUATIONS_Qs,...CONVERSATIONS_Qs,...BOUNDARIES_Qs,...FEELINGS_Qs,...CONFLICT_Qs,...GENERAL_Qs]);
+  if(mode==='situations')    return varietyPolishSocialReady(rand(SITUATIONS_Qs), mode);
+  if(mode==='conversations') return varietyPolishSocialReady(rand(CONVERSATIONS_Qs), mode);
+  if(mode==='boundaries')    return varietyPolishSocialReady(rand(BOUNDARIES_Qs), mode);
+  if(mode==='feelings')      return varietyPolishSocialReady(rand(FEELINGS_Qs), mode);
+  if(mode==='conflict')      return varietyPolishSocialReady(rand(CONFLICT_Qs), mode);
+  return varietyPolishSocialReady(rand([...SITUATIONS_Qs,...CONVERSATIONS_Qs,...BOUNDARIES_Qs,...FEELINGS_Qs,...CONFLICT_Qs,...GENERAL_Qs]), mode);
 }
 
 
@@ -2196,16 +3297,29 @@ function makeTappable(screenId){
     }
   });
 }
+
+function setActiveScreen(id, withNav=true){
+  const targetId='scr-'+id;
+  const screens=document.querySelectorAll('main > .scr');
+  screens.forEach(s=>{
+    const isActive=s.id===targetId;
+    s.classList.toggle('on', isActive);
+    s.hidden=!isActive;
+    s.style.display=isActive?'block':'none';
+    s.setAttribute('aria-hidden', isActive?'false':'true');
+  });
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  if(withNav){
+    const nb=document.getElementById('nb-'+id);
+    if(nb) nb.classList.add('on');
+  }
+  return document.getElementById(targetId);
+}
 function go(id){
   // Cancel speech when navigating, but not if a badge is currently being announced
   const _badgeShowing=document.getElementById('badge-toast')?.classList.contains('show');
   if(window.speechSynthesis && !_badgeShowing) window.speechSynthesis.cancel();
-  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-  const el=document.getElementById('scr-'+id);
-  if(el) el.classList.add('on');
-  const nb=document.getElementById('nb-'+id);
-  if(nb) nb.classList.add('on');
+  const el=setActiveScreen(id, true);
   if(id==='home'){
     document.getElementById('nb-home').classList.add('on');
     updateHomeUI();
@@ -2692,25 +3806,81 @@ function speakIntroCardText(title, lines){
     if(text) say(text);
   }catch(e){}
 }
-function showModeIntro(icon,title,color,lines,btnLabel,onConfirm){
-  const body=lines.map(([em,bold,sub])=>`
-    <div style="display:flex;gap:11px;align-items:flex-start;margin-bottom:10px">
-      <div style="font-size:1.2rem;width:26px;text-align:center;flex-shrink:0">${em}</div>
-      <div><strong style="color:var(--text)">${bold}</strong>${sub?'<div style="font-size:.78rem;color:var(--text2);margin-top:2px;line-height:1.5">'+sub+'</div>':''}</div>
+
+function showModeIntro(icon,title,color,lines,btnLabel,onConfirm,onCancel){
+  const safeLines = Array.isArray(lines) ? lines : [];
+  const modeTag = /PRACTICE/i.test(title) ? 'Support-Friendly' : /DAILY/i.test(title) ? 'Quick Mission' : /CHALLENGE/i.test(title) ? 'Score Run' : 'Focused Training';
+  const supportTag = /PRACTICE/i.test(title) ? 'Hints Ready' : /CHALLENGE/i.test(title) ? 'Replayable' : 'Guided Start';
+  const lineCards = safeLines.map(([emoji,bold,detail], idx)=>`
+    <div style="position:relative;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:10px 10px 10px 40px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);overflow:hidden">
+      <div style="position:absolute;left:10px;top:10px;width:22px;height:22px;border-radius:7px;background:${color}20;border:1px solid ${color}66;display:grid;place-items:center;font-size:.85rem">${emoji}</div>
+      <div style="font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.52);margin-bottom:3px">Signal ${idx+1}</div>
+      <div style="font-weight:800;font-size:.86rem;line-height:1.28;color:var(--text)">${bold||''}</div>
+      ${detail?`<div style="font-size:.76rem;line-height:1.42;color:var(--text2);margin-top:3px">${detail}</div>`:''}
     </div>`).join('');
-  openHint(`${icon} ${title}`,
-    `<div style="background:linear-gradient(135deg,${color}18,${color}06);border:1px solid ${color}55;border-radius:10px;padding:13px 14px;margin-bottom:4px">${body}</div>`,
-    btnLabel||'Let\'s Go! →', onConfirm, true);
+  const body = `
+    <div style="position:relative;border-radius:20px;overflow:hidden;padding:1px;background:linear-gradient(135deg,${color}88,rgba(255,255,255,.08),rgba(255,255,255,.02));box-shadow:0 16px 42px rgba(0,0,0,.42),0 0 28px ${color}20;">
+      <div style="position:relative;border-radius:19px;background:radial-gradient(circle at top right,${color}18,transparent 34%),linear-gradient(180deg,rgba(8,11,23,.97),rgba(6,8,18,.98));padding:14px 14px 12px;overflow:hidden">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.03) 0 1px,transparent 1px 5px);opacity:.12;pointer-events:none"></div>
+        <div style="position:absolute;inset:auto -24px 8px auto;width:110px;height:110px;border-radius:50%;background:${color}12;filter:blur(8px);pointer-events:none"></div>
+        <div style="position:relative;display:flex;gap:10px;align-items:flex-start;margin-bottom:10px">
+          <div style="width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,${color}38,rgba(255,255,255,.06));border:1px solid ${color}66;display:grid;place-items:center;font-size:1.55rem;box-shadow:0 0 0 3px rgba(255,255,255,.03),0 0 20px ${color}22 inset">${icon}</div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:7px">
+              <span style="padding:4px 8px;border-radius:999px;background:${color}20;border:1px solid ${color}55;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#fff">Mission Briefing</span>
+              <span style="padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:rgba(255,255,255,.78)">${modeTag}</span>
+              <span style="padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.10);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.68)">${supportTag}</span>
+            </div>
+            <div style="font-size:1.04rem;font-weight:900;letter-spacing:.04em;line-height:1.12;color:#fff;text-shadow:0 0 12px ${color}2e">${title}</div>
+          </div>
+        </div>
+        <div style="display:grid;gap:8px">${lineCards}</div>
+      </div>
+    </div>`;
+  openHint(`${icon} ${title}`, body, btnLabel||"Launch Mission →", onConfirm, true);
+  const modal=$('m-hint');
+  const mdl=modal?.querySelector('.mdl');
+  const titleEl=$('m-hint-title');
+  const bodyEl=$('m-hint-body');
+  if(titleEl) titleEl.style.display='none';
+  if(mdl){
+    mdl.style.padding='16px 16px 14px';
+    mdl.style.maxWidth='420px';
+    mdl.style.maxHeight='92vh';
+  }
+  if(bodyEl){
+    bodyEl.style.marginBottom='10px';
+    bodyEl.style.fontSize='.84rem';
+    bodyEl.style.lineHeight='1.5';
+  }
+  const cancel=$('m-hint-cancel');
+  if(cancel){
+    const inGame = !!document.getElementById('scr-game')?.classList.contains('on');
+    const launchCard = /(start|let\s*go|today\s*challenge)/i.test((btnLabel||'').replace(/[^a-z0-9 ]/ig,' '));
+    cancel.style.display='block';
+    cancel.textContent=launchCard?'Back Home':(inGame?'Back to Game':'Back Home');
+    cancel.onclick=()=>{
+      if(window.speechSynthesis) speechSynthesis.cancel();
+      closeM('m-hint');
+      if(launchCard){
+        if(typeof onCancel==='function') onCancel();
+        else go('home');
+        return;
+      }
+      if(typeof onCancel==='function') onCancel();
+      else if(!inGame) go('home');
+    };
+  }
+  const ok=$('m-hint-ok');
+  if(ok){
+    ok.textContent = btnLabel || 'Launch Mission →';
+  }
   setTimeout(()=>{
-    speakIntroCardText(title, lines);
-    const cancel = document.getElementById('m-hint-cancel');
-    if(cancel){
-      cancel.onclick = () => {
-        closeM('m-hint');
-        go('home');
-      };
-    }
-  },120);
+    try{
+      if(typeof speakIntroCardText==='function') speakIntroCardText(title, safeLines);
+      else if(typeof playIntroAudio==='function') playIntroAudio(title, safeLines);
+    }catch(e){}
+  }, 140);
 }
 
 function replayModeIntro(){
@@ -2801,7 +3971,7 @@ function genQuestionNoDupe(mode){
   if(remaining.length===0) ST.askedQs=[];
   const q=rand(pool.length>0?pool:all.length>0?all:[{q:'...',opts:['...','...','...','...'],correct:0,explain:'',hint:''}]);
   if(all.length>0) ST.askedQs.push(q);
-  return q;
+  return varietyPolishSocialReady(q, mode);
 }
 
 function genQuestionDedup(mode){
@@ -2960,6 +4130,25 @@ function missionControlSpeechAllowed(){
   return false;
 }
 function openHint(title,body,okLabel,onOk,showCancel){
+  const hintTitle=$('m-hint-title');
+  const hintBody=$('m-hint-body');
+  const hintModal=$('m-hint');
+  const hintCard=hintModal ? hintModal.querySelector('.mdl') : null;
+  if(hintTitle){
+    hintTitle.style.display='block';
+    hintTitle.style.marginBottom='12px';
+  }
+  if(hintBody){
+    hintBody.style.color='var(--text2)';
+    hintBody.style.fontSize='.88rem';
+    hintBody.style.lineHeight='1.7';
+    hintBody.style.marginBottom='16px';
+  }
+  if(hintCard){
+    hintCard.style.padding='24px';
+    hintCard.style.maxWidth='390px';
+    hintCard.style.maxHeight='90vh';
+  }
   $('m-hint-title').textContent=title;
   $('m-hint-body').innerHTML=typeof body==='string'?body:body;
   const ok=$('m-hint-ok');
@@ -3416,47 +4605,125 @@ function filterScores(mode,el){
   renderScores();
 }
 function renderScores(){
-  if(!SCORES.length){$('scores-wrap').innerHTML='<div class="no-data">No scores yet.<br>Complete a session to see your best!</div>';return;}
-  // Filter
-  let filtered=SCORES;
-  if(scoreFilter!=='all'){
-    filtered=SCORES.filter(s=>s.mode.toLowerCase().includes(scoreFilter.toLowerCase()));
-  }
-  if(!filtered.length){$('scores-wrap').innerHTML='<div class="no-data">No scores for this mode yet.</div>';return;}
-  // Find personal bests per mode
-  const bests={};
-  SCORES.forEach(s=>{if(!bests[s.mode]||s.score>bests[s.mode])bests[s.mode]=s.score;});
-  
-  // Read scores button
+  const wrap=$('scores-wrap');
+  if(!wrap) return;
+  const allScores=Array.isArray(SCORES)?SCORES.slice():[];
   const readBtn=document.getElementById('read-scores-btn');
-  if(readBtn && !readBtn.getAttribute('data-tts')){
-    readBtn.setAttribute('data-tts','1');
-    readBtn.addEventListener('click',()=>{
-      const rows=document.querySelectorAll('#scores-wrap .se');
-      if(!rows.length){say('No scores yet. Play a game to see your results here.');return;}
-      let txt='Your scores. ';
-      rows.forEach(r=>{
-        const mode=r.querySelector('.se-m');
-        const detail=r.querySelector('.se-d');
-        const val=r.querySelector('.se-v');
-        if(mode) txt+=cleanTTS(mode.innerText)+(val?', score '+cleanTTS(val.innerText):'')+(detail?'. '+cleanTTS(detail.innerText):'')+'. ';
+  if(readBtn){
+    readBtn.classList.add('sr-read-btn');
+    readBtn.textContent='🔊 READ THIS SCOREBOARD';
+    if(!readBtn.getAttribute('data-tts')){
+      readBtn.setAttribute('data-tts','1');
+      readBtn.addEventListener('click',()=>{
+        const rows=[...document.querySelectorAll('#scores-wrap .sr-run-card')].slice(0,6);
+        if(!rows.length){ say('No scores yet. Finish a session to populate your scoreboard.'); return; }
+        let txt='Mission scoreboard. ';
+        rows.forEach((r,i)=>{
+          const mode=r.querySelector('.sr-run-mode');
+          const meta=r.querySelector('.sr-run-meta');
+          const score=r.querySelector('.sr-run-score strong');
+          if(mode){
+            txt += 'Run '+(i+1)+', '+cleanTTS(mode.innerText)+'. ';
+            if(score) txt += 'Score '+cleanTTS(score.innerText)+'. ';
+            if(meta) txt += cleanTTS(meta.innerText)+'. ';
+          }
+        });
+        say(txt.trim());
       });
-      say(txt.trim());
-    });
+    }
   }
-$('scores-wrap').innerHTML=`<div class="slist">${filtered.map((s,i)=>{
-    const isPB=s.score===bests[s.mode]&&filtered.filter(x=>x.mode===s.mode).indexOf(s)===0;
-    const pct=s.total>0?Math.round(s.correct/s.total*100):0;
-    const hasStreak=s.streak>0;
-    return `<div class="se" style="${isPB?'border-color:var(--amber);background:rgba(255,187,51,.05)':''}">
-      <div>
-        <div class="se-m">${s.mode.toUpperCase()}${isPB?' <span style="color:var(--amber);font-size:.6rem">★ BEST</span>':''}</div>
-        <div class="se-d">${s.date} · ${s.correct}/${s.total} correct · ${pct}%${hasStreak?' · streak '+s.streak:''}</div>
-      </div>
-      <div class="se-v" style="${isPB?'color:var(--amber)':''}">${s.score}</div>
-    </div>`;
-  }).join('')}</div>`;
+
+  const emptyState=(title,copy)=>{
+    wrap.innerHTML=`<div class="sr-empty"><span class="sr-empty-icon">🕹️</span><div class="sr-empty-title">${title}</div><div class="sr-empty-copy">${copy}</div></div>`;
+  };
+
+  if(!allScores.length){
+    emptyState('No scores on the board yet','Finish a session to start building your arcade record, personal bests, and replay streak.');
+    return;
+  }
+
+  let filtered=allScores;
+  if(scoreFilter!=='all') filtered=allScores.filter(s=>String(s.mode||'').toLowerCase().includes(String(scoreFilter||'').toLowerCase()));
+  if(!filtered.length){
+    emptyState('No runs match this filter','Try another mode tab or play this activity again to add fresh results to the board.');
+    return;
+  }
+
+  const bests={};
+  allScores.forEach(s=>{ const key=String(s.mode||'Unknown'); const val=Number(s.score)||0; if(bests[key]===undefined || val>bests[key]) bests[key]=val; });
+
+  const enrich=(s,idx)=>{
+    const score=Number(s.score)||0;
+    const correct=Number(s.correct)||0;
+    const total=Number(s.total)||0;
+    const streak=Number(s.streak)||0;
+    const pct=total>0?Math.round((correct/total)*100):0;
+    const mode=String(s.mode||'Unknown Mode');
+    const isPB=score===bests[mode] && filtered.findIndex(x=>x===s)===idx;
+    return {raw:s, idx, score, correct, total, streak, pct, mode, date:String(s.date||'Recent run'), isPB};
+  };
+
+  const rows=filtered.map(enrich);
+  const bestScore=Math.max(...rows.map(r=>r.score),0);
+  const totalRuns=rows.length;
+  const avgAccuracy=Math.round(rows.reduce((a,r)=>a+r.pct,0)/Math.max(rows.length,1));
+  const latest=rows[0];
+  const bestRun=rows.slice().sort((a,b)=> (b.score-a.score) || (b.pct-a.pct) || (b.correct-a.correct))[0];
+  const topRuns=rows.slice().sort((a,b)=> (b.score-a.score) || (b.pct-a.pct) || (b.correct-a.correct)).slice(0,5);
+  const modeCounts={}; rows.forEach(r=>{modeCounts[r.mode]=(modeCounts[r.mode]||0)+1;});
+  const hottestMode=Object.entries(modeCounts).sort((a,b)=>b[1]-a[1])[0]?.[0] || latest.mode;
+  const personalBestCount=rows.filter(r=>r.isPB).length;
+  const uniqueModes=new Set(rows.map(r=>r.mode)).size;
+  const maxScore=Math.max(bestScore,1);
+
+  function scoreGrade(pct,score){
+    if(pct>=96 || score>=95) return 'S';
+    if(pct>=88 || score>=85) return 'A';
+    if(pct>=75 || score>=70) return 'B';
+    if(pct>=60 || score>=55) return 'C';
+    return 'D';
+  }
+  function statCard(label,value,note){
+    return `<div class="sr-stat"><span class="sr-stat-label">${label}</span><span class="sr-stat-value">${value}</span><span class="sr-stat-note">${note}</span></div>`;
+  }
+  function featureCard(label,run,caption){
+    const fill=Math.max(8,Math.min(100,Math.round((run.score/maxScore)*100)));
+    return `<div class="sr-panel"><div class="sr-panel-title">${label}</div><div class="sr-feature"><div><div class="sr-feature-mode">${run.mode}</div><div class="sr-feature-meta">${run.date} · ${run.correct}/${run.total||0} correct · ${run.pct}% accuracy${run.streak>0?' · streak '+run.streak:''}</div></div><div class="sr-feature-score">${run.score}<small>${caption}</small></div></div><div class="sr-bar"><div class="sr-fill" style="width:${fill}%"></div></div></div>`;
+  }
+  function runCard(run,rank,showRank){
+    const fill=Math.max(8,Math.min(100,Math.round((run.score/maxScore)*100)));
+    const grade=scoreGrade(run.pct,run.score);
+    return `<div class="sr-run-card"><div class="sr-rank">${showRank?rank:'•'}</div><div><div class="sr-run-mode">${run.mode}</div><div class="sr-run-badges"><span class="sr-mini">${run.correct}/${run.total||0} correct</span><span class="sr-mini">${run.pct}% accuracy</span>${run.streak>0?`<span class="sr-mini">streak ${run.streak}</span>`:''}${run.isPB?`<span class="sr-mini pb">personal best</span>`:''}</div><div class="sr-run-meta">Logged ${run.date}. ${run.pct>=90?'Locked in a sharp run.':run.pct>=75?'Solid session with room to climb.':'More reps here could turn this into a stronger run.'}</div><div class="sr-bar"><div class="sr-fill" style="width:${fill}%"></div></div></div><div class="sr-run-score"><strong>${run.score}</strong><span>grade ${grade}</span></div></div>`;
+  }
+
+  wrap.innerHTML=`<div class="sr-shell">
+    <div class="sr-hero">
+      <div class="sr-kicker">ARCADE ARCHIVE</div>
+      <div class="sr-title">Mission Scoreboard</div>
+      <div class="sr-sub">Your saved runs, personal bests, and strongest replays all live here. Filter by mode, chase cleaner runs, and watch your progress stack up.</div>
+      <div class="sr-chipline"><span class="sr-chip">${uniqueModes} modes logged</span><span class="sr-chip">${personalBestCount} personal best${personalBestCount===1?'':'s'}</span><span class="sr-chip">Showing ${totalRuns} run${totalRuns===1?'':'s'}</span></div>
+    </div>
+    <div class="sr-grid">
+      ${statCard('Best Score',bestScore,bestRun.mode+' owns the current top slot.')}
+      ${statCard('Average Accuracy',avgAccuracy+'%',avgAccuracy>=85?'Strong consistency across this board.':'A few cleaner runs could lift this quickly.')}
+      ${statCard('Latest Run',latest.score,latest.mode+' was your most recent save.')}
+      ${statCard('Hottest Mode',hottestMode,(Object.entries(modeCounts).sort((a,b)=>b[1]-a[1])[0]?.[1]||1)+' saved runs in this filter.')}
+    </div>
+    <div class="sr-duo">
+      ${featureCard('Latest Transmission',latest,'latest run')}
+      ${featureCard('High Score Signal',bestRun,'top score')}
+    </div>
+    <div class="sr-section">
+      <div class="sr-sec-head"><div class="sr-sec-title">Top Runs</div><div class="sr-sec-meta">Best score first · ties break by accuracy</div></div>
+      <div class="sr-runlist">${topRuns.map((run,i)=>runCard(run,i+1,true)).join('')}</div>
+    </div>
+    <div class="sr-section">
+      <div class="sr-sec-head"><div class="sr-sec-title">All Saved Runs</div><div class="sr-sec-meta">Newest first · filter chips above still work</div></div>
+      <div class="sr-runlist">${rows.map((run,i)=>runCard(run,i+1,false)).join('')}</div>
+    </div>
+  </div>`;
 }
+
 function clearScores(){
   openHint('Clear All Scores?',
     '<p style="color:var(--text2);font-size:.88rem">This will permanently delete all your high scores. Your badges and settings will not be affected.</p>',
@@ -4649,6 +5916,34 @@ function printClientReport(i){
         </tbody>
       </table>
       <div class="small" style="margin-top:16px">Generated from SocialReady Mission Control.</div>
+
+<style id="playflow-accessibility-button-fix">
+/* Accessibility visibility patch: keep primary action buttons visibly active at rest */
+.dbtn,.fnext,.rpri{
+  background:linear-gradient(180deg, color-mix(in srgb, var(--green) 94%, white 8%), color-mix(in srgb, var(--green) 82%, black 10%)) !important;
+  color:#000 !important;
+  border:2px solid color-mix(in srgb, var(--green) 88%, white 12%) !important;
+  box-shadow:0 10px 22px rgba(0,0,0,.24), 0 0 0 1px color-mix(in srgb, var(--green) 24%, transparent), 0 0 22px color-mix(in srgb, var(--green) 18%, transparent), inset 0 1px 0 rgba(255,255,255,.12) !important;
+  filter:none !important;
+}
+.dbtn:hover,.fnext:hover,.rpri:hover,
+.dbtn:focus-visible,.fnext:focus-visible,.rpri:focus-visible{
+  background:linear-gradient(180deg, color-mix(in srgb, var(--green2) 96%, white 8%), color-mix(in srgb, var(--green) 84%, black 4%)) !important;
+  color:#000 !important;
+  border-color:color-mix(in srgb, var(--green) 92%, white 18%) !important;
+  box-shadow:0 14px 28px rgba(0,0,0,.30), 0 0 0 2px color-mix(in srgb, var(--green) 28%, transparent), 0 0 28px color-mix(in srgb, var(--green) 24%, transparent), inset 0 1px 0 rgba(255,255,255,.15) !important;
+  filter:brightness(1.04) !important;
+}
+.dbtn:disabled,.fnext:disabled,.rpri:disabled{
+  opacity:.62 !important;
+  box-shadow:0 6px 14px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+.rsec{
+  border-width:2px !important;
+  color:var(--text) !important;
+}
+</style>
+
 </body></html>
   `);
   w.document.close();
@@ -5658,10 +6953,7 @@ if(!val){$('pin-error').textContent='Please enter a PIN.';return;}
 if(pinMode==='verify'){
 if(val===CFG.coachPin){
 closeM('m-pin');inp.value='';
-document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
-document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-$('scr-coach').classList.add('on');
-$('nb-coach').classList.add('on');
+setActiveScreen('coach', true);
 renderCoach();window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
 } else {
 $('pin-error').textContent='Incorrect PIN. Try again.';
@@ -5682,10 +6974,7 @@ inp.focus();
 if(val===pinSetupFirst){
 CFG.coachPin=val;CFG.coachWelcomeSeen=false;saveAll();
 closeM('m-pin');inp.value='';
-document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
-document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-$('scr-coach').classList.add('on');
-$('nb-coach').classList.add('on');
+setActiveScreen('coach', true);
 renderCoach();window.__mcPinJustCreated=true; showCoachWelcome(true); window.scrollTo(0,0);const _spw=document.getElementById('page-wrap');if(_spw)_spw.scrollTop=0;
 
 } else {
@@ -6052,11 +7341,218 @@ document.addEventListener('DOMContentLoaded', initHomeCardWiring);
 #scr-results #eoc-card-wrap .eoc-name{font-size:1rem;color:var(--text);font-weight:800;margin-bottom:3px;}
 #scr-results #eoc-card-wrap .eoc-sub{font-size:.84rem;color:var(--text2);line-height:1.55;}
 @media (max-width:560px){#scr-results .rr-hero-main{grid-template-columns:1fr;}#scr-results .rr-grade-wrap{margin-bottom:6px;}}
+
+/* ===== LifeReady playflow facelift v1 ===== */
+.playflow-upgrade-note{display:none!important}
+.gtop{
+  position:relative;
+  padding:14px 16px;
+  border:1px solid color-mix(in srgb, var(--border) 72%, white 8%);
+  border-radius:20px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg2) 92%, white 4%), color-mix(in srgb, var(--bg) 92%, black 6%)),
+    repeating-linear-gradient(0deg, transparent 0 10px, rgba(255,255,255,.018) 10px 11px);
+  box-shadow:0 12px 34px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+}
+.gtop::after{
+  content:'';
+  position:absolute; inset:0;
+  border-radius:20px;
+  background:linear-gradient(135deg, transparent 0 56%, color-mix(in srgb, var(--green, #00c851) 10%, transparent) 56% 70%, transparent 70%);
+  pointer-events:none; opacity:.85;
+}
+.gmode,.progress-text,[id$='-progress']{
+  font-family:var(--font-mono);
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.sbox,.lvl,.sdots{position:relative; z-index:1;}
+.qpanel,.schedule-block,.digital-display{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  border:1px solid color-mix(in srgb, var(--border) 76%, white 10%);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--green, #00c851) 13%, transparent), transparent 28%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg2) 94%, white 4%), color-mix(in srgb, var(--bg) 92%, black 5%));
+  box-shadow:0 18px 40px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.qpanel::before,.schedule-block::before,.digital-display::before{
+  content:'';
+  position:absolute; inset:0;
+  background:repeating-linear-gradient(0deg, transparent 0 12px, rgba(255,255,255,.015) 12px 13px);
+  pointer-events:none;
+}
+.qq,#g-question{
+  position:relative; z-index:1;
+  font-size:clamp(1.02rem, 2.4vw, 1.18rem);
+  line-height:1.58;
+  letter-spacing:.01em;
+  margin-bottom:18px;
+}
+.qvis,#g-visual{position:relative; z-index:1;}
+.qopts,#g-opts,[id$='-opts']{
+  position:relative; z-index:1;
+  gap:12px !important;
+}
+.qo{
+  position:relative;
+  overflow:hidden;
+  min-height:60px;
+  padding:16px 14px;
+  border-radius:16px;
+  border:1px solid color-mix(in srgb, var(--border) 70%, white 12%);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg3) 92%, white 4%), color-mix(in srgb, var(--bg2) 94%, black 4%));
+  box-shadow:0 8px 18px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.035);
+  transition:transform .16s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease, filter .2s ease;
+}
+.qo::before{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(255,255,255,.06), transparent 36%, transparent 62%, rgba(255,255,255,.03));
+  pointer-events:none;
+}
+.qo:hover,.qo:focus-visible{
+  transform:translateY(-2px);
+  border-color:color-mix(in srgb, var(--green, #00c851) 52%, white 12%);
+  box-shadow:0 14px 28px rgba(0,0,0,.32), 0 0 0 1px color-mix(in srgb, var(--green, #00c851) 30%, transparent), 0 0 26px color-mix(in srgb, var(--green, #00c851) 12%, transparent);
+  filter:brightness(1.04);
+}
+.qo:active{transform:translateY(0) scale(.99);}
+.qo.ok{
+  border-color:var(--green)!important;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--green) 18%, var(--bg3)), color-mix(in srgb, var(--green) 10%, var(--bg2)))!important;
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--green) 36%, transparent), 0 0 30px color-mix(in srgb, var(--green) 18%, transparent), 0 14px 26px rgba(0,0,0,.28)!important;
+  color:var(--text)!important;
+}
+.qo.bad{
+  border-color:var(--red)!important;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--red) 18%, var(--bg3)), color-mix(in srgb, var(--red) 10%, var(--bg2)))!important;
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--red) 34%, transparent), 0 0 26px color-mix(in srgb, var(--red) 16%, transparent), 0 14px 26px rgba(0,0,0,.28)!important;
+  color:var(--text)!important;
+}
+.qo:disabled{opacity:1;}
+.qfb{
+  position:relative;
+  border-radius:18px;
+  padding:14px 16px;
+  font-size:.9rem;
+  line-height:1.6;
+  box-shadow:0 10px 24px rgba(0,0,0,.24);
+}
+.qfb.ok{
+  background:linear-gradient(180deg, color-mix(in srgb, var(--green) 18%, var(--bg2)), color-mix(in srgb, var(--green) 10%, var(--bg)));
+  border:1px solid color-mix(in srgb, var(--green) 56%, white 8%);
+  color:var(--text);
+}
+.qfb.bad{
+  background:linear-gradient(180deg, color-mix(in srgb, var(--red) 18%, var(--bg2)), color-mix(in srgb, var(--red) 10%, var(--bg)));
+  border:1px solid color-mix(in srgb, var(--red) 56%, white 8%);
+  color:var(--text);
+}
+.abtn,.dbtn,.fnext,.back{
+  position:relative;
+  overflow:hidden;
+  border-radius:15px;
+  border:1px solid color-mix(in srgb, var(--border) 64%, white 10%);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg3) 94%, white 3%), color-mix(in srgb, var(--bg2) 96%, black 2%));
+  box-shadow:0 10px 22px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.045);
+  transition:transform .16s ease, box-shadow .2s ease, border-color .2s ease, filter .2s ease;
+}
+.abtn::before,.dbtn::before,.fnext::before,.back::before{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(255,255,255,.06), transparent 38%, transparent 65%, rgba(255,255,255,.03));
+  pointer-events:none;
+}
+.abtn:hover,.dbtn:hover,.fnext:hover,.back:hover,
+.abtn:focus-visible,.dbtn:focus-visible,.fnext:focus-visible,.back:focus-visible{
+  transform:translateY(-1px);
+  border-color:color-mix(in srgb, var(--green, #00c851) 52%, white 10%);
+  box-shadow:0 14px 30px rgba(0,0,0,.28), 0 0 0 1px color-mix(in srgb, var(--green, #00c851) 28%, transparent), 0 0 24px color-mix(in srgb, var(--green, #00c851) 12%, transparent);
+  filter:brightness(1.03);
+}
+.abtn:active,.dbtn:active,.fnext:active,.back:active{transform:translateY(0) scale(.99);}
+.fov{
+  background:
+    radial-gradient(circle at center, rgba(0,0,0,.34), rgba(0,0,0,.78)),
+    repeating-linear-gradient(0deg, transparent 0 11px, rgba(255,255,255,.018) 11px 12px);
+}
+.fcard{
+  position:relative;
+  overflow:hidden;
+  max-width:360px;
+  border-radius:26px;
+  border:1px solid color-mix(in srgb, var(--green, #00c851) 38%, white 8%);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--green, #00c851) 16%, transparent), transparent 30%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg2) 95%, white 4%), color-mix(in srgb, var(--bg) 94%, black 4%));
+  box-shadow:0 24px 60px rgba(0,0,0,.46), 0 0 42px color-mix(in srgb, var(--green, #00c851) 14%, transparent), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.fcard::before{
+  content:'';
+  position:absolute; inset:0;
+  background:repeating-linear-gradient(0deg, transparent 0 10px, rgba(255,255,255,.02) 10px 11px);
+  pointer-events:none;
+}
+.fcard.wrong{
+  border-color:color-mix(in srgb, var(--red) 46%, white 8%);
+  box-shadow:0 24px 60px rgba(0,0,0,.46), 0 0 42px color-mix(in srgb, var(--red) 16%, transparent), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.femoji,.ftitle,.fmsg,.fnext{position:relative; z-index:1;}
+.femoji{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:84px; height:84px; border-radius:22px;
+  margin:0 auto 14px;
+  background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 12px 30px rgba(0,0,0,.28);
+  font-size:3.2rem;
+}
+.ftitle{
+  font-family:var(--font-display, var(--font-mono));
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:1.12rem;
+  margin-bottom:10px;
+}
+.fmsg{
+  border-radius:16px;
+  padding:14px 15px;
+  background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.06);
+  color:var(--text2);
+  line-height:1.65;
+  text-align:left;
+}
+.fnext{
+  width:100%;
+  margin-top:14px;
+  padding:14px 16px;
+  font-family:var(--font-mono);
+  font-size:.82rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.pd,.sd{
+  width:11px; height:11px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.03), inset 0 1px 0 rgba(255,255,255,.04);
+}
+.pd.done{box-shadow:0 0 0 1px color-mix(in srgb, var(--blue, var(--green)) 40%, transparent), 0 0 14px color-mix(in srgb, var(--blue, var(--green)) 20%, transparent);}
+.pd.cur{box-shadow:0 0 0 1px color-mix(in srgb, var(--amber) 45%, transparent), 0 0 16px color-mix(in srgb, var(--amber) 26%, transparent);}
+@media (max-width:480px){
+  .gtop{padding:12px 12px;}
+  .qpanel{padding:18px 16px;}
+  .qo{padding:15px 12px; min-height:58px; font-size:.93rem;}
+  .fcard{padding:28px 20px;}
+}
+
 </style><script id="lr-results-refresh">(function(){
 const MODULE="SocialReady";
 const MODULE_LABEL="SOCIALREADY";
 const MODE_TITLES={"practice": "PRACTICE MODE", "challenge": "SOCIAL CHALLENGE", "situations": "READING THE ROOM", "conversations": "CONVERSATIONS", "boundaries": "BOUNDARIES", "feelings": "CONFLICT & FEELINGS", "daily": "DAILY CHALLENGE"};
 const MODE_GUIDE={"situations": {"well": "You were practicing reading social situations and noticing what is going on around you.", "next": "Review the missed social situations and focus on the clue in the setting, tone, or body language.", "reminder": "The best social answer usually fits both the words and the situation."}, "conversations": {"well": "You were practicing conversation flow, turn-taking, and response choices.", "next": "Look again at the missed conversation prompts and think about what would keep the exchange comfortable and respectful.", "reminder": "Good conversation answers sound clear, kind, and balanced."}, "boundaries": {"well": "You were practicing personal boundaries and safe relationship decisions.", "next": "Review the missed boundary prompts and focus on what is safe, respectful, and okay to say no to.", "reminder": "A boundary is not rude. It is clear and safe."}, "feelings": {"well": "You were practicing conflict and emotion choices in social situations.", "next": "Revisit the feeling or conflict prompts you missed and look for the calmest useful response.", "reminder": "Slow down long enough to notice the feeling before choosing what to do."}, "challenge": {"well": "You were practicing mixed social skills across different real-life situations.", "next": "Review the missed social prompts so the next run feels more familiar.", "reminder": "Choose the answer that keeps people safe, respected, and understood."}, "practice": {"well": "You used practice mode to rehearse social decisions without score pressure.", "next": "Use practice to repeat the relationship situations that still feel tricky.", "reminder": "Social skills improve through repetition, not perfection."}, "daily": {"well": "You finished the daily social run and kept the skill active.", "next": "Use the next daily run to revisit the social area that felt hardest today.", "reminder": "A short social rep still builds confidence."}, "*": {"well": "You were building social judgment, communication, and boundary awareness.", "next": "Review the missed social choices before your next run.", "reminder": "Safe, respectful, and clear is the best starting point."}};
+const MODE_COACH_PROFILE={"situations": {"strengths": ["reading social situations", "noticing setting and body-language clues"], "support": ["using the clue in the situation", "matching words to tone and context", "slowing down before reacting"]}, "conversations": {"strengths": ["conversation flow", "turn-taking and response choices"], "support": ["what keeps the conversation comfortable", "clear follow-up responses", "balanced back-and-forth conversation"]}, "boundaries": {"strengths": ["clear boundaries", "safe relationship judgment"], "support": ["what is okay and not okay", "saying no clearly and safely", "choosing the answer that protects comfort and safety"]}, "feelings": {"strengths": ["emotion awareness", "calm conflict choices"], "support": ["noticing the feeling first", "choosing the calmest useful response", "slowing down before reacting to conflict"]}, "challenge": {"strengths": ["mixed social judgment", "safe and respectful choices"], "support": ["reviewing the social situation that tripped you up", "choosing clarity over people-pleasing", "keeping safety and respect together"]}, "practice": {"strengths": ["steady social practice", "low-pressure repetition"], "support": ["repeating the social situations that still feel tricky", "using support before frustration builds", "one clear response at a time"]}, "daily": {"strengths": ["daily social habits", "keeping communication active"], "support": ["revisiting the social area that felt hardest today", "short reps with clear choices", "safe and respectful responses"]}, "*": {"strengths": ["social judgment and communication"], "support": ["conversation flow", "boundaries", "matching tone to the situation"]}};
 const scr=document.getElementById('scr-results');
 const initialResultsMarkup=(scr && scr.querySelector('.rr-screen')) ? scr.innerHTML : '';
 function cleanText(t){return (t||'').replace(/\s+/g,' ').trim();}
@@ -6082,9 +7578,24 @@ function getRoundSource(){const custom=Array.isArray(window.__lrReviewRounds)?wi
 function buildFallbackRounds(){const pct=calcPct(); const ct=calcCorrect(); const score=getScore(); return [{title:'Session recap',meta:`${ct.correct}/${ct.total} correct · ${pct}% accuracy · score ${score}`,ok:pct>=70}];}
 function uniq(arr){const seen=new Set(); return arr.filter(x=>{const k=cleanText(x); if(!k||seen.has(k)) return false; seen.add(k); return true;});}
 function trimSmart(s,max){s=cleanText(s); if(s.length<=max) return s; return s.slice(0,max-1).trim()+'…';}
-function buildWhatWentWell(rounds){const pct=calcPct(); const streak=getStreak(); const badges=document.querySelectorAll('#r-badges .ebchip').length; const total=calcCorrect().total; const guide=getGuide(); const norm=rounds.map(normalizeRound); const corrects=norm.filter(r=>r.ok).map(r=>r.title).filter(Boolean); const lines=[]; if(total>0) lines.push(`You completed ${total} prompt${total===1?'':'s'} in ${currentModeTitle().toLowerCase()}.`); if(corrects.length){ lines.push(`You were strongest on ${corrects.slice(0,2).map(t=>`“${trimSmart(t,48)}”`).join(corrects.length>1?' and ':'')}.`); } else if(guide.well){ lines.push(guide.well); } if(pct>=80){ lines.push(guide.well || 'Your accuracy shows the skill is starting to feel more automatic.'); } else if(streak>=3){ lines.push(`Your best streak reached ${streak}, which shows you can hold onto the skill once you get rolling.`); } else { lines.push('You kept going even when some prompts were tough. Finishing the run still counts as real progress.'); } if(badges>0) lines.push(`You unlocked ${badges} badge${badges===1?'':'s'} this session.`); return uniq(lines).slice(0,3);}
-function buildPracticeNext(rounds){const guide=getGuide(); const norm=rounds.map(normalizeRound); const misses=norm.filter(r=>!r.ok); const lines=[]; misses.slice(0,2).forEach(r=>{ let line=`Review “${trimSmart(r.title,54)}”.`; if(r.answer && r.answer!==r.title) line += ` Correct answer: ${trimSmart(r.answer,54)}.`; lines.push(line); }); const grns=lex('getResultsNextSteps'); if(typeof grns==='function'){ try{ const tips=grns(getModeKey(),calcPct(),misses).filter(Boolean); tips.forEach(t=>lines.push(t)); }catch(_e){} } if(guide.next) lines.push(guide.next); if(!lines.length) lines.push('Run this mode again and try to beat your best streak next time.'); return uniq(lines).slice(0,3);}
-function buildReminder(){const pct=calcPct(); const st=getST(); const hints=st && typeof st.hintsUsed==='number' ? st.hintsUsed : 0; const guide=getGuide(); if(pct>=85) return guide.reminder || 'Keep the same pace next time. Read the whole prompt before locking in your answer.'; if(pct>=70) return (guide.reminder || 'Slow down on close calls and compare the choices before tapping.') + (hints>0 ? ' The hints are helping, so keep using them early.' : ''); return (guide.reminder || 'Treat the next run like practice, not a test.') + (hints>0 ? ' Read each explanation before moving on.' : ' Use hints early before frustration builds.'); }
+
+function coachProfile(){const key=getModeKey(); const lib=typeof MODE_COACH_PROFILE!=="undefined"?MODE_COACH_PROFILE:{}; return lib[key] || lib['*'] || {strengths:[],support:[]};}
+function joinFocus(items){const clean=(items||[]).map(cleanText).filter(Boolean); if(!clean.length) return 'the skill'; if(clean.length===1) return clean[0]; if(clean.length===2) return clean[0]+' and '+clean[1]; return clean.slice(0,-1).join(', ')+', and '+clean[clean.length-1];}
+function describeMiss(r){const q=trimSmart(r.question||r.meta||r.title||'that prompt',74); const ans=trimSmart(r.answer||'',60); if(ans && cleanText(ans).toLowerCase()!==cleanText(r.title).toLowerCase()){return `On “${q}”, the stronger answer was ${ans}.`; } return `Revisit “${q}” once more on the next run.`;}
+function buildWhatWentWell(rounds){const pct=calcPct(); const streak=getStreak(); const badges=document.querySelectorAll('#r-badges .ebchip').length; const total=calcCorrect().total; const guide=getGuide(); const profile=coachProfile(); const norm=rounds.map(normalizeRound); const corrects=norm.filter(r=>r.ok); const lines=[]; if(total>0) lines.push(`You stayed with ${total} prompt${total===1?'':'s'} in ${currentModeTitle().toLowerCase()}.`); if(profile.strengths && profile.strengths.length){ lines.push(`Your stronger moments this run were around ${joinFocus(profile.strengths.slice(0,pct>=80?2:1))}.`); } else if(guide.well){ lines.push(guide.well); }
+if(corrects.length){ const best=corrects.slice(0,2).map(r=>trimSmart(r.question||r.title,54)).filter(Boolean); if(best.length===1) lines.push(`You handled “${best[0]}” well.`); else if(best.length>1) lines.push(`You handled “${best[0]}” and “${best[1]}” well.`); }
+if(pct>=85){ lines.push(guide.well || 'This skill is starting to feel more automatic, which is a strong sign of growth.'); }
+else if(streak>=3){ lines.push(`Your best streak reached ${streak}, which shows you can hold onto the skill once you get rolling.`); }
+else { lines.push('You kept going even when some prompts were tough. That kind of steady practice matters.'); }
+if(badges>0) lines.push(`You unlocked ${badges} badge${badges===1?'':'s'} this session.`); return uniq(lines).slice(0,3);} 
+function buildPracticeNext(rounds){const guide=getGuide(); const profile=coachProfile(); const norm=rounds.map(normalizeRound); const misses=norm.filter(r=>!r.ok); const lines=[]; if(profile.support && profile.support.length){ lines.push(`Next, keep working on ${joinFocus(profile.support.slice(0, misses.length?2:1))}.`); }
+misses.slice(0,2).forEach(r=>lines.push(describeMiss(r)));
+const grns=lex('getResultsNextSteps'); if(typeof grns==='function'){ try{ const tips=grns(getModeKey(),calcPct(),misses).filter(Boolean); tips.forEach(t=>lines.push(t)); }catch(_e){} }
+if(!misses.length){ if(guide.next) lines.push(guide.next); else lines.push('Run this mode again and try for one cleaner, calmer pass.'); }
+else if(guide.next){ lines.push(guide.next); }
+if(!lines.length) lines.push('Run this mode again and focus on one skill at a time.'); return uniq(lines).slice(0,3);} 
+function buildReminder(){const pct=calcPct(); const st=getST(); const hints=st && typeof st.hintsUsed==='number' ? st.hintsUsed : 0; const guide=getGuide(); let line=guide.reminder || 'Take the next run one prompt at a time.'; if(hints>0){ line += ' Using hints early is a smart support, not a setback.'; } else if(pct>=85){ line += ' Keep the same calm pace on the next run.'; } else if(pct>=70){ line += ' Slow down on the close calls before you tap.'; } else { line += ' More reps on the same skill are how confidence grows.'; } return line; }
+
 function fillSessionSummary(){const host=document.getElementById('rr-session-card'); if(!host) return; const pct=calcPct(); const sig=sessionSignal(pct); const score=getScore(); const streak=getStreak(); const timer=getElapsedText()||'Session tracked'; host.innerHTML=`<div class="rr-session-head"><div class="rr-session-title">${escapeHtml(currentModeTitle())} Complete</div><div class="rr-session-badge">${escapeHtml(sig.label)}</div></div><div class="rr-session-copy">${escapeHtml(sig.copy)}</div><div class="rr-mini-pills"><div class="rr-mini-pill">Score ${escapeHtml(score)}</div><div class="rr-mini-pill">Best streak ${escapeHtml(streak)}</div><div class="rr-mini-pill">${escapeHtml(timer)}</div></div>`;}
 function fillCoachingCards(rounds){const well=document.getElementById('rr-well-card'); if(well){ well.innerHTML='<div class="rr-coach-list">'+buildWhatWentWell(rounds).map(line=>`<div class="rr-coach-line"><span class="rr-bullet">▸</span><div>${escapeHtml(line)}</div></div>`).join('')+'</div>'; } const next=document.getElementById('rr-next-card') || document.getElementById('wtw-card'); if(next){ next.innerHTML='<div class="rr-coach-list">'+buildPracticeNext(rounds).map(line=>`<div class="rr-coach-line"><span class="rr-bullet">→</span><div>${escapeHtml(line)}</div></div>`).join('')+'</div>'; } const reminder=document.getElementById('rr-reminder-card'); if(reminder) reminder.innerHTML=`<div class="rr-reminder">${escapeHtml(buildReminder())}</div>`;}
 function fillHeroStats(){const pct=calcPct(); const ct=calcCorrect(); const score=getScore(); const streak=getStreak(); const g=gradeForPct(pct); const titleEl=document.getElementById('r-title'); if(titleEl && !cleanText(titleEl.textContent)) titleEl.textContent=currentModeTitle()+' COMPLETE'; const subEl=document.getElementById('r-sub'); if(subEl && !cleanText(subEl.textContent)) subEl.textContent=`You answered ${ct.total} question${ct.total===1?'':'s'}!`; const levelBadge=document.getElementById('r-level-badge'); const lvlFn=resolveGetLvl(); if(levelBadge && lvlFn) levelBadge.textContent=lvlFn(score).n; const ge=document.getElementById('grade-letter'); if(ge){ge.textContent=g.grade; ge.style.color=g.color;} const arc=document.getElementById('arc-fill'); if(arc){arc.style.stroke=g.color; arc.style.strokeDashoffset=String(173-Math.round(pct/100*173));} const rs=document.getElementById('r-score'); if(rs) rs.textContent=String(score); const ra=document.getElementById('r-acc'); if(ra) ra.textContent=pct+'%'; const rc=document.getElementById('r-correct'); if(rc) rc.textContent=`${ct.correct}/${ct.total}`; const rst=document.getElementById('r-streak'); if(rst) rst.textContent=String(streak); const timerBox=document.getElementById('r-timer-box'); const timer=document.getElementById('r-timer'); const elapsed=getElapsedText(); if(timerBox && timer){ if(elapsed){timer.textContent=elapsed; timerBox.style.display='';} else {timerBox.style.display='none';}}}
@@ -6104,5 +7615,321 @@ document.addEventListener('DOMContentLoaded',()=>{installStartWrap(); installAns
 window.addEventListener('load',()=>{installStartWrap(); installAnswerWrap(); setTimeout(refresh,180);});
 window.refreshResultsRedesign=refresh;
 if(scr){ new MutationObserver(()=>{installStartWrap(); installAnswerWrap(); setTimeout(refresh,40);}).observe(scr,{attributes:true,attributeFilter:['class'],childList:true}); }
-})();</script></body>
+})();
+
+/* GUIDE STANDARDIZATION V1 */
+(function(){
+  const GUIDE_CONFIG = {
+    cash:{deck:'Neon Checkout Briefing',summary:'Use this guide like a cashier warm-up. Start simple, learn the money tools, and come back anytime you need a calm refresher.',start:'Start with Watch a Demo or Starter Mode.',stuck:'Use Money Guide or Do I Have Enough? if coin values or totals feel tricky.',remember:'Real cashiers count up, not down. Slow and accurate beats rushed every time.'},
+    time:{deck:'Orbital Schedule Briefing',summary:'This guide turns time skills into smaller, clearer steps. Use it before a run, during a break, or whenever clocks start feeling messy.',start:'Start with Watch a Demo or Clock School.',stuck:'Use Clock Guide when analog clocks or AM/PM feel confusing.',remember:'Short hand first, then long hand. One part of the clock at a time.'},
+    job:{deck:'Career Command Briefing',summary:'Use this guide to get ready for workplace choices before the pressure is on. Review one skill at a time, then jump back into practice.',start:'Start with Watch a Demo, Interview School, or Practice Mode.',stuck:'Use the guide when workplace wording, interviews, or paycheck math feel unclear.',remember:'Clear, respectful, and calm choices are job skills too.'},
+    home:{deck:'Habitat Operations Briefing',summary:'This guide is your calm home-skills check-in. Review one topic, spot the safe choice, and build habits that feel doable in real life.',start:'Start with Practice Mode or the topic that matches real life right now.',stuck:'Use the guide before laundry, food, safety, or money questions that feel heavy.',remember:'Safe first, then organized, then efficient.'},
+    travel:{deck:'Transit Navigation Briefing',summary:'TravelReady works best when the guide feels like a map, not a test. Use it to preview the route, then practice the next step with confidence.',start:'Start with Practice Mode or the Transit Guide.',stuck:'Check route, schedule, fares, or safety sections before guessing.',remember:'Calm, visible, and safe beats fast every single time.'},
+    social:{deck:'Comms Deck Briefing',summary:'Use this guide to slow social situations down into clearer choices. Read the examples, notice the patterns, and practice one skill at a time.',start:'Start with Practice Mode or the topic that matches the situation you want help with.',stuck:'Use topic guides when tone, boundaries, or conversation flow feel hard to read.',remember:'Respect, safety, and clear communication matter more than sounding perfect.'},
+    tech:{deck:'Digital Defense Briefing',summary:'This guide helps turn online choices into easier signals to spot. Slow down, read the clues, and practice safe digital habits before you tap or share.',start:'Start with Practice Mode or Spot the Scam.',stuck:'Use topic guides when passwords, privacy, scams, or device choices feel uncertain.',remember:'Pause before you click, reply, share, or pay.'},
+    health:{deck:'Wellness Station Briefing',summary:'Use this guide like a calm support tool. Review one health topic at a time, then go back into practice knowing what to watch for and when to ask for help.',start:'Start with Practice Mode or the guide that matches the health skill you want to review.',stuck:'Use doctor, emergency, medicine, or hygiene guides whenever the topic feels stressful.',remember:'Asking for help early is a strength, not a failure.'},
+    default:{deck:'LifeReady Guide Briefing',summary:'Use this guide before you play or whenever you need a calmer reset. The goal is not perfection. The goal is understanding.',start:'Start with the easiest mode first.',stuck:'Use the guide as often as you need.',remember:'One clear step at a time.'}
+  };
+  const STANDARD_LABELS = {
+    mission:'Mission Brief',
+    modes:'Mode Map',
+    tools:'Skill Tools',
+    play:'How A Run Works',
+    tips:'Helpful Tips',
+    levels:'Level Path',
+    other:'Guide Section'
+  };
+  function detectModuleSlug(){
+    const p=(location.pathname||'').toLowerCase();
+    if(p.includes('cash')) return 'cash';
+    if(p.includes('time')) return 'time';
+    if(p.includes('job')) return 'job';
+    if(p.includes('home')) return 'home';
+    if(p.includes('travel')) return 'travel';
+    if(p.includes('social')) return 'social';
+    if(p.includes('tech')) return 'tech';
+    if(p.includes('health')) return 'health';
+    return 'default';
+  }
+  function sectionKind(text){
+    const t=(text||'').toUpperCase();
+    if(t.includes('WHAT IS')) return 'mission';
+    if(t.includes('MODE')) return 'modes';
+    if(t.includes('LEARNING TOOLS')||t.includes('TOPIC GUIDES')||t.includes('HEALTH GUIDES')) return 'tools';
+    if(t.includes('HOW QUESTIONS WORK')||t.includes('HOW TO MAKE CHANGE')) return 'play';
+    if(t.includes('TIP')) return 'tips';
+    if(t.includes('LEVEL')) return 'levels';
+    return 'other';
+  }
+  function cleanLabel(text){
+    return (text||'').replace(/^\s*[\p{Emoji_Presentation}\p{Extended_Pictographic}]\s*/u,'').replace(/\s+/g,' ').trim();
+  }
+  function shortNav(text){
+    const t=cleanLabel(text);
+    return t.replace(/^WHAT IS\s+/i,'').replace(/^THE\s+/i,'').replace(/^ALL THE\s+/i,'').replace(/^HOW TO\s+/i,'').replace(/^HOW QUESTIONS\s+/i,'').slice(0,24);
+  }
+  function guideJump(id){
+    const el=document.getElementById(id); if(!el) return;
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function cleanGuideSpeechText(raw){
+    return cleanLabel((raw||'')
+      .replace(/\bREAD\b/gi,'')
+      .replace(/[🚀🧭🔊📚💡⚠️✅❌⭐★☆●◆■□▪▫►◄▲▼]/g,'')
+      .replace(/\s+/g,' ')
+      .trim());
+  }
+  function guideSpeakSection(id){
+    const el=document.getElementById(id); if(!el) return;
+    const parts=[];
+    const titleLine=el.querySelector('.guide-title-line');
+    if(titleLine){
+      const titleText=cleanGuideSpeechText(titleLine.textContent||'');
+      if(titleText) parts.push(titleText);
+    }
+    const steps=el.querySelectorAll('.gstep');
+    if(steps.length){
+      steps.forEach(step=>{
+        const body=step.querySelector('div:last-child');
+        if(body){
+          const txt=cleanGuideSpeechText(body.innerText||'');
+          if(txt) parts.push(txt);
+        }
+      });
+    }else{
+      el.querySelectorAll('.gcard .gc-body, .guide-card .gc-body, .gcard p, p, li').forEach(node=>{
+        const txt=cleanGuideSpeechText(node.innerText||node.textContent||'');
+        if(txt) parts.push(txt);
+      });
+    }
+    const spoken=parts.filter(Boolean).join('. ').replace(/\s+/g,' ').trim();
+    if(!spoken) return;
+    if(window.say) window.say(spoken); else if(window.speak) window.speak(spoken);
+  }
+  window.guideJump=guideJump;
+  window.guideSpeakSection=guideSpeakSection;
+  function standardizeGuidePage(){
+    const screen=document.getElementById('scr-guide');
+    if(!screen || screen.dataset.guideStandardized==='1') return;
+    screen.dataset.guideStandardized='1';
+    screen.classList.add('guide-standardized');
+    const slug=detectModuleSlug();
+    const cfg=GUIDE_CONFIG[slug]||GUIDE_CONFIG.default;
+    const top=screen.querySelector('.gtop');
+    const sections=[...screen.children].filter(el=>el.classList && el.classList.contains('gsec'));
+    if(!sections.length || !top) return;
+    const navWrap=document.createElement('div');
+    navWrap.className='guide-jumpbar';
+    navWrap.style.margin='14px 0 12px';
+    top.insertAdjacentElement('afterend',navWrap);
+    const byKind={mission:null,modes:null,tools:null,play:null,levels:null,tips:null};
+    sections.forEach((sec,idx)=>{
+      const title=sec.querySelector('.gtitle');
+      if(!title) return;
+      const raw=title.textContent.trim();
+      const kind=sectionKind(raw);
+      if(!byKind[kind]) byKind[kind]=sec;
+      sec.id=sec.id || `guide-sec-${slug}-${idx+1}`;
+      const label=STANDARD_LABELS[kind] || STANDARD_LABELS.other;
+      const originalHTML=title.innerHTML;
+      title.innerHTML=`<div class="guide-section-head"><div><div class="guide-kicker">${label}</div><div class="guide-title-line">${originalHTML}</div></div><button type="button" class="guide-readbtn" onclick="guideSpeakSection('${sec.id}')">🔊 READ</button></div>`;
+      sec.querySelectorAll('.gcard').forEach(card=>card.classList.add('guide-panel'));
+      sec.querySelectorAll('.gstep').forEach(step=>step.classList.add('guide-step-upgrade'));
+      const jump=document.createElement('button');
+      jump.type='button';
+      jump.className='guide-jumpbtn';
+      jump.textContent=shortNav(raw);
+      jump.onclick=()=>guideJump(sec.id);
+      navWrap.appendChild(jump);
+    });
+    const ordered=[];
+    const order=['mission','modes','tools','play','tips','levels','other'];
+    order.forEach(kind=>sections.filter(sec=>sectionKind((sec.querySelector('.gtitle')?.textContent)||'')===kind).forEach(sec=>ordered.push(sec)));
+    ordered.forEach(sec=>screen.appendChild(sec));
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', standardizeGuidePage);
+  else standardizeGuidePage();
+})()
+document.addEventListener('DOMContentLoaded',()=>{
+  const active=document.querySelector('main > .scr.on')?.id?.replace(/^scr-/,'') || 'home';
+  setActiveScreen(active, !!document.getElementById('nb-'+active));
+});
+</script>
+<style id="playflow-accessibility-button-fix">
+/* Accessibility visibility patch: keep primary action buttons visibly active at rest */
+.dbtn,.fnext,.rpri{
+  background:linear-gradient(180deg, color-mix(in srgb, var(--green) 94%, white 8%), color-mix(in srgb, var(--green) 82%, black 10%)) !important;
+  color:#000 !important;
+  border:2px solid color-mix(in srgb, var(--green) 88%, white 12%) !important;
+  box-shadow:0 10px 22px rgba(0,0,0,.24), 0 0 0 1px color-mix(in srgb, var(--green) 24%, transparent), 0 0 22px color-mix(in srgb, var(--green) 18%, transparent), inset 0 1px 0 rgba(255,255,255,.12) !important;
+  filter:none !important;
+}
+.dbtn:hover,.fnext:hover,.rpri:hover,
+.dbtn:focus-visible,.fnext:focus-visible,.rpri:focus-visible{
+  background:linear-gradient(180deg, color-mix(in srgb, var(--green2) 96%, white 8%), color-mix(in srgb, var(--green) 84%, black 4%)) !important;
+  color:#000 !important;
+  border-color:color-mix(in srgb, var(--green) 92%, white 18%) !important;
+  box-shadow:0 14px 28px rgba(0,0,0,.30), 0 0 0 2px color-mix(in srgb, var(--green) 28%, transparent), 0 0 28px color-mix(in srgb, var(--green) 24%, transparent), inset 0 1px 0 rgba(255,255,255,.15) !important;
+  filter:brightness(1.04) !important;
+}
+.dbtn:disabled,.fnext:disabled,.rpri:disabled{
+  opacity:.62 !important;
+  box-shadow:0 6px 14px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+.rsec{
+  border-width:2px !important;
+  color:var(--text) !important;
+}
+
+
+/* ══ SETTINGS TITLE CARD STANDARDIZATION ══ */
+#scr-settings .gtop{
+  position:relative !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  gap:12px !important;
+  margin:0 0 18px !important;
+  padding:20px 18px 18px !important;
+  border:1px solid var(--border) !important;
+  border-radius:28px !important;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg2) 92%, transparent), color-mix(in srgb, var(--bg3) 92%, transparent)) !important;
+  box-shadow:0 14px 50px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.03) !important;
+  overflow:hidden !important;
+}
+#scr-settings .gtop::before{
+  content:'' !important;
+  position:absolute !important;
+  inset:0 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(130deg, transparent 56%, color-mix(in srgb, var(--green) 10%, transparent) 56%, transparent 74%),
+    repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(255,255,255,.025) 24px, rgba(255,255,255,.025) 25px) !important;
+  opacity:.8 !important;
+}
+#scr-settings .gtop::after{
+  content:'' !important;
+  position:absolute !important;
+  inset:14px !important;
+  border:1px solid color-mix(in srgb, var(--border) 70%, transparent) !important;
+  border-radius:20px !important;
+  pointer-events:none !important;
+  opacity:.8 !important;
+}
+#scr-settings .back{
+  position:relative !important;
+  left:auto !important;
+  top:auto !important;
+  z-index:1 !important;
+  min-height:44px !important;
+  margin:0 !important;
+  border-radius:999px !important;
+  padding:10px 16px !important;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg3) 92%, transparent), color-mix(in srgb, var(--bg2) 92%, transparent)) !important;
+  border:1px solid color-mix(in srgb, var(--green) 45%, var(--border)) !important;
+  box-shadow:0 0 0 1px rgba(255,255,255,.03), 0 0 20px color-mix(in srgb, var(--green) 12%, transparent) !important;
+}
+#scr-settings .gmode{
+  position:relative !important;
+  z-index:1 !important;
+  display:flex !important;
+  align-items:baseline !important;
+  gap:10px !important;
+  padding-right:0 !important;
+  font-family:var(--font-display) !important;
+  font-size:clamp(1.8rem,7.4vw,2.5rem) !important;
+  line-height:.95 !important;
+  letter-spacing:.08em !important;
+  color:var(--green) !important;
+  text-shadow:0 0 20px color-mix(in srgb, var(--green) 24%, transparent) !important;
+}
+#scr-settings .gmode::after{
+  content:'SYSTEM MENU' !important;
+  display:block !important;
+  margin-left:10px !important;
+  font-family:var(--font-mono) !important;
+  font-size:.68rem !important;
+  letter-spacing:4px !important;
+  color:var(--text3) !important;
+  text-transform:uppercase !important;
+  text-shadow:none !important;
+}
+@media (max-width:640px){
+  #scr-settings .gtop{
+    gap:10px !important;
+    padding:18px 16px 16px !important;
+  }
+  #scr-settings .gmode{
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:8px !important;
+    font-size:clamp(1.6rem,8vw,2.1rem) !important;
+  }
+  #scr-settings .gmode::after{
+    margin-left:0 !important;
+  }
+}
+
+</style>
+
+
+<script>
+(function(){
+  const MODULE_FILE = 'SocialReady.html';
+  const MODULE_NAME = 'SocialReady';
+  function openUnifiedMissionControl(view){
+    const url = new URL('MissionControl.html', location.href);
+    url.searchParams.set('module', MODULE_NAME);
+    url.searchParams.set('return', MODULE_FILE);
+    if(view) url.searchParams.set('view', view);
+    location.href = url.toString();
+  }
+  window.openUnifiedMissionControl = openUnifiedMissionControl;
+
+  if(typeof window.go === 'function'){
+    const __origGo = window.go;
+    window.go = function(id){
+      if(id === 'coach'){
+        openUnifiedMissionControl();
+        return;
+      }
+      return __origGo.apply(this, arguments);
+    };
+  }
+
+  window.resetCoachPin = function(){
+    try{
+      const raw = localStorage.getItem('lr_mc_hub_v1') || '{}';
+      const state = JSON.parse(raw);
+      state.pin = '';
+      state.pinHint = '';
+      localStorage.setItem('lr_mc_hub_v1', JSON.stringify(state));
+    }catch(err){
+      localStorage.removeItem('lr_mc_hub_v1');
+    }
+    if(typeof openHint === 'function'){
+      openHint(
+        'Unified Mission Control PIN Removed',
+        '<p style="color:var(--text2);font-size:.88rem;line-height:1.6">The shared Mission Control access code has been cleared for the full hub. You can create a new one the next time you open Mission Control.</p>',
+        'Open Mission Control',
+        function(){ if(typeof closeM === "function") closeM("m-hint"); openUnifiedMissionControl("security"); }
+      );
+    }else{
+      alert('Mission Control PIN removed. Open the unified hub to set a new one.');
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('[onclick*="go(\'coach\')"]').forEach(function(el){
+      el.setAttribute('onclick', 'openUnifiedMissionControl()');
+    });
+    var nb = document.getElementById('nb-coach');
+    if(nb){
+      nb.onclick = function(){ openUnifiedMissionControl(); };
+    }
+  });
+})();
+</script>
+
+</body>
 </html>

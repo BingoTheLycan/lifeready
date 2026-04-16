@@ -1,0 +1,2545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#0d1117"/>
+<meta name="description" content="LifeReady Mission Control - Unified educator dashboard for progress tracking, reporting, and learner support across every LifeReady module."/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<title>LifeReady Mission Control</title>
+<link rel="manifest" href="manifest.json"/>
+<link rel="apple-touch-icon" href="icon_192.png"/>
+<link rel="icon" href="icon_512.png" sizes="512x512" type="image/png"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0d1117;
+  --bg2:#151d29;
+  --bg3:#1a2432;
+  --panel:#121924;
+  --panel2:#182230;
+  --line:#29374b;
+  --line2:#223044;
+  --text:#ecf2ff;
+  --text2:#9fb0ca;
+  --text3:#667892;
+  --amber:#ffbb33;
+  --amber2:#d69517;
+  --green:#00c851;
+  --blue:#29a1ff;
+  --purple:#9f4dff;
+  --red:#ff5470;
+  --orange:#ff8f3d;
+  --pink:#ff4fa7;
+  --shadow:0 20px 60px rgba(0,0,0,.45);
+  --mono:'Space Mono','Courier New',monospace;
+  --body:'Nunito',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --radius:22px;
+  --radius-sm:14px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  font-family:var(--body);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(41,161,255,.11) 0%, transparent 22%),
+    radial-gradient(circle at 85% 12%, rgba(159,77,255,.12) 0%, transparent 20%),
+    radial-gradient(circle at 48% 0%, rgba(255,187,51,.11) 0%, transparent 35%),
+    linear-gradient(180deg,#0b1018 0%, #0d1117 42%, #0b1017 100%);
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed; inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 10% 24%, rgba(255,255,255,.22) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 88% 18%, rgba(255,255,255,.18) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 74% 80%, rgba(255,255,255,.18) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 20% 74%, rgba(255,255,255,.18) 0 1px, transparent 1.5px);
+  opacity:.9;
+}
+body::after{
+  content:'';
+  position:fixed; inset:0;
+  pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,.012) 3px,rgba(255,255,255,.012) 4px);
+  mix-blend-mode:screen;
+  opacity:.55;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.hidden{display:none!important}
+.page{
+  position:relative;
+  z-index:1;
+  max-width:1480px;
+  margin:0 auto;
+  padding:20px 16px 44px;
+}
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:16px;
+  flex-wrap:wrap;
+}
+.topbar-left,.topbar-right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  min-height:46px;
+  padding:12px 16px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.25)}
+.btn.primary{
+  color:#111;
+  background:linear-gradient(135deg,var(--amber),var(--amber2));
+  border-color:rgba(255,187,51,.55);
+  box-shadow:0 0 0 1px rgba(255,187,51,.18), 0 10px 24px rgba(255,187,51,.12);
+}
+.btn.ghost{
+  background:rgba(15,22,32,.72);
+}
+.btn.danger{
+  background:rgba(255,84,112,.08);
+  border-color:rgba(255,84,112,.25);
+  color:#ffd9e2;
+}
+.btn.slim{min-height:38px;padding:8px 14px;font-size:.9rem}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:32px;
+  padding:7px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.04);
+  font-size:.76rem;
+  letter-spacing:1px;
+  color:var(--text2);
+  font-family:var(--mono);
+  text-transform:uppercase;
+}
+.hero-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.09);
+  background:
+    linear-gradient(180deg,rgba(22,30,43,.96),rgba(14,20,30,.98)),
+    radial-gradient(circle at top right, rgba(255,255,255,.03), transparent 25%);
+  box-shadow:var(--shadow);
+  padding:22px 22px 18px;
+}
+.hero-card::before{
+  content:'';
+  position:absolute; inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg, transparent 0 24px, rgba(255,255,255,.02) 24px 25px, transparent 25px 100%),
+    linear-gradient(0deg, transparent 0 24px, rgba(255,255,255,.02) 24px 25px, transparent 25px 100%);
+  background-size:28px 28px;
+  opacity:.28;
+}
+.hero-card::after{
+  content:'';
+  position:absolute;
+  inset:auto 0 0 0;
+  height:3px;
+  background:linear-gradient(90deg,var(--amber),var(--blue),var(--purple),transparent);
+}
+.hero-top{
+  position:relative;
+  z-index:1;
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:flex-start;
+  flex-wrap:wrap;
+}
+.hero-title-block{min-width:280px}
+.eyebrow{
+  font-family:var(--mono);
+  color:var(--amber);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  font-size:.72rem;
+  margin-bottom:10px;
+}
+.hero-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+.hero-title .mark{
+  width:58px;height:58px;border-radius:18px;
+  display:grid;place-items:center;
+  font-size:1.6rem;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,.22), transparent 28%),
+    linear-gradient(135deg, rgba(255,187,51,.22), rgba(41,161,255,.18));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 0 24px rgba(255,187,51,.08);
+}
+.hero-title h1{
+  margin:0;
+  font-family:var(--mono);
+  letter-spacing:4px;
+  font-size:clamp(1.9rem,3.8vw,3.15rem);
+  line-height:.95;
+  text-transform:uppercase;
+  text-shadow:0 0 24px rgba(255,255,255,.05);
+}
+.hero-title .life{color:var(--amber);text-shadow:0 0 26px rgba(255,187,51,.24)}
+.hero-title .mc{color:var(--text)}
+.hero-copy{
+  max-width:720px;
+  color:var(--text2);
+  line-height:1.65;
+  font-size:1rem;
+}
+.hero-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+.hero-stat{
+  padding:14px 14px 13px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.035);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.hero-stat .label{
+  color:var(--text3);
+  font-size:.7rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-family:var(--mono);
+  margin-bottom:8px;
+}
+.hero-stat .value{
+  font-size:1.18rem;
+  font-weight:900;
+  color:var(--text);
+}
+.hero-stat .value.rank{color:var(--amber)}
+.hero-stat .value.alert{color:#ffd166}
+.hero-stat .sub{margin-top:6px;color:var(--text2);font-size:.82rem}
+.main-shell{
+  display:grid;
+  grid-template-columns:320px minmax(0,1fr);
+  gap:16px;
+  margin-top:16px;
+}
+.panel{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg,rgba(18,25,36,.96),rgba(14,20,30,.98));
+  box-shadow:var(--shadow);
+}
+.panel::before{
+  content:'';
+  position:absolute; inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at top right, rgba(255,255,255,.03), transparent 30%),
+    linear-gradient(90deg, transparent 0 24px, rgba(255,255,255,.014) 24px 25px, transparent 25px 100%),
+    linear-gradient(0deg, transparent 0 24px, rgba(255,255,255,.014) 24px 25px, transparent 25px 100%);
+  background-size:auto, 30px 30px, 30px 30px;
+  opacity:.34;
+}
+.panel-inner{position:relative;z-index:1;padding:18px}
+.panel-title{
+  display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.panel-title h2,.panel-title h3{
+  margin:0;
+  font-family:var(--mono);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-size:1rem;
+}
+.panel-title p{
+  margin:6px 0 0;
+  color:var(--text2);
+  font-size:.92rem;
+  line-height:1.55;
+}
+.sidebar .panel + .panel{margin-top:16px}
+.search{
+  width:100%;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.045);
+  color:var(--text);
+  min-height:46px;
+  padding:12px 14px;
+  outline:none;
+}
+.search::placeholder{color:#7386a2}
+.learner-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-height:540px;
+  overflow:auto;
+  padding-right:2px;
+}
+.learner-card{
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+  padding:12px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.035);
+  transition:border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.learner-card:hover{border-color:rgba(255,255,255,.16);transform:translateY(-1px)}
+.learner-card.active{
+  border-color:rgba(255,187,51,.42);
+  box-shadow:0 0 0 1px rgba(255,187,51,.14), 0 0 24px rgba(255,187,51,.08);
+  background:linear-gradient(135deg, rgba(255,187,51,.07), rgba(41,161,255,.05));
+}
+.avatar{
+  width:52px;height:52px;border-radius:16px;
+  display:grid;place-items:center;
+  color:white;
+  font-weight:900;
+  font-size:1rem;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
+}
+.learner-main{min-width:0}
+.learner-name{
+  font-weight:900;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.learner-meta{
+  color:var(--text2);
+  font-size:.84rem;
+  line-height:1.35;
+  margin-top:3px;
+}
+.learner-rank{
+  margin-top:6px;
+  display:flex;gap:8px;flex-wrap:wrap;
+}
+.token{
+  display:inline-flex;align-items:center;gap:6px;
+  min-height:28px;padding:5px 10px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.045);
+  font-size:.72rem;color:var(--text2);
+}
+.token strong{color:var(--text)}
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.info-card{
+  padding:16px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.035);
+}
+.info-card h3{
+  margin:0;
+  font-family:var(--mono);
+  text-transform:uppercase;
+  letter-spacing:2.5px;
+  font-size:.9rem;
+}
+.info-card p{margin:10px 0 0;color:var(--text2);line-height:1.6;font-size:.94rem}
+.stack{display:flex;flex-direction:column;gap:16px}
+.ribbon{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  margin-top:12px;
+}
+.status-row{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;
+}
+.status-box{
+  padding:14px;border-radius:18px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);
+}
+.status-box .tiny{color:var(--text3);font-size:.68rem;font-family:var(--mono);letter-spacing:2px;text-transform:uppercase}
+.status-box .big{margin-top:6px;font-size:1.02rem;font-weight:900}
+.module-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.module-card{
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.038);
+  padding:16px;
+  position:relative;
+  overflow:hidden;
+}
+.module-card::after{
+  content:'';
+  position:absolute;left:0;right:0;bottom:0;height:3px;
+  background:var(--accent,#29a1ff);
+  opacity:.92;
+}
+.module-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.module-name{
+  font-weight:900;
+  font-size:1rem;
+  display:flex;align-items:center;gap:8px;
+}
+.module-status{
+  padding:5px 10px;border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  font-size:.72rem;color:var(--text2);
+}
+.module-facts{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px;
+}
+.module-fact{
+  border-radius:14px;padding:10px 11px;background:rgba(0,0,0,.14);border:1px solid rgba(255,255,255,.06);
+}
+.module-fact .label{font-size:.66rem;color:var(--text3);font-family:var(--mono);letter-spacing:1.8px;text-transform:uppercase}
+.module-fact .value{margin-top:5px;font-weight:800;font-size:.92rem}
+.progress{
+  margin-top:12px;
+}
+.bar{
+  height:12px;border-radius:999px;background:#0c1119;border:1px solid rgba(255,255,255,.05);overflow:hidden;
+}
+.fill{
+  height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent,#29a1ff),rgba(255,255,255,.55));
+  box-shadow:0 0 20px color-mix(in srgb, var(--accent,#29a1ff) 32%, transparent);
+}
+.progress-label{
+  margin-top:7px;color:var(--text2);font-size:.82rem;display:flex;justify-content:space-between;gap:10px;
+}
+.section-links{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:10px
+}
+.quick-tabs{
+  display:flex;gap:10px;flex-wrap:wrap
+}
+.tabbtn{
+  min-height:38px;padding:8px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);color:var(--text2);
+}
+.tabbtn.active,.tabbtn:hover{border-color:rgba(255,187,51,.28);color:var(--text);background:rgba(255,187,51,.08)}
+.objective-list,.session-list,.timeline,.security-list,.report-list,.milestone-list{
+  display:flex;flex-direction:column;gap:12px;
+}
+.objective-card,.session-card,.timeline-card,.security-card,.report-card,.milestone-card{
+  border-radius:18px;padding:14px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.035);
+}
+.objective-card.met{border-color:rgba(0,200,81,.22);background:rgba(0,200,81,.06)}
+.objective-top,.session-top,.timeline-top{
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start
+}
+.objective-title,.session-title,.timeline-title{font-weight:900}
+.objective-meta,.session-meta,.timeline-meta{
+  margin-top:6px;color:var(--text2);font-size:.85rem;line-height:1.55
+}
+.objective-bar{margin-top:10px}
+.small-note{font-size:.8rem;color:var(--text2)}
+.metric-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.metric-card{
+  border-radius:18px;padding:14px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.035);
+}
+.metric-card .label{font-size:.68rem;color:var(--text3);font-family:var(--mono);letter-spacing:2px;text-transform:uppercase}
+.metric-card .num{margin-top:6px;font-size:1.35rem;font-weight:900}
+.report-output{
+  margin-top:12px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.08);
+  background:#0d141f;
+  padding:16px;
+  white-space:pre-wrap;
+  color:var(--text2);
+  line-height:1.65;
+}
+.save-indicator{
+  font-family:var(--mono);
+  font-size:.72rem;
+  color:var(--text3);
+}
+.save-indicator.live{color:var(--green)}
+.toast{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:70;
+  min-width:260px;
+  max-width:420px;
+  padding:14px 16px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(180deg,rgba(18,26,38,.96),rgba(12,18,27,.98));
+  box-shadow:var(--shadow);
+  display:none;
+}
+.toast.show{display:block;animation:toastIn .25s ease}
+.toast .eyebrow{margin-bottom:6px;font-size:.62rem}
+.toast h4{margin:0;font-size:1.05rem}
+.toast p{margin:8px 0 0;color:var(--text2);line-height:1.55}
+@keyframes toastIn{
+  from{transform:translateY(12px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+.overlay{
+  position:fixed;inset:0;z-index:80;
+  display:none;align-items:center;justify-content:center;
+  padding:18px;
+  background:rgba(3,7,12,.78);
+  backdrop-filter:blur(8px);
+}
+.overlay.show{display:flex}
+.modal{
+  width:min(840px,100%);
+  max-height:min(88vh,940px);
+  overflow:auto;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(180deg,rgba(19,27,39,.98),rgba(12,18,27,.99));
+  box-shadow:var(--shadow);
+  position:relative;
+}
+.modal::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at top right, rgba(255,255,255,.04), transparent 30%),
+    linear-gradient(90deg, transparent 0 24px, rgba(255,255,255,.014) 24px 25px, transparent 25px 100%),
+    linear-gradient(0deg, transparent 0 24px, rgba(255,255,255,.014) 24px 25px, transparent 25px 100%);
+  background-size:auto,30px 30px,30px 30px;
+}
+.modal-inner{position:relative;z-index:1;padding:20px}
+.modal-head{
+  display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:16px;flex-wrap:wrap;
+}
+.modal-head h3{
+  margin:0;
+  font-family:var(--mono);
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{
+  font-size:.76rem;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  color:var(--text3);
+  font-family:var(--mono);
+}
+.field input,.field select,.field textarea{
+  width:100%;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.045);
+  color:var(--text);
+  min-height:46px;
+  padding:12px 14px;
+  outline:none;
+}
+.field textarea{min-height:106px;resize:vertical}
+.actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:18px}
+.lock-shell{
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+}
+.lock-card{
+  width:min(560px,100%);
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(180deg,rgba(19,27,39,.98),rgba(11,17,26,.99));
+  box-shadow:var(--shadow);
+  padding:24px;
+  position:relative;
+  overflow:hidden;
+}
+.lock-card::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at top right, rgba(255,255,255,.05), transparent 35%),
+    linear-gradient(90deg, transparent 0 24px, rgba(255,255,255,.014) 24px 25px, transparent 25px 100%),
+    linear-gradient(0deg, transparent 0 24px, rgba(255,255,255,.014) 24px 25px, transparent 25px 100%);
+  background-size:auto,30px 30px,30px 30px;
+}
+.lock-card .hero-title h1{font-size:clamp(1.8rem,5vw,2.8rem)}
+.lock-card .hero-copy{font-size:.98rem}
+.pin{
+  margin-top:16px;
+  width:100%;
+  min-height:58px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+  font-size:1.3rem;
+  letter-spacing:6px;
+  font-family:var(--mono);
+  text-align:center;
+}
+.error{margin-top:10px;color:#ffd6df;min-height:20px}
+.empty{
+  padding:20px;
+  border-radius:20px;
+  border:1px dashed rgba(255,255,255,.14);
+  color:var(--text2);
+  line-height:1.7;
+  background:rgba(255,255,255,.025);
+}
+.legend{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:12px
+}
+.legend span{display:inline-flex;align-items:center;gap:8px;color:var(--text2);font-size:.8rem}
+.legend i{width:10px;height:10px;border-radius:999px;display:inline-block}
+.radar-wrap{
+  display:grid;
+  grid-template-columns:340px minmax(0,1fr);
+  gap:16px;
+  align-items:center;
+}
+.radar-card{
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.035);
+  padding:16px;
+}
+.radar-svg{width:100%;height:auto;display:block}
+.readout-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.readout{
+  border-radius:16px;padding:12px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);
+}
+.readout .label{font-size:.68rem;color:var(--text3);font-family:var(--mono);letter-spacing:2px;text-transform:uppercase}
+.readout .value{margin-top:5px;font-weight:900}
+.sticky-nav{
+  position:sticky;top:10px;z-index:9;
+  margin-bottom:16px;
+  padding:10px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(8,13,20,.75);
+  backdrop-filter:blur(8px);
+}
+.mini-actions{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:12px
+}
+.note{
+  padding:12px 14px;border-radius:16px;background:rgba(255,187,51,.08);border:1px solid rgba(255,187,51,.16);color:#f7db9d;line-height:1.6
+}
+@media (max-width:1180px){
+  .main-shell{grid-template-columns:1fr}
+  .sidebar{order:2}
+  .hero-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .quick-grid,.metric-grid,.status-row,.module-grid,.form-grid,.radar-wrap,.readout-grid{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .page{padding:14px 12px 34px}
+  .hero-card{padding:18px 16px 16px}
+  .hero-title h1{font-size:clamp(1.6rem,8vw,2.4rem)}
+  .hero-grid{grid-template-columns:1fr}
+  .topbar{margin-bottom:12px}
+  .panel-inner{padding:16px}
+}
+</style>
+</head>
+<body>
+<div id="lock-view" class="lock-shell hidden">
+  <div class="lock-card">
+    <div class="hero-title">
+      <div class="mark">🛰</div>
+      <h1><span class="life">LifeReady</span> <span class="mc">Mission Control</span></h1>
+    </div>
+    <div class="eyebrow">Educator Access Gate</div>
+    <div class="hero-copy" id="lock-copy">Mission Control keeps learner information behind one shared educator code so staff can move faster without leaving privacy behind.</div>
+    <div class="note hidden" id="legacy-pin-note"></div>
+    <input id="pin-input" class="pin" type="password" placeholder="Enter PIN" autocomplete="off" spellcheck="false"/>
+    <div class="error" id="pin-error"></div>
+    <div class="mini-actions">
+      <button class="btn primary" id="pin-submit-btn">Unlock Mission Control</button>
+      <button class="btn ghost hidden" id="pin-create-btn">Create Access Code</button>
+      <button class="btn ghost hidden" id="pin-remove-legacy-btn">Ignore Legacy Codes</button>
+      <a class="btn ghost" href="index.html">Back to LifeReady</a>
+    </div>
+    <div class="small-note" style="margin-top:14px;color:var(--text3)">Tip: one code now protects the full hub. No more eight-code nightmare.</div>
+  </div>
+</div>
+
+<div id="app-view" class="hidden">
+  <div class="page">
+    <div class="topbar">
+      <div class="topbar-left">
+        <a class="btn ghost" href="index.html" id="suite-link">← LifeReady Hub</a>
+        <a class="btn ghost hidden" href="#" id="return-link">↩ Return to Module</a>
+        <div class="pill save-indicator" id="save-indicator">SYSTEM STABLE · Saved locally</div>
+      </div>
+      <div class="topbar-right">
+        <button class="btn ghost" id="help-btn">❔ How It Works</button>
+        <button class="btn ghost" id="lock-btn">🔒 Lock</button>
+      </div>
+    </div>
+
+    <section class="hero-card">
+      <div class="hero-top">
+        <div class="hero-title-block">
+          <div class="eyebrow">Unified Educator Dashboard</div>
+          <div class="hero-title">
+            <div class="mark">🛰</div>
+            <h1><span class="life">Mission</span> <span class="mc">Control</span></h1>
+          </div>
+          <div class="hero-copy">One command deck for every LifeReady module. Track growth, log sessions, monitor support needs, write cleaner reports, and keep the whole thing calm enough for real schools, programs, and day-to-day coaching.</div>
+        </div>
+        <div class="quick-tabs">
+          <button class="tabbtn active" data-jump="overview">Overview</button>
+          <button class="tabbtn" data-jump="objectives">Objectives</button>
+          <button class="tabbtn" data-jump="sessions">Progress Log</button>
+          <button class="tabbtn" data-jump="reports">Reports</button>
+          <button class="tabbtn" data-jump="security">Security</button>
+        </div>
+      </div>
+      <div class="hero-grid" id="hero-grid"></div>
+    </section>
+
+    <div class="main-shell">
+      <aside class="sidebar">
+        <section class="panel">
+          <div class="panel-inner">
+            <div class="panel-title">
+              <div>
+                <h2>Command Roster</h2>
+                <p>Choose a learner once and Mission Control pulls in their progress across the whole suite.</p>
+              </div>
+              <span class="pill" id="roster-count">0 Learners</span>
+            </div>
+            <input class="search" id="learner-search" type="search" placeholder="Search learner, program, note, or rank"/>
+            <div class="mini-actions">
+              <button class="btn primary slim" id="add-learner-btn">＋ Add Learner</button>
+              <button class="btn slim" id="refresh-btn">↻ Refresh Data</button>
+            </div>
+            <div class="learner-list" id="learner-list"></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-inner">
+            <div class="panel-title">
+              <div>
+                <h3>Focus Filters</h3>
+                <p>Keep one learner selected, then narrow the view when you want a specific module or report range.</p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="module-filter">Module focus</label>
+              <select id="module-filter"></select>
+            </div>
+            <div class="form-grid" style="margin-top:12px">
+              <div class="field">
+                <label for="range-start">Start date</label>
+                <input id="range-start" type="date"/>
+              </div>
+              <div class="field">
+                <label for="range-end">End date</label>
+                <input id="range-end" type="date"/>
+              </div>
+            </div>
+            <div class="mini-actions">
+              <button class="btn slim" id="clear-filters-btn">Clear Filters</button>
+            </div>
+            <div class="small-note" id="filter-note" style="margin-top:12px">Showing all modules and all recorded dates.</div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-inner">
+            <div class="panel-title">
+              <div>
+                <h3>Quick Start</h3>
+                <p>Because staff should not have to guess how your command center works.</p>
+              </div>
+            </div>
+            <div class="info-card">
+              <h3>1. Pick a learner</h3>
+              <p>Mission Control merges learner information from every module into one dashboard instead of scattering it across eight tiny empires.</p>
+            </div>
+            <div class="info-card" style="margin-top:12px">
+              <h3>2. Log what happened</h3>
+              <p>Record sessions, support level, staff initials, setting, and notes so progress tells a real story.</p>
+            </div>
+            <div class="info-card" style="margin-top:12px">
+              <h3>3. Export what matters</h3>
+              <p>Generate summaries that supervisors and state reviewers can actually understand without decoding game scores.</p>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <main class="stack">
+        <nav class="sticky-nav section-links">
+          <button class="btn slim ghost" id="log-session-btn">＋ Log Session</button>
+          <button class="btn slim ghost" id="add-objective-btn">◎ Add Objective</button>
+          <button class="btn slim ghost" id="copy-summary-btn">⧉ Copy Summary</button>
+          <button class="btn slim ghost" id="download-report-btn">⬇ Download Report</button>
+          <button class="btn slim ghost" id="download-csv-btn">⬇ Export CSV</button>
+        </nav>
+
+        <section class="panel" id="overview">
+          <div class="panel-inner">
+            <div class="panel-title">
+              <div>
+                <h2>Command Overview</h2>
+                <p id="overview-sub">Choose a learner to load the command deck.</p>
+              </div>
+              <span class="pill" id="current-view-pill">All Modules</span>
+            </div>
+            <div id="overview-body" class="empty">No learner selected yet. Pick someone from the roster or add a learner manually if you are building from scratch.</div>
+          </div>
+        </section>
+
+        <section class="panel" id="objectives">
+          <div class="panel-inner">
+            <div class="panel-title">
+              <div>
+                <h2>Objectives & Milestones</h2>
+                <p>Auto-track practical goals, imported module goals, promotions, and the little signs that independence is actually growing.</p>
+              </div>
+              <button class="btn slim primary" id="add-objective-btn-2">＋ New Objective</button>
+            </div>
+            <div class="objective-list" id="objective-list"></div>
+            <div class="milestone-list" id="milestone-list" style="margin-top:16px"></div>
+          </div>
+        </section>
+
+        <section class="panel" id="sessions">
+          <div class="panel-inner">
+            <div class="panel-title">
+              <div>
+                <h2>Progress Log</h2>
+                <p>See sessions over time with score, support level, staff initials, notes, and where the skill showed up in real life.</p>
+              </div>
+              <button class="btn slim primary" id="log-session-btn-2">＋ New Session</button>
+            </div>
+            <div class="session-list" id="session-list"></div>
+          </div>
+        </section>
+
+        <section class="panel" id="reports">
+          <div class="panel-inner">
+            <div class="panel-title">
+              <div>
+                <h2>Report Center</h2>
+                <p>Plain-language summaries for supervisors, day program teams, schools, job coaches, and anyone else who needs evidence without a scavenger hunt.</p>
+              </div>
+              <div class="mini-actions">
+                <button class="btn slim ghost" id="copy-summary-btn-2">⧉ Copy Summary</button>
+                <button class="btn slim ghost" id="download-report-btn-2">⬇ Download Report</button>
+              </div>
+            </div>
+            <div class="report-list" id="report-list"></div>
+            <div class="report-output" id="report-output">Select a learner to generate a report.</div>
+          </div>
+        </section>
+
+        <section class="panel" id="security">
+          <div class="panel-inner">
+            <div class="panel-title">
+              <div>
+                <h2>Security & System Status</h2>
+                <p>One educator code, local-device storage, auto-lock timing, and a clean explanation of what Mission Control is doing under the hood.</p>
+              </div>
+              <button class="btn slim ghost" id="manage-pin-btn">🔑 Manage Access Code</button>
+            </div>
+            <div class="security-list" id="security-list"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <div class="eyebrow">Promotion Unlocked</div>
+  <h4 id="toast-title">Rank Updated</h4>
+  <p id="toast-copy"></p>
+</div>
+
+<div class="overlay" id="help-overlay">
+  <div class="modal">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">Mission Control Guide</div>
+          <h3>How Mission Control Works</h3>
+        </div>
+        <button class="btn slim ghost" data-close="#help-overlay">Close</button>
+      </div>
+      <div class="quick-grid">
+        <div class="info-card">
+          <h3>One learner. One dashboard.</h3>
+          <p>Mission Control reads progress from every LifeReady module and keeps it in one educator-friendly view. No more module hopping just to explain how one person is doing.</p>
+        </div>
+        <div class="info-card">
+          <h3>Log what matters.</h3>
+          <p>Add session notes, staff initials, setting, score, and support level. That turns game activity into usable evidence instead of a pile of disconnected numbers.</p>
+        </div>
+        <div class="info-card">
+          <h3>Use objectives and reports.</h3>
+          <p>Track progress toward practical goals, watch rank progression, and export summaries that are clean enough for meetings, supervisors, and state review.</p>
+        </div>
+      </div>
+      <div class="note" style="margin-top:16px">Learner data stays on this device unless you choose to export a report or CSV. The sci-fi glow is for morale. The professionalism is still very much on purpose.</div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="intro-overlay">
+  <div class="modal">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">First-Time Walkthrough</div>
+          <h3>Welcome to Mission Control</h3>
+        </div>
+      </div>
+      <div class="quick-grid">
+        <div class="info-card">
+          <h3>Track everything in one place</h3>
+          <p>Every module can feed this dashboard so educators see one learner story instead of eight disconnected progress cards.</p>
+        </div>
+        <div class="info-card">
+          <h3>Log support, not just score</h3>
+          <p>Prompt level, setting, and notes matter. They help prove increasing independence, not just right answers.</p>
+        </div>
+        <div class="info-card">
+          <h3>Report clearly</h3>
+          <p>Mission Control turns raw sessions into summaries that higher-ups can actually understand without sitting through a software séance.</p>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" data-close="#intro-overlay">Review Later</button>
+        <button class="btn primary" id="intro-finish-btn">Enter Mission Control</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="learner-overlay">
+  <div class="modal">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">Roster Setup</div>
+          <h3>Add Learner</h3>
+        </div>
+        <button class="btn slim ghost" data-close="#learner-overlay">Close</button>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label for="learner-initials">Initials / display tag</label><input id="learner-initials" type="text" maxlength="8" placeholder="JM"/></div>
+        <div class="field"><label for="learner-display">Display name</label><input id="learner-display" type="text" placeholder="Jordan"/></div>
+        <div class="field"><label for="learner-full">Private full name</label><input id="learner-full" type="text" placeholder="Jordan Martinez"/></div>
+        <div class="field"><label for="learner-program">Program / class</label><input id="learner-program" type="text" placeholder="Community Readiness"/></div>
+        <div class="field"><label for="learner-level">Support level</label>
+          <select id="learner-level">
+            <option value="emerging">Emerging</option>
+            <option value="developing">Developing</option>
+            <option value="steady">Steady</option>
+            <option value="independent">Independent</option>
+          </select>
+        </div>
+        <div class="field"><label for="learner-color">Accent color</label><input id="learner-color" type="color" value="#29a1ff"/></div>
+      </div>
+      <div class="field" style="margin-top:12px">
+        <label for="learner-notes">Coach notes</label>
+        <textarea id="learner-notes" placeholder="Anything useful for staff, accommodations, or reminders."></textarea>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" data-close="#learner-overlay">Cancel</button>
+        <button class="btn primary" id="save-learner-btn">Save Learner</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="session-overlay">
+  <div class="modal">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">Progress Logging</div>
+          <h3>Log Session</h3>
+        </div>
+        <button class="btn slim ghost" data-close="#session-overlay">Close</button>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label for="session-learner">Learner</label><select id="session-learner"></select></div>
+        <div class="field"><label for="session-module">Module</label><select id="session-module"></select></div>
+        <div class="field"><label for="session-activity">Activity / mode</label><input id="session-activity" type="text" placeholder="Daily Challenge"/></div>
+        <div class="field"><label for="session-score">Score</label><input id="session-score" type="text" placeholder="4/5 or 80%"/></div>
+        <div class="field"><label for="session-prompt">Support level</label>
+          <select id="session-prompt">
+            <option value="independent">Independent</option>
+            <option value="verbal">Verbal Prompt</option>
+            <option value="gestural">Gesture Prompt</option>
+            <option value="physical">Physical Prompt</option>
+            <option value="hoh">Hand-over-Hand</option>
+          </select>
+        </div>
+        <div class="field"><label for="session-setting">Setting / generalization</label>
+          <select id="session-setting">
+            <option value="In App">In App</option>
+            <option value="Role Play">Role Play</option>
+            <option value="Classroom">Classroom</option>
+            <option value="Community">Community</option>
+            <option value="Work Site">Work Site</option>
+            <option value="Home">Home</option>
+          </select>
+        </div>
+        <div class="field"><label for="session-date">Date</label><input id="session-date" type="date"/></div>
+        <div class="field"><label for="session-staff">Staff initials</label><input id="session-staff" type="text" maxlength="10" placeholder="AB"/></div>
+      </div>
+      <div class="field" style="margin-top:12px"><label for="session-note">Notes</label><textarea id="session-note" placeholder="What happened, what support helped, and anything worth remembering later."></textarea></div>
+      <div class="actions">
+        <button class="btn ghost" data-close="#session-overlay">Cancel</button>
+        <button class="btn primary" id="save-session-btn">Save Session</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="objective-overlay">
+  <div class="modal">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">Goal Engine</div>
+          <h3>Add Objective</h3>
+        </div>
+        <button class="btn slim ghost" data-close="#objective-overlay">Close</button>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label for="objective-learner">Learner</label><select id="objective-learner"></select></div>
+        <div class="field"><label for="objective-module">Module focus</label><select id="objective-module"></select></div>
+        <div class="field"><label for="objective-template">Template</label>
+          <select id="objective-template">
+            <option value="accuracy">Accuracy 80% across 3 sessions</option>
+            <option value="independence">Verbal prompt or less in 4 of 5 sessions</option>
+            <option value="frequency">Complete 5 sessions in 30 days</option>
+            <option value="custom">Custom objective</option>
+          </select>
+        </div>
+        <div class="field"><label for="objective-title">Objective title</label><input id="objective-title" type="text" placeholder="Build independence with TimeReady schedule tasks"/></div>
+        <div class="field"><label for="objective-threshold">Threshold / target</label><input id="objective-threshold" type="number" min="1" max="100" value="80"/></div>
+        <div class="field"><label for="objective-window">Sessions / days</label><input id="objective-window" type="number" min="1" max="30" value="3"/></div>
+      </div>
+      <div class="field" style="margin-top:12px"><label for="objective-note">Notes</label><textarea id="objective-note" placeholder="Why this goal matters or how staff should support it."></textarea></div>
+      <div class="actions">
+        <button class="btn ghost" data-close="#objective-overlay">Cancel</button>
+        <button class="btn primary" id="save-objective-btn">Save Objective</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="pin-overlay">
+  <div class="modal" style="max-width:560px">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">Privacy Controls</div>
+          <h3>Manage Access Code</h3>
+        </div>
+        <button class="btn slim ghost" data-close="#pin-overlay">Close</button>
+      </div>
+      <div class="field"><label for="new-pin">New PIN / access code</label><input id="new-pin" type="password" placeholder="At least 4 characters"/></div>
+      <div class="field" style="margin-top:12px"><label for="new-pin-confirm">Confirm PIN</label><input id="new-pin-confirm" type="password" placeholder="Enter it again"/></div>
+      <div class="field" style="margin-top:12px"><label for="pin-hint">Optional reminder for staff</label><input id="pin-hint" type="text" placeholder="Example: same as office device code"/></div>
+      <div class="field" style="margin-top:12px"><label for="auto-lock">Auto-lock after inactivity</label>
+        <select id="auto-lock">
+          <option value="0">Never auto-lock</option>
+          <option value="3">3 minutes</option>
+          <option value="5">5 minutes</option>
+          <option value="10">10 minutes</option>
+          <option value="15">15 minutes</option>
+        </select>
+      </div>
+      <div class="error" id="pin-manage-error"></div>
+      <div class="actions">
+        <button class="btn danger" id="remove-pin-btn">Remove PIN</button>
+        <button class="btn primary" id="save-pin-btn">Save PIN</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const MODULES = [
+  {id:'CashReady', file:'CashReady.html', storage:'cr_clients', cfg:'cr_cfg', accent:'#00c851', icon:'💵', skillLabels:{coins:'Coins', bills:'Bills', change:'Making Change', cashier:'Cashier Skills'}},
+  {id:'HealthReady', file:'HealthReady.html', storage:'hlr_clients', cfg:'hlr_cfg', accent:'#e91e8c', icon:'🩺', skillLabels:{prescriptions:'Prescriptions', doctor:'Doctor Visits', insurance:'Insurance', emergency:'Emergencies', mental:'Mental Health'}},
+  {id:'HomeReady', file:'HomeReady.html', storage:'hr_clients', cfg:'hr_cfg', accent:'#e8650a', icon:'🏠', skillLabels:{laundry:'Laundry', budget:'Budget', safety:'Safety', food:'Food Safety', independence:'Independence'}},
+  {id:'JobReady', file:'JobReady.html', storage:'jr_clients', cfg:'jr_cfg', accent:'#d4900a', icon:'💼', skillLabels:{interview:'Interview', workplace:'Workplace', paycheck:'Paycheck', schedule:'Schedule', communication:'Communication'}},
+  {id:'SocialReady', file:'SocialReady.html', storage:'sr_clients', cfg:'sr_cfg', accent:'#9b30d9', icon:'🗨️', skillLabels:{situations:'Reading the Room', conversations:'Conversations', boundaries:'Boundaries', feelings:'Conflict & Feelings'}},
+  {id:'TechReady', file:'TechReady.html', storage:'tc_clients', cfg:'tc_cfg', accent:'#cc2200', icon:'💻', skillLabels:{scams:'Scams', passwords:'Passwords', online:'Online Safety', devices:'Devices'}},
+  {id:'TimeReady', file:'TimeReady.html', storage:'tr_clients', cfg:'tr_cfg', accent:'#2288ff', icon:'⏰', skillLabels:{analog:'Analog Time', digital:'Digital Time', ampm:'AM / PM', schedule:'Schedule'}},
+  {id:'TravelReady', file:'TravelReady.html', storage:'tr5_clients', cfg:'tr5_cfg', accent:'#0a9396', icon:'🚌', skillLabels:{transit:'Bus & Train', navigate:'Getting Around', money:'Money & Travel', safety:'Travel Safety', plan:'Planning'}},
+];
+const HUB_KEY = 'lr_mc_hub_v1';
+const TODAY = new Date().toISOString().slice(0,10);
+const RANKS = [
+  {min:0,title:'Cadet'},
+  {min:20,title:'Ensign'},
+  {min:35,title:'Lieutenant'},
+  {min:50,title:'Lt. Commander'},
+  {min:65,title:'Commander'},
+  {min:80,title:'Captain'},
+  {min:92,title:'Admiral'}
+];
+const PROMPT_META = {
+  independent:{rank:5,label:'Independent',score:100,color:'#00c851'},
+  verbal:{rank:4,label:'Verbal Prompt',score:80,color:'#29a1ff'},
+  gestural:{rank:3,label:'Gesture Prompt',score:60,color:'#ffb347'},
+  physical:{rank:2,label:'Physical Prompt',score:40,color:'#ff8f3d'},
+  hoh:{rank:1,label:'Hand-over-Hand',score:20,color:'#ff5470'}
+};
+
+let HUB = loadHubState();
+let APP = {
+  importedPins: [],
+  learners: [],
+  selectedKey: '',
+  selectedModule: 'All Modules',
+  search: '',
+  rangeStart: '',
+  rangeEnd: '',
+  returnFile: '',
+  returnModule: '',
+  initialView: '',
+  saveTick: null
+};
+const qs = new URLSearchParams(location.search);
+APP.selectedModule = qs.get('module') || HUB.selectedModule || 'All Modules';
+APP.returnFile = qs.get('return') || '';
+APP.returnModule = qs.get('module') || '';
+APP.initialView = qs.get('view') || '';
+APP.rangeStart = HUB.rangeStart || '';
+APP.rangeEnd = HUB.rangeEnd || '';
+
+function $(sel, root=document){ return root.querySelector(sel); }
+function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
+
+function safeJSONParse(raw, fallback){
+  try{
+    const parsed = JSON.parse(raw);
+    return parsed == null ? fallback : parsed;
+  }catch{
+    return fallback;
+  }
+}
+function loadHubState(){
+  const state = safeJSONParse(localStorage.getItem(HUB_KEY), {});
+  state.pin = state.pin || '';
+  state.pinHint = state.pinHint || '';
+  state.introSeen = !!state.introSeen;
+  state.autoLockMinutes = String(state.autoLockMinutes ?? '5');
+  state.lastLearnerKey = state.lastLearnerKey || '';
+  state.selectedModule = state.selectedModule || 'All Modules';
+  state.rangeStart = state.rangeStart || '';
+  state.rangeEnd = state.rangeEnd || '';
+  state.profiles = state.profiles || {};
+  return state;
+}
+function saveHubState(message='Saved locally'){
+  localStorage.setItem(HUB_KEY, JSON.stringify(HUB));
+  const el = $('#save-indicator');
+  if(el){
+    el.textContent = `SYSTEM STABLE · ${message}`;
+    el.classList.add('live');
+    clearTimeout(APP.saveTick);
+    APP.saveTick = setTimeout(()=>{
+      el.textContent = 'SYSTEM STABLE · Saved locally';
+      el.classList.remove('live');
+    }, 1800);
+  }
+}
+function readStorage(key, fallback){
+  return safeJSONParse(localStorage.getItem(key), fallback);
+}
+function slugify(str){
+  return String(str||'')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g,'-')
+    .replace(/^-+|-+$/g,'') || 'learner';
+}
+function profileKey(data){
+  const full = slugify(data.fullName || '');
+  const name = slugify(data.name || data.displayName || '');
+  const initials = slugify(data.initials || '');
+  if(full) return 'full-' + full;
+  if(name && initials) return 'mix-' + name + '-' + initials;
+  if(name) return 'name-' + name;
+  if(initials) return 'initials-' + initials;
+  return 'manual-' + Math.random().toString(36).slice(2,9);
+}
+function initialsFor(name){
+  const source = String(name||'').trim();
+  if(!source) return 'LR';
+  return source.split(/\s+/).slice(0,2).map(part=>part[0]?.toUpperCase() || '').join('').slice(0,2) || 'LR';
+}
+function colorFor(text){
+  const palette = ['#29a1ff','#ff8f3d','#00c851','#9f4dff','#ff4fa7','#0a9396','#d4900a','#cc2200'];
+  let sum = 0;
+  for(const ch of String(text||'')) sum += ch.charCodeAt(0);
+  return palette[sum % palette.length];
+}
+function parsePercent(raw){
+  const s = String(raw||'').trim();
+  if(!s) return null;
+  const frac = s.match(/(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)/);
+  if(frac){
+    const a = parseFloat(frac[1]), b = parseFloat(frac[2]);
+    if(b > 0) return Math.max(0, Math.min(100, Math.round((a / b) * 100)));
+  }
+  const pct = s.match(/(\d+(?:\.\d+)?)\s*%/);
+  if(pct) return Math.max(0, Math.min(100, Math.round(parseFloat(pct[1]))));
+  const num = s.match(/^\d+(?:\.\d+)?$/);
+  if(num){
+    const val = parseFloat(num[0]);
+    return val <= 10 ? Math.round(val * 10) : Math.round(Math.min(100, val));
+  }
+  return null;
+}
+function normalizePrompt(prompt){
+  const key = String(prompt||'').toLowerCase().trim();
+  if(PROMPT_META[key]) return key;
+  if(key.includes('verbal')) return 'verbal';
+  if(key.includes('gesture')) return 'gestural';
+  if(key.includes('physical')) return 'physical';
+  if(key.includes('hand')) return 'hoh';
+  if(key.includes('independ')) return 'independent';
+  return 'independent';
+}
+function promptScore(prompt){
+  return (PROMPT_META[normalizePrompt(prompt)] || PROMPT_META.independent).score;
+}
+function promptLabel(prompt){
+  return (PROMPT_META[normalizePrompt(prompt)] || PROMPT_META.independent).label;
+}
+function combineDateTime(date, time=''){
+  const d = String(date || '').trim();
+  if(!d) return 0;
+  const t = String(time || '').trim();
+  const iso = t ? `${d}T${normalizeTime(t)}` : `${d}T12:00:00`;
+  const ts = new Date(iso).getTime();
+  return Number.isNaN(ts) ? new Date(d).getTime() || 0 : ts;
+}
+function normalizeTime(t){
+  const str = String(t||'').trim();
+  if(!str) return '12:00:00';
+  const twelve = str.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+  if(twelve){
+    let h = parseInt(twelve[1],10);
+    const m = twelve[2];
+    const part = twelve[3].toUpperCase();
+    if(part === 'PM' && h < 12) h += 12;
+    if(part === 'AM' && h === 12) h = 0;
+    return `${String(h).padStart(2,'0')}:${m}:00`;
+  }
+  const simple = str.match(/(\d{1,2}):(\d{2})/);
+  if(simple) return `${String(simple[1]).padStart(2,'0')}:${simple[2]}:00`;
+  return '12:00:00';
+}
+function unique(arr){
+  return [...new Set(arr.filter(Boolean))];
+}
+function legacyPins(){
+  const pins = [];
+  for(const mod of MODULES){
+    const cfg = readStorage(mod.cfg, {});
+    if(cfg && cfg.coachPin) pins.push(String(cfg.coachPin));
+  }
+  return unique(pins);
+}
+function buildLearners(){
+  const merged = new Map();
+  APP.importedPins = legacyPins();
+
+  for(const mod of MODULES){
+    const clients = readStorage(mod.storage, []);
+    for(const client of clients){
+      const key = profileKey({
+        fullName: client.fullName,
+        name: client.name,
+        displayName: client.name,
+        initials: client.initials
+      });
+      if(!merged.has(key)){
+        merged.set(key,{
+          key,
+          displayName: client.name || client.fullName || client.initials || 'Learner',
+          fullName: client.fullName || '',
+          initials: client.initials || initialsFor(client.name || client.fullName || ''),
+          programList: [],
+          level: client.level || 'developing',
+          notesList: [],
+          color: client.color || colorFor(key),
+          modules: {},
+          importedGoals: [],
+          importedSessions: [],
+          objectives: [],
+          manualSessions: [],
+          archived: false,
+          coachNotes: '',
+          createdAt: TODAY,
+          sourceCount: 0
+        });
+      }
+      const item = merged.get(key);
+      item.displayName = item.displayName || client.name || client.fullName || client.initials || 'Learner';
+      item.fullName = item.fullName || client.fullName || '';
+      item.initials = item.initials || client.initials || initialsFor(item.displayName);
+      item.programList.push(client.program || '');
+      item.level = item.level || client.level || 'developing';
+      item.notesList.push(client.notes || '');
+      item.color = item.color || client.color || colorFor(key);
+      item.archived = item.archived || !!client.archived;
+      item.sourceCount += 1;
+
+      const moduleData = {
+        id: mod.id,
+        accent: mod.accent,
+        icon: mod.icon,
+        skills: client.skills || {},
+        goals: (client.goals || []).map((goal, idx)=>({
+          ...goal,
+          id: `${mod.id}-import-${idx}-${(goal.skill || 'goal').replace(/[^a-z0-9]/gi,'')}`,
+          imported: true,
+          module: mod.id
+        })),
+        sessions: (client.sessions || []).map((session, idx)=>normalizeSession(session, mod.id, `import-${mod.id}-${idx}`))
+      };
+      item.modules[mod.id] = moduleData;
+      item.importedGoals.push(...moduleData.goals);
+      item.importedSessions.push(...moduleData.sessions);
+    }
+  }
+
+  for(const [key, profile] of Object.entries(HUB.profiles)){
+    if(!merged.has(key)){
+      merged.set(key,{
+        key,
+        displayName: profile.displayName || profile.fullName || profile.initials || 'Learner',
+        fullName: profile.fullName || '',
+        initials: profile.initials || initialsFor(profile.displayName || profile.fullName || ''),
+        programList: [profile.program || ''],
+        level: profile.level || 'developing',
+        notesList: [profile.notes || ''],
+        color: profile.color || colorFor(key),
+        modules: {},
+        importedGoals: [],
+        importedSessions: [],
+        objectives: [],
+        manualSessions: [],
+        archived: !!profile.archived,
+        coachNotes: profile.notes || '',
+        createdAt: profile.createdAt || TODAY,
+        sourceCount: 0
+      });
+    }
+    const item = merged.get(key);
+    item.displayName = profile.displayName || item.displayName;
+    item.fullName = profile.fullName || item.fullName;
+    item.initials = profile.initials || item.initials;
+    if(profile.program) item.programList.push(profile.program);
+    item.level = profile.level || item.level;
+    item.notesList.push(profile.notes || '');
+    item.color = profile.color || item.color;
+    item.archived = !!profile.archived;
+    item.createdAt = profile.createdAt || item.createdAt;
+    item.objectives = profile.objectives || [];
+    item.manualSessions = (profile.manualSessions || []).map((session, idx)=>normalizeSession(session, session.module || 'Manual', `manual-${key}-${idx}`, true));
+    item.coachNotes = profile.notes || item.coachNotes || '';
+  }
+
+  const learners = Array.from(merged.values()).map(item=>{
+    item.programList = unique(item.programList);
+    item.program = item.programList.join(' • ');
+    item.notes = unique(item.notesList).join(' • ');
+    item.sessions = [...item.importedSessions, ...item.manualSessions].sort((a,b)=>combineDateTime(a.date,a.time) - combineDateTime(b.date,b.time));
+    item.objectives = item.objectives || [];
+    item.importedGoals = item.importedGoals || [];
+    item.metrics = deriveMetrics(item);
+    return item;
+  }).sort((a,b)=>{
+    const aTs = a.metrics.lastSessionTs || 0;
+    const bTs = b.metrics.lastSessionTs || 0;
+    if(bTs !== aTs) return bTs - aTs;
+    return a.displayName.localeCompare(b.displayName);
+  });
+
+  return learners;
+}
+function normalizeSession(session, fallbackModule, id, manual=false){
+  const loggedLabel = session.activity || session.mode || session.module || fallbackModule || 'Session';
+  const moduleName = manual ? (session.module || fallbackModule || 'Module') : (fallbackModule || session.module || 'Module');
+  return {
+    id: session.id || id || Math.random().toString(36).slice(2),
+    imported: !manual,
+    manual: !!manual,
+    module: moduleName,
+    activity: loggedLabel,
+    score: session.score || '',
+    accuracy: parsePercent(session.score),
+    prompt: normalizePrompt(session.prompt),
+    notes: session.notes || session.note || '',
+    date: session.date || TODAY,
+    time: session.time || '',
+    staff: session.staff || '',
+    setting: session.setting || 'In App',
+    skill: session.skill || '',
+    source: manual ? 'manual' : 'imported'
+  };
+}
+function filteredSessions(learner){
+  let sessions = learner?.sessions || [];
+  if(APP.selectedModule && APP.selectedModule !== 'All Modules'){
+    sessions = sessions.filter(s=>s.module === APP.selectedModule);
+  }
+  if(APP.rangeStart) sessions = sessions.filter(s=>(s.date || '') >= APP.rangeStart);
+  if(APP.rangeEnd) sessions = sessions.filter(s=>(s.date || '') <= APP.rangeEnd);
+  return sessions;
+}
+function deriveMetrics(learner){
+  const sessions = learner.sessions || [];
+  const accValues = sessions.map(s=>s.accuracy).filter(v=>typeof v === 'number');
+  const acc = accValues.length ? Math.round(accValues.reduce((a,b)=>a+b,0)/accValues.length) : 0;
+  const ind = sessions.length ? Math.round(sessions.reduce((a,s)=>a+promptScore(s.prompt),0)/sessions.length) : 0;
+  const modulesTouched = unique(sessions.map(s=>s.module)).length;
+  const engagement = Math.min(100, Math.round((modulesTouched / MODULES.length) * 100 + Math.min(40, sessions.length * 3)));
+  const objectiveStats = evaluateObjectives(learner, false);
+  const goalScore = objectiveStats.total ? Math.round((objectiveStats.met / objectiveStats.total) * 100) : (sessions.length ? 55 : 0);
+  const readiness = sessions.length ? Math.round(acc * .45 + ind * .25 + engagement * .15 + goalScore * .15) : 0;
+  const rank = calcRank(readiness);
+  const last = sessions[sessions.length - 1] || null;
+  const lastSessionTs = last ? combineDateTime(last.date, last.time) : 0;
+  return {acc, ind, modulesTouched, engagement, goalScore, readiness, rank, last, lastSessionTs};
+}
+function calcRank(score){
+  let current = RANKS[0];
+  for(const rank of RANKS){
+    if(score >= rank.min) current = rank;
+  }
+  return current;
+}
+function moduleStats(learner){
+  const stats = MODULES.map(mod=>{
+    const sessions = filteredSessions(learner).filter(s=>s.module === mod.id);
+    const accValues = sessions.map(s=>s.accuracy).filter(v=>typeof v === 'number');
+    const avg = accValues.length ? Math.round(accValues.reduce((a,b)=>a+b,0)/accValues.length) : 0;
+    const ind = sessions.length ? Math.round(sessions.reduce((a,s)=>a+promptScore(s.prompt),0)/sessions.length) : 0;
+    const last = sessions[sessions.length - 1] || null;
+    const goals = [
+      ...learner.importedGoals.filter(g=>g.module === mod.id),
+      ...learner.objectives.filter(g=>(g.module || 'All Modules') === mod.id)
+    ];
+    const goalEval = goals.length ? goals.filter(g=>goalMet(learner,g)).length : 0;
+    const skillMap = learner.modules[mod.id]?.skills || {};
+    const topSkillEntry = Object.entries(skillMap).sort((a,b)=>(b[1]||0)-(a[1]||0))[0] || null;
+    const status = deriveModuleStatus(sessions, avg, ind);
+    const score = sessions.length ? Math.round(avg * .6 + ind * .4) : 0;
+    return {
+      ...mod,
+      sessions,
+      avg,
+      ind,
+      last,
+      goals,
+      goalEval,
+      topSkillEntry,
+      status,
+      score
+    };
+  });
+  return stats;
+}
+function deriveModuleStatus(sessions, avg, ind){
+  if(!sessions.length) return 'Not Started';
+  if(sessions.length >= 4){
+    const latest = sessions.slice(-3).map(s=>s.accuracy).filter(v=>typeof v==='number');
+    const earlier = sessions.slice(-6,-3).map(s=>s.accuracy).filter(v=>typeof v==='number');
+    if(latest.length && earlier.length){
+      const latestAvg = latest.reduce((a,b)=>a+b,0)/latest.length;
+      const earlierAvg = earlier.reduce((a,b)=>a+b,0)/earlier.length;
+      if(latestAvg < earlierAvg - 10) return 'Needs Review';
+    }
+  }
+  if(avg >= 85 && ind >= 80 && sessions.length >= 5) return 'Mastered';
+  if(avg >= 78 && ind >= 70) return 'Near Mastery';
+  if(avg >= 70) return 'Building Independence';
+  if(avg >= 55) return 'In Progress';
+  return 'Training';
+}
+function strongestAndWeakest(modStats){
+  const active = modStats.filter(m=>m.sessions.length);
+  if(!active.length) return {strongest:'No tracked module yet', weakest:'No tracked module yet'};
+  const byScore = [...active].sort((a,b)=>b.score-a.score);
+  return {strongest: byScore[0].id, weakest: byScore[byScore.length-1].id};
+}
+function nextBestAction(learner){
+  const modStats = moduleStats(learner);
+  const activeObjective = learner.objectives.find(obj=>!goalMet(learner,obj));
+  if(activeObjective){
+    return `Focus on ${activeObjective.module === 'All Modules' ? 'the current objective' : activeObjective.module} next. The active target is "${activeObjective.title || objectiveTemplateLabel(activeObjective)}".`;
+  }
+  const untouched = modStats.find(m=>!m.sessions.length);
+  if(untouched) return `No ${untouched.id} sessions are logged yet. Run one clean round there next so the dashboard stops guessing.`;
+  const needsReview = modStats.find(m=>m.status === 'Needs Review');
+  if(needsReview) return `${needsReview.id} is trending down. Slow it down, reduce pressure, and log one follow-up session with support notes.`;
+  const weakest = strongestAndWeakest(modStats).weakest;
+  return `Practice ${weakest} next. That module has the most room to grow and will sharpen the overall readiness picture.`;
+}
+function missionBrief(learner){
+  const ms = moduleStats(learner);
+  const sw = strongestAndWeakest(ms);
+  const sessions = filteredSessions(learner);
+  if(!sessions.length){
+    return `${learner.displayName} does not have tracked sessions yet. Start with one module, log the support level, and Mission Control will build the report around real evidence instead of vibes.`;
+  }
+  const last = sessions[sessions.length - 1];
+  const prompt = promptLabel(last.prompt);
+  return `${learner.displayName} is currently ranked ${learner.metrics.rank.title} with a readiness score of ${learner.metrics.readiness}. Strongest area: ${sw.strongest}. Biggest support need: ${sw.weakest}. Most recent session: ${last.module} on ${formatDate(last.date)} with ${prompt}.`;
+}
+function improvementSummary(learner){
+  const sessions = filteredSessions(learner);
+  if(sessions.length < 2) return 'Not enough session history yet to calculate a trend.';
+  const recent = sessions.slice(-4).map(s=>s.accuracy).filter(v=>typeof v==='number');
+  const earlier = sessions.slice(-8,-4).map(s=>s.accuracy).filter(v=>typeof v==='number');
+  if(!recent.length) return 'Scores are being logged, but not in a format Mission Control can turn into percentages yet.';
+  const recentAvg = recent.reduce((a,b)=>a+b,0)/recent.length;
+  if(!earlier.length) return `Recent average accuracy is ${Math.round(recentAvg)}%. Keep logging and the trend line will get sharper.`;
+  const earlierAvg = earlier.reduce((a,b)=>a+b,0)/earlier.length;
+  const diff = Math.round(recentAvg - earlierAvg);
+  if(diff >= 8) return `Recent accuracy is up ${diff} points compared with earlier sessions. Good momentum.`;
+  if(diff <= -8) return `Recent accuracy is down ${Math.abs(diff)} points compared with earlier sessions. Time for a calmer check-in and maybe easier supports.`;
+  return `Recent accuracy is holding steady around ${Math.round(recentAvg)}%.`;
+}
+function objectiveTemplateLabel(obj){
+  switch(obj.template){
+    case 'accuracy': return `Reach ${obj.threshold || 80}% across ${obj.window || 3} sessions`;
+    case 'independence': return `${promptLabel(obj.maxPrompt || 'verbal')} or less in ${obj.threshold || 4} of ${obj.window || 5} sessions`;
+    case 'frequency': return `${obj.threshold || 5} sessions in ${obj.window || 30} days`;
+    default: return obj.title || 'Custom objective';
+  }
+}
+function objectiveSessions(learner, obj){
+  let sessions = learner.sessions || [];
+  if(obj.module && obj.module !== 'All Modules') sessions = sessions.filter(s=>s.module === obj.module);
+  if(APP.rangeStart) sessions = sessions.filter(s=>(s.date||'') >= APP.rangeStart);
+  if(APP.rangeEnd) sessions = sessions.filter(s=>(s.date||'') <= APP.rangeEnd);
+  return sessions;
+}
+function goalMet(learner, obj){
+  if(obj.imported){
+    const sessions = (learner.sessions || []).filter(s=>s.module === obj.module);
+    if(!sessions.length) return false;
+    const needed = Number(obj.consec || 3);
+    const threshold = Math.round(((Number(obj.num) || 4) / Math.max(1, Number(obj.den) || 5)) * 100);
+    const qualifying = [...sessions].reverse();
+    let streak = 0;
+    for(const session of qualifying){
+      const pct = typeof session.accuracy === 'number' ? session.accuracy : parsePercent(session.score);
+      if(typeof pct === 'number' && pct >= threshold) streak += 1;
+      else break;
+    }
+    return streak >= needed;
+  }
+  const sessions = objectiveSessions(learner, obj);
+  if(!sessions.length) return false;
+  switch(obj.template){
+    case 'accuracy': {
+      const seq = [...sessions].reverse();
+      let streak = 0;
+      for(const s of seq){
+        if(typeof s.accuracy === 'number' && s.accuracy >= Number(obj.threshold || 80)) streak += 1;
+        else break;
+      }
+      return streak >= Number(obj.window || 3);
+    }
+    case 'independence': {
+      const max = Number(obj.window || 5);
+      const need = Number(obj.threshold || 4);
+      const targetRank = (PROMPT_META[normalizePrompt(obj.maxPrompt || 'verbal')] || PROMPT_META.verbal).rank;
+      const recent = sessions.slice(-max);
+      const good = recent.filter(s=>(PROMPT_META[normalizePrompt(s.prompt)] || PROMPT_META.independent).rank >= targetRank).length;
+      return good >= need;
+    }
+    case 'frequency': {
+      const days = Number(obj.window || 30);
+      const need = Number(obj.threshold || 5);
+      const edge = Date.now() - days * 24 * 60 * 60 * 1000;
+      const count = sessions.filter(s=>combineDateTime(s.date,s.time) >= edge).length;
+      return count >= need;
+    }
+    default:
+      return !!obj.met;
+  }
+}
+function goalProgress(learner, obj){
+  if(obj.imported){
+    const sessions = (learner.sessions || []).filter(s=>s.module === obj.module);
+    const needed = Number(obj.consec || 3);
+    const threshold = Math.round(((Number(obj.num) || 4) / Math.max(1, Number(obj.den) || 5)) * 100);
+    const seq = [...sessions].reverse();
+    let streak = 0;
+    for(const s of seq){
+      const pct = typeof s.accuracy === 'number' ? s.accuracy : parsePercent(s.score);
+      if(typeof pct === 'number' && pct >= threshold) streak += 1;
+      else break;
+    }
+    return Math.min(1, streak / Math.max(1, needed));
+  }
+  const sessions = objectiveSessions(learner, obj);
+  if(!sessions.length) return 0;
+  switch(obj.template){
+    case 'accuracy': {
+      const seq = [...sessions].reverse();
+      let streak = 0;
+      for(const s of seq){
+        if(typeof s.accuracy === 'number' && s.accuracy >= Number(obj.threshold || 80)) streak += 1;
+        else break;
+      }
+      return Math.min(1, streak / Math.max(1, Number(obj.window || 3)));
+    }
+    case 'independence': {
+      const max = Number(obj.window || 5);
+      const need = Number(obj.threshold || 4);
+      const targetRank = (PROMPT_META[normalizePrompt(obj.maxPrompt || 'verbal')] || PROMPT_META.verbal).rank;
+      const recent = sessions.slice(-max);
+      const good = recent.filter(s=>(PROMPT_META[normalizePrompt(s.prompt)] || PROMPT_META.independent).rank >= targetRank).length;
+      return Math.min(1, good / Math.max(1, need));
+    }
+    case 'frequency': {
+      const days = Number(obj.window || 30);
+      const need = Number(obj.threshold || 5);
+      const edge = Date.now() - days * 24 * 60 * 60 * 1000;
+      const count = sessions.filter(s=>combineDateTime(s.date,s.time) >= edge).length;
+      return Math.min(1, count / Math.max(1, need));
+    }
+    default:
+      return obj.met ? 1 : 0;
+  }
+}
+function evaluateObjectives(learner, filtered=true){
+  const pool = [
+    ...learner.objectives,
+    ...learner.importedGoals
+  ];
+  const items = filtered ? pool.filter(obj=>!APP.selectedModule || APP.selectedModule === 'All Modules' || (obj.module || 'All Modules') === APP.selectedModule) : pool;
+  const met = items.filter(obj=>goalMet(learner,obj)).length;
+  return {items, met, total: items.length};
+}
+function milestones(learner){
+  const list = [];
+  const sessions = filteredSessions(learner);
+  const total = sessions.length;
+  if(total) list.push({title:'First Logged Session', copy:`${learner.displayName} has started generating trackable data in Mission Control.`});
+  if(total >= 5) list.push({title:'Five Sessions Logged', copy:`Enough data is in place to show a more stable progress story.`});
+  if(total >= 10) list.push({title:'Ten Sessions Logged', copy:`The learning record now has enough volume to support cleaner reporting.`});
+  if(sessions.some(s=>normalizePrompt(s.prompt)==='independent')) list.push({title:'First Independent Session', copy:`One or more tasks were completed independently.`});
+  for(const mod of moduleStats(learner)){
+    if(mod.status === 'Mastered') list.push({title:`${mod.id} Mastered`, copy:`Average performance and support trend both point to strong readiness.`});
+  }
+  for(const obj of learner.objectives){
+    if(goalMet(learner,obj)) list.push({title:'Objective Reached', copy:obj.title || objectiveTemplateLabel(obj)});
+  }
+  return list.slice(0,8);
+}
+function formatDate(date){
+  if(!date) return 'No date';
+  const d = new Date(date + 'T12:00:00');
+  if(Number.isNaN(d.getTime())) return date;
+  return d.toLocaleDateString([], {month:'short', day:'numeric', year:'numeric'});
+}
+function reportText(learner){
+  const sessions = filteredSessions(learner);
+  const ms = moduleStats(learner);
+  const sw = strongestAndWeakest(ms);
+  const objectiveData = evaluateObjectives(learner);
+  const last = sessions[sessions.length - 1];
+  const locationCounts = Object.entries(sessions.reduce((acc,s)=>{acc[s.setting||'In App']=(acc[s.setting||'In App']||0)+1; return acc;}, {}))
+    .sort((a,b)=>b[1]-a[1]).slice(0,3).map(([setting,count])=>`${setting} (${count})`).join(', ') || 'No session settings logged yet';
+  const metCount = objectiveData.items.filter(obj=>goalMet(learner,obj)).length;
+  const activeCount = objectiveData.items.length - metCount;
+  const rank = learner.metrics.rank.title;
+  const trend = improvementSummary(learner);
+
+  return [
+    `${learner.displayName}${learner.fullName ? ` (${learner.fullName})` : ''}`,
+    `Rank: ${rank}`,
+    `Readiness Score: ${learner.metrics.readiness}`,
+    `Program: ${learner.program || 'Not listed'}`,
+    '',
+    `Mission Brief`,
+    `${learner.displayName} is currently ranked ${rank}. ${trend}`,
+    `Strongest module: ${sw.strongest}. Module needing the most support: ${sw.weakest}.`,
+    last ? `Most recent session: ${last.module} on ${formatDate(last.date)} with ${promptLabel(last.prompt)}.` : 'No sessions have been logged yet.',
+    '',
+    `Progress Summary`,
+    `Total sessions in view: ${sessions.length}`,
+    `Average accuracy: ${learner.metrics.acc || 0}%`,
+    `Average independence score: ${learner.metrics.ind || 0}%`,
+    `Modules touched: ${learner.metrics.modulesTouched} of ${MODULES.length}`,
+    `Most common settings: ${locationCounts}`,
+    '',
+    `Objectives`,
+    `Objectives met: ${metCount}`,
+    `Objectives still active: ${activeCount}`,
+    objectiveData.items.length ? objectiveData.items.map(obj=>`- ${obj.title || objectiveTemplateLabel(obj)}${goalMet(learner,obj) ? ' [met]' : ''}`).join('\n') : '- No objectives tracked yet',
+    '',
+    `Recommended Next Step`,
+    nextBestAction(learner)
+  ].join('\n');
+}
+function csvText(learner){
+  const rows = [['Learner','Module','Activity','Score','Accuracy','Prompt','Setting','Date','Time','Staff','Notes','Source']];
+  for(const s of filteredSessions(learner)){
+    rows.push([
+      learner.displayName,
+      s.module,
+      s.activity,
+      s.score,
+      s.accuracy ?? '',
+      promptLabel(s.prompt),
+      s.setting || '',
+      s.date || '',
+      s.time || '',
+      s.staff || '',
+      (s.notes || '').replace(/\n/g,' '),
+      s.source
+    ]);
+  }
+  return rows.map(row=>row.map(cell=>`"${String(cell ?? '').replace(/"/g,'""')}"`).join(',')).join('\n');
+}
+function downloadFile(name, text, type='text/plain'){
+  const blob = new Blob([text], {type});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 500);
+}
+function scrollToSection(id){
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function activateJumpTab(id){
+  $all('.tabbtn').forEach(btn=>btn.classList.toggle('active', btn.dataset.jump === id));
+}
+function applyInitialView(){
+  const allowed = new Set(['overview','objectives','sessions','reports','security']);
+  if(!allowed.has(APP.initialView)) return;
+  activateJumpTab(APP.initialView);
+  setTimeout(()=>scrollToSection(APP.initialView), 120);
+  APP.initialView = '';
+}
+function showOverlay(id){
+  $(id).classList.add('show');
+}
+function hideOverlay(id){
+  $(id).classList.remove('show');
+}
+function selectedLearner(){
+  return APP.learners.find(l=>l.key === APP.selectedKey) || null;
+}
+function ensureSelection(){
+  const visible = visibleLearners();
+  if(visible.some(l=>l.key === APP.selectedKey)) return;
+  if(visible.length){
+    APP.selectedKey = visible[0].key;
+    HUB.lastLearnerKey = APP.selectedKey;
+  }else{
+    APP.selectedKey = '';
+    HUB.lastLearnerKey = '';
+  }
+}
+function visibleLearners(){
+  const q = String(APP.search || '').trim().toLowerCase();
+  return APP.learners.filter(learner=>{
+    if(learner.archived) return false;
+    if(!q) return true;
+    const hay = [
+      learner.displayName, learner.fullName, learner.initials, learner.program, learner.notes, learner.metrics.rank.title,
+      ...filteredSessions(learner).map(s=>`${s.module} ${s.notes} ${s.setting} ${s.staff}`)
+    ].join(' ').toLowerCase();
+    return hay.includes(q);
+  });
+}
+let lockTimer = null;
+function scheduleLock(){
+  clearTimeout(lockTimer);
+  const mins = Number(HUB.autoLockMinutes || 0);
+  if(!HUB.pin || !mins) return;
+  lockTimer = setTimeout(()=>lockMissionControl(), mins * 60 * 1000);
+}
+function lockMissionControl(){
+  $('#app-view').classList.add('hidden');
+  $('#lock-view').classList.remove('hidden');
+  $('#pin-input').value = '';
+  $('#pin-error').textContent = '';
+}
+function unlockMissionControl(){
+  $('#lock-view').classList.add('hidden');
+  $('#app-view').classList.remove('hidden');
+  scheduleLock();
+  renderAll();
+  applyInitialView();
+  if(!HUB.introSeen) showOverlay('#intro-overlay');
+}
+function maybeMigrateLegacyPin(){
+  const pins = APP.importedPins;
+  const note = $('#legacy-pin-note');
+  if(!pins.length) return;
+  if(!HUB.pin && pins.length === 1){
+    HUB.pin = pins[0];
+    saveHubState('Imported legacy access code');
+  }
+  if(note){
+    if(pins.length > 1){
+      note.textContent = `Legacy module codes were found (${pins.length} different PINs). Create one new Mission Control code here so staff do not have to remember a whole cursed collection.`;
+      note.classList.remove('hidden');
+      $('#pin-remove-legacy-btn').classList.remove('hidden');
+    }else{
+      note.textContent = 'A legacy module PIN was found and imported as your unified Mission Control access code.';
+      note.classList.remove('hidden');
+    }
+  }
+}
+function handleLockSubmit(){
+  const input = $('#pin-input').value;
+  if(HUB.pin){
+    if(input === HUB.pin){
+      unlockMissionControl();
+      return;
+    }
+    $('#pin-error').textContent = HUB.pinHint ? `Incorrect code. Hint: ${HUB.pinHint}` : 'Incorrect code. Try again.';
+    return;
+  }
+  if(input.length < 4){
+    $('#pin-error').textContent = 'Create an access code with at least 4 characters.';
+    return;
+  }
+  HUB.pin = input;
+  saveHubState('Access code created');
+  unlockMissionControl();
+}
+function syncSelectOptions(){
+  const opts = APP.learners.map(l=>`<option value="${escapeHtml(l.key)}">${escapeHtml(l.displayName)}</option>`).join('');
+  $('#session-learner').innerHTML = opts;
+  $('#objective-learner').innerHTML = opts;
+}
+function syncModuleOptions(){
+  const moduleOptions = ['All Modules', ...MODULES.map(m=>m.id)].map(name=>`<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join('');
+  $('#module-filter').innerHTML = moduleOptions;
+  $('#objective-module').innerHTML = moduleOptions;
+  $('#session-module').innerHTML = MODULES.map(m=>`<option value="${escapeHtml(m.id)}">${escapeHtml(m.id)}</option>`).join('');
+  $('#module-filter').value = APP.selectedModule || 'All Modules';
+}
+function escapeHtml(text){
+  return String(text ?? '').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function renderHero(){
+  const learner = selectedLearner();
+  const grid = $('#hero-grid');
+  if(!learner){
+    grid.innerHTML = `
+      <div class="hero-stat"><div class="label">Learner</div><div class="value">No selection</div><div class="sub">Pick a learner from the roster.</div></div>
+      <div class="hero-stat"><div class="label">Readiness</div><div class="value">--</div><div class="sub">Progress score appears here.</div></div>
+      <div class="hero-stat"><div class="label">Current rank</div><div class="value rank">Cadet</div><div class="sub">Ranks unlock as evidence builds.</div></div>
+      <div class="hero-stat"><div class="label">System status</div><div class="value">Idle</div><div class="sub">Waiting for learner data.</div></div>
+    `;
+    return;
+  }
+  const sessions = filteredSessions(learner);
+  const objectiveData = evaluateObjectives(learner);
+  const last = sessions[sessions.length-1];
+  grid.innerHTML = `
+    <div class="hero-stat">
+      <div class="label">Current learner</div>
+      <div class="value">${escapeHtml(learner.displayName)}</div>
+      <div class="sub">${escapeHtml(learner.program || learner.level || 'Profile ready')}</div>
+    </div>
+    <div class="hero-stat">
+      <div class="label">Readiness score</div>
+      <div class="value">${learner.metrics.readiness}</div>
+      <div class="sub">${learner.metrics.acc}% accuracy · ${learner.metrics.ind}% independence</div>
+    </div>
+    <div class="hero-stat">
+      <div class="label">Current rank</div>
+      <div class="value rank">${learner.metrics.rank.title}</div>
+      <div class="sub">${promotionText(learner)}</div>
+    </div>
+    <div class="hero-stat">
+      <div class="label">System status</div>
+      <div class="value ${sessions.length ? '' : 'alert'}">${sessions.length ? 'Tracking Live' : 'Needs First Log'}</div>
+      <div class="sub">${last ? `${last.module} · ${formatDate(last.date)}` : 'Log one session to start'}</div>
+    </div>
+  `;
+}
+function promotionText(learner){
+  const score = learner.metrics.readiness;
+  if(score >= 92) return 'Flagship-level progress across the suite';
+  if(score >= 80) return 'Promotion unlocked through strong consistency';
+  if(score >= 65) return 'Reliable growth with room to sharpen';
+  if(score >= 35) return 'Progress is building real momentum';
+  return 'Every logged session helps earn the next rank';
+}
+function renderRoster(){
+  const learners = visibleLearners();
+  $('#roster-count').textContent = `${learners.length} Learner${learners.length===1?'':'s'}`;
+  const html = learners.length ? learners.map(learner=>{
+    const active = learner.key === APP.selectedKey;
+    const last = filteredSessions(learner).slice(-1)[0];
+    return `
+      <button class="learner-card ${active?'active':''}" data-key="${escapeHtml(learner.key)}">
+        <div class="avatar" style="background:${escapeHtml(learner.color || colorFor(learner.key))}">${escapeHtml(learner.initials || initialsFor(learner.displayName))}</div>
+        <div class="learner-main">
+          <div class="learner-name">${escapeHtml(learner.displayName)}</div>
+          <div class="learner-meta">${escapeHtml(learner.program || learner.level || 'No program listed')}</div>
+          <div class="learner-rank">
+            <span class="token"><strong>${escapeHtml(learner.metrics.rank.title)}</strong></span>
+            <span class="token">${learner.metrics.readiness} readiness</span>
+            <span class="token">${last ? escapeHtml(last.module) : 'No sessions'}</span>
+          </div>
+        </div>
+      </button>`;
+  }).join('') : `<div class="empty">No learners match this view yet. Add one manually or refresh if module data was added in another screen.</div>`;
+  $('#learner-list').innerHTML = html;
+  $all('.learner-card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      APP.selectedKey = card.dataset.key;
+      HUB.lastLearnerKey = APP.selectedKey;
+      saveHubState('Learner selected');
+      renderAll();
+    });
+  });
+}
+function renderOverview(){
+  const learner = selectedLearner();
+  const body = $('#overview-body');
+  if(!learner){
+    body.className = 'empty';
+    body.innerHTML = 'No learner selected yet. Pick someone from the roster or add a learner manually if you are starting fresh.';
+    $('#overview-sub').textContent = 'Choose a learner to load the command deck.';
+    return;
+  }
+  const modules = moduleStats(learner);
+  const brief = missionBrief(learner);
+  const sessions = filteredSessions(learner);
+  const recent = sessions.slice(-5).reverse();
+  const last = sessions[sessions.length-1];
+  const sw = strongestAndWeakest(modules);
+  const radar = renderRadar(modules);
+  $('#overview-sub').textContent = `${learner.displayName} · ${learner.metrics.rank.title} · ${learner.metrics.readiness} readiness`;
+  body.className = '';
+  body.innerHTML = `
+    <div class="quick-grid">
+      <div class="info-card">
+        <h3>Mission Brief</h3>
+        <p>${escapeHtml(brief)}</p>
+      </div>
+      <div class="info-card">
+        <h3>Next Best Action</h3>
+        <p>${escapeHtml(nextBestAction(learner))}</p>
+      </div>
+      <div class="info-card">
+        <h3>System Status</h3>
+        <p>${escapeHtml(last ? `Last save-ready session was ${last.module} on ${formatDate(last.date)}. PIN is ${HUB.pin ? 'active' : 'not set'}.` : `No sessions logged yet. PIN is ${HUB.pin ? 'active' : 'not set'}.`)}</p>
+      </div>
+    </div>
+
+    <div class="metric-grid" style="margin-top:16px">
+      <div class="metric-card"><div class="label">Strongest module</div><div class="num">${escapeHtml(sw.strongest)}</div></div>
+      <div class="metric-card"><div class="label">Needs support</div><div class="num">${escapeHtml(sw.weakest)}</div></div>
+      <div class="metric-card"><div class="label">Sessions in view</div><div class="num">${sessions.length}</div></div>
+      <div class="metric-card"><div class="label">Objectives met</div><div class="num">${evaluateObjectives(learner).met}</div></div>
+    </div>
+
+    <div class="panel" style="margin-top:16px;background:transparent;box-shadow:none;border:none">
+      <div class="panel-inner" style="padding:0">
+        <div class="panel-title">
+          <div>
+            <h3>Constellation Scan</h3>
+            <p>Suite-wide module status in one read. Because charts should help, not just decorate their cubicle walls.</p>
+          </div>
+        </div>
+        ${radar}
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px;background:transparent;box-shadow:none;border:none">
+      <div class="panel-inner" style="padding:0">
+        <div class="panel-title">
+          <div>
+            <h3>Module Grid</h3>
+            <p>Every module in one dashboard, with status, support trend, recent activity, and clear next steps.</p>
+          </div>
+        </div>
+        <div class="module-grid">${modules.map(renderModuleCard).join('')}</div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px;background:transparent;box-shadow:none;border:none">
+      <div class="panel-inner" style="padding:0">
+        <div class="panel-title">
+          <div>
+            <h3>Recent Activity</h3>
+            <p>Latest sessions across the current view.</p>
+          </div>
+        </div>
+        <div class="timeline">${recent.length ? recent.map(session=>`
+          <div class="timeline-card">
+            <div class="timeline-top">
+              <div>
+                <div class="timeline-title">${escapeHtml(session.module)} · ${escapeHtml(session.activity || 'Session')}</div>
+                <div class="timeline-meta">${formatDate(session.date)}${session.time ? ` · ${escapeHtml(session.time)}` : ''} · ${escapeHtml(promptLabel(session.prompt))} · ${escapeHtml(session.setting || 'In App')}</div>
+              </div>
+              <span class="token">${session.accuracy != null ? `${session.accuracy}%` : escapeHtml(session.score || 'Logged')}</span>
+            </div>
+            ${session.notes ? `<div class="timeline-meta" style="margin-top:10px">${escapeHtml(session.notes)}</div>` : ''}
+          </div>`).join('') : `<div class="empty">No sessions match the current filter. Clear the date range or log something new.</div>`}
+        </div>
+      </div>
+    </div>
+  `;
+}
+function renderRadar(modules){
+  const size = 320;
+  const cx = size/2, cy = size/2, maxR = 112;
+  const active = modules.map((mod, idx)=>{
+    const angle = (-90 + (360 / modules.length) * idx) * (Math.PI / 180);
+    const value = mod.score || 0;
+    const r = maxR * (value / 100);
+    return {
+      ...mod,
+      angle,
+      x: cx + Math.cos(angle) * r,
+      y: cy + Math.sin(angle) * r,
+      tx: cx + Math.cos(angle) * (maxR + 26),
+      ty: cy + Math.sin(angle) * (maxR + 16)
+    };
+  });
+  const points = active.map(p=>`${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+  const rings = [25,50,75,100].map(p=>{
+    const r = maxR * (p / 100);
+    return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(255,255,255,.08)" stroke-dasharray="4 6"/>`;
+  }).join('');
+  const axes = active.map(p=>`<line x1="${cx}" y1="${cy}" x2="${cx + Math.cos(p.angle)*maxR}" y2="${cy + Math.sin(p.angle)*maxR}" stroke="rgba(255,255,255,.08)"/>`).join('');
+  const labels = active.map(p=>`<text x="${p.tx}" y="${p.ty}" fill="rgba(236,242,255,.82)" font-family="Space Mono, monospace" font-size="11" text-anchor="middle">${p.id.replace('Ready','')}</text>`).join('');
+  const dots = active.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="4" fill="${p.accent}"/>`).join('');
+  return `
+    <div class="radar-wrap">
+      <div class="radar-card">
+        <svg class="radar-svg" viewBox="0 0 ${size} ${size}" aria-label="Module radar chart">
+          ${rings}
+          ${axes}
+          <polygon points="${points}" fill="rgba(255,187,51,.12)" stroke="rgba(255,187,51,.72)" stroke-width="2"/>
+          ${dots}
+          ${labels}
+          <circle cx="${cx}" cy="${cy}" r="4" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="readout-grid">
+        ${active.map(mod=>`
+          <div class="readout">
+            <div class="label">${escapeHtml(mod.id)}</div>
+            <div class="value">${mod.score} system score</div>
+            <div class="small-note">${mod.sessions.length ? `${mod.avg}% accuracy · ${mod.ind}% independence · ${mod.status}` : 'No tracked sessions yet'}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+}
+function renderModuleCard(mod){
+  const accent = mod.accent;
+  const topSkill = mod.topSkillEntry ? `${(MODULES.find(m=>m.id===mod.id)?.skillLabels || {})[mod.topSkillEntry[0]] || mod.topSkillEntry[0]} · ${mod.topSkillEntry[1]}%` : 'No tracked skill data yet';
+  return `
+    <div class="module-card" style="--accent:${accent}">
+      <div class="module-head">
+        <div>
+          <div class="module-name">${mod.icon} ${escapeHtml(mod.id)}</div>
+          <div class="small-note" style="margin-top:5px">${mod.sessions.length ? `${mod.sessions.length} session${mod.sessions.length!==1?'s':''} in view` : 'No sessions in view'}</div>
+        </div>
+        <div class="module-status">${escapeHtml(mod.status)}</div>
+      </div>
+      <div class="module-facts">
+        <div class="module-fact"><div class="label">Average accuracy</div><div class="value">${mod.sessions.length ? `${mod.avg}%` : '--'}</div></div>
+        <div class="module-fact"><div class="label">Independence</div><div class="value">${mod.sessions.length ? `${mod.ind}%` : '--'}</div></div>
+        <div class="module-fact"><div class="label">Strongest subskill</div><div class="value">${escapeHtml(topSkill)}</div></div>
+        <div class="module-fact"><div class="label">Last session</div><div class="value">${mod.last ? formatDate(mod.last.date) : 'Not started'}</div></div>
+      </div>
+      <div class="progress">
+        <div class="bar"><div class="fill" style="width:${mod.score}%"></div></div>
+        <div class="progress-label"><span>Module score</span><strong>${mod.score}%</strong></div>
+      </div>
+      <div class="small-note" style="margin-top:10px">${mod.sessions.length ? `${mod.status}. ${mod.goals.length ? `${mod.goalEval}/${mod.goals.length} tracked goals met.` : 'No module goals tracked.'}` : `Run a session in ${mod.id} to start drawing a real trend.`}</div>
+    </div>`;
+}
+function renderObjectives(){
+  const learner = selectedLearner();
+  const list = $('#objective-list');
+  const milestonesEl = $('#milestone-list');
+  if(!learner){
+    list.innerHTML = '<div class="empty">Select a learner to see objectives.</div>';
+    milestonesEl.innerHTML = '';
+    return;
+  }
+  const items = evaluateObjectives(learner).items;
+  if(!items.length){
+    list.innerHTML = '<div class="empty">No objectives yet. Add one from the button above so Mission Control has a concrete target to watch.</div>';
+  }else{
+    list.innerHTML = items.map(obj=>{
+      const met = goalMet(learner,obj);
+      const progress = Math.round(goalProgress(learner,obj) * 100);
+      const meta = obj.imported
+        ? `${obj.module} imported goal · ${obj.num || 4}/${obj.den || 5} across ${obj.consec || 3} sessions`
+        : `${obj.module || 'All Modules'} · ${objectiveTemplateLabel(obj)}`;
+      return `
+        <div class="objective-card ${met?'met':''}">
+          <div class="objective-top">
+            <div>
+              <div class="objective-title">${escapeHtml(obj.title || objectiveTemplateLabel(obj))}</div>
+              <div class="objective-meta">${escapeHtml(meta)}${obj.notes ? ` · ${escapeHtml(obj.notes)}` : ''}</div>
+            </div>
+            <span class="token">${met ? 'Met' : `${progress}%`}</span>
+          </div>
+          <div class="objective-bar">
+            <div class="bar"><div class="fill" style="width:${progress}%;--accent:${met ? '#00c851' : '#ffbb33'}"></div></div>
+            <div class="progress-label"><span>${met ? 'Objective reached' : 'Progress to target'}</span><strong>${progress}%</strong></div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+  const m = milestones(learner);
+  milestonesEl.innerHTML = m.length ? `
+    <div class="panel-title" style="margin-top:4px">
+      <div><h3>Milestones</h3><p>Clean markers that make progress feel real without turning the dashboard into a slot machine.</p></div>
+    </div>
+    ${m.map(item=>`<div class="milestone-card"><div class="objective-title">${escapeHtml(item.title)}</div><div class="objective-meta">${escapeHtml(item.copy)}</div></div>`).join('')}
+  ` : '';
+}
+function renderSessions(){
+  const learner = selectedLearner();
+  const list = $('#session-list');
+  if(!learner){
+    list.innerHTML = '<div class="empty">Select a learner to view the progress log.</div>';
+    return;
+  }
+  const sessions = filteredSessions(learner).slice().reverse();
+  list.innerHTML = sessions.length ? sessions.map(s=>`
+    <div class="session-card">
+      <div class="session-top">
+        <div>
+          <div class="session-title">${escapeHtml(s.module)} · ${escapeHtml(s.activity || 'Session')}</div>
+          <div class="session-meta">${formatDate(s.date)}${s.time ? ` · ${escapeHtml(s.time)}` : ''} · ${escapeHtml(promptLabel(s.prompt))} · ${escapeHtml(s.setting || 'In App')}${s.staff ? ` · Staff ${escapeHtml(s.staff)}` : ''}</div>
+        </div>
+        <span class="token">${s.accuracy != null ? `${s.accuracy}%` : escapeHtml(s.score || 'Logged')}</span>
+      </div>
+      <div class="ribbon">
+        <span class="token">${escapeHtml(s.source === 'manual' ? 'Manual log' : 'Imported from module')}</span>
+        ${s.skill ? `<span class="token">${escapeHtml(s.skill)}</span>` : ''}
+      </div>
+      ${s.notes ? `<div class="session-meta" style="margin-top:10px">${escapeHtml(s.notes)}</div>` : ''}
+    </div>`).join('') : '<div class="empty">No sessions match the current view. Clear the filters or log a new session.</div>';
+}
+function renderReports(){
+  const learner = selectedLearner();
+  const list = $('#report-list');
+  const output = $('#report-output');
+  if(!learner){
+    list.innerHTML = '<div class="empty">Select a learner to prepare a report.</div>';
+    output.textContent = 'Select a learner to generate a report.';
+    return;
+  }
+  const text = reportText(learner);
+  const modStats = moduleStats(learner);
+  const last = filteredSessions(learner).slice(-1)[0];
+  list.innerHTML = `
+    <div class="report-card">
+      <div class="objective-title">Quick Snapshot</div>
+      <div class="objective-meta">${escapeHtml(learner.displayName)} · ${learner.metrics.rank.title} · ${learner.metrics.readiness} readiness</div>
+      <div class="small-note" style="margin-top:10px">${escapeHtml(last ? `Last session: ${last.module} on ${formatDate(last.date)}` : 'No sessions logged yet.')}</div>
+    </div>
+    <div class="report-card">
+      <div class="objective-title">Formal Summary</div>
+      <div class="objective-meta">${escapeHtml(improvementSummary(learner))}</div>
+    </div>
+    <div class="report-card">
+      <div class="objective-title">Module Breakdown</div>
+      <div class="objective-meta">${modStats.map(m=>`${m.id}: ${m.status}${m.sessions.length ? ` (${m.avg}% accuracy)` : ''}`).join(' · ')}</div>
+    </div>
+  `;
+  output.textContent = text;
+}
+function renderSecurity(){
+  const list = $('#security-list');
+  const pinState = HUB.pin ? 'Active' : 'Not set';
+  const autoLock = Number(HUB.autoLockMinutes || 0) ? `${HUB.autoLockMinutes} minutes` : 'Never';
+  const legacy = APP.importedPins.length ? `${APP.importedPins.length} legacy code${APP.importedPins.length===1?'':'s'} detected in module storage.` : 'No legacy module codes detected.';
+  list.innerHTML = `
+    <div class="security-card">
+      <div class="objective-title">Access Code</div>
+      <div class="objective-meta">Status: ${pinState}${HUB.pinHint ? ` · Hint saved for staff` : ''}</div>
+    </div>
+    <div class="security-card">
+      <div class="objective-title">Auto-Lock</div>
+      <div class="objective-meta">${autoLock}. Mission Control can lock itself after inactivity on shared devices.</div>
+    </div>
+    <div class="security-card">
+      <div class="objective-title">Data Storage</div>
+      <div class="objective-meta">Learner data is stored locally on this device. Export reports only when you actually want them outside the app.</div>
+    </div>
+    <div class="security-card">
+      <div class="objective-title">Import Status</div>
+      <div class="objective-meta">${legacy} Refresh pulls the latest learner data from every LifeReady module saved in this browser.</div>
+    </div>
+  `;
+}
+function maybeShowPromotionToast(learner){
+  if(!learner) return;
+  const profile = HUB.profiles[learner.key] || (HUB.profiles[learner.key] = {});
+  const prev = profile.lastRank || '';
+  const next = learner.metrics.rank.title;
+  if(!prev){
+    profile.lastRank = next;
+    saveHubState('Rank baseline saved');
+    return;
+  }
+  if(prev !== next){
+    profile.lastRank = next;
+    saveHubState('Promotion tracked');
+    const toast = $('#toast');
+    $('#toast-title').textContent = `${learner.displayName} advanced to ${next}`;
+    $('#toast-copy').textContent = `PROMOTION UNLOCKED. The dashboard noticed stronger evidence across scores, support, and consistency. A shocking outbreak of progress.`;
+    toast.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(()=>toast.classList.remove('show'), 4200);
+  }
+}
+function renderAll(){
+  APP.learners = buildLearners();
+  APP.selectedModule = APP.selectedModule || 'All Modules';
+  syncSelectOptions();
+  syncModuleOptions();
+  if(APP.returnFile){
+    const link = $('#return-link');
+    link.classList.remove('hidden');
+    link.href = APP.returnFile;
+    link.textContent = `↩ Return to ${APP.returnModule || 'Module'}`;
+  }
+  $('#learner-search').value = APP.search || '';
+  $('#module-filter').value = APP.selectedModule || 'All Modules';
+  $('#range-start').value = APP.rangeStart || '';
+  $('#range-end').value = APP.rangeEnd || '';
+  ensureSelection();
+  const learner = selectedLearner();
+  renderHero();
+  renderRoster();
+  renderOverview();
+  renderObjectives();
+  renderSessions();
+  renderReports();
+  renderSecurity();
+  if(learner) maybeShowPromotionToast(learner);
+  applyInitialView();
+  $('#current-view-pill').textContent = APP.selectedModule || 'All Modules';
+  $('#filter-note').textContent = `${APP.selectedModule || 'All Modules'}${APP.rangeStart || APP.rangeEnd ? ` · ${APP.rangeStart || 'Any'} to ${APP.rangeEnd || 'Any'}` : ' · All dates'}`;
+}
+function populateForms(){
+  syncSelectOptions();
+  syncModuleOptions();
+  $('#session-date').value = TODAY;
+  if(APP.selectedKey){
+    $('#session-learner').value = APP.selectedKey;
+    $('#objective-learner').value = APP.selectedKey;
+  }
+  if(APP.selectedModule && APP.selectedModule !== 'All Modules'){
+    $('#session-module').value = APP.selectedModule;
+    $('#objective-module').value = APP.selectedModule;
+  }
+}
+function addLearner(){
+  const displayName = $('#learner-display').value.trim() || $('#learner-full').value.trim() || $('#learner-initials').value.trim();
+  if(!displayName){
+    alert('Give the learner at least a display name or initials.');
+    return;
+  }
+  const obj = {
+    displayName,
+    fullName: $('#learner-full').value.trim(),
+    initials: ($('#learner-initials').value.trim() || initialsFor(displayName)).toUpperCase(),
+    program: $('#learner-program').value.trim(),
+    level: $('#learner-level').value,
+    color: $('#learner-color').value,
+    notes: $('#learner-notes').value.trim(),
+    createdAt: TODAY,
+    objectives: [],
+    manualSessions: [],
+    archived: false
+  };
+  const key = profileKey(obj);
+  HUB.profiles[key] = { ...(HUB.profiles[key] || {}), ...obj };
+  HUB.lastLearnerKey = key;
+  APP.selectedKey = key;
+  saveHubState('Learner added');
+  hideOverlay('#learner-overlay');
+  renderAll();
+}
+function addSession(){
+  const key = $('#session-learner').value;
+  if(!key) return alert('Choose a learner first.');
+  const profile = HUB.profiles[key] || (HUB.profiles[key] = {displayName:'Learner', objectives:[], manualSessions:[]});
+  profile.manualSessions = profile.manualSessions || [];
+  profile.manualSessions.push({
+    id: `manual-${Date.now()}`,
+    module: $('#session-module').value,
+    activity: $('#session-activity').value.trim() || $('#session-module').value,
+    score: $('#session-score').value.trim(),
+    prompt: $('#session-prompt').value,
+    setting: $('#session-setting').value,
+    date: $('#session-date').value || TODAY,
+    staff: $('#session-staff').value.trim().toUpperCase(),
+    notes: $('#session-note').value.trim(),
+    source: 'manual'
+  });
+  APP.selectedKey = key;
+  HUB.lastLearnerKey = key;
+  saveHubState('Session logged');
+  hideOverlay('#session-overlay');
+  renderAll();
+}
+function addObjective(){
+  const key = $('#objective-learner').value;
+  if(!key) return alert('Choose a learner first.');
+  const profile = HUB.profiles[key] || (HUB.profiles[key] = {displayName:'Learner', objectives:[], manualSessions:[]});
+  profile.objectives = profile.objectives || [];
+  const template = $('#objective-template').value;
+  const title = $('#objective-title').value.trim();
+  const obj = {
+    id:`obj-${Date.now()}`,
+    template,
+    title,
+    module: $('#objective-module').value,
+    threshold: Number($('#objective-threshold').value || 0),
+    window: Number($('#objective-window').value || 0),
+    maxPrompt: 'verbal',
+    notes: $('#objective-note').value.trim(),
+    created: TODAY
+  };
+  if(template === 'independence'){
+    obj.threshold = Number($('#objective-threshold').value || 4);
+    obj.window = Number($('#objective-window').value || 5);
+    obj.maxPrompt = 'verbal';
+  }
+  if(template === 'frequency'){
+    obj.threshold = Number($('#objective-threshold').value || 5);
+    obj.window = Number($('#objective-window').value || 30);
+  }
+  profile.objectives.push(obj);
+  APP.selectedKey = key;
+  HUB.lastLearnerKey = key;
+  saveHubState('Objective saved');
+  hideOverlay('#objective-overlay');
+  renderAll();
+}
+function copySummary(){
+  const learner = selectedLearner();
+  if(!learner) return alert('Select a learner first.');
+  const text = reportText(learner);
+  const done = ()=>{
+    const el = $('#save-indicator');
+    if(el) el.textContent = 'SYSTEM STABLE · Summary copied';
+    setTimeout(()=>{ if(el) el.textContent = 'SYSTEM STABLE · Saved locally'; }, 1400);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(()=>{
+      window.prompt('Copy the report text below:', text);
+    });
+  }else{
+    window.prompt('Copy the report text below:', text);
+  }
+}
+function downloadReport(){
+  const learner = selectedLearner();
+  if(!learner) return alert('Select a learner first.');
+  const text = reportText(learner);
+  downloadFile(`${slugify(learner.displayName)}-mission-control-report.txt`, text, 'text/plain');
+}
+function downloadCSV(){
+  const learner = selectedLearner();
+  if(!learner) return alert('Select a learner first.');
+  downloadFile(`${slugify(learner.displayName)}-mission-control-sessions.csv`, csvText(learner), 'text/csv');
+}
+
+document.addEventListener('click', e=>{
+  const close = e.target.closest('[data-close]');
+  if(close){
+    hideOverlay(close.dataset.close);
+  }
+  const jump = e.target.closest('[data-jump]');
+  if(jump){
+    $all('.tabbtn').forEach(btn=>btn.classList.toggle('active', btn === jump));
+    scrollToSection(jump.dataset.jump);
+  }
+});
+document.addEventListener('keydown', e=>{
+  scheduleLock();
+  if(e.key === 'Escape'){
+    $all('.overlay.show').forEach(el=>el.classList.remove('show'));
+  }
+  if(e.key === 'Enter' && !$('#lock-view').classList.contains('hidden') && document.activeElement === $('#pin-input')){
+    handleLockSubmit();
+  }
+});
+['click','input','pointerdown','touchstart'].forEach(evt=>{
+  document.addEventListener(evt, ()=>{ if(!$('#app-view').classList.contains('hidden')) scheduleLock(); }, {passive:true});
+});
+
+$('#pin-submit-btn').addEventListener('click', handleLockSubmit);
+$('#pin-remove-legacy-btn').addEventListener('click', ()=>{
+  APP.importedPins = [];
+  $('#legacy-pin-note').classList.add('hidden');
+  $('#pin-remove-legacy-btn').classList.add('hidden');
+});
+$('#learner-search').addEventListener('input', e=>{ APP.search = e.target.value; renderRoster(); ensureSelection(); renderAll(); });
+$('#module-filter').addEventListener('change', e=>{
+  APP.selectedModule = e.target.value;
+  HUB.selectedModule = APP.selectedModule;
+  saveHubState('Filter updated');
+  renderAll();
+});
+$('#range-start').addEventListener('change', e=>{ APP.rangeStart = e.target.value; HUB.rangeStart = APP.rangeStart; saveHubState('Date range updated'); renderAll(); });
+$('#range-end').addEventListener('change', e=>{ APP.rangeEnd = e.target.value; HUB.rangeEnd = APP.rangeEnd; saveHubState('Date range updated'); renderAll(); });
+$('#clear-filters-btn').addEventListener('click', ()=>{
+  APP.selectedModule = 'All Modules';
+  APP.rangeStart = '';
+  APP.rangeEnd = '';
+  HUB.selectedModule = APP.selectedModule;
+  HUB.rangeStart = '';
+  HUB.rangeEnd = '';
+  saveHubState('Filters cleared');
+  renderAll();
+});
+$('#refresh-btn').addEventListener('click', ()=>{ renderAll(); });
+$('#add-learner-btn').addEventListener('click', ()=>{ showOverlay('#learner-overlay'); });
+$('#save-learner-btn').addEventListener('click', addLearner);
+$('#log-session-btn').addEventListener('click', ()=>{ populateForms(); showOverlay('#session-overlay'); });
+$('#log-session-btn-2').addEventListener('click', ()=>{ populateForms(); showOverlay('#session-overlay'); });
+$('#save-session-btn').addEventListener('click', addSession);
+$('#add-objective-btn').addEventListener('click', ()=>{ populateForms(); showOverlay('#objective-overlay'); });
+$('#add-objective-btn-2').addEventListener('click', ()=>{ populateForms(); showOverlay('#objective-overlay'); });
+$('#save-objective-btn').addEventListener('click', addObjective);
+$('#help-btn').addEventListener('click', ()=>showOverlay('#help-overlay'));
+$('#intro-finish-btn').addEventListener('click', ()=>{
+  HUB.introSeen = true;
+  saveHubState('Intro completed');
+  hideOverlay('#intro-overlay');
+});
+$('#lock-btn').addEventListener('click', lockMissionControl);
+$('#manage-pin-btn').addEventListener('click', ()=>{
+  $('#new-pin').value = '';
+  $('#new-pin-confirm').value = '';
+  $('#pin-hint').value = HUB.pinHint || '';
+  $('#auto-lock').value = String(HUB.autoLockMinutes || '5');
+  $('#pin-manage-error').textContent = '';
+  showOverlay('#pin-overlay');
+});
+$('#save-pin-btn').addEventListener('click', ()=>{
+  const pin = $('#new-pin').value;
+  const confirm = $('#new-pin-confirm').value;
+  const hint = $('#pin-hint').value.trim();
+  const auto = $('#auto-lock').value;
+  if(pin || confirm){
+    if(pin.length < 4) return $('#pin-manage-error').textContent = 'Use at least 4 characters.';
+    if(pin !== confirm) return $('#pin-manage-error').textContent = 'Those codes do not match.';
+    HUB.pin = pin;
+  }
+  HUB.pinHint = hint;
+  HUB.autoLockMinutes = auto;
+  saveHubState('Access settings saved');
+  hideOverlay('#pin-overlay');
+  renderAll();
+  scheduleLock();
+});
+$('#remove-pin-btn').addEventListener('click', ()=>{
+  HUB.pin = '';
+  HUB.pinHint = '';
+  saveHubState('Access code removed');
+  hideOverlay('#pin-overlay');
+  renderAll();
+});
+$('#copy-summary-btn').addEventListener('click', copySummary);
+$('#copy-summary-btn-2').addEventListener('click', copySummary);
+$('#download-report-btn').addEventListener('click', downloadReport);
+$('#download-report-btn-2').addEventListener('click', downloadReport);
+$('#download-csv-btn').addEventListener('click', downloadCSV);
+
+APP.learners = buildLearners();
+maybeMigrateLegacyPin();
+APP.selectedKey = HUB.lastLearnerKey || (APP.learners[0]?.key || '');
+if(HUB.pin){
+  $('#lock-view').classList.remove('hidden');
+  $('#app-view').classList.add('hidden');
+  $('#lock-copy').textContent = 'Enter your educator access code to open the unified Mission Control hub.';
+}else{
+  $('#lock-view').classList.remove('hidden');
+  $('#pin-create-btn').classList.remove('hidden');
+  $('#pin-create-btn').addEventListener('click', handleLockSubmit);
+  $('#lock-copy').textContent = 'Create one educator access code for the full Mission Control hub. No more separate module PINs unless chaos is your hobby.';
+}
+if(HUB.pin && APP.importedPins.length){
+  $('#pin-error').textContent = '';
+}
+renderAll();
+</script>
+</body>
+</html>

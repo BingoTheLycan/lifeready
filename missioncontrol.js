@@ -40,7 +40,8 @@ let APP = {
   returnModule: '',
   initialView: '',
   saveTick: null,
-  currentView: 'overview'
+  currentView: 'overview',
+  cardPanels: {}
 };
 const qs = new URLSearchParams(location.search);
 APP.selectedModule = qs.get('module') || HUB.selectedModule || 'All Modules';
@@ -677,9 +678,6 @@ function showView(id, persist=true){
     HUB.selectedView = next;
     saveHubState(`View changed to ${next}`);
   }
-  requestAnimationFrame(()=>{
-    document.getElementById(next)?.scrollIntoView({behavior:'smooth', block:'start'});
-  });
 }
 function scrollToSection(id){
   showView(id);
@@ -834,6 +832,75 @@ function promotionText(learner){
   if(score >= 35) return 'Progress is building real momentum';
   return 'Every logged session helps earn the next rank';
 }
+
+function renderLearnerCardPanel(learner, panel){
+  const sessions = filteredSessions(learner);
+  const modules = moduleStats(learner);
+  const objectiveStats = evaluateObjectives(learner);
+  const last = sessions[sessions.length-1];
+  const recent = sessions.slice(-2).reverse();
+  const topObjectives = objectiveStats.items.slice(0,2);
+  const sw = strongestAndWeakest(modules);
+  if(panel === 'profile'){
+    return `
+      <div class="learner-inline-grid">
+        <div class="card-pod"><span class="label">Display name</span><strong>${escapeHtml(learner.displayName)}</strong></div>
+        <div class="card-pod"><span class="label">Support level</span><strong>${escapeHtml(learner.level || 'Developing')}</strong></div>
+        <div class="card-pod"><span class="label">Program</span><strong>${escapeHtml(learner.program || 'Not listed')}</strong></div>
+        <div class="card-pod"><span class="label">Private full name</span><strong>${escapeHtml(learner.fullName || 'Not stored')}</strong></div>
+        ${(learner.coachNotes || learner.notes) ? `<div class="card-pod notes"><span class="label">Coach notes</span><strong>${escapeHtml(learner.coachNotes || learner.notes)}</strong></div>` : ''}
+      </div>
+      <div class="inline-actions">
+        <button class="mini-btn" data-action="archive" data-key="${escapeHtml(learner.key)}">${learner.archived ? 'Restore to Roster' : 'Archive Learner'}</button>
+        <button class="mini-btn danger" data-action="court" data-key="${escapeHtml(learner.key)}">Court-Martial</button>
+      </div>`;
+  }
+  if(panel === 'objectives'){
+    return topObjectives.length ? `
+      <div class="card-list">
+        ${topObjectives.map(obj=>{
+          const met = goalMet(learner,obj);
+          const progress = Math.round(goalProgress(learner,obj)*100);
+          return `<div class="card-line"><strong>${escapeHtml(obj.title || objectiveTemplateLabel(obj))}</strong><span class="meta">${escapeHtml(obj.module || 'All Modules')} · ${met ? 'Met' : `${progress}% tracked`}</span></div>`;
+        }).join('')}
+      </div>
+      <div class="inline-actions">
+        <button class="mini-btn" data-open-view="objectives" data-key="${escapeHtml(learner.key)}">Open Full Objectives</button>
+      </div>` : '<div class="card-line"><strong>No objectives yet.</strong><span class="meta">Add one from the top controls or the Objectives tab.</span></div>';
+  }
+  if(panel === 'sessions'){
+    return recent.length ? `
+      <div class="card-list">
+        ${recent.map(s=>`<div class="card-line"><strong>${escapeHtml(s.module)} · ${escapeHtml(s.activity || 'Session')}</strong><span class="meta">${formatDate(s.date)} · ${escapeHtml(promptLabel(s.prompt))}${s.staff ? ` · ${escapeHtml(s.staff)}` : ''}${s.notes ? ` · ${escapeHtml(s.notes).slice(0,80)}` : ''}</span></div>`).join('')}
+      </div>
+      <div class="inline-actions">
+        <button class="mini-btn" data-open-view="sessions" data-key="${escapeHtml(learner.key)}">Open Flight Log</button>
+      </div>` : '<div class="card-line"><strong>No sessions logged yet.</strong><span class="meta">Use Log Session to create the first evidence entry.</span></div>';
+  }
+  if(panel === 'reports'){
+    return `
+      <div class="card-list">
+        <div class="card-line"><strong>${escapeHtml(learner.metrics.rank.title)} · ${learner.metrics.readiness} readiness</strong><span class="meta">${escapeHtml(improvementSummary(learner).slice(0,190))}</span></div>
+      </div>
+      <div class="inline-actions">
+        <button class="mini-btn" data-open-view="reports" data-key="${escapeHtml(learner.key)}">Open Reports</button>
+        <button class="mini-btn" data-inline="copy" data-key="${escapeHtml(learner.key)}">Copy Summary</button>
+      </div>`;
+  }
+  return `
+    <div class="learner-inline-grid">
+      <div class="card-pod"><span class="label">Rank</span><strong>${escapeHtml(learner.metrics.rank.title)}</strong></div>
+      <div class="card-pod"><span class="label">Readiness</span><strong>${learner.metrics.readiness}</strong></div>
+      <div class="card-pod"><span class="label">Strongest</span><strong>${escapeHtml(sw.strongest)}</strong></div>
+      <div class="card-pod"><span class="label">Needs support</span><strong>${escapeHtml(sw.weakest)}</strong></div>
+      <div class="card-pod"><span class="label">Sessions</span><strong>${sessions.length}</strong></div>
+      <div class="card-pod"><span class="label">Last log</span><strong>${last ? `${escapeHtml(last.module)} · ${formatDate(last.date)}` : 'Nothing logged yet'}</strong></div>
+    </div>
+    <div class="inline-actions">
+      <button class="mini-btn" data-open-view="overview" data-key="${escapeHtml(learner.key)}">Open Command Deck</button>
+    </div>`;
+}
+
 function renderRoster(){
   const learners = visibleLearners();
   const showingArchived = !!HUB.showArchived;
@@ -843,8 +910,7 @@ function renderRoster(){
   const html = learners.length ? learners.map(learner=>{
     const active = learner.key === APP.selectedKey;
     const last = filteredSessions(learner).slice(-1)[0];
-    const objectiveStats = evaluateObjectives(learner);
-    const archiveLabel = learner.archived ? 'Restore to Roster' : 'Archive Learner';
+    const panel = APP.cardPanels[learner.key] || '';
     return `
       <article class="learner-card ${active?'active':''}" data-key="${escapeHtml(learner.key)}">
         <div class="learner-card-head">
@@ -860,43 +926,49 @@ function renderRoster(){
               </div>
             </div>
           </button>
-          <div class="learner-quick">
-            <button class="mini-btn" data-roster-view="overview" data-key="${escapeHtml(learner.key)}">Deck</button>
-            <button class="mini-btn" data-roster-view="sessions" data-key="${escapeHtml(learner.key)}">Log</button>
-            <button class="mini-btn" data-roster-view="reports" data-key="${escapeHtml(learner.key)}">Report</button>
+          <div class="panel-switch">
+            <button class="mini-btn ${panel==='overview'?'active':''}" data-card-panel="overview" data-key="${escapeHtml(learner.key)}">Deck</button>
+            <button class="mini-btn ${panel==='objectives'?'active':''}" data-card-panel="objectives" data-key="${escapeHtml(learner.key)}">Goals</button>
+            <button class="mini-btn ${panel==='sessions'?'active':''}" data-card-panel="sessions" data-key="${escapeHtml(learner.key)}">Log</button>
+            <button class="mini-btn ${panel==='reports'?'active':''}" data-card-panel="reports" data-key="${escapeHtml(learner.key)}">Reports</button>
+            <button class="mini-btn ${panel==='profile'?'active':''}" data-card-panel="profile" data-key="${escapeHtml(learner.key)}">Profile</button>
           </div>
         </div>
-        <details class="learner-drop">
-          <summary>Open Profile Panel</summary>
-          <div class="learner-detail-grid">
-            <div class="tiny-stat"><span>Full name</span><strong>${escapeHtml(learner.fullName || 'Not stored')}</strong></div>
-            <div class="tiny-stat"><span>Support</span><strong>${escapeHtml(learner.level || 'Developing')}</strong></div>
-            <div class="tiny-stat"><span>Sessions</span><strong>${filteredSessions(learner).length}</strong></div>
-            <div class="tiny-stat"><span>Objectives</span><strong>${objectiveStats.met}/${objectiveStats.total || 0}</strong></div>
-            ${learner.coachNotes || learner.notes ? `<div class="tiny-stat notes"><span>Coach notes</span><strong>${escapeHtml((learner.coachNotes || learner.notes)).slice(0,180)}</strong></div>` : ''}
-          </div>
-          <div class="learner-card-actions">
-            <button class="mini-btn" data-action="archive" data-key="${escapeHtml(learner.key)}">${archiveLabel}</button>
-            <button class="mini-btn danger" data-action="court" data-key="${escapeHtml(learner.key)}">Court-Martial</button>
-          </div>
-        </details>
+        <div class="learner-inline-panel ${panel ? 'show' : ''}">
+          ${panel ? renderLearnerCardPanel(learner, panel) : ''}
+        </div>
       </article>`;
   }).join('') : `<div class="empty">${showingArchived ? 'No archived learners right now.' : 'No learners match this view yet. Add one manually or refresh if module data was added in another screen.'}</div>`;
   $('#learner-list').innerHTML = html;
   $all('.learner-select').forEach(btn=>btn.addEventListener('click', ()=>{
     APP.selectedKey = btn.dataset.key;
     HUB.lastLearnerKey = APP.selectedKey;
+    if(!APP.cardPanels[APP.selectedKey]) APP.cardPanels[APP.selectedKey] = 'overview';
     saveHubState('Learner selected');
     renderAll();
   }));
-  $all('[data-roster-view]').forEach(btn=>btn.addEventListener('click', ()=>{
+  $all('[data-card-panel]').forEach(btn=>btn.addEventListener('click', ()=>{
+    const key = btn.dataset.key;
+    const panel = btn.dataset.cardPanel;
+    APP.selectedKey = key;
+    HUB.lastLearnerKey = key;
+    APP.cardPanels[key] = APP.cardPanels[key] === panel ? '' : panel;
+    saveHubState('Learner selected');
+    renderAll();
+  }));
+  $all('[data-open-view]').forEach(btn=>btn.addEventListener('click', ()=>{
     APP.selectedKey = btn.dataset.key;
     HUB.lastLearnerKey = APP.selectedKey;
-    showView(btn.dataset.rosterView);
+    showView(btn.dataset.openView);
     renderAll();
   }));
   $all('[data-action="archive"]').forEach(btn=>btn.addEventListener('click', ()=>toggleArchive(btn.dataset.key)));
   $all('[data-action="court"]').forEach(btn=>btn.addEventListener('click', ()=>courtMartialLearner(btn.dataset.key)));
+  $all('[data-inline="copy"]').forEach(btn=>btn.addEventListener('click', ()=>{
+    APP.selectedKey = btn.dataset.key;
+    HUB.lastLearnerKey = APP.selectedKey;
+    copySummary();
+  }));
 }
 function renderOverview(){
   const learner = selectedLearner();
@@ -1355,9 +1427,12 @@ function addLearner(){
   };
   const key = profileKey(obj);
   HUB.profiles[key] = { ...(HUB.profiles[key] || {}), ...obj };
-  HUB.lastLearnerKey = key;
-  APP.selectedKey = key;
-  saveHubState('Learner added');
+  if(!APP.selectedKey){
+    HUB.lastLearnerKey = key;
+    APP.selectedKey = key;
+  }
+  APP.cardPanels[key] = 'profile';
+  saveHubState('Learner added to roster');
   hideOverlay('#learner-overlay');
   resetLearnerForm();
   renderAll();
@@ -1451,6 +1526,10 @@ function downloadCSV(){
 document.addEventListener('click', e=>{
   const close = e.target.closest('[data-close]');
   if(close){
+    if(close.dataset.close === '#intro-overlay'){
+      HUB.introSeen = true;
+      saveHubState('Intro completed');
+    }
     hideOverlay(close.dataset.close);
   }
   const jump = e.target.closest('[data-jump]');
@@ -1483,7 +1562,7 @@ $('#pin-remove-legacy-btn').addEventListener('click', ()=>{
   $('#pin-error').textContent = '';
   $('#pin-input').value = '';
   $('#pin-submit-btn').textContent = 'Create Access Code';
-  $('#lock-copy').textContent = 'Create one educator access code for Mission Control.';
+  $('#lock-copy').textContent = 'Create one educator access code.';
 });
 $('#learner-search').addEventListener('input', e=>{ APP.search = e.target.value; renderRoster(); ensureSelection(); renderAll(); });
 $('#module-filter').addEventListener('change', e=>{
@@ -1574,8 +1653,8 @@ maybeMigrateLegacyPin();
 APP.selectedKey = HUB.lastLearnerKey || (APP.learners[0]?.key || '');
 $('#lock-view').classList.remove('hidden');
 $('#app-view').classList.add('hidden');
-$('#pin-submit-btn').textContent = HUB.pin ? 'Unlock Mission Control' : 'Create Access Code';
-$('#lock-copy').textContent = HUB.pin ? 'Enter your educator access code to open Mission Control.' : 'Create one educator access code for Mission Control.';
+$('#pin-submit-btn').textContent = HUB.pin ? 'Enter Mission Control' : 'Create Access Code';
+$('#lock-copy').textContent = HUB.pin ? 'Enter your educator access code.' : 'Create one educator access code.';
 if(HUB.pin && APP.importedPins.length){
   $('#pin-error').textContent = '';
 }

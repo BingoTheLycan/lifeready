@@ -1116,6 +1116,110 @@ body{
   .brief-rail{grid-auto-columns:minmax(250px,86vw)}
   .sticky-nav.section-links{top:auto; position:static}
 }
+
+/* mission control roster simplification pass */
+.main-shell.mission-shell{
+  display:flex !important;
+  flex-direction:column;
+  gap:16px;
+  margin-top:16px;
+}
+.mission-shell > .roster-panel{order:1}
+.mission-shell > .mission-hero{order:2}
+.mission-shell > .mission-main{order:3}
+.mission-hero .hero-copy{max-width:58rem}
+.mission-hero .hero-grid{margin-top:14px}
+.command-dock{margin-top:14px}
+.roster-panel .panel-title p{max-width:56rem}
+.learner-list{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-auto-flow:row;
+  gap:12px;
+  overflow:visible !important;
+  max-height:none !important;
+  padding:2px 0 0 !important;
+}
+.learner-card{
+  min-height:0;
+  display:flex !important;
+  flex-direction:column;
+  gap:10px;
+}
+.learner-card-head{display:flex;flex-direction:column;gap:10px}
+.panel-switch{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:8px;
+}
+.mini-btn.active{
+  color:var(--text);
+  border-color:rgba(255,191,60,.34);
+  background:rgba(255,191,60,.1);
+}
+.learner-inline-panel{
+  display:none;
+  margin-top:2px;
+  padding:12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.035);
+}
+.learner-inline-panel.show{display:block}
+.learner-inline-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.card-pod{
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(0,0,0,.12);
+}
+.card-pod .label{
+  display:block;
+  font-size:.62rem;
+  color:var(--text3);
+  font-family:var(--mono);
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.card-pod strong{display:block;font-size:.92rem;line-height:1.4;color:var(--text)}
+.card-pod.notes{grid-column:1/-1}
+.card-list{display:flex;flex-direction:column;gap:8px}
+.card-line{
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.03);
+}
+.card-line .meta{display:block;margin-top:5px;color:var(--text2);font-size:.82rem;line-height:1.45}
+.inline-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.inline-actions .mini-btn{flex:0 0 auto}
+.brief-rail{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-auto-flow:row !important;
+  gap:14px;
+  overflow:visible !important;
+  padding-bottom:0 !important;
+}
+.brief-card{min-height:0 !important}
+.guide-legend,.compact-legend{display:none !important}
+.lock-card .hero-copy{max-width:32rem;font-size:1rem}
+.lock-card .mini-actions{justify-content:flex-start}
+.lock-card .note{display:none !important}
+@media (max-width: 920px){
+  .panel-switch{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width: 760px){
+  .brief-rail{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .learner-inline-grid{grid-template-columns:1fr}
+  .panel-switch{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
 @media print{
   body{background:#fff !important;color:#000 !important}
   body::before, body::after, .sidebar, .topbar, .sticky-nav, .command-actions, .quick-tabs, #lock-view, .toast, .overlay{display:none !important}
@@ -1141,9 +1245,9 @@ body{
       <h1><span class="life">LifeReady</span> <span class="mc">Mission Control</span></h1>
     </div>
     <div class="eyebrow">Educator Access Gate</div>
-    <div class="hero-copy" id="lock-copy">Enter your educator access code to open Mission Control.</div>
+    <div class="hero-copy" id="lock-copy">Enter your educator access code.</div>
     <div class="note hidden" id="legacy-pin-note"></div>
-    <input id="pin-input" class="pin" type="password" placeholder="Enter Access Code" autocomplete="off" spellcheck="false"/>
+    <input id="pin-input" class="pin" type="password" placeholder="Access Code" autocomplete="off" spellcheck="false"/>
     <div class="error" id="pin-error"></div>
     <div class="mini-actions">
       <button class="btn primary" id="pin-submit-btn">Unlock Mission Control</button>
@@ -1171,49 +1275,14 @@ body{
       </div>
     </div>
 
-    <section class="hero-card mission-hero">
-      <div class="hero-top">
-        <div class="hero-title-block">
-          <div class="eyebrow">Unified Educator Command Deck</div>
-          <div class="hero-title">
-            <div class="mark">🛰</div>
-            <h1><span class="life">Mission</span> <span class="mc">Control</span></h1>
-          </div>
-          <div class="hero-copy">The central bridge for every learner, every module, and every piece of progress evidence. Built to feel like a sci-fi command deck, not a filing cabinet with trust issues.</div>
-        </div>
-        <div class="quick-tabs">
-          <button class="tabbtn active" data-jump="overview">Command Deck</button>
-          <button class="tabbtn" data-jump="objectives">Objectives</button>
-          <button class="tabbtn" data-jump="sessions">Flight Log</button>
-          <button class="tabbtn" data-jump="reports">Reports</button>
-          <button class="tabbtn" data-jump="security">Security</button>
-        </div>
-      </div>
-      <div class="hero-grid" id="hero-grid"></div>
-      <div class="command-dock">
-        <div class="selected-learner-panel" id="selected-learner-card">
-          <div class="eyebrow">Active Learner</div>
-          <div class="selected-learner-name">No Learner Selected</div>
-          <div class="selected-learner-meta">Pick someone from the roster to load their command deck, reports, session log, and objectives.</div>
-        </div>
-        <div class="command-actions">
-          <button class="btn ghost" id="copy-summary-btn">⧉ Copy Summary</button>
-          <button class="btn ghost" id="download-report-btn">⬇ Download Report</button>
-          <button class="btn ghost" id="download-csv-btn">⬇ Export CSV</button>
-          <button class="btn ghost" id="print-report-btn">🖨 Print Brief</button>
-                    <button class="btn danger" id="court-martial-btn">⚠ Court-Martial Learner</button>
-        </div>
-      </div>
-    </section>
-
+    
     <div class="main-shell mission-shell">
-      <aside class="sidebar mission-sidebar">
-        <section class="panel roster-panel">
+      <section class="panel roster-panel">
           <div class="panel-inner">
             <div class="panel-title">
               <div>
                 <h2>Command Roster</h2>
-                <p>Every learner lives here first. Tap a card, open the command deck, and keep the details tucked behind fast controls instead of one giant wall of stuff.</p>
+                <p>Every learner stays visible here. Tap a card, open a panel, and keep the details one click away.</p>
               </div>
               <span class="pill" id="roster-count">0 Learners</span>
             </div>
@@ -1254,7 +1323,43 @@ body{
             </details>
           </div>
         </section>
-      </aside>
+
+      <section class="hero-card mission-hero">
+      <div class="hero-top">
+        <div class="hero-title-block">
+          <div class="eyebrow">Unified Educator Command Deck</div>
+          <div class="hero-title">
+            <div class="mark">🛰</div>
+            <h1><span class="life">Mission</span> <span class="mc">Control</span></h1>
+          </div>
+          <div class="hero-copy">One command deck for the full roster. Pick a learner, tap a panel, and get to the useful stuff fast.</div>
+        </div>
+        <div class="quick-tabs">
+          <button class="tabbtn active" data-jump="overview">Command Deck</button>
+          <button class="tabbtn" data-jump="objectives">Objectives</button>
+          <button class="tabbtn" data-jump="sessions">Flight Log</button>
+          <button class="tabbtn" data-jump="reports">Reports</button>
+          <button class="tabbtn" data-jump="security">Security</button>
+        </div>
+      </div>
+      <div class="hero-grid" id="hero-grid"></div>
+      <div class="command-dock">
+        <div class="selected-learner-panel" id="selected-learner-card">
+          <div class="eyebrow">Active Learner</div>
+          <div class="selected-learner-name">No Learner Selected</div>
+          <div class="selected-learner-meta">Pick someone from the roster to load their command deck, reports, session log, and objectives.</div>
+        </div>
+        <div class="command-actions">
+          <button class="btn ghost" id="copy-summary-btn">⧉ Copy Summary</button>
+          <button class="btn ghost" id="download-report-btn">⬇ Download Report</button>
+          <button class="btn ghost" id="download-csv-btn">⬇ Export CSV</button>
+          <button class="btn ghost" id="print-report-btn">🖨 Print Brief</button>
+                    <button class="btn danger" id="court-martial-btn">⚠ Court-Martial Learner</button>
+        </div>
+      </div>
+    </section>
+
+    
 
       <main class="stack mission-main">
         <nav class="sticky-nav section-links">
@@ -1360,31 +1465,25 @@ body{
       </div>
       <div class="brief-rail">
         <div class="info-card brief-card brief-blue">
-          <h3>Roster</h3>
-          <p>Every learner lives on one compact card. Tap a card to load the deck, then open only the details you actually need.</p>
+          <h3>Roster First</h3>
+          <p>Every learner stays on the main roster. Tap a card, then open only the panel you need instead of hunting through one endless page.</p>
         </div>
         <div class="info-card brief-card brief-gold">
-          <h3>Flight Log</h3>
-          <p>Use Log Session for score, support level, setting, staff initials, and notes. That is the evidence engine.</p>
+          <h3>Deck Panels</h3>
+          <p>Each card has fast buttons for Deck, Goals, Log, Reports, and Profile so the important facts stay one tap away.</p>
         </div>
         <div class="info-card brief-card brief-green">
-          <h3>Objectives</h3>
-          <p>Track goals, promotions, and milestones without burying them under eight separate module dashboards.</p>
+          <h3>Flight Log</h3>
+          <p>Log score, prompt level, setting, staff initials, and notes. That turns game play into evidence you can actually use.</p>
         </div>
         <div class="info-card brief-card brief-purple">
-          <h3>Reports</h3>
-          <p>Copy, print, or export from the deck when you need a clean progress brief for staff, supervisors, or review.</p>
+          <h3>Reports &amp; Control</h3>
+          <p>Print, export, archive, or court-martial from the deck without burying the controls under a mountain of scrolling.</p>
         </div>
-      </div>
-      <div class="guide-legend compact-legend">
-        <span class="quick-token">＋ Add Learner</span>
-        <span class="quick-token">📝 Log Session</span>
-        <span class="quick-token">⬇ Export</span>
-        <span class="quick-token">🖨 Print Brief</span>
-        <span class="quick-token">⚠ Court-Martial</span>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <div class="overlay" id="intro-overlay">
@@ -1399,23 +1498,28 @@ body{
       </div>
       <div class="brief-rail">
         <div class="info-card brief-card brief-blue">
-          <h3>One learner. One command deck.</h3>
-          <p>Every LifeReady module feeds one hub so staff can understand the full picture without module-hopping.</p>
+          <h3>One Roster. One Hub.</h3>
+          <p>Every module funnels into one command deck so you can track the whole learner without hopping between eight dashboards.</p>
         </div>
         <div class="info-card brief-card brief-gold">
-          <h3>Use the roster first.</h3>
-          <p>Select a learner card, then jump between Deck, Objectives, Flight Log, Reports, and Security with the tabs.</p>
+          <h3>Use Card Panels</h3>
+          <p>Every learner card can open Deck, Goals, Log, Reports, and Profile panels right from the roster.</p>
         </div>
         <div class="info-card brief-card brief-green">
-          <h3>Important controls stay up top.</h3>
-          <p>Add learners, log sessions, archive, export, and print without digging through a giant scrolling wasteland.</p>
+          <h3>Important Controls Stay Up Top</h3>
+          <p>Add learners, log sessions, export, print, archive, and lock Mission Control without digging through the page.</p>
+        </div>
+        <div class="info-card brief-card brief-purple">
+          <h3>Fun, But Still Legit</h3>
+          <p>Mission Control should feel like a sci-fi bridge while still giving staff clean evidence, reports, and privacy tools.</p>
         </div>
       </div>
       <div class="actions intro-actions solo-action">
-        <button class="btn primary" id="intro-finish-btn">Launch Command Deck</button>
+        <button class="btn primary" id="intro-finish-btn">Enter Mission Control</button>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <div class="overlay" id="learner-overlay">
@@ -3145,7 +3249,7 @@ APP.selectedKey = HUB.lastLearnerKey || (APP.learners[0]?.key || '');
 $('#lock-view').classList.remove('hidden');
 $('#app-view').classList.add('hidden');
 $('#pin-submit-btn').textContent = HUB.pin ? 'Unlock Mission Control' : 'Create Access Code';
-$('#lock-copy').textContent = HUB.pin ? 'Enter your educator access code to open Mission Control.' : 'Create one educator access code for Mission Control.';
+$('#lock-copy').textContent = HUB.pin ? 'Enter your educator access code.' : 'Create one educator access code for Mission Control.';
 if(HUB.pin && APP.importedPins.length){
   $('#pin-error').textContent = '';
 }

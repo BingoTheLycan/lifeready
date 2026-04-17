@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v27 - Mission Control learner ID fix)
+// LifeReady Service Worker (v29 - popup polish, header tune, demo upgrade)
 
-const VERSION = 'v27';
+const VERSION = 'v29';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

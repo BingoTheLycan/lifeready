@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v25 - Mission Control roster overlay deck)
+// LifeReady Service Worker (v26 - Mission Control bridge polish)
 
-const VERSION = 'v25';
+const VERSION = 'v26';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 
@@ -22,7 +22,6 @@ const APP_SHELL = [
   './TechReady.html',
   './HealthReady.html',
   './MissionControl.html',
-  './missioncontrol.js',
 
   './icon_192.png',
   './icon_512.png'

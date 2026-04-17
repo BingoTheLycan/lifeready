@@ -1334,6 +1334,234 @@ body{
   .brief-card p{font-size:.92rem;line-height:1.45}
 }
 
+
+/* v26 mission control bridge polish */
+:root{
+  --mc-cyan:#37b3ff;
+  --mc-gold:#ffbf3c;
+  --mc-lime:#5cff8d;
+  --mc-violet:#b96aff;
+  --mc-red:#ff6c86;
+}
+.command-topbar{
+  position:sticky; top:0; z-index:30;
+  padding:14px 0 10px;
+  margin-bottom:12px;
+  backdrop-filter:blur(14px);
+}
+.command-topbar::after{
+  content:''; position:absolute; left:0; right:0; bottom:0; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+}
+.command-topbar .topbar-left,
+.command-topbar .topbar-right{position:relative; z-index:1}
+.command-topbar .btn,
+.command-topbar .pill{
+  background:linear-gradient(180deg,rgba(20,28,42,.92),rgba(12,18,28,.96));
+  border-color:rgba(255,255,255,.12);
+  box-shadow:0 10px 26px rgba(0,0,0,.18), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.command-topbar .btn.primary{
+  color:#171008;
+  background:linear-gradient(135deg,#ffc64d,#efac1d);
+  border-color:rgba(255,191,60,.7);
+  box-shadow:0 14px 30px rgba(255,191,60,.15), inset 0 0 0 1px rgba(255,255,255,.18);
+}
+.mission-shell{display:flex !important; flex-direction:column; gap:16px;}
+.mission-hero{
+  order:1;
+  padding:18px 20px 16px !important;
+  border-radius:30px;
+  border-color:rgba(255,255,255,.12);
+  background:
+    radial-gradient(circle at 14% 18%, rgba(55,179,255,.16), transparent 22%),
+    radial-gradient(circle at 86% 16%, rgba(185,106,255,.16), transparent 20%),
+    linear-gradient(180deg,rgba(14,21,34,.97),rgba(10,16,26,.99));
+  box-shadow:0 24px 56px rgba(0,0,0,.34), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.mission-hero::before{
+  opacity:.42;
+  background:
+    linear-gradient(90deg, transparent 0 26px, rgba(255,255,255,.018) 26px 27px, transparent 27px 100%),
+    linear-gradient(0deg, transparent 0 26px, rgba(255,255,255,.018) 26px 27px, transparent 27px 100%),
+    radial-gradient(circle at top right, rgba(255,255,255,.05), transparent 28%);
+  background-size:30px 30px,30px 30px,auto;
+}
+.mission-hero::after{background:linear-gradient(90deg,var(--mc-gold),var(--mc-cyan),var(--mc-violet),transparent)}
+.mission-hero .hero-title{margin-bottom:8px}
+.mission-hero .hero-title .mark{
+  width:62px;height:62px;border-radius:20px;
+  background:radial-gradient(circle at 35% 28%, rgba(255,255,255,.26), transparent 26%), linear-gradient(135deg, rgba(255,191,60,.18), rgba(55,179,255,.14));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 0 32px rgba(255,191,60,.08);
+}
+.mission-hero .hero-title h1{font-size:clamp(2rem,5vw,3.2rem); letter-spacing:5px}
+.mission-hero .hero-copy{max-width:62rem; color:var(--text2)}
+.mission-hero .hero-grid{grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:16px}
+.mission-hero .hero-stat{
+  border-radius:20px;
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.028));
+  border-color:rgba(255,255,255,.10);
+}
+.mission-hero .hero-stat:nth-child(1){box-shadow:inset 0 0 0 1px rgba(55,179,255,.12)}
+.mission-hero .hero-stat:nth-child(2){box-shadow:inset 0 0 0 1px rgba(255,191,60,.12)}
+.mission-hero .hero-stat:nth-child(3){box-shadow:inset 0 0 0 1px rgba(92,255,141,.10)}
+.mission-hero .hero-stat:nth-child(4){box-shadow:inset 0 0 0 1px rgba(185,106,255,.12)}
+.command-dock,.selected-learner-panel,.command-actions,.quick-tabs,.sticky-nav,.mission-main{display:none !important}
+.roster-panel{
+  order:2;
+  border-radius:30px;
+  border-color:rgba(255,255,255,.12);
+  background:
+    radial-gradient(circle at 88% 10%, rgba(255,191,60,.08), transparent 18%),
+    radial-gradient(circle at 8% 14%, rgba(55,179,255,.08), transparent 18%),
+    linear-gradient(180deg,rgba(12,18,30,.98),rgba(9,14,24,.995));
+  box-shadow:0 24px 58px rgba(0,0,0,.36), inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.roster-panel::after{content:''; position:absolute; inset:auto 18px 0 18px; height:3px; background:linear-gradient(90deg,var(--mc-gold),var(--mc-cyan),var(--mc-violet),transparent); opacity:.95}
+.roster-panel .panel-inner{padding:20px}
+.roster-panel .panel-title h2{font-size:1.35rem; letter-spacing:4px}
+.roster-panel .panel-title p{max-width:54rem; color:var(--text2)}
+.roster-toolbar{grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:center}
+#learner-search{min-height:54px; border-radius:18px; background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.1)}
+.roster-mini-actions .btn{min-height:44px}
+.learner-list{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+  max-height:none !important;
+  overflow:visible !important;
+  padding:6px 0 2px !important;
+}
+.learner-card{
+  --card-accent: var(--mc-cyan);
+  position:relative;
+  overflow:hidden;
+  min-height:430px;
+  padding:18px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.11);
+  background:
+    radial-gradient(circle at 84% 14%, rgba(255,255,255,.055), transparent 22%),
+    linear-gradient(180deg,rgba(15,24,38,.99),rgba(10,16,24,.995));
+  box-shadow:0 18px 40px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.02);
+  display:flex !important;
+  flex-direction:column;
+  gap:14px;
+}
+.learner-card::before{
+  content:'';
+  position:absolute; inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg, transparent 0 26px, rgba(255,255,255,.018) 26px 27px, transparent 27px 100%),
+    linear-gradient(0deg, transparent 0 26px, rgba(255,255,255,.018) 26px 27px, transparent 27px 100%);
+  background-size:30px 30px,30px 30px;
+  opacity:.36;
+}
+.learner-card::after{display:none !important}
+.learner-card.active{border-color:var(--card-accent); box-shadow:0 0 0 1px color-mix(in srgb, var(--card-accent) 40%, transparent), 0 22px 50px rgba(0,0,0,.34), inset 0 0 0 1px rgba(255,255,255,.04)}
+.card-topline{display:flex; align-items:center; justify-content:space-between; gap:10px; position:relative; z-index:1}
+.card-id{font:700 .68rem var(--mono); letter-spacing:2.6px; color:var(--text3); text-transform:uppercase}
+.active-badge,.archive-badge{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:6px 12px; border-radius:999px;
+  font:800 .68rem var(--mono); letter-spacing:1.6px; text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.10);
+}
+.active-badge{color:#111; background:linear-gradient(135deg,#ffc64d,#efac1d); border-color:rgba(255,191,60,.7)}
+.archive-badge{color:var(--text2); background:rgba(255,255,255,.045)}
+.learner-select{display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:center; background:none; border:none; color:inherit; padding:0; text-align:left}
+.learner-card .avatar{
+  width:88px;height:88px;border-radius:24px;font-size:1.75rem;font-weight:900;
+  background:var(--card-accent) !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 16px 28px rgba(0,0,0,.24);
+}
+.learner-name{font-size:1.58rem; font-weight:900; line-height:1.02; margin:0 0 4px}
+.learner-meta{color:var(--text2); font-size:.96rem; line-height:1.45; margin-top:2px}
+.learner-rank{margin-top:10px; display:flex; flex-wrap:wrap; gap:8px}
+.token{min-height:32px; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.09); background:rgba(255,255,255,.045); font:700 .72rem var(--mono); letter-spacing:1px; text-transform:uppercase}
+.status-row{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+.status-meta{display:inline-flex; align-items:center; min-height:34px; padding:7px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.035); font:700 .7rem var(--mono); letter-spacing:1px; color:var(--text2); text-transform:uppercase}
+.stat-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px}
+.stat-chip{border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:12px; background:rgba(255,255,255,.035); box-shadow:inset 0 0 0 1px rgba(255,255,255,.018)}
+.stat-chip .k{display:block; margin-bottom:8px; color:var(--text3); font:700 .65rem var(--mono); letter-spacing:1.8px; text-transform:uppercase}
+.stat-chip .v{display:block; font-size:1.05rem; font-weight:900; color:var(--text)}
+.stat-chip strong{font-size:1.35rem}
+.learner-meter{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:center}
+.meter-track{height:13px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.05); overflow:hidden}
+.meter-fill{height:100%; border-radius:999px; background:linear-gradient(90deg,var(--mc-gold),var(--mc-lime),var(--mc-cyan)); box-shadow:0 0 18px rgba(255,191,60,.18)}
+.meter-label{font:800 .74rem var(--mono); letter-spacing:1.4px; color:var(--text2); text-transform:uppercase}
+.module-strip{display:flex; flex-wrap:wrap; gap:8px}
+.module-pill{display:inline-flex; align-items:center; gap:6px; padding:7px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.09); background:rgba(255,255,255,.035); font:700 .72rem var(--mono); letter-spacing:1px; text-transform:uppercase; color:var(--text2)}
+.module-pill strong{color:var(--text)}
+.learner-card-footer{margin-top:auto; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px}
+.panel-btn{min-height:48px; border-radius:18px; border:1px solid rgba(255,255,255,.1); background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.03)); color:var(--text); font:800 .78rem var(--mono); letter-spacing:1.6px; text-transform:uppercase}
+.panel-btn.primary{border-color:rgba(255,191,60,.34); background:linear-gradient(180deg,rgba(255,191,60,.18),rgba(255,191,60,.07)); color:#ffe3a0}
+.panel-btn.profile{border-color:rgba(185,106,255,.3); color:#e2cfff}
+#card-panel-overlay .modal,
+#help-overlay .modal,
+#intro-overlay .modal,
+#learner-overlay .modal,
+#session-overlay .modal,
+#objective-overlay .modal,
+#pin-overlay .modal{
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(circle at 85% 12%, rgba(255,191,60,.08), transparent 18%),
+    radial-gradient(circle at 8% 14%, rgba(55,179,255,.08), transparent 18%),
+    linear-gradient(180deg,rgba(14,21,34,.98),rgba(10,16,24,.995));
+  box-shadow:0 26px 64px rgba(0,0,0,.42), inset 0 0 0 1px rgba(255,255,255,.03);
+}
+.lock-shell{padding:24px}
+.lock-card{
+  width:min(760px,100%);
+  border-radius:34px;
+  padding:28px 26px 24px;
+  border:1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(circle at 15% 18%, rgba(55,179,255,.15), transparent 22%),
+    radial-gradient(circle at 85% 14%, rgba(185,106,255,.15), transparent 20%),
+    linear-gradient(180deg,rgba(14,21,34,.98),rgba(10,16,24,.995));
+  box-shadow:0 28px 70px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.03);
+}
+.lock-card::before{opacity:.42}
+.lock-card::after{content:''; position:absolute; left:18px; right:18px; bottom:0; height:3px; background:linear-gradient(90deg,var(--mc-gold),var(--mc-cyan),var(--mc-violet),transparent)}
+.lock-card .hero-title{margin-bottom:8px}
+.lock-card .hero-title .mark{width:64px;height:64px;border-radius:20px}
+.lock-card .hero-copy{max-width:34rem; color:var(--text2); line-height:1.65}
+.pin{margin-top:18px; min-height:64px; border-radius:22px; border-color:rgba(255,255,255,.12); background:rgba(255,255,255,.05); box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
+#lock-view .mini-actions{margin-top:18px; display:flex; flex-wrap:wrap; gap:12px}
+#legacy-pin-note{display:none !important}
+#pin-error{margin-top:12px}
+#lock-copy{font-size:1rem}
+#help-overlay .quick-grid,
+#intro-overlay .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px}
+#help-overlay .info-card,
+#intro-overlay .info-card{min-height:200px}
+@media (max-width: 1180px){
+  .learner-list{grid-template-columns:1fr}
+  .learner-card-footer{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width: 820px){
+  .mission-hero .hero-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width: 640px){
+  .page{padding:16px 14px 40px}
+  .topbar-right{width:100%}
+  .topbar-right .btn{flex:1 1 calc(50% - 8px); justify-content:center}
+  .roster-toolbar{grid-template-columns:1fr}
+  .roster-mini-actions{justify-content:flex-start}
+  .learner-card{min-height:0}
+  .learner-select{grid-template-columns:76px minmax(0,1fr)}
+  .learner-card .avatar{width:76px;height:76px;border-radius:20px}
+  .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .status-row{gap:6px}
+  .panel-btn{font-size:.74rem}
+  #help-overlay .quick-grid,
+  #intro-overlay .quick-grid{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -1344,7 +1572,7 @@ body{
       <h1><span class="life">LifeReady</span> <span class="mc">Mission Control</span></h1>
     </div>
     <div class="eyebrow">Educator Access Gate</div>
-    <div class="hero-copy" id="lock-copy">Enter your educator access code.</div>
+    <div class="hero-copy" id="lock-copy">Enter your educator access code to open Mission Control.</div>
     <div class="note hidden" id="legacy-pin-note"></div>
     <input id="pin-input" class="pin" type="password" placeholder="Access Code" autocomplete="off" spellcheck="false"/>
     <div class="error" id="pin-error"></div>
@@ -1381,7 +1609,7 @@ body{
             <div class="panel-title">
               <div>
                 <h2>Command Roster</h2>
-                <p>Every learner stays visible here. Tap a card, open a panel, and keep the details one click away.</p>
+                <p>Every learner stays on the bridge roster. Tap a card to make them active, then open only the panel you need.</p>
               </div>
               <span class="pill" id="roster-count">0 Learners</span>
             </div>
@@ -1431,7 +1659,7 @@ body{
             <div class="mark">🛰</div>
             <h1><span class="life">Mission</span> <span class="mc">Control</span></h1>
           </div>
-          <div class="hero-copy">One command deck for the full roster. Pick a learner, tap a panel, and get to the useful stuff fast.</div>
+          <div class="hero-copy">Roster first. Make a learner active with one tap, then open Deck, Goals, Log, Reports, or Profile in a dedicated console window.</div>
         </div>
         <div class="quick-tabs">
           <button class="tabbtn active" data-jump="overview">Command Deck</button>
@@ -2575,40 +2803,32 @@ function escapeHtml(text){
   return String(text ?? '').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 function renderHero(){
-  const learner = selectedLearner();
   const grid = $('#hero-grid');
-  if(!learner){
-    grid.innerHTML = `
-      <div class="hero-stat"><div class="label">Learner</div><div class="value">No selection</div><div class="sub">Pick a learner from the roster.</div></div>
-      <div class="hero-stat"><div class="label">Readiness</div><div class="value">--</div><div class="sub">Progress score appears here.</div></div>
-      <div class="hero-stat"><div class="label">Current rank</div><div class="value rank">Cadet</div><div class="sub">Ranks unlock as evidence builds.</div></div>
-      <div class="hero-stat"><div class="label">System status</div><div class="value">Idle</div><div class="sub">Waiting for learner data.</div></div>
-    `;
-    return;
-  }
-  const sessions = filteredSessions(learner);
-  const objectiveData = evaluateObjectives(learner);
-  const last = sessions[sessions.length-1];
+  const active = selectedLearner();
+  const liveRoster = APP.learners.filter(l=>!l.archived);
+  const archived = APP.learners.filter(l=>l.archived);
+  const allSessions = APP.learners.flatMap(l=>l.sessions || []).sort((a,b)=>combineDateTime(a.date,a.time) - combineDateTime(b.date,b.time));
+  const last = allSessions[allSessions.length-1];
   grid.innerHTML = `
     <div class="hero-stat">
-      <div class="label">Current learner</div>
-      <div class="value">${escapeHtml(learner.displayName)}</div>
-      <div class="sub">${escapeHtml(learner.program || learner.level || 'Profile ready')}</div>
+      <div class="label">Bridge roster</div>
+      <div class="value">${liveRoster.length}</div>
+      <div class="sub">${liveRoster.length === 1 ? 'One learner on deck' : `${liveRoster.length} learners ready to track`}</div>
     </div>
     <div class="hero-stat">
-      <div class="label">Readiness score</div>
-      <div class="value">${learner.metrics.readiness}</div>
-      <div class="sub">${learner.metrics.acc}% accuracy · ${learner.metrics.ind}% independence</div>
+      <div class="label">Active learner</div>
+      <div class="value">${active ? escapeHtml(active.displayName) : 'None selected'}</div>
+      <div class="sub">${active ? `${escapeHtml(active.metrics.rank.title)} · ${active.metrics.readiness} readiness` : 'Tap any roster card to make it active.'}</div>
     </div>
     <div class="hero-stat">
-      <div class="label">Current rank</div>
-      <div class="value rank">${learner.metrics.rank.title}</div>
-      <div class="sub">${promotionText(learner)}</div>
+      <div class="label">Archive bay</div>
+      <div class="value rank">${archived.length}</div>
+      <div class="sub">${archived.length ? 'Stored off the main roster' : 'No archived learners right now'}</div>
     </div>
     <div class="hero-stat">
       <div class="label">System status</div>
-      <div class="value ${sessions.length ? '' : 'alert'}">${sessions.length ? 'Tracking Live' : 'Needs First Log'}</div>
-      <div class="sub">${last ? `${last.module} · ${formatDate(last.date)}` : 'Log one session to start'}</div>
+      <div class="value ${last ? '' : 'alert'}">${last ? 'Tracking Live' : 'Ready for first log'}</div>
+      <div class="sub">${last ? `${last.module} · ${formatDate(last.date)}` : 'Saved locally on this device'}</div>
     </div>
   `;
 }
@@ -2640,7 +2860,8 @@ function learnerStatusLabel(learner){
 function renderRoster(){
   const learners = visibleLearners();
   const showingArchived = !!HUB.showArchived;
-  $('#roster-count').textContent = `${learners.length} ${showingArchived ? 'Archived' : 'Learner'}${learners.length===1?'':'s'}`;
+  const activeLearner = selectedLearner();
+  $('#roster-count').textContent = `${learners.length} ${showingArchived ? 'Archived' : 'Learner'}${learners.length===1?'':'s'}${activeLearner && !showingArchived ? ` · Active: ${activeLearner.displayName}` : ''}`;
   const toggleBtn = $('#show-archived-btn');
   if(toggleBtn) toggleBtn.textContent = showingArchived ? 'Main Roster' : 'Archive Bay';
   const html = learners.length ? learners.map(learner=>{
@@ -2648,26 +2869,38 @@ function renderRoster(){
     const last = filteredSessions(learner).slice(-1)[0];
     const status = learnerStatusLabel(learner);
     const objectiveStats = evaluateObjectives(learner);
+    const accent = learner.color || colorFor(learner.key);
     return `
-      <article class="learner-card ${active?'active':''}" data-key="${escapeHtml(learner.key)}">
+      <article class="learner-card ${active?'active':''}" data-key="${escapeHtml(learner.key)}" style="--card-accent:${escapeHtml(accent)}">
+        <div class="card-topline">
+          <div class="card-id">${escapeHtml(learner.initials || initialsFor(learner.displayName))} · Command Profile</div>
+          ${active ? '<span class="active-badge">Active</span>' : (learner.archived ? '<span class="archive-badge">Archived</span>' : '<span class="archive-badge">Roster</span>')}
+        </div>
         <button class="learner-select" data-key="${escapeHtml(learner.key)}" aria-label="Select ${escapeHtml(learner.displayName)} as active learner">
-          <div class="avatar" style="background:${escapeHtml(learner.color || colorFor(learner.key))}">${escapeHtml(learner.initials || initialsFor(learner.displayName))}</div>
+          <div class="avatar">${escapeHtml(learner.initials || initialsFor(learner.displayName))}</div>
           <div class="learner-main">
             <div class="learner-name">${escapeHtml(learner.displayName)}</div>
             <div class="learner-meta">${escapeHtml(learner.program || learner.level || 'No program listed')}</div>
             <div class="learner-rank">
               <span class="token"><strong>${escapeHtml(learner.metrics.rank.title)}</strong></span>
               <span class="token">${learner.metrics.acc}% accuracy</span>
-              <span class="token">${objectiveStats.met}/${objectiveStats.total || 0} goals</span>
+              <span class="token">${learner.metrics.ind}% independence</span>
             </div>
           </div>
         </button>
-        <div class="status-pill ${statusClass(status)}">${escapeHtml(status)}</div>
+        <div class="status-row">
+          <div class="status-pill ${statusClass(status)}">${escapeHtml(status)}</div>
+          <div class="status-meta">${last ? `Last log ${formatDate(last.date)}` : 'No logs yet'}</div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-chip"><span class="k">Readiness</span><span class="v"><strong>${learner.metrics.readiness}</strong></span></div>
+          <div class="stat-chip"><span class="k">Goals</span><span class="v">${objectiveStats.met}/${objectiveStats.total || 0}</span></div>
+          <div class="stat-chip"><span class="k">Sessions</span><span class="v">${filteredSessions(learner).length}</span></div>
+        </div>
         <div class="learner-meter">
           <div class="meter-track"><div class="meter-fill" style="width:${Math.max(4, learner.metrics.readiness)}%"></div></div>
           <div class="meter-label">${learner.metrics.readiness} Ready</div>
         </div>
-        <div class="learner-meta">${last ? `Last session ${formatDate(last.date)} · ${escapeHtml(last.module)}` : 'No logged sessions yet'}</div>
         <div class="module-strip">${moduleMiniStrip(learner)}</div>
         <div class="learner-card-footer">
           <button class="panel-btn primary" data-panel="deck" data-key="${escapeHtml(learner.key)}">Deck</button>
@@ -2686,7 +2919,10 @@ function renderRoster(){
     renderAll();
   }));
   $all('[data-panel]').forEach(btn=>btn.addEventListener('click', ()=>{
+    APP.selectedKey = btn.dataset.key;
+    HUB.lastLearnerKey = APP.selectedKey;
     openCardPanel(btn.dataset.panel, btn.dataset.key);
+    renderAll();
   }));
 }
 
@@ -3534,7 +3770,7 @@ APP.selectedKey = HUB.lastLearnerKey || (APP.learners[0]?.key || '');
 $('#lock-view').classList.remove('hidden');
 $('#app-view').classList.add('hidden');
 $('#pin-submit-btn').textContent = HUB.pin ? 'Unlock Mission Control' : 'Create Access Code';
-$('#lock-copy').textContent = HUB.pin ? 'Enter your educator access code.' : 'Create an educator access code for Mission Control.';
+$('#lock-copy').textContent = HUB.pin ? 'Enter your educator access code to open Mission Control.' : 'Create one educator access code for Mission Control.';
 if(HUB.pin && APP.importedPins.length){
   $('#pin-error').textContent = '';
 }

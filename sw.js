@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v24 - Mission Control roster panels)
+// LifeReady Service Worker (v25 - Mission Control roster overlay deck)
 
-const VERSION = 'v24';
+const VERSION = 'v25';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

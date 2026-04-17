@@ -1235,6 +1235,105 @@ body{
   #reports .btn, #copy-summary-btn-2, #download-report-btn-2, #print-report-btn-2{display:none !important}
 }
 
+
+/* v25 roster-first command deck overhaul */
+.main-shell.mission-shell{display:flex;flex-direction:column;gap:16px;margin-top:16px}
+.mission-hero{order:1}
+.roster-panel{order:2}
+.quick-tabs,.sticky-nav,.mission-main{display:none !important}
+.hero-card{padding:18px 18px 16px}
+.hero-copy{max-width:none}
+.command-dock{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:stretch;margin-top:14px}
+.command-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start;justify-content:flex-end}
+.selected-learner-panel{min-height:0}
+.selected-learner-name{font-size:1.45rem}
+.selected-learner-tokens{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.roster-panel{box-shadow:0 18px 44px rgba(0,0,0,.32)}
+.roster-panel .panel-title h2{font-size:1.45rem}
+.roster-toolbar{grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
+#learner-search{min-height:52px;font-size:1rem}
+.learner-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:stretch;margin-top:16px}
+.learner-card{display:flex;flex-direction:column;gap:14px;min-height:330px;padding:18px;border-radius:24px;border:1px solid rgba(255,255,255,.11);background:linear-gradient(180deg,rgba(15,24,38,.98),rgba(10,16,24,.98));box-shadow:0 14px 32px rgba(0,0,0,.26), inset 0 0 0 1px rgba(255,255,255,.02);position:relative;overflow:hidden}
+.learner-card::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at top right, rgba(255,255,255,.06), transparent 24%), linear-gradient(90deg, transparent 0 24px, rgba(255,255,255,.02) 24px 25px, transparent 25px 100%), linear-gradient(0deg, transparent 0 24px, rgba(255,255,255,.02) 24px 25px, transparent 25px 100%);background-size:auto,28px 28px,28px 28px;opacity:.45}
+.learner-card.active{border-color:rgba(255,187,51,.55);box-shadow:0 0 0 1px rgba(255,187,51,.18),0 18px 42px rgba(255,187,51,.08), inset 0 0 0 1px rgba(255,255,255,.03)}
+.learner-card.active::after{content:'ACTIVE LEARNER';position:absolute;top:14px;right:14px;padding:5px 10px;border-radius:999px;background:rgba(255,187,51,.12);border:1px solid rgba(255,187,51,.28);font:700 .66rem var(--mono);letter-spacing:1.6px;color:var(--amber);text-transform:uppercase}
+.learner-select{display:grid;grid-template-columns:80px minmax(0,1fr);gap:14px;align-items:start;background:none;border:none;color:inherit;padding:0;text-align:left}
+.learner-card .avatar{width:80px;height:80px;border-radius:22px;font-size:1.6rem;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 12px 24px rgba(0,0,0,.2)}
+.learner-main{min-width:0}
+.learner-name{font-size:1.45rem;font-weight:900;line-height:1.05;margin-bottom:6px}
+.learner-meta{color:var(--text2);font-size:.95rem}
+.learner-rank{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.token{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font:700 .74rem var(--mono);letter-spacing:1px;color:var(--text2);text-transform:uppercase}
+.learner-meter{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
+.meter-track{height:12px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid rgba(255,255,255,.05)}
+.meter-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--amber),var(--green),var(--blue));box-shadow:0 0 16px rgba(255,187,51,.18)}
+.meter-label{font:700 .76rem var(--mono);letter-spacing:1.4px;color:var(--text2);text-transform:uppercase}
+.module-strip{display:flex;flex-wrap:wrap;gap:8px}
+.module-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);font:700 .72rem var(--mono);letter-spacing:1px;color:var(--text2);text-transform:uppercase}
+.module-pill strong{font-size:.82rem;color:var(--text)}
+.status-pill{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;font:700 .76rem var(--mono);letter-spacing:1px;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);width:max-content}
+.status-mastered,.status-near-mastery,.status-building-independence,.status-in-progress,.status-training,.status-needs-review,.status-not-started{background:rgba(255,255,255,.04);color:var(--text2)}
+.status-mastered{border-color:rgba(0,200,81,.28);color:#83ffb1}
+.status-near-mastery{border-color:rgba(255,187,51,.28);color:#ffd37a}
+.status-building-independence{border-color:rgba(55,179,255,.24);color:#8ad8ff}
+.status-in-progress{border-color:rgba(185,106,255,.24);color:#d6b5ff}
+.status-training{border-color:rgba(255,143,61,.24);color:#ffbe8e}
+.status-needs-review{border-color:rgba(255,84,112,.24);color:#ffb1bf}
+.status-not-started{color:var(--text3)}
+.learner-card-footer{margin-top:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.panel-btn{min-height:46px;display:flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:16px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);color:var(--text);font:800 .82rem var(--mono);letter-spacing:1.5px;text-transform:uppercase;transition:transform .16s ease,border-color .16s ease,background .16s ease}
+.panel-btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.18)}
+.panel-btn.primary{border-color:rgba(255,187,51,.35);background:linear-gradient(180deg,rgba(255,187,51,.18),rgba(255,187,51,.09));color:#ffe8b0}
+.panel-btn.profile{border-color:rgba(185,106,255,.3);color:#e2cfff}
+.card-panel-modal{width:min(1100px,100%);max-height:min(88vh,920px)}
+#card-panel-body{max-height:min(70vh,760px);overflow:auto;padding-right:4px}
+.panel-overlay-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.panel-overlay-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.overlay-card{border:1px solid rgba(255,255,255,.09);background:linear-gradient(180deg,rgba(17,24,36,.96),rgba(10,14,22,.98));border-radius:20px;padding:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
+.overlay-card h4{margin:0 0 8px;font:900 .92rem var(--mono);letter-spacing:2px;text-transform:uppercase}
+.overlay-card p{margin:0;color:var(--text2);line-height:1.6}
+.overlay-card .big-number{font-size:2rem;font-weight:900;color:var(--text);line-height:1}
+.overlay-card .subline{margin-top:8px;color:var(--text2);font-size:.92rem}
+.overlay-card .stack{gap:10px}
+.overlay-toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 14px}
+.detail-list{display:grid;gap:12px}
+.detail-row{border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px;background:rgba(255,255,255,.03)}
+.detail-row h5{margin:0 0 8px;font:800 .85rem var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:var(--text)}
+.detail-row p{margin:0;color:var(--text2);line-height:1.55}
+.keyval-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.keyval{border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px;background:rgba(255,255,255,.03)}
+.keyval span{display:block;font:700 .72rem var(--mono);letter-spacing:1.6px;color:var(--text3);text-transform:uppercase;margin-bottom:8px}
+.keyval strong{display:block;font-size:1.04rem;color:var(--text)}
+.report-pre{white-space:pre-wrap;line-height:1.6;margin:0;font-family:var(--body);color:var(--text);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:16px;border-radius:18px}
+.archive-note{margin-top:12px;color:var(--text3);font-size:.9rem}
+.brief-rail{display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:14px;overflow:visible !important;padding-bottom:0 !important}
+.brief-card{min-height:190px}
+#lock-copy{max-width:34rem}
+
+@media (max-width: 1100px){
+  .learner-list{grid-template-columns:1fr}
+}
+@media (max-width: 860px){
+  .command-dock{grid-template-columns:1fr}
+  .command-actions{justify-content:flex-start}
+  .panel-overlay-grid,.panel-overlay-grid.three,.keyval-grid{grid-template-columns:1fr}
+}
+@media (max-width: 640px){
+  .topbar-right{width:100%}
+  .topbar-right .btn{flex:1 1 calc(50% - 8px);justify-content:center}
+  .hero-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .learner-card{min-height:0}
+  .learner-select{grid-template-columns:68px minmax(0,1fr)}
+  .learner-card .avatar{width:68px;height:68px;border-radius:18px}
+  .learner-name{font-size:1.28rem}
+  .learner-card-footer{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .panel-btn{font-size:.76rem;min-height:44px;padding:10px}
+  .brief-rail{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:10px}
+  .brief-card{min-height:0;padding:14px}
+  .brief-card h3{font-size:.88rem}
+  .brief-card p{font-size:.92rem;line-height:1.45}
+}
+
 </style>
 </head>
 <body>
@@ -1520,6 +1619,22 @@ body{
     </div>
   </div>
 </div>
+</div>
+
+
+<div class="overlay" id="card-panel-overlay">
+  <div class="modal card-panel-modal">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow" id="card-panel-eyebrow">Active Learner</div>
+          <h3 id="card-panel-title">Command Panel</h3>
+        </div>
+        <button class="btn slim ghost" data-close="#card-panel-overlay">Close</button>
+      </div>
+      <div id="card-panel-body"></div>
+    </div>
+  </div>
 </div>
 
 <div class="overlay" id="learner-overlay">
@@ -2351,9 +2466,6 @@ function showView(id, persist=true){
     HUB.selectedView = next;
     saveHubState(`View changed to ${next}`);
   }
-  requestAnimationFrame(()=>{
-    document.getElementById(next)?.scrollIntoView({behavior:'smooth', block:'start'});
-  });
 }
 function scrollToSection(id){
   showView(id);
@@ -2508,6 +2620,23 @@ function promotionText(learner){
   if(score >= 35) return 'Progress is building real momentum';
   return 'Every logged session helps earn the next rank';
 }
+
+function statusClass(status){
+  return 'status-' + String(status || 'Not Started').toLowerCase().replace(/[^a-z0-9]+/g,'-');
+}
+function moduleMiniStrip(learner){
+  return moduleStats(learner).map(mod=>{
+    const short = mod.id.replace('Ready','');
+    return `<span class="module-pill ${statusClass(mod.status)}"><strong>${escapeHtml(short)}</strong> ${mod.sessions.length || 0}</span>`;
+  }).join('');
+}
+function learnerStatusLabel(learner){
+  const mods = moduleStats(learner).filter(m=>m.sessions.length);
+  if(!mods.length) return 'Not Started';
+  const byScore = [...mods].sort((a,b)=>b.score-a.score);
+  if(byScore.some(m=>m.status === 'Needs Review')) return 'Needs Review';
+  return byScore[0].status || 'In Progress';
+}
 function renderRoster(){
   const learners = visibleLearners();
   const showingArchived = !!HUB.showArchived;
@@ -2517,43 +2646,36 @@ function renderRoster(){
   const html = learners.length ? learners.map(learner=>{
     const active = learner.key === APP.selectedKey;
     const last = filteredSessions(learner).slice(-1)[0];
+    const status = learnerStatusLabel(learner);
     const objectiveStats = evaluateObjectives(learner);
-    const archiveLabel = learner.archived ? 'Restore to Roster' : 'Archive Learner';
     return `
       <article class="learner-card ${active?'active':''}" data-key="${escapeHtml(learner.key)}">
-        <div class="learner-card-head">
-          <button class="learner-select" data-key="${escapeHtml(learner.key)}">
-            <div class="avatar" style="background:${escapeHtml(learner.color || colorFor(learner.key))}">${escapeHtml(learner.initials || initialsFor(learner.displayName))}</div>
-            <div class="learner-main">
-              <div class="learner-name">${escapeHtml(learner.displayName)}</div>
-              <div class="learner-meta">${escapeHtml(learner.program || learner.level || 'No program listed')}</div>
-              <div class="learner-rank">
-                <span class="token"><strong>${escapeHtml(learner.metrics.rank.title)}</strong></span>
-                <span class="token">${learner.metrics.readiness} readiness</span>
-                <span class="token">${last ? escapeHtml(last.module) : 'No sessions'}</span>
-              </div>
+        <button class="learner-select" data-key="${escapeHtml(learner.key)}" aria-label="Select ${escapeHtml(learner.displayName)} as active learner">
+          <div class="avatar" style="background:${escapeHtml(learner.color || colorFor(learner.key))}">${escapeHtml(learner.initials || initialsFor(learner.displayName))}</div>
+          <div class="learner-main">
+            <div class="learner-name">${escapeHtml(learner.displayName)}</div>
+            <div class="learner-meta">${escapeHtml(learner.program || learner.level || 'No program listed')}</div>
+            <div class="learner-rank">
+              <span class="token"><strong>${escapeHtml(learner.metrics.rank.title)}</strong></span>
+              <span class="token">${learner.metrics.acc}% accuracy</span>
+              <span class="token">${objectiveStats.met}/${objectiveStats.total || 0} goals</span>
             </div>
-          </button>
-          <div class="learner-quick">
-            <button class="mini-btn" data-roster-view="overview" data-key="${escapeHtml(learner.key)}">Deck</button>
-            <button class="mini-btn" data-roster-view="sessions" data-key="${escapeHtml(learner.key)}">Log</button>
-            <button class="mini-btn" data-roster-view="reports" data-key="${escapeHtml(learner.key)}">Report</button>
           </div>
+        </button>
+        <div class="status-pill ${statusClass(status)}">${escapeHtml(status)}</div>
+        <div class="learner-meter">
+          <div class="meter-track"><div class="meter-fill" style="width:${Math.max(4, learner.metrics.readiness)}%"></div></div>
+          <div class="meter-label">${learner.metrics.readiness} Ready</div>
         </div>
-        <details class="learner-drop">
-          <summary>Open Profile Panel</summary>
-          <div class="learner-detail-grid">
-            <div class="tiny-stat"><span>Full name</span><strong>${escapeHtml(learner.fullName || 'Not stored')}</strong></div>
-            <div class="tiny-stat"><span>Support</span><strong>${escapeHtml(learner.level || 'Developing')}</strong></div>
-            <div class="tiny-stat"><span>Sessions</span><strong>${filteredSessions(learner).length}</strong></div>
-            <div class="tiny-stat"><span>Objectives</span><strong>${objectiveStats.met}/${objectiveStats.total || 0}</strong></div>
-            ${learner.coachNotes || learner.notes ? `<div class="tiny-stat notes"><span>Coach notes</span><strong>${escapeHtml((learner.coachNotes || learner.notes)).slice(0,180)}</strong></div>` : ''}
-          </div>
-          <div class="learner-card-actions">
-            <button class="mini-btn" data-action="archive" data-key="${escapeHtml(learner.key)}">${archiveLabel}</button>
-            <button class="mini-btn danger" data-action="court" data-key="${escapeHtml(learner.key)}">Court-Martial</button>
-          </div>
-        </details>
+        <div class="learner-meta">${last ? `Last session ${formatDate(last.date)} · ${escapeHtml(last.module)}` : 'No logged sessions yet'}</div>
+        <div class="module-strip">${moduleMiniStrip(learner)}</div>
+        <div class="learner-card-footer">
+          <button class="panel-btn primary" data-panel="deck" data-key="${escapeHtml(learner.key)}">Deck</button>
+          <button class="panel-btn" data-panel="goals" data-key="${escapeHtml(learner.key)}">Goals</button>
+          <button class="panel-btn" data-panel="log" data-key="${escapeHtml(learner.key)}">Log</button>
+          <button class="panel-btn" data-panel="reports" data-key="${escapeHtml(learner.key)}">Reports</button>
+          <button class="panel-btn profile" data-panel="profile" data-key="${escapeHtml(learner.key)}">Profile</button>
+        </div>
       </article>`;
   }).join('') : `<div class="empty">${showingArchived ? 'No archived learners right now.' : 'No learners match this view yet. Add one manually or refresh if module data was added in another screen.'}</div>`;
   $('#learner-list').innerHTML = html;
@@ -2563,15 +2685,11 @@ function renderRoster(){
     saveHubState('Learner selected');
     renderAll();
   }));
-  $all('[data-roster-view]').forEach(btn=>btn.addEventListener('click', ()=>{
-    APP.selectedKey = btn.dataset.key;
-    HUB.lastLearnerKey = APP.selectedKey;
-    showView(btn.dataset.rosterView);
-    renderAll();
+  $all('[data-panel]').forEach(btn=>btn.addEventListener('click', ()=>{
+    openCardPanel(btn.dataset.panel, btn.dataset.key);
   }));
-  $all('[data-action="archive"]').forEach(btn=>btn.addEventListener('click', ()=>toggleArchive(btn.dataset.key)));
-  $all('[data-action="court"]').forEach(btn=>btn.addEventListener('click', ()=>courtMartialLearner(btn.dataset.key)));
 }
+
 function renderOverview(){
   const learner = selectedLearner();
   const body = $('#overview-body');
@@ -2954,6 +3072,134 @@ function maybeShowPromotionToast(learner){
     toast._t = setTimeout(()=>toast.classList.remove('show'), 4200);
   }
 }
+
+function panelOverviewMarkup(learner){
+  const ms = moduleStats(learner);
+  const sw = strongestAndWeakest(ms);
+  const recent = filteredSessions(learner).slice(-3).reverse();
+  const mile = milestones(learner).slice(0,4);
+  return `
+    <div class="panel-overlay-grid">
+      <div class="overlay-card"><h4>Mission Brief</h4><p>${escapeHtml(missionBrief(learner))}</p></div>
+      <div class="overlay-card"><h4>Next Best Action</h4><p>${escapeHtml(nextBestAction(learner))}</p></div>
+      <div class="overlay-card"><h4>Strongest Module</h4><div class="big-number">${escapeHtml(sw.strongest)}</div><div class="subline">Best combined score in the current view.</div></div>
+      <div class="overlay-card"><h4>Needs Attention</h4><div class="big-number">${escapeHtml(sw.weakest)}</div><div class="subline">Lowest combined score in the current view.</div></div>
+    </div>
+    <div class="overlay-toolbar" style="margin-top:14px">
+      <span class="token">${learner.metrics.rank.title}</span>
+      <span class="token">${learner.metrics.readiness} readiness</span>
+      <span class="token">${learner.metrics.modulesTouched} modules touched</span>
+      <span class="token">${filteredSessions(learner).length} sessions logged</span>
+    </div>
+    <div class="panel-overlay-grid" style="margin-top:14px">
+      ${ms.map(mod=>`<div class="overlay-card"><h4>${escapeHtml(mod.id)}</h4><div class="big-number">${mod.score || 0}</div><div class="subline">${escapeHtml(mod.status)} · ${mod.sessions.length} session${mod.sessions.length===1?'':'s'}${mod.last ? ` · ${formatDate(mod.last.date)}` : ''}</div></div>`).join('')}
+    </div>
+    <div class="detail-list" style="margin-top:14px">
+      ${(mile.length?mile:[{title:'No milestones yet',copy:'Log sessions, add objectives, and let Mission Control build a clearer story.'}]).map(item=>`<div class="detail-row"><h5>${escapeHtml(item.title)}</h5><p>${escapeHtml(item.copy)}</p></div>`).join('')}
+      ${recent.length ? `<div class="detail-row"><h5>Recent Signals</h5><p>${recent.map(s=>`${s.module} on ${formatDate(s.date)} · ${promptLabel(s.prompt)} · ${s.score || 'No score'}`).join('<br>')}</p></div>` : ''}
+    </div>`;
+}
+function panelGoalsMarkup(learner){
+  const objectiveData = evaluateObjectives(learner);
+  const items = objectiveData.items;
+  return `
+    <div class="overlay-toolbar">
+      <button class="btn slim primary" data-panel-action="new-objective" data-key="${escapeHtml(learner.key)}">＋ Add Objective</button>
+    </div>
+    <div class="detail-list">
+      ${(items.length?items:[{title:'No objectives yet',empty:true,module:'',progress:0,copy:'Add an objective so Mission Control can track something concrete instead of vibes.'}]).map(obj=>{
+        const title = obj.title || objectiveTemplateLabel(obj);
+        const progress = obj.empty ? 0 : Math.round(goalProgress(learner,obj)*100);
+        const met = !obj.empty && goalMet(learner,obj);
+        return `<div class="detail-row">
+          <h5>${escapeHtml(title)}</h5>
+          <p>${obj.empty ? escapeHtml(obj.copy) : `${escapeHtml(obj.module || 'All Modules')} · ${met ? 'Completed' : 'Active'} · ${progress}% progress`}</p>
+          ${obj.empty ? '' : `<div class="meter-track" style="margin-top:12px"><div class="meter-fill" style="width:${Math.max(6,progress)}%"></div></div>`}
+          ${obj.notes ? `<p style="margin-top:10px">${escapeHtml(obj.notes)}</p>` : ''}
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+function panelLogMarkup(learner){
+  const sessions = filteredSessions(learner).slice().reverse();
+  return `
+    <div class="overlay-toolbar">
+      <button class="btn slim primary" data-panel-action="new-log" data-key="${escapeHtml(learner.key)}">📝 Log Session</button>
+    </div>
+    <div class="detail-list">
+      ${(sessions.length?sessions:[{empty:true,module:'No sessions yet',activity:'',date:'',prompt:'',score:'',notes:'Log the first session here so reports stop staring back at you blankly.'}]).map(s=>`<div class="detail-row">
+        <h5>${escapeHtml(s.module)}${s.activity ? ` · ${escapeHtml(s.activity)}` : ''}</h5>
+        <p>${s.empty ? escapeHtml(s.notes) : `${formatDate(s.date)}${s.staff ? ` · ${escapeHtml(s.staff)}` : ''} · ${promptLabel(s.prompt)}${s.setting ? ` · ${escapeHtml(s.setting)}` : ''}`}</p>
+        ${s.empty ? '' : `<p style="margin-top:10px">${escapeHtml(s.score ? `Score: ${s.score}. ` : '')}${escapeHtml(s.notes || 'No extra note saved for this session.')}</p>`}
+      </div>`).join('')}
+    </div>`;
+}
+function panelReportsMarkup(learner){
+  return `
+    <div class="overlay-toolbar">
+      <button class="btn slim primary" data-panel-action="copy-summary" data-key="${escapeHtml(learner.key)}">⧉ Copy Summary</button>
+      <button class="btn slim ghost" data-panel-action="download-report" data-key="${escapeHtml(learner.key)}">⬇ Download Report</button>
+      <button class="btn slim ghost" data-panel-action="download-csv" data-key="${escapeHtml(learner.key)}">⬇ Export CSV</button>
+      <button class="btn slim ghost" data-panel-action="print-brief" data-key="${escapeHtml(learner.key)}">🖨 Print Brief</button>
+    </div>
+    <pre class="report-pre">${escapeHtml(reportText(learner))}</pre>`;
+}
+function panelProfileMarkup(learner){
+  const sessions = filteredSessions(learner);
+  const objectives = evaluateObjectives(learner);
+  return `
+    <div class="keyval-grid">
+      <div class="keyval"><span>Display Name</span><strong>${escapeHtml(learner.displayName)}</strong></div>
+      <div class="keyval"><span>Initials</span><strong>${escapeHtml(learner.initials || initialsFor(learner.displayName))}</strong></div>
+      <div class="keyval"><span>Private Full Name</span><strong>${escapeHtml(learner.fullName || 'Not stored')}</strong></div>
+      <div class="keyval"><span>Program / Class</span><strong>${escapeHtml(learner.program || 'Not listed')}</strong></div>
+      <div class="keyval"><span>Support Level</span><strong>${escapeHtml(learner.level || 'Developing')}</strong></div>
+      <div class="keyval"><span>Roster Status</span><strong>${learner.archived ? 'Archived' : 'Active'}</strong></div>
+      <div class="keyval"><span>Tracked Sessions</span><strong>${sessions.length}</strong></div>
+      <div class="keyval"><span>Objectives Met</span><strong>${objectives.met}/${objectives.total || 0}</strong></div>
+    </div>
+    <div class="detail-list" style="margin-top:14px">
+      <div class="detail-row"><h5>Coach Notes</h5><p>${escapeHtml(learner.coachNotes || learner.notes || 'No coach notes saved yet.')}</p></div>
+    </div>
+    <div class="overlay-toolbar" style="margin-top:14px">
+      <button class="btn slim ghost" data-panel-action="archive" data-key="${escapeHtml(learner.key)}">${learner.archived ? 'Restore to Roster' : 'Archive Learner'}</button>
+      <button class="btn slim danger" data-panel-action="court" data-key="${escapeHtml(learner.key)}">⚠ Court-Martial Learner</button>
+    </div>
+    <div class="archive-note">Archive keeps the learner off the main roster without deleting anything. Court-martial deletes this learner and Mission Control data on this device.</div>`;
+}
+function renderCardPanelBody(type, learner){
+  if(!learner) return '<div class="empty">Pick a learner from the roster first.</div>';
+  if(type === 'deck') return panelOverviewMarkup(learner);
+  if(type === 'goals') return panelGoalsMarkup(learner);
+  if(type === 'log') return panelLogMarkup(learner);
+  if(type === 'reports') return panelReportsMarkup(learner);
+  return panelProfileMarkup(learner);
+}
+function openCardPanel(type, key = APP.selectedKey){
+  if(key){
+    APP.selectedKey = key;
+    HUB.lastLearnerKey = key;
+  }
+  const learner = selectedLearner();
+  const map = {deck:'Command Deck', goals:'Objectives', log:'Flight Log', reports:'Reports', profile:'Profile'};
+  APP.activePanel = type;
+  $('#card-panel-eyebrow').textContent = learner ? `${learner.metrics.rank.title} · ${learner.metrics.readiness} readiness` : 'Command Panel';
+  $('#card-panel-title').textContent = learner ? `${learner.displayName} // ${map[type] || 'Panel'}` : (map[type] || 'Panel');
+  $('#card-panel-body').innerHTML = renderCardPanelBody(type, learner);
+  saveHubState(`Opened ${type} panel`);
+  renderAll();
+  showOverlay('#card-panel-overlay');
+}
+function refreshOpenCardPanel(){
+  const overlay = $('#card-panel-overlay');
+  if(!overlay.classList.contains('show')) return;
+  const type = APP.activePanel || 'deck';
+  const learner = selectedLearner();
+  $('#card-panel-eyebrow').textContent = learner ? `${learner.metrics.rank.title} · ${learner.metrics.readiness} readiness` : 'Command Panel';
+  $('#card-panel-title').textContent = learner ? `${learner.displayName} // ${({deck:'Command Deck', goals:'Objectives', log:'Flight Log', reports:'Reports', profile:'Profile'})[type]}` : 'Command Panel';
+  $('#card-panel-body').innerHTML = renderCardPanelBody(type, learner);
+}
+
 function renderAll(){
   APP.learners = buildLearners();
   APP.selectedModule = APP.selectedModule || 'All Modules';
@@ -2985,7 +3231,9 @@ function renderAll(){
   $('#filter-note').textContent = `${APP.selectedModule || 'All Modules'}${APP.rangeStart || APP.rangeEnd ? ` · ${APP.rangeStart || 'Any'} to ${APP.rangeEnd || 'Any'}` : ' · All dates'}`;
   const archiveBtn = $('#show-archived-btn');
   if(archiveBtn) archiveBtn.classList.toggle('primary', !!HUB.showArchived);
+  refreshOpenCardPanel();
 }
+
 function populateForms(){
   syncSelectOptions();
   syncModuleOptions();
@@ -3131,6 +3379,43 @@ document.addEventListener('click', e=>{
   if(jump){
     showView(jump.dataset.jump);
   }
+  const panelAction = e.target.closest('[data-panel-action]');
+  if(panelAction){
+    const key = panelAction.dataset.key || APP.selectedKey;
+    if(key){ APP.selectedKey = key; HUB.lastLearnerKey = key; }
+    switch(panelAction.dataset.panelAction){
+      case 'new-log':
+        populateForms();
+        if(key) $('#session-learner').value = key;
+        showOverlay('#session-overlay');
+        break;
+      case 'new-objective':
+        populateForms();
+        if(key) $('#objective-learner').value = key;
+        showOverlay('#objective-overlay');
+        break;
+      case 'copy-summary':
+        copySummary();
+        break;
+      case 'download-report':
+        downloadReport();
+        break;
+      case 'download-csv':
+        downloadCSV();
+        break;
+      case 'print-brief':
+        printBrief();
+        break;
+      case 'archive':
+        toggleArchive(key);
+        refreshOpenCardPanel();
+        break;
+      case 'court':
+        courtMartialLearner(key);
+        hideOverlay('#card-panel-overlay');
+        break;
+    }
+  }
 });
 document.addEventListener('keydown', e=>{
   scheduleLock();
@@ -3157,7 +3442,7 @@ $('#pin-remove-legacy-btn').addEventListener('click', ()=>{
   $('#pin-error').textContent = '';
   $('#pin-input').value = '';
   $('#pin-submit-btn').textContent = 'Create Access Code';
-  $('#lock-copy').textContent = 'Create one educator access code for Mission Control.';
+  $('#lock-copy').textContent = 'Create an educator access code for Mission Control.';
 });
 $('#learner-search').addEventListener('input', e=>{ APP.search = e.target.value; renderRoster(); ensureSelection(); renderAll(); });
 $('#module-filter').addEventListener('change', e=>{
@@ -3249,7 +3534,7 @@ APP.selectedKey = HUB.lastLearnerKey || (APP.learners[0]?.key || '');
 $('#lock-view').classList.remove('hidden');
 $('#app-view').classList.add('hidden');
 $('#pin-submit-btn').textContent = HUB.pin ? 'Unlock Mission Control' : 'Create Access Code';
-$('#lock-copy').textContent = HUB.pin ? 'Enter your educator access code.' : 'Create one educator access code for Mission Control.';
+$('#lock-copy').textContent = HUB.pin ? 'Enter your educator access code.' : 'Create an educator access code for Mission Control.';
 if(HUB.pin && APP.importedPins.length){
   $('#pin-error').textContent = '';
 }

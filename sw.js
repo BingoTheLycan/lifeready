@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v26 - Mission Control bridge polish)
+// LifeReady Service Worker (v27 - Mission Control learner ID fix)
 
-const VERSION = 'v26';
+const VERSION = 'v27';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

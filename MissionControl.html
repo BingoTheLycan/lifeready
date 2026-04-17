@@ -2129,6 +2129,10 @@ function profileKey(data){
   if(initials) return 'initials-' + initials;
   return 'manual-' + Math.random().toString(36).slice(2,9);
 }
+function makeLearnerId(){
+  if(window.crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  return `lr-${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+}
 function initialsFor(name){
   const source = String(name||'').trim();
   if(!source) return 'LR';
@@ -2275,8 +2279,15 @@ function buildLearners(){
     }
   }
 
-  for(const [key, profile] of Object.entries(HUB.profiles)){
-    if(dismissed.has(key)) continue;
+  for(const [storedKey, profile] of Object.entries(HUB.profiles)){
+    const mergeKey = profile.mergeKey || profile.legacyKey || profileKey({
+      fullName: profile.fullName,
+      name: profile.name,
+      displayName: profile.displayName,
+      initials: profile.initials
+    });
+    const key = merged.has(mergeKey) ? mergeKey : (profile.key || storedKey || makeLearnerId());
+    if(dismissed.has(storedKey) || dismissed.has(key)) continue;
     if(!merged.has(key)){
       merged.set(key,{
         key,
@@ -2306,7 +2317,7 @@ function buildLearners(){
     item.level = profile.level || item.level;
     item.notesList.push(profile.notes || '');
     item.color = profile.color || item.color;
-    item.archived = !!profile.archived || archivedKeys.has(key);
+    item.archived = !!profile.archived || archivedKeys.has(storedKey) || archivedKeys.has(key);
     item.createdAt = profile.createdAt || item.createdAt;
     item.objectives = profile.objectives || [];
     item.manualSessions = (profile.manualSessions || []).map((session, idx)=>normalizeSession(session, session.module || 'Manual', `manual-${key}-${idx}`, true));
@@ -3499,6 +3510,12 @@ function addLearner(){
     return;
   }
   const obj = {
+    key: makeLearnerId(),
+    mergeKey: profileKey({
+      fullName: $('#learner-full').value.trim(),
+      displayName,
+      initials: ($('#learner-initials').value.trim() || initialsFor(displayName)).toUpperCase()
+    }),
     displayName,
     fullName: $('#learner-full').value.trim(),
     initials: ($('#learner-initials').value.trim() || initialsFor(displayName)).toUpperCase(),
@@ -3511,10 +3528,9 @@ function addLearner(){
     manualSessions: [],
     archived: false
   };
-  const key = profileKey(obj);
-  HUB.profiles[key] = { ...(HUB.profiles[key] || {}), ...obj };
-  HUB.lastLearnerKey = key;
-  APP.selectedKey = key;
+  HUB.profiles[obj.key] = obj;
+  HUB.lastLearnerKey = obj.key;
+  APP.selectedKey = obj.key;
   saveHubState('Learner added');
   hideOverlay('#learner-overlay');
   resetLearnerForm();
@@ -3523,7 +3539,20 @@ function addLearner(){
 function addSession(){
   const key = $('#session-learner').value;
   if(!key) return alert('Choose a learner first.');
-  const profile = HUB.profiles[key] || (HUB.profiles[key] = {displayName:'Learner', objectives:[], manualSessions:[]});
+  const current = APP.learners.find(l=>l.key === key);
+  const profile = HUB.profiles[key] || (HUB.profiles[key] = {
+    key,
+    mergeKey: key,
+    displayName: current?.displayName || 'Learner',
+    fullName: current?.fullName || '',
+    initials: current?.initials || initialsFor(current?.displayName || 'Learner'),
+    program: current?.program || '',
+    level: current?.level || 'developing',
+    color: current?.color || colorFor(key),
+    notes: current?.coachNotes || '',
+    objectives:[],
+    manualSessions:[]
+  });
   profile.manualSessions = profile.manualSessions || [];
   profile.manualSessions.push({
     id: `manual-${Date.now()}`,
@@ -3546,7 +3575,20 @@ function addSession(){
 function addObjective(){
   const key = $('#objective-learner').value;
   if(!key) return alert('Choose a learner first.');
-  const profile = HUB.profiles[key] || (HUB.profiles[key] = {displayName:'Learner', objectives:[], manualSessions:[]});
+  const current = APP.learners.find(l=>l.key === key);
+  const profile = HUB.profiles[key] || (HUB.profiles[key] = {
+    key,
+    mergeKey: key,
+    displayName: current?.displayName || 'Learner',
+    fullName: current?.fullName || '',
+    initials: current?.initials || initialsFor(current?.displayName || 'Learner'),
+    program: current?.program || '',
+    level: current?.level || 'developing',
+    color: current?.color || colorFor(key),
+    notes: current?.coachNotes || '',
+    objectives:[],
+    manualSessions:[]
+  });
   profile.objectives = profile.objectives || [];
   const template = $('#objective-template').value;
   const title = $('#objective-title').value.trim();

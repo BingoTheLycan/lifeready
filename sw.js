@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v22 - Mission Control command deck rebuild)
+// LifeReady Service Worker (v23 - Mission Control roster cleanup)
 
-const VERSION = 'v22';
+const VERSION = 'v23';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

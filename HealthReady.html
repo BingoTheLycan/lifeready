@@ -398,8 +398,8 @@ pointer-events:none;
 .se-d{font-size:0.7rem;color:var(--text2);margin-top:3px;}
 
 /* ══ BADGES ══ */
-.bgrid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;}
-.bt{background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius-sm);padding:12px 10px;text-align:center;transition:.2s;display:flex;flex-direction:column;align-items:center;min-height:0;}
+.bgrid2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.bt{background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius-sm);padding:16px 14px;text-align:center;transition:.2s;display:flex;flex-direction:column;align-items:center;}
 .bt.on{border-color:var(--amber);background:var(--amber-light);}.bt:hover{border-color:#e91e8c;box-shadow:0 0 14px #e91e8c55;transform:translateY(-1px);}.bt:active{border-color:#e91e8c;box-shadow:0 0 14px #e91e8c55;}
 .bt .bi{font-size:2.2rem;margin-bottom:8px;filter:grayscale(1);opacity:.28;transition:.3s;}
 .bt.on .bi{filter:none;opacity:1;}
@@ -686,20 +686,20 @@ pointer-events:none;
 
 /* ══ BADGE TOAST ══ */
 #badge-toast{
-position:fixed;left:50%;bottom:94px;transform:translateX(-50%) translateY(24px) scale(.98);z-index:9998;display:none;opacity:0;transition:transform .28s ease,opacity .28s ease;
-min-width:min(92vw,340px);max-width:min(92vw,380px);padding:14px 14px 14px 12px;border-radius:18px;
-background:radial-gradient(circle at top left,rgba(255,255,255,.08),transparent 34%),linear-gradient(180deg,rgba(16,24,39,.97),rgba(10,14,22,.98));
-border:1px solid rgba(255,187,51,.34);box-shadow:0 18px 44px rgba(0,0,0,.48),0 0 22px rgba(255,187,51,.12);display:none;align-items:flex-start;gap:12px;overflow:hidden;
---toast-accent:var(--amber);
+position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(30px);
+background:var(--bg2);border:2px solid var(--amber);border-radius:var(--radius);
+padding:14px 18px;display:flex;align-items:center;gap:12px;
+box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 30px rgba(255,187,51,.15);
+z-index:9999;opacity:0;pointer-events:none;
+transition:opacity .35s ease,transform .35s cubic-bezier(.34,1.56,.64,1);
+max-width:320px;width:calc(100% - 32px);
 }
-#badge-toast::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.09),transparent 34%),repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0 1px,transparent 1px 22px),repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 22px);opacity:.42;}
-#badge-toast::after{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:linear-gradient(90deg,var(--toast-accent),rgba(255,255,255,.12) 72%,transparent);}
-#badge-toast.show{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
-#badge-toast-icon{font-size:1.7rem;flex-shrink:0;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid var(--toast-accent);box-shadow:0 0 22px rgba(255,187,51,.16),inset 0 1px 0 rgba(255,255,255,.06);position:relative;z-index:1;color:var(--toast-accent);}
-#badge-toast-body{flex:1;display:flex;flex-direction:column;position:relative;z-index:1;min-width:0;}
-#badge-toast-label{align-self:flex-start;font-family:var(--font-mono);font-size:.54rem;color:var(--toast-accent);letter-spacing:2.1px;margin-bottom:5px;padding:4px 8px;border-radius:999px;border:1px solid var(--toast-accent);background:rgba(255,255,255,.04);text-shadow:0 0 12px rgba(255,255,255,.06);}
-#badge-toast-name{font-weight:900;color:var(--text);font-size:1rem;line-height:1.25;text-shadow:0 0 12px rgba(255,255,255,.08);}
-#badge-toast-desc{font-size:.72rem;color:var(--text2);margin-top:5px;line-height:1.48;}
+#badge-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+#badge-toast-icon{font-size:2rem;flex-shrink:0;}
+#badge-toast-body{flex:1;}
+#badge-toast-label{font-family:var(--font-mono);font-size:.6rem;color:var(--amber);letter-spacing:2px;margin-bottom:2px;}
+#badge-toast-name{font-weight:800;color:var(--text);font-size:.92rem;}
+#badge-toast-desc{font-size:.72rem;color:var(--text2);margin-top:2px;line-height:1.4;}
 /* pin-pad removed -- now alphanumeric input */
 .pin-key{background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius-sm);padding:0;height:58px;font-family:var(--font-mono);font-size:1.3rem;font-weight:700;color:var(--text);cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;}
 .pin-key:hover{background:var(--panel);border-color:var(--green);color:var(--green);transform:scale(1.06);}
@@ -4066,12 +4066,10 @@ function showBadgeToast(b){
   if(!b)return;
   const toast=$('badge-toast');
   if(!toast)return;
-  $('badge-toast-icon').textContent=b.secret?'✦':(b.icon||'🏅');
-  $('badge-toast-label').textContent=b.secret?'✦ SECRET COMMENDATION':'COMMENDATION UNLOCKED';
+  $('badge-toast-icon').textContent=b.secret?'✦':b.icon;
+  $('badge-toast-label').textContent=b.secret?'✦ SECRET BADGE UNLOCKED!':'🎉 BADGE UNLOCKED!';
   $('badge-toast-name').textContent=b.name;
-  const _badgeDesc=(b.desc&&b.desc!=='???')?b.desc:'';
-  $('badge-toast-desc').textContent=_badgeDesc;
-  $('badge-toast-desc').style.display=_badgeDesc?'block':'none';
+  $('badge-toast-desc').textContent=b.desc&&b.desc!=='???'?b.desc:'';
   toast.classList.add('show');
   if(_badgeToastTimer) clearTimeout(_badgeToastTimer);
   _badgeToastTimer=setTimeout(()=>toast.classList.remove('show'),3500);
@@ -4130,11 +4128,11 @@ function renderBadges(){
 
     <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:14px;text-align:center;color:var(--text2);font-size:.84rem;line-height:1.65">${intro}</div>
 
-    <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:14px">
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:18px">
       <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--amber);letter-spacing:2px;text-align:center;margin-bottom:12px">🎯 NEXT BADGES TO AIM FOR</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+      <div style="display:grid;gap:10px">
         ${nextBadges.length ? nextBadges.map(b=>`
-          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px;display:flex;gap:10px;align-items:flex-start">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;display:flex;gap:12px;align-items:flex-start">
             <div style="font-size:1.3rem;line-height:1">${b.icon}</div>
             <div style="flex:1">
               <div style="font-weight:800;color:var(--text);font-size:.84rem">${b.name}</div>
@@ -4148,7 +4146,7 @@ function renderBadges(){
       </div>
     </div>
 
-    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:14px">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px">
       ${cats.map(cat=>{
         const catBadges=BADGES_DEF.filter(b=>b.cat===cat.id);
         const catEarned=catBadges.filter(b=>BADGES.has(b.id)).length;
@@ -4163,7 +4161,7 @@ function renderBadges(){
     const catPct=Math.round((catEarned/catBadges.length)*100);
 
     html+=`
-      <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:14px">
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:18px">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
           <div style="flex:1;height:2px;background:${cat.color};opacity:.35;border-radius:2px"></div>
           <div style="font-family:var(--font-mono);font-size:.78rem;color:${cat.color};font-weight:700;letter-spacing:2px;white-space:nowrap">${cat.label}</div>
@@ -4189,7 +4187,7 @@ function renderBadges(){
         : (isSecret?'Secret badges reveal themselves through play.':`How to earn: ${b.howTo||'Keep practicing to unlock this badge.'}`);
 
       html+=`
-          <div class="bt ${has?'on':''}" style="min-height:180px;justify-content:flex-start;${has?`border-color:${cat.color};box-shadow:0 0 12px ${cat.color}22;`:''}">
+          <div class="bt ${has?'on':''}" style="min-height:220px;justify-content:flex-start;${has?`border-color:${cat.color};box-shadow:0 0 12px ${cat.color}22;`:''}">
             <div class="bi">${isSecret?'🔒':b.icon}</div>
             <div class="bn">${isSecret?'Hidden Badge':b.name}</div>
             <div class="bd">${isSecret?'Keep exploring this module to reveal this secret badge.':b.desc}</div>
@@ -6658,7 +6656,7 @@ document.addEventListener('DOMContentLoaded', initHomeCardWiring);
 <div id="streak-milestone-emoji" style="font-size:3.5rem;margin-bottom:10px">🔥</div>
 <div id="streak-milestone-title" style="font-family:var(--font-mono);font-size:1.1rem;color:var(--amber);letter-spacing:3px;margin-bottom:8px">3-DAY STREAK!</div>
 <div id="streak-milestone-msg" style="font-size:.88rem;color:var(--text2);line-height:1.6;margin-bottom:16px"></div>
-<div id="streak-milestone-badge" style="background:var(--amber-light);border:2px solid var(--amber);border-radius:var(--radius);padding:14px;margin-bottom:14px">
+<div id="streak-milestone-badge" style="background:var(--amber-light);border:2px solid var(--amber);border-radius:var(--radius);padding:14px;margin-bottom:18px">
 <div style="font-size:2rem;margin-bottom:5px">☀️</div>
 <div style="font-family:var(--font-mono);font-size:.75rem;color:var(--amber);font-weight:700;letter-spacing:1px">BADGE EARNED!</div>
 <div id="streak-badge-name" style="font-size:.88rem;color:var(--text);font-weight:700;margin-top:3px"></div>

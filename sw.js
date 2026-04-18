@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v34 - badge toast + compact badge deck)
+// LifeReady Service Worker (v31 - HealthReady break fix and Mission Control access reset)
 
-const VERSION = 'v34';
+const VERSION = 'v33';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

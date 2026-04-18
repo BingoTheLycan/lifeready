@@ -400,14 +400,72 @@ pointer-events:none;
 .se-d{font-size:0.7rem;color:var(--text2);margin-top:3px;}
 
 /* ══ BADGES ══ */
-.bgrid2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
-.bt{background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius-sm);padding:16px 14px;text-align:center;transition:.2s;display:flex;flex-direction:column;align-items:center;}
-.bt.on{border-color:var(--amber);background:var(--amber-light);}.bt:hover{border-color:#e8650a;box-shadow:0 0 14px #e8650a55;transform:translateY(-1px);}.bt:active{border-color:#e8650a;box-shadow:0 0 14px #e8650a55;}
-.bt .bi{font-size:2.2rem;margin-bottom:8px;filter:grayscale(1);opacity:.28;transition:.3s;}
-.bt.on .bi{filter:none;opacity:1;}
-.bt .bn{font-size:0.82rem;font-weight:800;color:var(--text2);line-height:1.3;}
-.bt.on .bn{color:var(--text);}
-.bt .bd{font-size:0.72rem;color:var(--text2);margin-top:4px;line-height:1.4;}
+#scr-badges #bgrid{display:grid;gap:14px;margin-top:12px;}
+.bgrid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.badge-shell{position:relative;background:linear-gradient(180deg,rgba(12,18,41,.98),rgba(6,10,24,.98));border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px;box-shadow:0 16px 34px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.05);overflow:hidden;}
+.badge-shell::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.06),transparent 34%),repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0 1px,transparent 1px 26px),repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 26px);opacity:.4;}
+.badge-shell>*{position:relative;z-index:1;}
+.badge-hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(110px,.85fr);gap:14px;align-items:stretch;}
+.badge-hero-kicker,.badge-section-head,.badge-cat-kicker,.badge-stat-label,.badge-pill,.badge-next-kicker,.badge-status,.badge-cat-meta,.badge-hero-note{font-family:var(--font-mono);text-transform:uppercase;}
+.badge-hero-kicker{font-size:.66rem;letter-spacing:2.2px;color:var(--amber);margin-bottom:6px;text-shadow:0 0 12px rgba(255,187,51,.22);}
+.badge-hero-title{font-family:var(--font-display);font-size:1.45rem;line-height:.98;color:var(--text);margin:0 0 8px;text-shadow:0 0 18px rgba(255,255,255,.1);}
+.badge-hero-copy{font-size:.82rem;line-height:1.62;color:var(--text2);margin:0;}
+.badge-hero-score{display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid rgba(255,187,51,.28);border-radius:16px;padding:14px 12px;background:linear-gradient(180deg,rgba(255,187,51,.12),rgba(255,187,51,.03) 55%,rgba(0,0,0,.14));box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 0 20px rgba(255,187,51,.08);}
+.badge-hero-ring{width:90px;height:90px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,187,51,.35);background:radial-gradient(circle at center,rgba(255,187,51,.18) 0 44%,transparent 45% 53%,rgba(255,187,51,.33) 54% 59%,transparent 60%),linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.01));box-shadow:0 0 0 1px rgba(255,255,255,.03) inset,0 0 22px rgba(255,187,51,.13);}
+.badge-hero-ring span{font-family:var(--font-display);font-size:1.7rem;line-height:1;color:var(--amber);text-shadow:0 0 16px rgba(255,187,51,.3);}
+.badge-hero-note{margin-top:10px;font-size:.62rem;letter-spacing:1.8px;color:var(--text3);text-align:center;line-height:1.45;}
+.badge-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px;}
+.badge-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:11px 10px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.03);}
+.badge-stat-label{font-size:.56rem;letter-spacing:1.8px;color:var(--text3);}
+.badge-stat-value{font-size:1.05rem;font-weight:800;color:var(--text);margin-top:4px;}
+.badge-progress-track{height:11px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.38);overflow:hidden;margin-top:14px;box-shadow:inset 0 1px 4px rgba(0,0,0,.35);}
+.badge-progress-track span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--amber),var(--green));box-shadow:0 0 18px rgba(255,187,51,.24);transition:width .45s ease;}
+.badge-pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;justify-content:center;}
+.badge-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);font-size:.59rem;letter-spacing:1.25px;color:var(--text2);}
+.badge-pill strong{color:var(--text);font-size:.64rem;}
+.badge-shell + .badge-shell{margin-top:0;}
+.badge-section-head{font-size:.68rem;letter-spacing:2.3px;color:var(--amber);margin-bottom:12px;text-shadow:0 0 12px rgba(255,187,51,.18);}
+.badge-next-grid{display:grid;gap:10px;}
+.badge-next-card{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.03);}
+.badge-next-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:1.25rem;background:linear-gradient(180deg,rgba(255,187,51,.16),rgba(255,187,51,.05));border:1px solid rgba(255,187,51,.28);flex-shrink:0;}
+.badge-next-name{font-weight:800;color:var(--text);font-size:.84rem;line-height:1.3;}
+.badge-next-desc{font-size:.74rem;color:var(--text2);line-height:1.55;margin-top:4px;}
+.badge-next-kicker{font-size:.6rem;letter-spacing:1.4px;color:var(--amber);margin-top:6px;line-height:1.55;}
+.badge-cat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.badge-cat-kicker{display:block;font-size:.6rem;letter-spacing:1.8px;color:var(--text3);margin-bottom:5px;}
+.badge-cat-label{margin:0;font-size:.95rem;font-weight:800;color:var(--text);letter-spacing:.3px;}
+.badge-cat-meta{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+.badge-cat-meta span{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);font-size:.58rem;letter-spacing:1.15px;color:var(--text2);}
+.badge-track{height:8px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.32);overflow:hidden;margin-bottom:12px;}
+.badge-track span{display:block;height:100%;border-radius:999px;transition:width .45s ease;box-shadow:0 0 14px rgba(255,255,255,.08);}
+#scr-badges .bt{--badge-color:var(--amber);position:relative;background:linear-gradient(180deg,rgba(18,24,53,.96),rgba(8,12,28,.96));border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px 12px;text-align:left;transition:.22s ease;display:flex;flex-direction:column;align-items:flex-start;min-height:234px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);overflow:hidden;}
+#scr-badges .bt::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.05),transparent 40%);opacity:.5;}
+#scr-badges .bt>*{position:relative;z-index:1;}
+#scr-badges .bt:hover,#scr-badges .bt:active{transform:translateY(-1px);border-color:rgba(255,255,255,.18);box-shadow:0 10px 24px rgba(0,0,0,.26),0 0 18px rgba(255,255,255,.05);}
+#scr-badges .bt .badge-icon-plate{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.11);box-shadow:0 10px 18px rgba(0,0,0,.15);margin-bottom:12px;}
+#scr-badges .bt .bi{font-size:1.9rem;margin:0;filter:none;opacity:1;transition:.2s ease;}
+#scr-badges .bt .bn{font-size:.86rem;font-weight:800;color:var(--text);line-height:1.33;}
+#scr-badges .bt .bd{font-size:.74rem;color:var(--text2);margin-top:5px;line-height:1.55;}
+#scr-badges .bt .badge-status{display:inline-flex;align-items:center;justify-content:center;margin-top:10px;padding:5px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);font-size:.58rem;letter-spacing:1.15px;color:var(--text2);}
+#scr-badges .bt .badge-helper{margin-top:auto;padding-top:12px;font-size:.67rem;line-height:1.58;color:var(--text3);}
+#scr-badges .bt.badge-earned{border-color:var(--badge-color);box-shadow:0 10px 28px rgba(0,0,0,.28),0 0 22px rgba(255,255,255,.06),inset 0 1px 0 rgba(255,255,255,.05);background:linear-gradient(180deg,rgba(18,24,53,.98),rgba(8,12,28,.96));}
+#scr-badges .bt.badge-earned .badge-icon-plate{border-color:var(--badge-color);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));box-shadow:0 0 20px rgba(255,255,255,.08);}
+#scr-badges .bt.badge-earned .badge-status{border-color:var(--badge-color);background:rgba(255,255,255,.08);color:var(--text);}
+#scr-badges .bt.badge-open .badge-status{border-color:rgba(255,187,51,.32);background:rgba(255,187,51,.1);color:var(--amber);}
+#scr-badges .bt.badge-open .badge-helper{color:var(--amber);}
+#scr-badges .bt.badge-secret .badge-icon-plate{border-style:dashed;opacity:.9;}
+#scr-badges .bt.badge-secret .bi{opacity:.8;}
+#scr-badges .bt.badge-secret .bn{color:var(--text2);}
+#scr-badges .bt.badge-secret .badge-status{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.035);color:var(--text3);}
+.badge-empty{padding:18px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);text-align:center;color:var(--text2);font-size:.8rem;line-height:1.65;}
+@media (max-width:720px){
+  .badge-hero{grid-template-columns:1fr;}
+  .badge-hero-score{padding-top:18px;padding-bottom:18px;}
+}
+@media (max-width:520px){
+  .bgrid2,.badge-stat-grid{grid-template-columns:1fr;}
+  .badge-cat-meta{justify-content:flex-start;}
+}
 
 /* ══ SETTINGS ══ */
 .ss{margin-bottom:20px;}
@@ -688,20 +746,21 @@ pointer-events:none;
 
 /* ══ BADGE TOAST ══ */
 #badge-toast{
-position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(30px);
-background:var(--bg2);border:2px solid var(--amber);border-radius:var(--radius);
-padding:14px 18px;display:none;align-items:center;gap:12px;
-box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 30px rgba(255,187,51,.15);
-z-index:9999;opacity:0;pointer-events:none;
+position:fixed;bottom:92px;left:50%;transform:translateX(-50%) translateY(30px);
+background:linear-gradient(135deg,rgba(10,15,34,.98),rgba(4,7,18,.98));border:1px solid rgba(255,187,51,.52);border-radius:18px;
+padding:12px 14px 12px 12px;display:none;align-items:center;gap:12px;
+box-shadow:0 16px 40px rgba(0,0,0,.58),0 0 36px rgba(255,187,51,.14),inset 0 1px 0 rgba(255,255,255,.05);
+z-index:9999;opacity:0;pointer-events:none;overflow:hidden;backdrop-filter:blur(10px);
 transition:opacity .35s ease,transform .35s cubic-bezier(.34,1.56,.64,1);
-max-width:320px;width:calc(100% - 32px);
+max-width:356px;width:calc(100% - 28px);
 }
+#badge-toast::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent 36%),repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 1px,transparent 1px 22px),repeating-linear-gradient(0deg,rgba(255,255,255,.016) 0 1px,transparent 1px 22px);opacity:.36;}
 #badge-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-#badge-toast-icon{font-size:2rem;flex-shrink:0;}
-#badge-toast-body{flex:1;}
-#badge-toast-label{font-family:var(--font-mono);font-size:.6rem;color:var(--amber);letter-spacing:2px;margin-bottom:2px;}
-#badge-toast-name{font-weight:800;color:var(--text);font-size:.92rem;}
-#badge-toast-desc{font-size:.72rem;color:var(--text2);margin-top:2px;line-height:1.4;}
+#badge-toast-icon{font-size:1.65rem;flex-shrink:0;width:50px;height:50px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(180deg,rgba(255,187,51,.16),rgba(255,187,51,.05));border:1px solid rgba(255,187,51,.34);box-shadow:0 0 22px rgba(255,187,51,.14),inset 0 1px 0 rgba(255,255,255,.06);position:relative;z-index:1;}
+#badge-toast-body{flex:1;display:flex;flex-direction:column;position:relative;z-index:1;}
+#badge-toast-label{align-self:flex-start;font-family:var(--font-mono);font-size:.56rem;color:var(--amber);letter-spacing:2px;margin-bottom:5px;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,187,51,.24);background:rgba(255,187,51,.09);}
+#badge-toast-name{font-weight:800;color:var(--text);font-size:.94rem;line-height:1.3;text-shadow:0 0 10px rgba(255,255,255,.08);}
+#badge-toast-desc{font-size:.72rem;color:var(--text2);margin-top:4px;line-height:1.5;}
 /* pin-pad removed -- now alphanumeric input */
 .pin-key{background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius-sm);padding:0;height:58px;font-family:var(--font-mono);font-size:1.3rem;font-weight:700;color:var(--text);cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;}
 .pin-key:hover{background:var(--panel);border-color:var(--green);color:var(--green);transform:scale(1.06);}
@@ -4288,14 +4347,22 @@ function showBadgeToast(b){
 }
 
 function renderBadges(){
-  const cats=[
-    {id:'progression', label:'🎯 PROGRESSION', color:'var(--green)'},
-    {id:'accuracy',    label:'⭐ ACCURACY', color:'var(--amber)'},
-    {id:'streak',      label:'🔥 STREAKS', color:'#ff6b35'},
-    {id:'daily',       label:'☀️ DAILY CHALLENGE', color:'var(--amber)'},
-    {id:'challenge',   label:'🎮 CHALLENGES', color:'var(--blue)'},
-    {id:'secret',      label:'🔒 SECRET BADGES', color:'var(--purple)'},
-  ].filter(cat=>BADGES_DEF.some(b=>b.cat===cat.id));
+  const esc=v=>String(v==null?'':v)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+  const catMeta={
+    progression:{icon:'🎯', kicker:'MISSION GROWTH', label:'PROGRESSION PATH', color:'var(--green)'},
+    accuracy:{icon:'⭐', kicker:'TARGET LOCK', label:'ACCURACY DECK', color:'var(--amber)'},
+    streak:{icon:'🔥', kicker:'MOMENTUM LOG', label:'STREAK CIRCUITS', color:'#ff6b35'},
+    daily:{icon:'☀️', kicker:'DAILY OPS', label:'DAILY CHALLENGE', color:'var(--amber)'},
+    challenge:{icon:'🎮', kicker:'SIDE MISSIONS', label:'CHALLENGE BOARD', color:'var(--blue)'},
+    secret:{icon:'🔒', kicker:'CLASSIFIED', label:'SECRET BADGES', color:'var(--purple)'}
+  };
+  const order=['progression','accuracy','streak','daily','challenge','secret'];
+  const cats=order.filter(id=>BADGES_DEF.some(b=>b.cat===id)).map(id=>({id,...catMeta[id]}));
 
   const earned=BADGES.size;
   const total=BADGES_DEF.length;
@@ -4307,64 +4374,51 @@ function renderBadges(){
   const nextBadges=BADGES_DEF.filter(b=>!BADGES.has(b.id)&&!b.secret).slice(0,3);
 
   const intro=earned===total
-    ? '<strong style="color:var(--green)">🏆 Badge master unlocked.</strong> You earned every badge in this module. That is serious follow-through.'
+    ? '<strong style="color:var(--green)">Command deck complete.</strong> You unlocked every badge in this module. That is elite work.'
     : earned===0
-      ? 'Badges turn practice into progress. Start any mode and this page will begin filling up with wins.'
+      ? 'Every badge is a mission marker. Start playing and this command deck will light up with progress.'
       : pct>=75
-        ? '<strong style="color:var(--green)">You are close to full completion.</strong> Finish the last few goals and clear the board.'
-        : '<strong style="color:var(--green)">Keep going.</strong> Every badge points to a skill you are building, not just a score you collected.';
+        ? '<strong style="color:var(--green)">You are close to a full clear.</strong> Finish the last few goals and complete the deck.'
+        : '<strong style="color:var(--green)">Keep pushing forward.</strong> These badges track real skill growth, not just flashy points.';
 
   let html=`
-    <div style="background:linear-gradient(180deg,var(--panel),var(--bg3));border:2px solid var(--amber);border-radius:var(--radius);padding:18px;margin-bottom:14px;box-shadow:0 10px 30px rgba(0,0,0,.22)">
-      <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--text3);letter-spacing:2px;text-align:center;margin-bottom:8px">LIFEREADY BADGE BOARD</div>
-      <div style="font-family:var(--font-display);font-size:1.7rem;color:var(--amber);text-align:center;line-height:1">${earned}</div>
-      <div style="text-align:center;color:var(--text2);font-size:.82rem;margin-top:4px">of ${total} badges earned</div>
-      <div style="background:var(--bg);border-radius:999px;height:10px;overflow:hidden;margin-top:14px;border:1px solid var(--border)">
-        <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--amber),var(--green));border-radius:999px;transition:width .5s ease"></div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px">
-        <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 8px;text-align:center">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1.4px">EARNED</div>
-          <div style="font-size:1rem;font-weight:800;color:var(--text);margin-top:3px">${earned}</div>
+    <section class="badge-shell">
+      <div class="badge-hero">
+        <div>
+          <div class="badge-hero-kicker">COMMENDATION ARCHIVE</div>
+          <div class="badge-hero-title">Badge Deck</div>
+          <p class="badge-hero-copy">${intro}</p>
         </div>
-        <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 8px;text-align:center">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1.4px">COMPLETE</div>
-          <div style="font-size:1rem;font-weight:800;color:var(--text);margin-top:3px">${pct}%</div>
-        </div>
-        <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 8px;text-align:center">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1.4px">CLEARED</div>
-          <div style="font-size:1rem;font-weight:800;color:var(--text);margin-top:3px">${clearedCats}/${cats.length}</div>
+        <div class="badge-hero-score">
+          <div class="badge-hero-ring"><span>${earned}</span></div>
+          <div class="badge-hero-note">${total} TOTAL BADGES<br>${pct}% COMPLETE</div>
         </div>
       </div>
-    </div>
+      <div class="badge-stat-grid">
+        <div class="badge-stat"><div class="badge-stat-label">Unlocked</div><div class="badge-stat-value">${earned}</div></div>
+        <div class="badge-stat"><div class="badge-stat-label">Complete</div><div class="badge-stat-value">${pct}%</div></div>
+        <div class="badge-stat"><div class="badge-stat-label">Cleared</div><div class="badge-stat-value">${clearedCats}/${cats.length}</div></div>
+      </div>
+      <div class="badge-progress-track"><span style="width:${pct}%"></span></div>
+      <div class="badge-pill-row">
+        ${cats.map(cat=>{const list=BADGES_DEF.filter(b=>b.cat===cat.id);const got=list.filter(b=>BADGES.has(b.id)).length;return `<span class="badge-pill" style="border-color:${cat.color};background:rgba(255,255,255,.04);color:${cat.color}">${cat.icon} <strong>${got}/${list.length}</strong> ${cat.label}</span>`;}).join('')}
+      </div>
+    </section>
 
-    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:14px;text-align:center;color:var(--text2);font-size:.84rem;line-height:1.65">${intro}</div>
-
-    <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:18px">
-      <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--amber);letter-spacing:2px;text-align:center;margin-bottom:12px">🎯 NEXT BADGES TO AIM FOR</div>
-      <div style="display:grid;gap:10px">
+    <section class="badge-shell">
+      <div class="badge-section-head">NEXT BADGES TO AIM FOR</div>
+      <div class="badge-next-grid">
         ${nextBadges.length ? nextBadges.map(b=>`
-          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;display:flex;gap:12px;align-items:flex-start">
-            <div style="font-size:1.3rem;line-height:1">${b.icon}</div>
-            <div style="flex:1">
-              <div style="font-weight:800;color:var(--text);font-size:.84rem">${b.name}</div>
-              <div style="font-size:.74rem;color:var(--text2);line-height:1.5;margin-top:3px">${b.desc}</div>
-              <div style="font-size:.68rem;color:var(--amber);line-height:1.5;margin-top:6px;font-style:italic">→ ${b.howTo||'Keep practicing to unlock this badge.'}</div>
+          <div class="badge-next-card">
+            <div class="badge-next-icon">${esc(b.icon||'🏅')}</div>
+            <div>
+              <div class="badge-next-name">${esc(b.name)}</div>
+              <div class="badge-next-desc">${esc(b.desc||'Keep playing to unlock this badge.')}</div>
+              <div class="badge-next-kicker">→ ${esc(b.howTo||'Keep practicing to unlock this badge.')}</div>
             </div>
-          </div>
-        `).join('') : `
-          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;text-align:center;color:var(--text2);font-size:.8rem;line-height:1.6">You cleared every visible badge. The only thing left is to admire your work like the champion you are.</div>
-        `}
+          </div>`).join('') : `<div class="badge-empty">You cleared every visible badge. All that is left now is to admire the deck like the legend you apparently became.</div>`}
       </div>
-    </div>
-
-    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px">
-      ${cats.map(cat=>{
-        const catBadges=BADGES_DEF.filter(b=>b.cat===cat.id);
-        const catEarned=catBadges.filter(b=>BADGES.has(b.id)).length;
-        return `<div style="padding:7px 10px;border-radius:999px;border:1px solid ${cat.color};background:${cat.color}14;color:${cat.color};font-family:var(--font-mono);font-size:.63rem;letter-spacing:1px">${cat.label} · ${catEarned}/${catBadges.length}</div>`;
-      }).join('')}
-    </div>`;
+    </section>`;
 
   cats.forEach(cat=>{
     const catBadges=BADGES_DEF.filter(b=>b.cat===cat.id);
@@ -4372,43 +4426,41 @@ function renderBadges(){
     const catEarned=catBadges.filter(b=>BADGES.has(b.id)).length;
     const catPct=Math.round((catEarned/catBadges.length)*100);
 
-    html+=`
-      <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:18px">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div style="flex:1;height:2px;background:${cat.color};opacity:.35;border-radius:2px"></div>
-          <div style="font-family:var(--font-mono);font-size:.78rem;color:${cat.color};font-weight:700;letter-spacing:2px;white-space:nowrap">${cat.label}</div>
-          <div style="flex:1;height:2px;background:${cat.color};opacity:.35;border-radius:2px"></div>
+    html+=`<section class="badge-shell">
+      <div class="badge-cat-head">
+        <div>
+          <span class="badge-cat-kicker">${cat.kicker}</span>
+          <h3 class="badge-cat-label">${cat.icon} ${cat.label}</h3>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">
-          <div style="font-size:.72rem;color:var(--text2)">${catEarned} of ${catBadges.length} earned</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:${cat.color}">${catPct}% complete${catPct===100?' ✓':''}</div>
+        <div class="badge-cat-meta">
+          <span>${catEarned} OF ${catBadges.length} UNLOCKED</span>
+          <span style="color:${cat.color};border-color:${cat.color};background:rgba(255,255,255,.04)">${catPct}% COMPLETE${catPct===100?' ✓':''}</span>
         </div>
-        <div style="background:var(--bg);border-radius:999px;height:8px;overflow:hidden;margin-bottom:12px;border:1px solid var(--border)">
-          <div style="height:100%;width:${catPct}%;background:${cat.color};border-radius:999px;transition:width .5s ease"></div>
-        </div>
-        <div class="bgrid2">`;
+      </div>
+      <div class="badge-track"><span style="width:${catPct}%;background:${cat.color}"></span></div>
+      <div class="bgrid2">`;
 
     catBadges.forEach(b=>{
       const has=BADGES.has(b.id);
-      const isSecret=b.secret&&!has;
-      const statusText=has?(b.secret?'✦ SECRET EARNED':'✓ EARNED'):(isSecret?'🔒 SECRET':'OPEN');
-      const statusColor=has?(b.secret?'var(--purple)':'var(--green)'):(isSecret?'var(--text3)':'var(--amber)');
-      const statusBg=has?(b.secret?'rgba(187,134,252,.12)':'var(--green-light)'):(isSecret?'rgba(255,255,255,.03)':'var(--amber-light)');
+      const isSecret=b.secret && !has;
+      const statusText=has ? (b.secret ? '✦ SECRET EARNED' : '✓ EARNED') : (isSecret ? '🔒 CLASSIFIED' : 'OPEN');
       const helperText=has
-        ? (b.secret?'Rare unlock achieved.':'Nice work. This badge is yours.')
-        : (isSecret?'Secret badges reveal themselves through play.':`How to earn: ${b.howTo||'Keep practicing to unlock this badge.'}`);
-
-      html+=`
-          <div class="bt ${has?'on':''}" style="min-height:220px;justify-content:flex-start;${has?`border-color:${cat.color};box-shadow:0 0 12px ${cat.color}22;`:''}">
-            <div class="bi">${isSecret?'🔒':b.icon}</div>
-            <div class="bn">${isSecret?'Hidden Badge':b.name}</div>
-            <div class="bd">${isSecret?'Keep exploring this module to reveal this secret badge.':b.desc}</div>
-            <div style="margin-top:9px;display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border-radius:999px;border:1px solid ${statusColor};background:${statusBg};color:${statusColor};font-family:var(--font-mono);font-size:.62rem;letter-spacing:1px">${statusText}</div>
-            <div style="margin-top:auto;padding-top:10px;font-size:.66rem;line-height:1.55;color:${has?'var(--text3)':(isSecret?'var(--text3)':'var(--amber)')}">${helperText}</div>
-          </div>`;
+        ? (b.secret ? 'Rare unlock secured. This one is safely in your archive.' : 'Logged and locked in. This badge is permanently yours.')
+        : (isSecret ? 'Secret badges reveal themselves through play.' : `How to earn: ${b.howTo||'Keep practicing to unlock this badge.'}`);
+      const name=isSecret ? 'Hidden Badge' : b.name;
+      const desc=isSecret ? 'Keep exploring this module to reveal this secret badge.' : b.desc;
+      const icon=isSecret ? '🔒' : (b.icon||'🏅');
+      const stateClass=has ? 'badge-earned on' : (isSecret ? 'badge-secret' : 'badge-open');
+      html+=`<article class="bt badge-card ${stateClass}" style="--badge-color:${cat.color}">
+        <div class="badge-icon-plate"><div class="bi">${esc(icon)}</div></div>
+        <div class="bn">${esc(name)}</div>
+        <div class="bd">${esc(desc||'')}</div>
+        <div class="badge-status">${statusText}</div>
+        <div class="badge-helper">${esc(helperText)}</div>
+      </article>`;
     });
 
-    html+=`</div></div>`;
+    html+=`</div></section>`;
   });
 
   $('bgrid').innerHTML=html;

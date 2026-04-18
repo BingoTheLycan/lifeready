@@ -4090,14 +4090,22 @@ function checkBadges(){
 }
 
 function renderBadges(){
-  const cats=[
-    {id:'progression', label:'🎯 PROGRESSION', color:'var(--green)'},
-    {id:'accuracy',    label:'⭐ ACCURACY', color:'var(--amber)'},
-    {id:'streak',      label:'🔥 STREAKS', color:'#ff6b35'},
-    {id:'daily',       label:'☀️ DAILY CHALLENGE', color:'var(--amber)'},
-    {id:'challenge',   label:'🎮 CHALLENGES', color:'var(--blue)'},
-    {id:'secret',      label:'🔒 SECRET BADGES', color:'var(--purple)'},
-  ].filter(cat=>BADGES_DEF.some(b=>b.cat===cat.id));
+  const esc=v=>String(v==null?'':v)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+  const catMeta={
+    progression:{icon:'🎯', kicker:'MISSION GROWTH', label:'PROGRESSION PATH', color:'var(--green)'},
+    accuracy:{icon:'⭐', kicker:'TARGET LOCK', label:'ACCURACY DECK', color:'var(--amber)'},
+    streak:{icon:'🔥', kicker:'MOMENTUM LOG', label:'STREAK CIRCUITS', color:'#ff6b35'},
+    daily:{icon:'☀️', kicker:'DAILY OPS', label:'DAILY CHALLENGE', color:'var(--amber)'},
+    challenge:{icon:'🎮', kicker:'SIDE MISSIONS', label:'CHALLENGE BOARD', color:'var(--blue)'},
+    secret:{icon:'🔒', kicker:'CLASSIFIED', label:'SECRET BADGES', color:'var(--purple)'}
+  };
+  const order=['progression','accuracy','streak','daily','challenge','secret'];
+  const cats=order.filter(id=>BADGES_DEF.some(b=>b.cat===id)).map(id=>({id,...catMeta[id]}));
 
   const earned=BADGES.size;
   const total=BADGES_DEF.length;
@@ -4109,64 +4117,51 @@ function renderBadges(){
   const nextBadges=BADGES_DEF.filter(b=>!BADGES.has(b.id)&&!b.secret).slice(0,3);
 
   const intro=earned===total
-    ? '<strong style="color:var(--green)">🏆 Badge master unlocked.</strong> You earned every badge in this module. That is serious follow-through.'
+    ? '<strong style="color:var(--green)">Command deck complete.</strong> You unlocked every badge in this module. That is elite work.'
     : earned===0
-      ? 'Badges turn practice into progress. Start any mode and this page will begin filling up with wins.'
+      ? 'Every badge is a mission marker. Start playing and this command deck will light up with progress.'
       : pct>=75
-        ? '<strong style="color:var(--green)">You are close to full completion.</strong> Finish the last few goals and clear the board.'
-        : '<strong style="color:var(--green)">Keep going.</strong> Every badge points to a skill you are building, not just a score you collected.';
+        ? '<strong style="color:var(--green)">You are close to a full clear.</strong> Finish the last few goals and complete the deck.'
+        : '<strong style="color:var(--green)">Keep pushing forward.</strong> These badges track real skill growth, not just flashy points.';
 
   let html=`
-    <div style="background:linear-gradient(180deg,var(--panel),var(--bg3));border:2px solid var(--amber);border-radius:var(--radius);padding:18px;margin-bottom:14px;box-shadow:0 10px 30px rgba(0,0,0,.22)">
-      <div style="font-family:var(--font-mono);font-size:.68rem;color:var(--text3);letter-spacing:2px;text-align:center;margin-bottom:8px">LIFEREADY BADGE BOARD</div>
-      <div style="font-family:var(--font-display);font-size:1.7rem;color:var(--amber);text-align:center;line-height:1">${earned}</div>
-      <div style="text-align:center;color:var(--text2);font-size:.82rem;margin-top:4px">of ${total} badges earned</div>
-      <div style="background:var(--bg);border-radius:999px;height:10px;overflow:hidden;margin-top:14px;border:1px solid var(--border)">
-        <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--amber),var(--green));border-radius:999px;transition:width .5s ease"></div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px">
-        <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 8px;text-align:center">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1.4px">EARNED</div>
-          <div style="font-size:1rem;font-weight:800;color:var(--text);margin-top:3px">${earned}</div>
+    <section class="badge-shell">
+      <div class="badge-hero">
+        <div>
+          <div class="badge-hero-kicker">COMMENDATION ARCHIVE</div>
+          <div class="badge-hero-title">Badge Deck</div>
+          <p class="badge-hero-copy">${intro}</p>
         </div>
-        <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 8px;text-align:center">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1.4px">COMPLETE</div>
-          <div style="font-size:1rem;font-weight:800;color:var(--text);margin-top:3px">${pct}%</div>
-        </div>
-        <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 8px;text-align:center">
-          <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1.4px">CLEARED</div>
-          <div style="font-size:1rem;font-weight:800;color:var(--text);margin-top:3px">${clearedCats}/${cats.length}</div>
+        <div class="badge-hero-score">
+          <div class="badge-hero-ring"><span>${earned}</span></div>
+          <div class="badge-hero-note">${total} TOTAL BADGES<br>${pct}% COMPLETE</div>
         </div>
       </div>
-    </div>
+      <div class="badge-stat-grid">
+        <div class="badge-stat"><div class="badge-stat-label">Unlocked</div><div class="badge-stat-value">${earned}</div></div>
+        <div class="badge-stat"><div class="badge-stat-label">Complete</div><div class="badge-stat-value">${pct}%</div></div>
+        <div class="badge-stat"><div class="badge-stat-label">Cleared</div><div class="badge-stat-value">${clearedCats}/${cats.length}</div></div>
+      </div>
+      <div class="badge-progress-track"><span style="width:${pct}%"></span></div>
+      <div class="badge-pill-row">
+        ${cats.map(cat=>{const list=BADGES_DEF.filter(b=>b.cat===cat.id);const got=list.filter(b=>BADGES.has(b.id)).length;return `<span class="badge-pill" style="border-color:${cat.color};background:rgba(255,255,255,.04);color:${cat.color}">${cat.icon} <strong>${got}/${list.length}</strong> ${cat.label}</span>`;}).join('')}
+      </div>
+    </section>
 
-    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:14px;text-align:center;color:var(--text2);font-size:.84rem;line-height:1.65">${intro}</div>
-
-    <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:18px">
-      <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--amber);letter-spacing:2px;text-align:center;margin-bottom:12px">🎯 NEXT BADGES TO AIM FOR</div>
-      <div style="display:grid;gap:10px">
+    <section class="badge-shell">
+      <div class="badge-section-head">NEXT BADGES TO AIM FOR</div>
+      <div class="badge-next-grid">
         ${nextBadges.length ? nextBadges.map(b=>`
-          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;display:flex;gap:12px;align-items:flex-start">
-            <div style="font-size:1.3rem;line-height:1">${b.icon}</div>
-            <div style="flex:1">
-              <div style="font-weight:800;color:var(--text);font-size:.84rem">${b.name}</div>
-              <div style="font-size:.74rem;color:var(--text2);line-height:1.5;margin-top:3px">${b.desc}</div>
-              <div style="font-size:.68rem;color:var(--amber);line-height:1.5;margin-top:6px;font-style:italic">→ ${b.howTo||'Keep practicing to unlock this badge.'}</div>
+          <div class="badge-next-card">
+            <div class="badge-next-icon">${esc(b.icon||'🏅')}</div>
+            <div>
+              <div class="badge-next-name">${esc(b.name)}</div>
+              <div class="badge-next-desc">${esc(b.desc||'Keep playing to unlock this badge.')}</div>
+              <div class="badge-next-kicker">→ ${esc(b.howTo||'Keep practicing to unlock this badge.')}</div>
             </div>
-          </div>
-        `).join('') : `
-          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;text-align:center;color:var(--text2);font-size:.8rem;line-height:1.6">You cleared every visible badge. The only thing left is to admire your work like the champion you are.</div>
-        `}
+          </div>`).join('') : `<div class="badge-empty">You cleared every visible badge. All that is left now is to admire the deck like the legend you apparently became.</div>`}
       </div>
-    </div>
-
-    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px">
-      ${cats.map(cat=>{
-        const catBadges=BADGES_DEF.filter(b=>b.cat===cat.id);
-        const catEarned=catBadges.filter(b=>BADGES.has(b.id)).length;
-        return `<div style="padding:7px 10px;border-radius:999px;border:1px solid ${cat.color};background:${cat.color}14;color:${cat.color};font-family:var(--font-mono);font-size:.63rem;letter-spacing:1px">${cat.label} · ${catEarned}/${catBadges.length}</div>`;
-      }).join('')}
-    </div>`;
+    </section>`;
 
   cats.forEach(cat=>{
     const catBadges=BADGES_DEF.filter(b=>b.cat===cat.id);
@@ -4174,43 +4169,41 @@ function renderBadges(){
     const catEarned=catBadges.filter(b=>BADGES.has(b.id)).length;
     const catPct=Math.round((catEarned/catBadges.length)*100);
 
-    html+=`
-      <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:18px">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div style="flex:1;height:2px;background:${cat.color};opacity:.35;border-radius:2px"></div>
-          <div style="font-family:var(--font-mono);font-size:.78rem;color:${cat.color};font-weight:700;letter-spacing:2px;white-space:nowrap">${cat.label}</div>
-          <div style="flex:1;height:2px;background:${cat.color};opacity:.35;border-radius:2px"></div>
+    html+=`<section class="badge-shell">
+      <div class="badge-cat-head">
+        <div>
+          <span class="badge-cat-kicker">${cat.kicker}</span>
+          <h3 class="badge-cat-label">${cat.icon} ${cat.label}</h3>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">
-          <div style="font-size:.72rem;color:var(--text2)">${catEarned} of ${catBadges.length} earned</div>
-          <div style="font-family:var(--font-mono);font-size:.68rem;color:${cat.color}">${catPct}% complete${catPct===100?' ✓':''}</div>
+        <div class="badge-cat-meta">
+          <span>${catEarned} OF ${catBadges.length} UNLOCKED</span>
+          <span style="color:${cat.color};border-color:${cat.color};background:rgba(255,255,255,.04)">${catPct}% COMPLETE${catPct===100?' ✓':''}</span>
         </div>
-        <div style="background:var(--bg);border-radius:999px;height:8px;overflow:hidden;margin-bottom:12px;border:1px solid var(--border)">
-          <div style="height:100%;width:${catPct}%;background:${cat.color};border-radius:999px;transition:width .5s ease"></div>
-        </div>
-        <div class="bgrid2">`;
+      </div>
+      <div class="badge-track"><span style="width:${catPct}%;background:${cat.color}"></span></div>
+      <div class="bgrid2">`;
 
     catBadges.forEach(b=>{
       const has=BADGES.has(b.id);
-      const isSecret=b.secret&&!has;
-      const statusText=has?(b.secret?'✦ SECRET EARNED':'✓ EARNED'):(isSecret?'🔒 SECRET':'OPEN');
-      const statusColor=has?(b.secret?'var(--purple)':'var(--green)'):(isSecret?'var(--text3)':'var(--amber)');
-      const statusBg=has?(b.secret?'rgba(187,134,252,.12)':'var(--green-light)'):(isSecret?'rgba(255,255,255,.03)':'var(--amber-light)');
+      const isSecret=b.secret && !has;
+      const statusText=has ? (b.secret ? '✦ SECRET EARNED' : '✓ EARNED') : (isSecret ? '🔒 CLASSIFIED' : 'OPEN');
       const helperText=has
-        ? (b.secret?'Rare unlock achieved.':'Nice work. This badge is yours.')
-        : (isSecret?'Secret badges reveal themselves through play.':`How to earn: ${b.howTo||'Keep practicing to unlock this badge.'}`);
-
-      html+=`
-          <div class="bt ${has?'on':''}" style="min-height:220px;justify-content:flex-start;${has?`border-color:${cat.color};box-shadow:0 0 12px ${cat.color}22;`:''}">
-            <div class="bi">${isSecret?'🔒':b.icon}</div>
-            <div class="bn">${isSecret?'Hidden Badge':b.name}</div>
-            <div class="bd">${isSecret?'Keep exploring this module to reveal this secret badge.':b.desc}</div>
-            <div style="margin-top:9px;display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border-radius:999px;border:1px solid ${statusColor};background:${statusBg};color:${statusColor};font-family:var(--font-mono);font-size:.62rem;letter-spacing:1px">${statusText}</div>
-            <div style="margin-top:auto;padding-top:10px;font-size:.66rem;line-height:1.55;color:${has?'var(--text3)':(isSecret?'var(--text3)':'var(--amber)')}">${helperText}</div>
-          </div>`;
+        ? (b.secret ? 'Rare unlock secured. This one is safely in your archive.' : 'Logged and locked in. This badge is permanently yours.')
+        : (isSecret ? 'Secret badges reveal themselves through play.' : `How to earn: ${b.howTo||'Keep practicing to unlock this badge.'}`);
+      const name=isSecret ? 'Hidden Badge' : b.name;
+      const desc=isSecret ? 'Keep exploring this module to reveal this secret badge.' : b.desc;
+      const icon=isSecret ? '🔒' : (b.icon||'🏅');
+      const stateClass=has ? 'badge-earned on' : (isSecret ? 'badge-secret' : 'badge-open');
+      html+=`<article class="bt badge-card ${stateClass}" style="--badge-color:${cat.color}">
+        <div class="badge-icon-plate"><div class="bi">${esc(icon)}</div></div>
+        <div class="bn">${esc(name)}</div>
+        <div class="bd">${esc(desc||'')}</div>
+        <div class="badge-status">${statusText}</div>
+        <div class="badge-helper">${esc(helperText)}</div>
+      </article>`;
     });
 
-    html+=`</div></div>`;
+    html+=`</div></section>`;
   });
 
   $('bgrid').innerHTML=html;

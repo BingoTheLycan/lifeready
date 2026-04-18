@@ -336,7 +336,7 @@ main{grid-template-columns:minmax(0,1fr) 300px;}
 .tog::after{content:'';width:16px;height:16px;border-radius:50%;background:var(--text3);position:absolute;top:2px;left:2px;transition:.3s;}
 .tog.on{background:var(--blue);border-color:var(--blue);}
 .tog.on::after{transform:translateX(22px);background:#fff;}
-.sopts{display:flex;gap:5px;}
+.sopts{display:flex;gap:5px;}.sr.sr-stack{align-items:flex-start;}.sr.sr-stack .sinfo{min-width:0;}.sr.sr-stack .sopts{margin-top:10px;flex-wrap:wrap;}.sr.sr-stack .sopt{flex:1;min-width:84px;text-align:center;}
 .stip{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-sm);padding:11px 14px;font-family:var(--font-mono);font-size:0.72rem;color:var(--cyan);margin-top:10px;line-height:1.5;}
 
 /* ══ GUIDE ══ */
@@ -2183,12 +2183,10 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="ss">
 <div class="st">AUDIO</div>
 <div class="sr"><div class="si">🔊</div><div class="sinfo"><div class="sn">Audio On</div><div class="sd2">Spoken instructions and badge announcements.</div></div><div class="tog on" id="tog-audio" onclick="togSet('audio')"></div></div>
-<div class="sr"><div class="si">⚡</div><div class="sinfo"><div class="sn">Speech Speed</div><div class="sd2">Slow is great if you need more time to listen.</div></div>
-<div class="sopts">
+<div class="sr sr-stack"><div class="si">⚡</div><div class="sinfo"><div class="sn">Speech Speed</div><div class="sd2">Slow is great if you need more time to listen.</div><div class="sopts">
 <div class="sopt" onclick="setSpeed('slow',this)">🐢 Slow</div>
 <div class="sopt on" onclick="setSpeed('normal',this)">Normal</div>
-<div class="sopt" onclick="setSpeed('fast',this)">⚡ Fast</div>
-</div>
+<div class="sopt" onclick="setSpeed('fast',this)">⚡ Fast</div></div></div>
 </div>
 </div>
 <div class="ss">

@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v29 - popup polish, header tune, demo upgrade)
+// LifeReady Service Worker (v30 - HealthReady break fix and Mission Control access reset)
 
-const VERSION = 'v29';
+const VERSION = 'v31';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

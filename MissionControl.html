@@ -1578,6 +1578,7 @@ body{
     <div class="error" id="pin-error"></div>
     <div class="mini-actions">
       <button class="btn primary" id="pin-submit-btn">Unlock Mission Control</button>
+      <button class="btn ghost" id="pin-reset-btn" type="button">Reset Access Code</button>
       <button class="btn ghost hidden" id="pin-remove-legacy-btn">Ignore Legacy Codes</button>
       <a class="btn ghost" href="index.html">Back to LifeReady</a>
     </div>
@@ -3721,6 +3722,25 @@ $('#pin-remove-legacy-btn').addEventListener('click', ()=>{
   $('#pin-input').value = '';
   $('#pin-submit-btn').textContent = 'Create Access Code';
   $('#lock-copy').textContent = 'Create an educator access code for Mission Control.';
+});
+$('#pin-reset-btn').addEventListener('click', ()=>{
+  const hasCode = !!HUB.pin;
+  const msg = hasCode
+    ? 'Reset the Mission Control access code on this device? Learner data will stay saved, but you will need to create a new code.'
+    : 'No access code is set right now. Clear any imported legacy code and create a new one?';
+  if(!confirm(msg)) return;
+  HUB.pin = '';
+  HUB.pinHint = '';
+  HUB.ignoreLegacyPins = true;
+  APP.importedPins = [];
+  saveHubState('Access code reset from lock screen');
+  $('#legacy-pin-note').classList.add('hidden');
+  $('#pin-remove-legacy-btn').classList.add('hidden');
+  $('#pin-error').textContent = 'Access code reset. Create a new one below.';
+  $('#pin-input').value = '';
+  $('#pin-submit-btn').textContent = 'Create Access Code';
+  $('#lock-copy').textContent = 'Create one educator access code for Mission Control.';
+  $('#pin-input').focus();
 });
 $('#learner-search').addEventListener('input', e=>{ APP.search = e.target.value; renderRoster(); ensureSelection(); renderAll(); });
 $('#module-filter').addEventListener('change', e=>{

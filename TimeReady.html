@@ -1805,7 +1805,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="hdr-logo"><span style="color:var(--green)">T</span><span style="color:var(--text2)">IME</span><span style="color:var(--green)">RE</span><span style="color:var(--text2)">ADY</span> <small>v1.0</small></div>
 <nav class="hdr-nav">
 <button class="nb on" id="nb-home" onclick="go('home')">HOME</button>
-<button class="nb" id="nb-coach" onclick="coachNav()">MISSION</button>
+<button class="nb" id="nb-coach" onclick="coachNav()">MISSION CONTROL</button>
 <button aria-label="Toggle large text" class="aa-btn" id="aa-btn" onclick="toggleFontSize()" title="Toggle large text">Aa</button>
 </nav>
 </header>
@@ -1947,7 +1947,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="gmode" id="gmode-lbl">CHALLENGE</div>
 <button class="back" onclick="syncQS();openM('m-quick-settings')" style="margin-left:auto;padding:7px 10px;font-size:1rem;min-width:36px" title="Settings">⚙️</button>
 <button class="back" onclick="replayModeIntro()" style="padding:7px 10px;font-size:.9rem;min-width:36px;font-weight:900;color:var(--blue)" title="What is this mode?">?</button>
-<button class="back" onclick="requestBreak()" style="padding:7px 10px;font-size:.9rem;min-width:36px" title="I need a break">☕</button>
+<button class="back" onclick="requestBreak();return false;" style="padding:7px 10px;font-size:.9rem;min-width:36px" title="I need a break">☕</button>
 <div class="gscore">
 <div class="sbox" id="sbox-score"><div class="sv" id="g-score">0</div><div class="sl">SCORE</div></div>
 <div class="sbox" id="sbox-streak">
@@ -2480,10 +2480,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div aria-hidden="true" class="break-emoji" id="break-emoji">☕</div>
 <div class="break-title" id="break-title">TAKE A BREAK</div>
 <div class="break-sub" id="break-sub">Pause for a minute, stretch, breathe, or grab some water. Your session will stay right here until you are ready to continue.</div>
-<div id="break-tip" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:12px 18px;max-width:280px;font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6">Your progress is saved on this screen. Tap Keep Going to jump back in now, or Take a Break to pause here.</div>
-<button class="dbtn" onclick="closeBreak(false)" style="max-width:260px">Keep Going</button>
-<button class="rsec" onclick="closeBreak(true)" style="max-width:260px">Take a Break</button>
-<div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1px;max-width:260px;text-align:center">Your session will be waiting when you come back.</div>
+<button class="dbtn" onclick="closeBreak()" style="max-width:320px">Resume Session</button>
 </div>
 <!-- ══ MODALS ══ -->
 <div class="mow" id="m-client">
@@ -3986,14 +3983,14 @@ function genQuestion(){
 
   // Break reminder (not on daily - only 5 questions)
   if(CFG.breaks&&txCountForBreak>=5&&ST.total<ST.maxQ&&ST.mode!=='daily'){
-    const msg=rand(BREAK_MSGS);
-    $('break-emoji').textContent=msg.emoji;
-    $('break-title').textContent=msg.title;
-    $('break-sub').textContent=msg.sub;
-    $('break-tip').textContent=msg.tip;
-    $('break-scr').classList.add('on');
-    return;
-  }
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  if($('break-emoji')) $('break-emoji').textContent='☕';
+  if($('break-title')) $('break-title').textContent='TAKE A BREAK';
+  if($('break-sub')) $('break-sub').textContent='Pause for a minute, stretch, breathe, or grab some water. Your session will stay right here until you are ready to continue.';
+  window.__breakResumeAction = ()=>{ genQuestion(); };
+  $('break-scr').classList.add('on');
+  return;
+}
 
   if(ST.mode==='schedule'){
     currentQ=varietyPolishTimeReady(genScheduleQuestion(), 'schedule');
@@ -5861,16 +5858,21 @@ beep(ok?660:220, 80);
 say(ok?'Correct! 7 o clock!':'Not quite. The short hand points to 7, so the answer is 7 colon 00.');
 }
 const BREAK_MSGS=[
-{emoji:'☕',title:'NICE WORK!',sub:'You have answered 5 questions in a row. Take a breath!',tip:'💡 Roll your shoulders back and take a deep breath. Ready is better than rushed.'},
-{emoji:'💧',title:'STAY SHARP!',sub:'5 questions done. A quick stretch can help you focus.',tip:'💡 Look away from the screen for 20 seconds. Your eyes will thank you.'},
+{emoji:'☕',title:'TAKE A BREAK',sub:'You have answered 5 questions in a row. Take a breath!',tip:'💡 Roll your shoulders back and take a deep breath. Ready is better than rushed.'},
+{emoji:'💧',title:'STAY SHARP!',sub:'5 questions done. Pause for a minute, stretch, breathe, or grab some water. Your session will stay right here until you are ready to continue.',tip:'💡 Look away from the screen for 20 seconds. Your eyes will thank you.'},
 {emoji:'🧘',title:'GREAT FOCUS!',sub:'You have been working hard. A short pause helps you remember more.',tip:'💡 Taking breaks helps your brain hold on to new information.'},
 ];
 let txCountForBreak=0;
-function closeBreak(pause){
-$('break-scr').classList.remove('on');
-txCountForBreak=0;
-if(!pause)genQuestion();
+window.__breakResumeAction = null;
+function closeBreak(){
+  const br=$('break-scr');
+  if(br) br.classList.remove('on');
+  txCountForBreak=0;
+  const resume = window.__breakResumeAction;
+  window.__breakResumeAction = null;
+  if(typeof resume === 'function') resume();
 }
+window.closeBreak = closeBreak;
 
 // ── Onboarding card ──
 function dismissOnboarding(){
@@ -5945,17 +5947,14 @@ openHint('Copied for Coach! 📋','<p style="color:var(--text2);font-size:.88rem
 }
 function requestBreak(){
   if(window.speechSynthesis) speechSynthesis.cancel();
-  const total = (window.ST && Number.isFinite(ST.total)) ? ST.total : 0;
-  const elapsed = Math.round(typeof getSessionElapsedSeconds==='function' ? getSessionElapsedSeconds() : 0);
-  const countLine = total > 0
-    ? `You have completed <strong style="color:var(--text)">${total}</strong> ${total===1?'activity':'activities'} so far${elapsed>10?` · ${fmtElapsed(elapsed)} elapsed`:''}.`
-    : 'Your session will stay right here until you are ready to continue.';
   if($('break-emoji')) $('break-emoji').textContent = '☕';
   if($('break-title')) $('break-title').textContent = 'TAKE A BREAK';
   if($('break-sub')) $('break-sub').textContent = 'Pause for a minute, stretch, breathe, or grab some water. Your session will stay right here until you are ready to continue.';
-  if($('break-tip')) $('break-tip').innerHTML = `${countLine}<br>Tap <strong style="color:var(--text)">Keep Going</strong> to jump back in now, or <strong style="color:var(--text)">Take a Break</strong> to pause here.`;
-  $('break-scr').classList.add('on');
+  window.__breakResumeAction = null;
+  const br=$('break-scr');
+  if(br) br.classList.add('on');
 }
+window.requestBreak = requestBreak;
 
 
 function shareScore(){
@@ -8651,8 +8650,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 @media (max-width:700px){
   .hdr-nav{min-width:0 !important;}
 }
+.hdr-nav #nb-coach{font-size:.57rem !important;letter-spacing:1px !important;padding-inline:6px !important;}
 @media (max-width:520px){
   .hdr-nav .nb{font-size:.63rem !important;letter-spacing:1.35px !important;padding:9px 7px !important;}
+  .hdr-nav #nb-coach{font-size:.5rem !important;letter-spacing:.7px !important;padding-inline:4px !important;}
   .hdr-nav .aa-btn{min-width:38px !important;min-height:34px !important;padding:5px 8px !important;font-size:.76rem !important;}
   #scr-demo .demo-nav{grid-template-columns:1fr;}
   #demo-step-counter{margin-left:0 !important;}

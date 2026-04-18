@@ -2050,7 +2050,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="hdr-logo"><span style="color:var(--green)">H</span><span style="color:var(--text2)">EALTH</span><span style="color:var(--green)">RE</span><span style="color:var(--text2)">ADY</span> <small>v1.0</small></div>
 <nav class="hdr-nav">
 <button class="nb on" id="nb-home" onclick="go('home')">HOME</button>
-<button class="nb" id="nb-coach" onclick="coachNav()">MISSION</button>
+<button class="nb" id="nb-coach" onclick="coachNav()">MISSION CONTROL</button>
 <button aria-label="Toggle large text" class="aa-btn" id="aa-btn" onclick="toggleFontSize()" title="Toggle large text">Aa</button>
 </nav>
 </header>
@@ -2551,7 +2551,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="gmode" id="gmode-lbl">HEALTH CHALLENGE</div>
 <button class="back" onclick="syncQS();openM('m-quick-settings')" style="margin-left:auto;padding:7px 10px;font-size:1rem;min-width:36px" title="Settings">⚙️</button>
 <button class="back" onclick="replayModeIntro()" style="padding:7px 10px;font-size:.9rem;min-width:36px;font-weight:900;color:var(--green)" title="What is this mode?">?</button>
-<button class="back" onclick="requestBreak()" style="padding:7px 10px;font-size:.9rem;min-width:36px" title="I need a break">☕</button>
+<button class="back" onclick="requestBreak();return false;" style="padding:7px 10px;font-size:.9rem;min-width:36px" title="I need a break">☕</button>
 <div class="gscore">
 <div class="sbox" id="sbox-score"><div class="sv" id="g-score">0</div><div class="sl">SCORE</div></div>
 <div class="sbox" id="sbox-streak">
@@ -2785,16 +2785,6 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <a href="index.html" onclick="event.preventDefault();window.open('index.html','_self')" style="font-family:var(--font-mono);font-size:.65rem;color:var(--text3);letter-spacing:2px;text-decoration:none;color:#e91e8c;border:1px solid #e91e8c55;border-radius:20px;padding:8px 22px;display:inline-block;text-shadow:0 0 10px #e91e8c44;transition:box-shadow .2s,border-color .2s">← BACK TO LIFEREADY HUB</a>
 </div>
 <!-- ══ DESKTOP SIDEBAR (hidden on mobile) ══ -->
-<!-- ══ BREAK SCREEN ══ -->
-<div class="break-scr" id="break-scr">
-<div aria-hidden="true" class="break-emoji" id="break-emoji">☕</div>
-<div class="break-title" id="break-title">TAKE A BREAK</div>
-<div class="break-sub" id="break-sub">Pause for a minute, stretch, breathe, or grab some water. Your session will stay right here until you are ready to continue.</div>
-<div id="break-tip" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:12px 18px;max-width:280px;font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6">Your progress is saved on this screen. Tap Keep Going to jump back in now, or Take a Break to pause here.</div>
-<button class="dbtn" onclick="closeBreak(false)" style="max-width:260px">Keep Going</button>
-<button class="rsec" onclick="closeBreak(true)" style="max-width:260px">Take a Break</button>
-<div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1px;max-width:260px;text-align:center">Your session will be waiting when you come back.</div>
-</div>
 <!-- ══ MODALS ══ -->
 <!-- ══ COACH PIN ══ -->
 <!-- ══ NAME PROMPT ══ -->
@@ -3830,18 +3820,16 @@ function genQuestionDedup(mode){
 
 function genQ(){
   ST.answered=false;
-  if(CFG.breaks && txCountForBreak>=5 && ST.total<ST.maxQ && ST.mode!=='daily'){
-    const msgs=[
-      {e:'☕',t:'Break Time',s:'You\'ve answered 5 questions.',tip:'Grab some water. You\'ve earned it.'},
-      {e:'🧘',t:'Take a Breath',s:'Nice work so far.',tip:'A few deep breaths - in through your nose, out through your mouth.'},
-      {e:'👀',t:'Rest Your Eyes',s:'Keep it up!',tip:'Look away from the screen for 20 seconds.'},
-      {e:'🚶',t:'Stretch',s:'You\'re doing great.',tip:'Stand up and stretch for a minute if you can.'},
-    ];
-    const m=rand(msgs);
-    $('break-emoji').textContent=m.e; $('break-title').textContent=m.t;
-    $('break-sub').textContent=m.s; $('break-tip').textContent=m.tip;
-    $('break-scr').classList.add('on'); return;
-  }
+  if(CFG.breaks&&txCountForBreak>=5&&ST.total<ST.maxQ&&ST.mode!=='daily'){
+  if(window.speechSynthesis) speechSynthesis.cancel();
+  if($('break-emoji')) $('break-emoji').textContent='☕';
+  if($('break-title')) $('break-title').textContent='TAKE A BREAK';
+  if($('break-sub')) $('break-sub').textContent='Pause for a minute, stretch, breathe, or grab some water. Your session will stay right here until you are ready to continue.';
+  window.__breakResumeAction = ()=>{ genQ(); };
+  const br=$('break-scr');
+  if(br) br.classList.add('on');
+  return;
+}
   // Mode banner
   const mb=$('mode-banner');
   if(mb){
@@ -4376,11 +4364,20 @@ function confirmEnd(){
     'Yes, End and Save', ()=>{ closeM('m-hint'); endSession(true); });
 }
 
-function closeBreak(pause){
-  $('break-scr').classList.remove('on');
+window.__breakResumeAction = null;
+function closeBreak(){
+  const br=$('break-scr');
+  if(br){
+    br.classList.remove('on');
+    br.style.display = '';
+    br.setAttribute('aria-hidden','true');
+  }
   txCountForBreak=0;
-  if(!pause) genQ();
+  const resume = window.__breakResumeAction;
+  window.__breakResumeAction = null;
+  if(typeof resume === 'function') resume();
 }
+window.closeBreak = closeBreak;
 
 
 function filterScores(mode,el){
@@ -5637,17 +5634,14 @@ openHint('Copied for Coach! 📋','<p style="color:var(--text2);font-size:.88rem
 }
 function requestBreak(){
   if(window.speechSynthesis) speechSynthesis.cancel();
-  const total = (window.ST && Number.isFinite(ST.total)) ? ST.total : 0;
-  const elapsed = Math.round(typeof getSessionElapsedSeconds==='function' ? getSessionElapsedSeconds() : 0);
-  const countLine = total > 0
-    ? `You have completed <strong style="color:var(--text)">${total}</strong> ${total===1?'activity':'activities'} so far${elapsed>10?` · ${fmtElapsed(elapsed)} elapsed`:''}.`
-    : 'Your session will stay right here until you are ready to continue.';
   if($('break-emoji')) $('break-emoji').textContent = '☕';
   if($('break-title')) $('break-title').textContent = 'TAKE A BREAK';
   if($('break-sub')) $('break-sub').textContent = 'Pause for a minute, stretch, breathe, or grab some water. Your session will stay right here until you are ready to continue.';
-  if($('break-tip')) $('break-tip').innerHTML = `${countLine}<br>Tap <strong style="color:var(--text)">Keep Going</strong> to jump back in now, or <strong style="color:var(--text)">Take a Break</strong> to pause here.`;
-  $('break-scr').classList.add('on');
+  window.__breakResumeAction = null;
+  const br=$('break-scr');
+  if(br) br.classList.add('on');
 }
+window.requestBreak = requestBreak;
 
 
 function shareScore(){
@@ -6471,10 +6465,7 @@ document.addEventListener('DOMContentLoaded', initHomeCardWiring);
 <div aria-hidden="true" class="break-emoji" id="break-emoji">☕</div>
 <div class="break-title" id="break-title">TAKE A BREAK</div>
 <div class="break-sub" id="break-sub">Pause for a minute, stretch, breathe, or grab some water. Your session will stay right here until you are ready to continue.</div>
-<div id="break-tip" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:12px 18px;max-width:280px;font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6">Your progress is saved on this screen. Tap Keep Going to jump back in now, or Take a Break to pause here.</div>
-<button class="dbtn" onclick="closeBreak(false)" style="max-width:260px">Keep Going</button>
-<button class="rsec" onclick="closeBreak(true)" style="max-width:260px">Take a Break</button>
-<div style="font-family:var(--font-mono);font-size:.6rem;color:var(--text3);letter-spacing:1px;max-width:260px;text-align:center">Your session will be waiting when you come back.</div>
+<button class="dbtn" onclick="closeBreak()" style="max-width:320px">Resume Session</button>
 </div>
 <!-- ══ MODALS ══ -->
 <div class="mow" id="m-range">
@@ -7860,8 +7851,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 @media (max-width:700px){
   .hdr-nav{min-width:0 !important;}
 }
+.hdr-nav #nb-coach{font-size:.57rem !important;letter-spacing:1px !important;padding-inline:6px !important;}
 @media (max-width:520px){
   .hdr-nav .nb{font-size:.63rem !important;letter-spacing:1.35px !important;padding:9px 7px !important;}
+  .hdr-nav #nb-coach{font-size:.5rem !important;letter-spacing:.7px !important;padding-inline:4px !important;}
   .hdr-nav .aa-btn{min-width:38px !important;min-height:34px !important;padding:5px 8px !important;font-size:.76rem !important;}
   #scr-demo .demo-nav{grid-template-columns:1fr;}
   #demo-step-counter{margin-left:0 !important;}

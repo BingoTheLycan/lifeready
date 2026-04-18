@@ -1,4 +1,4 @@
-// LifeReady Service Worker (v31 - HealthReady break fix and Mission Control access reset)
+// LifeReady Service Worker (v30 - HealthReady break fix and Mission Control access reset)
 
 const VERSION = 'v33';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;

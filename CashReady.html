@@ -1991,6 +1991,75 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
   }
 }
 
+
+/* ════════════════════════════════════════════════════════
+   NEW INTERACTIVE MODE SHELLS
+   ════════════════════════════════════════════════════════ */
+.lrx-shell{padding:14px;display:grid;gap:14px}
+.lrx-hero{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border:1px solid color-mix(in srgb,var(--mode-accent) 45%, white 10%);border-radius:20px;padding:16px;box-shadow:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.06)}
+.lrx-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,color-mix(in srgb,var(--mode-accent) 20%, transparent),transparent 42%);pointer-events:none}
+.lrx-kicker{font:700 .72rem/1 var(--font-mono);letter-spacing:2px;text-transform:uppercase;color:var(--mode-accent);margin-bottom:6px}
+.lrx-title{font:900 clamp(1.1rem,3vw,1.5rem)/1.1 var(--font-display);margin-bottom:6px;text-shadow:0 0 18px color-mix(in srgb,var(--mode-accent) 22%, transparent)}
+.lrx-sub{color:var(--text2);font-size:.88rem;line-height:1.5;max-width:58ch}
+.lrx-chiprow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.lrx-chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:7px 11px;font:.72rem var(--font-mono);letter-spacing:1px;color:var(--text2)}
+.lrx-grid{display:grid;gap:14px}
+@media(min-width:880px){.lrx-grid.two{grid-template-columns:1.2fr .8fr}}
+.lrx-panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.lrx-panelhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.lrx-paneltitle{font:800 .92rem/1 var(--font-mono);letter-spacing:1.4px;text-transform:uppercase;color:var(--text)}
+.lrx-panelsub{font-size:.78rem;color:var(--text3);margin-top:4px;line-height:1.45}
+.lrx-statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.lrx-stat{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px 12px}
+.lrx-statlabel{display:block;font:.64rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
+.lrx-statvalue{display:block;font:900 1.05rem/1 var(--font-display);color:var(--mode-accent)}
+.lrx-btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.lrx-btn{appearance:none;border:none;border-radius:14px;padding:11px 14px;font:800 .82rem/1 var(--font-mono);letter-spacing:1px;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.24)}
+.lrx-btn.pri{background:linear-gradient(180deg,color-mix(in srgb,var(--mode-accent) 88%, white 12%),color-mix(in srgb,var(--mode-accent) 70%, black 12%));color:#081117}
+.lrx-btn.sec{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:var(--text)}
+.lrx-btn.warn{background:linear-gradient(180deg,#ffcc4d,#e39b00);color:#2b1f00}
+.lrx-mini{font-size:.77rem;color:var(--text3);line-height:1.5}
+.lrx-alert{margin-top:10px;padding:12px 14px;border-radius:14px;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1)}
+.lrx-alert.good{border-color:rgba(0,200,120,.36);box-shadow:0 0 0 1px rgba(0,200,120,.08) inset}
+.lrx-alert.warn{border-color:rgba(255,187,51,.4);box-shadow:0 0 0 1px rgba(255,187,51,.08) inset}
+.lrx-alert.bad{border-color:rgba(255,80,80,.4);box-shadow:0 0 0 1px rgba(255,80,80,.08) inset}
+.lrx-result{padding:18px;border-radius:20px;border:1px solid color-mix(in srgb,var(--mode-accent) 45%, white 10%);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));box-shadow:0 20px 44px rgba(0,0,0,.28);text-align:center}
+.lrx-grade{font:900 clamp(2.3rem,8vw,4.1rem)/1 var(--font-display);color:var(--mode-accent);text-shadow:0 0 20px color-mix(in srgb,var(--mode-accent) 25%, transparent);margin-bottom:10px}
+.lrx-decklabel{font:.76rem var(--font-mono);letter-spacing:2px;text-transform:uppercase;color:var(--mode-accent);margin-bottom:6px}
+.lrx-copy{color:var(--text2);font-size:.9rem;line-height:1.6;margin:12px auto 0;max-width:52ch}
+.lrx-cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(136px,1fr));gap:10px}
+.lrx-itemcard{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(0,0,0,.2));border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:12px;display:grid;gap:8px;min-height:138px}
+.lrx-itemcard.sel{border-color:color-mix(in srgb,var(--mode-accent) 55%, white 12%);box-shadow:0 0 0 1px color-mix(in srgb,var(--mode-accent) 30%, transparent) inset,0 0 20px color-mix(in srgb,var(--mode-accent) 14%, transparent)}
+.lrx-itemicon{font-size:1.8rem}
+.lrx-itemtitle{font:900 .92rem/1.15 var(--font-display)}
+.lrx-itemsub{font-size:.74rem;color:var(--text3);line-height:1.4}
+.lrx-price{font:800 .8rem/1 var(--font-mono);color:var(--mode-accent)}
+.lrx-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);font:.69rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text2)}
+.lrx-list{display:grid;gap:8px}
+.lrx-listitem{display:flex;justify-content:space-between;gap:10px;align-items:center;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px 12px}
+.lrx-listitem.done{border-color:rgba(0,200,120,.35)}
+.lrx-tray{display:flex;flex-wrap:wrap;gap:10px}
+.lrx-task{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:12px 13px;min-width:145px;cursor:pointer}
+.lrx-task.sel{border-color:color-mix(in srgb,var(--mode-accent) 55%, white 12%);box-shadow:0 0 0 1px color-mix(in srgb,var(--mode-accent) 28%, transparent) inset,0 0 16px color-mix(in srgb,var(--mode-accent) 14%, transparent)}
+.lrx-slotlist{display:grid;gap:10px}
+.lrx-slot{display:grid;grid-template-columns:68px 1fr auto;gap:10px;align-items:center;background:rgba(0,0,0,.22);border:1px dashed rgba(255,255,255,.18);border-radius:16px;padding:10px 12px;min-height:66px}
+.lrx-slot.filled{border-style:solid;border-color:rgba(255,255,255,.16);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02))}
+.lrx-slot.drop{border-color:color-mix(in srgb,var(--mode-accent) 58%, white 12%);box-shadow:0 0 0 1px color-mix(in srgb,var(--mode-accent) 24%, transparent) inset}
+.lrx-timelabel{font:800 .72rem/1 var(--font-mono);letter-spacing:1.3px;color:var(--mode-accent);text-transform:uppercase}
+.lrx-ghost{color:var(--text3);font-size:.78rem}
+.lrx-choicegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lrx-choice{padding:16px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));text-align:center;cursor:pointer}
+.lrx-choice strong{display:block;font:900 1.05rem/1 var(--font-display);margin-bottom:6px}
+.lrx-choice small{display:block;color:var(--text3);font-size:.74rem}
+.lrx-choice.real strong{color:#6ee7ff}.lrx-choice.sketchy strong{color:#ff9f72}
+.lrx-case{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.11);border-radius:18px;padding:14px;display:grid;gap:10px}
+.lrx-casebar{display:flex;justify-content:space-between;gap:10px;align-items:center;font:.72rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text3)}
+.lrx-casebody{background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:12px;display:grid;gap:8px}
+.lrx-casetitle{font:900 .98rem/1.2 var(--font-display)}
+.lrx-casecopy{font-size:.86rem;color:var(--text2);line-height:1.55}
+.lrx-flaglist{margin:10px 0 0;padding-left:18px;color:var(--text2);font-size:.82rem;line-height:1.55}
+@media(max-width:720px){.lrx-statrow{grid-template-columns:1fr 1fr}.lrx-choicegrid{grid-template-columns:1fr}}
+
 </style>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
 <defs>
@@ -2005,6 +2074,64 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </filter>
 </defs>
 </svg>
+
+<style id="lr-mobile-cleanup">
+.lrx-stage{display:grid;gap:14px}
+@media (max-width: 720px){
+  .lrx-shell,.lrx-stage{padding:10px !important;gap:10px !important;display:grid;align-content:start;}
+  .lrx-grid,.lrx-grid.two{gap:10px !important;}
+  .lrx-hero{padding:12px 13px !important;border-radius:16px !important;margin:0 !important;}
+  .lrx-kicker{font-size:.62rem !important;margin-bottom:4px !important;letter-spacing:1.6px !important;}
+  .lrx-title{font-size:1rem !important;line-height:1.05 !important;margin-bottom:4px !important;}
+  .lrx-sub,.lrx-copy,.lrx-casecopy{font-size:.82rem !important;line-height:1.42 !important;}
+  .lrx-chiprow{margin-top:8px !important;gap:6px !important;}
+  .lrx-chip,.lrx-tag{padding:5px 8px !important;font-size:.62rem !important;letter-spacing:.8px !important;}
+  .lrx-panel{padding:12px !important;border-radius:16px !important;}
+  .lrx-panelhead{margin-bottom:8px !important;gap:8px !important;}
+  .lrx-paneltitle{font-size:.8rem !important;}
+  .lrx-panelsub{font-size:.72rem !important;line-height:1.35 !important;}
+  .lrx-statrow{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:8px !important;margin-top:10px !important;}
+  .lrx-stat{padding:8px 9px !important;border-radius:12px !important;}
+  .lrx-statlabel,.lrx-stat .k{font-size:.54rem !important;margin-bottom:3px !important;letter-spacing:.8px !important;}
+  .lrx-statvalue,.lrx-stat strong{font-size:.92rem !important;line-height:1.05 !important;}
+  .lrx-case{padding:12px !important;gap:8px !important;border-radius:16px !important;}
+  .lrx-casebody{padding:10px !important;gap:7px !important;}
+  .lrx-choicegrid{gap:8px !important;}
+  .lrx-choice{padding:12px 10px !important;border-radius:14px !important;}
+  .lrx-choice strong{font-size:.96rem !important;margin-bottom:4px !important;}
+  .lrx-list{gap:8px !important;}
+  .lrx-listitem{padding:9px 10px !important;border-radius:12px !important;}
+  .lrx-task{padding:10px 11px !important;min-width:0 !important;}
+  .lrx-slot{padding:9px 10px !important;min-height:0 !important;border-radius:14px !important;}
+  .lrx-btnrow{gap:8px !important;margin-top:10px !important;}
+  .lrx-btn{padding:10px 12px !important;font-size:.74rem !important;border-radius:12px !important;}
+  .lrx-mini{font-size:.72rem !important;line-height:1.35 !important;}
+  .lrx-alert{margin-top:8px !important;padding:10px 12px !important;border-radius:12px !important;}
+
+  #scr-casharcade .lrx-hero .lrx-chiprow,
+  #scr-sketchydeck .lrx-hero .lrx-chiprow,
+  #scr-storebay .lrx-hero .lrx-chiprow,
+  #scr-schedulebuilder .lrx-hero .lrx-chiprow{display:none !important;}
+
+  #scr-casharcade .lrx-hero .lrx-sub,
+  #scr-sketchydeck .lrx-hero .lrx-sub,
+  #scr-storebay .lrx-hero .lrx-sub,
+  #scr-schedulebuilder .lrx-hero .lrx-sub{
+    font-size:.74rem !important;
+    line-height:1.28 !important;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1;
+    overflow:hidden;
+  }
+
+  #scr-home .home-divider{margin:14px 0 !important;}
+  #scr-home .mode-list .mc,
+  #scr-home .hgrid .hb{min-height:74px !important;padding:10px 12px !important;}
+  #scr-home .daily-card{padding:12px !important;}
+  #scr-home.lr-home-cleaned .lr-command-deck .hgrid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+</style>
 </head>
 <body>
 <div id="page-wrap">
@@ -2074,6 +2201,46 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="mc-body">
 <div class="mc-name">STARTER MODE</div>
 <div class="mc-desc">Coins only · Customer always pays $1 · No pressure · Perfect for beginners</div>
+</div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="openStoreBayIntro()">
+<div class="mc-icon">🛒</div>
+<div class="mc-body">
+<div class="mc-name">MINI STORE INTERFACE</div>
+<div class="mc-desc">Browse shelves · Build the cart · Stay on budget · Avoid impulse buys</div>
+</div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="openExactPayIntro()">
+<div class="mc-icon">💳</div>
+<div class="mc-body">
+<div class="mc-name">EXACT PAY</div>
+<div class="mc-desc">Tap wallet pieces · Pay the exact amount · Customer-side register practice</div>
+</div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="openReceiptDecoderIntro()">
+<div class="mc-icon">🧾</div>
+<div class="mc-body">
+<div class="mc-name">RECEIPT DECODER</div>
+<div class="mc-desc">Read subtotal · Tax · Discounts · Change back</div>
+</div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="openPriceCompareIntro()">
+<div class="mc-icon">📊</div>
+<div class="mc-body">
+<div class="mc-name">PRICE COMPARE</div>
+<div class="mc-desc">Compare deals · Pick the smarter buy · Stretch the budget</div>
+</div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="openDrawerResetIntro()">
+<div class="mc-icon">🗄️</div>
+<div class="mc-body">
+<div class="mc-name">DRAWER RESET</div>
+<div class="mc-desc">Sort the till · Check balance · Fix closeout mistakes</div>
 </div>
 <div class="mc-arr">›</div>
 </div>
@@ -2334,6 +2501,133 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 </div>
 <!-- ══════════ SCORES ══════════ -->
+
+<!-- ══════════ MINI STORE INTERFACE ══════════ -->
+<div class="scr" id="scr-storebay">
+  <div class="gtop">
+    <button class="back" onclick="go('home')">‹ BACK</button>
+    <div class="gmode">🛒 MINI STORE INTERFACE</div>
+  </div>
+  <div class="lrx-shell" style="--mode-accent:var(--amber)">
+    <div class="lrx-hero">
+      <div class="lrx-kicker">Shopping Run</div>
+      <div class="lrx-title">Browse. Budget. Checkout Smart.</div>
+      <div class="lrx-sub">Practice real shopping choices in a fake store. Find what belongs on the list, stay in budget, and skip impulse buys that do not belong.</div>
+      <div class="lrx-chiprow">
+        <span class="lrx-chip">Interactive simulator</span>
+        <span class="lrx-chip">Multiple shopping lists</span>
+        <span class="lrx-chip">Budget practice</span>
+      </div>
+    </div>
+    <div id="storebay-live">
+      <div class="lrx-grid two">
+        <section class="lrx-panel">
+          <div class="lrx-panelhead">
+            <div>
+              <div class="lrx-paneltitle">Shopping List</div>
+              <div class="lrx-panelsub">Get the right items and keep your spending under control.</div>
+            </div>
+            <span class="lrx-tag" id="storebay-round">List 1 / 4</span>
+          </div>
+          <div id="storebay-mission"></div>
+          <div class="lrx-statrow">
+            <div class="lrx-stat"><span class="lrx-statlabel">Budget</span><span class="lrx-statvalue" id="storebay-budget">$0.00</span></div>
+            <div class="lrx-stat"><span class="lrx-statlabel">Cart Total</span><span class="lrx-statvalue" id="storebay-total">$0.00</span></div>
+            <div class="lrx-stat"><span class="lrx-statlabel">Items Found</span><span class="lrx-statvalue" id="storebay-found">0 / 0</span></div>
+          </div>
+        </section>
+        <section class="lrx-panel">
+          <div class="lrx-panelhead">
+            <div>
+              <div class="lrx-paneltitle">Cart</div>
+              <div class="lrx-panelsub">Review your picks before you check out.</div>
+            </div>
+            <span class="lrx-tag" id="storebay-remaining">$0.00 left</span>
+          </div>
+          <div id="storebay-cart" class="lrx-list"></div>
+          <div class="lrx-btnrow">
+            <button class="lrx-btn pri" onclick="checkoutStoreBay()">Checkout</button>
+            <button class="lrx-btn sec" onclick="resetStoreBayCart()">Clear Cart</button>
+            <button class="lrx-btn sec" onclick="startStoreBay()">New Run</button>
+          </div>
+        </section>
+      </div>
+      <section class="lrx-panel">
+        <div class="lrx-panelhead">
+          <div>
+            <div class="lrx-paneltitle">Store Shelves</div>
+            <div class="lrx-panelsub">Tap an item to add it to your cart. Tap again to remove it.</div>
+          </div>
+          <span class="lrx-tag">Tap to shop</span>
+        </div>
+        <div id="storebay-grid" class="lrx-cardgrid"></div>
+      </section>
+    </div>
+    <div id="storebay-result" style="display:none"></div>
+  </div>
+</div>
+
+<div class="scr" id="scr-cashplus">
+  <div class="gtop">
+    <button class="back" onclick="go('home')">‹ BACK</button>
+    <div class="gmode" id="cashplus-topmode">💳 CASHREADY ARCADE</div>
+  </div>
+  <div class="lrx-shell" style="--mode-accent:var(--amber)">
+    <div class="lrx-hero">
+      <div class="lrx-kicker" id="cashplus-kicker">Arcade Sim</div>
+      <div class="lrx-title" id="cashplus-title">CashReady Arcade</div>
+      <div class="lrx-sub" id="cashplus-sub">Build exact payment, decode receipts, compare prices, and reset the till with short arcade rounds.</div>
+      <div class="lrx-chiprow" id="cashplus-chips"></div>
+    </div>
+    <div id="cashplus-live">
+      <div class="lrx-grid two">
+        <section class="lrx-panel">
+          <div class="lrx-panelhead">
+            <div>
+              <div class="lrx-paneltitle">Mission Brief</div>
+              <div class="lrx-panelsub" id="cashplus-briefsub">Five short rounds. Learn by doing, not just by guessing.</div>
+            </div>
+            <span class="lrx-tag" id="cashplus-round">Round 1 / 5</span>
+          </div>
+          <div id="cashplus-brief"></div>
+          <div class="lrx-statrow">
+            <div class="lrx-stat"><span class="lrx-statlabel">Score</span><span class="lrx-statvalue" id="cashplus-score">0 / 5</span></div>
+            <div class="lrx-stat"><span class="lrx-statlabel">Current Run</span><span class="lrx-statvalue" id="cashplus-progress">1 / 5</span></div>
+            <div class="lrx-stat"><span class="lrx-statlabel">Status</span><span class="lrx-statvalue" id="cashplus-status">Ready</span></div>
+          </div>
+        </section>
+        <section class="lrx-panel">
+          <div class="lrx-panelhead">
+            <div>
+              <div class="lrx-paneltitle">Console</div>
+              <div class="lrx-panelsub" id="cashplus-console-sub">Tap, sort, and compare. This deck changes with the mode.</div>
+            </div>
+            <span class="lrx-tag" id="cashplus-console-tag">Interactive</span>
+          </div>
+          <div id="cashplus-side"></div>
+          <div id="cashplus-feedbackbox" style="display:none;margin-top:12px"></div>
+          <div class="lrx-btnrow" id="cashplus-actions" style="margin-top:12px">
+            <button class="lrx-btn pri" id="cashplus-check" onclick="cashPlusCheck()">Check</button>
+            <button class="lrx-btn sec" id="cashplus-resetbtn" onclick="cashPlusResetChoices()">Reset</button>
+            <button class="lrx-btn sec" onclick="cashPlusRepeatBriefing()">Repeat Briefing</button>
+          </div>
+        </section>
+      </div>
+      <section class="lrx-panel">
+        <div class="lrx-panelhead">
+          <div>
+            <div class="lrx-paneltitle">Interactive Board</div>
+            <div class="lrx-panelsub" id="cashplus-board-sub">Use the holodeck tools to solve the round.</div>
+          </div>
+          <span class="lrx-tag" id="cashplus-board-tag">Tap to play</span>
+        </div>
+        <div id="cashplus-main"></div>
+      </section>
+    </div>
+    <div id="cashplus-result" style="display:none"></div>
+  </div>
+</div>
+
 <div class="scr" id="scr-scores">
 <div class="gtop">
 <button class="back" onclick="go('home')">‹ BACK</button>
@@ -2790,6 +3084,11 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <option>Making Change - Shift</option>
 <option>Daily Challenge</option>
 <option>Do I Have Enough?</option>
+<option>Mini Store Interface</option>
+<option>Exact Pay</option>
+<option>Receipt Decoder</option>
+<option>Price Compare</option>
+<option>Drawer Reset</option>
 <option>Money ID Quiz</option>
 <option>Coin Identification</option>
 <option>Counting Bills</option>
@@ -3279,6 +3578,8 @@ function primeAccessibleScreen(id){
   if(id==='guide')makeTappable('scr-guide');
   if(id==='settings')makeTappable('scr-settings');
   if(id==='moneyguide')makeTappable('scr-moneyguide');
+  if(id==='cashplus')makeTappable('scr-cashplus');
+  if(id==='casharcade')makeTappable('scr-casharcade');
   if(id==='about')makeTappable('scr-about');
 }
 function openCoachDashboard(){
@@ -3315,7 +3616,7 @@ function go(id){
     return;
   }
 
-  const modeScreens=['game','quiz','changedrill','coindrill','billdrill','dihe'];
+  const modeScreens=['game','quiz','changedrill','coindrill','billdrill','dihe','cashplus','casharcade'];
   if(!modeScreens.includes(id)){
     resetSessionChrome();
     closeM('m-hint');
@@ -8555,9 +8856,721 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   });
 })();
+
+
+// ════════════════════════════════════════════════════════
+//  MINI STORE INTERFACE
+// ════════════════════════════════════════════════════════
+const STORE_ITEMS = [
+  {id:'bread',icon:'🍞',name:'Bread',price:250,desc:'Loaf for toast or sandwiches'},
+  {id:'milk',icon:'🥛',name:'Milk',price:325,desc:'Breakfast and meals'},
+  {id:'apple',icon:'🍎',name:'Apple',price:100,desc:'Fresh fruit snack'},
+  {id:'water',icon:'💧',name:'Water',price:150,desc:'Simple drink choice'},
+  {id:'sandwich',icon:'🥪',name:'Sandwich',price:450,desc:'Grab-and-go lunch'},
+  {id:'notebook',icon:'📓',name:'Notebook',price:350,desc:'School or work notes'},
+  {id:'pens',icon:'🖊️',name:'Pens',price:200,desc:'Two-pack writing pens'},
+  {id:'soap',icon:'🧼',name:'Soap',price:275,desc:'Daily home supply'},
+  {id:'buspass',icon:'🚌',name:'Bus Pass',price:250,desc:'One-way transit fare'},
+  {id:'granola',icon:'🥣',name:'Granola Bar',price:150,desc:'Quick energy snack'},
+  {id:'chips',icon:'🍟',name:'Chips',price:225,desc:'Tasty but not always on the list'},
+  {id:'soda',icon:'🥤',name:'Soda',price:200,desc:'Easy impulse add-on'}
+];
+const STORE_MISSIONS = [
+  {title:'Lunch + Commute',brief:'Get what you need for lunch and the ride without wasting money on extras.',need:['sandwich','water','buspass'],budget:850},
+  {title:'Work Supply Run',brief:'Pick up the basics for a work or classroom day and skip the random snack grab.',need:['notebook','pens','water'],budget:800},
+  {title:'Home Essentials',brief:'Grab practical home items for the day and keep the cart focused.',need:['bread','milk','soap'],budget:925},
+  {title:'Quick Healthy Stop',brief:'Build a simple snack stop with useful choices instead of impulse items.',need:['apple','water','granola'],budget:500}
+];
+let STOREBAY = {missions:[], round:0, mission:null, products:[], cart:new Set(), done:false, lastPct:0, roundScores:[]};
+function storeMoney(c){ return fmt ? fmt(c) : '$'+(c/100).toFixed(2); }
+function openStoreBayIntro(){
+  showModeIntro('🛒','MINI STORE INTERFACE','#ffbb33',[
+    ['🛍️','Shop with a real goal.','Every run gives you several short shopping lists and a spending limit.'],
+    ['🧾','Get what belongs on the list.','The strongest runs finish each list without loading the cart with extras.'],
+    ['💳','Check out and keep moving.','You get spoken feedback after each list and a full shopping summary at the end.']
+  ],'Start Shopping Run →',()=>{ closeM('m-hint'); startStoreBay(); },()=>go('home'));
+}
+function buildStoreRound(mission){
+  const must = new Set(mission.need);
+  const extras = shuf(STORE_ITEMS.filter(it=>!must.has(it.id))).slice(0,5);
+  const required = mission.need.map(id=>STORE_ITEMS.find(it=>it.id===id)).filter(Boolean);
+  return { mission, products: shuf([...required,...extras]), cart:new Set() };
+}
+function startStoreBay(){
+  const missions = shuf(STORE_MISSIONS).slice(0, Math.min(4, STORE_MISSIONS.length)).map(m=>JSON.parse(JSON.stringify(m)));
+  STOREBAY = {missions, round:0, mission:null, products:[], cart:new Set(), done:false, lastPct:0, roundScores:[]};
+  go('storebay');
+  const hero = document.querySelector('#scr-storebay .lrx-hero'); if(hero) hero.style.display='';
+  loadStoreBayRound();
+}
+function loadStoreBayRound(){
+  const mission = STOREBAY.missions[STOREBAY.round];
+  if(!mission){ finishStoreBayRun(); return; }
+  const roundData = buildStoreRound(mission);
+  STOREBAY.mission = mission;
+  STOREBAY.products = roundData.products;
+  STOREBAY.cart = roundData.cart;
+  STOREBAY.done = false;
+  renderStoreBay();
+  const listNames = mission.need.map(id=>STORE_ITEMS.find(it=>it.id===id)?.name||id).join(', ');
+  setTimeout(()=>say(`${mission.title}. Buy ${listNames}. Budget ${storeMoney(mission.budget)}.`),120);
+}
+function nextStoreBayRound(){
+  STOREBAY.round += 1;
+  loadStoreBayRound();
+}
+function storeCartTotal(){ return [...STOREBAY.cart].reduce((sum,id)=>sum+(STORE_ITEMS.find(it=>it.id===id)?.price||0),0); }
+function resetStoreBayCart(){
+  STOREBAY.cart = new Set();
+  STOREBAY.done = false;
+  renderStoreBay();
+  beep(320,70);
+  say('Cart cleared.');
+}
+function toggleStoreItem(id){
+  if(STOREBAY.done || !STOREBAY.mission) return;
+  const item = STORE_ITEMS.find(it=>it.id===id);
+  if(!item) return;
+  const adding = !STOREBAY.cart.has(id);
+  if(adding) STOREBAY.cart.add(id); else STOREBAY.cart.delete(id);
+  renderStoreBay();
+  if(adding){
+    const onList = STOREBAY.mission.need.includes(id);
+    if(onList){ chime(); say(`${item.name}. On the list.`); }
+    else { buzz(); say(`${item.name}. Not on the list.`); }
+    if(storeCartTotal() > STOREBAY.mission.budget){ setTimeout(()=>say('That goes over budget.'),140); }
+  }else{
+    beep(420,60);
+    say(`${item.name} removed.`);
+  }
+}
+function renderStoreBay(){
+  if(!$('storebay-grid') || !STOREBAY.mission) return;
+  const req = STOREBAY.mission.need;
+  const total = storeCartTotal();
+  const found = req.filter(id=>STOREBAY.cart.has(id)).length;
+  $('storebay-round').textContent = `List ${STOREBAY.round+1} / ${STOREBAY.missions.length}`;
+  $('storebay-budget').textContent = storeMoney(STOREBAY.mission.budget);
+  $('storebay-total').textContent = storeMoney(total);
+  $('storebay-found').textContent = `${found} / ${req.length}`;
+  $('storebay-remaining').textContent = `${storeMoney(STOREBAY.mission.budget-total)} left`;
+  $('storebay-mission').innerHTML = `
+    <div class="lrx-alert ${total>STOREBAY.mission.budget?'bad':'good'}">
+      <div class="lrx-decklabel">${STOREBAY.mission.title}</div>
+      <div class="lrx-copy" style="margin:0;text-align:left">${STOREBAY.mission.brief}</div>
+      <div class="lrx-chiprow" style="margin-top:10px">${req.map(id=>{
+        const item = STORE_ITEMS.find(it=>it.id===id);
+        const done = STOREBAY.cart.has(id);
+        return `<span class="lrx-tag" style="border-color:${done?'rgba(0,200,120,.35)':'rgba(255,255,255,.12)'}">${done?'✅':'⬡'} ${item?.name||id}</span>`;
+      }).join('')}</div>
+    </div>`;
+  $('storebay-grid').innerHTML = STOREBAY.products.map(it=>`
+    <button class="lrx-itemcard ${STOREBAY.cart.has(it.id)?'sel':''}" onclick="toggleStoreItem('${it.id}')">
+      <div class="lrx-itemicon">${it.icon}</div>
+      <div class="lrx-itemtitle">${it.name}</div>
+      <div class="lrx-itemsub">${it.desc}</div>
+      <div class="lrx-price">${storeMoney(it.price)}</div>
+      <div class="lrx-tag">${STOREBAY.cart.has(it.id)?'In cart':'Tap to add'}</div>
+    </button>`).join('');
+  const cartIds = [...STOREBAY.cart];
+  $('storebay-cart').innerHTML = cartIds.length ? cartIds.map(id=>{
+    const item = STORE_ITEMS.find(it=>it.id===id); const needed = req.includes(id);
+    return `<div class="lrx-listitem ${needed?'done':''}"><span>${item.icon} <strong>${item.name}</strong></span><span>${needed?'On the list':'Extra'} · ${storeMoney(item.price)}</span></div>`;
+  }).join('') : `<div class="lrx-alert warn"><div class="lrx-copy" style="margin:0;text-align:left">Your cart is empty. Start by grabbing the items on the list.</div></div>`;
+  $('storebay-live').style.display='';
+  $('storebay-result').style.display='none';
+}
+function scoreCurrentStoreRound(){
+  const req = STOREBAY.mission.need;
+  const total = storeCartTotal();
+  const found = req.filter(id=>STOREBAY.cart.has(id));
+  const missed = req.filter(id=>!STOREBAY.cart.has(id));
+  const extras = [...STOREBAY.cart].filter(id=>!req.includes(id));
+  const maxScore = req.length + 2;
+  let score = found.length;
+  if(total <= STOREBAY.mission.budget) score += 1;
+  if(extras.length === 0) score += 1;
+  const pct = Math.round((score/maxScore)*100);
+  return {found, missed, extras, total, pct, underBudget: total <= STOREBAY.mission.budget};
+}
+function renderStoreRoundResult(result){
+  const more = STOREBAY.round < STOREBAY.missions.length - 1;
+  const pct = result.pct;
+  const grade = pct>=95?'A+':pct>=80?'A':pct>=60?'B':'C';
+  const status = pct>=95?'Great shopping run':pct>=80?'Nice choices':pct>=60?'Almost there':'Try another list';
+  const tone = pct>=80?'good':pct>=60?'warn':'bad';
+  const hero = document.querySelector('#scr-storebay .lrx-hero'); if(hero) hero.style.display='none';
+  $('storebay-live').style.display='none';
+  $('storebay-result').style.display='';
+  $('storebay-result').innerHTML = `
+    <div class="lrx-result">
+      <div class="lrx-decklabel">List ${STOREBAY.round+1} complete</div>
+      <div class="lrx-grade">${grade}</div>
+      <div class="lrx-title" style="font-size:1.2rem">${status}</div>
+      <div class="lrx-copy"><strong>${result.found.length} of ${STOREBAY.mission.need.length}</strong> list items found · cart total <strong>${storeMoney(result.total)}</strong> · budget <strong>${storeMoney(STOREBAY.mission.budget)}</strong></div>
+      <div class="lrx-alert ${tone}" style="text-align:left;margin-top:16px">
+        <div class="lrx-decklabel">What to check</div>
+        <div class="lrx-copy" style="margin:0;text-align:left">${result.missed.length?`Missing: ${result.missed.map(id=>STORE_ITEMS.find(it=>it.id===id)?.name||id).join(', ')}. `:''}${result.extras.length?`Extra items: ${result.extras.map(id=>STORE_ITEMS.find(it=>it.id===id)?.name||id).join(', ')}. `:''}${result.underBudget?'You stayed in budget.':'You went over budget.'}</div>
+      </div>
+      <div class="lrx-btnrow" style="justify-content:center">
+        <button class="lrx-btn pri" onclick="${more?'nextStoreBayRound()':'finishStoreBayRun()'}">${more?'Next List':'See Results'}</button>
+        <button class="lrx-btn sec" onclick="go('home')">Return Home</button>
+      </div>
+    </div>`;
+  say(`${status}. ${result.found.length} of ${STOREBAY.mission.need.length} items found. ${result.underBudget?'You stayed in budget.':'You went over budget.'}`);
+}
+function checkoutStoreBay(){
+  if(!STOREBAY.mission) return;
+  const result = scoreCurrentStoreRound();
+  STOREBAY.roundScores.push({...result, title:STOREBAY.mission.title, needCount:STOREBAY.mission.need.length, budget:STOREBAY.mission.budget});
+  STOREBAY.done = true;
+  renderStoreRoundResult(result);
+}
+function finishStoreBayRun(){
+  const rounds = STOREBAY.roundScores || [];
+  const totalLists = rounds.length || STOREBAY.missions.length || 1;
+  const totalNeeded = rounds.reduce((sum,r)=>sum+(r.needCount||0),0);
+  const totalFound = rounds.reduce((sum,r)=>sum+((r.found&&r.found.length)||0),0);
+  const underCount = rounds.filter(r=>r.underBudget).length;
+  const cleanCount = rounds.filter(r=>(r.extras||[]).length===0).length;
+  const avgPct = rounds.length ? Math.round(rounds.reduce((sum,r)=>sum+(r.pct||0),0)/rounds.length) : 0;
+  try{ CFG.storeBayBest = Math.max(CFG.storeBayBest||0,avgPct); saveAll && saveAll(); }catch(_e){}
+  const okRounds = rounds.map(r=>({ok:(r.pct||0)>=80}));
+  let streak=0, bestStreak=0; okRounds.forEach(r=>{ streak=r.ok?streak+1:0; bestStreak=Math.max(bestStreak,streak); });
+  const reviewRounds = rounds.map((r,idx)=>{
+    const extraNames=(r.extras||[]).map(id=>STORE_ITEMS.find(it=>it.id===id)?.name||id);
+    const missNames=(r.missed||[]).map(id=>STORE_ITEMS.find(it=>it.id===id)?.name||id);
+    return {
+      title:(r.title||('List '+(idx+1))) + ' · ' + ((r.found&&r.found.length)||0) + '/' + (r.needCount||0),
+      meta:'Cart ' + storeMoney(r.total||0) + ' / Budget ' + storeMoney(r.budget||0) + ((r.underBudget)?' · In budget':' · Over budget') + (missNames.length ? ' · Missed: ' + missNames.join(', ') : '') + (extraNames.length ? ' · Extras: ' + extraNames.join(', ') : ''),
+      ok:(r.pct||0)>=80
+    };
+  });
+  showArcadeDebriefRedesign({
+    modeKey:'mini_store_interface',
+    modeTitle:'Mini Store Interface',
+    header:avgPct>=95?'SHOPPING RUN COMPLETE':avgPct>=80?'SMART SHOPPING':avgPct>=60?'BUILDING SKILLS':'TRY ANOTHER RUN',
+    sub:totalFound + ' of ' + totalNeeded + ' list items found across ' + totalLists + ' shopping lists.',
+    correct:totalFound,
+    total:Math.max(totalNeeded,1),
+    pct:avgPct,
+    score:(totalFound*100) + (underCount*25) + (cleanCount*25),
+    streak:bestStreak,
+    scoreLabel:'Mission Score',
+    reviewRounds:reviewRounds,
+    playAgainText:'▶ SHOP ANOTHER RUN',
+    replay:function(){ startStoreBay(); },
+    sessionLabel:avgPct>=90?'Budget Boss':avgPct>=80?'Smart Shopper':avgPct>=60?'Skill Builder':'Training Run',
+    sessionCopy:'You cleared ' + totalLists + ' shopping list' + (totalLists===1?'':'s') + ' in the neon mini-store. Review the missed items, then take another run for a cleaner cart.',
+    pills:[totalLists + ' lists', underCount + ' under budget', cleanCount + ' impulse-free carts'],
+    well:[
+      'You finished ' + totalLists + ' shopping list' + (totalLists===1?'':'s') + ' without quitting the run.',
+      underCount>0 ? 'You stayed under budget on ' + underCount + ' list' + (underCount===1?'':'s') + '.' : 'You practiced checking the total before checkout.',
+      cleanCount>0 ? 'You kept ' + cleanCount + ' cart' + (cleanCount===1?'':'s') + ' free of extra items.' : 'You kept working even when extras showed up in the cart.'
+    ],
+    next:[
+      'Match every item to the list before you tap checkout.',
+      'Check the total after each choice so the budget does not sneak past you.',
+      'Skip impulse items unless they belong on the mission list.'
+    ],
+    reminder:'Stay with the list, check the total, and slow down before adding extras.',
+    bannerCopy:'Holodeck shop complete. Replay it for a tighter budget run.',
+    speech:'Shopping run complete. You found ' + totalFound + ' of ' + totalNeeded + ' list items and stayed under budget on ' + underCount + ' lists.'
+  });
+}
 </script>
 
 
+<script id="cashplus-modes">
+const CASHPLUS_DEFS = {
+  exactpay: {
+    icon:'💳',
+    title:'EXACT PAY',
+    scoreName:'Exact Pay',
+    kicker:'Wallet Sim',
+    sub:'Tap bills and coins from a wallet and build the exact payment without overpaying.',
+    chips:['Exact payment','Wallet practice','5 short rounds'],
+    board:'Tap the wallet pieces until the payment matches the price.',
+    consoleTag:'Wallet',
+    rounds:[
+      {title:'Coffee Stop', prompt:'Pay exact for the coffee.', price:235, wallet:[100,100,25,10], explain:'Two one-dollar bills, one quarter, and one dime make $2.35 exactly.'},
+      {title:'Bus Fare', prompt:'Pay exact for the ride.', price:275, wallet:[100,100,50,25], explain:'Two dollars, one half-dollar, and one quarter make $2.75.'},
+      {title:'Notebook', prompt:'Use the wallet to pay the exact total.', price:460, wallet:[100,100,100,100,25,25,10], explain:'Four one-dollar bills, two quarters, and one dime make $4.60.'},
+      {title:'Snack Combo', prompt:'Build the exact payment.', price:185, wallet:[100,50,25,10], explain:'One dollar, one half-dollar, one quarter, and one dime make $1.85.'},
+      {title:'Locker Soap', prompt:'Tap the pieces that pay exact.', price:515, wallet:[500,10,5], explain:'One five-dollar bill, one dime, and one nickel make $5.15.'},
+      {title:'Lunch Tray', prompt:'Pay the amount exactly.', price:630, wallet:[500,100,25,5], explain:'Five dollars, one dollar, one quarter, and one nickel make $6.30.'},
+      {title:'Library Fee', prompt:'Make exact pay from the wallet.', price:340, wallet:[100,100,100,25,10,5], explain:'Three one-dollar bills, one quarter, one dime, and one nickel make $3.40.'},
+      {title:'Station Store', prompt:'Choose the exact payment.', price:720, wallet:[500,100,100,10,10], explain:'Five dollars, two one-dollar bills, and two dimes make $7.20.'}
+    ]
+  },
+  receiptdecoder: {
+    icon:'🧾',
+    title:'RECEIPT DECODER',
+    scoreName:'Receipt Decoder',
+    kicker:'Receipt Readout',
+    sub:'Read receipts like a pro and spot subtotal, tax, discounts, amount paid, and change.',
+    chips:['Receipt reading','Money labels','5 short rounds'],
+    board:'Read the receipt, then answer the question below it.',
+    consoleTag:'Receipt',
+    rounds:[
+      {title:'Orbit Market', items:[['Bread',250],['Milk',300],['Soap',275]], discount:0, tax:47, paid:1000, question:'What was the total?', options:[825,872,953,1000], answer:872, explain:'The subtotal was $8.25 and tax added $0.47, so the total was $8.72.'},
+      {title:'Corner Shop', items:[['Water',150],['Granola',150],['Apple',125]], discount:50, tax:26, paid:500, question:'How much was saved with the discount?', options:[25,50,75,100], answer:50, explain:'The receipt shows a discount of $0.50 before tax.'},
+      {title:'Lunch Cart', items:[['Sandwich',450],['Chips',225],['Water',150]], discount:75, tax:40, paid:1000, question:'How much change should come back?', options:[210,235,250,310], answer:210, explain:'Subtotal $8.25, minus $0.75, plus $0.40 tax equals $7.90. Ten dollars paid means $2.10 back.'},
+      {title:'Transit Kiosk', items:[['Bus Pass',250],['Water',150]], discount:0, tax:20, paid:500, question:'How much tax was added?', options:[10,15,20,25], answer:20, explain:'The tax line shows $0.20 added to the purchase.'},
+      {title:'Quick Stop', items:[['Notebook',350],['Pens',200],['Water',150]], discount:0, tax:42, paid:1000, question:'What was the subtotal before tax?', options:[650,700,742,1000], answer:700, explain:'The subtotal is the amount before tax. Here it is $7.00.'},
+      {title:'Fresh Stand', items:[['Apple',125],['Bread',250],['Milk',300]], discount:25, tax:39, paid:1000, question:'How much did the customer pay?', options:[800,900,1000,1100], answer:1000, explain:'The amount paid line shows $10.00.'},
+      {title:'Value Mart', items:[['Soap',275],['Notebook',350],['Pens',200]], discount:100, tax:39, paid:1000, question:'What was the total after discount and tax?', options:[725,764,825,900], answer:764, explain:'Subtotal $8.25, discount $1.00, tax $0.39. The final total is $7.64.'},
+      {title:'Mini Café', items:[['Coffee',235],['Bagel',180]], discount:0, tax:33, paid:500, question:'How much change should the cashier give back?', options:[52,60,85,100], answer:52, explain:'The total is $4.48, so $5.00 paid means $0.52 change back.'}
+    ]
+  },
+  pricecompare: {
+    icon:'📊',
+    title:'PRICE COMPARE',
+    scoreName:'Price Compare',
+    kicker:'Value Scan',
+    sub:'Compare two or three offers and choose the smarter buy instead of grabbing the first shiny sticker.',
+    chips:['Value practice','Budget thinking','5 short rounds'],
+    board:'Compare the cards and pick the better deal for the mission.',
+    consoleTag:'Compare',
+    rounds:[
+      {title:'Cereal Shelf', prompt:'Which cereal is the better value?', cards:[{name:'Box A', detail:'12 oz', price:399, note:'Standard size'},{name:'Box B', detail:'18 oz', price:449, note:'Bigger box'}], answer:1, explain:'Box B costs a little more, but the price per ounce is lower.'},
+      {title:'Water Deal', prompt:'Which choice costs less right now?', cards:[{name:'Single Bottle', detail:'1 bottle', price:179, note:'Buy one'},{name:'Two for $3', detail:'2 bottles', price:300, note:'Sale price'}], answer:0, explain:'One bottle at $1.79 is cheaper right now than spending $3.00 on two.'},
+      {title:'Snack Aisle', prompt:'Which is the smarter buy if you want more for your money?', cards:[{name:'Chips Small', detail:'6 oz', price:225, note:'Quick snack'},{name:'Chips Large', detail:'10 oz', price:300, note:'Party size'}], answer:1, explain:'The larger bag gives more ounces for each dollar.'},
+      {title:'Soap Shelf', prompt:'Which option is cheaper per bar?', cards:[{name:'Single Soap', detail:'1 bar', price:275, note:'One bar'},{name:'Two-Pack', detail:'2 bars', price:500, note:'Bundle'}], answer:1, explain:'Two bars for $5.00 works out cheaper per bar than one for $2.75.'},
+      {title:'Bread Case', prompt:'Which bread is the lower price today?', cards:[{name:'Store Brand', detail:'20 oz', price:250, note:'Plain white'},{name:'Name Brand', detail:'20 oz', price:325, note:'Same size'}], answer:0, explain:'The store brand is the same size and costs less.'},
+      {title:'Notebook Run', prompt:'Which notebook gives the better value?', cards:[{name:'Notebook A', detail:'70 pages', price:250, note:'Standard'},{name:'Notebook B', detail:'120 pages', price:350, note:'Bigger book'}], answer:1, explain:'Notebook B has many more pages for only a little more money.'},
+      {title:'Drink Cooler', prompt:'Which option is the better deal for a group?', cards:[{name:'Single Cans', detail:'4 cans total', price:560, note:'Four singles'},{name:'Four-Pack', detail:'4 cans total', price:499, note:'Bundle pack'}], answer:1, explain:'The four-pack costs less for the same number of drinks.'},
+      {title:'Fruit Stand', prompt:'Which apple offer is the smarter buy?', cards:[{name:'One Apple', detail:'1 apple', price:125, note:'Single'},{name:'Three Apples', detail:'3 apples', price:300, note:'Bag sale'}], answer:1, explain:'Three apples for $3.00 is cheaper per apple than buying one for $1.25.'}
+    ]
+  },
+  drawerreset: {
+    icon:'🗄️',
+    title:'DRAWER RESET',
+    scoreName:'Drawer Reset',
+    kicker:'Closeout Sim',
+    sub:'Sort loose tender into the right slots, then decide if the drawer is balanced, short, or over.',
+    chips:['Till closeout','Sorting + status','5 short rounds'],
+    board:'Assign each loose item to the right drawer section, then inspect the drawer total.',
+    consoleTag:'Till',
+    rounds:[
+      {title:'Snack Bar Close', slots:['Ones','Fives','Coins','Slip Bin'], items:[{label:'$1 bills', slot:'Ones'},{label:'Quarter cup', slot:'Coins'},{label:'$5 bills', slot:'Fives'},{label:'Card slips', slot:'Slip Bin'}], expected:4650, actual:4550, status:'short', explain:'The drawer is short by $1.00, so it needs a recount before close.'},
+      {title:'Morning Register', slots:['Tens','Ones','Coins','Slip Bin'], items:[{label:'$10 bills', slot:'Tens'},{label:'Nickel tray', slot:'Coins'},{label:'Printed receipt slips', slot:'Slip Bin'},{label:'$1 bill stack', slot:'Ones'}], expected:5200, actual:5200, status:'balanced', explain:'The expected and actual totals match, so the drawer is balanced.'},
+      {title:'Campus Kiosk', slots:['Fives','Ones','Coins','Drop Bag'], items:[{label:'Deposit bag bills', slot:'Drop Bag'},{label:'$5 bills', slot:'Fives'},{label:'Dime tray', slot:'Coins'},{label:'$1 bills', slot:'Ones'}], expected:6100, actual:6250, status:'over', explain:'The drawer is over by $1.50, so someone needs to check what was left inside.'},
+      {title:'Transit Booth', slots:['Twenties','Tens','Coins','Slip Bin'], items:[{label:'$20 bills', slot:'Twenties'},{label:'Quarter tray', slot:'Coins'},{label:'$10 bills', slot:'Tens'},{label:'Receipt slips', slot:'Slip Bin'}], expected:8425, actual:8425, status:'balanced', explain:'The drawer balances exactly when the totals match.'},
+      {title:'Gift Shop Close', slots:['Fives','Coins','Slip Bin','Drop Bag'], items:[{label:'Refund slip', slot:'Slip Bin'},{label:'Loose quarters', slot:'Coins'},{label:'$5 bills', slot:'Fives'},{label:'Large bills for drop', slot:'Drop Bag'}], expected:7300, actual:7200, status:'short', explain:'The drawer is short by $1.00, so it needs to be checked.'},
+      {title:'Cafeteria Till', slots:['Ones','Fives','Coins','Drop Bag'], items:[{label:'Excess twenties', slot:'Drop Bag'},{label:'Penny tray', slot:'Coins'},{label:'$1 bills', slot:'Ones'},{label:'$5 bills', slot:'Fives'}], expected:5900, actual:6000, status:'over', explain:'The drawer is over by $1.00. That is not balanced yet.'},
+      {title:'Book Fair Booth', slots:['Ones','Tens','Coins','Slip Bin'], items:[{label:'$10 bills', slot:'Tens'},{label:'Quarter tray', slot:'Coins'},{label:'Paper sale slips', slot:'Slip Bin'},{label:'$1 bills', slot:'Ones'}], expected:6800, actual:6800, status:'balanced', explain:'No shortage and no overage means the drawer is balanced.'},
+      {title:'Office Counter', slots:['Fives','Tens','Coins','Slip Bin'], items:[{label:'$10 bills', slot:'Tens'},{label:'Coupon slips', slot:'Slip Bin'},{label:'Nickel tray', slot:'Coins'},{label:'$5 bills', slot:'Fives'}], expected:9050, actual:8950, status:'short', explain:'The drawer is short by $1.00, so it should not be closed yet.'}
+    ]
+  }
+};
+
+window.CASHPLUS_DEFS = CASHPLUS_DEFS;
+let CASHPLUS = {mode:null, def:null, rounds:[], round:0, score:0, results:[], locked:false, selectedOption:null, selectedTokens:new Set(), drawerAssignments:{}, drawerStatus:null};
+
+function openExactPayIntro(){
+  showModeIntro('💳','EXACT PAY','#ffbb33',[
+    ['👛','Pay from the customer side.','Use the wallet pieces on screen to build the exact amount.'],
+    ['🎯','Exact beats overpaying.','You can still finish the round if you are wrong, but the cleanest runs hit the price exactly.'],
+    ['🗣️','Fast feedback every round.','Each answer gives spoken feedback and a full debrief at the end.']
+  ],'Start Exact Pay →',()=>{ closeM('m-hint'); startCashArcade('exactpay'); },()=>go('home'));
+}
+function openReceiptDecoderIntro(){
+  showModeIntro('🧾','RECEIPT DECODER','#ffbb33',[
+    ['🔎','Read what the receipt is saying.','Find subtotal, discount, tax, amount paid, and change back.'],
+    ['🧮','Learn the money labels.','This is less about guessing and more about reading the right line.'],
+    ['🚀','Five short receipt checks.','Each run gives quick practice and instant feedback.']
+  ],'Start Receipt Decoder →',()=>{ closeM('m-hint'); startCashArcade('receiptdecoder'); },()=>go('home'));
+}
+function openPriceCompareIntro(){
+  showModeIntro('📊','PRICE COMPARE','#ffbb33',[
+    ['🛍️','Compare before you buy.','Look at price, size, and deal format to pick the smarter option.'],
+    ['💡','Some offers look better than they are.','This mode trains your eye to spot actual value.'],
+    ['⭐','Short, replayable rounds.','Finish five quick compare missions and review what mattered.']
+  ],'Start Price Compare →',()=>{ closeM('m-hint'); startCashArcade('pricecompare'); },()=>go('home'));
+}
+function openDrawerResetIntro(){
+  showModeIntro('🗄️','DRAWER RESET','#ffbb33',[
+    ['🧾','Close the till the smart way.','Sort loose items into the right slots before checking the drawer total.'],
+    ['⚖️','Balanced, short, or over.','Each round ends with a quick drawer-status check.'],
+    ['🎮','Arcade closeout practice.','It feels like a shift reset instead of another quiz in a fake mustache.']
+  ],'Start Drawer Reset →',()=>{ closeM('m-hint'); startCashArcade('drawerreset'); },()=>go('home'));
+}
+
+function cashPlusMoney(c){ return storeMoney ? storeMoney(c) : ('$'+(c/100).toFixed(2)); }
+function cashPlusDenomLabel(v){
+  if(v>=100) return '$'+(v/100).toFixed(v%100===0?0:2);
+  return v + '¢';
+}
+function cashPlusSummarizeTokens(values){
+  const counts = {};
+  values.forEach(v=>{ counts[v]=(counts[v]||0)+1; });
+  return Object.keys(counts).sort((a,b)=>Number(b)-Number(a)).map(v=>{
+    const n=counts[v];
+    return (n>1 ? (n+' × ') : '') + cashPlusDenomLabel(Number(v));
+  }).join(', ');
+}
+function cashPlusBestExact(values, target){
+  let best = null;
+  const n = values.length;
+  function walk(i, sum, picks){
+    if(sum===target){
+      if(!best || picks.length < best.length) best = picks.slice();
+      return;
+    }
+    if(i>=n || sum>target) return;
+    if(best && picks.length >= best.length) return;
+    picks.push(i);
+    walk(i+1, sum+values[i], picks);
+    picks.pop();
+    walk(i+1, sum, picks);
+  }
+  walk(0,0,[]);
+  return best || [];
+}
+function cashPlusCurrentRound(){ return CASHPLUS.rounds[CASHPLUS.round]; }
+function ensureCashPlusShell(){
+  const main=document.querySelector('main');
+  if(!main) return false;
+  let scr=document.getElementById('scr-cashplus');
+  if(!scr){
+    scr=document.createElement('div');
+    scr.className='scr';
+    scr.id='scr-cashplus';
+    main.appendChild(scr);
+  }
+  const required=['cashplus-topmode','cashplus-kicker','cashplus-title','cashplus-sub','cashplus-chips','cashplus-live','cashplus-briefsub','cashplus-round','cashplus-brief','cashplus-score','cashplus-progress','cashplus-status','cashplus-console-sub','cashplus-console-tag','cashplus-side','cashplus-feedbackbox','cashplus-check','cashplus-resetbtn','cashplus-board-sub','cashplus-board-tag','cashplus-main','cashplus-result'];
+  const missing=required.some(id=>!document.getElementById(id));
+  if(!missing) return true;
+  scr.innerHTML = `
+  <div class="gtop">
+    <button class="back" onclick="go('home')">‹ BACK</button>
+    <div class="gmode" id="cashplus-topmode">💳 CASHREADY ARCADE</div>
+  </div>
+  <div class="lrx-shell" style="--mode-accent:var(--amber)">
+    <div class="lrx-hero">
+      <div class="lrx-kicker" id="cashplus-kicker">Arcade Sim</div>
+      <div class="lrx-title" id="cashplus-title">CashReady Arcade</div>
+      <div class="lrx-sub" id="cashplus-sub">Build exact payment, decode receipts, compare prices, and reset the till with short arcade rounds.</div>
+      <div class="lrx-chiprow" id="cashplus-chips"></div>
+    </div>
+    <div id="cashplus-live">
+      <div class="lrx-grid two">
+        <section class="lrx-panel">
+          <div class="lrx-panelhead">
+            <div>
+              <div class="lrx-paneltitle">Mission Brief</div>
+              <div class="lrx-panelsub" id="cashplus-briefsub">Five short rounds. Learn by doing, not just by guessing.</div>
+            </div>
+            <span class="lrx-tag" id="cashplus-round">Round 1 / 5</span>
+          </div>
+          <div id="cashplus-brief"></div>
+          <div class="lrx-statrow">
+            <div class="lrx-stat"><span class="lrx-statlabel">Score</span><span class="lrx-statvalue" id="cashplus-score">0 / 5</span></div>
+            <div class="lrx-stat"><span class="lrx-statlabel">Current Run</span><span class="lrx-statvalue" id="cashplus-progress">1 / 5</span></div>
+            <div class="lrx-stat"><span class="lrx-statlabel">Status</span><span class="lrx-statvalue" id="cashplus-status">Ready</span></div>
+          </div>
+        </section>
+        <section class="lrx-panel">
+          <div class="lrx-panelhead">
+            <div>
+              <div class="lrx-paneltitle">Console</div>
+              <div class="lrx-panelsub" id="cashplus-console-sub">Tap, sort, and compare. This deck changes with the mode.</div>
+            </div>
+            <span class="lrx-tag" id="cashplus-console-tag">Interactive</span>
+          </div>
+          <div id="cashplus-side"></div>
+          <div id="cashplus-feedbackbox" style="display:none;margin-top:12px"></div>
+          <div class="lrx-btnrow" id="cashplus-actions" style="margin-top:12px">
+            <button class="lrx-btn pri" id="cashplus-check" onclick="cashPlusCheck()">Check</button>
+            <button class="lrx-btn sec" id="cashplus-resetbtn" onclick="cashPlusResetChoices()">Reset</button>
+            <button class="lrx-btn sec" onclick="cashPlusRepeatBriefing()">Repeat Briefing</button>
+          </div>
+        </section>
+      </div>
+      <section class="lrx-panel">
+        <div class="lrx-panelhead">
+          <div>
+            <div class="lrx-paneltitle">Interactive Board</div>
+            <div class="lrx-panelsub" id="cashplus-board-sub">Use the holodeck tools to solve the round.</div>
+          </div>
+          <span class="lrx-tag" id="cashplus-board-tag">Tap to play</span>
+        </div>
+        <div id="cashplus-main"></div>
+      </section>
+    </div>
+    <div id="cashplus-result" style="display:none"></div>
+  </div>`;
+  return true;
+}
+function startCashPlus(mode){
+  const def = CASHPLUS_DEFS[mode];
+  if(!def) return;
+  if(!ensureCashPlusShell()) throw new Error('CashPlus screen could not be prepared.');
+  CASHPLUS = {mode:mode, def:def, rounds:shuf(def.rounds).slice(0,5).map(r=>JSON.parse(JSON.stringify(r))), round:0, score:0, results:[], locked:false, selectedOption:null, selectedTokens:new Set(), drawerAssignments:{}, drawerStatus:null};
+  go('cashplus');
+  cashPlusRender();
+  setTimeout(cashPlusRepeatBriefing, 140);
+}
+function cashPlusRoundReady(){
+  const round = cashPlusCurrentRound();
+  if(!round) return false;
+  if(CASHPLUS.mode==='exactpay') return CASHPLUS.selectedTokens.size>0;
+  if(CASHPLUS.mode==='receiptdecoder' || CASHPLUS.mode==='pricecompare') return CASHPLUS.selectedOption !== null;
+  if(CASHPLUS.mode==='drawerreset') return Object.keys(CASHPLUS.drawerAssignments).length===round.items.length && !!CASHPLUS.drawerStatus;
+  return false;
+}
+function cashPlusResetChoices(){
+  if(CASHPLUS.locked) return;
+  CASHPLUS.selectedOption = null;
+  CASHPLUS.selectedTokens = new Set();
+  CASHPLUS.drawerAssignments = {};
+  CASHPLUS.drawerStatus = null;
+  cashPlusRender();
+  beep(320,70);
+}
+function cashPlusRepeatBriefing(){
+  const round = cashPlusCurrentRound();
+  if(!round) return;
+  let line = '';
+  if(CASHPLUS.mode==='exactpay') line = `${round.title}. ${round.prompt} Total ${cashPlusMoney(round.price)}.`;
+  else if(CASHPLUS.mode==='receiptdecoder') line = `${round.title}. ${round.question}`;
+  else if(CASHPLUS.mode==='pricecompare') line = `${round.title}. ${round.prompt}`;
+  else if(CASHPLUS.mode==='drawerreset') line = `${round.title}. Sort the loose items, then decide if the drawer is balanced, short, or over.`;
+  say(line);
+}
+function cashPlusToggleToken(idx){
+  if(CASHPLUS.locked) return;
+  if(CASHPLUS.selectedTokens.has(idx)) CASHPLUS.selectedTokens.delete(idx); else CASHPLUS.selectedTokens.add(idx);
+  cashPlusRender();
+  beep(440,55);
+}
+function cashPlusSelectOption(idx){
+  if(CASHPLUS.locked) return;
+  CASHPLUS.selectedOption = idx;
+  cashPlusRender();
+  beep(480,55);
+}
+function cashPlusAssignDrawer(itemIdx, slot){
+  if(CASHPLUS.locked) return;
+  CASHPLUS.drawerAssignments[itemIdx] = slot;
+  cashPlusRender();
+  beep(500,55);
+}
+function cashPlusChooseDrawerStatus(status){
+  if(CASHPLUS.locked) return;
+  CASHPLUS.drawerStatus = status;
+  cashPlusRender();
+  beep(520,55);
+}
+function cashPlusCheck(){
+  if(CASHPLUS.locked){
+    cashPlusAdvance();
+    return;
+  }
+  if(!cashPlusRoundReady()) return;
+  const round = cashPlusCurrentRound();
+  let result = {correct:false, title:round.title, meta:'', message:'', explain:'', speech:'', extra:{}};
+  if(CASHPLUS.mode==='exactpay'){
+    const chosen = [...CASHPLUS.selectedTokens].sort((a,b)=>a-b).map(i=>round.wallet[i]);
+    const total = chosen.reduce((s,v)=>s+v,0);
+    const bestIdxs = cashPlusBestExact(round.wallet, round.price);
+    const bestValues = bestIdxs.map(i=>round.wallet[i]);
+    const exact = total===round.price;
+    result.correct = exact;
+    result.meta = `Selected ${cashPlusSummarizeTokens(chosen)} · Total ${cashPlusMoney(total)}`;
+    if(exact){
+      const fewest = chosen.length===bestValues.length;
+      result.message = fewest ? 'Correct. Exact pay with a clean wallet move.' : 'Correct. You paid the exact amount.';
+      result.explain = fewest ? 'That was the exact amount using the fewest pieces available.' : ('A simpler exact pay was ' + cashPlusSummarizeTokens(bestValues) + '.');
+      result.speech = fewest ? 'Correct. Exact pay.' : 'Correct. You paid the exact amount.';
+    }else{
+      const diff = total - round.price;
+      result.message = diff>0 ? 'Not quite. That payment was too high.' : 'Not quite. That payment was too low.';
+      result.explain = (diff>0 ? ('You went over by ' + cashPlusMoney(diff) + '. ') : ('You were short by ' + cashPlusMoney(Math.abs(diff)) + '. ')) + 'One exact pay option was ' + cashPlusSummarizeTokens(bestValues) + '.';
+      result.speech = diff>0 ? 'Not quite. You paid too much.' : 'Not quite. You were short.';
+    }
+    result.extra = {selectedCount:chosen.length};
+  } else if(CASHPLUS.mode==='receiptdecoder'){
+    const choice = round.options[CASHPLUS.selectedOption];
+    const correct = choice===round.answer;
+    result.correct = correct;
+    result.meta = `Question: ${round.question}`;
+    result.message = correct ? 'Correct. You read the right line on the receipt.' : 'Not quite. Check the label on the receipt again.';
+    result.explain = round.explain;
+    result.speech = correct ? 'Correct.' : 'Not quite.';
+  } else if(CASHPLUS.mode==='pricecompare'){
+    const picked = round.cards[CASHPLUS.selectedOption];
+    result.correct = CASHPLUS.selectedOption===round.answer;
+    result.meta = `Picked ${picked.name} for ${cashPlusMoney(picked.price)}`;
+    result.message = result.correct ? 'Correct. That was the smarter buy.' : 'Not quite. That was not the strongest value here.';
+    result.explain = round.explain;
+    result.speech = result.correct ? 'Correct. Smarter buy.' : 'Not quite.';
+  } else if(CASHPLUS.mode==='drawerreset'){
+    const wrongItems = round.items.filter((it, idx)=>CASHPLUS.drawerAssignments[idx]!==it.slot);
+    const statusRight = CASHPLUS.drawerStatus===round.status;
+    result.correct = wrongItems.length===0 && statusRight;
+    result.meta = `Sorted ${round.items.length - wrongItems.length}/${round.items.length} correctly · Status ${CASHPLUS.drawerStatus}`;
+    if(result.correct){
+      result.message = 'Correct. The till is sorted and the status call is right.';
+      result.explain = round.explain;
+      result.speech = 'Correct. Drawer reset complete.';
+    }else{
+      const bits=[];
+      if(wrongItems.length) bits.push(`${wrongItems.length} item${wrongItems.length===1?' was':'s were'} in the wrong slot`);
+      if(!statusRight) bits.push(`the drawer is ${round.status}, not ${CASHPLUS.drawerStatus}`);
+      result.message = 'Not quite. The closeout still needs work.';
+      result.explain = bits.join(' and ') + '. ' + round.explain;
+      result.speech = 'Not quite. Recheck the drawer.';
+    }
+    result.extra = {wrongItems:wrongItems.length};
+  }
+  cashPlusResolve(result);
+}
+function cashPlusResolve(result){
+  CASHPLUS.locked = true;
+  if(result.correct) CASHPLUS.score += 1;
+  CASHPLUS.results.push(result);
+  const box = document.getElementById('cashplus-feedbackbox');
+  if(box){
+    box.style.display='block';
+    box.innerHTML = `<div class="lrx-alert ${result.correct?'good':'warn'}"><div class="lrx-decklabel">${result.correct?'Round Clear':'Round Review'}</div><div class="lrx-copy" style="margin:0;text-align:left"><strong>${result.message}</strong><br>${result.explain}</div></div>`;
+  }
+  const checkBtn = document.getElementById('cashplus-check');
+  const resetBtn = document.getElementById('cashplus-resetbtn');
+  if(checkBtn) checkBtn.textContent = (CASHPLUS.round >= CASHPLUS.rounds.length-1) ? 'See Results' : 'Next Round';
+  if(resetBtn) resetBtn.style.display='none';
+  const statusEl = document.getElementById('cashplus-status');
+  if(statusEl) statusEl.textContent = result.correct ? 'Round Clear' : 'Review';
+  (result.correct ? chime : buzz)();
+  say(result.speech + ' ' + result.explain);
+  cashPlusRender();
+}
+function cashPlusAdvance(){
+  if(!CASHPLUS.locked) return;
+  CASHPLUS.round += 1;
+  if(CASHPLUS.round >= CASHPLUS.rounds.length){
+    finishCashPlusRun();
+    return;
+  }
+  CASHPLUS.locked = false;
+  CASHPLUS.selectedOption = null;
+  CASHPLUS.selectedTokens = new Set();
+  CASHPLUS.drawerAssignments = {};
+  CASHPLUS.drawerStatus = null;
+  cashPlusRender();
+  setTimeout(cashPlusRepeatBriefing, 120);
+}
+function cashPlusReceiptTotals(round){
+  const subtotal = round.items.reduce((s,it)=>s+it[1],0);
+  const discount = round.discount||0;
+  const tax = round.tax||0;
+  const total = subtotal - discount + tax;
+  const change = (round.paid||0) - total;
+  return {subtotal, discount, tax, total, change};
+}
+function cashPlusOptionButton(label, isSel, onclick, sub){
+  return `<button class="lrx-choice" onclick="${onclick}" style="${isSel?'border-color:rgba(255,187,51,.55);box-shadow:0 0 0 1px rgba(255,187,51,.25) inset,0 0 18px rgba(255,187,51,.14);background:linear-gradient(180deg,rgba(255,187,51,.16),rgba(255,255,255,.04));':''}"><strong>${label}</strong>${sub?`<small>${sub}</small>`:''}</button>`;
+}
+function cashPlusRender(){
+  const def = CASHPLUS.def;
+  const round = cashPlusCurrentRound();
+  if(!def || !round) return;
+  $('cashplus-topmode').textContent = `${def.icon} ${def.title}`;
+  $('cashplus-kicker').textContent = def.kicker;
+  $('cashplus-title').textContent = def.title;
+  $('cashplus-sub').textContent = def.sub;
+  $('cashplus-chips').innerHTML = (def.chips||[]).map(v=>`<span class="lrx-chip">${v}</span>`).join('');
+  $('cashplus-briefsub').textContent = def.sub;
+  $('cashplus-console-sub').textContent = def.board;
+  $('cashplus-console-tag').textContent = def.consoleTag || 'Interactive';
+  $('cashplus-board-sub').textContent = def.board;
+  $('cashplus-board-tag').textContent = CASHPLUS.locked ? 'Round Reviewed' : 'Tap to play';
+  $('cashplus-round').textContent = `Round ${CASHPLUS.round+1} / ${CASHPLUS.rounds.length}`;
+  $('cashplus-progress').textContent = `${CASHPLUS.round+1} / ${CASHPLUS.rounds.length}`;
+  $('cashplus-score').textContent = `${CASHPLUS.score} / ${CASHPLUS.rounds.length}`;
+  const _cashplusLast = CASHPLUS.results[CASHPLUS.results.length-1];
+  $('cashplus-status').textContent = CASHPLUS.locked ? ((_cashplusLast && _cashplusLast.correct) ? 'Round Clear' : 'Review') : 'Ready';
+  $('cashplus-live').style.display='';
+  $('cashplus-result').style.display='none';
+  const resetBtn = $('cashplus-resetbtn');
+  const checkBtn = $('cashplus-check');
+  if(resetBtn) resetBtn.style.display = CASHPLUS.locked ? 'none' : '';
+  if(checkBtn) checkBtn.textContent = CASHPLUS.locked ? ((CASHPLUS.round >= CASHPLUS.rounds.length-1) ? 'See Results' : 'Next Round') : (CASHPLUS.mode==='exactpay' ? 'Check Payment' : CASHPLUS.mode==='drawerreset' ? 'Inspect Drawer' : 'Submit Answer');
+  if($('cashplus-feedbackbox')) $('cashplus-feedbackbox').style.display = CASHPLUS.locked ? 'block' : 'none';
+
+  if(CASHPLUS.mode==='exactpay'){
+    const selectedValues = [...CASHPLUS.selectedTokens].sort((a,b)=>a-b).map(i=>round.wallet[i]);
+    const selectedTotal = selectedValues.reduce((s,v)=>s+v,0);
+    const remain = round.price - selectedTotal;
+    $('cashplus-brief').innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Price ${cashPlusMoney(round.price)}</span></div><div class="lrx-casetitle">${escapeHtml(round.prompt)}</div><div class="lrx-casecopy">Tap pieces from the wallet until the total matches the price exactly.</div></div>`;
+    $('cashplus-side').innerHTML = `<div class="lrx-alert ${remain===0?'good':remain<0?'bad':'warn'}"><div class="lrx-decklabel">Wallet Readout</div><div class="lrx-copy" style="margin:0;text-align:left">Selected: <strong>${selectedValues.length ? escapeHtml(cashPlusSummarizeTokens(selectedValues)) : 'Nothing yet'}</strong><br>Total: <strong>${cashPlusMoney(selectedTotal)}</strong><br>${remain===0?'Exact amount locked in.':remain>0?('Still need <strong>'+cashPlusMoney(remain)+'</strong>.'):('Over by <strong>'+cashPlusMoney(Math.abs(remain))+'</strong>.')}</div></div>`;
+    $('cashplus-main').innerHTML = `<div class="lrx-cardgrid">${round.wallet.map((value,idx)=>{ const sel=CASHPLUS.selectedTokens.has(idx); return `<button class="lrx-itemcard" onclick="cashPlusToggleToken(${idx})" style="${sel?'border-color:rgba(255,187,51,.56);box-shadow:0 0 0 1px rgba(255,187,51,.25) inset,0 0 18px rgba(255,187,51,.14);background:linear-gradient(180deg,rgba(255,187,51,.16),rgba(255,255,255,.04));':''}"><div class="lrx-itemicon">${value>=100?'💵':'🪙'}</div><div class="lrx-itemtitle">${cashPlusDenomLabel(value)}</div><div class="lrx-itemsub">${sel?'Selected':'Tap to add'}</div><div class="lrx-tag">Wallet piece ${idx+1}</div></button>`; }).join('')}</div>`;
+  } else if(CASHPLUS.mode==='receiptdecoder'){
+    const t = cashPlusReceiptTotals(round);
+    $('cashplus-brief').innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Receipt Mission</span></div><div class="lrx-casetitle">${escapeHtml(round.question)}</div><div class="lrx-casecopy">Read the receipt carefully. Some numbers are subtotal, some are total, and some are change.</div></div>`;
+    $('cashplus-side').innerHTML = `<div class="lrx-list"><div class="lrx-listitem"><span>Subtotal</span><span>${cashPlusMoney(t.subtotal)}</span></div><div class="lrx-listitem"><span>Discount</span><span>${cashPlusMoney(t.discount)}</span></div><div class="lrx-listitem"><span>Tax</span><span>${cashPlusMoney(t.tax)}</span></div><div class="lrx-listitem"><span>Paid</span><span>${cashPlusMoney(round.paid)}</span></div></div>`;
+    $('cashplus-main').innerHTML = `<div class="lrx-grid two"><div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Receipt</span></div><div class="lrx-casebody" style="font-family:var(--font-mono)">${round.items.map(it=>`<div style="display:flex;justify-content:space-between;gap:10px"><span>${escapeHtml(it[0])}</span><span>${cashPlusMoney(it[1])}</span></div>`).join('')}<div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between"><span>Subtotal</span><span>${cashPlusMoney(t.subtotal)}</span></div><div style="display:flex;justify-content:space-between"><span>Discount</span><span>-${cashPlusMoney(t.discount)}</span></div><div style="display:flex;justify-content:space-between"><span>Tax</span><span>${cashPlusMoney(t.tax)}</span></div><div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between;font-weight:800;color:var(--text)"><span>Total</span><span>${cashPlusMoney(t.total)}</span></div><div style="display:flex;justify-content:space-between"><span>Paid</span><span>${cashPlusMoney(round.paid)}</span></div><div style="display:flex;justify-content:space-between"><span>Change</span><span>${cashPlusMoney(t.change)}</span></div></div></div><div><div class="lrx-paneltitle" style="margin-bottom:10px">Choose the best answer</div><div class="lrx-choicegrid">${round.options.map((opt,idx)=>cashPlusOptionButton(cashPlusMoney(opt), CASHPLUS.selectedOption===idx, `cashPlusSelectOption(${idx})`, idx===CASHPLUS.selectedOption?'Selected':'Tap choice')).join('')}</div></div></div>`;
+  } else if(CASHPLUS.mode==='pricecompare'){
+    $('cashplus-brief').innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Deal Check</span></div><div class="lrx-casetitle">${escapeHtml(round.prompt)}</div><div class="lrx-casecopy">Compare the size, pack, or sale style before you buy. The flashy sign is not always the better choice.</div></div>`;
+    $('cashplus-side').innerHTML = `<div class="lrx-alert warn"><div class="lrx-decklabel">Value Tip</div><div class="lrx-copy" style="margin:0;text-align:left">Look at how much you get, not just the big sale words. Same-size products should make you compare price first.</div></div>`;
+    $('cashplus-main').innerHTML = `<div><div class="lrx-paneltitle" style="margin-bottom:10px">Pick the smarter buy</div><div class="lrx-choicegrid" style="grid-template-columns:repeat(${Math.min(3, round.cards.length)},minmax(0,1fr))">${round.cards.map((card,idx)=>{ const sel=CASHPLUS.selectedOption===idx; return `<button class="lrx-choice" onclick="cashPlusSelectOption(${idx})" style="${sel?'border-color:rgba(255,187,51,.55);box-shadow:0 0 0 1px rgba(255,187,51,.25) inset,0 0 18px rgba(255,187,51,.14);background:linear-gradient(180deg,rgba(255,187,51,.16),rgba(255,255,255,.04));':''}"><strong>${escapeHtml(card.name)}</strong><small>${escapeHtml(card.detail)}</small><div style="margin-top:8px;font-weight:800;color:var(--text)">${cashPlusMoney(card.price)}</div><small style="margin-top:6px">${escapeHtml(card.note||'')}</small></button>`; }).join('')}</div></div>`;
+  } else if(CASHPLUS.mode==='drawerreset'){
+    $('cashplus-brief').innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Till Closeout</span></div><div class="lrx-casetitle">Sort the loose items, then inspect the drawer.</div><div class="lrx-casecopy">Every item needs the right slot. After that, decide if the drawer is balanced, short, or over.</div></div>`;
+    $('cashplus-side').innerHTML = `<div class="lrx-list"><div class="lrx-listitem"><span>Expected total</span><span>${cashPlusMoney(round.expected)}</span></div><div class="lrx-listitem"><span>Actual total</span><span>${cashPlusMoney(round.actual)}</span></div><div class="lrx-listitem"><span>Status picked</span><span>${CASHPLUS.drawerStatus ? escapeHtml(CASHPLUS.drawerStatus) : 'Waiting'}</span></div></div>`;
+    $('cashplus-main').innerHTML = `<div class="lrx-grid two"><div><div class="lrx-paneltitle" style="margin-bottom:10px">Loose items</div>${round.items.map((item,idx)=>`<div class="lrx-case" style="margin-bottom:10px"><div class="lrx-casebar"><span>Item ${idx+1}</span><span>${CASHPLUS.drawerAssignments[idx] ? escapeHtml(CASHPLUS.drawerAssignments[idx]) : 'Choose slot'}</span></div><div class="lrx-casetitle">${escapeHtml(item.label)}</div><div class="lrx-btnrow">${round.slots.map(slot=>`<button class="lrx-btn ${CASHPLUS.drawerAssignments[idx]===slot?'pri':'sec'}" onclick="cashPlusAssignDrawer(${idx},'${slot.replace(/'/g,"\'")}')">${escapeHtml(slot)}</button>`).join('')}</div></div>`).join('')}</div><div><div class="lrx-case"><div class="lrx-casebar"><span>Drawer status</span><span>Expected ${cashPlusMoney(round.expected)} / Actual ${cashPlusMoney(round.actual)}</span></div><div class="lrx-casetitle">Balanced, short, or over?</div><div class="lrx-choicegrid" style="margin-top:10px">${['balanced','short','over'].map(status=>cashPlusOptionButton(status.charAt(0).toUpperCase()+status.slice(1), CASHPLUS.drawerStatus===status, `cashPlusChooseDrawerStatus('${status}')`, status==='balanced'?'Totals match':status==='short'?'Drawer is low':'Drawer has too much')).join('')}</div></div></div></div>`;
+  }
+}
+function finishCashPlusRun(){
+  const def = CASHPLUS.def;
+  const total = CASHPLUS.rounds.length;
+  const correct = CASHPLUS.score;
+  const pct = Math.round((correct/Math.max(total,1))*100);
+  const streakOk = CASHPLUS.results.map(r=>({ok:r.correct}));
+  let streak=0,bestStreak=0; streakOk.forEach(r=>{ streak=r.ok?streak+1:0; bestStreak=Math.max(bestStreak,streak); });
+  SCORES.unshift({mode:def.scoreName, score:correct, correct:correct, total:total, streak:bestStreak, date:today()});
+  try{ saveAll && saveAll(); }catch(_e){}
+  const reviewRounds = CASHPLUS.results.map((r,idx)=>({ title:`Round ${idx+1} · ${r.title}`, meta:r.meta + ' · ' + (r.correct?'Correct':'Needs review'), ok:r.correct }));
+  showArcadeDebriefRedesign({
+    modeKey:def.scoreName.toLowerCase().replace(/[^a-z0-9]+/g,'_'),
+    modeTitle:def.scoreName,
+    header:pct>=95?'MISSION COMPLETE':pct>=80?'STRONG CASH RUN':pct>=60?'BUILDING MONEY SKILLS':'TRY ANOTHER RUN',
+    sub:`${correct} of ${total} rounds cleared in ${def.title.toLowerCase()}.`,
+    correct:correct,
+    total:total,
+    pct:pct,
+    score:correct*100,
+    streak:bestStreak,
+    scoreLabel:'Mission Score',
+    reviewRounds:reviewRounds,
+    playAgainText:'▶ REPLAY SIM',
+    replay:function(){ startCashPlus(CASHPLUS.mode); },
+    sessionLabel:pct>=90?'Arcade Clear':pct>=80?'Strong Run':pct>=60?'Skill Builder':'Training Run',
+    sessionCopy:`You finished five ${def.title.toLowerCase()} rounds in the neon checkout arcade. Review the weak spots, then jump back in for a sharper run.`,
+    pills:[`${total} rounds`, `${correct} correct`, `${bestStreak} best streak`],
+    well:[
+      correct===total ? 'You cleared every round in this run.' : `You finished all ${total} rounds without dropping the mission.`,
+      correct>=3 ? 'You built useful real-world money skills this session.' : 'You kept practicing even when the round got tricky.',
+      def.scoreName==='Receipt Decoder' ? 'Reading the right line matters as much as the math.' : def.scoreName==='Price Compare' ? 'Comparing before buying protects the budget.' : def.scoreName==='Drawer Reset' ? 'Sorting first makes till checks faster and cleaner.' : 'Exact pay is a strong customer-side skill at the register.'
+    ],
+    next:[
+      def.scoreName==='Exact Pay' ? 'Watch the remaining amount after every tap so you do not drift over.' : def.scoreName==='Receipt Decoder' ? 'Read the label beside the number before you answer.' : def.scoreName==='Price Compare' ? 'Compare size and sale format, not just the biggest sticker.' : 'Sort each loose item first, then judge the drawer status.',
+      def.scoreName==='Exact Pay' ? 'Try to make the amount with fewer pieces when you can.' : def.scoreName==='Receipt Decoder' ? 'Subtotal is before tax. Total is after tax and discounts.' : def.scoreName==='Price Compare' ? 'Equal-size products usually mean a straight price check.' : 'Expected and actual totals must match for a balanced drawer.',
+      'Replay the sim to lock in the pattern while it is still fresh.'
+    ],
+    reminder:def.scoreName==='Drawer Reset' ? 'Sort the till, check the totals, then call the status.' : def.scoreName==='Receipt Decoder' ? 'Slow down and read every receipt label.' : def.scoreName==='Price Compare' ? 'Better value is about what you get for the money.' : 'Count what you selected before you hit check.',
+    bannerCopy:'CashReady arcade complete. Replay the sim for a stronger checkout run.',
+    speech:`${def.scoreName} complete. You got ${correct} out of ${total} right.`
+  });
+}
+
+try{
+  MOD_TO_SKILL['Exact Pay']='change';
+  MOD_TO_SKILL['Receipt Decoder']='bills';
+  MOD_TO_SKILL['Price Compare']='change';
+  MOD_TO_SKILL['Drawer Reset']='change';
+}catch(_e){}
+</script>
 <style id="lr-header-popup-upgrade">
 /* ══ RETRO HEADER + POPUP UPGRADE ══ */
 .hdr{
@@ -9061,5 +10074,562 @@ document.addEventListener('DOMContentLoaded',()=>{
 }
 </style>
 
+
+
+
+<script>
+(function(){
+  if(window.showArcadeDebriefRedesign) return;
+
+  const LR_PROGRESS_KEY='lr_progress_v1';
+  const LR_PROGRESS_RANKS=[
+    {min:0,title:'Cadet'},
+    {min:100,title:'Ensign'},
+    {min:250,title:'Lieutenant Junior Grade'},
+    {min:450,title:'Lieutenant'},
+    {min:700,title:'Lieutenant Commander'},
+    {min:1000,title:'Commander'},
+    {min:1400,title:'Captain'},
+    {min:1900,title:'Admiral'}
+  ];
+  function lrModuleName(){
+    try{
+      var raw=(document.title||'').replace(/\s*[|\-].*$/,'').trim();
+      if(raw) return raw;
+    }catch(_e){}
+    try{
+      var file=(location.pathname.split('/').pop()||'').replace(/\.html$/i,'');
+      if(file) return file;
+    }catch(_e){}
+    return 'LifeReady';
+  }
+  function lrLoadProgress(){
+    try{
+      var raw=localStorage.getItem(LR_PROGRESS_KEY);
+      var data=raw?JSON.parse(raw):{};
+      if(!data || typeof data!=='object') data={};
+      if(!data.modules || typeof data.modules!=='object') data.modules={};
+      if(!data.modeBest || typeof data.modeBest!=='object') data.modeBest={};
+      if(typeof data.totalXP!=='number') data.totalXP=0;
+      if(typeof data.sessions!=='number') data.sessions=0;
+      return data;
+    }catch(_e){
+      return {totalXP:0,sessions:0,modules:{},modeBest:{}};
+    }
+  }
+  function lrSaveProgress(data){
+    try{ localStorage.setItem(LR_PROGRESS_KEY, JSON.stringify(data)); }catch(_e){}
+  }
+  function lrRankForXP(xp){
+    var current=LR_PROGRESS_RANKS[0];
+    for(var i=0;i<LR_PROGRESS_RANKS.length;i++){
+      if(Number(xp) >= LR_PROGRESS_RANKS[i].min) current=LR_PROGRESS_RANKS[i];
+    }
+    return current;
+  }
+  function lrNextRank(xp){
+    for(var i=0;i<LR_PROGRESS_RANKS.length;i++){
+      if(Number(xp) < LR_PROGRESS_RANKS[i].min) return LR_PROGRESS_RANKS[i];
+    }
+    return null;
+  }
+  function lrEarnProgress(meta){
+    meta=meta||{};
+    var data=lrLoadProgress();
+    var moduleName=meta.moduleName || lrModuleName();
+    var pct=Math.max(0, Math.min(100, Number(meta.pct)||0));
+    var hintsUsed=Math.max(0, Number(meta.hintsUsed)||0);
+    var modeKey=String(meta.modeKey||meta.modeTitle||('mode_'+Date.now()));
+    var prevRank=lrRankForXP(data.totalXP);
+    var prevBest=typeof data.modeBest[modeKey]==='number' ? data.modeBest[modeKey] : null;
+    var xp=10;
+    if(pct>=80) xp+=5;
+    if(pct===100) xp+=5;
+    if(prevBest===null) xp+=10;
+    else if(pct>prevBest) xp+=5;
+    if(hintsUsed===0) xp+=2;
+    if(!data.modules[moduleName]) data.modules[moduleName]={sessions:0,mastery:0,bestPct:0,lastMode:'',lastPlayed:0};
+    var mod=data.modules[moduleName];
+    var priorSessions=Math.max(0, Number(mod.sessions)||0);
+    var priorMastery=Math.max(0, Math.min(100, Number(mod.mastery)||0));
+    mod.sessions=priorSessions+1;
+    mod.mastery=Math.max(0, Math.min(100, Math.round(((priorMastery*priorSessions)+pct)/Math.max(1, mod.sessions))));
+    mod.bestPct=Math.max(Number(mod.bestPct)||0, pct);
+    mod.lastMode=String(meta.modeTitle||modeKey);
+    mod.lastPlayed=Date.now();
+    data.sessions = (Number(data.sessions)||0) + 1;
+    data.totalXP = (Number(data.totalXP)||0) + xp;
+    data.modeBest[modeKey] = prevBest===null ? pct : Math.max(prevBest, pct);
+    data.lastEarned={xp:xp,module:moduleName,mode:String(meta.modeTitle||modeKey),at:Date.now(),pct:pct};
+    var currentRank=lrRankForXP(data.totalXP);
+    var next=lrNextRank(data.totalXP);
+    data.currentRank=currentRank.title;
+    lrSaveProgress(data);
+    return {
+      xp:xp,
+      totalXP:data.totalXP,
+      sessions:data.sessions,
+      moduleMastery:mod.mastery,
+      bestPct:mod.bestPct,
+      improved:prevBest!==null && pct>prevBest,
+      currentRank:currentRank.title,
+      nextRank:next?next.title:'',
+      remainingXP:next?Math.max(0, next.min-data.totalXP):0,
+      promoted:currentRank.title!==prevRank.title,
+      previousRank:prevRank.title
+    };
+  }
+
+
+  function esc(v){
+    return String(v==null?'':v)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+  function listHtml(items, bullet){
+    items=(items||[]).filter(Boolean);
+    return '<div class="rr-coach-list">'+items.map(function(line){
+      return '<div class="rr-coach-line"><span class="rr-bullet">'+esc(bullet||'▸')+'</span><div>'+esc(line)+'</div></div>';
+    }).join('')+'</div>';
+  }
+  function longestStreak(rounds){
+    var best=0, run=0;
+    (rounds||[]).forEach(function(r){
+      if(r && r.ok){ run += 1; if(run>best) best=run; }
+      else run = 0;
+    });
+    return best;
+  }
+  window.showArcadeDebriefRedesign = function(opts){
+    opts=opts||{};
+    try{
+      var correct = Number(opts.correct)||0;
+      var total = Math.max(Number(opts.total)||0, 1);
+      var pct = Math.max(0, Math.min(100, Math.round(opts.pct!=null ? Number(opts.pct) : (correct/total*100))));
+      var score = opts.score!=null ? Number(opts.score) : Math.round(pct*10);
+      var streak = opts.streak!=null ? Number(opts.streak) : longestStreak(opts.reviewRounds||[]);
+      var modeKey = opts.modeKey || 'arcade_custom';
+      var modeTitle = opts.modeTitle || 'Arcade Mission';
+      var now = Date.now();
+      var elapsedSec = Math.max(0, Number(opts.elapsedSec)||0);
+      try{
+        if(typeof MODE_TITLES !== 'undefined' && MODE_TITLES){ MODE_TITLES[modeKey]=modeTitle; }
+        else { window.MODE_TITLES = window.MODE_TITLES || {}; window.MODE_TITLES[modeKey]=modeTitle; }
+      }catch(_e){ window.MODE_TITLES = window.MODE_TITLES || {}; window.MODE_TITLES[modeKey]=modeTitle; }
+      var st={mode:modeKey,score:score,correct:correct,total:total,bestStreak:streak,hintsUsed:Number(opts.hintsUsed)||0,startTime:now-(elapsedSec*1000),shiftBadges:[]};
+      try{ ST = st; }catch(_e){}
+      window.ST = st;
+      window.__lrReviewRounds = Array.isArray(opts.reviewRounds) ? opts.reviewRounds : [];
+      try{
+        var dateText = (typeof today==='function') ? today() : new Date().toLocaleDateString();
+        window.SCORES = Array.isArray(window.SCORES) ? window.SCORES : [];
+        window.SCORES.unshift({mode:modeTitle,score:score,correct:correct,total:total,streak:streak,date:dateText,time:Math.round(elapsedSec)});
+        window.SCORES = window.SCORES.slice(0,30);
+        try{ SCORES = window.SCORES; }catch(_e){}
+      }catch(_e){}
+      var progress = lrEarnProgress({modeKey:modeKey, modeTitle:modeTitle, pct:pct, hintsUsed:Number(opts.hintsUsed)||0, moduleName:lrModuleName()});
+      var progressPills = Array.isArray(opts.pills) ? opts.pills.slice() : [];
+      progressPills.unshift('Rank ' + progress.currentRank);
+      progressPills.unshift('+' + progress.xp + ' XP');
+      progressPills.push(progress.nextRank ? (progress.promoted ? ('Promoted to ' + progress.currentRank) : (progress.remainingXP + ' XP to ' + progress.nextRank)) : 'Command rank maxed');
+      var promotionBanner = progress.promoted ? ('<div style="background:linear-gradient(135deg,rgba(255,179,71,.18),rgba(255,255,255,.05));border:2px solid rgba(255,179,71,.48);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--amber);letter-spacing:2px;margin-bottom:4px">PROMOTION ACHIEVED</div><div style="font-family:var(--font-display);font-size:1.12rem;color:var(--text)">' + esc(progress.currentRank) + '</div><div style="font-size:.76rem;color:var(--text3);margin-top:4px">Training XP updated. Return to the holodeck when you are ready for the next sim.</div></div>') : '';
+      var shareLine = modeTitle + ' · ' + correct + '/' + total + ' correct · ' + pct + '%';
+      window._shareText = 'I played ' + modeTitle + ' in ' + document.title.replace(/\s*[-|].*$/,'') + '!\n' + shareLine;
+      if(typeof go==='function') go('results');
+      setTimeout(function(){
+        var titleEl = document.getElementById('r-title'); if(titleEl) titleEl.textContent='';
+        var subEl = document.getElementById('r-sub'); if(subEl) subEl.textContent='';
+        var pb = document.getElementById('pb-banner'); if(pb){ pb.textContent=''; pb.style.display='none'; }
+        if(typeof window.refreshResultsRedesign==='function') window.refreshResultsRedesign();
+        if(titleEl) titleEl.textContent = opts.header || (modeTitle.toUpperCase() + ' COMPLETE');
+        if(subEl) subEl.textContent = opts.sub || ('You cleared ' + correct + ' of ' + total + ' checkpoints.');
+        var scoreEl=document.getElementById('r-score'); if(scoreEl) scoreEl.textContent=String(score);
+        var accEl=document.getElementById('r-acc'); if(accEl) accEl.textContent=pct+'%';
+        var corrEl=document.getElementById('r-correct'); if(corrEl) corrEl.textContent=correct+'/'+total;
+        var streakEl=document.getElementById('r-streak'); if(streakEl) streakEl.textContent=String(streak);
+        var timerBox=document.getElementById('r-timer-box'); if(timerBox) timerBox.style.display=elapsedSec>0?'':'none';
+        var timerEl=document.getElementById('r-timer'); if(timerEl && elapsedSec>0 && typeof fmtElapsed==='function') timerEl.textContent=fmtElapsed(elapsedSec);
+        var scoreLabelEl = scoreEl && scoreEl.parentElement ? scoreEl.parentElement.querySelector('.rsl') : null;
+        if(scoreLabelEl && opts.scoreLabel) scoreLabelEl.textContent = opts.scoreLabel;
+        var sessionHost=document.getElementById('rr-session-card');
+        if(sessionHost){
+          var pills=(progressPills||[]).filter(Boolean).map(function(line){ return '<div class="rr-mini-pill">'+esc(line)+'</div>'; }).join('');
+          sessionHost.innerHTML = '<div class="rr-session-head"><div class="rr-session-title">'+esc(modeTitle)+' Complete</div><div class="rr-session-badge">'+esc(opts.sessionLabel || (pct>=90?'Arcade Clear':pct>=75?'Strong Run':'Training Run'))+'</div></div><div class="rr-session-copy">'+esc(opts.sessionCopy || ('Retro training complete. Review the run, then jump back into the holodeck for another rep.'))+'</div>'+(pills?('<div class="rr-mini-pills">'+pills+'</div>'):'');
+        }
+        var well=document.getElementById('rr-well-card'); if(well && opts.well) well.innerHTML=listHtml(opts.well,'▸');
+        var next=document.getElementById('rr-next-card') || document.getElementById('wtw-card'); if(next && opts.next) next.innerHTML=listHtml(opts.next,'→');
+        var reminder=document.getElementById('rr-reminder-card'); if(reminder && opts.reminder) reminder.innerHTML='<div class="rr-reminder">'+esc(opts.reminder)+'</div>';
+        var roundsBtn=document.getElementById('rounds-tab-btn'); if(roundsBtn) roundsBtn.textContent='ROUND REVIEW (' + ((window.__lrReviewRounds||[]).length) + ')';
+        var rp=document.getElementById('r-play-again');
+        if(rp){
+          rp.textContent = opts.playAgainText || '▶ PLAY AGAIN';
+          if(typeof opts.replay === 'function') rp.onclick = opts.replay;
+        }
+        var shareBtn=document.getElementById('r-share'); if(shareBtn) shareBtn.style.display='';
+        var coachBtn=document.getElementById('r-coach-copy'); if(coachBtn) coachBtn.style.display='';
+        var eoc=document.getElementById('eoc-card-wrap');
+        if(eoc){
+          eoc.innerHTML = promotionBanner || opts.bannerHtml || (pct>=80 ? '<div style="background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.04));border:2px solid rgba(255,255,255,.16);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">ARCADE CLEAR</div><div style="font-family:var(--font-display);font-size:1.15rem;color:var(--text)">'+esc(modeTitle)+'</div><div style="font-size:.76rem;color:var(--text3);margin-top:4px">'+esc(opts.bannerCopy || 'Replay it for a cleaner, calmer run.')+'</div></div>' : '');
+        }
+        if(typeof updateHomeUI==='function') updateHomeUI();
+        if(typeof saveAll==='function') try{ saveAll(); }catch(_e){}
+        window.scrollTo && window.scrollTo(0,0);
+        var pageWrap=document.getElementById('page-wrap'); if(pageWrap) pageWrap.scrollTop=0;
+        if(typeof confetti==='function' && pct>=70 && !(window.CFG&&CFG.noMotion)) try{ confetti(); }catch(_e){}
+        if(typeof chime==='function') try{ chime(); }catch(_e){}
+        if(opts.speech && typeof say==='function') setTimeout(function(){ say(opts.speech); }, 120);
+      }, 60);
+    }catch(err){ console.warn('Arcade debrief failed', err); }
+  };
+})();
+</script>
+
+<script id="casharcade-polyfills">
+window.escapeHtml = window.escapeHtml || function(s){
+  return String(s==null?'':s).replace(/[&<>\"']/g,function(ch){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'})[ch];
+  });
+};
+</script>
+<script id="casharcade-rebuild">
+const CASHARCADE_DEFS = (typeof window !== 'undefined' && window.CASHPLUS_DEFS) ? window.CASHPLUS_DEFS : CASHPLUS_DEFS;
+let CASHARCADE = {mode:null, def:null, rounds:[], round:0, score:0, results:[], locked:false, selectedOption:null, selectedTokens:new Set(), drawerAssignments:{}, drawerStatus:null};
+function cashArcMoney(c){ return (typeof storeMoney==='function') ? storeMoney(c) : ('$'+(c/100).toFixed(2)); }
+function cashArcCurrentRound(){ return CASHARCADE.rounds[CASHARCADE.round]; }
+function ensureCashArcadeShell(){
+  const main=document.querySelector('main');
+  if(!main) return false;
+  let scr=document.getElementById('scr-casharcade');
+  if(!scr){
+    scr=document.createElement('div');
+    scr.className='scr';
+    scr.id='scr-casharcade';
+    main.appendChild(scr);
+  }
+  scr.innerHTML = `
+  <div class="gtop">
+    <button class="back" onclick="go('home')">‹ BACK</button>
+    <div class="gmode" id="casharc-topmode">💳 CASHREADY ARCADE</div>
+  </div>
+  <div class="lrx-shell" style="--mode-accent:var(--amber)">
+    <div class="lrx-hero">
+      <div class="lrx-kicker" id="casharc-kicker">Arcade Sim</div>
+      <div class="lrx-title" id="casharc-title">CashReady Arcade</div>
+      <div class="lrx-sub" id="casharc-sub">Practice smart money moves with short interactive rounds.</div>
+      <div class="lrx-chiprow" id="casharc-chips"></div>
+    </div>
+    <div id="casharc-live">
+      <div class="lrx-grid two">
+        <section class="lrx-panel">
+          <div class="lrx-panelhead">
+            <div>
+              <div class="lrx-paneltitle">Mission Brief</div>
+              <div class="lrx-panelsub" id="casharc-briefsub">Five short rounds. Learn by doing.</div>
+            </div>
+            <span class="lrx-tag" id="casharc-round">Round 1 / 5</span>
+          </div>
+          <div id="casharc-brief"></div>
+          <div class="lrx-statrow">
+            <div class="lrx-stat"><span class="lrx-statlabel">Score</span><span class="lrx-statvalue" id="casharc-score">0 / 5</span></div>
+            <div class="lrx-stat"><span class="lrx-statlabel">Current Run</span><span class="lrx-statvalue" id="casharc-progress">1 / 5</span></div>
+            <div class="lrx-stat"><span class="lrx-statlabel">Status</span><span class="lrx-statvalue" id="casharc-status">Ready</span></div>
+          </div>
+        </section>
+        <section class="lrx-panel">
+          <div class="lrx-panelhead">
+            <div>
+              <div class="lrx-paneltitle">Console</div>
+              <div class="lrx-panelsub" id="casharc-console-sub">Use the board below to solve the round.</div>
+            </div>
+            <span class="lrx-tag" id="casharc-console-tag">Interactive</span>
+          </div>
+          <div id="casharc-side"></div>
+          <div id="casharc-feedbackbox" style="display:none;margin-top:12px"></div>
+          <div class="lrx-btnrow" style="margin-top:12px">
+            <button class="lrx-btn pri" id="casharc-check" onclick="cashArcCheck()">Check</button>
+            <button class="lrx-btn sec" id="casharc-resetbtn" onclick="cashArcResetChoices()">Reset</button>
+            <button class="lrx-btn sec" onclick="cashArcRepeatBriefing()">Repeat Briefing</button>
+          </div>
+        </section>
+      </div>
+      <section class="lrx-panel">
+        <div class="lrx-panelhead">
+          <div>
+            <div class="lrx-paneltitle">Interactive Board</div>
+            <div class="lrx-panelsub" id="casharc-board-sub">Use the holodeck tools to solve the round.</div>
+          </div>
+          <span class="lrx-tag" id="casharc-board-tag">Tap to play</span>
+        </div>
+        <div id="casharc-main"></div>
+      </section>
+    </div>
+    <div id="casharc-result" style="display:none"></div>
+  </div>`;
+  return true;
+}
+function runCashArcadeMode(mode){
+  const def = CASHARCADE_DEFS[mode];
+  if(!def) throw new Error('Unknown cash arcade mode: '+mode);
+  if(!ensureCashArcadeShell()) throw new Error('Cash arcade screen could not be prepared.');
+  const shuffler = (typeof shuf==='function') ? shuf : (arr=>[...arr].sort(()=>Math.random()-.5));
+  CASHARCADE = {mode:mode, def:def, rounds:shuffler(def.rounds).slice(0,5).map(r=>JSON.parse(JSON.stringify(r))), round:0, score:0, results:[], locked:false, selectedOption:null, selectedTokens:new Set(), drawerAssignments:{}, drawerStatus:null};
+  go('casharcade');
+  cashArcRender();
+  setTimeout(cashArcRepeatBriefing, 120);
+}
+var startCashArcade = function(mode){ return runCashArcadeMode(mode); };
+function launchCashArcade(mode){ return runCashArcadeMode(mode); }
+startCashPlus = function(mode){ return runCashArcadeMode(mode); };
+window.startCashArcade = startCashArcade;
+window.startCashPlus = startCashPlus;
+function cashArcRoundReady(){
+  const round = cashArcCurrentRound();
+  if(!round) return false;
+  if(CASHARCADE.mode==='exactpay') return CASHARCADE.selectedTokens.size>0;
+  if(CASHARCADE.mode==='receiptdecoder' || CASHARCADE.mode==='pricecompare') return CASHARCADE.selectedOption !== null;
+  if(CASHARCADE.mode==='drawerreset') return Object.keys(CASHARCADE.drawerAssignments).length===round.items.length && !!CASHARCADE.drawerStatus;
+  return false;
+}
+function cashArcResetChoices(){
+  if(CASHARCADE.locked) return;
+  CASHARCADE.selectedOption = null;
+  CASHARCADE.selectedTokens = new Set();
+  CASHARCADE.drawerAssignments = {};
+  CASHARCADE.drawerStatus = null;
+  cashArcRender();
+  try{ beep(320,70); }catch(_e){}
+}
+function cashArcRepeatBriefing(){
+  const round = cashArcCurrentRound(); if(!round) return;
+  let line='';
+  if(CASHARCADE.mode==='exactpay') line = `${round.title}. ${round.prompt} Total ${cashArcMoney(round.price)}.`;
+  else if(CASHARCADE.mode==='receiptdecoder') line = `${round.title}. ${round.question}`;
+  else if(CASHARCADE.mode==='pricecompare') line = `${round.title}. ${round.prompt}`;
+  else if(CASHARCADE.mode==='drawerreset') line = `${round.title}. Sort the loose items, then decide if the drawer is balanced, short, or over.`;
+  try{ say(line); }catch(_e){}
+}
+function cashArcToggleToken(idx){ if(CASHARCADE.locked) return; if(CASHARCADE.selectedTokens.has(idx)) CASHARCADE.selectedTokens.delete(idx); else CASHARCADE.selectedTokens.add(idx); cashArcRender(); try{ beep(440,55); }catch(_e){} }
+function cashArcSelectOption(idx){ if(CASHARCADE.locked) return; CASHARCADE.selectedOption=idx; cashArcRender(); try{ beep(480,55); }catch(_e){} }
+function cashArcAssignDrawer(idx, slot){ if(CASHARCADE.locked) return; CASHARCADE.drawerAssignments[idx]=slot; cashArcRender(); try{ beep(500,55); }catch(_e){} }
+function cashArcChooseDrawerStatus(status){ if(CASHARCADE.locked) return; CASHARCADE.drawerStatus=status; cashArcRender(); try{ beep(520,55); }catch(_e){} }
+function cashArcBestExact(values, target){ let best=null; const n=values.length; function walk(i,sum,picks){ if(sum===target){ if(!best || picks.length<best.length) best=picks.slice(); return; } if(i>=n || sum>target) return; if(best && picks.length>=best.length) return; picks.push(i); walk(i+1,sum+values[i],picks); picks.pop(); walk(i+1,sum,picks); } walk(0,0,[]); return best||[]; }
+function cashArcReceiptTotals(round){ const subtotal=round.items.reduce((s,it)=>s+it[1],0); const discount=round.discount||0; const tax=round.tax||0; const total=subtotal-discount+tax; const change=(round.paid||0)-total; return {subtotal, discount, tax, total, change}; }
+function cashArcOptionButton(label,isSel,onclick,sub){ return `<button class="lrx-choice" onclick="${onclick}" style="${isSel?'border-color:rgba(255,187,51,.55);box-shadow:0 0 0 1px rgba(255,187,51,.25) inset,0 0 18px rgba(255,187,51,.14);background:linear-gradient(180deg,rgba(255,187,51,.16),rgba(255,255,255,.04));':''}"><strong>${label}</strong>${sub?`<small>${sub}</small>`:''}</button>`; }
+function cashArcCheck(){
+  if(CASHARCADE.locked){ cashArcAdvance(); return; }
+  if(!cashArcRoundReady()) return;
+  const round = cashArcCurrentRound();
+  let result = {correct:false, title:round.title, meta:'', message:'', explain:'', speech:'', extra:{}};
+  if(CASHARCADE.mode==='exactpay'){
+    const chosen=[...CASHARCADE.selectedTokens].sort((a,b)=>a-b).map(i=>round.wallet[i]);
+    const total=chosen.reduce((s,v)=>s+v,0);
+    const bestIdxs=cashArcBestExact(round.wallet, round.price);
+    const bestValues=bestIdxs.map(i=>round.wallet[i]);
+    const exact = total===round.price;
+    result.correct=exact;
+    result.meta = `Selected ${cashPlusSummarizeTokens(chosen)} · Total ${cashArcMoney(total)}`;
+    if(exact){
+      const fewest=chosen.length===bestValues.length;
+      result.message=fewest?'Correct. Exact pay with a clean wallet move.':'Correct. You paid the exact amount.';
+      result.explain=fewest?'That was the exact amount using the fewest pieces available.':('A simpler exact pay was '+cashPlusSummarizeTokens(bestValues)+'.');
+      result.speech='Correct. Exact pay.';
+    } else {
+      const diff=total-round.price;
+      result.message=diff>0?'Not quite. That payment was too high.':'Not quite. That payment was too low.';
+      result.explain=(diff>0?('You went over by '+cashArcMoney(diff)+'. '):('You were short by '+cashArcMoney(Math.abs(diff))+'. ')) + 'One exact pay option was ' + cashPlusSummarizeTokens(bestValues)+'.';
+      result.speech=diff>0?'Not quite. You paid too much.':'Not quite. You were short.';
+    }
+  } else if(CASHARCADE.mode==='receiptdecoder'){
+    const choice=round.options[CASHARCADE.selectedOption];
+    result.correct = choice===round.answer;
+    result.meta = `Question: ${round.question}`;
+    result.message = result.correct ? 'Correct. You read the right line on the receipt.' : 'Not quite. Check the label on the receipt again.';
+    result.explain = round.explain;
+    result.speech = result.correct ? 'Correct.' : 'Not quite.';
+  } else if(CASHARCADE.mode==='pricecompare'){
+    const picked=round.cards[CASHARCADE.selectedOption];
+    result.correct=CASHARCADE.selectedOption===round.answer;
+    result.meta=`Picked ${picked.name} for ${cashArcMoney(picked.price)}`;
+    result.message=result.correct?'Correct. That was the smarter buy.':'Not quite. That was not the strongest value here.';
+    result.explain=round.explain;
+    result.speech=result.correct?'Correct. Smarter buy.':'Not quite.';
+  } else if(CASHARCADE.mode==='drawerreset'){
+    const wrongItems=round.items.filter((it,idx)=>CASHARCADE.drawerAssignments[idx]!==it.slot);
+    const statusRight=CASHARCADE.drawerStatus===round.status;
+    result.correct = wrongItems.length===0 && statusRight;
+    result.meta = `Sorted ${round.items.length-wrongItems.length}/${round.items.length} correctly · Status ${CASHARCADE.drawerStatus}`;
+    if(result.correct){
+      result.message='Correct. The till is sorted and the status call is right.';
+      result.explain=round.explain;
+      result.speech='Correct. Drawer reset complete.';
+    } else {
+      const bits=[];
+      if(wrongItems.length) bits.push(`${wrongItems.length} item${wrongItems.length===1?' was':'s were'} in the wrong slot`);
+      if(!statusRight) bits.push(`the drawer is ${round.status}, not ${CASHARCADE.drawerStatus}`);
+      result.message='Not quite. The closeout still needs work.';
+      result.explain=bits.join(' and ') + '. ' + round.explain;
+      result.speech='Not quite. Recheck the drawer.';
+    }
+  }
+  cashArcResolve(result);
+}
+function cashArcResolve(result){
+  CASHARCADE.locked=true;
+  if(result.correct) CASHARCADE.score += 1;
+  CASHARCADE.results.push(result);
+  const box=document.getElementById('casharc-feedbackbox');
+  if(box){ box.style.display='block'; box.innerHTML=`<div class="lrx-alert ${result.correct?'good':'warn'}"><div class="lrx-decklabel">${result.correct?'Round Clear':'Round Review'}</div><div class="lrx-copy" style="margin:0;text-align:left"><strong>${result.message}</strong><br>${result.explain}</div></div>`; }
+  const checkBtn=document.getElementById('casharc-check');
+  const resetBtn=document.getElementById('casharc-resetbtn');
+  if(checkBtn) checkBtn.textContent = (CASHARCADE.round >= CASHARCADE.rounds.length-1) ? 'See Results' : 'Next Round';
+  if(resetBtn) resetBtn.style.display='none';
+  const statusEl=document.getElementById('casharc-status');
+  if(statusEl) statusEl.textContent = result.correct ? 'Round Clear' : 'Review';
+  try{ (result.correct ? chime : buzz)(); }catch(_e){}
+  try{ say((result.speech||'') + ' ' + (result.explain||'')); }catch(_e){}
+  cashArcRender();
+}
+function cashArcAdvance(){
+  if(!CASHARCADE.locked) return;
+  CASHARCADE.round += 1;
+  if(CASHARCADE.round >= CASHARCADE.rounds.length){ finishCashArcadeRun(); return; }
+  CASHARCADE.locked=false; CASHARCADE.selectedOption=null; CASHARCADE.selectedTokens=new Set(); CASHARCADE.drawerAssignments={}; CASHARCADE.drawerStatus=null; cashArcRender(); setTimeout(cashArcRepeatBriefing,120);
+}
+function cashArcRender(){
+  const def=CASHARCADE.def, round=cashArcCurrentRound();
+  if(!def || !round) return;
+  const set=(id,val)=>{ const el=document.getElementById(id); if(el!=null) el.textContent=val; return el; };
+  set('casharc-topmode', `${def.icon} ${def.title}`);
+  set('casharc-kicker', def.kicker);
+  set('casharc-title', def.title);
+  set('casharc-sub', def.sub);
+  const chips=document.getElementById('casharc-chips'); if(chips) chips.innerHTML=(def.chips||[]).map(v=>`<span class="lrx-chip">${v}</span>`).join('');
+  set('casharc-briefsub', def.sub);
+  set('casharc-console-sub', def.board);
+  set('casharc-console-tag', def.consoleTag || 'Interactive');
+  set('casharc-board-sub', def.board);
+  set('casharc-board-tag', CASHARCADE.locked ? 'Round Reviewed' : 'Tap to play');
+  set('casharc-round', `Round ${CASHARCADE.round+1} / ${CASHARCADE.rounds.length}`);
+  set('casharc-progress', `${CASHARCADE.round+1} / ${CASHARCADE.rounds.length}`);
+  set('casharc-score', `${CASHARCADE.score} / ${CASHARCADE.rounds.length}`);
+  const last=CASHARCADE.results[CASHARCADE.results.length-1];
+  set('casharc-status', CASHARCADE.locked ? ((last && last.correct) ? 'Round Clear' : 'Review') : 'Ready');
+  const live=document.getElementById('casharc-live'); if(live) live.style.display='';
+  const result=document.getElementById('casharc-result'); if(result) result.style.display='none';
+  const feedback=document.getElementById('casharc-feedbackbox'); if(feedback) feedback.style.display = CASHARCADE.locked ? 'block' : 'none';
+  const resetBtn=document.getElementById('casharc-resetbtn'); if(resetBtn) resetBtn.style.display = CASHARCADE.locked ? 'none' : '';
+  const checkBtn=document.getElementById('casharc-check'); if(checkBtn) checkBtn.textContent = CASHARCADE.locked ? ((CASHARCADE.round >= CASHARCADE.rounds.length-1) ? 'See Results' : 'Next Round') : (CASHARCADE.mode==='exactpay' ? 'Check Payment' : CASHARCADE.mode==='drawerreset' ? 'Inspect Drawer' : 'Submit Answer');
+  const brief=document.getElementById('casharc-brief');
+  const side=document.getElementById('casharc-side');
+  const main=document.getElementById('casharc-main');
+  if(CASHARCADE.mode==='exactpay'){
+    const selectedValues=[...CASHARCADE.selectedTokens].sort((a,b)=>a-b).map(i=>round.wallet[i]);
+    const selectedTotal=selectedValues.reduce((s,v)=>s+v,0);
+    const remain=round.price-selectedTotal;
+    if(brief) brief.innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Price ${cashArcMoney(round.price)}</span></div><div class="lrx-casetitle">${escapeHtml(round.prompt)}</div><div class="lrx-casecopy">Tap pieces from the wallet until the total matches the price exactly.</div></div>`;
+    if(side) side.innerHTML = `<div class="lrx-alert ${remain===0?'good':remain<0?'bad':'warn'}"><div class="lrx-decklabel">Wallet Readout</div><div class="lrx-copy" style="margin:0;text-align:left">Selected: <strong>${selectedValues.length ? escapeHtml(cashPlusSummarizeTokens(selectedValues)) : 'Nothing yet'}</strong><br>Total: <strong>${cashArcMoney(selectedTotal)}</strong><br>${remain===0?'Exact amount locked in.':remain>0?('Still need <strong>'+cashArcMoney(remain)+'</strong>.'):('Over by <strong>'+cashArcMoney(Math.abs(remain))+'</strong>.')}</div></div>`;
+    if(main) main.innerHTML = `<div class="lrx-cardgrid">${round.wallet.map((value,idx)=>{ const sel=CASHARCADE.selectedTokens.has(idx); return `<button class="lrx-itemcard" onclick="cashArcToggleToken(${idx})" style="${sel?'border-color:rgba(255,187,51,.56);box-shadow:0 0 0 1px rgba(255,187,51,.25) inset,0 0 18px rgba(255,187,51,.14);background:linear-gradient(180deg,rgba(255,187,51,.16),rgba(255,255,255,.04));':''}"><div class="lrx-itemicon">${value>=100?'💵':'🪙'}</div><div class="lrx-itemtitle">${cashPlusDenomLabel(value)}</div><div class="lrx-itemsub">${sel?'Selected':'Tap to add'}</div><div class="lrx-tag">Wallet piece ${idx+1}</div></button>`; }).join('')}</div>`;
+  } else if(CASHARCADE.mode==='receiptdecoder'){
+    const t=cashArcReceiptTotals(round);
+    if(brief) brief.innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Receipt Mission</span></div><div class="lrx-casetitle">${escapeHtml(round.question)}</div><div class="lrx-casecopy">Read the receipt carefully. Some numbers are subtotal, some are total, and some are change.</div></div>`;
+    if(side) side.innerHTML = `<div class="lrx-list"><div class="lrx-listitem"><span>Subtotal</span><span>${cashArcMoney(t.subtotal)}</span></div><div class="lrx-listitem"><span>Discount</span><span>${cashArcMoney(t.discount)}</span></div><div class="lrx-listitem"><span>Tax</span><span>${cashArcMoney(t.tax)}</span></div><div class="lrx-listitem"><span>Paid</span><span>${cashArcMoney(round.paid)}</span></div></div>`;
+    if(main) main.innerHTML = `<div class="lrx-grid two"><div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Receipt</span></div><div class="lrx-casebody" style="font-family:var(--font-mono)">${round.items.map(it=>`<div style="display:flex;justify-content:space-between;gap:10px"><span>${escapeHtml(it[0])}</span><span>${cashArcMoney(it[1])}</span></div>`).join('')}<div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between"><span>Subtotal</span><span>${cashArcMoney(t.subtotal)}</span></div><div style="display:flex;justify-content:space-between"><span>Discount</span><span>-${cashArcMoney(t.discount)}</span></div><div style="display:flex;justify-content:space-between"><span>Tax</span><span>${cashArcMoney(t.tax)}</span></div><div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between;font-weight:800;color:var(--text)"><span>Total</span><span>${cashArcMoney(t.total)}</span></div><div style="display:flex;justify-content:space-between"><span>Paid</span><span>${cashArcMoney(round.paid)}</span></div><div style="display:flex;justify-content:space-between"><span>Change</span><span>${cashArcMoney(t.change)}</span></div></div></div><div><div class="lrx-paneltitle" style="margin-bottom:10px">Choose the best answer</div><div class="lrx-choicegrid">${round.options.map((opt,idx)=>cashArcOptionButton(cashArcMoney(opt), CASHARCADE.selectedOption===idx, `cashArcSelectOption(${idx})`, idx===CASHARCADE.selectedOption?'Selected':'Tap choice')).join('')}</div></div></div>`;
+  } else if(CASHARCADE.mode==='pricecompare'){
+    if(brief) brief.innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Deal Check</span></div><div class="lrx-casetitle">${escapeHtml(round.prompt)}</div><div class="lrx-casecopy">Compare the size, pack, or sale style before you buy. The flashy sign is not always the better choice.</div></div>`;
+    if(side) side.innerHTML = `<div class="lrx-alert warn"><div class="lrx-decklabel">Value Tip</div><div class="lrx-copy" style="margin:0;text-align:left">Look at how much you get, not just the big sale words. Same-size products should make you compare price first.</div></div>`;
+    if(main) main.innerHTML = `<div><div class="lrx-paneltitle" style="margin-bottom:10px">Pick the smarter buy</div><div class="lrx-choicegrid" style="grid-template-columns:repeat(${Math.min(3, round.cards.length)},minmax(0,1fr))">${round.cards.map((card,idx)=>{ const sel=CASHARCADE.selectedOption===idx; return `<button class="lrx-choice" onclick="cashArcSelectOption(${idx})" style="${sel?'border-color:rgba(255,187,51,.55);box-shadow:0 0 0 1px rgba(255,187,51,.25) inset,0 0 18px rgba(255,187,51,.14);background:linear-gradient(180deg,rgba(255,187,51,.16),rgba(255,255,255,.04));':''}"><strong>${escapeHtml(card.name)}</strong><small>${escapeHtml(card.detail)}</small><div style="margin-top:8px;font-weight:800;color:var(--text)">${cashArcMoney(card.price)}</div><small style="margin-top:6px">${escapeHtml(card.note||'')}</small></button>`; }).join('')}</div></div>`;
+  } else if(CASHARCADE.mode==='drawerreset'){
+    if(brief) brief.innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Till Closeout</span></div><div class="lrx-casetitle">Sort the loose items, then inspect the drawer.</div><div class="lrx-casecopy">Every item needs the right slot. After that, decide if the drawer is balanced, short, or over.</div></div>`;
+    if(side) side.innerHTML = `<div class="lrx-list"><div class="lrx-listitem"><span>Expected total</span><span>${cashArcMoney(round.expected)}</span></div><div class="lrx-listitem"><span>Actual total</span><span>${cashArcMoney(round.actual)}</span></div><div class="lrx-listitem"><span>Status picked</span><span>${CASHARCADE.drawerStatus ? escapeHtml(CASHARCADE.drawerStatus) : 'Waiting'}</span></div></div>`;
+    if(main) main.innerHTML = `<div class="lrx-grid two"><div><div class="lrx-paneltitle" style="margin-bottom:10px">Loose items</div>${round.items.map((item,idx)=>`<div class="lrx-case" style="margin-bottom:10px"><div class="lrx-casebar"><span>Item ${idx+1}</span><span>${CASHARCADE.drawerAssignments[idx] ? escapeHtml(CASHARCADE.drawerAssignments[idx]) : 'Choose slot'}</span></div><div class="lrx-casetitle">${escapeHtml(item.label)}</div><div class="lrx-btnrow">${round.slots.map(slot=>`<button class="lrx-btn ${CASHARCADE.drawerAssignments[idx]===slot?'pri':'sec'}" onclick='cashArcAssignDrawer(${idx}, ${JSON.stringify(slot)})'>${escapeHtml(slot)}</button>`).join('')}</div></div>`).join('')}</div><div><div class="lrx-case"><div class="lrx-casebar"><span>Drawer status</span><span>Expected ${cashArcMoney(round.expected)} / Actual ${cashArcMoney(round.actual)}</span></div><div class="lrx-casetitle">Balanced, short, or over?</div><div class="lrx-choicegrid" style="margin-top:10px">${['balanced','short','over'].map(status=>cashArcOptionButton(status.charAt(0).toUpperCase()+status.slice(1), CASHARCADE.drawerStatus===status, `cashArcChooseDrawerStatus('${status}')`, status==='balanced'?'Totals match':status==='short'?'Drawer is low':'Drawer has too much')).join('')}</div></div></div></div>`;
+  }
+}
+function finishCashArcadeRun(){
+  const def=CASHARCADE.def; const total=CASHARCADE.rounds.length||1; const correct=CASHARCADE.score; const pct=Math.round((correct/Math.max(total,1))*100);
+  let streak=0,bestStreak=0; (CASHARCADE.results||[]).forEach(r=>{ streak=r.correct?streak+1:0; bestStreak=Math.max(bestStreak,streak); });
+  try{ SCORES.unshift({mode:def.scoreName, score:correct, correct:correct, total:total, streak:bestStreak, date:today()}); }catch(_e){}
+  try{ if(typeof saveAll==='function') saveAll(); }catch(_e){}
+  const reviewRounds = (CASHARCADE.results||[]).map((r,idx)=>({ title:`Round ${idx+1} · ${r.title}`, meta:(r.meta||'') + ' · ' + (r.correct?'Correct':'Needs review'), ok:r.correct }));
+  showArcadeDebriefRedesign({
+    modeKey:def.scoreName.toLowerCase().replace(/[^a-z0-9]+/g,'_'), modeTitle:def.scoreName, header:pct>=95?'MISSION COMPLETE':pct>=80?'STRONG CASH RUN':pct>=60?'BUILDING MONEY SKILLS':'TRY ANOTHER RUN', sub:`${correct} of ${total} rounds cleared in ${def.title.toLowerCase()}.`, correct,total,pct,score:correct*100,streak:bestStreak, scoreLabel:'Mission Score', reviewRounds:reviewRounds, playAgainText:'▶ REPLAY SIM', replay:function(){ startCashArcade(CASHARCADE.mode); }, sessionLabel:pct>=90?'Arcade Clear':pct>=80?'Strong Run':pct>=60?'Skill Builder':'Training Run', sessionCopy:`You finished five ${def.title.toLowerCase()} rounds in the neon checkout arcade. Review the weak spots, then jump back in for a sharper run.`, pills:[`${total} rounds`, `${correct} correct`, `${bestStreak} best streak`], well:[ correct===total ? 'You cleared every round in this run.' : `You finished all ${total} rounds without dropping the mission.`, correct>=3 ? 'You built useful real-world money skills this session.' : 'You kept practicing even when the round got tricky.', def.scoreName==='Receipt Decoder' ? 'Reading the right line matters as much as the math.' : def.scoreName==='Price Compare' ? 'Comparing before buying protects the budget.' : def.scoreName==='Drawer Reset' ? 'Sorting first makes till checks faster and cleaner.' : 'Exact pay is a strong customer-side skill at the register.' ], next:[ def.scoreName==='Exact Pay' ? 'Watch the remaining amount after every tap so you do not drift over.' : def.scoreName==='Receipt Decoder' ? 'Read the label beside the number before you answer.' : def.scoreName==='Price Compare' ? 'Compare size and sale format, not just the biggest sticker.' : 'Sort each loose item first, then judge the drawer status.', def.scoreName==='Exact Pay' ? 'Try to make the amount with fewer pieces when you can.' : def.scoreName==='Receipt Decoder' ? 'Subtotal is before tax. Total is after tax and discounts.' : def.scoreName==='Price Compare' ? 'Equal-size products usually mean a straight price check.' : 'Expected and actual totals must match for a balanced drawer.', 'Replay the sim to lock in the pattern while it is still fresh.' ], reminder:def.scoreName==='Drawer Reset' ? 'Sort the till, check the totals, then call the status.' : def.scoreName==='Receipt Decoder' ? 'Slow down and read every receipt label.' : def.scoreName==='Price Compare' ? 'Better value is about what you get for the money.' : 'Count what you selected before you hit check.', bannerCopy:'CashReady arcade complete. Replay the sim for a stronger checkout run.', speech:`${def.scoreName} complete. You got ${correct} out of ${total} right.`
+  });
+}
+</script>
+
+
+<script id="lr-home-cleanup">
+(function(){
+  function relabel(label, kicker, main){
+    if(!label) return;
+    var k = label.querySelector('.home-label-kicker');
+    var m = label.querySelector('.home-label-main');
+    if(k && kicker) k.textContent = kicker;
+    if(m && main) m.textContent = main;
+  }
+  function labelMain(label){
+    var m = label && label.querySelector('.home-label-main');
+    return m ? m.textContent.trim().toUpperCase() : '';
+  }
+  function findLabelByMain(home, main){
+    main = String(main||'').toUpperCase();
+    return Array.from(home.querySelectorAll('.home-group-label, .home-tools-label')).find(function(label){
+      return labelMain(label) === main;
+    }) || null;
+  }
+  function findGroupByMain(home, main){
+    main = String(main||'').toUpperCase();
+    return Array.from(home.querySelectorAll('.home-group')).find(function(group){
+      var label = group.querySelector('.home-group-label');
+      return labelMain(label) === main;
+    }) || null;
+  }
+  function cleanupModuleHome(){
+    var home = document.getElementById('scr-home');
+    if(!home || home.dataset.lrCleanupDone === '1') return;
+
+    var startLabel = findLabelByMain(home, 'START HERE');
+    var playLabel = home.querySelector('.home-play-label') || findLabelByMain(home, 'PLAY');
+    var guideLabel = findLabelByMain(home, 'LEARN THE FLOW');
+    var toolsLabel = home.querySelector('.home-tools-label') || findLabelByMain(home, 'LEARNING TOOLS');
+    var learnLabel = findLabelByMain(home, 'LEARN');
+    var progressGroup = findGroupByMain(home, 'PROGRESS');
+    var utilityGroup = findGroupByMain(home, 'SYSTEM');
+
+    relabel(startLabel, 'LAUNCH PAD', 'START HERE');
+    relabel(playLabel, 'HOLODECK', 'INTERACTIVE MODES');
+    relabel(guideLabel, 'TRAINING LIBRARY', 'WATCH & LEARN');
+    relabel(toolsLabel, 'TRAINING LIBRARY', 'QUIZZES · DRILLS · GUIDES');
+    relabel(learnLabel, 'TRAINING LIBRARY', 'SKILL TOOLS');
+
+    if(progressGroup){
+      var progressLabel = progressGroup.querySelector('.home-group-label');
+      var progressGrid = progressGroup.querySelector('.hgrid');
+      relabel(progressLabel, 'COMMAND DECK', 'SCORES · BADGES · SETTINGS');
+      progressGroup.classList.add('lr-command-deck');
+
+      if(progressGrid && utilityGroup){
+        var utilGrid = utilityGroup.querySelector('.hgrid');
+        if(utilGrid && utilGrid.children.length){
+          Array.from(utilGrid.children).forEach(function(card){ progressGrid.appendChild(card); });
+        }
+        var divider = utilityGroup.previousElementSibling;
+        if(divider && divider.classList && divider.classList.contains('home-divider')) divider.remove();
+        utilityGroup.remove();
+      }
+    }
+
+    home.classList.add('lr-home-cleaned');
+    home.dataset.lrCleanupDone = '1';
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanupModuleHome, {once:true});
+  else cleanupModuleHome();
+  window.addEventListener('load', cleanupModuleHome);
+  window.cleanupModuleHome = cleanupModuleHome;
+})();
+</script>
 </body>
 </html>

@@ -2044,6 +2044,55 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 }
 
 </style>
+
+<style>
+/* ════════════════════════════════════════════════════════
+   NEW INTERACTIVE MODE SHELLS
+   ════════════════════════════════════════════════════════ */
+.lrx-shell{padding:14px;display:grid;gap:14px}
+.lrx-grid{display:grid;gap:14px}
+@media(min-width:880px){.lrx-grid.two{grid-template-columns:1.2fr .8fr}}
+.lrx-panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.lrx-panelhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.lrx-paneltitle{font:800 .92rem/1 var(--font-mono);letter-spacing:1.4px;text-transform:uppercase;color:var(--text)}
+.lrx-panelsub{font-size:.78rem;color:var(--text3);margin-top:4px;line-height:1.45}
+.lrx-statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.lrx-stat{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px 12px}
+.lrx-statlabel{display:block;font:.64rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
+.lrx-statvalue{display:block;font:900 1.05rem/1 var(--font-display);color:var(--mode-accent)}
+.lrx-btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.lrx-btn{appearance:none;border:none;border-radius:14px;padding:11px 14px;font:800 .82rem/1 var(--font-mono);letter-spacing:1px;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.24)}
+.lrx-btn.pri{background:linear-gradient(180deg,color-mix(in srgb,var(--mode-accent) 88%, white 12%),color-mix(in srgb,var(--mode-accent) 70%, black 12%));color:#081117}
+.lrx-btn.sec{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:var(--text)}
+.lrx-btn.warn{background:linear-gradient(180deg,#ffcc4d,#e39b00);color:#2b1f00}
+.lrx-alert{margin-top:10px;padding:12px 14px;border-radius:14px;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1)}
+.lrx-alert.good{border-color:rgba(0,200,120,.36);box-shadow:0 0 0 1px rgba(0,200,120,.08) inset}
+.lrx-alert.warn{border-color:rgba(255,187,51,.4);box-shadow:0 0 0 1px rgba(255,187,51,.08) inset}
+.lrx-alert.bad{border-color:rgba(255,80,80,.4);box-shadow:0 0 0 1px rgba(255,80,80,.08) inset}
+.lrx-result{padding:18px;border-radius:20px;border:1px solid color-mix(in srgb,var(--mode-accent) 45%, white 10%);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));box-shadow:0 20px 44px rgba(0,0,0,.28);text-align:center}
+.lrx-grade{font:900 clamp(2.3rem,8vw,4.1rem)/1 var(--font-display);color:var(--mode-accent);text-shadow:0 0 20px color-mix(in srgb,var(--mode-accent) 25%, transparent);margin-bottom:10px}
+.lrx-decklabel{font:.76rem var(--font-mono);letter-spacing:2px;text-transform:uppercase;color:var(--mode-accent);margin-bottom:6px}
+.lrx-copy{color:var(--text2);font-size:.9rem;line-height:1.6;margin:12px auto 0;max-width:52ch}
+.lrx-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);font:.69rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text2)}
+.lrx-case{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.11);border-radius:18px;padding:14px;display:grid;gap:10px}
+.lrx-casebar{display:flex;justify-content:space-between;gap:10px;align-items:center;font:.72rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text3)}
+.lrx-casebody{background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:12px;display:grid;gap:8px}
+.lrx-casetitle{font:900 .98rem/1.2 var(--font-display)}
+.lrx-casecopy{font-size:.86rem;color:var(--text2);line-height:1.55}
+.lrx-choicegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lrx-choice{padding:14px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));text-align:center;cursor:pointer;color:var(--text)}
+.lrx-choice strong{display:block;font:900 1rem/1.1 var(--font-display);margin-bottom:6px}
+.lrx-choice small{display:block;color:var(--text3);font-size:.74rem;line-height:1.35}
+.lrx-choice .emo{display:block;font-size:1.45rem;margin-bottom:6px}
+.lrx-choice.real strong{color:#6ee7ff}.lrx-choice.sketchy strong{color:#ff9f72}
+.lrx-choice.right{border-color:rgba(0,200,120,.44);box-shadow:0 0 0 1px rgba(0,200,120,.12) inset,0 0 20px rgba(0,200,120,.12)}
+.lrx-choice.wrong{border-color:rgba(255,90,90,.42);box-shadow:0 0 0 1px rgba(255,90,90,.12) inset;opacity:.75}
+.lrx-choice[disabled]{pointer-events:none}
+.lrx-slotlist{display:grid;gap:10px}
+.lrx-listitem{display:flex;justify-content:space-between;gap:10px;align-items:center;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px 12px}
+@media(max-width:720px){.lrx-statrow{grid-template-columns:1fr 1fr}.lrx-choicegrid{grid-template-columns:1fr}}
+</style>
+
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <filter color-interpolation-filters="sRGB" id="cb-proto">
@@ -2057,6 +2106,64 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </filter>
 </defs>
 </svg>
+
+<style id="lr-mobile-cleanup">
+.lrx-stage{display:grid;gap:14px}
+@media (max-width: 720px){
+  .lrx-shell,.lrx-stage{padding:10px !important;gap:10px !important;display:grid;align-content:start;}
+  .lrx-grid,.lrx-grid.two{gap:10px !important;}
+  .lrx-hero{padding:12px 13px !important;border-radius:16px !important;margin:0 !important;}
+  .lrx-kicker{font-size:.62rem !important;margin-bottom:4px !important;letter-spacing:1.6px !important;}
+  .lrx-title{font-size:1rem !important;line-height:1.05 !important;margin-bottom:4px !important;}
+  .lrx-sub,.lrx-copy,.lrx-casecopy{font-size:.82rem !important;line-height:1.42 !important;}
+  .lrx-chiprow{margin-top:8px !important;gap:6px !important;}
+  .lrx-chip,.lrx-tag{padding:5px 8px !important;font-size:.62rem !important;letter-spacing:.8px !important;}
+  .lrx-panel{padding:12px !important;border-radius:16px !important;}
+  .lrx-panelhead{margin-bottom:8px !important;gap:8px !important;}
+  .lrx-paneltitle{font-size:.8rem !important;}
+  .lrx-panelsub{font-size:.72rem !important;line-height:1.35 !important;}
+  .lrx-statrow{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:8px !important;margin-top:10px !important;}
+  .lrx-stat{padding:8px 9px !important;border-radius:12px !important;}
+  .lrx-statlabel,.lrx-stat .k{font-size:.54rem !important;margin-bottom:3px !important;letter-spacing:.8px !important;}
+  .lrx-statvalue,.lrx-stat strong{font-size:.92rem !important;line-height:1.05 !important;}
+  .lrx-case{padding:12px !important;gap:8px !important;border-radius:16px !important;}
+  .lrx-casebody{padding:10px !important;gap:7px !important;}
+  .lrx-choicegrid{gap:8px !important;}
+  .lrx-choice{padding:12px 10px !important;border-radius:14px !important;}
+  .lrx-choice strong{font-size:.96rem !important;margin-bottom:4px !important;}
+  .lrx-list{gap:8px !important;}
+  .lrx-listitem{padding:9px 10px !important;border-radius:12px !important;}
+  .lrx-task{padding:10px 11px !important;min-width:0 !important;}
+  .lrx-slot{padding:9px 10px !important;min-height:0 !important;border-radius:14px !important;}
+  .lrx-btnrow{gap:8px !important;margin-top:10px !important;}
+  .lrx-btn{padding:10px 12px !important;font-size:.74rem !important;border-radius:12px !important;}
+  .lrx-mini{font-size:.72rem !important;line-height:1.35 !important;}
+  .lrx-alert{margin-top:8px !important;padding:10px 12px !important;border-radius:12px !important;}
+
+  #scr-casharcade .lrx-hero .lrx-chiprow,
+  #scr-sketchydeck .lrx-hero .lrx-chiprow,
+  #scr-storebay .lrx-hero .lrx-chiprow,
+  #scr-schedulebuilder .lrx-hero .lrx-chiprow{display:none !important;}
+
+  #scr-casharcade .lrx-hero .lrx-sub,
+  #scr-sketchydeck .lrx-hero .lrx-sub,
+  #scr-storebay .lrx-hero .lrx-sub,
+  #scr-schedulebuilder .lrx-hero .lrx-sub{
+    font-size:.74rem !important;
+    line-height:1.28 !important;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1;
+    overflow:hidden;
+  }
+
+  #scr-home .home-divider{margin:14px 0 !important;}
+  #scr-home .mode-list .mc,
+  #scr-home .hgrid .hb{min-height:74px !important;padding:10px 12px !important;}
+  #scr-home .daily-card{padding:12px !important;}
+  #scr-home.lr-home-cleaned .lr-command-deck .hgrid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+</style>
 </head>
 <body>
 <div id="page-wrap">
@@ -2145,6 +2252,17 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="mc-icon">📋</div>
 <div class="mc-body"><div class="mc-name">RENTING BASICS</div>
 <div class="mc-desc">Leases · Security deposits · Tenant rights · Landlord communication</div></div>
+<div class="mc-arr">›</div>
+</div>
+
+<div class="mc" onclick="openUnsafeChoiceIntro()">
+<div class="mc-icon">🏠</div>
+<div class="mc-body"><div class="mc-name">SPOT THE UNSAFE CHOICE</div><div class="mc-desc">Find the home safety problem · kitchens · cleaning · appliances</div></div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="openLaundrySortIntro()">
+<div class="mc-icon">🧺</div>
+<div class="mc-body"><div class="mc-name">LAUNDRY SORTING GAME</div><div class="mc-desc">Dark or light · Towels or clothes · Delicate or regular · Hot or cold-safe</div></div>
 <div class="mc-arr">›</div>
 </div>
 </div>
@@ -2299,7 +2417,27 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 </div>
 <!-- ══════════ LAUNDRY GUIDE ══════════ -->
+
+<!-- SPOT THE UNSAFE CHOICE -->
+<div class="scr" id="scr-unsafechoice">
+<div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🏠 SPOT THE UNSAFE CHOICE</div></div>
+<div class="lrx-shell" style="--mode-accent:#39d98a">
+  <div id="unsafechoice-live"></div>
+  <div id="unsafechoice-result" style="display:none"></div>
+</div>
+</div>
 <!-- ══════════ SCORES ══════════ -->
+<div class="scr" id="scr-laundrysort">
+<div class="gtop">
+<button class="back" onclick="go('home')">‹ BACK</button>
+<div class="gmode">🧺 LAUNDRY SORTING GAME</div>
+</div>
+<div class="lrx-shell" style="--mode-accent:#67dd9a">
+  <div id="laundrysort-live"></div>
+  <div id="laundrysort-result" style="display:none"></div>
+</div>
+</div>
+
 <div class="scr" id="scr-scores">
 <div class="gtop">
 <button class="back" onclick="go('home')">‹ BACK</button>
@@ -3780,13 +3918,21 @@ function showModeIntro(icon,title,color,lines,btnLabel,onConfirm,onCancel){
   const safeLines = Array.isArray(lines) ? lines : [];
   const modeTag = /PRACTICE/i.test(title) ? 'Support-Friendly' : /DAILY/i.test(title) ? 'Quick Mission' : /CHALLENGE/i.test(title) ? 'Score Run' : 'Focused Training';
   const supportTag = /PRACTICE/i.test(title) ? 'Hints Ready' : /CHALLENGE/i.test(title) ? 'Replayable' : 'Guided Start';
-  const lineCards = safeLines.map(([emoji,bold,detail], idx)=>`
+  const cleanIntroText=v=>String(v||'').replace(/<[^>]+>/g,' ').replace(/[^a-z0-9]+/ig,' ').trim().toLowerCase();
+  const lineCards = safeLines.map(([emoji,bold,detail], idx)=>{
+    const head=String(bold||'').trim();
+    let body=String(detail||'').trim();
+    const headNorm=cleanIntroText(head);
+    const bodyNorm=cleanIntroText(body);
+    if(!bodyNorm || bodyNorm===headNorm || bodyNorm.startsWith(headNorm) || headNorm.startsWith(bodyNorm)) body='';
+    return `
     <div style="position:relative;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:10px 10px 10px 40px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);overflow:hidden">
       <div style="position:absolute;left:10px;top:10px;width:22px;height:22px;border-radius:7px;background:${color}20;border:1px solid ${color}66;display:grid;place-items:center;font-size:.85rem">${emoji}</div>
       <div style="font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.52);margin-bottom:3px">Signal ${idx+1}</div>
-      <div style="font-weight:800;font-size:.86rem;line-height:1.28;color:var(--text)">${bold||''}</div>
-      ${detail?`<div style="font-size:.76rem;line-height:1.42;color:var(--text2);margin-top:3px">${detail}</div>`:''}
-    </div>`).join('');
+      <div style="font-weight:800;font-size:.86rem;line-height:1.28;color:var(--text)">${head}</div>
+      ${body?`<div style="font-size:.76rem;line-height:1.42;color:var(--text2);margin-top:3px">${body}</div>`:''}
+    </div>`;
+  }).join('');
   const body = `
     <div style="position:relative;border-radius:20px;overflow:hidden;padding:1px;background:linear-gradient(135deg,${color}88,rgba(255,255,255,.08),rgba(255,255,255,.02));box-shadow:0 16px 42px rgba(0,0,0,.42),0 0 28px ${color}20;">
       <div style="position:relative;border-radius:19px;background:radial-gradient(circle at top right,${color}18,transparent 34%),linear-gradient(180deg,rgba(8,11,23,.97),rgba(6,8,18,.98));padding:14px 14px 12px;overflow:hidden">
@@ -4175,7 +4321,7 @@ function answerQ(chosen){
     $('femoji').textContent=firstEver?'🎉':ok?(ST.streak>=5?'🔥':ST.streak>=3?'⭐':'✅'):'❌';
     $('ftitle').textContent=smartTitle;
     $('ftitle').className='ftitle '+(ok?'ok':'bad');
-    $('fmsg').textContent=explain || smartMsg;
+    $('fmsg').textContent=smartMsg;
     const exEl=$('fexplain');
     if(exEl){ exEl.textContent=explain; exEl.style.display=explain?'block':'none'; }
     $('fcard').className='fcard'+(ok?'':' wrong');
@@ -7092,8 +7238,48 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   });
 })();
+
+function cleanModeSpeech(text){ return String(text||'').replace(/^Correct\.\s*/i,'').trim(); }
+/* ==== HOMEREADY // SPOT THE UNSAFE CHOICE ==== */
+const UNSAFE_CHOICE_CASES = [
+  {title:'Kitchen counter',copy:'You see raw chicken next to cut fruit and a cutting board on the same counter.',options:[{emo:'🍗',text:'Raw chicken by fruit',sub:'Cross-contamination risk',ok:true,fb:'Correct. Raw meat should stay away from ready-to-eat food.'},{emo:'🍎',text:'Fruit on the counter',sub:'Fruit can be on a counter',ok:false,fb:'Fruit is not the unsafe part. The raw chicken next to it is.'},{emo:'🔪',text:'A cutting board nearby',sub:'That alone is not unsafe',ok:false,fb:'A cutting board is fine by itself. The raw meat placement is the issue.'}],hint:'Pick the thing that could make someone sick right away.'},
+  {title:'Cleaning day',copy:'A spray cleaner is left on the floor next to a toddler and an open snack bag.',options:[{emo:'🧴',text:'Cleaner on the floor',sub:'Easy for a child to reach',ok:true,fb:'Correct. Cleaning products should be stored up high and away from food.'},{emo:'🍿',text:'Snack bag open',sub:'Not ideal, but not the main danger',ok:false,fb:'The biggest danger is the cleaner being within reach.'},{emo:'👶',text:'A child in the room',sub:'Kids can be in the room',ok:false,fb:'The unsafe choice is leaving cleaner where a child can reach it.'}],hint:'Choose the item placement that creates the danger.'},
+  {title:'Laundry basket',copy:'A wet towel is stuffed under clean clothes and left there overnight.',options:[{emo:'🧺',text:'Wet towel mixed with clean clothes',sub:'Can lead to mildew and smell',ok:true,fb:'Correct. Wet items should be dried, not trapped under clean laundry.'},{emo:'👕',text:'Clean clothes in a basket',sub:'That is normal',ok:false,fb:'Clean clothes are fine. The wet towel is the problem.'},{emo:'🌙',text:'Overnight delay',sub:'The towel is the bigger issue',ok:false,fb:'The main unsafe choice is trapping a wet towel in the pile.'}],hint:'Think about mold, smells, and keeping things clean.'},
+  {title:'Bathroom sink',copy:'Hair tools are plugged in near a sink full of water while someone steps away.',options:[{emo:'💧',text:'Water in the sink',sub:'Water by itself is not the full problem',ok:false,fb:'Water matters here, but the dangerous choice is the plugged-in tool near it.'},{emo:'🔌',text:'Plugged-in hair tool near water',sub:'Electrical danger',ok:true,fb:'Correct. Plugged-in tools should stay away from water and be unplugged when not in use.'},{emo:'🚪',text:'Stepping away for a minute',sub:'Not ideal, but not the main danger',ok:false,fb:'The biggest danger is the plugged-in tool near water.'}],hint:'Look for anything that mixes electricity and water.'},
+  {title:'Stove top',copy:'A pan handle sticks out over the edge while someone cooks on the front burner.',options:[{emo:'🍳',text:'Pan handle sticking out',sub:'Easy to bump or pull',ok:true,fb:'Correct. Pan handles should turn inward so no one gets burned.'},{emo:'🔥',text:'Front burner in use',sub:'Using the stove is normal',ok:false,fb:'Cooking is normal. The sticking-out handle is the unsafe choice.'},{emo:'🥄',text:'A spoon nearby',sub:'That is not the danger',ok:false,fb:'The problem is the pan handle hanging out where it can be hit.'}],hint:'Pick the thing that could cause a fast accident.'}
+];
+let UNSAFECHOICE = {cases:[],idx:0,correct:0,locked:false,pick:-1};
+function openUnsafeChoiceIntro(){ showModeIntro('🏠','SPOT THE UNSAFE CHOICE','#39d98a', [['👀','Look at real home scenes.','Each run gives you five short home situations to check.'],['🧼','Find the unsafe choice.','Tap the item or action that could cause a problem.'],['🔊','Hear what to fix.','You will hear why a choice is unsafe and what to do instead.']], 'Start Safety Check →', ()=>{ closeM('m-hint'); startUnsafeChoice(); }, ()=>go('home')); }
+function startUnsafeChoice(){ UNSAFECHOICE={cases:shuf(UNSAFE_CHOICE_CASES).slice(0,5),idx:0,correct:0,locked:false,pick:-1}; go('unsafechoice'); renderUnsafeChoice(); setTimeout(readUnsafeChoicePrompt,120); }
+function readUnsafeChoicePrompt(){ const c=UNSAFECHOICE.cases[UNSAFECHOICE.idx]; if(!c) return; say(`${c.title}. ${c.copy} What is unsafe here?`); }
+function renderUnsafeChoice(){ const c=UNSAFECHOICE.cases[UNSAFECHOICE.idx]; if(!c) return; const total=UNSAFECHOICE.cases.length; const btns=c.options.map((o,i)=>`<button class="lrx-choice ${UNSAFECHOICE.locked && o.ok?'right':''} ${UNSAFECHOICE.locked && UNSAFECHOICE.pick===i && !o.ok?'wrong':''}" ${UNSAFECHOICE.locked?'disabled':''} onclick="answerUnsafeChoice(${i})"><span class="emo">${o.emo}</span><strong>${o.text}</strong><small>${o.sub}</small></button>`).join(''); $('unsafechoice-result').style.display='none'; $('unsafechoice-live').style.display=''; $('unsafechoice-live').innerHTML=`<section class="lrx-panel"><div class="lrx-panelhead"><div><div class="lrx-paneltitle">Home Safety Check</div><div class="lrx-panelsub">Spot the unsafe choice before it turns into a bigger problem.</div></div><span class="lrx-tag">Scene ${UNSAFECHOICE.idx+1} / ${total}</span></div><div class="lrx-statrow"><div class="lrx-stat"><span class="lrx-statlabel">Correct</span><span class="lrx-statvalue">${UNSAFECHOICE.correct}</span></div><div class="lrx-stat"><span class="lrx-statlabel">Scenes Left</span><span class="lrx-statvalue">${total-(UNSAFECHOICE.idx+1)+(UNSAFECHOICE.locked?0:1)}</span></div><div class="lrx-stat"><span class="lrx-statlabel">Goal</span><span class="lrx-statvalue">Find it fast</span></div></div></section><section class="lrx-case"><div class="lrx-casebar"><span>Scene</span><span>${c.title}</span></div><div class="lrx-casebody"><div class="lrx-casetitle">${c.title}</div><div class="lrx-casecopy">${c.copy}</div><div class="lrx-mini">Hint: ${c.hint}</div></div><div class="lrx-choicegrid">${btns}</div>${UNSAFECHOICE.locked?`<div class="lrx-alert ${c.options[UNSAFECHOICE.pick]?.ok?'good':'warn'}"><div class="lrx-decklabel">Feedback</div><div class="lrx-copy" style="margin:0;text-align:left">${c.options[UNSAFECHOICE.pick].fb}</div></div><div class="lrx-btnrow"><button class="lrx-btn pri" onclick="${UNSAFECHOICE.idx<total-1?'nextUnsafeChoice()':'finishUnsafeChoice()'}">${UNSAFECHOICE.idx<total-1?'Next Scene':'See Results'}</button><button class="lrx-btn sec" onclick="readUnsafeChoicePrompt()">Say Again</button></div>`:''}</section>`; }
+function answerUnsafeChoice(i){ if(UNSAFECHOICE.locked) return; const c=UNSAFECHOICE.cases[UNSAFECHOICE.idx]; const picked=c.options[i]; const answer=(c.options.find(o=>o.ok)||{}).text||''; c._picked=i; c._ok=!!picked.ok; c._choiceText=picked.text; c._answerText=answer; UNSAFECHOICE.pick=i; UNSAFECHOICE.locked=true; if(c.options[i].ok){ UNSAFECHOICE.correct +=1; chime(); say(`Correct. ${cleanModeSpeech(c.options[i].fb)}`);} else { buzz(); say(`That is not the unsafe choice. ${c.options[i].fb}`);} renderUnsafeChoice(); }
+function nextUnsafeChoice(){ UNSAFECHOICE.idx +=1; UNSAFECHOICE.locked=false; UNSAFECHOICE.pick=-1; renderUnsafeChoice(); setTimeout(readUnsafeChoicePrompt,120); }
+function finishUnsafeChoice(){ const total=UNSAFECHOICE.cases.length||1; const pct=Math.round((UNSAFECHOICE.correct/total)*100); try{ CFG.unsafeChoiceBest=Math.max(CFG.unsafeChoiceBest||0,pct); saveAll&&saveAll(); }catch(_e){} let streak=0,bestStreak=0; (UNSAFECHOICE.cases||[]).forEach(c=>{streak=c._ok?streak+1:0; bestStreak=Math.max(bestStreak,streak);}); const reviewRounds=(UNSAFECHOICE.cases||[]).map((c,idx)=>({ title:(c.title||('Safety scene '+(idx+1))), meta:'You picked: ' + (c._choiceText||'No answer') + ' · Unsafe choice: ' + (c._answerText||'Review the scene'), ok:!!c._ok })); showArcadeDebriefRedesign({ modeKey:'spot_the_unsafe_choice', modeTitle:'Spot the Unsafe Choice', header:pct>=90?'STRONG SAFETY SPOTTING':pct>=80?'NICE SAFETY AWARENESS':pct>=70?'KEEP BUILDING HOME SAFETY':'TRY ANOTHER CHECK', sub:UNSAFECHOICE.correct + ' of ' + total + ' home safety scenes spotted correctly.', correct:UNSAFECHOICE.correct, total:Math.max(total,1), pct:pct, score:UNSAFECHOICE.correct*100, streak:bestStreak, scoreLabel:'Mission Score', reviewRounds:reviewRounds, playAgainText:'▶ RUN SAFETY CHECK AGAIN', replay:function(){ startUnsafeChoice(); }, sessionLabel:pct>=90?'Safety Scanner':pct>=80?'Home Guard':pct>=70?'Growing Awareness':'Training Run', sessionCopy:'You checked ' + total + ' home scene' + (total===1?'':'s') + ' for unsafe choices. Review the hazard, then replay it before it sneaks by you again.', pills:[total + ' scenes', bestStreak + ' best streak', pct + '% accuracy'], well:['You slowed down and looked for what could hurt someone in a real home situation.', UNSAFECHOICE.correct>0 ? 'You correctly spotted ' + UNSAFECHOICE.correct + ' unsafe choice' + (UNSAFECHOICE.correct===1?'':'s') + '.' : 'You collected a good set of home safety examples to review.', pct>=80 ? 'Your home safety instincts are getting sharper.' : 'You kept practicing instead of guessing and bailing.'], next:['Look for the thing that could cause a fast accident, burn, fall, or cut.', 'Do not get distracted by normal objects that are not the real problem.', 'Replay the missed scenes until the danger jumps out sooner.'], reminder:'Slow down, look for what could hurt someone, and fix the unsafe choice before moving on.', bannerCopy:'Home safety scan complete. Replay it for a cleaner run.', speech:'Safety check complete. You got ' + UNSAFECHOICE.correct + ' of ' + total + ' scenes correct.' }); }
+
 </script>
 
+
+<script>
+(function(){
+  const LAUNDRY_SORT_BANK={
+    color:{title:'Dark / Light',prompt:'Sort the item into the right color load.',left:'Dark',right:'Light',items:[{icon:'👕',item:'Black hoodie',correct:'Dark',fb:'Correct. Black clothing belongs with the dark load.'},{icon:'🧦',item:'White socks',correct:'Light',fb:'Correct. White socks belong with the light load.'},{icon:'👚',item:'Navy T-shirt',correct:'Dark',fb:'Correct. Navy belongs with dark colors.'},{icon:'👔',item:'Cream blouse',correct:'Light',fb:'Correct. Cream is part of the light load.'}]},
+    type:{title:'Towels / Clothes',prompt:'Sort the item by what kind of laundry load it belongs in.',left:'Towels',right:'Clothes',items:[{icon:'🛁',item:'Bath towel',correct:'Towels',fb:'Correct. Towels usually go in their own towel load.'},{icon:'👖',item:'Jeans',correct:'Clothes',fb:'Correct. Jeans belong in the clothing load.'},{icon:'🧻',item:'Hand towel',correct:'Towels',fb:'Correct. Hand towels belong with towels.'},{icon:'👕',item:'Work shirt',correct:'Clothes',fb:'Correct. Shirts belong in the clothing load.'}]},
+    fabric:{title:'Delicate / Regular',prompt:'Sort the item by how gently it should be washed.',left:'Delicate',right:'Regular',items:[{icon:'🩱',item:'Lace top',correct:'Delicate',fb:'Correct. Lace or delicate fabrics need gentler washing.'},{icon:'👕',item:'Cotton T-shirt',correct:'Regular',fb:'Correct. A regular cotton shirt usually goes in the regular wash.'},{icon:'🧣',item:'Silk scarf',correct:'Delicate',fb:'Correct. Silk belongs in the delicate load.'},{icon:'🩳',item:'Gym shorts',correct:'Regular',fb:'Correct. Regular shorts usually go in the regular load.'}]},
+    temp:{title:'Hot-safe / Cold-safe',prompt:'Sort the item by the safer wash temperature.',left:'Hot-safe',right:'Cold-safe',items:[{icon:'🧺',item:'White towels',correct:'Hot-safe',fb:'Correct. White towels are often safe in a hot wash.'},{icon:'🧥',item:'Dark hoodie',correct:'Cold-safe',fb:'Correct. Dark items are safer in cold water to reduce fading.'},{icon:'🛏️',item:'Cleaning rags',correct:'Hot-safe',fb:'Correct. Many cleaning rags can be washed hot.'},{icon:'👖',item:'Dark jeans',correct:'Cold-safe',fb:'Correct. Dark jeans are usually safer in cold water.'}]}
+  };
+  let LAUNDRYSORT={rounds:[],idx:0,correct:0,locked:false,pick:'',best:0};
+  function el(id){ return document.getElementById(id); }
+  function buildLaundrySortRounds(){ const rounds=[]; Object.keys(LAUNDRY_SORT_BANK).forEach(function(key){ const group=LAUNDRY_SORT_BANK[key]; const pick=(typeof shuf==='function' ? shuf(group.items) : group.items.slice())[0]; rounds.push({group:key,title:group.title,prompt:group.prompt,left:group.left,right:group.right,icon:pick.icon,item:pick.item,correct:pick.correct,fb:pick.fb}); }); const extraGroups=Object.keys(LAUNDRY_SORT_BANK); const extraKey=(typeof shuf==='function' ? shuf(extraGroups) : extraGroups.slice())[0]; const extraGroup=LAUNDRY_SORT_BANK[extraKey]; const extraPick=(typeof shuf==='function' ? shuf(extraGroup.items) : extraGroup.items.slice())[1] || extraGroup.items[0]; rounds.push({group:extraKey,title:extraGroup.title,prompt:extraGroup.prompt,left:extraGroup.left,right:extraGroup.right,icon:extraPick.icon,item:extraPick.item,correct:extraPick.correct,fb:extraPick.fb}); return (typeof shuf==='function' ? shuf(rounds) : rounds); }
+  window.openLaundrySortIntro=function(){ if(typeof showModeIntro==='function'){ showModeIntro('🧺','LAUNDRY SORTING GAME','#67dd9a', [['🧼','Sort clothes the way a real laundry day works.','Each run gives you five quick sorting rounds with different laundry rules.'],['🎯','Pick the right load.','You will sort by dark or light, towels or clothes, delicate or regular, and hot-safe or cold-safe items.'],['🔊','Hear the feedback.','You get spoken coaching and clean arcade-style sound effects after every pick.']], 'Start Laundry Run →', function(){ try{ closeM('m-hint'); }catch(_e){} startLaundrySort(); }, function(){ if(typeof go==='function') go('home'); }); } else { startLaundrySort(); } };
+  window.startLaundrySort=function(){ LAUNDRYSORT={rounds:buildLaundrySortRounds(),idx:0,correct:0,locked:false,pick:'',best:(window.CFG&&CFG.laundrySortBest)||0}; if(window.CFG){ CFG.modesPlayed=CFG.modesPlayed||{}; CFG.modesPlayed.laundrysort=true; } try{ if(typeof saveAll==='function') saveAll(); }catch(_e){} if(typeof go==='function') go('laundrysort'); renderLaundrySort(); setTimeout(readLaundrySortPrompt,120); };
+  window.readLaundrySortPrompt=function(){ const round=LAUNDRYSORT.rounds[LAUNDRYSORT.idx]; if(!round || typeof say!=='function') return; say(round.title + '. ' + round.item + '. Which load does it go in?'); };
+  function renderLaundrySort(){ const round=LAUNDRYSORT.rounds[LAUNDRYSORT.idx]; if(!round) return; const total=LAUNDRYSORT.rounds.length; el('laundrysort-result').style.display='none'; el('laundrysort-live').style.display=''; const leftWrong=LAUNDRYSORT.locked && LAUNDRYSORT.pick===round.left && round.correct!==round.left; const rightWrong=LAUNDRYSORT.locked && LAUNDRYSORT.pick===round.right && round.correct!==round.right; el('laundrysort-live').innerHTML='<section class="lrx-panel"><div class="lrx-panelhead"><div><div class="lrx-paneltitle">Laundry Bay</div><div class="lrx-panelsub">Sort the item into the best load before it lands in the wrong wash.</div></div><span class="lrx-tag">Round ' + (LAUNDRYSORT.idx+1) + ' / ' + total + '</span></div><div class="lrx-statrow"><div class="lrx-stat"><span class="lrx-statlabel">Correct</span><span class="lrx-statvalue">' + LAUNDRYSORT.correct + '</span></div><div class="lrx-stat"><span class="lrx-statlabel">Category</span><span class="lrx-statvalue">' + round.title + '</span></div><div class="lrx-stat"><span class="lrx-statlabel">Best</span><span class="lrx-statvalue">' + Math.max((window.CFG&&CFG.laundrySortBest)||0, LAUNDRYSORT.best) + '%</span></div></div></section><section class="lrx-case"><div class="lrx-casebar"><span>Sort Rule</span><span>' + round.title + '</span></div><div class="lrx-casebody"><div class="lrx-casetitle">' + round.prompt + '</div><div class="lrx-casecopy">Item: <strong>' + round.icon + ' ' + round.item + '</strong></div><div class="lrx-mini">Choose the load that makes the most sense for this item.</div></div><div class="lrx-choicegrid"><button class="lrx-choice ' + (LAUNDRYSORT.locked && round.correct===round.left ? 'right' : '') + ' ' + (leftWrong ? 'wrong' : '') + '" ' + (LAUNDRYSORT.locked ? 'disabled' : '') + ' onclick="answerLaundrySort(\'' + round.left + '\')"><span class="emo">🧺</span><strong>' + round.left + '</strong><small>Send it to this load</small></button><button class="lrx-choice ' + (LAUNDRYSORT.locked && round.correct===round.right ? 'right' : '') + ' ' + (rightWrong ? 'wrong' : '') + '" ' + (LAUNDRYSORT.locked ? 'disabled' : '') + ' onclick="answerLaundrySort(\'' + round.right + '\')"><span class="emo">🫧</span><strong>' + round.right + '</strong><small>Send it to this load</small></button></div>' + (LAUNDRYSORT.locked ? '<div class="lrx-alert ' + (LAUNDRYSORT.pick===round.correct?'good':'warn') + '"><div class="lrx-decklabel">Feedback</div><div class="lrx-copy" style="margin:0;text-align:left">' + round.fb + '</div></div><div class="lrx-btnrow"><button class="lrx-btn pri" onclick="' + (LAUNDRYSORT.idx<total-1?'nextLaundrySortRound()':'finishLaundrySort()') + '">' + (LAUNDRYSORT.idx<total-1?'Next Round':'See Results') + '</button><button class="lrx-btn sec" onclick="readLaundrySortPrompt()">Say Again</button></div>' : '') + '</section>'; }
+  window.answerLaundrySort=function(choice){ if(LAUNDRYSORT.locked) return; const round=LAUNDRYSORT.rounds[LAUNDRYSORT.idx]; round._picked=choice; round._ok=(choice===round.correct); round._choiceText=choice; round._answerText=round.correct; LAUNDRYSORT.pick=choice; LAUNDRYSORT.locked=true; if(choice===round.correct){ LAUNDRYSORT.correct += 1; if(typeof chime==='function') chime(); if(typeof say==='function') say('Correct. ' + round.fb); } else { if(typeof beep==='function') beep(260,90); if(typeof say==='function') say('Not quite. ' + round.fb); } renderLaundrySort(); }
+  window.nextLaundrySortRound=function(){ LAUNDRYSORT.idx += 1; LAUNDRYSORT.locked=false; LAUNDRYSORT.pick=''; renderLaundrySort(); setTimeout(readLaundrySortPrompt,120); };
+  window.finishLaundrySort=function(){ const total=LAUNDRYSORT.rounds.length||1; const pct=Math.round((LAUNDRYSORT.correct/total)*100); try{ if(window.CFG){ CFG.laundrySortBest=Math.max(CFG.laundrySortBest||0,pct); } if(typeof saveAll==='function') saveAll(); }catch(_e){} let streak=0,bestStreak=0; (LAUNDRYSORT.rounds||[]).forEach(r=>{streak=r._ok?streak+1:0; bestStreak=Math.max(bestStreak,streak);}); const reviewRounds=(LAUNDRYSORT.rounds||[]).map((r,idx)=>({ title:(r.title||('Round '+(idx+1))) + ' · ' + (r.item||'Item'), meta:'You sent it to ' + (r._choiceText||'no load') + ' · Best load: ' + (r._answerText||r.correct||'review the item'), ok:!!r._ok })); showArcadeDebriefRedesign({ modeKey:'laundry_sorting_game', modeTitle:'Laundry Sorting Game', header:pct===100?'LAUNDRY BAY COMPLETE':pct>=80?'STRONG SORTING SKILLS':pct>=60?'SORTING GETTING SHARPER':'TRY ANOTHER RUN', sub:LAUNDRYSORT.correct + ' of ' + total + ' laundry sorting rounds solved correctly.', correct:LAUNDRYSORT.correct, total:Math.max(total,1), pct:pct, score:LAUNDRYSORT.correct*100, streak:bestStreak, scoreLabel:'Mission Score', reviewRounds:reviewRounds, playAgainText:'▶ SORT ANOTHER LOAD', replay:function(){ startLaundrySort(); }, sessionLabel:pct===100?'Load Locked':pct>=80?'Laundry Operator':pct>=60?'Sorting Skills':'Training Run', sessionCopy:'You sorted five laundry decisions across color, item type, fabric care, and water temperature. Nice, because apparently clothes still insist on being high-maintenance.', pills:[total + ' rounds', bestStreak + ' best streak', pct + '% accuracy'], well:['You practiced sorting by more than one rule, which is how real laundry day works.', LAUNDRYSORT.correct>0 ? 'You sorted ' + LAUNDRYSORT.correct + ' load decision' + (LAUNDRYSORT.correct===1?'':'s') + ' correctly.' : 'You got a full five-round load to study on the replay.', pct>=80 ? 'Your laundry sorting is starting to look reliable.' : 'You kept going through the whole load instead of rushing the fabric clues.'], next:['Check color, item type, fabric care, and water temperature before you wash.', 'When an item feels delicate or dark, slow down and think before you sort it.', 'Replay the missed rounds until the load choice feels automatic.'], reminder:'Laundry gets easier when you check color, item type, fabric, and water temperature before you throw anything into the washer.', bannerCopy:'Laundry bay clear. Replay it for a cleaner sort.', speech:'Laundry sorting complete. You got ' + LAUNDRYSORT.correct + ' of ' + total + ' sorting rounds correct.' }); };
+})();
+</script>
 
 <style id="lr-header-popup-upgrade">
 /* ══ RETRO HEADER + POPUP UPGRADE ══ */
@@ -7598,5 +7784,289 @@ document.addEventListener('DOMContentLoaded',()=>{
 }
 </style>
 
+
+
+
+<script>
+(function(){
+  if(window.showArcadeDebriefRedesign) return;
+
+  const LR_PROGRESS_KEY='lr_progress_v1';
+  const LR_PROGRESS_RANKS=[
+    {min:0,title:'Cadet'},
+    {min:100,title:'Ensign'},
+    {min:250,title:'Lieutenant Junior Grade'},
+    {min:450,title:'Lieutenant'},
+    {min:700,title:'Lieutenant Commander'},
+    {min:1000,title:'Commander'},
+    {min:1400,title:'Captain'},
+    {min:1900,title:'Admiral'}
+  ];
+  function lrModuleName(){
+    try{
+      var raw=(document.title||'').replace(/\s*[|\-].*$/,'').trim();
+      if(raw) return raw;
+    }catch(_e){}
+    try{
+      var file=(location.pathname.split('/').pop()||'').replace(/\.html$/i,'');
+      if(file) return file;
+    }catch(_e){}
+    return 'LifeReady';
+  }
+  function lrLoadProgress(){
+    try{
+      var raw=localStorage.getItem(LR_PROGRESS_KEY);
+      var data=raw?JSON.parse(raw):{};
+      if(!data || typeof data!=='object') data={};
+      if(!data.modules || typeof data.modules!=='object') data.modules={};
+      if(!data.modeBest || typeof data.modeBest!=='object') data.modeBest={};
+      if(typeof data.totalXP!=='number') data.totalXP=0;
+      if(typeof data.sessions!=='number') data.sessions=0;
+      return data;
+    }catch(_e){
+      return {totalXP:0,sessions:0,modules:{},modeBest:{}};
+    }
+  }
+  function lrSaveProgress(data){
+    try{ localStorage.setItem(LR_PROGRESS_KEY, JSON.stringify(data)); }catch(_e){}
+  }
+  function lrRankForXP(xp){
+    var current=LR_PROGRESS_RANKS[0];
+    for(var i=0;i<LR_PROGRESS_RANKS.length;i++){
+      if(Number(xp) >= LR_PROGRESS_RANKS[i].min) current=LR_PROGRESS_RANKS[i];
+    }
+    return current;
+  }
+  function lrNextRank(xp){
+    for(var i=0;i<LR_PROGRESS_RANKS.length;i++){
+      if(Number(xp) < LR_PROGRESS_RANKS[i].min) return LR_PROGRESS_RANKS[i];
+    }
+    return null;
+  }
+  function lrEarnProgress(meta){
+    meta=meta||{};
+    var data=lrLoadProgress();
+    var moduleName=meta.moduleName || lrModuleName();
+    var pct=Math.max(0, Math.min(100, Number(meta.pct)||0));
+    var hintsUsed=Math.max(0, Number(meta.hintsUsed)||0);
+    var modeKey=String(meta.modeKey||meta.modeTitle||('mode_'+Date.now()));
+    var prevRank=lrRankForXP(data.totalXP);
+    var prevBest=typeof data.modeBest[modeKey]==='number' ? data.modeBest[modeKey] : null;
+    var xp=10;
+    if(pct>=80) xp+=5;
+    if(pct===100) xp+=5;
+    if(prevBest===null) xp+=10;
+    else if(pct>prevBest) xp+=5;
+    if(hintsUsed===0) xp+=2;
+    if(!data.modules[moduleName]) data.modules[moduleName]={sessions:0,mastery:0,bestPct:0,lastMode:'',lastPlayed:0};
+    var mod=data.modules[moduleName];
+    var priorSessions=Math.max(0, Number(mod.sessions)||0);
+    var priorMastery=Math.max(0, Math.min(100, Number(mod.mastery)||0));
+    mod.sessions=priorSessions+1;
+    mod.mastery=Math.max(0, Math.min(100, Math.round(((priorMastery*priorSessions)+pct)/Math.max(1, mod.sessions))));
+    mod.bestPct=Math.max(Number(mod.bestPct)||0, pct);
+    mod.lastMode=String(meta.modeTitle||modeKey);
+    mod.lastPlayed=Date.now();
+    data.sessions = (Number(data.sessions)||0) + 1;
+    data.totalXP = (Number(data.totalXP)||0) + xp;
+    data.modeBest[modeKey] = prevBest===null ? pct : Math.max(prevBest, pct);
+    data.lastEarned={xp:xp,module:moduleName,mode:String(meta.modeTitle||modeKey),at:Date.now(),pct:pct};
+    var currentRank=lrRankForXP(data.totalXP);
+    var next=lrNextRank(data.totalXP);
+    data.currentRank=currentRank.title;
+    lrSaveProgress(data);
+    return {
+      xp:xp,
+      totalXP:data.totalXP,
+      sessions:data.sessions,
+      moduleMastery:mod.mastery,
+      bestPct:mod.bestPct,
+      improved:prevBest!==null && pct>prevBest,
+      currentRank:currentRank.title,
+      nextRank:next?next.title:'',
+      remainingXP:next?Math.max(0, next.min-data.totalXP):0,
+      promoted:currentRank.title!==prevRank.title,
+      previousRank:prevRank.title
+    };
+  }
+
+
+  function esc(v){
+    return String(v==null?'':v)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+  function listHtml(items, bullet){
+    items=(items||[]).filter(Boolean);
+    return '<div class="rr-coach-list">'+items.map(function(line){
+      return '<div class="rr-coach-line"><span class="rr-bullet">'+esc(bullet||'▸')+'</span><div>'+esc(line)+'</div></div>';
+    }).join('')+'</div>';
+  }
+  function longestStreak(rounds){
+    var best=0, run=0;
+    (rounds||[]).forEach(function(r){
+      if(r && r.ok){ run += 1; if(run>best) best=run; }
+      else run = 0;
+    });
+    return best;
+  }
+  window.showArcadeDebriefRedesign = function(opts){
+    opts=opts||{};
+    try{
+      var correct = Number(opts.correct)||0;
+      var total = Math.max(Number(opts.total)||0, 1);
+      var pct = Math.max(0, Math.min(100, Math.round(opts.pct!=null ? Number(opts.pct) : (correct/total*100))));
+      var score = opts.score!=null ? Number(opts.score) : Math.round(pct*10);
+      var streak = opts.streak!=null ? Number(opts.streak) : longestStreak(opts.reviewRounds||[]);
+      var modeKey = opts.modeKey || 'arcade_custom';
+      var modeTitle = opts.modeTitle || 'Arcade Mission';
+      var now = Date.now();
+      var elapsedSec = Math.max(0, Number(opts.elapsedSec)||0);
+      try{
+        if(typeof MODE_TITLES !== 'undefined' && MODE_TITLES){ MODE_TITLES[modeKey]=modeTitle; }
+        else { window.MODE_TITLES = window.MODE_TITLES || {}; window.MODE_TITLES[modeKey]=modeTitle; }
+      }catch(_e){ window.MODE_TITLES = window.MODE_TITLES || {}; window.MODE_TITLES[modeKey]=modeTitle; }
+      var st={mode:modeKey,score:score,correct:correct,total:total,bestStreak:streak,hintsUsed:Number(opts.hintsUsed)||0,startTime:now-(elapsedSec*1000),shiftBadges:[]};
+      try{ ST = st; }catch(_e){}
+      window.ST = st;
+      window.__lrReviewRounds = Array.isArray(opts.reviewRounds) ? opts.reviewRounds : [];
+      try{
+        var dateText = (typeof today==='function') ? today() : new Date().toLocaleDateString();
+        window.SCORES = Array.isArray(window.SCORES) ? window.SCORES : [];
+        window.SCORES.unshift({mode:modeTitle,score:score,correct:correct,total:total,streak:streak,date:dateText,time:Math.round(elapsedSec)});
+        window.SCORES = window.SCORES.slice(0,30);
+        try{ SCORES = window.SCORES; }catch(_e){}
+      }catch(_e){}
+      var progress = lrEarnProgress({modeKey:modeKey, modeTitle:modeTitle, pct:pct, hintsUsed:Number(opts.hintsUsed)||0, moduleName:lrModuleName()});
+      var progressPills = Array.isArray(opts.pills) ? opts.pills.slice() : [];
+      progressPills.unshift('Rank ' + progress.currentRank);
+      progressPills.unshift('+' + progress.xp + ' XP');
+      progressPills.push(progress.nextRank ? (progress.promoted ? ('Promoted to ' + progress.currentRank) : (progress.remainingXP + ' XP to ' + progress.nextRank)) : 'Command rank maxed');
+      var promotionBanner = progress.promoted ? ('<div style="background:linear-gradient(135deg,rgba(255,179,71,.18),rgba(255,255,255,.05));border:2px solid rgba(255,179,71,.48);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--amber);letter-spacing:2px;margin-bottom:4px">PROMOTION ACHIEVED</div><div style="font-family:var(--font-display);font-size:1.12rem;color:var(--text)">' + esc(progress.currentRank) + '</div><div style="font-size:.76rem;color:var(--text3);margin-top:4px">Training XP updated. Return to the holodeck when you are ready for the next sim.</div></div>') : '';
+      var shareLine = modeTitle + ' · ' + correct + '/' + total + ' correct · ' + pct + '%';
+      window._shareText = 'I played ' + modeTitle + ' in ' + document.title.replace(/\s*[-|].*$/,'') + '!\n' + shareLine;
+      if(typeof go==='function') go('results');
+      setTimeout(function(){
+        var titleEl = document.getElementById('r-title'); if(titleEl) titleEl.textContent='';
+        var subEl = document.getElementById('r-sub'); if(subEl) subEl.textContent='';
+        var pb = document.getElementById('pb-banner'); if(pb){ pb.textContent=''; pb.style.display='none'; }
+        if(typeof window.refreshResultsRedesign==='function') window.refreshResultsRedesign();
+        if(titleEl) titleEl.textContent = opts.header || (modeTitle.toUpperCase() + ' COMPLETE');
+        if(subEl) subEl.textContent = opts.sub || ('You cleared ' + correct + ' of ' + total + ' checkpoints.');
+        var scoreEl=document.getElementById('r-score'); if(scoreEl) scoreEl.textContent=String(score);
+        var accEl=document.getElementById('r-acc'); if(accEl) accEl.textContent=pct+'%';
+        var corrEl=document.getElementById('r-correct'); if(corrEl) corrEl.textContent=correct+'/'+total;
+        var streakEl=document.getElementById('r-streak'); if(streakEl) streakEl.textContent=String(streak);
+        var timerBox=document.getElementById('r-timer-box'); if(timerBox) timerBox.style.display=elapsedSec>0?'':'none';
+        var timerEl=document.getElementById('r-timer'); if(timerEl && elapsedSec>0 && typeof fmtElapsed==='function') timerEl.textContent=fmtElapsed(elapsedSec);
+        var scoreLabelEl = scoreEl && scoreEl.parentElement ? scoreEl.parentElement.querySelector('.rsl') : null;
+        if(scoreLabelEl && opts.scoreLabel) scoreLabelEl.textContent = opts.scoreLabel;
+        var sessionHost=document.getElementById('rr-session-card');
+        if(sessionHost){
+          var pills=(progressPills||[]).filter(Boolean).map(function(line){ return '<div class="rr-mini-pill">'+esc(line)+'</div>'; }).join('');
+          sessionHost.innerHTML = '<div class="rr-session-head"><div class="rr-session-title">'+esc(modeTitle)+' Complete</div><div class="rr-session-badge">'+esc(opts.sessionLabel || (pct>=90?'Arcade Clear':pct>=75?'Strong Run':'Training Run'))+'</div></div><div class="rr-session-copy">'+esc(opts.sessionCopy || ('Retro training complete. Review the run, then jump back into the holodeck for another rep.'))+'</div>'+(pills?('<div class="rr-mini-pills">'+pills+'</div>'):'');
+        }
+        var well=document.getElementById('rr-well-card'); if(well && opts.well) well.innerHTML=listHtml(opts.well,'▸');
+        var next=document.getElementById('rr-next-card') || document.getElementById('wtw-card'); if(next && opts.next) next.innerHTML=listHtml(opts.next,'→');
+        var reminder=document.getElementById('rr-reminder-card'); if(reminder && opts.reminder) reminder.innerHTML='<div class="rr-reminder">'+esc(opts.reminder)+'</div>';
+        var roundsBtn=document.getElementById('rounds-tab-btn'); if(roundsBtn) roundsBtn.textContent='ROUND REVIEW (' + ((window.__lrReviewRounds||[]).length) + ')';
+        var rp=document.getElementById('r-play-again');
+        if(rp){
+          rp.textContent = opts.playAgainText || '▶ PLAY AGAIN';
+          if(typeof opts.replay === 'function') rp.onclick = opts.replay;
+        }
+        var shareBtn=document.getElementById('r-share'); if(shareBtn) shareBtn.style.display='';
+        var coachBtn=document.getElementById('r-coach-copy'); if(coachBtn) coachBtn.style.display='';
+        var eoc=document.getElementById('eoc-card-wrap');
+        if(eoc){
+          eoc.innerHTML = promotionBanner || opts.bannerHtml || (pct>=80 ? '<div style="background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.04));border:2px solid rgba(255,255,255,.16);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">ARCADE CLEAR</div><div style="font-family:var(--font-display);font-size:1.15rem;color:var(--text)">'+esc(modeTitle)+'</div><div style="font-size:.76rem;color:var(--text3);margin-top:4px">'+esc(opts.bannerCopy || 'Replay it for a cleaner, calmer run.')+'</div></div>' : '');
+        }
+        if(typeof updateHomeUI==='function') updateHomeUI();
+        if(typeof saveAll==='function') try{ saveAll(); }catch(_e){}
+        window.scrollTo && window.scrollTo(0,0);
+        var pageWrap=document.getElementById('page-wrap'); if(pageWrap) pageWrap.scrollTop=0;
+        if(typeof confetti==='function' && pct>=70 && !(window.CFG&&CFG.noMotion)) try{ confetti(); }catch(_e){}
+        if(typeof chime==='function') try{ chime(); }catch(_e){}
+        if(opts.speech && typeof say==='function') setTimeout(function(){ say(opts.speech); }, 120);
+      }, 60);
+    }catch(err){ console.warn('Arcade debrief failed', err); }
+  };
+})();
+</script>
+
+<script id="lr-home-cleanup">
+(function(){
+  function relabel(label, kicker, main){
+    if(!label) return;
+    var k = label.querySelector('.home-label-kicker');
+    var m = label.querySelector('.home-label-main');
+    if(k && kicker) k.textContent = kicker;
+    if(m && main) m.textContent = main;
+  }
+  function labelMain(label){
+    var m = label && label.querySelector('.home-label-main');
+    return m ? m.textContent.trim().toUpperCase() : '';
+  }
+  function findLabelByMain(home, main){
+    main = String(main||'').toUpperCase();
+    return Array.from(home.querySelectorAll('.home-group-label, .home-tools-label')).find(function(label){
+      return labelMain(label) === main;
+    }) || null;
+  }
+  function findGroupByMain(home, main){
+    main = String(main||'').toUpperCase();
+    return Array.from(home.querySelectorAll('.home-group')).find(function(group){
+      var label = group.querySelector('.home-group-label');
+      return labelMain(label) === main;
+    }) || null;
+  }
+  function cleanupModuleHome(){
+    var home = document.getElementById('scr-home');
+    if(!home || home.dataset.lrCleanupDone === '1') return;
+
+    var startLabel = findLabelByMain(home, 'START HERE');
+    var playLabel = home.querySelector('.home-play-label') || findLabelByMain(home, 'PLAY');
+    var guideLabel = findLabelByMain(home, 'LEARN THE FLOW');
+    var toolsLabel = home.querySelector('.home-tools-label') || findLabelByMain(home, 'LEARNING TOOLS');
+    var learnLabel = findLabelByMain(home, 'LEARN');
+    var progressGroup = findGroupByMain(home, 'PROGRESS');
+    var utilityGroup = findGroupByMain(home, 'SYSTEM');
+
+    relabel(startLabel, 'LAUNCH PAD', 'START HERE');
+    relabel(playLabel, 'HOLODECK', 'INTERACTIVE MODES');
+    relabel(guideLabel, 'TRAINING LIBRARY', 'WATCH & LEARN');
+    relabel(toolsLabel, 'TRAINING LIBRARY', 'QUIZZES · DRILLS · GUIDES');
+    relabel(learnLabel, 'TRAINING LIBRARY', 'SKILL TOOLS');
+
+    if(progressGroup){
+      var progressLabel = progressGroup.querySelector('.home-group-label');
+      var progressGrid = progressGroup.querySelector('.hgrid');
+      relabel(progressLabel, 'COMMAND DECK', 'SCORES · BADGES · SETTINGS');
+      progressGroup.classList.add('lr-command-deck');
+
+      if(progressGrid && utilityGroup){
+        var utilGrid = utilityGroup.querySelector('.hgrid');
+        if(utilGrid && utilGrid.children.length){
+          Array.from(utilGrid.children).forEach(function(card){ progressGrid.appendChild(card); });
+        }
+        var divider = utilityGroup.previousElementSibling;
+        if(divider && divider.classList && divider.classList.contains('home-divider')) divider.remove();
+        utilityGroup.remove();
+      }
+    }
+
+    home.classList.add('lr-home-cleaned');
+    home.dataset.lrCleanupDone = '1';
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanupModuleHome, {once:true});
+  else cleanupModuleHome();
+  window.addEventListener('load', cleanupModuleHome);
+  window.cleanupModuleHome = cleanupModuleHome;
+})();
+</script>
 </body>
 </html>

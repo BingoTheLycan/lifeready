@@ -2037,6 +2037,64 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </filter>
 </defs>
 </svg>
+
+<style id="lr-mobile-cleanup">
+.lrx-stage{display:grid;gap:14px}
+@media (max-width: 720px){
+  .lrx-shell,.lrx-stage{padding:10px !important;gap:10px !important;display:grid;align-content:start;}
+  .lrx-grid,.lrx-grid.two{gap:10px !important;}
+  .lrx-hero{padding:12px 13px !important;border-radius:16px !important;margin:0 !important;}
+  .lrx-kicker{font-size:.62rem !important;margin-bottom:4px !important;letter-spacing:1.6px !important;}
+  .lrx-title{font-size:1rem !important;line-height:1.05 !important;margin-bottom:4px !important;}
+  .lrx-sub,.lrx-copy,.lrx-casecopy{font-size:.82rem !important;line-height:1.42 !important;}
+  .lrx-chiprow{margin-top:8px !important;gap:6px !important;}
+  .lrx-chip,.lrx-tag{padding:5px 8px !important;font-size:.62rem !important;letter-spacing:.8px !important;}
+  .lrx-panel{padding:12px !important;border-radius:16px !important;}
+  .lrx-panelhead{margin-bottom:8px !important;gap:8px !important;}
+  .lrx-paneltitle{font-size:.8rem !important;}
+  .lrx-panelsub{font-size:.72rem !important;line-height:1.35 !important;}
+  .lrx-statrow{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:8px !important;margin-top:10px !important;}
+  .lrx-stat{padding:8px 9px !important;border-radius:12px !important;}
+  .lrx-statlabel,.lrx-stat .k{font-size:.54rem !important;margin-bottom:3px !important;letter-spacing:.8px !important;}
+  .lrx-statvalue,.lrx-stat strong{font-size:.92rem !important;line-height:1.05 !important;}
+  .lrx-case{padding:12px !important;gap:8px !important;border-radius:16px !important;}
+  .lrx-casebody{padding:10px !important;gap:7px !important;}
+  .lrx-choicegrid{gap:8px !important;}
+  .lrx-choice{padding:12px 10px !important;border-radius:14px !important;}
+  .lrx-choice strong{font-size:.96rem !important;margin-bottom:4px !important;}
+  .lrx-list{gap:8px !important;}
+  .lrx-listitem{padding:9px 10px !important;border-radius:12px !important;}
+  .lrx-task{padding:10px 11px !important;min-width:0 !important;}
+  .lrx-slot{padding:9px 10px !important;min-height:0 !important;border-radius:14px !important;}
+  .lrx-btnrow{gap:8px !important;margin-top:10px !important;}
+  .lrx-btn{padding:10px 12px !important;font-size:.74rem !important;border-radius:12px !important;}
+  .lrx-mini{font-size:.72rem !important;line-height:1.35 !important;}
+  .lrx-alert{margin-top:8px !important;padding:10px 12px !important;border-radius:12px !important;}
+
+  #scr-casharcade .lrx-hero .lrx-chiprow,
+  #scr-sketchydeck .lrx-hero .lrx-chiprow,
+  #scr-storebay .lrx-hero .lrx-chiprow,
+  #scr-schedulebuilder .lrx-hero .lrx-chiprow{display:none !important;}
+
+  #scr-casharcade .lrx-hero .lrx-sub,
+  #scr-sketchydeck .lrx-hero .lrx-sub,
+  #scr-storebay .lrx-hero .lrx-sub,
+  #scr-schedulebuilder .lrx-hero .lrx-sub{
+    font-size:.74rem !important;
+    line-height:1.28 !important;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1;
+    overflow:hidden;
+  }
+
+  #scr-home .home-divider{margin:14px 0 !important;}
+  #scr-home .mode-list .mc,
+  #scr-home .hgrid .hb{min-height:74px !important;padding:10px 12px !important;}
+  #scr-home .daily-card{padding:12px !important;}
+  #scr-home.lr-home-cleaned .lr-command-deck .hgrid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+</style>
 </head>
 <body>
 <div id="page-wrap">
@@ -2089,6 +2147,67 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 <div class="home-divider"></div>
 <div class="home-group">
+<style id="lr-arcade-ui">
+.lrx-shell{padding:14px;display:grid;gap:14px}
+.lrx-hero{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border:1px solid color-mix(in srgb,var(--mode-accent) 45%, white 10%);border-radius:20px;padding:16px;box-shadow:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.06)}
+.lrx-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,color-mix(in srgb,var(--mode-accent) 20%, transparent),transparent 42%);pointer-events:none}
+.lrx-kicker{font:700 .72rem/1 var(--font-mono);letter-spacing:2px;text-transform:uppercase;color:var(--mode-accent);margin-bottom:6px}
+.lrx-title{font:900 clamp(1.1rem,3vw,1.5rem)/1.1 var(--font-display);margin-bottom:6px;text-shadow:0 0 18px color-mix(in srgb,var(--mode-accent) 22%, transparent)}
+.lrx-sub{color:var(--text2);font-size:.88rem;line-height:1.5;max-width:58ch}
+.lrx-chiprow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.lrx-chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:7px 11px;font:.72rem var(--font-mono);letter-spacing:1px;color:var(--text2)}
+.lrx-grid{display:grid;gap:14px}
+@media(min-width:880px){.lrx-grid.two{grid-template-columns:1.2fr .8fr}}
+.lrx-panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.lrx-panelhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.lrx-paneltitle{font:800 .92rem/1 var(--font-mono);letter-spacing:1.4px;text-transform:uppercase;color:var(--text)}
+.lrx-panelsub{font-size:.78rem;color:var(--text3);margin-top:4px;line-height:1.45}
+.lrx-statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.lrx-stat{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px 12px}
+.lrx-statlabel{display:block;font:.64rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
+.lrx-statvalue{display:block;font:900 1.05rem/1 var(--font-display);color:var(--mode-accent)}
+.lrx-btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.lrx-btn{appearance:none;border:none;border-radius:14px;padding:11px 14px;font:800 .82rem/1 var(--font-mono);letter-spacing:1px;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.24)}
+.lrx-btn.pri{background:linear-gradient(180deg,color-mix(in srgb,var(--mode-accent) 88%, white 12%),color-mix(in srgb,var(--mode-accent) 70%, black 12%));color:#081117}
+.lrx-btn.sec{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:var(--text)}
+.lrx-btn.warn{background:linear-gradient(180deg,#ffcc4d,#e39b00);color:#2b1f00}
+.lrx-mini{font-size:.77rem;color:var(--text3);line-height:1.5}
+.lrx-alert{margin-top:10px;padding:12px 14px;border-radius:14px;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1)}
+.lrx-alert.good{border-color:rgba(0,200,120,.36);box-shadow:0 0 0 1px rgba(0,200,120,.08) inset}
+.lrx-alert.warn{border-color:rgba(255,187,51,.4);box-shadow:0 0 0 1px rgba(255,187,51,.08) inset}
+.lrx-alert.bad{border-color:rgba(255,80,80,.4);box-shadow:0 0 0 1px rgba(255,80,80,.08) inset}
+.lrx-result{padding:18px;border-radius:20px;border:1px solid color-mix(in srgb,var(--mode-accent) 45%, white 10%);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));box-shadow:0 20px 44px rgba(0,0,0,.28);text-align:center}
+.lrx-grade{font:900 clamp(2.3rem,8vw,4.1rem)/1 var(--font-display);color:var(--mode-accent);text-shadow:0 0 20px color-mix(in srgb,var(--mode-accent) 25%, transparent);margin-bottom:10px}
+.lrx-decklabel{font:.76rem var(--font-mono);letter-spacing:2px;text-transform:uppercase;color:var(--mode-accent);margin-bottom:6px}
+.lrx-copy{color:var(--text2);font-size:.9rem;line-height:1.6;margin:12px auto 0;max-width:52ch}
+.lrx-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);font:.69rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text2)}
+.lrx-list{display:grid;gap:8px}
+.lrx-listitem{display:flex;justify-content:space-between;gap:10px;align-items:center;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px 12px}
+.lrx-listitem.done{border-color:rgba(0,200,120,.35)}
+.lrx-tray{display:flex;flex-wrap:wrap;gap:10px}
+.lrx-task{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:12px 13px;min-width:145px;cursor:pointer}
+.lrx-task.sel{border-color:color-mix(in srgb,var(--mode-accent) 55%, white 12%);box-shadow:0 0 0 1px color-mix(in srgb,var(--mode-accent) 28%, transparent) inset,0 0 16px color-mix(in srgb,var(--mode-accent) 14%, transparent)}
+.lrx-slotlist{display:grid;gap:10px}
+.lrx-slot{display:grid;grid-template-columns:92px 1fr auto;gap:10px;align-items:center;background:rgba(0,0,0,.22);border:1px dashed rgba(255,255,255,.18);border-radius:16px;padding:10px 12px;min-height:72px}
+.lrx-slot.filled{border-style:solid;border-color:rgba(255,255,255,.16);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02))}
+.lrx-slot.drop{border-color:color-mix(in srgb,var(--mode-accent) 58%, white 12%);box-shadow:0 0 0 1px color-mix(in srgb,var(--mode-accent) 24%, transparent) inset}
+.lrx-timelabel{font:800 .72rem/1 var(--font-mono);letter-spacing:1.3px;color:var(--mode-accent);text-transform:uppercase}
+.lrx-ghost{color:var(--text3);font-size:.78rem}
+.lrx-choicegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lrx-choice{padding:16px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));text-align:center;cursor:pointer;color:var(--text)}
+.lrx-choice strong{display:block;font:900 1.05rem/1 var(--font-display);margin-bottom:6px}
+.lrx-choice small{display:block;color:var(--text3);font-size:.74rem;line-height:1.35}
+.lrx-choice .emo{display:block;font-size:1.45rem;margin-bottom:6px}
+.lrx-choice.right{border-color:rgba(0,200,120,.44);box-shadow:0 0 0 1px rgba(0,200,120,.12) inset,0 0 20px rgba(0,200,120,.12)}
+.lrx-choice.wrong{border-color:rgba(255,90,90,.42);box-shadow:0 0 0 1px rgba(255,90,90,.12) inset;opacity:.75}
+.lrx-choice[disabled]{pointer-events:none}
+.lrx-case{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.11);border-radius:18px;padding:14px;display:grid;gap:10px}
+.lrx-casebar{display:flex;justify-content:space-between;gap:10px;align-items:center;font:.72rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text3)}
+.lrx-casebody{background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:12px;display:grid;gap:8px}
+.lrx-casetitle{font:900 .98rem/1.2 var(--font-display)}
+.lrx-casecopy{font-size:.86rem;color:var(--text2);line-height:1.55}
+@media(max-width:720px){.lrx-statrow{grid-template-columns:1fr 1fr}.lrx-choicegrid{grid-template-columns:1fr}.lrx-slot{grid-template-columns:1fr;align-items:flex-start}}
+</style>
 <div class="home-group-label home-play-label"><span class="home-label-kicker">HOLODECK</span><span class="home-label-main">PLAY</span></div>
 <div class="mode-list" style="margin-top:0">
 <div class="mc" onclick="startMode('practice')">
@@ -2119,6 +2238,18 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="mc-icon">💛</div>
 <div class="mc-body"><div class="mc-name">CONFLICT &amp; FEELINGS</div>
 <div class="mc-desc">Naming emotions · Empathy · Managing frustration · Conflict resolution</div></div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="openConversationBuilderIntro()">
+<div class="mc-icon">🗨️</div>
+<div class="mc-body"><div class="mc-name">CONVERSATION BUILDER</div>
+<div class="mc-desc">Put spoken lines in order · Greeting · Reply · Follow-up · Closing</div></div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="openToneDecoderIntro()">
+<div class="mc-icon">🎛️</div>
+<div class="mc-body"><div class="mc-name">TONE DECODER</div>
+<div class="mc-desc">Read the tone · Pick the best reply · Build better social timing</div></div>
 <div class="mc-arr">›</div>
 </div>
 </div>
@@ -2222,6 +2353,71 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 <!-- ══════════ LAUNDRY GUIDE ══════════ -->
 <!-- ══════════ SCORES ══════════ -->
+<div class="scr" id="scr-conversationbuilder">
+<div class="gtop">
+<button class="back" onclick="go('home')">‹ BACK</button>
+<div class="gmode">🗨️ CONVERSATION BUILDER</div>
+</div>
+<div class="lrx-shell" style="--mode-accent:#c86bff">
+  <div class="lrx-hero">
+    <div class="lrx-kicker">Social Sequence Run</div>
+    <div class="lrx-title">Build the back-and-forth so it sounds natural.</div>
+    <div class="lrx-sub">Listen to short spoken lines, place them in the best order, and practice how conversations open, respond, continue, and close.</div>
+    <div class="lrx-chiprow">
+      <span class="lrx-chip">5 short conversations</span>
+      <span class="lrx-chip">Spoken lines</span>
+      <span class="lrx-chip">Immediate feedback</span>
+    </div>
+  </div>
+  <div id="conversationbuilder-live">
+    <div class="lrx-grid two">
+      <section class="lrx-panel">
+        <div class="lrx-panelhead">
+          <div>
+            <div class="lrx-paneltitle">Mission Brief</div>
+            <div class="lrx-panelsub">Put the lines in the order that makes the conversation flow.</div>
+          </div>
+          <span class="lrx-tag" id="convbuilder-round">Conversation 1 / 5</span>
+        </div>
+        <div id="convbuilder-mission"></div>
+        <div class="lrx-statrow">
+          <div class="lrx-stat"><span class="lrx-statlabel">Correct</span><span class="lrx-statvalue" id="convbuilder-correct">0</span></div>
+          <div class="lrx-stat"><span class="lrx-statlabel">Placed</span><span class="lrx-statvalue" id="convbuilder-placed">0 / 4</span></div>
+          <div class="lrx-stat"><span class="lrx-statlabel">Best</span><span class="lrx-statvalue" id="convbuilder-best">--</span></div>
+        </div>
+        <div class="lrx-btnrow">
+          <button class="lrx-btn sec" onclick="readConversationBuilderPrompt()">🔊 Read Scenario</button>
+          <button class="lrx-btn sec" onclick="clearConversationBuilder()">Clear Lines</button>
+        </div>
+      </section>
+      <section class="lrx-panel">
+        <div class="lrx-panelhead">
+          <div>
+            <div class="lrx-paneltitle">Spoken Lines</div>
+            <div class="lrx-panelsub">Tap a line to hear it, then place it into the conversation slot.</div>
+          </div>
+          <span class="lrx-tag" id="convbuilder-selection">No line selected</span>
+        </div>
+        <div id="convbuilder-pool" class="lrx-tray"></div>
+      </section>
+    </div>
+    <section class="lrx-panel">
+      <div class="lrx-panelhead">
+        <div>
+          <div class="lrx-paneltitle">Conversation Order</div>
+          <div class="lrx-panelsub">The four beats are always greeting, reply, follow-up, and closing.</div>
+        </div>
+      </div>
+      <div id="convbuilder-slots" class="lrx-slotlist"></div>
+      <div class="lrx-btnrow">
+        <button class="lrx-btn pri" onclick="checkConversationBuilder()">Check Conversation</button>
+      </div>
+    </section>
+  </div>
+  <div id="conversationbuilder-result" style="display:none"></div>
+</div>
+</div>
+
 <div class="scr" id="scr-scores">
 <div class="gtop">
 <button class="back" onclick="go('home')">‹ BACK</button>
@@ -5976,6 +6172,7 @@ function printClientReport(i){
 </style>
 
 
+
 <style id="lr-header-popup-upgrade">
 /* ══ RETRO HEADER + POPUP UPGRADE ══ */
 .hdr{
@@ -6478,7 +6675,6 @@ function printClientReport(i){
   #demo-step-counter{margin-left:0 !important;}
 }
 </style>
-
 </body></html>
   `);
   w.document.close();
@@ -8975,5 +9171,400 @@ document.addEventListener('DOMContentLoaded',()=>{
 }
 </style>
 
+
+
+
+<script>
+(function(){
+  function el(id){ return document.getElementById(id); }
+  const CONV_BUILDER_ROLES = ['Greeting','Reply','Follow-up','Closing'];
+  const CONV_BUILDER_SCENARIOS = [
+    {id:'classmate',title:'Before class',subtitle:'Two classmates are about to walk into art class together.',lines:[{id:'greet',text:'Hi Maya, how is your day going?'},{id:'reply',text:'Pretty good. I am ready for art class.'},{id:'follow',text:'Nice. Want to sit together today?'},{id:'close',text:'Sure, let\'s head in.'}],order:['greet','reply','follow','close']},
+    {id:'lunch',title:'At lunch',subtitle:'Someone wants to join a lunch table politely.',lines:[{id:'greet',text:'Hey, is this seat open?'},{id:'reply',text:'Yes, go ahead and sit down.'},{id:'follow',text:'Thanks. What are you all talking about?'},{id:'close',text:'Cool, thanks for making room.'}],order:['greet','reply','follow','close']},
+    {id:'coworker',title:'At work',subtitle:'A worker needs quick help from a coworker during a shift.',lines:[{id:'greet',text:'Hi Jordan, can I ask you something?'},{id:'reply',text:'Sure, what do you need?'},{id:'follow',text:'Can you show me where the extra cups are?'},{id:'close',text:'Thanks, that helps a lot.'}],order:['greet','reply','follow','close']},
+    {id:'phone',title:'Phone check-in',subtitle:'A learner is calling a family member to check in after an appointment.',lines:[{id:'greet',text:'Hi Grandma, it is me.'},{id:'reply',text:'Hi there. How did your appointment go?'},{id:'follow',text:'It went well. I am on my way home now.'},{id:'close',text:'Okay, talk to you later.'}],order:['greet','reply','follow','close']},
+    {id:'neighbor',title:'In the hallway',subtitle:'Two neighbors have a quick friendly conversation on the way out.',lines:[{id:'greet',text:'Good morning, Sam.'},{id:'reply',text:'Morning. Heading out already?'},{id:'follow',text:'Yep, I have a job coach meeting today.'},{id:'close',text:'Nice. Have a good one.'}],order:['greet','reply','follow','close']}
+  ];
+  let CONVBUILDER = {convos:[],round:0,scenario:null,slots:[],selected:null,done:false,roundScores:[]};
+  function taskMap(){ const map={}; (CONVBUILDER.scenario?.lines||[]).forEach(function(line){ map[line.id]=line; }); return map; }
+  function selectedConversationLabel(){ if(!CONVBUILDER.selected) return 'No line selected'; return taskMap()[CONVBUILDER.selected] ? 'Selected line ready' : 'No line selected'; }
+  window.openConversationBuilderIntro = function(){ if(typeof showModeIntro === 'function'){ showModeIntro('🗨️','CONVERSATION BUILDER','#c86bff', [['🧩','Put the conversation in order.','Every run gives you five short conversations with four spoken lines to sort.'],['🎙️','Practice the flow.','You will build greeting, reply, follow-up, and closing in the order that sounds natural.'],['🔊','Hear the lines as you go.','Tap a line to hear it, then check the conversation for instant feedback.']], 'Start Conversation Run →', function(){ try{ closeM('m-hint'); }catch(_e){} startConversationBuilder(); }, function(){ if(typeof go === 'function') go('home'); }); } else { startConversationBuilder(); } };
+  window.startConversationBuilder = function(){ const convos=(typeof shuf === 'function' ? shuf(CONV_BUILDER_SCENARIOS) : CONV_BUILDER_SCENARIOS.slice()).slice(0,5).map(function(item){ return JSON.parse(JSON.stringify(item)); }); CONVBUILDER={convos:convos,round:0,scenario:null,slots:new Array(4).fill(null),selected:null,done:false,roundScores:[]}; if(window.CFG){ CFG.modesPlayed=CFG.modesPlayed||{}; CFG.modesPlayed.convbuilder=true; } try{ if(typeof saveAll==='function') saveAll(); }catch(_e){} if(typeof go==='function') go('conversationbuilder'); loadConversationBuilderRound(); };
+  function loadConversationBuilderRound(){ const scenario=CONVBUILDER.convos[CONVBUILDER.round]; if(!scenario){ finishConversationBuilderRun(); return; } CONVBUILDER.scenario=scenario; CONVBUILDER.slots=new Array(CONV_BUILDER_ROLES.length).fill(null); CONVBUILDER.selected=null; CONVBUILDER.done=false; renderConversationBuilder(); setTimeout(readConversationBuilderPrompt,120); }
+  window.readConversationBuilderPrompt = function(){ const sc=CONVBUILDER.scenario; if(!sc || typeof say !== 'function') return; say(sc.title + '. ' + sc.subtitle + '. Put the lines in order.'); };
+  window.clearConversationBuilder = function(){ if(!CONVBUILDER.scenario) return; CONVBUILDER.slots=new Array(CONV_BUILDER_ROLES.length).fill(null); CONVBUILDER.selected=null; renderConversationBuilder(); if(typeof beep==='function') beep(320,70); if(typeof say==='function') say('Conversation cleared.'); };
+  window.selectConversationLine = function(id){ if(CONVBUILDER.done) return; CONVBUILDER.selected=CONVBUILDER.selected===id ? null : id; renderConversationBuilder(); const line=taskMap()[id]; if(line && typeof say==='function') say(line.text); };
+  function placeConversationLine(slotIdx, lineId){ if(CONVBUILDER.done) return; const id=lineId || CONVBUILDER.selected; if(!id) return; const current=CONVBUILDER.slots.indexOf(id); if(current>-1) CONVBUILDER.slots[current]=null; CONVBUILDER.slots[slotIdx]=id; CONVBUILDER.selected=null; renderConversationBuilder(); const line=taskMap()[id]; if(typeof beep==='function') beep(560,70); if(line && typeof say==='function') say(CONV_BUILDER_ROLES[slotIdx] + '. ' + line.text); }
+  window.clickConversationSlot = function(idx){ if(CONVBUILDER.done) return; if(CONVBUILDER.slots[idx]){ const line=taskMap()[CONVBUILDER.slots[idx]]; CONVBUILDER.slots[idx]=null; renderConversationBuilder(); if(typeof beep==='function') beep(420,60); if(line && typeof say==='function') say(line.text + ' removed.'); return; } if(CONVBUILDER.selected) placeConversationLine(idx); };
+  window.convBuilderDrag = function(ev,id){ ev.dataTransfer.setData('text/plain', id); };
+  window.convBuilderDrop = function(ev, idx){ ev.preventDefault(); const id=ev.dataTransfer.getData('text/plain'); if(id) placeConversationLine(idx,id); try{ ev.currentTarget.classList.remove('drop'); }catch(_e){} };
+  function renderConversationBuilder(){ if(!el('convbuilder-mission') || !CONVBUILDER.scenario) return; const sc=CONVBUILDER.scenario; const used=new Set(CONVBUILDER.slots.filter(Boolean)); el('convbuilder-round').textContent='Conversation ' + (CONVBUILDER.round+1) + ' / ' + CONVBUILDER.convos.length; el('convbuilder-correct').textContent=String(CONVBUILDER.roundScores.reduce(function(sum,r){ return sum + r.correct; },0)); el('convbuilder-placed').textContent=used.size + ' / ' + CONV_BUILDER_ROLES.length; el('convbuilder-best').textContent=(window.CFG && CFG.conversationBuilderBest) ? (CFG.conversationBuilderBest + '%') : '--'; el('convbuilder-selection').textContent=selectedConversationLabel(); el('convbuilder-mission').innerHTML='<div class="lrx-alert good"><div class="lrx-decklabel">' + sc.title + '</div><div class="lrx-copy" style="margin:0;text-align:left">' + sc.subtitle + '</div></div>'; el('convbuilder-pool').innerHTML=sc.lines.filter(function(line){ return !used.has(line.id); }).map(function(line){ return '<div class="lrx-task ' + (CONVBUILDER.selected===line.id?'sel':'') + '" draggable="true" ondragstart="convBuilderDrag(event,\'' + line.id + '\')" onclick="selectConversationLine(\'' + line.id + '\')"><strong>"' + line.text + '"</strong><div class="lrx-mini">Spoken line · tap to hear</div></div>'; }).join('') || '<div class="lrx-alert good"><div class="lrx-copy" style="margin:0;text-align:left">All four lines are placed. Check the conversation when you are ready.</div></div>'; const map=taskMap(); el('convbuilder-slots').innerHTML=CONV_BUILDER_ROLES.map(function(role, idx){ const line=map[CONVBUILDER.slots[idx]]; return '<div class="lrx-slot ' + (line?'filled':'') + '" onclick="clickConversationSlot(' + idx + ')" ondragover="event.preventDefault();this.classList.add(\'drop\')" ondragleave="this.classList.remove(\'drop\')" ondrop="convBuilderDrop(event,' + idx + ')"><div class="lrx-timelabel">' + role + '</div><div>' + (line ? ('<strong>"' + line.text + '"</strong><div class="lrx-mini">Tap to remove</div>') : '<span class="lrx-ghost">Place the spoken line here</span>') + '</div><div class="lrx-tag">' + (line?'Locked':'Open') + '</div></div>'; }).join(''); el('conversationbuilder-live').style.display=''; el('conversationbuilder-result').style.display='none'; }
+  function scoreConversationBuilderRound(){ const sc=CONVBUILDER.scenario; let correct=0; sc.order.forEach(function(id, idx){ if(CONVBUILDER.slots[idx]===id) correct += 1; }); return {correct:correct,pct:Math.round((correct/sc.order.length)*100),scenario:sc}; }
+  function renderConversationBuilderRoundResult(result){ const more=CONVBUILDER.round < CONVBUILDER.convos.length - 1; const pct=result.pct; const grade=pct===100 ? 'A+' : pct>=75 ? 'A' : pct>=50 ? 'B' : 'C'; const verdict=pct===100 ? 'Smooth social flow' : pct>=75 ? 'Nice conversation order' : pct>=50 ? 'Getting the flow' : 'Try this conversation again'; const sc=result.scenario; const map={}; sc.lines.forEach(function(line){ map[line.id]=line.text; }); const corrections=sc.order.map(function(id, idx){ return CONV_BUILDER_ROLES[idx] + ': "' + map[id] + '"'; }).join('<br>'); el('conversationbuilder-live').style.display='none'; el('conversationbuilder-result').style.display=''; el('conversationbuilder-result').innerHTML='<div class="lrx-result"><div class="lrx-decklabel">Conversation debrief</div><div class="lrx-grade">' + grade + '</div><div class="lrx-title" style="font-size:1.2rem">' + verdict + '</div><div class="lrx-copy"><strong>' + result.correct + ' of ' + sc.order.length + '</strong> lines landed in the right place.</div><div class="lrx-alert ' + (pct>=75?'good':pct>=50?'warn':'bad') + '" style="text-align:left;margin-top:16px"><div class="lrx-decklabel">Correct order</div><div class="lrx-copy" style="margin:0;text-align:left">' + corrections + '</div></div><div class="lrx-btnrow" style="justify-content:center"><button class="lrx-btn pri" onclick="' + (more?'nextConversationBuilderRound()':'finishConversationBuilderRun()') + '">' + (more?'Next Conversation':'See Results') + '</button><button class="lrx-btn sec" onclick="go(\'home\')">Return Home</button></div></div>'; if(typeof say==='function') say(verdict + '. ' + result.correct + ' of ' + sc.order.length + ' lines were in the right place.'); }
+  window.checkConversationBuilder = function(){ if(!CONVBUILDER.scenario) return; if(CONVBUILDER.slots.some(function(v){ return !v; })){ if(typeof openHint==='function'){ openHint('Conversation Incomplete','<p style="color:var(--text2);font-size:.88rem;line-height:1.6">Place all four spoken lines before checking the conversation.</p>','OK',function(){ try{ closeM("m-hint"); }catch(_e){}; }); } else if(typeof say==='function'){ say('Place all four spoken lines first.'); } return; } const result=scoreConversationBuilderRound(); try{ if(window.CFG){ CFG.conversationBuilderBest=Math.max(CFG.conversationBuilderBest||0, result.pct); } if(typeof saveAll==='function') saveAll(); }catch(_e){} CONVBUILDER.done=true; CONVBUILDER.roundScores.push(result); if(result.pct===100){ if(typeof chime==='function') chime(); } else if(result.pct>=50){ if(typeof beep==='function') beep(640,90); } else { if(typeof buzz==='function') buzz(); } renderConversationBuilderRoundResult(result); };
+  window.nextConversationBuilderRound = function(){ CONVBUILDER.round += 1; loadConversationBuilderRound(); };
+  window.finishConversationBuilderRun = function(){
+    const rounds=CONVBUILDER.roundScores || [];
+    const totalConvos=rounds.length || CONVBUILDER.convos.length || 1;
+    const totalLines=rounds.reduce(function(sum,r){ return sum + ((r.scenario&&r.scenario.order&&r.scenario.order.length)||0); },0);
+    const totalCorrect=rounds.reduce(function(sum,r){ return sum + (r.correct||0); },0);
+    const avgPct=rounds.length ? Math.round(rounds.reduce(function(sum,r){ return sum + (r.pct||0); },0)/rounds.length) : 0;
+    try{ if(window.CFG){ CFG.conversationBuilderBest=Math.max(CFG.conversationBuilderBest||0, avgPct); } if(typeof saveAll==='function') saveAll(); }catch(_e){}
+    var streak=0, bestStreak=0; rounds.forEach(function(r){ streak=(r.pct||0)>=75?streak+1:0; bestStreak=Math.max(bestStreak,streak); });
+    const reviewRounds=rounds.map(function(r,idx){
+      const sc=r.scenario||{}; const map={}; (sc.lines||[]).forEach(function(line){ map[line.id]=line.text; });
+      const correctOrder=(sc.order||[]).map(function(id,slot){ return CONV_BUILDER_ROLES[slot] + ': "' + (map[id]||id) + '"'; }).join(' · ');
+      return { title:(sc.title||('Conversation '+(idx+1))), meta:(r.correct||0) + '/' + ((sc.order&&sc.order.length)||0) + ' lines in place · ' + correctOrder, ok:(r.pct||0)>=75 };
+    });
+    showArcadeDebriefRedesign({
+      modeKey:'conversation_builder',
+      modeTitle:'Conversation Builder',
+      header:avgPct===100 ? 'CONVERSATION RUN COMPLETE' : avgPct>=80 ? 'SOCIAL FLOW ONLINE' : avgPct>=60 ? 'BUILDING BETTER RHYTHM' : 'TRY ANOTHER RUN',
+      sub:totalCorrect + ' of ' + totalLines + ' spoken lines placed correctly across ' + totalConvos + ' conversations.',
+      correct:totalCorrect,
+      total:Math.max(totalLines,1),
+      pct:avgPct,
+      score:totalCorrect*100,
+      streak:bestStreak,
+      scoreLabel:'Mission Score',
+      reviewRounds:reviewRounds,
+      playAgainText:'▶ BUILD ANOTHER RUN',
+      replay:function(){ startConversationBuilder(); },
+      sessionLabel:avgPct>=90?'Comms Online':avgPct>=80?'Social Flow':avgPct>=60?'Pattern Building':'Training Run',
+      sessionCopy:'You rebuilt ' + totalConvos + ' short conversation' + (totalConvos===1?'':'s') + ' in the right social order. Review the rhythm, then rerun it until the flow sounds natural.',
+      pills:[totalConvos + ' conversations', totalCorrect + ' lines placed', avgPct + '% accuracy'],
+      well:[
+        'You practiced real conversation flow instead of just answering quiz questions.',
+        totalCorrect>0 ? 'You placed ' + totalCorrect + ' spoken line' + (totalCorrect===1?'':'s') + ' in the correct slot.' : 'You still got a full run of conversation patterns to study.',
+        avgPct>=80 ? 'Your greeting-to-closing rhythm is starting to feel smoother.' : 'You kept working through the conversation order until the pattern appeared.'
+      ],
+      next:[
+        'Listen for the social beat: greeting, reply, follow-up, then closing.',
+        'Notice which line answers the previous speaker and which line moves the talk forward.',
+        'Replay the conversations you missed until the sequence feels natural.'
+      ],
+      reminder:'Start friendly, answer directly, add one more helpful line, then close the conversation clearly.',
+      bannerCopy:'Conversation builder complete. Replay it for a smoother social rhythm.',
+      speech:'Conversation run complete. You placed ' + totalCorrect + ' of ' + totalLines + ' lines correctly.'
+    });
+  };
+})();
+</script>
+
+
+<script>
+(function(){
+  if(window.showArcadeDebriefRedesign) return;
+
+  const LR_PROGRESS_KEY='lr_progress_v1';
+  const LR_PROGRESS_RANKS=[
+    {min:0,title:'Cadet'},
+    {min:100,title:'Ensign'},
+    {min:250,title:'Lieutenant Junior Grade'},
+    {min:450,title:'Lieutenant'},
+    {min:700,title:'Lieutenant Commander'},
+    {min:1000,title:'Commander'},
+    {min:1400,title:'Captain'},
+    {min:1900,title:'Admiral'}
+  ];
+  function lrModuleName(){
+    try{
+      var raw=(document.title||'').replace(/\s*[|\-].*$/,'').trim();
+      if(raw) return raw;
+    }catch(_e){}
+    try{
+      var file=(location.pathname.split('/').pop()||'').replace(/\.html$/i,'');
+      if(file) return file;
+    }catch(_e){}
+    return 'LifeReady';
+  }
+  function lrLoadProgress(){
+    try{
+      var raw=localStorage.getItem(LR_PROGRESS_KEY);
+      var data=raw?JSON.parse(raw):{};
+      if(!data || typeof data!=='object') data={};
+      if(!data.modules || typeof data.modules!=='object') data.modules={};
+      if(!data.modeBest || typeof data.modeBest!=='object') data.modeBest={};
+      if(typeof data.totalXP!=='number') data.totalXP=0;
+      if(typeof data.sessions!=='number') data.sessions=0;
+      return data;
+    }catch(_e){
+      return {totalXP:0,sessions:0,modules:{},modeBest:{}};
+    }
+  }
+  function lrSaveProgress(data){
+    try{ localStorage.setItem(LR_PROGRESS_KEY, JSON.stringify(data)); }catch(_e){}
+  }
+  function lrRankForXP(xp){
+    var current=LR_PROGRESS_RANKS[0];
+    for(var i=0;i<LR_PROGRESS_RANKS.length;i++){
+      if(Number(xp) >= LR_PROGRESS_RANKS[i].min) current=LR_PROGRESS_RANKS[i];
+    }
+    return current;
+  }
+  function lrNextRank(xp){
+    for(var i=0;i<LR_PROGRESS_RANKS.length;i++){
+      if(Number(xp) < LR_PROGRESS_RANKS[i].min) return LR_PROGRESS_RANKS[i];
+    }
+    return null;
+  }
+  function lrEarnProgress(meta){
+    meta=meta||{};
+    var data=lrLoadProgress();
+    var moduleName=meta.moduleName || lrModuleName();
+    var pct=Math.max(0, Math.min(100, Number(meta.pct)||0));
+    var hintsUsed=Math.max(0, Number(meta.hintsUsed)||0);
+    var modeKey=String(meta.modeKey||meta.modeTitle||('mode_'+Date.now()));
+    var prevRank=lrRankForXP(data.totalXP);
+    var prevBest=typeof data.modeBest[modeKey]==='number' ? data.modeBest[modeKey] : null;
+    var xp=10;
+    if(pct>=80) xp+=5;
+    if(pct===100) xp+=5;
+    if(prevBest===null) xp+=10;
+    else if(pct>prevBest) xp+=5;
+    if(hintsUsed===0) xp+=2;
+    if(!data.modules[moduleName]) data.modules[moduleName]={sessions:0,mastery:0,bestPct:0,lastMode:'',lastPlayed:0};
+    var mod=data.modules[moduleName];
+    var priorSessions=Math.max(0, Number(mod.sessions)||0);
+    var priorMastery=Math.max(0, Math.min(100, Number(mod.mastery)||0));
+    mod.sessions=priorSessions+1;
+    mod.mastery=Math.max(0, Math.min(100, Math.round(((priorMastery*priorSessions)+pct)/Math.max(1, mod.sessions))));
+    mod.bestPct=Math.max(Number(mod.bestPct)||0, pct);
+    mod.lastMode=String(meta.modeTitle||modeKey);
+    mod.lastPlayed=Date.now();
+    data.sessions = (Number(data.sessions)||0) + 1;
+    data.totalXP = (Number(data.totalXP)||0) + xp;
+    data.modeBest[modeKey] = prevBest===null ? pct : Math.max(prevBest, pct);
+    data.lastEarned={xp:xp,module:moduleName,mode:String(meta.modeTitle||modeKey),at:Date.now(),pct:pct};
+    var currentRank=lrRankForXP(data.totalXP);
+    var next=lrNextRank(data.totalXP);
+    data.currentRank=currentRank.title;
+    lrSaveProgress(data);
+    return {
+      xp:xp,
+      totalXP:data.totalXP,
+      sessions:data.sessions,
+      moduleMastery:mod.mastery,
+      bestPct:mod.bestPct,
+      improved:prevBest!==null && pct>prevBest,
+      currentRank:currentRank.title,
+      nextRank:next?next.title:'',
+      remainingXP:next?Math.max(0, next.min-data.totalXP):0,
+      promoted:currentRank.title!==prevRank.title,
+      previousRank:prevRank.title
+    };
+  }
+
+
+  function esc(v){
+    return String(v==null?'':v)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+  function listHtml(items, bullet){
+    items=(items||[]).filter(Boolean);
+    return '<div class="rr-coach-list">'+items.map(function(line){
+      return '<div class="rr-coach-line"><span class="rr-bullet">'+esc(bullet||'▸')+'</span><div>'+esc(line)+'</div></div>';
+    }).join('')+'</div>';
+  }
+  function longestStreak(rounds){
+    var best=0, run=0;
+    (rounds||[]).forEach(function(r){
+      if(r && r.ok){ run += 1; if(run>best) best=run; }
+      else run = 0;
+    });
+    return best;
+  }
+  window.showArcadeDebriefRedesign = function(opts){
+    opts=opts||{};
+    try{
+      var correct = Number(opts.correct)||0;
+      var total = Math.max(Number(opts.total)||0, 1);
+      var pct = Math.max(0, Math.min(100, Math.round(opts.pct!=null ? Number(opts.pct) : (correct/total*100))));
+      var score = opts.score!=null ? Number(opts.score) : Math.round(pct*10);
+      var streak = opts.streak!=null ? Number(opts.streak) : longestStreak(opts.reviewRounds||[]);
+      var modeKey = opts.modeKey || 'arcade_custom';
+      var modeTitle = opts.modeTitle || 'Arcade Mission';
+      var now = Date.now();
+      var elapsedSec = Math.max(0, Number(opts.elapsedSec)||0);
+      try{
+        if(typeof MODE_TITLES !== 'undefined' && MODE_TITLES){ MODE_TITLES[modeKey]=modeTitle; }
+        else { window.MODE_TITLES = window.MODE_TITLES || {}; window.MODE_TITLES[modeKey]=modeTitle; }
+      }catch(_e){ window.MODE_TITLES = window.MODE_TITLES || {}; window.MODE_TITLES[modeKey]=modeTitle; }
+      var st={mode:modeKey,score:score,correct:correct,total:total,bestStreak:streak,hintsUsed:Number(opts.hintsUsed)||0,startTime:now-(elapsedSec*1000),shiftBadges:[]};
+      try{ ST = st; }catch(_e){}
+      window.ST = st;
+      window.__lrReviewRounds = Array.isArray(opts.reviewRounds) ? opts.reviewRounds : [];
+      try{
+        var dateText = (typeof today==='function') ? today() : new Date().toLocaleDateString();
+        window.SCORES = Array.isArray(window.SCORES) ? window.SCORES : [];
+        window.SCORES.unshift({mode:modeTitle,score:score,correct:correct,total:total,streak:streak,date:dateText,time:Math.round(elapsedSec)});
+        window.SCORES = window.SCORES.slice(0,30);
+        try{ SCORES = window.SCORES; }catch(_e){}
+      }catch(_e){}
+      var progress = lrEarnProgress({modeKey:modeKey, modeTitle:modeTitle, pct:pct, hintsUsed:Number(opts.hintsUsed)||0, moduleName:lrModuleName()});
+      var progressPills = Array.isArray(opts.pills) ? opts.pills.slice() : [];
+      progressPills.unshift('Rank ' + progress.currentRank);
+      progressPills.unshift('+' + progress.xp + ' XP');
+      progressPills.push(progress.nextRank ? (progress.promoted ? ('Promoted to ' + progress.currentRank) : (progress.remainingXP + ' XP to ' + progress.nextRank)) : 'Command rank maxed');
+      var promotionBanner = progress.promoted ? ('<div style="background:linear-gradient(135deg,rgba(255,179,71,.18),rgba(255,255,255,.05));border:2px solid rgba(255,179,71,.48);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--amber);letter-spacing:2px;margin-bottom:4px">PROMOTION ACHIEVED</div><div style="font-family:var(--font-display);font-size:1.12rem;color:var(--text)">' + esc(progress.currentRank) + '</div><div style="font-size:.76rem;color:var(--text3);margin-top:4px">Training XP updated. Return to the holodeck when you are ready for the next sim.</div></div>') : '';
+      var shareLine = modeTitle + ' · ' + correct + '/' + total + ' correct · ' + pct + '%';
+      window._shareText = 'I played ' + modeTitle + ' in ' + document.title.replace(/\s*[-|].*$/,'') + '!\n' + shareLine;
+      if(typeof go==='function') go('results');
+      setTimeout(function(){
+        var titleEl = document.getElementById('r-title'); if(titleEl) titleEl.textContent='';
+        var subEl = document.getElementById('r-sub'); if(subEl) subEl.textContent='';
+        var pb = document.getElementById('pb-banner'); if(pb){ pb.textContent=''; pb.style.display='none'; }
+        if(typeof window.refreshResultsRedesign==='function') window.refreshResultsRedesign();
+        if(titleEl) titleEl.textContent = opts.header || (modeTitle.toUpperCase() + ' COMPLETE');
+        if(subEl) subEl.textContent = opts.sub || ('You cleared ' + correct + ' of ' + total + ' checkpoints.');
+        var scoreEl=document.getElementById('r-score'); if(scoreEl) scoreEl.textContent=String(score);
+        var accEl=document.getElementById('r-acc'); if(accEl) accEl.textContent=pct+'%';
+        var corrEl=document.getElementById('r-correct'); if(corrEl) corrEl.textContent=correct+'/'+total;
+        var streakEl=document.getElementById('r-streak'); if(streakEl) streakEl.textContent=String(streak);
+        var timerBox=document.getElementById('r-timer-box'); if(timerBox) timerBox.style.display=elapsedSec>0?'':'none';
+        var timerEl=document.getElementById('r-timer'); if(timerEl && elapsedSec>0 && typeof fmtElapsed==='function') timerEl.textContent=fmtElapsed(elapsedSec);
+        var scoreLabelEl = scoreEl && scoreEl.parentElement ? scoreEl.parentElement.querySelector('.rsl') : null;
+        if(scoreLabelEl && opts.scoreLabel) scoreLabelEl.textContent = opts.scoreLabel;
+        var sessionHost=document.getElementById('rr-session-card');
+        if(sessionHost){
+          var pills=(progressPills||[]).filter(Boolean).map(function(line){ return '<div class="rr-mini-pill">'+esc(line)+'</div>'; }).join('');
+          sessionHost.innerHTML = '<div class="rr-session-head"><div class="rr-session-title">'+esc(modeTitle)+' Complete</div><div class="rr-session-badge">'+esc(opts.sessionLabel || (pct>=90?'Arcade Clear':pct>=75?'Strong Run':'Training Run'))+'</div></div><div class="rr-session-copy">'+esc(opts.sessionCopy || ('Retro training complete. Review the run, then jump back into the holodeck for another rep.'))+'</div>'+(pills?('<div class="rr-mini-pills">'+pills+'</div>'):'');
+        }
+        var well=document.getElementById('rr-well-card'); if(well && opts.well) well.innerHTML=listHtml(opts.well,'▸');
+        var next=document.getElementById('rr-next-card') || document.getElementById('wtw-card'); if(next && opts.next) next.innerHTML=listHtml(opts.next,'→');
+        var reminder=document.getElementById('rr-reminder-card'); if(reminder && opts.reminder) reminder.innerHTML='<div class="rr-reminder">'+esc(opts.reminder)+'</div>';
+        var roundsBtn=document.getElementById('rounds-tab-btn'); if(roundsBtn) roundsBtn.textContent='ROUND REVIEW (' + ((window.__lrReviewRounds||[]).length) + ')';
+        var rp=document.getElementById('r-play-again');
+        if(rp){
+          rp.textContent = opts.playAgainText || '▶ PLAY AGAIN';
+          if(typeof opts.replay === 'function') rp.onclick = opts.replay;
+        }
+        var shareBtn=document.getElementById('r-share'); if(shareBtn) shareBtn.style.display='';
+        var coachBtn=document.getElementById('r-coach-copy'); if(coachBtn) coachBtn.style.display='';
+        var eoc=document.getElementById('eoc-card-wrap');
+        if(eoc){
+          eoc.innerHTML = promotionBanner || opts.bannerHtml || (pct>=80 ? '<div style="background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.04));border:2px solid rgba(255,255,255,.16);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">ARCADE CLEAR</div><div style="font-family:var(--font-display);font-size:1.15rem;color:var(--text)">'+esc(modeTitle)+'</div><div style="font-size:.76rem;color:var(--text3);margin-top:4px">'+esc(opts.bannerCopy || 'Replay it for a cleaner, calmer run.')+'</div></div>' : '');
+        }
+        if(typeof updateHomeUI==='function') updateHomeUI();
+        if(typeof saveAll==='function') try{ saveAll(); }catch(_e){}
+        window.scrollTo && window.scrollTo(0,0);
+        var pageWrap=document.getElementById('page-wrap'); if(pageWrap) pageWrap.scrollTop=0;
+        if(typeof confetti==='function' && pct>=70 && !(window.CFG&&CFG.noMotion)) try{ confetti(); }catch(_e){}
+        if(typeof chime==='function') try{ chime(); }catch(_e){}
+        if(opts.speech && typeof say==='function') setTimeout(function(){ say(opts.speech); }, 120);
+      }, 60);
+    }catch(err){ console.warn('Arcade debrief failed', err); }
+  };
+})();
+</script>
+
+<!-- ===== LIFE READY INLINE ARCADE: START ===== -->
+<script>
+
+(function(){
+  const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  const pick=(arr,n)=>{ const copy=(typeof shuf==='function'?shuf(arr.slice()):arr.slice().sort(()=>Math.random()-.5)); return copy.slice(0,n); };
+  function voice(t){ try{ if(typeof say==='function'&&t) say(t); }catch(_e){} }
+  window.__lrArcadeUtils={esc,pick,voice};
+})();
+</script>
+<script>
+
+(function(){
+if(window.openToneDecoderIntro) return;
+const DATA = [{"title": "Friend before class", "subtitle": "A friend drops their backpack and sighs.", "line": "I forgot my homework again. I am really not having a good morning.", "tone_options": ["Joking", "Overwhelmed", "Excited"], "tone_correct": 1, "reply_options": ["That is funny. Do it again tomorrow.", "That sounds stressful. Do you want help making a plan?", "You should just stop caring about school."], "reply_correct": 1, "tone_feedback": "The speaker sounds overwhelmed, not playful or excited.", "reply_feedback": "A calm, supportive offer of help fits the moment best."}, {"title": "Coworker in a hurry", "subtitle": "A coworker speaks quickly while stacking boxes.", "line": "Can you move these labels over here right now? The delivery truck is almost here.", "tone_options": ["Rushed", "Bored", "Joking"], "tone_correct": 0, "reply_options": ["Sure. I will move them now.", "Relax. It can wait until later.", "Why are you being weird?"], "reply_correct": 0, "tone_feedback": "The clue is the fast pace and the time pressure.", "reply_feedback": "A direct helpful answer matches a rushed work moment."}, {"title": "Neighbor says hello", "subtitle": "You pass a neighbor by the mailbox.", "line": "Hey, good to see you. How has your week been going?", "tone_options": ["Friendly", "Angry", "Nervous"], "tone_correct": 0, "reply_options": ["Pretty good. I had work today. How about you?", "Why do you need to know that?", "I do not care. Bye."], "reply_correct": 0, "tone_feedback": "The greeting is warm and open. That points to a friendly tone.", "reply_feedback": "A short friendly answer keeps the conversation going naturally."}, {"title": "Classmate needs space", "subtitle": "A classmate looks down and answers quietly.", "line": "I am kind of tired today. I think I just want to sit by myself for a bit.", "tone_options": ["Needs space", "Excited", "Teasing"], "tone_correct": 0, "reply_options": ["Okay. I will give you some space.", "Come on, do not be dramatic.", "Too bad. I am sitting here anyway."], "reply_correct": 0, "tone_feedback": "The speaker is politely asking for space.", "reply_feedback": "Respecting the request is the best social move."}, {"title": "Supervisor checks in", "subtitle": "A supervisor stops at your workstation.", "line": "I noticed you finished early. Nice job. Are you ready for another task?", "tone_options": ["Supportive", "Mocking", "Upset"], "tone_correct": 0, "reply_options": ["Yes, I am ready. What should I work on next?", "No. I am done for the day.", "Why are you watching me?"], "reply_correct": 0, "tone_feedback": "The praise and calm question show a supportive tone.", "reply_feedback": "A ready-to-help answer shows initiative and professionalism."}, {"title": "Friend makes a joke", "subtitle": "A friend grins after you almost drop your drink.", "line": "Nice catch. You almost launched that soda into orbit.", "tone_options": ["Joking", "Panicking", "Serious"], "tone_correct": 0, "reply_options": ["I know, that was close.", "Why would you say something mean like that?", "Should I call emergency services?"], "reply_correct": 0, "tone_feedback": "The exaggerated line and grin make this a joke.", "reply_feedback": "A light response matches the playful tone."}];
+const {esc,pick,voice} = window.__lrArcadeUtils;
+let STATE=null;
+function ensure(){ if(document.getElementById('scr-tonedecoder')) return; const a=document.getElementById('scr-scores'); if(!a||!a.parentNode) return; const w=document.createElement('div'); w.innerHTML=`<div class="scr" id="scr-tonedecoder"><div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🎛️ TONE DECODER</div></div><div class="lrx-shell" style="--mode-accent:#d98bff"><div id="tonedecoder-root"></div></div></div>`; a.parentNode.insertBefore(w.firstElementChild,a); }
+function cur(){ return STATE && STATE.cases[STATE.round]; }
+function stats(){ const b=(window.CFG&&CFG.toneDecoderBest)?CFG.toneDecoderBest+'%':'--'; return `<div class="lrx-statrow"><div class="lrx-stat"><span class="k">Round</span><strong>${STATE.round+1} / ${STATE.cases.length}</strong></div><div class="lrx-stat"><span class="k">Points</span><strong>${STATE.score}</strong></div><div class="lrx-stat"><span class="k">Best</span><strong>${b}</strong></div></div>`; }
+function render(){ ensure(); const root=document.getElementById('tonedecoder-root'); const sc=cur(); if(!root||!sc) return; let html=`<div class="lrx-stage"><section class="lrx-panel"><div class="lrx-decklabel">Tone Decoder</div>${stats()}<div class="lrx-casebody" style="margin-top:14px"><div class="lrx-casetitle">${esc(sc.title)}</div><div class="lrx-casecopy">${esc(sc.subtitle)}</div><div class="lrx-alert good" style="margin-top:10px;text-align:left"><div class="lrx-decklabel">Spoken line</div><div class="lrx-copy" style="margin:0;text-align:left">“${esc(sc.line)}”</div></div></div></section>`; if(STATE.stage==='tone'){ html += `<section class="lrx-panel"><div class="lrx-panelhead"><div><div class="lrx-paneltitle">Read the tone</div><div class="lrx-panelsub">Pick the tone that fits the line best.</div></div><button class="lrx-btn sec" onclick="toneDecoderSay()">🔊 Hear line</button></div><div class="lrx-choicegrid">${sc.tone_options.map((o,i)=>`<button class="lrx-choice" onclick="pickToneDecoderTone(${i})"><strong>${esc(o)}</strong><span>Choose this tone</span></button>`).join('')}</div></section>`; } else if(STATE.stage==='reply'){ const toneOk=STATE.tonePick===sc.tone_correct; html += `<section class="lrx-panel"><div class="lrx-alert ${toneOk?'good':'warn'}"><div class="lrx-decklabel">Tone check</div><div class="lrx-copy" style="margin:0;text-align:left">You chose <strong>${esc(sc.tone_options[STATE.tonePick])}</strong>. ${esc(sc.tone_feedback)}</div></div><div class="lrx-panelhead" style="margin-top:14px"><div><div class="lrx-paneltitle">Pick the best reply</div><div class="lrx-panelsub">Choose the response that matches the tone and keeps the conversation safe.</div></div></div><div class="lrx-choicegrid">${sc.reply_options.map((o,i)=>`<button class="lrx-choice" onclick="pickToneDecoderReply(${i})"><strong>${esc(o)}</strong><span>Use this reply</span></button>`).join('')}</div></section>`; } else { const r=STATE.result, more=STATE.round<STATE.cases.length-1; html += `<section class="lrx-panel"><div class="lrx-result"><div class="lrx-decklabel">Social debrief</div><div class="lrx-grade">${r.points}/2</div><div class="lrx-title" style="font-size:1.18rem">${esc(r.title)}</div><div class="lrx-copy">${esc(r.summary)}</div><div class="lrx-alert ${r.toneOk?'good':'warn'}" style="text-align:left;margin-top:14px"><div class="lrx-decklabel">Tone</div><div class="lrx-copy" style="margin:0;text-align:left">${esc(r.toneLine)}</div></div><div class="lrx-alert ${r.replyOk?'good':'warn'}" style="text-align:left;margin-top:12px"><div class="lrx-decklabel">Reply</div><div class="lrx-copy" style="margin:0;text-align:left">${esc(r.replyLine)}</div></div><div class="lrx-btnrow" style="justify-content:center"><button class="lrx-btn pri" onclick="${more?'nextToneDecoderRound()':'finishToneDecoderRun()'}">${more?'Next Conversation':'See Results'}</button><button class="lrx-btn sec" onclick="go('home')">Return Home</button></div></div></section>`; } root.innerHTML=html+`</div>`; }
+window.toneDecoderSay=function(){ const sc=cur(); if(sc) voice(sc.line); };
+window.pickToneDecoderTone=function(i){ const sc=cur(); if(!sc||STATE.stage!=='tone') return; STATE.tonePick=i; STATE.stage='reply'; render(); voice('Good. Now choose the best reply.'); };
+window.pickToneDecoderReply=function(i){ const sc=cur(); if(!sc||STATE.stage!=='reply') return; const toneOk=STATE.tonePick===sc.tone_correct, replyOk=i===sc.reply_correct, points=(toneOk?1:0)+(replyOk?1:0); STATE.score+=points; STATE.result={points,toneOk,replyOk,title:points===2?'Strong social read':points===1?'Halfway there':'Try that social cue again',summary:points===2?'You read the tone and picked a reply that matched it well.':points===1?'One part fit. Review the cue and the response together for a smoother conversation.':'This one needed a calmer social read. Check the tone first, then match the reply.',toneLine:'Correct tone: '+sc.tone_options[sc.tone_correct]+'. '+sc.tone_feedback,replyLine:'Best reply: '+sc.reply_options[sc.reply_correct]+'. '+sc.reply_feedback}; STATE.rounds.push({title:sc.title,meta:'Tone: '+sc.tone_options[STATE.tonePick]+' → '+sc.tone_options[sc.tone_correct]+' · Reply review ready',ok:points===2}); STATE.stage='result'; render(); voice(STATE.result.summary); };
+window.nextToneDecoderRound=function(){ STATE.round+=1; STATE.stage='tone'; STATE.tonePick=null; STATE.result=null; render(); setTimeout(()=>{ const sc=cur(); if(sc) voice(sc.line); },120); };
+window.finishToneDecoderRun=function(){ const total=(STATE.cases.length||0)*2||1, pct=Math.round((STATE.score/total)*100); try{ if(window.CFG) CFG.toneDecoderBest=Math.max(CFG.toneDecoderBest||0,pct); saveAll&&saveAll(); }catch(_e){} let run=0,best=0; (STATE.rounds||[]).forEach(r=>{ run=r.ok?run+1:0; best=Math.max(best,run); }); showArcadeDebriefRedesign({modeKey:'tone_decoder',modeTitle:'Tone Decoder',header:pct>=90?'SOCIAL SIGNALS LOCKED IN':pct>=75?'GOOD TONE READING':pct>=60?'BUILDING SOCIAL TIMING':'TRY ANOTHER SOCIAL RUN',sub:STATE.score+' of '+total+' tone-and-reply points earned.',correct:STATE.score,total:Math.max(total,1),pct,score:STATE.score*100,streak:best,reviewRounds:STATE.rounds,playAgainText:'▶ DECODE ANOTHER RUN',replay:function(){ startToneDecoder(); },sessionLabel:pct>=90?'Signal Reader':pct>=75?'Tone Tracking':pct>=60?'Pattern Builder':'Training Run',sessionCopy:'You practiced hearing tone and matching a respectful reply across '+STATE.cases.length+' short conversations.',pills:[STATE.cases.length+' conversations',STATE.score+' points',pct+'% accuracy'],well:['You practiced reading tone before reacting.',STATE.score>0?'You earned '+STATE.score+' of '+total+' possible points.':'You still completed a full set of social cue practice.',pct>=75?'Your reply timing is starting to look smoother.':'You stayed with the social cues instead of guessing fast.'],next:['Listen for clues like speed, stress, warmth, and whether the person wants space.','Pick replies that are calm, direct, and respectful.','Replay the tricky conversations until the tone feels easier to hear.'],reminder:'Read the tone first. Then choose a reply that is calm, respectful, and fits the moment.',bannerCopy:'Tone decoder complete. Run it again for smoother social timing.',speech:'Tone decoder complete. You earned '+STATE.score+' out of '+total+' points.'}); };
+window.startToneDecoder=function(){ ensure(); STATE={round:0,cases:pick(DATA,5),score:0,rounds:[],stage:'tone'}; if(window.CFG){ CFG.modesPlayed=CFG.modesPlayed||{}; CFG.modesPlayed.tonedecoder=true; } try{ saveAll&&saveAll(); }catch(_e){} go('tonedecoder'); render(); setTimeout(()=>voice(STATE.cases[STATE.round].line),120); };
+window.openToneDecoderIntro=function(){ if(typeof showModeIntro==='function'){ showModeIntro('🎛️','TONE DECODER','#d98bff', [['🧠','Read the social signal.','Every run gives you five short spoken lines to interpret.'],['💬','Choose the best reply.','You will first pick the tone, then match it with a respectful response.'],['🔊','Hear the line again any time.','Use audio and immediate feedback to build stronger social timing.']], 'Start Tone Decoder →', function(){ try{ closeM('m-hint'); }catch(_e){} startToneDecoder(); }, function(){ if(typeof go==='function') go('home'); }); } else startToneDecoder(); };
+ensure();
+})();
+</script>
+<!-- ===== LIFE READY INLINE ARCADE: END ===== -->
+
+<script id="lr-home-cleanup">
+(function(){
+  function relabel(label, kicker, main){
+    if(!label) return;
+    var k = label.querySelector('.home-label-kicker');
+    var m = label.querySelector('.home-label-main');
+    if(k && kicker) k.textContent = kicker;
+    if(m && main) m.textContent = main;
+  }
+  function labelMain(label){
+    var m = label && label.querySelector('.home-label-main');
+    return m ? m.textContent.trim().toUpperCase() : '';
+  }
+  function findLabelByMain(home, main){
+    main = String(main||'').toUpperCase();
+    return Array.from(home.querySelectorAll('.home-group-label, .home-tools-label')).find(function(label){
+      return labelMain(label) === main;
+    }) || null;
+  }
+  function findGroupByMain(home, main){
+    main = String(main||'').toUpperCase();
+    return Array.from(home.querySelectorAll('.home-group')).find(function(group){
+      var label = group.querySelector('.home-group-label');
+      return labelMain(label) === main;
+    }) || null;
+  }
+  function cleanupModuleHome(){
+    var home = document.getElementById('scr-home');
+    if(!home || home.dataset.lrCleanupDone === '1') return;
+
+    var startLabel = findLabelByMain(home, 'START HERE');
+    var playLabel = home.querySelector('.home-play-label') || findLabelByMain(home, 'PLAY');
+    var guideLabel = findLabelByMain(home, 'LEARN THE FLOW');
+    var toolsLabel = home.querySelector('.home-tools-label') || findLabelByMain(home, 'LEARNING TOOLS');
+    var learnLabel = findLabelByMain(home, 'LEARN');
+    var progressGroup = findGroupByMain(home, 'PROGRESS');
+    var utilityGroup = findGroupByMain(home, 'SYSTEM');
+
+    relabel(startLabel, 'LAUNCH PAD', 'START HERE');
+    relabel(playLabel, 'HOLODECK', 'INTERACTIVE MODES');
+    relabel(guideLabel, 'TRAINING LIBRARY', 'WATCH & LEARN');
+    relabel(toolsLabel, 'TRAINING LIBRARY', 'QUIZZES · DRILLS · GUIDES');
+    relabel(learnLabel, 'TRAINING LIBRARY', 'SKILL TOOLS');
+
+    if(progressGroup){
+      var progressLabel = progressGroup.querySelector('.home-group-label');
+      var progressGrid = progressGroup.querySelector('.hgrid');
+      relabel(progressLabel, 'COMMAND DECK', 'SCORES · BADGES · SETTINGS');
+      progressGroup.classList.add('lr-command-deck');
+
+      if(progressGrid && utilityGroup){
+        var utilGrid = utilityGroup.querySelector('.hgrid');
+        if(utilGrid && utilGrid.children.length){
+          Array.from(utilGrid.children).forEach(function(card){ progressGrid.appendChild(card); });
+        }
+        var divider = utilityGroup.previousElementSibling;
+        if(divider && divider.classList && divider.classList.contains('home-divider')) divider.remove();
+        utilityGroup.remove();
+      }
+    }
+
+    home.classList.add('lr-home-cleaned');
+    home.dataset.lrCleanupDone = '1';
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanupModuleHome, {once:true});
+  else cleanupModuleHome();
+  window.addEventListener('load', cleanupModuleHome);
+  window.cleanupModuleHome = cleanupModuleHome;
+})();
+</script>
 </body>
 </html>

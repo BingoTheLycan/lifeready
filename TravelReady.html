@@ -2052,6 +2052,64 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </filter>
 </defs>
 </svg>
+
+<style id="lr-mobile-cleanup">
+.lrx-stage{display:grid;gap:14px}
+@media (max-width: 720px){
+  .lrx-shell,.lrx-stage{padding:10px !important;gap:10px !important;display:grid;align-content:start;}
+  .lrx-grid,.lrx-grid.two{gap:10px !important;}
+  .lrx-hero{padding:12px 13px !important;border-radius:16px !important;margin:0 !important;}
+  .lrx-kicker{font-size:.62rem !important;margin-bottom:4px !important;letter-spacing:1.6px !important;}
+  .lrx-title{font-size:1rem !important;line-height:1.05 !important;margin-bottom:4px !important;}
+  .lrx-sub,.lrx-copy,.lrx-casecopy{font-size:.82rem !important;line-height:1.42 !important;}
+  .lrx-chiprow{margin-top:8px !important;gap:6px !important;}
+  .lrx-chip,.lrx-tag{padding:5px 8px !important;font-size:.62rem !important;letter-spacing:.8px !important;}
+  .lrx-panel{padding:12px !important;border-radius:16px !important;}
+  .lrx-panelhead{margin-bottom:8px !important;gap:8px !important;}
+  .lrx-paneltitle{font-size:.8rem !important;}
+  .lrx-panelsub{font-size:.72rem !important;line-height:1.35 !important;}
+  .lrx-statrow{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:8px !important;margin-top:10px !important;}
+  .lrx-stat{padding:8px 9px !important;border-radius:12px !important;}
+  .lrx-statlabel,.lrx-stat .k{font-size:.54rem !important;margin-bottom:3px !important;letter-spacing:.8px !important;}
+  .lrx-statvalue,.lrx-stat strong{font-size:.92rem !important;line-height:1.05 !important;}
+  .lrx-case{padding:12px !important;gap:8px !important;border-radius:16px !important;}
+  .lrx-casebody{padding:10px !important;gap:7px !important;}
+  .lrx-choicegrid{gap:8px !important;}
+  .lrx-choice{padding:12px 10px !important;border-radius:14px !important;}
+  .lrx-choice strong{font-size:.96rem !important;margin-bottom:4px !important;}
+  .lrx-list{gap:8px !important;}
+  .lrx-listitem{padding:9px 10px !important;border-radius:12px !important;}
+  .lrx-task{padding:10px 11px !important;min-width:0 !important;}
+  .lrx-slot{padding:9px 10px !important;min-height:0 !important;border-radius:14px !important;}
+  .lrx-btnrow{gap:8px !important;margin-top:10px !important;}
+  .lrx-btn{padding:10px 12px !important;font-size:.74rem !important;border-radius:12px !important;}
+  .lrx-mini{font-size:.72rem !important;line-height:1.35 !important;}
+  .lrx-alert{margin-top:8px !important;padding:10px 12px !important;border-radius:12px !important;}
+
+  #scr-casharcade .lrx-hero .lrx-chiprow,
+  #scr-sketchydeck .lrx-hero .lrx-chiprow,
+  #scr-storebay .lrx-hero .lrx-chiprow,
+  #scr-schedulebuilder .lrx-hero .lrx-chiprow{display:none !important;}
+
+  #scr-casharcade .lrx-hero .lrx-sub,
+  #scr-sketchydeck .lrx-hero .lrx-sub,
+  #scr-storebay .lrx-hero .lrx-sub,
+  #scr-schedulebuilder .lrx-hero .lrx-sub{
+    font-size:.74rem !important;
+    line-height:1.28 !important;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1;
+    overflow:hidden;
+  }
+
+  #scr-home .home-divider{margin:14px 0 !important;}
+  #scr-home .mode-list .mc,
+  #scr-home .hgrid .hb{min-height:74px !important;padding:10px 12px !important;}
+  #scr-home .daily-card{padding:12px !important;}
+  #scr-home.lr-home-cleaned .lr-command-deck .hgrid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+</style>
 </head>
 <body>
 <div id="page-wrap">
@@ -2104,6 +2162,67 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 <div class="home-divider"></div>
 <div class="home-group">
+<style id="lr-arcade-ui">
+.lrx-shell{padding:14px;display:grid;gap:14px}
+.lrx-hero{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border:1px solid color-mix(in srgb,var(--mode-accent) 45%, white 10%);border-radius:20px;padding:16px;box-shadow:0 16px 40px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.06)}
+.lrx-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top right,color-mix(in srgb,var(--mode-accent) 20%, transparent),transparent 42%);pointer-events:none}
+.lrx-kicker{font:700 .72rem/1 var(--font-mono);letter-spacing:2px;text-transform:uppercase;color:var(--mode-accent);margin-bottom:6px}
+.lrx-title{font:900 clamp(1.1rem,3vw,1.5rem)/1.1 var(--font-display);margin-bottom:6px;text-shadow:0 0 18px color-mix(in srgb,var(--mode-accent) 22%, transparent)}
+.lrx-sub{color:var(--text2);font-size:.88rem;line-height:1.5;max-width:58ch}
+.lrx-chiprow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.lrx-chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:7px 11px;font:.72rem var(--font-mono);letter-spacing:1px;color:var(--text2)}
+.lrx-grid{display:grid;gap:14px}
+@media(min-width:880px){.lrx-grid.two{grid-template-columns:1.2fr .8fr}}
+.lrx-panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.lrx-panelhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.lrx-paneltitle{font:800 .92rem/1 var(--font-mono);letter-spacing:1.4px;text-transform:uppercase;color:var(--text)}
+.lrx-panelsub{font-size:.78rem;color:var(--text3);margin-top:4px;line-height:1.45}
+.lrx-statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.lrx-stat{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px 12px}
+.lrx-statlabel{display:block;font:.64rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
+.lrx-statvalue{display:block;font:900 1.05rem/1 var(--font-display);color:var(--mode-accent)}
+.lrx-btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.lrx-btn{appearance:none;border:none;border-radius:14px;padding:11px 14px;font:800 .82rem/1 var(--font-mono);letter-spacing:1px;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.24)}
+.lrx-btn.pri{background:linear-gradient(180deg,color-mix(in srgb,var(--mode-accent) 88%, white 12%),color-mix(in srgb,var(--mode-accent) 70%, black 12%));color:#081117}
+.lrx-btn.sec{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:var(--text)}
+.lrx-btn.warn{background:linear-gradient(180deg,#ffcc4d,#e39b00);color:#2b1f00}
+.lrx-mini{font-size:.77rem;color:var(--text3);line-height:1.5}
+.lrx-alert{margin-top:10px;padding:12px 14px;border-radius:14px;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1)}
+.lrx-alert.good{border-color:rgba(0,200,120,.36);box-shadow:0 0 0 1px rgba(0,200,120,.08) inset}
+.lrx-alert.warn{border-color:rgba(255,187,51,.4);box-shadow:0 0 0 1px rgba(255,187,51,.08) inset}
+.lrx-alert.bad{border-color:rgba(255,80,80,.4);box-shadow:0 0 0 1px rgba(255,80,80,.08) inset}
+.lrx-result{padding:18px;border-radius:20px;border:1px solid color-mix(in srgb,var(--mode-accent) 45%, white 10%);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));box-shadow:0 20px 44px rgba(0,0,0,.28);text-align:center}
+.lrx-grade{font:900 clamp(2.3rem,8vw,4.1rem)/1 var(--font-display);color:var(--mode-accent);text-shadow:0 0 20px color-mix(in srgb,var(--mode-accent) 25%, transparent);margin-bottom:10px}
+.lrx-decklabel{font:.76rem var(--font-mono);letter-spacing:2px;text-transform:uppercase;color:var(--mode-accent);margin-bottom:6px}
+.lrx-copy{color:var(--text2);font-size:.9rem;line-height:1.6;margin:12px auto 0;max-width:52ch}
+.lrx-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);font:.69rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text2)}
+.lrx-list{display:grid;gap:8px}
+.lrx-listitem{display:flex;justify-content:space-between;gap:10px;align-items:center;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px 12px}
+.lrx-listitem.done{border-color:rgba(0,200,120,.35)}
+.lrx-tray{display:flex;flex-wrap:wrap;gap:10px}
+.lrx-task{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:12px 13px;min-width:145px;cursor:pointer}
+.lrx-task.sel{border-color:color-mix(in srgb,var(--mode-accent) 55%, white 12%);box-shadow:0 0 0 1px color-mix(in srgb,var(--mode-accent) 28%, transparent) inset,0 0 16px color-mix(in srgb,var(--mode-accent) 14%, transparent)}
+.lrx-slotlist{display:grid;gap:10px}
+.lrx-slot{display:grid;grid-template-columns:92px 1fr auto;gap:10px;align-items:center;background:rgba(0,0,0,.22);border:1px dashed rgba(255,255,255,.18);border-radius:16px;padding:10px 12px;min-height:72px}
+.lrx-slot.filled{border-style:solid;border-color:rgba(255,255,255,.16);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02))}
+.lrx-slot.drop{border-color:color-mix(in srgb,var(--mode-accent) 58%, white 12%);box-shadow:0 0 0 1px color-mix(in srgb,var(--mode-accent) 24%, transparent) inset}
+.lrx-timelabel{font:800 .72rem/1 var(--font-mono);letter-spacing:1.3px;color:var(--mode-accent);text-transform:uppercase}
+.lrx-ghost{color:var(--text3);font-size:.78rem}
+.lrx-choicegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lrx-choice{padding:16px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));text-align:center;cursor:pointer;color:var(--text)}
+.lrx-choice strong{display:block;font:900 1.05rem/1 var(--font-display);margin-bottom:6px}
+.lrx-choice small{display:block;color:var(--text3);font-size:.74rem;line-height:1.35}
+.lrx-choice .emo{display:block;font-size:1.45rem;margin-bottom:6px}
+.lrx-choice.right{border-color:rgba(0,200,120,.44);box-shadow:0 0 0 1px rgba(0,200,120,.12) inset,0 0 20px rgba(0,200,120,.12)}
+.lrx-choice.wrong{border-color:rgba(255,90,90,.42);box-shadow:0 0 0 1px rgba(255,90,90,.12) inset;opacity:.75}
+.lrx-choice[disabled]{pointer-events:none}
+.lrx-case{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.11);border-radius:18px;padding:14px;display:grid;gap:10px}
+.lrx-casebar{display:flex;justify-content:space-between;gap:10px;align-items:center;font:.72rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--text3)}
+.lrx-casebody{background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:12px;display:grid;gap:8px}
+.lrx-casetitle{font:900 .98rem/1.2 var(--font-display)}
+.lrx-casecopy{font-size:.86rem;color:var(--text2);line-height:1.55}
+@media(max-width:720px){.lrx-statrow{grid-template-columns:1fr 1fr}.lrx-choicegrid{grid-template-columns:1fr}.lrx-slot{grid-template-columns:1fr;align-items:flex-start}}
+</style>
 <div class="home-group-label home-play-label"><span class="home-label-kicker">HOLODECK</span><span class="home-label-main">PLAY</span></div>
 <div class="mode-list" style="margin-top:0">
 <div class="mc" onclick="startMode('practice')">
@@ -2140,6 +2259,18 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="mc-icon">🛡️</div>
 <div class="mc-body"><div class="mc-name">TRAVEL SAFETY</div>
 <div class="mc-desc">Feeling unsafe · Strangers · Emergencies · Trust your instincts</div></div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="openTravelNextStepIntro()">
+<div class="mc-icon">🧭</div>
+<div class="mc-body"><div class="mc-name">WHAT DO I DO NOW?</div>
+<div class="mc-desc">Missed bus · Late route · Wrong direction · Pick the best next step</div></div>
+<div class="mc-arr">›</div>
+</div>
+<div class="mc" onclick="openRouteBuilderIntro()">
+<div class="mc-icon">🗺️</div>
+<div class="mc-body"><div class="mc-name">ROUTE BUILDER</div>
+<div class="mc-desc">Put the trip in order · Board · Transfer · Exit · Find the destination</div></div>
 <div class="mc-arr">›</div>
 </div>
 </div>
@@ -2245,6 +2376,27 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 <!-- ══════════ LAUNDRY GUIDE ══════════ -->
 <!-- ══════════ SCORES ══════════ -->
+<div class="scr" id="scr-travelnextstep">
+<div class="gtop">
+<button class="back" onclick="go('home')">‹ BACK</button>
+<div class="gmode">🧭 WHAT DO I DO NOW?</div>
+</div>
+<div class="lrx-shell" style="--mode-accent:#4be0d2">
+  <div class="lrx-hero">
+    <div class="lrx-kicker">Transit Decision Run</div>
+    <div class="lrx-title">Pause, scan the situation, and choose the safest next step.</div>
+    <div class="lrx-sub">Practice what to do when travel plans get messy. Every run gives you five common transit problems and immediate coaching after each choice.</div>
+    <div class="lrx-chiprow">
+      <span class="lrx-chip">5 scenarios per run</span>
+      <span class="lrx-chip">Safety-first choices</span>
+      <span class="lrx-chip">Replayable</span>
+    </div>
+  </div>
+  <div id="travelnextstep-live"></div>
+  <div id="travelnextstep-result" style="display:none"></div>
+</div>
+</div>
+
 <div class="scr" id="scr-scores">
 <div class="gtop">
 <button class="back" onclick="go('home')">‹ BACK</button>
@@ -7788,6 +7940,28 @@ document.addEventListener('DOMContentLoaded',()=>{
 </script>
 
 
+<script>
+(function(){
+  function el(id){ return document.getElementById(id); }
+  function cleanSpeech(text){ return String(text||'').replace(/^Correct\.\s*/i,'').trim(); }
+  const TRAVEL_NEXT_STEP_CASES=[
+    {title:'Missed the bus',copy:'You reach the stop just as your bus pulls away. You still need to get to work on time.',options:[{text:'Check the next bus time and stay at the marked stop',sub:'Best next step',ok:true,fb:'Correct. Pause, check the next arrival, and stay where the bus is supposed to pick you up.'},{text:'Walk into the street and wave at cars',sub:'Unsafe and not helpful',ok:false,fb:'Do not step into traffic or chase the bus.'},{text:'Give up and go home',sub:'Too fast to quit',ok:false,fb:'There is usually another safe next step before giving up.'},{text:'Board a random bus that arrives next',sub:'Could take you the wrong way',ok:false,fb:'Do not board until you know it is the right route.'}],hint:'Start by checking the route, not panicking.'},
+    {title:'Confused at the stop',copy:'Two buses stop at the same shelter and you are not sure which one is yours.',options:[{text:'Ask the driver or transit staff before boarding',sub:'Use a safe helper',ok:true,fb:'Correct. Ask the driver or another trusted transit helper before you get on.'},{text:'Board quickly and hope for the best',sub:'Guessing can put you on the wrong route',ok:false,fb:'Guessing can send you farther from where you need to go.'},{text:'Ignore the signs completely',sub:'The signs matter',ok:false,fb:'Signs and route numbers are there to help you check the route.'},{text:'Leave the stop and walk away',sub:'That can make it harder to get help',ok:false,fb:'Stay where the transit information is available.'}],hint:'Pick the step that helps you confirm the route safely.'},
+    {title:'Bus is late',copy:'The bus is not here yet and it is already ten minutes past the time on the sign.',options:[{text:'Wait at the stop and check the live time if you can',sub:'Stay visible and informed',ok:true,fb:'Correct. Stay at the marked stop and check live updates if they are available.'},{text:'Walk far down the route to look for it',sub:'You might miss it',ok:false,fb:'If you leave the stop, the bus may arrive while you are gone.'},{text:'Stand in the street so the driver sees you',sub:'Unsafe',ok:false,fb:'Never stand in traffic to try to flag down a bus.'},{text:'Start arguing with strangers at the stop',sub:'Not a travel solution',ok:false,fb:'Focus on the route information and safe waiting, not conflict.'}],hint:'Choose the safest way to wait without missing the bus.'},
+    {title:'Do not know which way to go',copy:'You got off the bus, but now you are not sure which direction to walk to reach the building.',options:[{text:'Stop, check the map or nearby signs, and ask a trusted helper if needed',sub:'Slow and safe',ok:true,fb:'Correct. Stop, look for signs or the map, and ask a safe helper instead of wandering.'},{text:'Keep walking fast and hope it looks familiar',sub:'Guessing can get you more lost',ok:false,fb:'Moving faster in the wrong direction usually makes things worse.'},{text:'Cross the street without looking so you can check both sides',sub:'Unsafe',ok:false,fb:'Do not turn confusion into a street safety problem.'},{text:'Hide and wait without telling anyone',sub:'Not a strong next step',ok:false,fb:'If you need help, use a safe person or safe place.'}],hint:'The best next step starts with stopping and checking.'},
+    {title:'Missed your stop',copy:'You realize the bus already passed your stop and you are one stop too far.',options:[{text:'Get off at the next safe stop and check how to go back',sub:'Reset safely',ok:true,fb:'Correct. Get off at the next safe stop, then check the route or ask the driver how to get back.'},{text:'Jump off before the next stop',sub:'Very unsafe',ok:false,fb:'Never get off a moving bus or between stops.'},{text:'Stay silent and ride forever',sub:'You still need a plan',ok:false,fb:'It is okay to notice the mistake and reset safely.'},{text:'Walk between lanes to cross back right away',sub:'Unsafe street choice',ok:false,fb:'Street safety still matters even when you feel rushed.'}],hint:'Choose the option that keeps you safe and gives you a reset plan.'}
+  ];
+  let TRAVELNEXTSTEP={cases:[],idx:0,correct:0,locked:false,pick:-1};
+  window.openTravelNextStepIntro=function(){ if(typeof showModeIntro==='function'){ showModeIntro('🧭','WHAT DO I DO NOW?','#4be0d2', [['🚌','Practice real travel problems.','Each run gives you five short transit situations like a missed bus or a confusing stop.'],['🧠','Choose the best next step.','Slow down, read the situation, and pick the safest move forward.'],['🔊','Hear what works.','You get spoken feedback right after each choice and a debrief at the end.']], 'Start Transit Run →', function(){ try{ closeM('m-hint'); }catch(_e){} startTravelNextStep(); }, function(){ if(typeof go==='function') go('home'); }); } else { startTravelNextStep(); } };
+  window.startTravelNextStep=function(){ TRAVELNEXTSTEP={cases:(typeof shuf==='function' ? shuf(TRAVEL_NEXT_STEP_CASES) : TRAVEL_NEXT_STEP_CASES.slice()).slice(0,5),idx:0,correct:0,locked:false,pick:-1}; if(window.CFG){ CFG.modesPlayed=CFG.modesPlayed||{}; CFG.modesPlayed.travelnext=true; } try{ if(typeof saveAll==='function') saveAll(); }catch(_e){} if(typeof go==='function') go('travelnextstep'); renderTravelNextStep(); setTimeout(readTravelNextStepPrompt,120); };
+  window.readTravelNextStepPrompt=function(){ const c=TRAVELNEXTSTEP.cases[TRAVELNEXTSTEP.idx]; if(!c || typeof say!=='function') return; say(c.title + '. ' + c.copy + ' What do I do now?'); };
+  function renderTravelNextStep(){ const c=TRAVELNEXTSTEP.cases[TRAVELNEXTSTEP.idx]; if(!c) return; const total=TRAVELNEXTSTEP.cases.length; const btns=c.options.map(function(o,i){ return '<button class="lrx-choice ' + (TRAVELNEXTSTEP.locked && o.ok ? 'right' : '') + ' ' + (TRAVELNEXTSTEP.locked && TRAVELNEXTSTEP.pick===i && !o.ok ? 'wrong' : '') + '" ' + (TRAVELNEXTSTEP.locked ? 'disabled' : '') + ' onclick="answerTravelNextStep(' + i + ')"><strong>' + o.text + '</strong><small>' + o.sub + '</small></button>'; }).join(''); el('travelnextstep-result').style.display='none'; el('travelnextstep-live').style.display=''; el('travelnextstep-live').innerHTML='<section class="lrx-panel"><div class="lrx-panelhead"><div><div class="lrx-paneltitle">Transit Decision Check</div><div class="lrx-panelsub">Pick the safest next step when the travel plan changes or gets confusing.</div></div><span class="lrx-tag">Case ' + (TRAVELNEXTSTEP.idx+1) + ' / ' + total + '</span></div><div class="lrx-statrow"><div class="lrx-stat"><span class="lrx-statlabel">Correct</span><span class="lrx-statvalue">' + TRAVELNEXTSTEP.correct + '</span></div><div class="lrx-stat"><span class="lrx-statlabel">Cases Left</span><span class="lrx-statvalue">' + (total-(TRAVELNEXTSTEP.idx+1)+(TRAVELNEXTSTEP.locked?0:1)) + '</span></div><div class="lrx-stat"><span class="lrx-statlabel">Goal</span><span class="lrx-statvalue">Stay safe</span></div></div></section><section class="lrx-case"><div class="lrx-casebar"><span>Scenario</span><span>' + c.title + '</span></div><div class="lrx-casebody"><div class="lrx-casetitle">' + c.title + '</div><div class="lrx-casecopy">' + c.copy + '</div><div class="lrx-mini">Hint: ' + c.hint + '</div></div><div class="lrx-choicegrid">' + btns + '</div>' + (TRAVELNEXTSTEP.locked ? '<div class="lrx-alert ' + (c.options[TRAVELNEXTSTEP.pick]?.ok ? 'good' : 'warn') + '"><div class="lrx-decklabel">Feedback</div><div class="lrx-copy" style="margin:0;text-align:left">' + c.options[TRAVELNEXTSTEP.pick].fb + '</div></div><div class="lrx-btnrow"><button class="lrx-btn pri" onclick="' + (TRAVELNEXTSTEP.idx<total-1 ? 'nextTravelNextStep()' : 'finishTravelNextStep()') + '">' + (TRAVELNEXTSTEP.idx<total-1 ? 'Next Case' : 'See Results') + '</button><button class="lrx-btn sec" onclick="readTravelNextStepPrompt()">Say Again</button></div>' : '') + '</section>'; }
+  window.answerTravelNextStep=function(i){ if(TRAVELNEXTSTEP.locked) return; const c=TRAVELNEXTSTEP.cases[TRAVELNEXTSTEP.idx]; const picked=c.options[i]; const answer=(c.options.find(o=>o.ok)||{}).text||''; c._picked=i; c._ok=!!picked.ok; c._choiceText=picked.text; c._answerText=answer; TRAVELNEXTSTEP.pick=i; TRAVELNEXTSTEP.locked=true; if(c.options[i].ok){ TRAVELNEXTSTEP.correct += 1; if(typeof chime==='function') chime(); if(typeof say==='function') say('Correct. ' + cleanSpeech(c.options[i].fb)); } else { if(typeof buzz==='function') buzz(); if(typeof say==='function') say('Not the best next step. ' + c.options[i].fb); } renderTravelNextStep(); }
+  window.nextTravelNextStep=function(){ TRAVELNEXTSTEP.idx += 1; TRAVELNEXTSTEP.locked=false; TRAVELNEXTSTEP.pick=-1; renderTravelNextStep(); setTimeout(readTravelNextStepPrompt,120); };
+  window.finishTravelNextStep=function(){ const total=TRAVELNEXTSTEP.cases.length||1; const pct=Math.round((TRAVELNEXTSTEP.correct/total)*100); try{ if(window.CFG){ CFG.travelNextBest=Math.max(CFG.travelNextBest||0,pct); } if(typeof saveAll==='function') saveAll(); }catch(_e){} let streak=0,bestStreak=0; (TRAVELNEXTSTEP.cases||[]).forEach(c=>{streak=c._ok?streak+1:0; bestStreak=Math.max(bestStreak,streak);}); const reviewRounds=(TRAVELNEXTSTEP.cases||[]).map((c,idx)=>({ title:(c.title||('Travel case '+(idx+1))), meta:'You chose: ' + (c._choiceText||'No answer') + ' · Best next step: ' + (c._answerText||'Review the route') , ok:!!c._ok })); showArcadeDebriefRedesign({ modeKey:'what_do_i_do_now', modeTitle:'What Do I Do Now?', header:pct>=90?'STRONG TRAVEL JUDGMENT':pct>=80?'GOOD NEXT-STEP CHOICES':pct>=70?'KEEP PRACTICING ROUTE RESETS':'TRY ANOTHER RUN', sub:TRAVELNEXTSTEP.correct + ' of ' + total + ' travel situations solved safely.', correct:TRAVELNEXTSTEP.correct, total:Math.max(total,1), pct:pct, score:TRAVELNEXTSTEP.correct*100, streak:bestStreak, scoreLabel:'Mission Score', reviewRounds:reviewRounds, playAgainText:'▶ RUN ANOTHER ROUTE', replay:function(){ startTravelNextStep(); }, sessionLabel:pct>=90?'Route Commander':pct>=80?'Transit Reset':pct>=70?'Travel Practice':'Training Run', sessionCopy:'You worked through ' + total + ' transit problem' + (total===1?'':'s') + ' and picked a safer next step each time. Review the reset move before the next route scramble.', pills:[total + ' scenarios', bestStreak + ' best streak', pct + '% accuracy'], well:['You practiced what to do when travel stops feeling simple.', TRAVELNEXTSTEP.correct>0 ? 'You chose the safer next step in ' + TRAVELNEXTSTEP.correct + ' scenario' + (TRAVELNEXTSTEP.correct===1?'':'s') + '.' : 'You got a full route-reset review set out of this run.', pct>=80 ? 'Your travel problem-solving is starting to look calmer.' : 'You kept checking for the safe reset instead of rushing into a bad guess.'], next:['When travel gets confusing, stop moving fast and get your bearings first.', 'Stay in a safe visible place, check the route, and ask a trusted transit helper before guessing.', 'Replay the missed scenarios until the safer next step feels automatic.'], reminder:'When travel gets confusing, stop moving fast, check the route, stay in a safe visible place, and ask a trusted transit helper before guessing.', bannerCopy:'Transit run complete. Replay it for a cleaner route reset.', speech:'Transit run complete. You got ' + TRAVELNEXTSTEP.correct + ' of ' + total + ' travel situations correct.' }); };
+})();
+</script>
+
 <style id="lr-header-popup-upgrade">
 /* ══ RETRO HEADER + POPUP UPGRADE ══ */
 .hdr{
@@ -8291,5 +8465,324 @@ document.addEventListener('DOMContentLoaded',()=>{
 }
 </style>
 
+
+
+
+<script>
+(function(){
+  if(window.showArcadeDebriefRedesign) return;
+
+  const LR_PROGRESS_KEY='lr_progress_v1';
+  const LR_PROGRESS_RANKS=[
+    {min:0,title:'Cadet'},
+    {min:100,title:'Ensign'},
+    {min:250,title:'Lieutenant Junior Grade'},
+    {min:450,title:'Lieutenant'},
+    {min:700,title:'Lieutenant Commander'},
+    {min:1000,title:'Commander'},
+    {min:1400,title:'Captain'},
+    {min:1900,title:'Admiral'}
+  ];
+  function lrModuleName(){
+    try{
+      var raw=(document.title||'').replace(/\s*[|\-].*$/,'').trim();
+      if(raw) return raw;
+    }catch(_e){}
+    try{
+      var file=(location.pathname.split('/').pop()||'').replace(/\.html$/i,'');
+      if(file) return file;
+    }catch(_e){}
+    return 'LifeReady';
+  }
+  function lrLoadProgress(){
+    try{
+      var raw=localStorage.getItem(LR_PROGRESS_KEY);
+      var data=raw?JSON.parse(raw):{};
+      if(!data || typeof data!=='object') data={};
+      if(!data.modules || typeof data.modules!=='object') data.modules={};
+      if(!data.modeBest || typeof data.modeBest!=='object') data.modeBest={};
+      if(typeof data.totalXP!=='number') data.totalXP=0;
+      if(typeof data.sessions!=='number') data.sessions=0;
+      return data;
+    }catch(_e){
+      return {totalXP:0,sessions:0,modules:{},modeBest:{}};
+    }
+  }
+  function lrSaveProgress(data){
+    try{ localStorage.setItem(LR_PROGRESS_KEY, JSON.stringify(data)); }catch(_e){}
+  }
+  function lrRankForXP(xp){
+    var current=LR_PROGRESS_RANKS[0];
+    for(var i=0;i<LR_PROGRESS_RANKS.length;i++){
+      if(Number(xp) >= LR_PROGRESS_RANKS[i].min) current=LR_PROGRESS_RANKS[i];
+    }
+    return current;
+  }
+  function lrNextRank(xp){
+    for(var i=0;i<LR_PROGRESS_RANKS.length;i++){
+      if(Number(xp) < LR_PROGRESS_RANKS[i].min) return LR_PROGRESS_RANKS[i];
+    }
+    return null;
+  }
+  function lrEarnProgress(meta){
+    meta=meta||{};
+    var data=lrLoadProgress();
+    var moduleName=meta.moduleName || lrModuleName();
+    var pct=Math.max(0, Math.min(100, Number(meta.pct)||0));
+    var hintsUsed=Math.max(0, Number(meta.hintsUsed)||0);
+    var modeKey=String(meta.modeKey||meta.modeTitle||('mode_'+Date.now()));
+    var prevRank=lrRankForXP(data.totalXP);
+    var prevBest=typeof data.modeBest[modeKey]==='number' ? data.modeBest[modeKey] : null;
+    var xp=10;
+    if(pct>=80) xp+=5;
+    if(pct===100) xp+=5;
+    if(prevBest===null) xp+=10;
+    else if(pct>prevBest) xp+=5;
+    if(hintsUsed===0) xp+=2;
+    if(!data.modules[moduleName]) data.modules[moduleName]={sessions:0,mastery:0,bestPct:0,lastMode:'',lastPlayed:0};
+    var mod=data.modules[moduleName];
+    var priorSessions=Math.max(0, Number(mod.sessions)||0);
+    var priorMastery=Math.max(0, Math.min(100, Number(mod.mastery)||0));
+    mod.sessions=priorSessions+1;
+    mod.mastery=Math.max(0, Math.min(100, Math.round(((priorMastery*priorSessions)+pct)/Math.max(1, mod.sessions))));
+    mod.bestPct=Math.max(Number(mod.bestPct)||0, pct);
+    mod.lastMode=String(meta.modeTitle||modeKey);
+    mod.lastPlayed=Date.now();
+    data.sessions = (Number(data.sessions)||0) + 1;
+    data.totalXP = (Number(data.totalXP)||0) + xp;
+    data.modeBest[modeKey] = prevBest===null ? pct : Math.max(prevBest, pct);
+    data.lastEarned={xp:xp,module:moduleName,mode:String(meta.modeTitle||modeKey),at:Date.now(),pct:pct};
+    var currentRank=lrRankForXP(data.totalXP);
+    var next=lrNextRank(data.totalXP);
+    data.currentRank=currentRank.title;
+    lrSaveProgress(data);
+    return {
+      xp:xp,
+      totalXP:data.totalXP,
+      sessions:data.sessions,
+      moduleMastery:mod.mastery,
+      bestPct:mod.bestPct,
+      improved:prevBest!==null && pct>prevBest,
+      currentRank:currentRank.title,
+      nextRank:next?next.title:'',
+      remainingXP:next?Math.max(0, next.min-data.totalXP):0,
+      promoted:currentRank.title!==prevRank.title,
+      previousRank:prevRank.title
+    };
+  }
+
+
+  function esc(v){
+    return String(v==null?'':v)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+  function listHtml(items, bullet){
+    items=(items||[]).filter(Boolean);
+    return '<div class="rr-coach-list">'+items.map(function(line){
+      return '<div class="rr-coach-line"><span class="rr-bullet">'+esc(bullet||'▸')+'</span><div>'+esc(line)+'</div></div>';
+    }).join('')+'</div>';
+  }
+  function longestStreak(rounds){
+    var best=0, run=0;
+    (rounds||[]).forEach(function(r){
+      if(r && r.ok){ run += 1; if(run>best) best=run; }
+      else run = 0;
+    });
+    return best;
+  }
+  window.showArcadeDebriefRedesign = function(opts){
+    opts=opts||{};
+    try{
+      var correct = Number(opts.correct)||0;
+      var total = Math.max(Number(opts.total)||0, 1);
+      var pct = Math.max(0, Math.min(100, Math.round(opts.pct!=null ? Number(opts.pct) : (correct/total*100))));
+      var score = opts.score!=null ? Number(opts.score) : Math.round(pct*10);
+      var streak = opts.streak!=null ? Number(opts.streak) : longestStreak(opts.reviewRounds||[]);
+      var modeKey = opts.modeKey || 'arcade_custom';
+      var modeTitle = opts.modeTitle || 'Arcade Mission';
+      var now = Date.now();
+      var elapsedSec = Math.max(0, Number(opts.elapsedSec)||0);
+      try{
+        if(typeof MODE_TITLES !== 'undefined' && MODE_TITLES){ MODE_TITLES[modeKey]=modeTitle; }
+        else { window.MODE_TITLES = window.MODE_TITLES || {}; window.MODE_TITLES[modeKey]=modeTitle; }
+      }catch(_e){ window.MODE_TITLES = window.MODE_TITLES || {}; window.MODE_TITLES[modeKey]=modeTitle; }
+      var st={mode:modeKey,score:score,correct:correct,total:total,bestStreak:streak,hintsUsed:Number(opts.hintsUsed)||0,startTime:now-(elapsedSec*1000),shiftBadges:[]};
+      try{ ST = st; }catch(_e){}
+      window.ST = st;
+      window.__lrReviewRounds = Array.isArray(opts.reviewRounds) ? opts.reviewRounds : [];
+      try{
+        var dateText = (typeof today==='function') ? today() : new Date().toLocaleDateString();
+        window.SCORES = Array.isArray(window.SCORES) ? window.SCORES : [];
+        window.SCORES.unshift({mode:modeTitle,score:score,correct:correct,total:total,streak:streak,date:dateText,time:Math.round(elapsedSec)});
+        window.SCORES = window.SCORES.slice(0,30);
+        try{ SCORES = window.SCORES; }catch(_e){}
+      }catch(_e){}
+      var progress = lrEarnProgress({modeKey:modeKey, modeTitle:modeTitle, pct:pct, hintsUsed:Number(opts.hintsUsed)||0, moduleName:lrModuleName()});
+      var progressPills = Array.isArray(opts.pills) ? opts.pills.slice() : [];
+      progressPills.unshift('Rank ' + progress.currentRank);
+      progressPills.unshift('+' + progress.xp + ' XP');
+      progressPills.push(progress.nextRank ? (progress.promoted ? ('Promoted to ' + progress.currentRank) : (progress.remainingXP + ' XP to ' + progress.nextRank)) : 'Command rank maxed');
+      var promotionBanner = progress.promoted ? ('<div style="background:linear-gradient(135deg,rgba(255,179,71,.18),rgba(255,255,255,.05));border:2px solid rgba(255,179,71,.48);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--amber);letter-spacing:2px;margin-bottom:4px">PROMOTION ACHIEVED</div><div style="font-family:var(--font-display);font-size:1.12rem;color:var(--text)">' + esc(progress.currentRank) + '</div><div style="font-size:.76rem;color:var(--text3);margin-top:4px">Training XP updated. Return to the holodeck when you are ready for the next sim.</div></div>') : '';
+      var shareLine = modeTitle + ' · ' + correct + '/' + total + ' correct · ' + pct + '%';
+      window._shareText = 'I played ' + modeTitle + ' in ' + document.title.replace(/\s*[-|].*$/,'') + '!\n' + shareLine;
+      if(typeof go==='function') go('results');
+      setTimeout(function(){
+        var titleEl = document.getElementById('r-title'); if(titleEl) titleEl.textContent='';
+        var subEl = document.getElementById('r-sub'); if(subEl) subEl.textContent='';
+        var pb = document.getElementById('pb-banner'); if(pb){ pb.textContent=''; pb.style.display='none'; }
+        if(typeof window.refreshResultsRedesign==='function') window.refreshResultsRedesign();
+        if(titleEl) titleEl.textContent = opts.header || (modeTitle.toUpperCase() + ' COMPLETE');
+        if(subEl) subEl.textContent = opts.sub || ('You cleared ' + correct + ' of ' + total + ' checkpoints.');
+        var scoreEl=document.getElementById('r-score'); if(scoreEl) scoreEl.textContent=String(score);
+        var accEl=document.getElementById('r-acc'); if(accEl) accEl.textContent=pct+'%';
+        var corrEl=document.getElementById('r-correct'); if(corrEl) corrEl.textContent=correct+'/'+total;
+        var streakEl=document.getElementById('r-streak'); if(streakEl) streakEl.textContent=String(streak);
+        var timerBox=document.getElementById('r-timer-box'); if(timerBox) timerBox.style.display=elapsedSec>0?'':'none';
+        var timerEl=document.getElementById('r-timer'); if(timerEl && elapsedSec>0 && typeof fmtElapsed==='function') timerEl.textContent=fmtElapsed(elapsedSec);
+        var scoreLabelEl = scoreEl && scoreEl.parentElement ? scoreEl.parentElement.querySelector('.rsl') : null;
+        if(scoreLabelEl && opts.scoreLabel) scoreLabelEl.textContent = opts.scoreLabel;
+        var sessionHost=document.getElementById('rr-session-card');
+        if(sessionHost){
+          var pills=(progressPills||[]).filter(Boolean).map(function(line){ return '<div class="rr-mini-pill">'+esc(line)+'</div>'; }).join('');
+          sessionHost.innerHTML = '<div class="rr-session-head"><div class="rr-session-title">'+esc(modeTitle)+' Complete</div><div class="rr-session-badge">'+esc(opts.sessionLabel || (pct>=90?'Arcade Clear':pct>=75?'Strong Run':'Training Run'))+'</div></div><div class="rr-session-copy">'+esc(opts.sessionCopy || ('Retro training complete. Review the run, then jump back into the holodeck for another rep.'))+'</div>'+(pills?('<div class="rr-mini-pills">'+pills+'</div>'):'');
+        }
+        var well=document.getElementById('rr-well-card'); if(well && opts.well) well.innerHTML=listHtml(opts.well,'▸');
+        var next=document.getElementById('rr-next-card') || document.getElementById('wtw-card'); if(next && opts.next) next.innerHTML=listHtml(opts.next,'→');
+        var reminder=document.getElementById('rr-reminder-card'); if(reminder && opts.reminder) reminder.innerHTML='<div class="rr-reminder">'+esc(opts.reminder)+'</div>';
+        var roundsBtn=document.getElementById('rounds-tab-btn'); if(roundsBtn) roundsBtn.textContent='ROUND REVIEW (' + ((window.__lrReviewRounds||[]).length) + ')';
+        var rp=document.getElementById('r-play-again');
+        if(rp){
+          rp.textContent = opts.playAgainText || '▶ PLAY AGAIN';
+          if(typeof opts.replay === 'function') rp.onclick = opts.replay;
+        }
+        var shareBtn=document.getElementById('r-share'); if(shareBtn) shareBtn.style.display='';
+        var coachBtn=document.getElementById('r-coach-copy'); if(coachBtn) coachBtn.style.display='';
+        var eoc=document.getElementById('eoc-card-wrap');
+        if(eoc){
+          eoc.innerHTML = promotionBanner || opts.bannerHtml || (pct>=80 ? '<div style="background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.04));border:2px solid rgba(255,255,255,.16);border-radius:var(--radius-sm);padding:14px;text-align:center;margin-bottom:12px"><div style="font-family:var(--font-mono);font-size:.65rem;color:var(--green);letter-spacing:2px;margin-bottom:4px">ARCADE CLEAR</div><div style="font-family:var(--font-display);font-size:1.15rem;color:var(--text)">'+esc(modeTitle)+'</div><div style="font-size:.76rem;color:var(--text3);margin-top:4px">'+esc(opts.bannerCopy || 'Replay it for a cleaner, calmer run.')+'</div></div>' : '');
+        }
+        if(typeof updateHomeUI==='function') updateHomeUI();
+        if(typeof saveAll==='function') try{ saveAll(); }catch(_e){}
+        window.scrollTo && window.scrollTo(0,0);
+        var pageWrap=document.getElementById('page-wrap'); if(pageWrap) pageWrap.scrollTop=0;
+        if(typeof confetti==='function' && pct>=70 && !(window.CFG&&CFG.noMotion)) try{ confetti(); }catch(_e){}
+        if(typeof chime==='function') try{ chime(); }catch(_e){}
+        if(opts.speech && typeof say==='function') setTimeout(function(){ say(opts.speech); }, 120);
+      }, 60);
+    }catch(err){ console.warn('Arcade debrief failed', err); }
+  };
+})();
+</script>
+
+<!-- ===== LIFE READY INLINE ARCADE: START ===== -->
+<script>
+
+(function(){
+  const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  const pick=(arr,n)=>{ const copy=(typeof shuf==='function'?shuf(arr.slice()):arr.slice().sort(()=>Math.random()-.5)); return copy.slice(0,n); };
+  function voice(t){ try{ if(typeof say==='function'&&t) say(t); }catch(_e){} }
+  window.__lrArcadeUtils={esc,pick,voice};
+})();
+</script>
+<script>
+
+(function(){
+if(window.openRouteBuilderIntro) return;
+const DATA = [{"title": "Apartment to job center", "subtitle": "Use the Green Line, then walk to the front desk.", "steps": ["Start at Maple Street stop", "Board the Green Line bus toward Downtown", "Get off at Civic Center stop", "Walk one block to the job center entrance"], "order": [0, 1, 2, 3]}, {"title": "Library to grocery store", "subtitle": "Ride one train, then transfer to a bus.", "steps": ["Enter the station at Library Square", "Take the Blue Train toward Market Hub", "Transfer to the Route 8 bus at Market Hub", "Exit at Pine Avenue and walk to the grocery store"], "order": [0, 1, 2, 3]}, {"title": "Clinic trip", "subtitle": "Read the map, transfer once, then check the stop number.", "steps": ["Start at Oak Transfer Center", "Ride Route 12 toward Eastside", "Switch to Route 4 at River Plaza", "Get off at Stop 18 by the clinic"], "order": [0, 1, 2, 3]}, {"title": "Work to home", "subtitle": "Take the late bus and then walk safely home.", "steps": ["Wait at the marked stop outside work", "Board Route 21 toward North Park", "Exit at Cedar and 5th", "Walk on the lit sidewalk to your apartment"], "order": [0, 1, 2, 3]}, {"title": "Mall to community college", "subtitle": "A two-step route with a transfer.", "steps": ["Begin at the mall transit bay", "Ride Route 5 to Central Station", "Transfer to the Orange Line train", "Leave at College Station and follow the campus signs"], "order": [0, 1, 2, 3]}, {"title": "Doctor office to pharmacy", "subtitle": "Short trip with one bus ride.", "steps": ["Check the stop sign outside the doctor office", "Board Route 6 toward West Market", "Get off at the pharmacy stop", "Cross at the light and enter the pharmacy"], "order": [0, 1, 2, 3]}];
+const SLOT_LABELS=['Start','Ride','Transfer','Finish'];
+const {esc,pick,voice} = window.__lrArcadeUtils;
+let STATE=null;
+function ensure(){ if(document.getElementById('scr-routebuilder')) return; const a=document.getElementById('scr-scores'); if(!a||!a.parentNode) return; const w=document.createElement('div'); w.innerHTML=`<div class="scr" id="scr-routebuilder"><div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🗺️ ROUTE BUILDER</div></div><div class="lrx-shell" style="--mode-accent:#4be0d2"><div id="routebuilder-root"></div></div></div>`; a.parentNode.insertBefore(w.firstElementChild,a); }
+function cur(){ return STATE && STATE.routes[STATE.round]; }
+function selLabel(){ const r=cur(); if(!r||STATE.selected==null) return 'No step selected'; const it=r.pool.find(x=>x.id===STATE.selected); return it?it.text:'No step selected'; }
+function render(){ ensure(); const root=document.getElementById('routebuilder-root'); const r=cur(); if(!root||!r) return; const used=new Set(STATE.slots.filter(v=>v!=null)); const best=(window.CFG&&CFG.routeBuilderBest)?CFG.routeBuilderBest+'%':'--'; const slotMap={}; r.pool.forEach(it=>slotMap[it.id]=it.text); root.innerHTML=`<div class="lrx-stage"><section class="lrx-panel"><div class="lrx-decklabel">Route Builder</div><div class="lrx-statrow"><div class="lrx-stat"><span class="k">Route</span><strong>${STATE.round+1} / ${STATE.routes.length}</strong></div><div class="lrx-stat"><span class="k">Placed</span><strong>${used.size} / 4</strong></div><div class="lrx-stat"><span class="k">Best</span><strong>${best}</strong></div></div><div class="lrx-alert good" style="margin-top:14px;text-align:left"><div class="lrx-decklabel">Mission</div><div class="lrx-copy" style="margin:0;text-align:left"><strong>${esc(r.title)}</strong><br>${esc(r.subtitle)}</div></div></section><section class="lrx-panel"><div class="lrx-panelhead"><div><div class="lrx-paneltitle">Trip steps</div><div class="lrx-panelsub">Tap a step, then tap the slot where it belongs.</div></div><span class="lrx-tag">${esc(selLabel())}</span></div><div class="lrx-tray">${r.pool.filter(it=>!used.has(it.id)).map(it=>`<div class="lrx-task ${STATE.selected===it.id?'sel':''}" onclick="selectRouteStep(${it.id})"><strong>${esc(it.text)}</strong><div class="lrx-mini">Tap to select this trip step</div></div>`).join('') || '<div class="lrx-alert good"><div class="lrx-copy" style="margin:0;text-align:left">All four steps are placed. Check the route when you are ready.</div></div>'}</div></section><section class="lrx-panel"><div class="lrx-panelhead"><div><div class="lrx-paneltitle">Trip order</div><div class="lrx-panelsub">Build the route from stop to destination.</div></div><button class="lrx-btn sec" onclick="routeBuilderSay()">🔊 Read mission</button></div><div class="lrx-slotlist">${SLOT_LABELS.map((label,idx)=>`<div class="lrx-slot ${STATE.slots[idx]!=null?'filled':''}" onclick="placeRouteStep(${idx})"><div class="lrx-timelabel">${label}</div><div>${STATE.slots[idx]!=null?('<strong>'+esc(slotMap[STATE.slots[idx]])+'</strong><div class="lrx-mini">Tap slot again to clear it</div>'):'<span class="lrx-ghost">Place a trip step here</span>'}</div><div class="lrx-tag">${STATE.slots[idx]!=null?'Locked':'Open'}</div></div>`).join('')}</div><div class="lrx-btnrow"><button class="lrx-btn pri" onclick="checkRouteBuilder()">Check Route</button></div></section></div>`; }
+window.routeBuilderSay=function(){ const r=cur(); if(r) voice(r.title + '. ' + r.subtitle); };
+window.selectRouteStep=function(id){ STATE.selected=id; render(); };
+window.placeRouteStep=function(idx){ if(STATE.slots[idx]!=null && STATE.selected==null){ STATE.slots[idx]=null; render(); return; } if(STATE.selected==null) return; const old=STATE.slots.indexOf(STATE.selected); if(old>-1) STATE.slots[old]=null; STATE.slots[idx]=STATE.selected; STATE.selected=null; render(); };
+window.checkRouteBuilder=function(){ const r=cur(); if(!r) return; if(STATE.slots.some(v=>v==null)){ if(typeof openHint==='function') openHint('Route Incomplete','<p style="color:var(--text2);font-size:.88rem;line-height:1.6">Place all four trip steps before checking the route.</p>','OK',function(){ try{ closeM("m-hint"); }catch(_e){}; }); return; } let correct=0; r.order.forEach((id,idx)=>{ if(STATE.slots[idx]===id) correct++; }); const pct=Math.round((correct/4)*100); const map={}; r.pool.forEach(it=>map[it.id]=it.text); const corrected=r.order.map((id,idx)=>SLOT_LABELS[idx]+': '+map[id]).join('<br>'); STATE.results.push({title:r.title,meta:correct+'/4 steps in place · Correct route ready',ok:pct>=75,correct}); const more=STATE.round<STATE.routes.length-1; document.getElementById('routebuilder-root').innerHTML=`<div class="lrx-result"><div class="lrx-decklabel">Route debrief</div><div class="lrx-grade">${correct}/4</div><div class="lrx-title" style="font-size:1.18rem">${pct===100?'Route locked in':pct>=75?'Good route build':pct>=50?'Almost there':'Route needs a rebuild'}</div><div class="lrx-copy">${correct} of 4 trip steps landed in the right order.</div><div class="lrx-alert ${pct>=75?'good':pct>=50?'warn':'bad'}" style="text-align:left;margin-top:16px"><div class="lrx-decklabel">Correct route</div><div class="lrx-copy" style="margin:0;text-align:left">${corrected}</div></div><div class="lrx-btnrow" style="justify-content:center"><button class="lrx-btn pri" onclick="${more?'nextRouteBuilder()':'finishRouteBuilderRun()'}">${more?'Next Route':'See Results'}</button><button class="lrx-btn sec" onclick="go('home')">Return Home</button></div></div>`; voice((pct===100?'Route locked in. ':'Route review ready. ')+correct+' of 4 steps were in the right place.'); };
+window.nextRouteBuilder=function(){ STATE.round+=1; STATE.slots=[null,null,null,null]; STATE.selected=null; render(); setTimeout(()=>window.routeBuilderSay(),120); };
+window.finishRouteBuilderRun=function(){ const correct=STATE.results.reduce((s,r)=>s+(r.correct||0),0), total=(STATE.results.length||0)*4||1, pct=Math.round((correct/total)*100); try{ if(window.CFG) CFG.routeBuilderBest=Math.max(CFG.routeBuilderBest||0,pct); saveAll&&saveAll(); }catch(_e){} let run=0,best=0; (STATE.results||[]).forEach(r=>{ run=r.ok?run+1:0; best=Math.max(best,run); }); showArcadeDebriefRedesign({modeKey:'route_builder',modeTitle:'Route Builder',header:pct===100?'ROUTE PLANNER ONLINE':pct>=80?'GOOD TRANSIT ROUTING':pct>=60?'BUILDING ROUTE SKILLS':'TRY ANOTHER TRIP',sub:correct+' of '+total+' route steps placed correctly across '+STATE.results.length+' trips.',correct,total:Math.max(total,1),pct,score:correct*100,streak:best,reviewRounds:STATE.results.map(r=>({title:r.title,meta:r.meta,ok:r.ok})),playAgainText:'▶ BUILD ANOTHER ROUTE',replay:function(){ startRouteBuilder(); },sessionLabel:pct>=90?'Pathfinder':pct>=80?'Transit Builder':pct>=60?'Route Practice':'Training Run',sessionCopy:'You rebuilt '+STATE.results.length+' transit trips step by step. That is real map-and-route practice, not just trivia.',pills:[STATE.results.length+' routes',correct+' steps placed',pct+'% accuracy'],well:['You practiced how a route unfolds from stop to destination.',correct>0?'You placed '+correct+' route step'+(correct===1?'':'s')+' in the correct slot.':'You still collected a full set of route patterns to review.',pct>=80?'Your travel planning is starting to look more organized.':'You kept rebuilding the trip instead of guessing and moving on.'],next:['Start with where you are, then board the right line, then transfer or exit, then find the destination.','Use the map, route number, and stop name to keep the trip in order.','Replay the routes you missed until the travel sequence feels automatic.'],reminder:'A good trip plan starts with the right stop, then the right line, then the right exit, then the walk to your destination.',bannerCopy:'Route builder complete. Run another trip to sharpen your transit plan.',speech:'Route builder complete. You placed '+correct+' of '+total+' steps correctly.'}); };
+window.startRouteBuilder=function(){ ensure(); const routes=pick(DATA,5).map(r=>{ r=JSON.parse(JSON.stringify(r)); r.pool=(typeof shuf==='function'?shuf(r.steps.map((t,i)=>({id:i,text:t}))):r.steps.map((t,i)=>({id:i,text:t})).sort(()=>Math.random()-.5)); return r; }); STATE={round:0,routes,slots:[null,null,null,null],selected:null,results:[]}; if(window.CFG){ CFG.modesPlayed=CFG.modesPlayed||{}; CFG.modesPlayed.routebuilder=true; } try{ saveAll&&saveAll(); }catch(_e){} go('routebuilder'); render(); setTimeout(()=>window.routeBuilderSay(),120); };
+window.openRouteBuilderIntro=function(){ if(typeof showModeIntro==='function'){ showModeIntro('🗺️','ROUTE BUILDER','#4be0d2', [['🧭','Build the trip in order.','Every run gives you five short transit routes to rebuild from start to finish.'],['🚌','Practice transfers and exits.','Place the stop, ride, transfer, and destination in the order that makes sense.'],['🔊','Hear the mission again any time.','Use the route prompt and immediate feedback to make the travel pattern stick.']], 'Start Route Builder →', function(){ try{ closeM('m-hint'); }catch(_e){} startRouteBuilder(); }, function(){ if(typeof go==='function') go('home'); }); } else startRouteBuilder(); };
+ensure();
+})();
+</script>
+<!-- ===== LIFE READY INLINE ARCADE: END ===== -->
+
+<script id="lr-home-cleanup">
+(function(){
+  function relabel(label, kicker, main){
+    if(!label) return;
+    var k = label.querySelector('.home-label-kicker');
+    var m = label.querySelector('.home-label-main');
+    if(k && kicker) k.textContent = kicker;
+    if(m && main) m.textContent = main;
+  }
+  function labelMain(label){
+    var m = label && label.querySelector('.home-label-main');
+    return m ? m.textContent.trim().toUpperCase() : '';
+  }
+  function findLabelByMain(home, main){
+    main = String(main||'').toUpperCase();
+    return Array.from(home.querySelectorAll('.home-group-label, .home-tools-label')).find(function(label){
+      return labelMain(label) === main;
+    }) || null;
+  }
+  function findGroupByMain(home, main){
+    main = String(main||'').toUpperCase();
+    return Array.from(home.querySelectorAll('.home-group')).find(function(group){
+      var label = group.querySelector('.home-group-label');
+      return labelMain(label) === main;
+    }) || null;
+  }
+  function cleanupModuleHome(){
+    var home = document.getElementById('scr-home');
+    if(!home || home.dataset.lrCleanupDone === '1') return;
+
+    var startLabel = findLabelByMain(home, 'START HERE');
+    var playLabel = home.querySelector('.home-play-label') || findLabelByMain(home, 'PLAY');
+    var guideLabel = findLabelByMain(home, 'LEARN THE FLOW');
+    var toolsLabel = home.querySelector('.home-tools-label') || findLabelByMain(home, 'LEARNING TOOLS');
+    var learnLabel = findLabelByMain(home, 'LEARN');
+    var progressGroup = findGroupByMain(home, 'PROGRESS');
+    var utilityGroup = findGroupByMain(home, 'SYSTEM');
+
+    relabel(startLabel, 'LAUNCH PAD', 'START HERE');
+    relabel(playLabel, 'HOLODECK', 'INTERACTIVE MODES');
+    relabel(guideLabel, 'TRAINING LIBRARY', 'WATCH & LEARN');
+    relabel(toolsLabel, 'TRAINING LIBRARY', 'QUIZZES · DRILLS · GUIDES');
+    relabel(learnLabel, 'TRAINING LIBRARY', 'SKILL TOOLS');
+
+    if(progressGroup){
+      var progressLabel = progressGroup.querySelector('.home-group-label');
+      var progressGrid = progressGroup.querySelector('.hgrid');
+      relabel(progressLabel, 'COMMAND DECK', 'SCORES · BADGES · SETTINGS');
+      progressGroup.classList.add('lr-command-deck');
+
+      if(progressGrid && utilityGroup){
+        var utilGrid = utilityGroup.querySelector('.hgrid');
+        if(utilGrid && utilGrid.children.length){
+          Array.from(utilGrid.children).forEach(function(card){ progressGrid.appendChild(card); });
+        }
+        var divider = utilityGroup.previousElementSibling;
+        if(divider && divider.classList && divider.classList.contains('home-divider')) divider.remove();
+        utilityGroup.remove();
+      }
+    }
+
+    home.classList.add('lr-home-cleaned');
+    home.dataset.lrCleanupDone = '1';
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanupModuleHome, {once:true});
+  else cleanupModuleHome();
+  window.addEventListener('load', cleanupModuleHome);
+  window.cleanupModuleHome = cleanupModuleHome;
+})();
+</script>
 </body>
 </html>

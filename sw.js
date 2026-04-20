@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v47 - mission control bridge width fix)
+// LifeReady Service Worker (v48 - mission control rank guide)
 
-const VERSION = 'v47';
+const VERSION = 'v48';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

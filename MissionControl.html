@@ -1296,6 +1296,31 @@ body{
 .overlay-card .subline{margin-top:8px;color:var(--text2);font-size:.92rem}
 .overlay-card .stack{gap:10px}
 .overlay-toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 14px}
+
+.rank-guide-summary{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:10px}
+.rank-guide-callout{border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(18,26,38,.94),rgba(10,15,24,.98));border-radius:18px;padding:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
+.rank-guide-callout .eyebrow{margin-bottom:8px}
+.rank-guide-callout h4{margin:0 0 8px;font:900 1rem var(--mono);letter-spacing:1.8px;text-transform:uppercase;color:var(--text)}
+.rank-guide-callout p{margin:0;color:var(--text2);line-height:1.55}
+.rank-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.rank-guide-card{border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(16,22,34,.95),rgba(8,12,20,.98));border-radius:18px;padding:15px;position:relative;overflow:hidden}
+.rank-guide-card::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:linear-gradient(180deg,var(--mc-blue),rgba(255,191,60,.9));opacity:.7}
+.rank-guide-card.current{border-color:rgba(255,191,60,.4);box-shadow:0 0 0 1px rgba(255,191,60,.18), 0 18px 34px rgba(0,0,0,.22)}
+.rank-guide-card.current::before{background:linear-gradient(180deg,var(--mc-gold),#ffd978);opacity:1}
+.rank-guide-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.rank-guide-top h4{margin:0;font:900 .95rem var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:var(--text)}
+.rank-guide-badge{padding:5px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);font:800 .68rem var(--mono);letter-spacing:1.2px;text-transform:uppercase;color:var(--mc-gold);white-space:nowrap}
+.rank-guide-badge.locked{color:var(--text2)}
+.rank-guide-meta{margin-top:10px;display:grid;gap:8px}
+.rank-guide-meta .line{display:flex;justify-content:space-between;gap:12px;font-size:.92rem;color:var(--text2)}
+.rank-guide-meta strong{color:var(--text)}
+.rank-guide-note{margin-top:10px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.08);font-size:.9rem;color:var(--text2);line-height:1.5}
+.rank-guide-mini{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.rank-guide-mini .token.current{border-color:rgba(255,191,60,.32);color:var(--mc-gold);background:rgba(255,191,60,.08)}
+.rank-guide-trigger{margin-top:12px}
+@media (max-width: 820px){
+  .rank-guide-summary,.rank-guide-grid{grid-template-columns:1fr}
+}
 .detail-list{display:grid;gap:12px}
 .detail-row{border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px;background:rgba(255,255,255,.03)}
 .detail-row h5{margin:0 0 8px;font:800 .85rem var(--mono);letter-spacing:1.6px;text-transform:uppercase;color:var(--text)}
@@ -1920,6 +1945,21 @@ body{
 </div>
 
 
+<div class="overlay" id="rank-guide-overlay">
+  <div class="modal card-panel-modal">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">Promotion Guide</div>
+          <h3>Rank Ladder</h3>
+        </div>
+        <button class="btn slim ghost" data-close="#rank-guide-overlay">Close</button>
+      </div>
+      <div id="rank-guide-body"></div>
+    </div>
+  </div>
+</div>
+
 <div class="overlay" id="card-panel-overlay">
   <div class="modal card-panel-modal">
     <div class="modal-inner">
@@ -2113,14 +2153,14 @@ const MODULES = [
 const HUB_KEY = 'lr_mc_hub_v1';
 const TODAY = new Date().toISOString().slice(0,10);
 const RANKS = [
-  {min:0,title:'Cadet'},
-  {min:20,title:'Ensign'},
-  {min:30,title:'Lieutenant Junior Grade'},
-  {min:42,title:'Lieutenant'},
-  {min:56,title:'Lieutenant Commander'},
-  {min:70,title:'Commander'},
-  {min:84,title:'Captain'},
-  {min:94,title:'Admiral'}
+  {min:0,minSessions:0,title:'Cadet'},
+  {min:20,minSessions:2,title:'Ensign'},
+  {min:30,minSessions:4,title:'Lieutenant Junior Grade'},
+  {min:42,minSessions:6,title:'Lieutenant'},
+  {min:56,minSessions:10,title:'Lieutenant Commander'},
+  {min:70,minSessions:15,title:'Commander'},
+  {min:84,minSessions:25,title:'Captain'},
+  {min:94,minSessions:40,title:'Admiral'}
 ];
 const PROMPT_META = {
   independent:{rank:5,label:'Independent',score:100,color:'#00c851'},
@@ -2468,17 +2508,18 @@ function deriveMetrics(learner){
   const modulesTouched = unique(sessions.map(s=>s.module)).length;
   const engagement = Math.min(100, Math.round((modulesTouched / MODULES.length) * 100 + Math.min(40, sessions.length * 3)));
   const objectiveStats = evaluateObjectives(learner, false);
-  const goalScore = objectiveStats.total ? Math.round((objectiveStats.met / objectiveStats.total) * 100) : (sessions.length ? 55 : 0);
+  const goalScore = objectiveStats.total ? Math.round((objectiveStats.met / objectiveStats.total) * 100) : 0;
   const readiness = sessions.length ? Math.round(acc * .45 + ind * .25 + engagement * .15 + goalScore * .15) : 0;
-  const rank = calcRank(readiness);
+  const rank = calcRank(readiness, sessions.length);
   const last = sessions[sessions.length - 1] || null;
   const lastSessionTs = last ? combineDateTime(last.date, last.time) : 0;
   return {acc, ind, modulesTouched, engagement, goalScore, readiness, rank, last, lastSessionTs};
 }
-function calcRank(score){
+function calcRank(score, sessionCount=0){
   let current = RANKS[0];
   for(const rank of RANKS){
-    if(score >= rank.min) current = rank;
+    const minSessions = Number(rank.minSessions || 0);
+    if(score >= rank.min && sessionCount >= minSessions) current = rank;
   }
   return current;
 }
@@ -2813,6 +2854,73 @@ function hideOverlay(id){
   $(id).classList.remove('show');
 }
 
+function rankIndexFor(title){
+  return RANKS.findIndex(r=>r.title === title);
+}
+function renderRankGuide(){
+  const body = $('#rank-guide-body');
+  if(!body) return;
+  const learner = selectedLearner();
+  const currentIdx = learner ? Math.max(0, rankIndexFor(learner.metrics.rank.title)) : -1;
+  const currentRank = learner ? learner.metrics.rank : null;
+  const nextRank = learner && currentIdx >= 0 && currentIdx < RANKS.length - 1 ? RANKS[currentIdx + 1] : null;
+  const summary = learner ? `
+    <div class="rank-guide-summary">
+      <div class="rank-guide-callout">
+        <div class="eyebrow">Active Learner</div>
+        <h4>${escapeHtml(learner.displayName)} · ${escapeHtml(currentRank.title)}</h4>
+        <p>${escapeHtml(learner.displayName)} is currently sitting at <strong>${escapeHtml(currentRank.title)}</strong> with a readiness score of <strong>${learner.metrics.readiness}</strong> across <strong>${filteredSessions(learner).length}</strong> logged session${filteredSessions(learner).length===1?'':'s'} in the current view.</p>
+        <div class="rank-guide-mini">
+          <span class="token current">Current Rank: ${escapeHtml(currentRank.title)}</span>
+          <span class="token">Readiness ${learner.metrics.readiness}</span>
+          <span class="token">Sessions ${filteredSessions(learner).length}</span>
+        </div>
+      </div>
+      <div class="rank-guide-callout">
+        <div class="eyebrow">Next Promotion</div>
+        <h4>${nextRank ? escapeHtml(nextRank.title) : 'Top Rank Reached'}</h4>
+        <p>${nextRank ? `To reach ${escapeHtml(nextRank.title)}, the learner needs a readiness score of <strong>${nextRank.min}</strong> and at least <strong>${nextRank.minSessions}</strong> logged sessions in the current view.` : 'Admiral is the top command rank in Mission Control. Keep logging clean, consistent evidence to maintain it.'}</p>
+      </div>
+    </div>` : `
+    <div class="rank-guide-summary">
+      <div class="rank-guide-callout" style="grid-column:1 / -1">
+        <div class="eyebrow">Command Reference</div>
+        <h4>How Promotions Work</h4>
+        <p>Mission Control promotions are based on two things together: the learner's readiness score and how many sessions are logged in the current filter view. That keeps early strong sessions from launching someone straight to command like the app lost its mind.</p>
+      </div>
+    </div>`;
+  body.innerHTML = `
+    ${summary}
+    <div class="panel-title" style="margin-top:14px">
+      <div>
+        <h3>Rank Ladder</h3>
+        <p>Each rank needs both a readiness threshold and enough logged sessions. The current learner is highlighted when one is selected.</p>
+      </div>
+    </div>
+    <div class="rank-guide-grid">
+      ${RANKS.map((rank, idx)=>{
+        const current = idx === currentIdx;
+        const unlocked = learner ? idx <= currentIdx : idx === 0;
+        const prev = idx > 0 ? RANKS[idx-1] : null;
+        const note = idx === 0
+          ? 'Starting rank for every new learner profile.'
+          : `Promotion from ${prev.title} requires crossing both thresholds in the current view.`;
+        return `
+          <div class="rank-guide-card ${current ? 'current' : ''}">
+            <div class="rank-guide-top">
+              <h4>${escapeHtml(rank.title)}</h4>
+              <span class="rank-guide-badge ${unlocked ? '' : 'locked'}">${current ? 'Current' : unlocked ? 'Unlocked' : 'Locked'}</span>
+            </div>
+            <div class="rank-guide-meta">
+              <div class="line"><span>Readiness Needed</span><strong>${rank.min}+</strong></div>
+              <div class="line"><span>Sessions Needed</span><strong>${rank.minSessions}</strong></div>
+            </div>
+            <div class="rank-guide-note">${note}</div>
+          </div>`;
+      }).join('')}
+    </div>`;
+}
+
 function selectedLearner(){
   return APP.learners.find(l=>l.key === APP.selectedKey) || null;
 }
@@ -3025,19 +3133,11 @@ function renderHero(){
   const allSessions = liveRoster.flatMap(l=>filteredSessions(l));
   const loggedToday = allSessions.filter(s=>(s.date||'') === TODAY).length;
   const buckets = bridgeBuckets();
-  const needsHtml = buckets.needs.slice(0,3).map(({learner,snap})=>`<li><strong>${escapeHtml(learner.displayName)}</strong><br>${snap.sessions.length ? `${snap.inactiveDays} day${snap.inactiveDays===1?'':'s'} since last log · ${escapeHtml(snap.weakest)}` : 'No session logs yet'}</li>`).join('') || '<li>No urgent learner flags right now.</li>';
+  const needsHtml = buckets.needs.slice(0,3).map(({learner,snap})=>`<li><strong>${escapeHtml(learner.displayName)}</strong><br>${snap.sessions.length ? `${snap.inactiveDays} day${snap.inactiveDays===1?'':'s'} since last log · ${escapeHtml(snap.weakest)}` : 'No session logs yet'}</li>`).join('') || '<li>No urgent learner flags. No urgent learner flags right now.</li>';
   const momentumHtml = buckets.momentum.slice(0,3).map(({learner})=>`<li><strong>${escapeHtml(learner.displayName)}</strong><br>${escapeHtml(improvementSummary(learner))}</li>`).join('') || '<li>No clear momentum yet. One more log usually wakes the story up.</li>';
   const reportsHtml = buckets.reports.slice(0,3).map(({learner,snap})=>`<li><strong>${escapeHtml(learner.displayName)}</strong><br>${snap.sessions.length} session${snap.sessions.length===1?'':'s'} in view · ${snap.objectiveData.met} goal${snap.objectiveData.met===1?'':'s'} met</li>`).join('') || '<li>No learner has enough current evidence for a fuller brief yet.</li>';
-
-  grid.classList.add('bridge-grid');
-  grid.style.display = 'flex';
-  grid.style.flexDirection = 'column';
-  grid.style.gap = '16px';
-  grid.style.width = '100%';
-  grid.style.gridTemplateColumns = '1fr';
-  grid.style.alignItems = 'stretch';
-
   grid.innerHTML = `
+    <div class="bridge-grid">
       <article class="bridge-card actions">
         <div class="eyebrow">Bridge Status</div>
         <div class="big">${liveRoster.length}</div>
@@ -3068,9 +3168,9 @@ function renderHero(){
         <h3>${buckets.reports.length} Brief${buckets.reports.length===1?'':'s'} Ready</h3>
         <p>These learners already have enough evidence for a useful summary or supervisor update.</p>
         <ul class="bridge-list">${reportsHtml}</ul>
-      </article>`;
+      </article>
+    </div>`;
 }
-
 function promotionText(learner){
   const score = learner.metrics.readiness;
   if(score >= 92) return 'Flagship-level progress across the suite';
@@ -3406,6 +3506,7 @@ function renderCommandDeck(){
       <div class="quick-ops">
         <button class="btn primary" id="empty-log-btn">Quick Log</button>
         <button class="btn ghost" id="empty-add-btn">Add Learner</button>
+        <button class="btn ghost rank-guide-trigger" data-panel-action="rank-guide">Promotion Guide</button>
       </div>`;
     $('#empty-log-btn')?.addEventListener('click', ()=>{ populateForms(); showOverlay('#session-overlay'); });
     $('#empty-add-btn')?.addEventListener('click', ()=>{ resetLearnerForm(); showOverlay('#learner-overlay'); });
@@ -3436,6 +3537,7 @@ function renderCommandDeck(){
       <button class="btn ghost" data-panel="goals" data-key="${escapeHtml(learner.key)}">Goals</button>
       <button class="btn ghost" data-panel="reports" data-key="${escapeHtml(learner.key)}">Report Dock</button>
       <button class="btn ghost" data-panel="profile" data-key="${escapeHtml(learner.key)}">Profile</button>
+      <button class="btn ghost rank-guide-trigger" data-panel-action="rank-guide" data-key="${escapeHtml(learner.key)}">Promotion Guide</button>
     </div>`;
 }
 function printBrief(){
@@ -3658,6 +3760,7 @@ function renderAll(){
   const learner = selectedLearner();
   renderHero();
   renderCommandDeck();
+  renderRankGuide();
   renderRoster();
   renderOverview();
   renderObjectives();
@@ -3914,6 +4017,10 @@ document.addEventListener('click', e=>{
         break;
       case 'print-brief':
         printBrief();
+        break;
+      case 'rank-guide':
+        renderRankGuide();
+        showOverlay('#rank-guide-overlay');
         break;
       case 'archive':
         toggleArchive(key);

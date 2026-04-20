@@ -8738,37 +8738,41 @@ ensure();
       .lr-rankbar{height:10px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden}
       .lr-rankbar span,.lr-goal-progress span,.lr-reward-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),rgba(255,216,122,.95))}
       .lr-rankbar-copy{font-size:.76rem;color:var(--text3);margin-top:8px}
-      .lr-reward-panel{padding:14px}
-      .lr-reward-panelhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;margin-bottom:12px}
-      .lr-reward-paneltitle{font-family:var(--font-display);font-size:1.08rem;color:var(--text);margin-top:4px}
-      .lr-reward-note{color:var(--text3);font-size:.78rem;line-height:1.45}
-      .lr-patch-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+      .lr-reward-panel{padding:12px}
+      .lr-reward-panelhead{display:flex;justify-content:space-between;gap:10px;align-items:flex-end;margin-bottom:10px}
+      .lr-reward-paneltitle{font-family:var(--font-display);font-size:1.02rem;color:var(--text);margin-top:4px}
+      .lr-reward-note{color:var(--text3);font-size:.74rem;line-height:1.4}
+      .lr-patch-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
       .lr-reward-honorgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
       .lr-reward-recent{display:grid;gap:10px}
-      .lr-patch-card{padding:12px;display:grid;gap:10px}
-      .lr-patch-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-      .lr-patch-main{display:flex;gap:10px;align-items:center;min-width:0}
-      .lr-patch-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:1.28rem;flex:0 0 42px}
-      .lr-patch-name{font-family:var(--font-display);font-size:1rem;color:var(--text);line-height:1.15}
-      .lr-patch-mode{font-size:.76rem;color:var(--text3);margin-top:2px}
-      .lr-reward-tier{padding:6px 10px;border-radius:999px;border:1px solid var(--border);font-family:var(--font-mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap}
+      .lr-patch-card{padding:10px;display:grid;gap:8px}
+      .lr-patch-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+      .lr-patch-main{display:flex;gap:8px;align-items:center;min-width:0}
+      .lr-patch-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:1.1rem;flex:0 0 38px}
+      .lr-patch-name{font-family:var(--font-display);font-size:.95rem;color:var(--text);line-height:1.12}
+      .lr-patch-mode{font-size:.72rem;color:var(--text3);margin-top:1px}
+      .lr-reward-tier{padding:5px 8px;border-radius:999px;border:1px solid var(--border);font-family:var(--font-mono);font-size:.58rem;letter-spacing:1.4px;text-transform:uppercase;white-space:nowrap}
       .lr-tier-bronze{color:#f0b15f;border-color:rgba(240,177,95,.45);background:rgba(240,177,95,.12)}
       .lr-tier-silver{color:#d5dcec;border-color:rgba(213,220,236,.45);background:rgba(213,220,236,.10)}
       .lr-tier-gold{color:#ffd87a;border-color:rgba(255,216,122,.50);background:rgba(255,216,122,.12)}
       .lr-tier-none{color:var(--text3);background:rgba(255,255,255,.02)}
-      .lr-patch-meta,.lr-reward-chiprow{display:flex;gap:8px;flex-wrap:wrap}
-      .lr-reward-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-size:.72rem;color:var(--text2)}
-      .lr-next-goal{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.025);border:1px solid var(--border)}
-      .lr-goal-label{font-weight:800;color:var(--text);font-size:.82rem}
-      .lr-goal-copy{font-size:.76rem;color:var(--text2);line-height:1.4;margin-top:4px}
+      .lr-patch-meta,.lr-reward-chiprow{display:flex;gap:6px;flex-wrap:wrap}
+      .lr-reward-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-size:.68rem;color:var(--text2)}
+      .lr-next-goal{padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid var(--border)}
+      .lr-goal-label{font-weight:800;color:var(--text);font-size:.78rem}
+      .lr-goal-copy{font-size:.72rem;color:var(--text2);line-height:1.35;margin-top:3px}
       .lr-goal-state{font-size:.72rem;color:var(--text3)}
-      .lr-goal-progress,.lr-reward-progress{height:8px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden;margin-top:8px}
-      .lr-goal-meta{font-size:.72rem;color:var(--text3);margin-top:6px}
-      .lr-tier-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-      .lr-tier-mini{padding:10px;border-radius:14px;background:rgba(255,255,255,.022);border:1px solid var(--border);display:grid;gap:4px}
-      .lr-tier-mini .name{font-family:var(--font-mono);font-size:.6rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3)}
-      .lr-tier-mini .state{font-size:.72rem;color:var(--text);font-weight:700}
-      .lr-tier-mini .meta{font-size:.66rem;color:var(--text3);line-height:1.35}
+      .lr-goal-progress,.lr-reward-progress{height:7px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden;margin-top:6px}
+      .lr-goal-meta{font-size:.68rem;color:var(--text3);margin-top:4px}
+      .lr-tier-summary{display:grid;grid-template-columns:1fr;gap:6px}
+      .lr-tier-mini{padding:7px 9px;border-radius:12px;background:rgba(255,255,255,.022);border:1px solid var(--border);display:grid;grid-template-columns:auto 1fr auto;align-items:start;gap:2px 8px}
+      .lr-tier-mini .name{font-family:var(--font-mono);font-size:.58rem;letter-spacing:1.3px;text-transform:uppercase;color:var(--text3)}
+      .lr-tier-mini .state{font-size:.66rem;color:var(--text);font-weight:700;justify-self:end}
+      .lr-tier-mini .meta{font-size:.64rem;color:var(--text3);line-height:1.3;grid-column:2 / 4}
+      .lr-patch-body{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(150px,.95fr);gap:8px;align-items:start}
+      .lr-tier-mini .copy{font-size:.66rem;color:var(--text2);line-height:1.28;grid-column:1 / 4}
+      .lr-goal-kicker{font-family:var(--font-mono);font-size:.58rem;letter-spacing:1.3px;color:var(--text3);text-transform:uppercase}
+
       .lr-honor-card{padding:12px;display:grid;gap:10px}
       .lr-reward-event{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:14px;background:rgba(255,255,255,.025);border:1px solid var(--border)}
       .lr-reward-eventicon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:1.2rem;flex:0 0 40px}
@@ -8796,6 +8800,7 @@ ensure();
       @media (max-width:520px){
         .lr-tier-summary{grid-template-columns:1fr}
         .lr-patch-top,.lr-reward-panelhead,.lr-rankbar-head{flex-direction:column;align-items:flex-start}
+        .lr-patch-body{grid-template-columns:1fr}
       }
     `;
     document.head.appendChild(style);
@@ -9218,7 +9223,7 @@ ensure();
   function compactGoalSummary(stats){
     const rows=goalRows(stats);
     return rows.map(function(row){
-      return '<div class="lr-tier-mini"><div class="name">'+esc(row.label)+'</div><div class="state">'+esc(row.state)+'</div><div class="meta">'+esc(row.meta)+'</div></div>';
+      return '<div class="lr-tier-mini"><div class="name">'+esc(row.label)+'</div><div class="state">'+esc(row.state)+'</div><div class="copy">'+esc(row.copy)+'</div><div class="meta">'+esc(row.meta)+'</div></div>';
     }).join('');
   }
   function renderPatchCard(key,cfg,stats){
@@ -9228,8 +9233,7 @@ ensure();
     return '<div class="lr-patch-card">'
       + '<div class="lr-patch-top"><div class="lr-patch-main"><div class="lr-patch-icon">'+esc(cfg.icon)+'</div><div><div class="lr-patch-name">'+esc(cfg.patch)+'</div><div class="lr-patch-mode">'+esc(cfg.title)+'</div></div></div><div class="lr-reward-tier '+esc(tierClass(stats.tier||0))+'">'+esc(tierName(stats.tier||0))+'</div></div>'
       + '<div class="lr-patch-meta"><div class="lr-reward-chip">'+esc((stats.plays||0))+' clears</div><div class="lr-reward-chip">Best '+esc((stats.bestPct||0))+'%</div><div class="lr-reward-chip">Perfect '+esc((stats.perfects||0))+'</div></div>'
-      + '<div class="lr-next-goal"><div class="lr-goal-kicker">Next Target</div><div class="lr-goal-label">'+esc(active.label)+'</div><div class="lr-goal-copy">'+esc(active.copy)+'</div><div class="lr-goal-progress"><span style="width:'+esc(active.pct||0)+'%"></span></div><div class="lr-goal-meta">'+esc(active.meta||'')+'</div></div>'
-      + '<div class="lr-tier-summary">'+compactGoalSummary(stats)+'</div>'
+      + '<div class="lr-patch-body"><div class="lr-next-goal"><div class="lr-goal-kicker">Next Target</div><div class="lr-goal-label">'+esc(active.label)+'</div><div class="lr-goal-copy">'+esc(active.copy)+'</div><div class="lr-goal-progress"><span style="width:'+esc(active.pct||0)+'%"></span></div><div class="lr-goal-meta">'+esc(active.meta||'')+'</div></div><div class="lr-tier-summary">'+compactGoalSummary(stats)+'</div></div>'
       + '</div>';
   }
   function renderHonorCard(mod, honor){
@@ -9264,7 +9268,7 @@ ensure();
     grid.innerHTML=''
       + '<div class="lr-reward-board">'
       +   '<div class="lr-reward-hero"><div class="lr-reward-kicker">'+esc(MODULE_CFG.label)+' Rewards</div><div class="lr-reward-title">Command Rewards</div><div class="lr-reward-copy">This board shows every patch in the module, the exact goals for each tier, and how close you are to the next promotion.</div><div class="lr-reward-statgrid"><div class="lr-reward-stat"><div class="v">'+esc(rank.title)+'</div><div class="l">Current Rank</div></div><div class="lr-reward-stat"><div class="v">'+esc(data.totalXP)+'</div><div class="l">Total XP</div></div><div class="lr-reward-stat"><div class="v">'+esc(patchCount(mod))+'</div><div class="l">Patches Earned</div></div><div class="lr-reward-stat"><div class="v">'+esc(Object.values(mod.honors||{}).filter(Boolean).length)+'</div><div class="l">Module Honors</div></div></div><div class="lr-rankbar-wrap"><div class="lr-rankbar-head"><span>'+esc(rank.title)+'</span><span>'+(next?esc(next.title):'Top Rank')+'</span></div><div class="lr-rankbar"><span style="width:'+esc(rankData.pct)+'%"></span></div><div class="lr-rankbar-copy">'+esc(next ? ('Next promotion: '+next.title+' in '+(next.min-data.totalXP)+' XP.') : 'Top rank reached for now.')+'</div></div></div>'
-      +   '<div class="lr-reward-panel"><div class="lr-reward-panelhead"><div><div class="lr-reward-panelsub">Patch Board</div><div class="lr-reward-paneltitle">Every Reward You Can Work Toward</div></div><div class="lr-reward-note">Each patch shows your current tier, your next target, and the Bronze / Silver / Gold requirements at a glance.</div></div><div class="lr-patch-grid">'+patchCards+'</div></div>'
+      +   '<div class="lr-reward-panel"><div class="lr-reward-panelhead"><div><div class="lr-reward-panelsub">Patch Board</div><div class="lr-reward-paneltitle">Every Reward You Can Work Toward</div></div><div class="lr-reward-note">See your current tier, next target, and the Bronze / Silver / Gold goals on each card.</div></div><div class="lr-patch-grid">'+patchCards+'</div></div>'
       +   '<div class="lr-reward-panel"><div class="lr-reward-panelhead"><div><div class="lr-reward-panelsub">Module Honors</div><div class="lr-reward-paneltitle">Bigger Goals Across The Module</div></div><div class="lr-reward-note">These track replay, variety, and follow-through.</div></div><div class="lr-reward-honorgrid">'+honorCards+'</div></div>'
       +   '<div class="lr-reward-panel"><div class="lr-reward-panelhead"><div><div class="lr-reward-panelsub">Latest Unlocks</div><div class="lr-reward-paneltitle">Recent Rewards</div></div></div><div class="lr-reward-recent">'+recent+'</div></div>'
       + '</div>';

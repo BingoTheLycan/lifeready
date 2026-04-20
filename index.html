@@ -1092,7 +1092,10 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
 <script>
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js').catch(function(){});
+    navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ r.unregister(); }); }).catch(function(){});
+    if (window.caches && caches.keys) {
+      caches.keys().then(function(keys){ keys.forEach(function(k){ caches.delete(k); }); }).catch(function(){});
+    }
   });
 }
 </script>

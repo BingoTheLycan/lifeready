@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v41 - mobile cleanup pass)
+// LifeReady Service Worker (v43 - home deck rebuild)
 
-const VERSION = 'v41';
+const VERSION = 'v43';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

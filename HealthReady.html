@@ -2063,7 +2063,6 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 }
 
 </style>
-
 <style>
 /* ════════════════════════════════════════════════════════
    NEW INTERACTIVE MODE SHELLS
@@ -2111,7 +2110,6 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 .lrx-listitem{display:flex;justify-content:space-between;gap:10px;align-items:center;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px 12px}
 @media(max-width:720px){.lrx-statrow{grid-template-columns:1fr 1fr}.lrx-choicegrid{grid-template-columns:1fr}}
 </style>
-
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <filter color-interpolation-filters="sRGB" id="cb-proto">
@@ -2125,9 +2123,144 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </filter>
 </defs>
 </svg>
-
 <style id="lr-mobile-cleanup">
 .lrx-stage{display:grid;gap:14px}
+.lr-zone-banner,.lr-zone-subbanner{display:flex;align-items:center;gap:10px;margin:2px 0 10px;padding:10px 12px;border:1px solid rgba(255,255,255,.10);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015));box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.lr-zone-banner .home-label-kicker,.lr-zone-subbanner .home-label-kicker{display:block}
+.lr-zone-banner .home-label-main,.lr-zone-subbanner .home-label-main{display:block}
+.lr-zone-banner.lr-zone-command{border-color:rgba(255,255,255,.14);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02))}
+.lr-home-cleaned .home-group-label.lr-zone-primary,
+.lr-home-cleaned .home-group-label.lr-zone-secondary,
+.lr-home-cleaned .home-group-label.lr-zone-sub{padding:0 2px}
+.lr-hero-toggle{appearance:none;border:none;border-radius:999px;padding:6px 10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--text2);font:.66rem var(--font-mono);letter-spacing:1px;text-transform:uppercase;cursor:pointer;margin-top:10px;display:inline-flex;align-items:center;gap:6px}
+.lr-hero-compact .lrx-sub,.lr-hero-compact .lrx-chiprow{display:none !important}
+.lr-hero-compact .lr-hero-summary{display:block;font-size:.76rem;line-height:1.4;color:var(--text2);margin-top:4px;white-space:normal;overflow:visible;text-overflow:unset;max-width:none}
+.lr-hero-compact.is-open .lr-hero-summary{display:none}
+.lr-hero-compact.is-open .lrx-sub{display:block;margin-top:7px;white-space:normal;overflow:visible;text-overflow:unset;max-width:none}
+.lr-hero-compact.is-open .lrx-chiprow{display:flex;margin-top:8px;flex-wrap:wrap}
+.lr-hero-compact .lr-hero-toggle{position:relative;z-index:2}
+
+/* LR HOME DECK REBUILD */
+#scr-home.lr-home-decked{display:block;}
+#scr-home .lr-home-shell{display:grid;gap:18px;}
+#scr-home .lr-deck{
+  position:relative;
+  overflow:hidden;
+  border-radius:26px;
+  border:1px solid color-mix(in srgb, var(--border) 92%, transparent);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg2) 96%, transparent), color-mix(in srgb, var(--bg3) 94%, transparent));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04), 0 16px 38px rgba(0,0,0,.22);
+  padding:18px;
+}
+#scr-home .lr-deck::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(120deg, transparent 56%, color-mix(in srgb, var(--green) 8%, transparent) 56%, transparent 80%);
+}
+#scr-home .lr-deck.lr-deck-command::before{
+  background:linear-gradient(120deg, transparent 54%, color-mix(in srgb, var(--amber) 10%, transparent) 54%, transparent 82%);
+}
+#scr-home .lr-deck-head{
+  position:relative;
+  padding-left:18px;
+  display:grid;
+  gap:4px;
+  margin-bottom:14px;
+}
+#scr-home .lr-deck-head::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:2px;
+  bottom:2px;
+  width:4px;
+  border-radius:999px;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--green) 96%, white 4%), color-mix(in srgb, var(--green) 70%, transparent) 60%, transparent 100%);
+  box-shadow:0 0 14px color-mix(in srgb, var(--green) 42%, transparent);
+}
+#scr-home .lr-deck-command .lr-deck-head::before{
+  background:linear-gradient(180deg, color-mix(in srgb, var(--amber) 94%, white 6%), color-mix(in srgb, var(--amber) 72%, transparent) 60%, transparent 100%);
+  box-shadow:0 0 14px color-mix(in srgb, var(--amber) 42%, transparent);
+}
+#scr-home .lr-deck-kicker{
+  font-family:var(--font-mono);
+  font-size:.54rem;
+  letter-spacing:3.4px;
+  color:var(--text3);
+  line-height:1;
+  text-transform:uppercase;
+}
+#scr-home .lr-deck-main{
+  font-family:var(--font-mono);
+  font-size:.92rem;
+  letter-spacing:4.6px;
+  color:var(--text);
+  line-height:1.05;
+  text-transform:uppercase;
+}
+#scr-home .lr-deck-command .lr-deck-kicker{color:color-mix(in srgb, var(--amber) 70%, var(--text3));}
+#scr-home .lr-deck-command .lr-deck-main{color:var(--amber);text-shadow:0 0 12px color-mix(in srgb, var(--amber) 18%, transparent);}
+#scr-home .lr-deck-copy{
+  font-size:.82rem;
+  line-height:1.45;
+  color:var(--text2);
+  max-width:44ch;
+}
+#scr-home .lr-deck-body{display:grid;gap:14px;}
+#scr-home .lr-split{display:grid;gap:14px;}
+#scr-home .lr-subdeck{
+  border-radius:20px;
+  border:1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  background:linear-gradient(180deg, color-mix(in srgb, var(--bg) 10%, var(--bg2)), color-mix(in srgb, var(--bg3) 96%, transparent));
+  padding:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+}
+#scr-home .lr-subdeck-kicker{
+  font-family:var(--font-mono);
+  font-size:.54rem;
+  letter-spacing:3px;
+  color:var(--text3);
+  text-transform:uppercase;
+}
+#scr-home .lr-subdeck-main{
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  letter-spacing:3px;
+  color:var(--text);
+  margin:4px 0 10px;
+  text-transform:uppercase;
+}
+#scr-home .lr-subdeck-body{display:grid;gap:12px;}
+#scr-home .lr-deck .home-group,
+#scr-home .lr-deck .home-tools-label,
+#scr-home .lr-deck .home-divider{
+  margin:0 !important;
+  padding:0 !important;
+  background:none !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+#scr-home .lr-deck .home-group-label,
+#scr-home .lr-deck .home-tools-label{display:none !important;}
+#scr-home .lr-deck .lr-group-body{display:grid;gap:12px;}
+#scr-home .lr-deck .mode-list,
+#scr-home .lr-deck .hgrid{margin:0 !important;}
+#scr-home .lr-deck-holodeck .mode-list{display:grid;grid-template-columns:1fr;gap:12px;}
+#scr-home .lr-deck-command #today-progress,
+#scr-home .lr-deck-command .tagline{margin-top:0 !important;}
+#scr-home .lr-deck-command .tagline{
+  border-style:solid;
+  border-color:color-mix(in srgb, var(--amber) 40%, var(--border));
+  padding:12px 14px;
+  letter-spacing:2.4px;
+  color:var(--text2);
+}
+@media(min-width:720px){
+  #scr-home .lr-split{grid-template-columns:repeat(2,minmax(0,1fr));}
+  #scr-home .lr-deck-holodeck .mode-list{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
 @media (max-width: 720px){
   .lrx-shell,.lrx-stage{padding:10px !important;gap:10px !important;display:grid;align-content:start;}
   .lrx-grid,.lrx-grid.two{gap:10px !important;}
@@ -2158,29 +2291,17 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
   .lrx-btn{padding:10px 12px !important;font-size:.74rem !important;border-radius:12px !important;}
   .lrx-mini{font-size:.72rem !important;line-height:1.35 !important;}
   .lrx-alert{margin-top:8px !important;padding:10px 12px !important;border-radius:12px !important;}
-
-  #scr-casharcade .lrx-hero .lrx-chiprow,
-  #scr-sketchydeck .lrx-hero .lrx-chiprow,
-  #scr-storebay .lrx-hero .lrx-chiprow,
-  #scr-schedulebuilder .lrx-hero .lrx-chiprow{display:none !important;}
-
-  #scr-casharcade .lrx-hero .lrx-sub,
-  #scr-sketchydeck .lrx-hero .lrx-sub,
-  #scr-storebay .lrx-hero .lrx-sub,
-  #scr-schedulebuilder .lrx-hero .lrx-sub{
-    font-size:.74rem !important;
-    line-height:1.28 !important;
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:1;
-    overflow:hidden;
-  }
-
+  .lr-hero-compact{padding:10px 12px !important;border-radius:16px !important;}
+  .lr-hero-compact .lrx-kicker{margin-bottom:2px !important;}
+  .lr-hero-compact .lrx-title{font-size:.96rem !important;margin-bottom:0 !important;white-space:normal;overflow:visible;text-overflow:unset;}
+  .lr-hero-toggle{margin-top:8px;font-size:.62rem;padding:5px 9px}
   #scr-home .home-divider{margin:14px 0 !important;}
   #scr-home .mode-list .mc,
   #scr-home .hgrid .hb{min-height:74px !important;padding:10px 12px !important;}
   #scr-home .daily-card{padding:12px !important;}
   #scr-home.lr-home-cleaned .lr-command-deck .hgrid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  #scr-home.lr-home-cleaned .lr-zone-banner,
+  #scr-home.lr-home-cleaned .lr-zone-subbanner{padding:8px 10px;margin-bottom:10px;border-radius:14px}
 }
 </style>
 </head>
@@ -2196,8 +2317,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </header>
 <main>
 <!-- ══════════ HOME ══════════ -->
-<div class="scr on" id="scr-home">
-<div class="home-hero">
+<div class="scr on lr-home-decked" data-lr-static-deck="1" id="scr-home"><div class="lr-home-shell"><div class="home-hero">
 <div class="home-title" id="healthready-logo">
 <span class="cr-cash">HEALTH</span><span class="cr-ready">READY</span>
 </div>
@@ -2213,18 +2333,14 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
   </div>
 <a class="hd-link" href="health-disclaimer.html">Read the full health disclaimer</a>
 </div>
-</div>
-<div id="onboarding-card" style="display:none;background:linear-gradient(135deg,var(--panel),var(--panel2));border:2px solid var(--green);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;animation:fadeUp .5s ease">
+</div><div id="onboarding-card" style="display:none;background:linear-gradient(135deg,var(--panel),var(--panel2));border:2px solid var(--green);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;animation:fadeUp .5s ease">
 <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:2px;margin-bottom:8px">👋 WELCOME TO HEALTHREADY!</div>
 <p style="font-size:.84rem;color:var(--text2);line-height:1.6;margin-bottom:12px">New here? Start with <strong style="color:var(--text)">Watch a Demo</strong> to see how HealthReady works - then try <strong style="color:var(--text)">Practice Mode</strong> when you are ready.</p>
 <div style="display:flex;gap:8px">
 <button class="dbtn" onclick="go('demo');dismissOnboarding()" style="flex:1;padding:11px;font-size:.8rem">👀 Watch Demo</button>
 <button class="rsec" onclick="dismissOnboarding()" style="flex:1;padding:11px;font-size:.8rem">Got It ✓</button>
 </div>
-</div>
-<div class="home-group">
-<div class="home-group-label"><span class="home-label-kicker">MISSION START</span><span class="home-label-main">START HERE</span></div>
-<div class="daily-card" id="daily-card" onclick="startDaily()">
+</div><section class="lr-deck lr-deck-launch"><div class="lr-deck-head"><div class="lr-deck-kicker">LAUNCH PAD</div><div class="lr-deck-main">START HERE</div><div class="lr-deck-copy">Daily challenge and featured mission cards stay up front.</div></div><div class="lr-deck-body"><div class="lr-group-body"><div class="daily-card" id="daily-card" onclick="startDaily()">
 <div class="daily-icon">📅</div>
 <div class="daily-info">
 <div class="daily-eyebrow">DAILY CHALLENGE</div>
@@ -2232,20 +2348,14 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="daily-desc">5 health questions · Build safe daily habits</div>
 </div>
 <div class="daily-streak" id="daily-streak-disp">🔥0</div>
-</div>
-<div class="mode-list" style="margin-top:0">
+</div><div class="mode-list" style="margin-top:0">
 <div class="mc star" onclick="startMode('challenge')">
 <div class="mc-icon">⭐</div>
 <div class="mc-body"><div class="mc-name">HEALTH CHALLENGE</div>
 <div class="mc-desc">Score · Streaks · Levels · Mixed health topics · 10 questions</div></div>
 <div class="mc-arr">›</div>
 </div>
-</div>
-</div>
-<div class="home-divider"></div>
-<div class="home-group">
-<div class="home-group-label home-play-label"><span class="home-label-kicker">HOLODECK</span><span class="home-label-main">PLAY</span></div>
-<div class="mode-list" style="margin-top:0">
+</div></div></div></section><section class="lr-deck lr-deck-holodeck"><div class="lr-deck-head"><div class="lr-deck-kicker">HOLODECK</div><div class="lr-deck-main">PLAY</div><div class="lr-deck-copy">Interactive simulations, arcade runs, and low-pressure practice modes.</div></div><div class="lr-deck-body"><div class="lr-group-body"><div class="mode-list" style="margin-top:0">
 <div class="mc" onclick="startMode('practice')">
 <div class="mc-icon">🎓</div>
 <div class="mc-body"><div class="mc-name">PRACTICE MODE</div>
@@ -2288,7 +2398,6 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="mc-desc">Handwashing · Dental · Hygiene routines · Preventing illness · 8 questions</div></div>
 <div class="mc-arr">›</div>
 </div>
-
 <div class="mc" onclick="openCareDecisionIntro()">
 <div class="mc-icon">🚑</div>
 <div class="mc-body"><div class="mc-name">EMERGENCY OR WAIT?</div><div class="mc-desc">Choose 911, trusted adult, appointment, or home care</div></div>
@@ -2299,25 +2408,14 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="mc-body"><div class="mc-name">MED SCHEDULE BUILDER</div><div class="mc-desc">Read the label · Place it in the right daily slot · Build safer routines</div></div>
 <div class="mc-arr">›</div>
 </div>
-</div>
-</div>
-<div class="home-divider"></div>
-<div class="home-group">
-<div class="home-group-label"><span class="home-label-kicker">MISSION GUIDE</span><span class="home-label-main">LEARN THE FLOW</span></div>
-<div class="mode-list" style="margin-top:0">
+</div></div></div></section><section class="lr-deck lr-deck-library"><div class="lr-deck-head"><div class="lr-deck-kicker">TRAINING LIBRARY</div><div class="lr-deck-main">LEARN + REVIEW</div><div class="lr-deck-copy">Quizzes, drills, guides, and demos live here.</div></div><div class="lr-deck-body"><div class="lr-split"><div class="lr-subdeck"><div class="lr-subdeck-kicker">WATCH + LEARN</div><div class="lr-subdeck-main">DEMO BAY</div><div class="lr-subdeck-body"><div class="lr-group-body"><div class="mode-list" style="margin-top:0">
 <div class="mc" onclick="go('demo')">
 <div class="mc-icon">👀</div>
 <div class="mc-body"><div class="mc-name">WATCH A DEMO</div>
 <div class="mc-desc">See exactly how HealthReady works before you start</div></div>
 <div class="mc-arr">›</div>
 </div>
-</div>
-</div>
-<div class="home-divider"></div>
-<div class="home-tools-label"><span class="home-label-kicker">REFERENCE DECK</span><span class="home-label-main">LEARNING TOOLS</span></div>
-<div class="home-group">
-<div class="home-group-label"><span class="home-label-kicker">GUIDE FILES</span><span class="home-label-main">LEARN</span></div>
-<div class="hgrid">
+</div></div></div></div><div class="lr-subdeck"><div class="lr-subdeck-kicker">SKILL FILES</div><div class="lr-subdeck-main">PRACTICE + REFERENCE</div><div class="lr-subdeck-body"><div class="lr-group-body"><div class="hgrid">
 <div class="hb" onclick="go('hygieneguide')"><div class="hi">🧼</div><div class="hl">Hygiene Guide</div><div class="hc">Daily health habits</div></div>
 <div class="hb" onclick="go('doctorguide')"><div class="hi">🩺</div><div class="hl">Doctor Visits Guide</div><div class="hc">Appointments &amp; preparation</div></div>
 <div class="hb" onclick="go('emergencyguide')"><div class="hi">🚨</div><div class="hl">Emergency Guide</div><div class="hc">911, first aid &amp; emergencies</div></div>
@@ -2325,25 +2423,14 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="hb" onclick="go('mentalguide')"><div class="hi">🧠</div><div class="hl">Mental Health Guide</div><div class="hc">Stress, sleep &amp; self-advocacy</div></div>
 <div class="hb" onclick="go('insuranceguide')"><div class="hi">🪪</div><div class="hl">Health Insurance Guide</div><div class="hc">Cards, copays &amp; networks</div></div>
 <div class="hb" onclick="go('guide')"><div class="hi">❓</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
-</div>
-</div>
-<div class="home-group">
-<div class="home-group-label"><span class="home-label-kicker">PROGRESS LOG</span><span class="home-label-main">PROGRESS</span></div>
-<div class="hgrid">
+</div></div></div></div></div></div></section><section class="lr-deck lr-deck-command"><div class="lr-deck-head"><div class="lr-deck-kicker">COMMAND DECK</div><div class="lr-deck-main">STATUS + SYSTEM</div><div class="lr-deck-copy">Scores, badges, settings, accessibility, and module info are grouped together.</div></div><div class="lr-deck-body"><div class="lr-split"><div class="lr-subdeck"><div class="lr-subdeck-kicker">PROGRESS LOG</div><div class="lr-subdeck-main">SCORES + BADGES</div><div class="lr-subdeck-body"><div class="lr-group-body"><div class="hgrid">
 <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best sessions</div></div>
 <div class="hb" onclick="go('badges')"><div class="hi">🎖</div><div class="hl">Badges</div><div class="hc"><span id="badge-ct">None yet</span></div></div>
 <div class="hb" onclick="go('coach')"><div class="hi">👤</div><div class="hl">Mission Control</div><div class="hc">Track learner progress</div></div>
-</div>
-</div>
-<div class="home-group">
-<div class="home-group-label"><span class="home-label-kicker">UTILITY</span><span class="home-label-main">SYSTEM</span></div>
-<div class="hgrid">
+</div></div></div></div><div class="lr-subdeck"><div class="lr-subdeck-kicker">MODULE SYSTEM</div><div class="lr-subdeck-main">SETTINGS + ABOUT</div><div class="lr-subdeck-body"><div class="lr-group-body"><div class="hgrid">
 <div class="hb" onclick="go('settings')"><div class="hi">⚙️</div><div class="hl">Settings</div><div class="hc">Accessibility</div></div>
 <div class="hb" onclick="go('about')"><div class="hi">ℹ️</div><div class="hl">About</div><div class="hc">Our story</div></div>
-</div>
-</div>
-<div class="tagline" id="tagline">HEALTH SKILLS FOR REAL LIFE</div>
-</div>
+</div></div></div></div></div><div class="tagline" id="tagline">HEALTH SKILLS FOR REAL LIFE</div></div></section></div></div>
 <div class="scr" id="scr-demo">
 <div class="gtop">
 <button class="back" onclick="go('home')">‹ BACK</button>
@@ -2398,13 +2485,12 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="rbtns rr-btns"><button class="rpri" id="r-play-again">▶ PLAY AGAIN</button><button class="rsec" id="r-share" onclick="shareScore()" style="display:none">📤 SHARE MY SCORE</button><button class="rsec" id="r-coach-copy" onclick="copyForCoach()" style="display:none">📋 COPY SESSION SUMMARY</button><button class="rsec" onclick="go('home')">← MAIN MENU</button></div>
 </div>
 </div>
-
 <!-- EMERGENCY OR WAIT? -->
 <div class="scr" id="scr-caredecision">
 <div class="gtop"><button class="back" onclick="go('home')">‹ BACK</button><div class="gmode">🚑 EMERGENCY OR WAIT?</div></div>
 <div class="lrx-shell" style="--mode-accent:#ff49af">
-  <div id="caredecision-live"></div>
-  <div id="caredecision-result" style="display:none"></div>
+<div id="caredecision-live"></div>
+<div id="caredecision-result" style="display:none"></div>
 </div>
 </div>
 <!-- ══════════ SCORES ══════════ -->
@@ -2651,7 +2737,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 <div class="guide-card" onclick="say('Script for asking your doctor to explain something. Say: I am sorry, I did not quite understand that. Could you explain it in simpler terms? Or could you write it down for me?')">
 <div class="gc-icon">🙋</div><div><div class="gc-title">ASKING FOR CLARIFICATION</div>
-<div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8">"I am sorry - I did not quite understand that. Could you explain it in simpler terms?" <br><br/>"Could you write that down for me?"</br></div></div>
+<div class="gc-body" style="font-family:var(--font-mono);font-size:.78rem;color:var(--text);background:var(--bg3);border-radius:8px;padding:10px;margin-top:8px;line-height:1.8">"I am sorry - I did not quite understand that. Could you explain it in simpler terms?" <br/><br>"Could you write that down for me?"</br></div></div>
 </div>
 <div class="guide-card" onclick="say('Script for canceling a doctor appointment. Say: Hi, I have an appointment scheduled for and I need to cancel or reschedule. I am sorry for the short notice. What is the earliest available time to rebook?')">
 <div class="gc-icon">📆</div><div><div class="gc-title">CANCELING OR RESCHEDULING</div>
@@ -2702,7 +2788,6 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <button class="rsec" onclick="go('about')" style="width:100%;font-size:.78rem;padding:8px">Read Our Story →</button>
 </div>
 </aside>
-
 <div class="scr" id="scr-game">
 <div class="gtop">
 <button class="back" id="end-btn" onclick="confirmEnd()">‹ END</button>
@@ -6817,7 +6902,6 @@ document.addEventListener('DOMContentLoaded', initHomeCardWiring);
 <div id="badge-toast-desc"></div>
 </div>
 </div>
-
 <!-- ══════════ FEEDBACK ══════════ -->
 <div class="fov" id="fov">
 <div class="fcard" id="fcard">
@@ -6837,11 +6921,6 @@ document.addEventListener('DOMContentLoaded', initHomeCardWiring);
 <!-- ══════════ TECH GUIDES ══════════ -->
 <!-- ══════════ CALL SCRIPTS ══════════ -->
 <!-- ══════════ ABOUT ══════════ -->
-
-
-
-
-
 <style id="lr-results-redesign">
 #scr-results .rr-screen{position:relative;padding:0 0 18px;animation:fadeUp .45s ease;--rr-card-bg:linear-gradient(180deg,rgba(13,18,32,.96),rgba(9,14,26,.98));}
 #scr-results .rr-gridfx{position:absolute;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(233,30,140,.12) 1px, transparent 1px),linear-gradient(90deg, rgba(233,30,140,.12) 1px, transparent 1px);background-size:22px 22px,22px 22px;mask-image:linear-gradient(180deg,rgba(0,0,0,.95),rgba(0,0,0,.25) 80%,transparent);}
@@ -7442,8 +7521,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 }
 
 </style>
-
-
 <script>
 (function(){
   const MODULE_FILE = 'HealthReady.html';
@@ -7533,8 +7610,6 @@ function nextCareDecision(){ CAREDECISION.idx +=1; CAREDECISION.locked=false; CA
 function finishCareDecision(){ const total=CAREDECISION.cases.length||1; const pct=Math.round((CAREDECISION.correct/total)*100); try{ CFG.careDecisionBest=Math.max(CFG.careDecisionBest||0,pct); saveAll&&saveAll(); }catch(_e){} let streak=0,bestStreak=0; (CAREDECISION.cases||[]).forEach(c=>{streak=c._ok?streak+1:0; bestStreak=Math.max(bestStreak,streak);}); const reviewRounds=(CAREDECISION.cases||[]).map((c,idx)=>({ title:(c.title||('Health case '+(idx+1))), meta:'You chose: ' + (c._choiceText||'No answer') + ' · Safer next step: ' + (c._answerText||'Review the case'), ok:!!c._ok })); showArcadeDebriefRedesign({ modeKey:'emergency_or_wait', modeTitle:'Emergency or Wait?', header:pct>=90?'STRONG HEALTH JUDGMENT':pct>=80?'GOOD DECISION MAKING':pct>=70?'KEEP PRACTICING NEXT STEPS':'TRY ANOTHER SET', sub:CAREDECISION.correct + ' of ' + total + ' health situations sorted safely.', correct:CAREDECISION.correct, total:Math.max(total,1), pct:pct, score:CAREDECISION.correct*100, streak:bestStreak, scoreLabel:'Mission Score', reviewRounds:reviewRounds, playAgainText:'▶ TRY ANOTHER SET', replay:function(){ startCareDecision(); }, sessionLabel:pct>=90?'Response Ready':pct>=80?'Health Signal':pct>=70?'Building Judgment':'Training Run', sessionCopy:'You sorted ' + total + ' health situation' + (total===1?'':'s') + ' by urgency. Review the safer next step so the choice is faster next time.', pills:[total + ' cases', bestStreak + ' best streak', pct + '% accuracy'], well:['You practiced sorting serious problems from lower-urgency ones.', CAREDECISION.correct>0 ? 'You made ' + CAREDECISION.correct + ' safe next-step call' + (CAREDECISION.correct===1?'':'s') + '.' : 'You collected a full review set of health decision examples.', pct>=80 ? 'Your urgency judgment is getting steadier.' : 'You stayed with the run and checked each situation instead of panicking through it.'], next:['Ask how serious it is, how fast it is changing, and who can help right now.', 'Use emergency help for severe, fast-moving problems. Use home care or appointments for lower urgency needs.', 'Replay the cases you missed until the response path feels obvious.'], reminder:'If something feels serious, get help from a trusted adult or emergency services. If it is less urgent, use safe home care or schedule medical help.', bannerCopy:'Health check complete. Replay it for a cleaner response run.', speech:'Health check complete. You got ' + CAREDECISION.correct + ' of ' + total + ' situations correct.' }); }
 
 </script>
-
-
 <style id="lr-header-popup-upgrade">
 /* ══ RETRO HEADER + POPUP UPGRADE ══ */
 .hdr{
@@ -7870,7 +7945,6 @@ function finishCareDecision(){ const total=CAREDECISION.cases.length||1; const p
   .break-scr::before,.break-scr::after{width:min(94vw, 420px);height:min(84vh, 520px);}
 }
 </style>
-
 <style id="lr-header-final-tune">
 .hdr-nav{
   grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto !important;
@@ -8037,10 +8111,6 @@ function finishCareDecision(){ const total=CAREDECISION.cases.length||1; const p
   #demo-step-counter{margin-left:0 !important;}
 }
 </style>
-
-
-
-
 <script>
 (function(){
   if(window.showArcadeDebriefRedesign) return;
@@ -8250,7 +8320,6 @@ function finishCareDecision(){ const total=CAREDECISION.cases.length||1; const p
   };
 })();
 </script>
-
 <!-- ===== LIFE READY INLINE ARCADE: START ===== -->
 <script>
 
@@ -8281,77 +8350,198 @@ ensure();
 })();
 </script>
 <!-- ===== LIFE READY INLINE ARCADE: END ===== -->
-
-<script id="lr-home-cleanup">
+<script id="lr-layout-refresh" type="text/plain">
 (function(){
-  function relabel(label, kicker, main){
-    if(!label) return;
-    var k = label.querySelector('.home-label-kicker');
-    var m = label.querySelector('.home-label-main');
-    if(k && kicker) k.textContent = kicker;
-    if(m && main) m.textContent = main;
+  function setLabel(node, kicker, main, cls){
+    if(!node) return;
+    node.classList.add(cls || '');
+    var k = node.querySelector('.home-label-kicker');
+    var m = node.querySelector('.home-label-main');
+    if(k) k.textContent = kicker;
+    if(m) m.textContent = main;
   }
-  function labelMain(label){
-    var m = label && label.querySelector('.home-label-main');
-    return m ? m.textContent.trim().toUpperCase() : '';
+  function makeBanner(kicker, main, cls){
+    var div = document.createElement('div');
+    div.className = 'home-tools-label lr-zone-banner ' + (cls || '');
+    div.innerHTML = '<span class="home-label-kicker">'+ kicker +'</span><span class="home-label-main">'+ main +'</span>';
+    return div;
   }
-  function findLabelByMain(home, main){
-    main = String(main||'').toUpperCase();
-    return Array.from(home.querySelectorAll('.home-group-label, .home-tools-label')).find(function(label){
-      return labelMain(label) === main;
-    }) || null;
+  function findHomeGroupByText(home, matcher){
+    return Array.from(home.children).find(function(g){ return g.classList && g.classList.contains('home-group') && matcher.test(g.textContent); });
   }
-  function findGroupByMain(home, main){
-    main = String(main||'').toUpperCase();
-    return Array.from(home.querySelectorAll('.home-group')).find(function(group){
-      var label = group.querySelector('.home-group-label');
-      return labelMain(label) === main;
-    }) || null;
+  function moveCard(card, grid){
+    if(card && grid && card.parentNode !== grid){ grid.appendChild(card); }
   }
-  function cleanupModuleHome(){
+  function refreshHome(){
     var home = document.getElementById('scr-home');
-    if(!home || home.dataset.lrCleanupDone === '1') return;
+    if(!home || home.dataset.lrHomeDeck === '1') return;
+    home.dataset.lrHomeDeck = '1';
+    home.classList.add('lr-home-cleaned','lr-home-decked');
 
-    var startLabel = findLabelByMain(home, 'START HERE');
-    var playLabel = home.querySelector('.home-play-label') || findLabelByMain(home, 'PLAY');
-    var guideLabel = findLabelByMain(home, 'LEARN THE FLOW');
-    var toolsLabel = home.querySelector('.home-tools-label') || findLabelByMain(home, 'LEARNING TOOLS');
-    var learnLabel = findLabelByMain(home, 'LEARN');
-    var progressGroup = findGroupByMain(home, 'PROGRESS');
-    var utilityGroup = findGroupByMain(home, 'SYSTEM');
+    var groups = Array.from(home.children).filter(function(g){ return g.classList && g.classList.contains('home-group'); });
+    if(!groups.length) return;
 
-    relabel(startLabel, 'LAUNCH PAD', 'START HERE');
-    relabel(playLabel, 'HOLODECK', 'INTERACTIVE MODES');
-    relabel(guideLabel, 'TRAINING LIBRARY', 'WATCH & LEARN');
-    relabel(toolsLabel, 'TRAINING LIBRARY', 'QUIZZES · DRILLS · GUIDES');
-    relabel(learnLabel, 'TRAINING LIBRARY', 'SKILL TOOLS');
+    var hero = home.querySelector('.home-hero');
+    var onboarding = home.querySelector('#onboarding-card');
+    var disclaimer = home.querySelector('.health-disclaimer-card');
+    var progressCard = home.querySelector('#today-progress');
+    var tagline = home.querySelector('.tagline');
 
-    if(progressGroup){
-      var progressLabel = progressGroup.querySelector('.home-group-label');
-      var progressGrid = progressGroup.querySelector('.hgrid');
-      relabel(progressLabel, 'COMMAND DECK', 'SCORES · BADGES · SETTINGS');
-      progressGroup.classList.add('lr-command-deck');
+    var launchGroup = groups[0] || null;
+    var holoGroup = groups[1] || null;
+    var demoGroup = findHomeGroupByText(home, /WATCH A DEMO/i);
+    var scoreGroup = findHomeGroupByText(home, /SCORES|BADGES/i);
+    var systemGroup = findHomeGroupByText(home, /SETTINGS|ABOUT/i);
+    var libraryGroup = groups.find(function(g){
+      return g !== launchGroup && g !== holoGroup && g !== demoGroup && g !== scoreGroup && g !== systemGroup && /QUIZ|DRILL|GUIDE|HOW TO PLAY|FILES/i.test(g.textContent);
+    }) || null;
 
-      if(progressGrid && utilityGroup){
-        var utilGrid = utilityGroup.querySelector('.hgrid');
-        if(utilGrid && utilGrid.children.length){
-          Array.from(utilGrid.children).forEach(function(card){ progressGrid.appendChild(card); });
-        }
-        var divider = utilityGroup.previousElementSibling;
-        if(divider && divider.classList && divider.classList.contains('home-divider')) divider.remove();
-        utilityGroup.remove();
-      }
+    function takeBody(group){
+      if(!group) return null;
+      var wrap = document.createElement('div');
+      wrap.className = 'lr-group-body';
+      Array.from(group.children).forEach(function(el){
+        if(el.classList && (el.classList.contains('home-group-label') || el.classList.contains('home-tools-label'))) return;
+        wrap.appendChild(el);
+      });
+      return wrap;
+    }
+    function makeDeck(zone, kicker, main, copy){
+      var sec = document.createElement('section');
+      sec.className = 'lr-deck lr-deck-' + zone;
+      sec.innerHTML = '<div class="lr-deck-head"><div class="lr-deck-kicker">' + kicker + '</div><div class="lr-deck-main">' + main + '</div>' + (copy ? '<div class="lr-deck-copy">' + copy + '</div>' : '') + '</div><div class="lr-deck-body"></div>';
+      return sec;
+    }
+    function makeSubdeck(kicker, main){
+      var sec = document.createElement('div');
+      sec.className = 'lr-subdeck';
+      sec.innerHTML = '<div class="lr-subdeck-kicker">' + kicker + '</div><div class="lr-subdeck-main">' + main + '</div><div class="lr-subdeck-body"></div>';
+      return sec;
+    }
+    function appendIf(parent, node){ if(parent && node) parent.appendChild(node); }
+
+    var shell = document.createElement('div');
+    shell.className = 'lr-home-shell';
+    appendIf(shell, hero);
+    appendIf(shell, onboarding);
+    appendIf(shell, disclaimer);
+
+    var launchDeck = makeDeck('launch', 'LAUNCH PAD', 'START HERE', 'Daily challenge and featured mission cards stay up front.');
+    var launchBody = takeBody(launchGroup);
+    if(launchBody) launchDeck.querySelector('.lr-deck-body').appendChild(launchBody);
+    shell.appendChild(launchDeck);
+
+    var holoDeck = makeDeck('holodeck', 'HOLODECK', 'PLAY', 'Interactive simulations, arcade runs, and low-pressure practice modes.');
+    var holoBody = takeBody(holoGroup);
+    if(holoBody) holoDeck.querySelector('.lr-deck-body').appendChild(holoBody);
+    shell.appendChild(holoDeck);
+
+    var libraryDeck = makeDeck('library', 'TRAINING LIBRARY', 'LEARN + REVIEW', 'Quizzes, drills, guides, and demos live here.');
+    var libSplit = document.createElement('div');
+    libSplit.className = 'lr-split';
+    if(demoGroup){
+      var demoSub = makeSubdeck('WATCH + LEARN', 'DEMO BAY');
+      var demoBody = takeBody(demoGroup);
+      if(demoBody) demoSub.querySelector('.lr-subdeck-body').appendChild(demoBody);
+      libSplit.appendChild(demoSub);
+    }
+    if(libraryGroup){
+      var learnSub = makeSubdeck('SKILL FILES', 'PRACTICE + REFERENCE');
+      var learnBody = takeBody(libraryGroup);
+      if(learnBody) learnSub.querySelector('.lr-subdeck-body').appendChild(learnBody);
+      libSplit.appendChild(learnSub);
+    }
+    if(libSplit.children.length){
+      libraryDeck.querySelector('.lr-deck-body').appendChild(libSplit);
+      shell.appendChild(libraryDeck);
     }
 
-    home.classList.add('lr-home-cleaned');
-    home.dataset.lrCleanupDone = '1';
+    var commandDeck = makeDeck('command', 'COMMAND DECK', 'STATUS + SYSTEM', 'Scores, badges, settings, accessibility, and module info are grouped together.');
+    var cmdSplit = document.createElement('div');
+    cmdSplit.className = 'lr-split';
+    if(scoreGroup){
+      var scoreSub = makeSubdeck('PROGRESS LOG', 'SCORES + BADGES');
+      var scoreBody = takeBody(scoreGroup);
+      if(scoreBody) scoreSub.querySelector('.lr-subdeck-body').appendChild(scoreBody);
+      cmdSplit.appendChild(scoreSub);
+    }
+    if(systemGroup){
+      var sysSub = makeSubdeck('MODULE SYSTEM', 'SETTINGS + ABOUT');
+      var sysBody = takeBody(systemGroup);
+      if(sysBody) sysSub.querySelector('.lr-subdeck-body').appendChild(sysBody);
+      cmdSplit.appendChild(sysSub);
+    }
+    if(cmdSplit.children.length) commandDeck.querySelector('.lr-deck-body').appendChild(cmdSplit);
+    if(progressCard) commandDeck.querySelector('.lr-deck-body').appendChild(progressCard);
+    if(tagline) commandDeck.querySelector('.lr-deck-body').appendChild(tagline);
+    shell.appendChild(commandDeck);
+
+    home.innerHTML = '';
+    home.appendChild(shell);
   }
 
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanupModuleHome, {once:true});
-  else cleanupModuleHome();
-  window.addEventListener('load', cleanupModuleHome);
-  window.cleanupModuleHome = cleanupModuleHome;
+  function compactHero(selector){
+    if(window.innerWidth > 720) return;
+    var screen = document.querySelector(selector);
+    if(!screen) return;
+    var hero = screen.querySelector('.lrx-hero');
+    if(!hero || hero.dataset.lrHeroDone === '1') return;
+    hero.dataset.lrHeroDone = '1';
+    hero.classList.add('lr-hero-compact');
+    var toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'lr-hero-toggle';
+    var title = hero.querySelector('.lrx-title');
+    var sub = hero.querySelector('.lrx-sub');
+    var summary = document.createElement('div');
+    summary.className = 'lr-hero-summary';
+    summary.textContent = (sub && sub.textContent ? sub.textContent.trim() : '').replace(/\s+/g,' ');
+    if(title){ title.insertAdjacentElement('afterend', summary); summary.insertAdjacentElement('afterend', toggle); }
+    else { hero.appendChild(summary); hero.appendChild(toggle); }
+    function sync(open){
+      hero.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.textContent = open ? 'Hide Brief ▲' : 'Brief ▼';
+    }
+    toggle.addEventListener('click', function(){ sync(!hero.classList.contains('is-open')); });
+    sync(false);
+  }
+
+  function moveMainPanel(liveId){
+    if(window.innerWidth > 720) return;
+    var live = document.getElementById(liveId);
+    if(!live || live.dataset.lrMoved === '1') return;
+    var grid = live.querySelector('.lrx-grid');
+    var main = Array.from(live.children).find(function(el){ return el.tagName === 'SECTION' && el.classList.contains('lrx-panel'); });
+    if(grid && main){
+      live.insertBefore(main, grid);
+      live.dataset.lrMoved = '1';
+    }
+  }
+
+  function applyInteractiveLayout(){
+    document.querySelectorAll('.scr .lrx-hero').forEach(function(hero){
+      var screen = hero.closest('.scr');
+      if(screen && screen.id) compactHero('#' + screen.id);
+    });
+    document.querySelectorAll('[id]').forEach(function(el){
+      if(/(?:^|-)live$/.test(el.id) && el.querySelector('.lrx-grid')) moveMainPanel(el.id);
+    });
+  }
+
+  function queueInteractiveLayout(){
+    setTimeout(applyInteractiveLayout, 0);
+    setTimeout(applyInteractiveLayout, 120);
+  }
+
+  function run(){ refreshHome(); queueInteractiveLayout(); }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+  window.addEventListener('resize', function(){ if(window.innerWidth <= 720) queueInteractiveLayout(); }, {passive:true});
+  document.addEventListener('click', function(){ if(window.innerWidth <= 720) queueInteractiveLayout(); }, true);
+  if(window.MutationObserver){
+    new MutationObserver(function(){ if(window.innerWidth <= 720) queueInteractiveLayout(); }).observe(document.body, {childList:true, subtree:true});
+  }
 })();
 </script>
-</body>
+</div></body>
 </html>

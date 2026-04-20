@@ -2993,6 +2993,7 @@ function handleLockSubmit(){
     return;
   }
   HUB.pin = input;
+  HUB.introSeen = false;
   saveHubState('Access code created');
   unlockMissionControl();
 }
@@ -4135,11 +4136,13 @@ $('#save-pin-btn').addEventListener('click', ()=>{
   const confirm = $('#new-pin-confirm').value;
   const hint = $('#pin-hint').value.trim();
   const auto = $('#auto-lock').value;
+  const previousPin = HUB.pin || '';
   if(pin || confirm){
     if(pin.length < 4) return $('#pin-manage-error').textContent = 'Use at least 4 characters.';
     if(pin !== confirm) return $('#pin-manage-error').textContent = 'Those codes do not match.';
     HUB.pin = pin;
     HUB.ignoreLegacyPins = false;
+    if(pin !== previousPin) HUB.introSeen = false;
   }
   HUB.pinHint = hint;
   HUB.autoLockMinutes = auto;

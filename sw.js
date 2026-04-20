@@ -1,4 +1,4 @@
-// LifeReady Service Worker (v45 - reward board rebuild)
+// LifeReady Service Worker (v46 - reward board rebuild)
 
 const VERSION = 'v45';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;

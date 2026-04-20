@@ -9197,58 +9197,79 @@ ensure();
     const style=document.createElement('style');
     style.id='lr-reward-v3-style';
     style.textContent=`
-      .lr-reward-board{display:grid;gap:14px}
-      .lr-reward-hero,.lr-reward-panel,.lr-patch-card,.lr-honor-card,.lr-reward-endbox .lr-reward-endcard{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid var(--border);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.22)}
-      .lr-reward-hero{padding:18px}
-      .lr-reward-kicker,.lr-reward-panelsub,.lr-goal-kicker{font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;color:var(--text3);text-transform:uppercase}
-      .lr-reward-title{font-family:var(--font-display);font-size:1.5rem;color:var(--text);margin-top:6px}
-      .lr-reward-copy{font-size:.9rem;line-height:1.6;color:var(--text2);margin-top:8px}
+      .lr-reward-board{display:grid;gap:12px}
+      .lr-reward-hero,.lr-reward-panel,.lr-patch-card,.lr-honor-card,.lr-reward-endhero,.lr-reward-endaside,.lr-reward-endgoals .lr-goal-row{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid var(--border);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.22)}
+      .lr-reward-hero{padding:16px}
+      .lr-reward-kicker,.lr-reward-panelsub,.lr-goal-kicker{font-family:var(--font-mono);font-size:.64rem;letter-spacing:2px;color:var(--text3);text-transform:uppercase}
+      .lr-reward-title{font-family:var(--font-display);font-size:1.42rem;color:var(--text);margin-top:6px}
+      .lr-reward-copy{font-size:.88rem;line-height:1.55;color:var(--text2);margin-top:8px}
       .lr-reward-statgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
       .lr-reward-stat{padding:12px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
-      .lr-reward-stat .v{font-family:var(--font-display);font-size:1.16rem;color:var(--text)}
-      .lr-reward-stat .l{font-size:.72rem;color:var(--text3);margin-top:4px}
-      .lr-reward-panel{padding:16px}
-      .lr-reward-panelhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;margin-bottom:14px}
-      .lr-reward-paneltitle{font-family:var(--font-display);font-size:1.16rem;color:var(--text);margin-top:4px}
-      .lr-reward-note{color:var(--text3);font-size:.8rem;line-height:1.5}
-      .lr-patch-grid,.lr-reward-honorgrid,.lr-reward-recent{display:grid;gap:12px}
-      .lr-patch-card{padding:14px}
-      .lr-patch-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
-      .lr-patch-main{display:flex;gap:12px;align-items:center}
-      .lr-patch-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:1.4rem}
-      .lr-patch-name{font-family:var(--font-display);font-size:1.02rem;color:var(--text)}
-      .lr-patch-mode{font-size:.78rem;color:var(--text3);margin-top:2px}
-      .lr-reward-tier{padding:7px 10px;border-radius:999px;border:1px solid var(--border);font-family:var(--font-mono);font-size:.66rem;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap}
+      .lr-reward-stat .v{font-family:var(--font-display);font-size:1.1rem;color:var(--text)}
+      .lr-reward-stat .l{font-size:.7rem;color:var(--text3);margin-top:4px}
+      .lr-rankbar-wrap{margin-top:14px;padding:12px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+      .lr-rankbar-head{display:flex;justify-content:space-between;gap:10px;font-size:.76rem;color:var(--text2);margin-bottom:8px}
+      .lr-rankbar{height:10px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden}
+      .lr-rankbar span,.lr-goal-progress span,.lr-reward-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),rgba(255,216,122,.95))}
+      .lr-rankbar-copy{font-size:.76rem;color:var(--text3);margin-top:8px}
+      .lr-reward-panel{padding:14px}
+      .lr-reward-panelhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;margin-bottom:12px}
+      .lr-reward-paneltitle{font-family:var(--font-display);font-size:1.08rem;color:var(--text);margin-top:4px}
+      .lr-reward-note{color:var(--text3);font-size:.78rem;line-height:1.45}
+      .lr-patch-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+      .lr-reward-honorgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+      .lr-reward-recent{display:grid;gap:10px}
+      .lr-patch-card{padding:12px;display:grid;gap:10px}
+      .lr-patch-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+      .lr-patch-main{display:flex;gap:10px;align-items:center;min-width:0}
+      .lr-patch-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:1.28rem;flex:0 0 42px}
+      .lr-patch-name{font-family:var(--font-display);font-size:1rem;color:var(--text);line-height:1.15}
+      .lr-patch-mode{font-size:.76rem;color:var(--text3);margin-top:2px}
+      .lr-reward-tier{padding:6px 10px;border-radius:999px;border:1px solid var(--border);font-family:var(--font-mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap}
       .lr-tier-bronze{color:#f0b15f;border-color:rgba(240,177,95,.45);background:rgba(240,177,95,.12)}
       .lr-tier-silver{color:#d5dcec;border-color:rgba(213,220,236,.45);background:rgba(213,220,236,.10)}
       .lr-tier-gold{color:#ffd87a;border-color:rgba(255,216,122,.50);background:rgba(255,216,122,.12)}
       .lr-tier-none{color:var(--text3);background:rgba(255,255,255,.02)}
-      .lr-patch-progress{display:grid;gap:8px;margin-top:12px}
-      .lr-goal-row{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.025);border:1px solid var(--border)}
-      .lr-goal-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
-      .lr-goal-label{font-weight:800;color:var(--text);font-size:.84rem}
-      .lr-goal-state{font-size:.73rem;color:var(--text3)}
-      .lr-goal-copy{font-size:.78rem;color:var(--text2);line-height:1.45;margin-top:6px}
-      .lr-goal-progress{height:8px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden;margin-top:8px}
-      .lr-goal-progress span,.lr-reward-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),rgba(255,216,122,.95))}
-      .lr-reward-progress{height:8px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden}
-      .lr-patch-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-      .lr-reward-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-size:.74rem;color:var(--text2)}
-      .lr-reward-chiprow{display:flex;gap:8px;flex-wrap:wrap}
-      .lr-honor-card{padding:14px}
+      .lr-patch-meta,.lr-reward-chiprow{display:flex;gap:8px;flex-wrap:wrap}
+      .lr-reward-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-size:.72rem;color:var(--text2)}
+      .lr-next-goal{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.025);border:1px solid var(--border)}
+      .lr-goal-label{font-weight:800;color:var(--text);font-size:.82rem}
+      .lr-goal-copy{font-size:.76rem;color:var(--text2);line-height:1.4;margin-top:4px}
+      .lr-goal-state{font-size:.72rem;color:var(--text3)}
+      .lr-goal-progress,.lr-reward-progress{height:8px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden;margin-top:8px}
+      .lr-goal-meta{font-size:.72rem;color:var(--text3);margin-top:6px}
+      .lr-tier-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+      .lr-tier-mini{padding:10px;border-radius:14px;background:rgba(255,255,255,.022);border:1px solid var(--border);display:grid;gap:4px}
+      .lr-tier-mini .name{font-family:var(--font-mono);font-size:.6rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3)}
+      .lr-tier-mini .state{font-size:.72rem;color:var(--text);font-weight:700}
+      .lr-tier-mini .meta{font-size:.66rem;color:var(--text3);line-height:1.35}
+      .lr-honor-card{padding:12px;display:grid;gap:10px}
       .lr-reward-event{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:14px;background:rgba(255,255,255,.025);border:1px solid var(--border)}
-      .lr-reward-eventicon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:1.2rem}
+      .lr-reward-eventicon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:1.2rem;flex:0 0 40px}
       .lr-reward-eventtitle{font-weight:800;color:var(--text)}
-      .lr-reward-eventcopy{font-size:.78rem;color:var(--text3);margin-top:4px;line-height:1.45}
-      .lr-reward-endbox{display:grid;gap:10px}
-      .lr-reward-endcard{padding:14px}
-      .lr-reward-endtitle{font-family:var(--font-mono);font-size:.66rem;letter-spacing:2px;color:var(--text3);text-transform:uppercase}
-      .lr-reward-endmain{font-family:var(--font-display);font-size:1.04rem;color:var(--text);margin-top:6px}
-      .lr-reward-endsub{font-size:.8rem;color:var(--text2);line-height:1.55;margin-top:6px}
-      .lr-reward-mini{font-size:.74rem;color:var(--text3);margin-top:8px}
-      @media (max-width:700px){
-        .lr-reward-statgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
-        .lr-reward-panelhead,.lr-patch-top,.lr-goal-head{flex-direction:column;align-items:flex-start}
+      .lr-reward-eventcopy{font-size:.76rem;color:var(--text3);margin-top:4px;line-height:1.45}
+      .lr-end-run-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.85fr);gap:12px;align-items:stretch}
+      .lr-reward-endhero,.lr-reward-endaside{padding:14px;display:grid;gap:10px}
+      .lr-reward-endtitle{font-family:var(--font-mono);font-size:.64rem;letter-spacing:2px;color:var(--text3);text-transform:uppercase}
+      .lr-reward-endmain{font-family:var(--font-display);font-size:1.12rem;color:var(--text);line-height:1.2}
+      .lr-reward-endsub{font-size:.8rem;color:var(--text2);line-height:1.5}
+      .lr-reward-endstatgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      .lr-reward-endstat{padding:12px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+      .lr-reward-endstat .v{font-family:var(--font-display);font-size:1rem;color:var(--text)}
+      .lr-reward-endstat .l{font-size:.68rem;color:var(--text3);margin-top:4px}
+      .lr-reward-endgoals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+      .lr-reward-endgoals .lr-goal-row{padding:10px;display:grid;gap:6px}
+      .lr-reward-endgoals .lr-goal-copy{margin-top:0}
+      .lr-reward-mini{font-size:.72rem;color:var(--text3)}
+      .lr-practice-reward-box{margin-top:12px;background:linear-gradient(135deg,rgba(116,224,255,.12),rgba(0,255,163,.08));border:1px solid rgba(116,224,255,.26);border-radius:16px;padding:12px;display:grid;gap:8px}
+      .lr-practice-reward-box .title{font-family:var(--font-mono);font-size:.6rem;letter-spacing:1.7px;text-transform:uppercase;color:var(--text3)}
+      @media (max-width:760px){
+        .lr-reward-statgrid,.lr-reward-endstatgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+        .lr-patch-grid,.lr-reward-honorgrid,.lr-reward-endgoals,.lr-end-run-grid{grid-template-columns:1fr}
+      }
+      @media (max-width:520px){
+        .lr-tier-summary{grid-template-columns:1fr}
+        .lr-patch-top,.lr-reward-panelhead,.lr-rankbar-head{flex-direction:column;align-items:flex-start}
       }
     `;
     document.head.appendChild(style);
@@ -9281,6 +9302,28 @@ ensure();
     const t=String(name||'Mode').trim();
     if(!t) return 'Practice Patch';
     return t.replace(/\?$/,'') + ' Patch';
+  }
+
+  function liveDedupKey(session){
+    if(!session) return '';
+    return [MODULE_KEY, session.modeKey, session.correct, session.total, session.pct, session.hintsUsed||0].join('|');
+  }
+  function isRecentLiveDuplicate(session){
+    const key=liveDedupKey(session);
+    if(!key) return false;
+    return window.__lrRewardLiveSig===key && (Date.now()-(window.__lrRewardLiveAt||0))<8000;
+  }
+  function markLiveDuplicate(session){
+    const key=liveDedupKey(session);
+    if(!key) return;
+    window.__lrRewardLiveSig=key;
+    window.__lrRewardLiveAt=Date.now();
+  }
+  function clearRewardToasts(){
+    window.__lrRewardToastQueue=[];
+    window.__lrRewardToastActive=false;
+    const toast=document.getElementById('badge-toast');
+    if(toast){ toast.classList.remove('show'); toast.style.display='none'; }
   }
 
   function loadData(){
@@ -9498,7 +9541,16 @@ ensure();
   function queueEvents(events){
     if(!Array.isArray(events)||!events.length) return;
     const q=Array.isArray(window.__lrRewardToastQueue)?window.__lrRewardToastQueue:(window.__lrRewardToastQueue=[]);
-    events.forEach(function(ev){ q.push(ev); });
+    const seen=window.__lrRewardToastSeen||(window.__lrRewardToastSeen={});
+    const now=Date.now();
+    Object.keys(seen).forEach(function(key){ if(now-seen[key]>12000) delete seen[key]; });
+    events.slice(0,3).forEach(function(ev){
+      const key=[ev.type||'',ev.title||'',ev.copy||''].join('|');
+      if(seen[key] && (now-seen[key])<12000) return;
+      if(q.some(function(item){ return [item.type||'',item.title||'',item.copy||''].join('|')===key; })) return;
+      seen[key]=now;
+      q.push(ev);
+    });
     if(window.__lrRewardToastActive) return;
     showNextToast();
   }
@@ -9522,15 +9574,19 @@ ensure();
     if(btDesc) btDesc.textContent=ev.copy || '';
     toast.style.display='flex';
     toast.classList.add('show');
-    setTimeout(function(){ toast.classList.remove('show'); setTimeout(function(){ toast.style.display='none'; window.__lrRewardToastActive=false; showNextToast(); }, 260); }, 2400);
+    setTimeout(function(){
+      toast.classList.remove('show');
+      setTimeout(function(){ toast.style.display='none'; window.__lrRewardToastActive=false; showNextToast(); }, 220);
+    }, 1800);
   }
 
   function recordFromScoreEntry(entry){
     const session=sessionFromScoreEntry(entry,false);
     if(!session) return null;
+    if(isRecentLiveDuplicate(session)) return window.__lrRewardLastResult||null;
     const data=loadData();
     const result=applySession(data, session, {awardXP:true, logEvent:true});
-    if(result){ saveData(data); window.__lrRewardLastResult=result; queueEvents(result.events||[]); window.__lrRewardRecentHash=[result.modeKey,result.correct,result.total].join('|'); window.__lrRewardRecentAt=Date.now(); }
+    if(result){ saveData(data); window.__lrRewardLastResult=result; markLiveDuplicate(session); queueEvents(result.events||[]); window.__lrRewardRecentHash=[result.modeKey,result.correct,result.total].join('|'); window.__lrRewardRecentAt=Date.now(); }
     return result;
   }
   function recordFromState(){
@@ -9538,9 +9594,10 @@ ensure();
     if(!session) return null;
     const recentHash=[session.modeKey,session.correct,session.total].join('|');
     if(window.__lrRewardRecentHash===recentHash && (Date.now()-(window.__lrRewardRecentAt||0))<2500) return window.__lrRewardLastResult||null;
+    if(isRecentLiveDuplicate(session)) return window.__lrRewardLastResult||null;
     const data=loadData();
     const result=applySession(data, session, {awardXP:true, logEvent:true});
-    if(result){ saveData(data); window.__lrRewardLastResult=result; queueEvents(result.events||[]); }
+    if(result){ saveData(data); window.__lrRewardLastResult=result; markLiveDuplicate(session); queueEvents(result.events||[]); window.__lrRewardRecentHash=recentHash; window.__lrRewardRecentAt=Date.now(); }
     return result;
   }
 
@@ -9565,6 +9622,20 @@ ensure();
     if((result.events||[]).some(function(e){ return e.type==='rank'; })) chips.push('<div class="lr-reward-chip">🖖 Promotion achieved</div>');
     return chips.join('');
   }
+  function rankProgressData(xp){
+    const cur=rankForXP(xp);
+    const next=nextRank(xp);
+    const floor=Number(cur.min)||0;
+    const ceil=next ? Number(next.min) : Math.max(floor+1, xp+1);
+    const pct=next ? Math.max(0, Math.min(100, Math.round(((xp-floor)/(ceil-floor))*100))) : 100;
+    return {current:cur,next:next,pct:pct,floor:floor,ceil:ceil};
+  }
+  function activeGoalIndex(result){
+    if(!result || !Array.isArray(result.goals)) return 0;
+    if(result.tier<=0) return 0;
+    if(result.tier===1) return 1;
+    return 2;
+  }
   function renderEndScreenRewards(){
     const result=recordFromState() || window.__lrRewardLastResult;
     if(!result) return;
@@ -9573,16 +9644,41 @@ ensure();
     if(sec && wrap){
       const label=sec.querySelector('.rr-section-label'); if(label) label.textContent='Mission Rewards';
       sec.style.display='';
+      const rankData=rankProgressData((loadData().totalXP||0));
+      const active=result.goals[activeGoalIndex(result)] || result.goals[0];
+      const goalCards=(result.goals||[]).map(function(goal){
+        return '<div class="lr-goal-row"><div class="lr-goal-kicker">'+esc(goal.label)+'</div><div class="lr-goal-label">'+esc(goal.state)+'</div><div class="lr-goal-copy">'+esc(goal.copy)+'</div><div class="lr-goal-progress"><span style="width:'+esc(goal.pct||0)+'%"></span></div><div class="lr-goal-meta">'+esc(goal.meta||'')+'</div></div>';
+      }).join('');
       wrap.innerHTML=''
-        + '<div class="lr-reward-endbox">'
-        +   '<div class="lr-reward-endcard"><div class="lr-reward-endtitle">Patch Update</div><div class="lr-reward-endmain">'+esc(result.patch)+' • '+esc(result.tierName)+'</div><div class="lr-reward-endsub">'+esc(result.nextCopy)+'</div><div class="lr-reward-progress" style="margin-top:10px"><span style="width:'+esc((result.goals[result.tier>=3?2:result.tier>=2?2:result.tier>=1?1:0].pct||0))+'%"></span></div><div class="lr-reward-mini">'+esc(result.goals[result.tier>=3?2:result.tier>=2?2:result.tier>=1?1:0].meta||'')+'</div></div>'
-        +   '<div class="lr-reward-endcard"><div class="lr-reward-endtitle">Training XP</div><div class="lr-reward-endmain">+'+esc(result.xp)+' XP • '+esc(result.currentRank)+'</div><div class="lr-reward-endsub">'+esc(result.nextRank ? (result.remainingXP+' XP to '+result.nextRank) : 'Top rank reached for now.')+'</div></div>'
-        +   '<div class="lr-reward-endcard"><div class="lr-reward-endtitle">This Run Unlocked</div><div class="lr-reward-chiprow">'+rewardChipRow(result)+'</div><div class="lr-reward-endsub" style="margin-top:10px">Bronze: '+esc(result.goals[0].meta)+' • Silver: '+esc(result.goals[1].meta)+' • Gold: '+esc(result.goals[2].meta)+'</div></div>'
-        + '</div>';
+        + '<div class="lr-end-run-grid">'
+        +   '<div class="lr-reward-endhero">'
+        +     '<div class="lr-reward-endtitle">Patch Update</div>'
+        +     '<div class="lr-reward-endmain">'+esc(result.patch)+' • '+esc(result.tierName)+'</div>'
+        +     '<div class="lr-reward-endsub">'+esc(result.nextCopy)+'</div>'
+        +     '<div class="lr-reward-progress"><span style="width:'+esc(active.pct||0)+'%"></span></div>'
+        +     '<div class="lr-reward-mini">'+esc(active.meta||'')+'</div>'
+        +     '<div class="lr-reward-chiprow">'+rewardChipRow(result)+'</div>'
+        +   '</div>'
+        +   '<div class="lr-reward-endaside">'
+        +     '<div class="lr-reward-endtitle">Training XP</div>'
+        +     '<div class="lr-reward-endmain">+'+esc(result.xp)+' XP • '+esc(result.currentRank)+'</div>'
+        +     '<div class="lr-rankbar-wrap">'
+        +       '<div class="lr-rankbar-head"><span>'+esc(rankData.current.title)+'</span><span>'+(rankData.next?esc(rankData.next.title):'Top Rank')+'</span></div>'
+        +       '<div class="lr-rankbar"><span style="width:'+esc(rankData.pct)+'%"></span></div>'
+        +       '<div class="lr-rankbar-copy">'+(rankData.next?esc((result.remainingXP||0)+' XP to '+rankData.next.title):'Top rank reached for now.')+'</div>'
+        +     '</div>'
+        +     '<div class="lr-reward-endstatgrid">'
+        +       '<div class="lr-reward-endstat"><div class="v">'+esc(result.correct)+' / '+esc(result.total)+'</div><div class="l">Run Result</div></div>'
+        +       '<div class="lr-reward-endstat"><div class="v">'+esc(result.hintsUsed||0)+'</div><div class="l">Hints Used</div></div>'
+        +     '</div>'
+        +   '</div>'
+        + '</div>'
+        + '<div class="lr-reward-endgoals">'+goalCards+'</div>';
     }
     const viewBtn=[].slice.call(document.querySelectorAll('button[onclick="go(\'badges\')"]'));
     viewBtn.forEach(function(btn){ if(/badge|reward/i.test(btn.textContent||'')) btn.textContent='🏆 View Rewards'; });
   }
+
   function renderPracticeRewards(){
     const result=window.__lrRewardLastResult || recordFromState();
     const host=document.getElementById('scr-practice-results');
@@ -9593,30 +9689,31 @@ ensure();
     box.innerHTML='<div class="title">Mission Rewards</div><div class="lr-reward-chiprow">'+rewardChipRow(result)+'</div><div class="lr-reward-note" style="margin-top:10px">'+esc(result.nextCopy)+' '+esc(result.nextRank ? (result.remainingXP+' XP to '+result.nextRank+'.') : 'Top rank reached for now.')+'</div>';
   }
 
+  function compactGoalSummary(stats){
+    const rows=goalRows(stats);
+    return rows.map(function(row){
+      return '<div class="lr-tier-mini"><div class="name">'+esc(row.label)+'</div><div class="state">'+esc(row.state)+'</div><div class="meta">'+esc(row.meta)+'</div></div>';
+    }).join('');
+  }
   function renderPatchCard(key,cfg,stats){
     stats=stats||{plays:0,bestPct:0,perfects:0,strongNoHint:0,tier:0};
-    const rows=goalRows(stats).map(function(row){
-      return '<div class="lr-goal-row">'
-        + '<div class="lr-goal-head"><div><div class="lr-goal-kicker">Target</div><div class="lr-goal-label">'+esc(row.label)+'</div></div><div class="lr-goal-state">'+esc(row.state)+'</div></div>'
-        + '<div class="lr-goal-copy">'+esc(row.copy)+'</div>'
-        + '<div class="lr-goal-progress"><span style="width:'+esc(row.pct)+'%"></span></div>'
-        + '<div class="lr-reward-mini">'+esc(row.meta)+'</div>'
-        + '</div>';
-    }).join('');
+    const rows=goalRows(stats);
+    const active=rows[(stats.tier||0)<=0?0:(stats.tier||0)===1?1:2];
     return '<div class="lr-patch-card">'
       + '<div class="lr-patch-top"><div class="lr-patch-main"><div class="lr-patch-icon">'+esc(cfg.icon)+'</div><div><div class="lr-patch-name">'+esc(cfg.patch)+'</div><div class="lr-patch-mode">'+esc(cfg.title)+'</div></div></div><div class="lr-reward-tier '+esc(tierClass(stats.tier||0))+'">'+esc(tierName(stats.tier||0))+'</div></div>'
       + '<div class="lr-patch-meta"><div class="lr-reward-chip">'+esc((stats.plays||0))+' clears</div><div class="lr-reward-chip">Best '+esc((stats.bestPct||0))+'%</div><div class="lr-reward-chip">Perfect '+esc((stats.perfects||0))+'</div></div>'
-      + '<div class="lr-patch-progress">'+rows+'</div>'
+      + '<div class="lr-next-goal"><div class="lr-goal-kicker">Next Target</div><div class="lr-goal-label">'+esc(active.label)+'</div><div class="lr-goal-copy">'+esc(active.copy)+'</div><div class="lr-goal-progress"><span style="width:'+esc(active.pct||0)+'%"></span></div><div class="lr-goal-meta">'+esc(active.meta||'')+'</div></div>'
+      + '<div class="lr-tier-summary">'+compactGoalSummary(stats)+'</div>'
       + '</div>';
   }
   function renderHonorCard(mod, honor){
     const earned=!!(mod.honors&&mod.honors[honor.id]);
     const pct=earned?100:Math.min(100, Math.round(parseHonorPct(mod, honor)));
     return '<div class="lr-honor-card">'
-      + '<div class="lr-patch-top"><div class="lr-patch-main"><div class="lr-patch-icon">'+esc(honor.icon)+'</div><div><div class="lr-patch-name">'+esc(honor.name)+'</div><div class="lr-patch-mode">Module Honor</div></div></div><div class="lr-reward-tier '+(earned?'lr-tier-gold':'lr-tier-none')+'">'+(earned?'Unlocked':'Locked')+'</div></div>'
-      + '<div class="lr-goal-copy" style="margin-top:10px">'+esc(honor.targetCopy)+'</div>'
-      + '<div class="lr-reward-progress" style="margin-top:10px"><span style="width:'+esc(pct)+'%"></span></div>'
-      + '<div class="lr-reward-mini">'+esc(earned?honor.name+' unlocked.':honor.progress(mod))+'</div>'
+      + '<div class="lr-patch-top"><div class="lr-patch-main"><div class="lr-patch-icon">'+esc(honor.icon)+'</div><div><div class="lr-patch-name">'+esc(honor.name)+'</div><div class="lr-patch-mode">Module Honor</div></div></div><div class="lr-reward-tier '+(earned?'lr-tier-gold':'lr-tier-none')+'">'+(earned?'Unlocked':'In Progress')+'</div></div>'
+      + '<div class="lr-goal-copy">'+esc(honor.desc)+'</div>'
+      + '<div class="lr-reward-progress"><span style="width:'+esc(pct)+'%"></span></div>'
+      + '<div class="lr-goal-meta">'+esc(earned?honor.name+' unlocked.':honor.progress(mod))+'</div>'
       + '</div>';
   }
   function parseHonorPct(mod, honor){
@@ -9631,17 +9728,17 @@ ensure();
     if(!grid) return;
     const data=loadData();
     const mod=ensureModule(data);
-    const rank=rankForXP(data.totalXP), next=nextRank(data.totalXP);
+    const rank=rankForXP(data.totalXP), next=nextRank(data.totalXP), rankData=rankProgressData(data.totalXP||0);
     const modeKeys=Object.keys(MODULE_CFG.modes);
     const patchCards=modeKeys.map(function(key){ return renderPatchCard(key, MODULE_CFG.modes[key], mod.modes[key]); }).join('');
     const honorCards=HONORS.map(function(h){ return renderHonorCard(mod,h); }).join('');
-    const recent=data.recent.filter(function(ev){ return ev.module===MODULE_KEY; }).slice(0,8).map(function(ev){
+    const recent=data.recent.filter(function(ev){ return ev.module===MODULE_KEY; }).slice(0,5).map(function(ev){
       return '<div class="lr-reward-event"><div class="lr-reward-eventicon">'+esc(ev.icon||'🎖')+'</div><div><div class="lr-reward-eventtitle">'+esc(ev.title||'Reward Updated')+'</div><div class="lr-reward-eventcopy">'+esc(ev.copy||'Progress saved.')+'</div></div></div>';
     }).join('') || '<div class="lr-reward-note">Complete a mode and your latest unlocks will appear here.</div>';
     grid.innerHTML=''
       + '<div class="lr-reward-board">'
-      +   '<div class="lr-reward-hero"><div class="lr-reward-kicker">'+esc(MODULE_CFG.label)+' Rewards</div><div class="lr-reward-title">Command Rewards</div><div class="lr-reward-copy">This board shows every patch in the module, what each tier requires, and how close you are to the next unlock.</div><div class="lr-reward-statgrid"><div class="lr-reward-stat"><div class="v">'+esc(rank.title)+'</div><div class="l">Current Rank</div></div><div class="lr-reward-stat"><div class="v">'+esc(data.totalXP)+'</div><div class="l">Total XP</div></div><div class="lr-reward-stat"><div class="v">'+esc(patchCount(mod))+'</div><div class="l">Patches Earned</div></div><div class="lr-reward-stat"><div class="v">'+esc(Object.values(mod.honors||{}).filter(Boolean).length)+'</div><div class="l">Module Honors</div></div></div><div class="lr-reward-copy" style="margin-top:12px">'+esc(next ? ('Next promotion: '+next.title+' in '+(next.min-data.totalXP)+' XP.') : 'Top rank reached for now.')+'</div></div>'
-      +   '<div class="lr-reward-panel"><div class="lr-reward-panelhead"><div><div class="lr-reward-panelsub">Patch Board</div><div class="lr-reward-paneltitle">Every Reward You Can Work Toward</div></div><div class="lr-reward-note">Bronze unlocks on your first clear. Silver and Gold show the exact goal on every card.</div></div><div class="lr-patch-grid">'+patchCards+'</div></div>'
+      +   '<div class="lr-reward-hero"><div class="lr-reward-kicker">'+esc(MODULE_CFG.label)+' Rewards</div><div class="lr-reward-title">Command Rewards</div><div class="lr-reward-copy">This board shows every patch in the module, the exact goals for each tier, and how close you are to the next promotion.</div><div class="lr-reward-statgrid"><div class="lr-reward-stat"><div class="v">'+esc(rank.title)+'</div><div class="l">Current Rank</div></div><div class="lr-reward-stat"><div class="v">'+esc(data.totalXP)+'</div><div class="l">Total XP</div></div><div class="lr-reward-stat"><div class="v">'+esc(patchCount(mod))+'</div><div class="l">Patches Earned</div></div><div class="lr-reward-stat"><div class="v">'+esc(Object.values(mod.honors||{}).filter(Boolean).length)+'</div><div class="l">Module Honors</div></div></div><div class="lr-rankbar-wrap"><div class="lr-rankbar-head"><span>'+esc(rank.title)+'</span><span>'+(next?esc(next.title):'Top Rank')+'</span></div><div class="lr-rankbar"><span style="width:'+esc(rankData.pct)+'%"></span></div><div class="lr-rankbar-copy">'+esc(next ? ('Next promotion: '+next.title+' in '+(next.min-data.totalXP)+' XP.') : 'Top rank reached for now.')+'</div></div></div>'
+      +   '<div class="lr-reward-panel"><div class="lr-reward-panelhead"><div><div class="lr-reward-panelsub">Patch Board</div><div class="lr-reward-paneltitle">Every Reward You Can Work Toward</div></div><div class="lr-reward-note">Each patch shows your current tier, your next target, and the Bronze / Silver / Gold requirements at a glance.</div></div><div class="lr-patch-grid">'+patchCards+'</div></div>'
       +   '<div class="lr-reward-panel"><div class="lr-reward-panelhead"><div><div class="lr-reward-panelsub">Module Honors</div><div class="lr-reward-paneltitle">Bigger Goals Across The Module</div></div><div class="lr-reward-note">These track replay, variety, and follow-through.</div></div><div class="lr-reward-honorgrid">'+honorCards+'</div></div>'
       +   '<div class="lr-reward-panel"><div class="lr-reward-panelhead"><div><div class="lr-reward-panelsub">Latest Unlocks</div><div class="lr-reward-paneltitle">Recent Rewards</div></div></div><div class="lr-reward-recent">'+recent+'</div></div>'
       + '</div>';
@@ -9665,6 +9762,8 @@ ensure();
   window.updateHomeUI=function(){ if(typeof prevUpdateHomeUI==='function') prevUpdateHomeUI.apply(this, arguments); refreshHomeRewardLabels(); };
   window.showBadgeToast=function(){};
   window.awardBadge=function(){};
+  window.addEventListener('pagehide', clearRewardToasts);
+  document.addEventListener('visibilitychange', function(){ if(document.hidden) clearRewardToasts(); });
 
   document.addEventListener('DOMContentLoaded', function(){ ensureStyle(); installScoreHook(); refreshHomeRewardLabels(); setTimeout(function(){ installScoreHook(); renderRewardBoard(); renderEndScreenRewards(); renderPracticeRewards(); }, 180); });
   window.addEventListener('load', function(){ ensureStyle(); installScoreHook(); refreshHomeRewardLabels(); setTimeout(function(){ installScoreHook(); renderRewardBoard(); renderEndScreenRewards(); renderPracticeRewards(); }, 320); });
@@ -9673,7 +9772,7 @@ ensure();
     new MutationObserver(function(){ installScoreHook(); refreshHomeRewardLabels(); if(document.getElementById('scr-badges') && document.getElementById('scr-badges').classList.contains('on')) renderRewardBoard(); const res=document.getElementById('scr-results'); const pres=document.getElementById('scr-practice-results'); if((res&&res.classList.contains('on'))||(pres&&pres.classList.contains('on'))){ renderEndScreenRewards(); renderPracticeRewards(); } }).observe(page,{subtree:true,attributes:true,attributeFilter:['class']});
   }
 })();
-;
+
 </script>
 
 </body>

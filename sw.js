@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v47 - compact reward board)
+// LifeReady Service Worker (v46 - reward board rebuild)
 
-const VERSION = 'v47';
+const VERSION = 'v45';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

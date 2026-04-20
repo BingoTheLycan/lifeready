@@ -2957,11 +2957,17 @@ function scheduleLock(){
   if(!HUB.pin || !mins) return;
   lockTimer = setTimeout(()=>lockMissionControl(), mins * 60 * 1000);
 }
+function updateLockGateCopy(){
+  const hasPin = !!HUB.pin;
+  $('#pin-submit-btn').textContent = hasPin ? 'Unlock Mission Control' : 'Create Access Code';
+  $('#lock-copy').textContent = hasPin ? 'Enter your educator access code to open Mission Control.' : 'Create one educator access code for Mission Control.';
+}
 function lockMissionControl(){
   $('#app-view').classList.add('hidden');
   $('#lock-view').classList.remove('hidden');
   $('#pin-input').value = '';
   $('#pin-error').textContent = '';
+  updateLockGateCopy();
 }
 function unlockMissionControl(){
   $('#lock-view').classList.add('hidden');
@@ -2995,6 +3001,7 @@ function handleLockSubmit(){
   HUB.pin = input;
   HUB.introSeen = false;
   saveHubState('Access code created');
+  updateLockGateCopy();
   unlockMissionControl();
 }
 function syncSelectOptions(){
@@ -4147,6 +4154,7 @@ $('#save-pin-btn').addEventListener('click', ()=>{
   HUB.pinHint = hint;
   HUB.autoLockMinutes = auto;
   saveHubState('Access settings saved');
+  updateLockGateCopy();
   hideOverlay('#pin-overlay');
   renderAll();
   scheduleLock();
@@ -4156,6 +4164,7 @@ $('#remove-pin-btn').addEventListener('click', ()=>{
   HUB.pinHint = '';
   HUB.ignoreLegacyPins = true;
   saveHubState('Access code removed');
+  updateLockGateCopy();
   hideOverlay('#pin-overlay');
   renderAll();
 });
@@ -4173,8 +4182,7 @@ maybeMigrateLegacyPin();
 APP.selectedKey = HUB.lastLearnerKey || (APP.learners[0]?.key || '');
 $('#lock-view').classList.remove('hidden');
 $('#app-view').classList.add('hidden');
-$('#pin-submit-btn').textContent = HUB.pin ? 'Unlock Mission Control' : 'Create Access Code';
-$('#lock-copy').textContent = HUB.pin ? 'Enter your educator access code to open Mission Control.' : 'Create one educator access code for Mission Control.';
+updateLockGateCopy();
 if(HUB.pin && APP.importedPins.length){
   $('#pin-error').textContent = '';
 }

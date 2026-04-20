@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v43 - home deck rebuild)
+// LifeReady Service Worker (v45 - reward board rebuild)
 
-const VERSION = 'v43';
+const VERSION = 'v45';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

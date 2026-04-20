@@ -8313,5 +8313,700 @@ ensure();
   }
 })();
 </script>
-</div></body>
+</div>
+<style id="lr-reward-overhaul-style">
+.lr-reward-board{display:grid;gap:14px;padding:2px 0 18px;}
+.lr-reward-hero{background:linear-gradient(135deg,rgba(0,255,163,.14),rgba(116,224,255,.08) 55%,rgba(255,179,71,.12));border:1px solid rgba(116,224,255,.28);border-radius:18px;padding:16px;box-shadow:0 16px 36px rgba(0,0,0,.28);}
+.lr-reward-kicker{font-family:var(--font-mono);font-size:.64rem;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-bottom:6px;}
+.lr-reward-title{font-family:var(--font-display);font-size:1.28rem;letter-spacing:.04em;color:var(--text);line-height:1.05;}
+.lr-reward-copy{color:var(--text2);font-size:.84rem;line-height:1.55;margin-top:8px;}
+.lr-reward-statgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px;}
+.lr-reward-stat{background:rgba(8,12,20,.52);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px 10px;text-align:center;}
+.lr-reward-stat .v{font-family:var(--font-display);font-size:1.2rem;color:var(--amber);line-height:1;}
+.lr-reward-stat .l{font-family:var(--font-mono);font-size:.58rem;letter-spacing:1.4px;color:var(--text3);text-transform:uppercase;margin-top:5px;}
+.lr-reward-panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px;box-shadow:0 12px 28px rgba(0,0,0,.22);}
+.lr-reward-panelhead{display:flex;justify-content:space-between;gap:12px;align-items:end;margin-bottom:12px;}
+.lr-reward-paneltitle{font-family:var(--font-display);font-size:1rem;letter-spacing:.08em;color:var(--text);text-transform:uppercase;}
+.lr-reward-panelsub{font-family:var(--font-mono);font-size:.58rem;letter-spacing:1.6px;color:var(--text3);text-transform:uppercase;}
+.lr-reward-medalgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.lr-reward-medal{background:radial-gradient(circle at top right,rgba(116,224,255,.14),rgba(255,255,255,.03) 48%),rgba(6,10,18,.72);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:12px;display:grid;gap:8px;}
+.lr-reward-medal-top{display:flex;gap:10px;align-items:center;justify-content:space-between;}
+.lr-reward-medal-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:1.15rem;}
+.lr-reward-medal-main{display:flex;gap:10px;align-items:center;min-width:0;}
+.lr-reward-medal-name{font-weight:800;color:var(--text);font-size:.9rem;line-height:1.2;}
+.lr-reward-medal-mode{font-size:.68rem;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+.lr-reward-tier{padding:6px 9px;border-radius:999px;font-family:var(--font-mono);font-size:.58rem;letter-spacing:1.4px;text-transform:uppercase;border:1px solid rgba(255,255,255,.12);white-space:nowrap;}
+.lr-tier-none{color:var(--text3);background:rgba(255,255,255,.04);}
+.lr-tier-bronze{color:#ffcfb2;background:linear-gradient(135deg,rgba(183,120,74,.32),rgba(62,36,18,.45));border-color:rgba(255,191,145,.28);}
+.lr-tier-silver{color:#eef6ff;background:linear-gradient(135deg,rgba(114,137,168,.28),rgba(36,49,66,.42));border-color:rgba(190,214,255,.34);}
+.lr-tier-gold{color:#fff2c4;background:linear-gradient(135deg,rgba(180,131,22,.35),rgba(78,55,8,.42));border-color:rgba(255,213,102,.38);}
+.lr-reward-progress{height:8px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden;border:1px solid rgba(255,255,255,.06);}
+.lr-reward-progress > span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:999px;}
+.lr-reward-note{font-size:.72rem;color:var(--text2);line-height:1.45;}
+.lr-reward-honorgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+.lr-reward-honor{border-radius:16px;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);display:grid;gap:7px;}
+.lr-reward-honor.locked{opacity:.72;filter:saturate(.78);}
+.lr-reward-honorhead{display:flex;align-items:center;gap:10px;}
+.lr-reward-honoricon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:1.1rem;}
+.lr-reward-honorname{font-weight:800;color:var(--text);font-size:.88rem;line-height:1.15;}
+.lr-reward-honordesc{font-size:.73rem;color:var(--text2);line-height:1.45;}
+.lr-reward-honorstatus{font-family:var(--font-mono);font-size:.58rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--amber);}
+.lr-reward-recent{display:grid;gap:8px;}
+.lr-reward-event{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:10px 12px;}
+.lr-reward-eventicon{font-size:1rem;line-height:1.2;}
+.lr-reward-eventtitle{font-weight:700;color:var(--text);font-size:.84rem;line-height:1.25;}
+.lr-reward-eventcopy{font-size:.72rem;color:var(--text2);line-height:1.4;margin-top:2px;}
+.lr-reward-chiprow{display:flex;flex-wrap:wrap;gap:8px;}
+.lr-reward-chip{border-radius:999px;padding:8px 11px;font-family:var(--font-mono);font-size:.62rem;letter-spacing:1.3px;text-transform:uppercase;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--text);}
+.lr-reward-chip.medal{background:linear-gradient(135deg,rgba(116,224,255,.18),rgba(20,40,54,.42));border-color:rgba(116,224,255,.26);}
+.lr-reward-chip.honor{background:linear-gradient(135deg,rgba(255,179,71,.18),rgba(54,35,6,.45));border-color:rgba(255,179,71,.28);}
+.lr-reward-chip.rank{background:linear-gradient(135deg,rgba(0,255,163,.16),rgba(7,41,31,.42));border-color:rgba(0,255,163,.26);}
+.lr-reward-endbox{display:grid;gap:10px;}
+.lr-reward-endcard{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:12px;display:grid;gap:6px;}
+.lr-reward-endtitle{font-family:var(--font-mono);font-size:.58rem;letter-spacing:1.6px;color:var(--text3);text-transform:uppercase;}
+.lr-reward-endmain{font-weight:800;color:var(--text);font-size:.94rem;line-height:1.2;}
+.lr-reward-endsub{font-size:.74rem;color:var(--text2);line-height:1.45;}
+.lr-practice-reward-box{margin-top:12px;background:linear-gradient(135deg,rgba(116,224,255,.12),rgba(0,255,163,.08));border:1px solid rgba(116,224,255,.26);border-radius:16px;padding:12px;display:grid;gap:8px;}
+.lr-practice-reward-box .title{font-family:var(--font-mono);font-size:.6rem;letter-spacing:1.7px;text-transform:uppercase;color:var(--text3);}
+.lr-reward-hometitle{font-weight:800;color:var(--text);}
+@media (max-width:760px){
+  .lr-reward-statgrid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .lr-reward-medalgrid{grid-template-columns:1fr;}
+  .lr-reward-honorgrid{grid-template-columns:1fr;}
+}
+</style>
+
+<script id="lr-reward-overhaul-script">
+
+(function(){
+  if(window.__lrRewardV3) return;
+  window.__lrRewardV3 = true;
+
+  const MODULES = {
+    cash:{label:'CashReady', legacyScores:'cr_scores', modes:{
+      practice:{title:'Practice Mode', patch:'Practice Circuit', icon:'🎯', aliases:['practice']},
+      starter:{title:'Starter Mode', patch:'Pocket Cadet', icon:'⭐', aliases:['starter mode','starter']},
+      shift:{title:'Start Shift', patch:'Register Ranger', icon:'🏪', aliases:['start shift','shift']},
+      daily:{title:'Daily Challenge', patch:'Register Rush', icon:'☀️', aliases:['daily challenge','register rush','daily']},
+      enough:{title:'Do I Have Enough?', patch:'Budget Check', icon:'🛒', aliases:['do i have enough','enough']},
+      quiz:{title:'Money Quiz', patch:'Money Spotter', icon:'💵', aliases:['money quiz','money id quiz','quiz']},
+      coindrill:{title:'Coin Drill', patch:'Coin Counter', icon:'🪙', aliases:['coin drill','coins drill','coin']},
+      billdrill:{title:'Bill Drill', patch:'Bill Builder', icon:'💲', aliases:['bill drill','bills drill','bill']},
+      change:{title:'Change Drill', patch:'Change Jockey', icon:'🔄', aliases:['change drill','change']},
+      mini_store_interface:{title:'Mini Store Interface', patch:'Mini Mart Pilot', icon:'🛍️', aliases:['mini store interface','mini store']},
+      exactpay:{title:'Exact Pay', patch:'Exact Pay Ace', icon:'💳', aliases:['exact pay','exactpay']},
+      receiptdecoder:{title:'Receipt Decoder', patch:'Receipt Reader', icon:'🧾', aliases:['receipt decoder','receiptdecoder']},
+      pricecompare:{title:'Price Compare', patch:'Deal Detective', icon:'📊', aliases:['price compare','pricecompare']},
+      drawerreset:{title:'Drawer Reset', patch:'Drawer Boss', icon:'🗃️', aliases:['drawer reset','drawerreset']}
+    }},
+    time:{label:'TimeReady', legacyScores:'tr_scores', modes:{
+      practice:{title:'Practice Mode', patch:'Practice Orbit', icon:'🎯', aliases:['practice mode','practice']},
+      starter:{title:'Clock School', patch:'Clock Cadet', icon:'🕒', aliases:['clock school','starter']},
+      challenge:{title:'Time Challenge', patch:'Time Tactician', icon:'⏱️', aliases:['time challenge','challenge']},
+      schedule:{title:'Schedule Master', patch:'Schedule Captain', icon:'🗓️', aliases:['schedule master','schedule']},
+      daily:{title:'Daily Challenge', patch:'Daily Clock-In', icon:'☀️', aliases:['daily challenge','daily']},
+      clock_quiz:{title:'Clock Quiz', patch:'Clock Reader', icon:'🕰️', aliases:['clock quiz']},
+      digital_drill:{title:'Digital Drill', patch:'Digital Decoder', icon:'🔢', aliases:['digital drill']},
+      am_pm_drill:{title:'AM/PM Drill', patch:'Daypart Pilot', icon:'🌗', aliases:['am/pm drill','am pm drill']},
+      work_schedule:{title:'Work Schedule', patch:'Shift Timer', icon:'📆', aliases:['work schedule']},
+      alarm_clock:{title:'Alarm Clock', patch:'Alarm Ace', icon:'⏰', aliases:['alarm clock']},
+      what_time:{title:'What Time Is It?', patch:'Time Teller', icon:'🧭', aliases:['what time is it?','what time is it','what time']},
+      daily_schedule_builder:{title:'Daily Schedule Builder', patch:'Routine Builder', icon:'📅', aliases:['daily schedule builder']}
+    }},
+    tech:{label:'TechReady', legacyScores:'tc_scores', modes:{
+      practice:{title:'Practice Mode', patch:'Safe Start', icon:'🎯', aliases:['practice']},
+      challenge:{title:'Tech Challenge', patch:'Tech Tactician', icon:'💻', aliases:['tech challenge','challenge']},
+      scams:{title:'Spot the Scam', patch:'Scam Scanner', icon:'🕵️', aliases:['spot the scam','scams']},
+      passwords:{title:'Passwords', patch:'Password Forge', icon:'🔐', aliases:['passwords']},
+      communication:{title:'Digital Communication', patch:'Message Pilot', icon:'💬', aliases:['digital communication','communication']},
+      online:{title:'Online Safety', patch:'Safety Shield', icon:'🛡️', aliases:['online safety','online']},
+      devices:{title:'Your Devices', patch:'Device Dockmaster', icon:'📱', aliases:['your devices','devices']},
+      daily:{title:'Daily Challenge', patch:'Daily Firewall', icon:'☀️', aliases:['daily challenge','daily']},
+      real_or_sketchy:{title:'Real or Sketchy?', patch:'Signal Scanner', icon:'📡', aliases:['real or sketchy?','real or sketchy']},
+      inbox_triage:{title:'Inbox Triage', patch:'Inbox Guard', icon:'📥', aliases:['inbox triage']}
+    }},
+    job:{label:'JobReady', legacyScores:'jr_scores', modes:{
+      practice:{title:'Practice Mode', patch:'Work Warmup', icon:'🎯', aliases:['practice']},
+      challenge:{title:'Workplace Challenge', patch:'Shift Solver', icon:'💼', aliases:['workplace challenge','challenge']},
+      interview:{title:'Interview School', patch:'Interview Ops', icon:'🎤', aliases:['interview school','interview']},
+      paycheck:{title:'Paycheck Math', patch:'Paycheck Pro', icon:'💸', aliases:['paycheck math','paycheck']},
+      schedule:{title:'Schedule Master', patch:'Shift Scheduler', icon:'📆', aliases:['schedule master','schedule']},
+      communication:{title:'Communication Skills', patch:'Comms Crew', icon:'📣', aliases:['communication skills','communication']},
+      daily:{title:'Daily Challenge', patch:'Daily Duty', icon:'☀️', aliases:['daily challenge','daily']},
+      what_went_wrong:{title:'What Went Wrong?', patch:'Workplace Detective', icon:'🧩', aliases:['what went wrong?','what went wrong']},
+      shift_priority_board:{title:'Shift Priority Board', patch:'Priority Pro', icon:'🧭', aliases:['shift priority board']}
+    }},
+    home:{label:'HomeReady', legacyScores:'hr_scores', modes:{
+      practice:{title:'Practice Mode', patch:'Home Base', icon:'🎯', aliases:['practice']},
+      challenge:{title:'Home Challenge', patch:'Habitat Hero', icon:'🏠', aliases:['home challenge','challenge']},
+      laundry:{title:'Laundry Master', patch:'Laundry Leader', icon:'🧺', aliases:['laundry master','laundry']},
+      budget:{title:'Budget Basics', patch:'Budget Builder', icon:'💳', aliases:['budget basics','budget']},
+      safety:{title:'Home Safety', patch:'Safety Scanner', icon:'🚨', aliases:['home safety','safety']},
+      food:{title:'Food Safety', patch:'Kitchen Keeper', icon:'🍞', aliases:['food safety','food']},
+      renting:{title:'Renting Basics', patch:'Lease Learner', icon:'🗝️', aliases:['renting basics','renting']},
+      daily:{title:'Daily Challenge', patch:'Daily Reset', icon:'☀️', aliases:['daily challenge','daily']},
+      spot_the_unsafe_choice:{title:'Spot the Unsafe Choice', patch:'Hazard Hunter', icon:'⚠️', aliases:['spot the unsafe choice']},
+      laundry_sorting_game:{title:'Laundry Sorting Game', patch:'Load Commander', icon:'👕', aliases:['laundry sorting game','laundry sorting']}
+    }},
+    health:{label:'HealthReady', legacyScores:'hlr_scores', modes:{
+      practice:{title:'Practice Mode', patch:'Calm Check-In', icon:'🎯', aliases:['practice']},
+      challenge:{title:'Health Challenge', patch:'Wellness Watch', icon:'🩺', aliases:['health challenge','challenge']},
+      prescriptions:{title:'Prescriptions', patch:'Label Reader', icon:'💊', aliases:['prescriptions']},
+      doctor:{title:'Doctor Visits', patch:'Visit Navigator', icon:'🧑‍⚕️', aliases:['doctor visits','doctor']},
+      insurance:{title:'Health Insurance', patch:'Coverage Navigator', icon:'📄', aliases:['health insurance','insurance']},
+      emergency:{title:'Emergencies', patch:'Safety Signal', icon:'🚑', aliases:['emergencies','emergency']},
+      hygiene:{title:'Hygiene & Wellness', patch:'Routine Keeper', icon:'🫧', aliases:['hygiene & wellness','hygiene and wellness','hygiene']},
+      mental:{title:'Mental Health', patch:'Support Seeker', icon:'💚', aliases:['mental health','mental']},
+      daily:{title:'Daily Challenge', patch:'Daily Wellness', icon:'☀️', aliases:['daily challenge','daily']},
+      emergency_or_wait:{title:'Emergency or Wait?', patch:'Decision Medic', icon:'🧠', aliases:['emergency or wait?','emergency or wait']},
+      med_schedule_builder:{title:'Med Schedule Builder', patch:'Med Planner', icon:'🗓️', aliases:['med schedule builder']}
+    }},
+    social:{label:'SocialReady', legacyScores:'sr_scores', modes:{
+      practice:{title:'Practice Mode', patch:'Social Warmup', icon:'🎯', aliases:['practice']},
+      challenge:{title:'Social Challenge', patch:'Comms Cadet', icon:'🗨️', aliases:['social challenge','challenge']},
+      situations:{title:'Reading the Room', patch:'Room Reader', icon:'👀', aliases:['reading the room','situations']},
+      conversations:{title:'Conversations', patch:'Chat Pilot', icon:'🗣️', aliases:['conversations']},
+      boundaries:{title:'Boundaries', patch:'Boundary Beacon', icon:'🧱', aliases:['boundaries']},
+      feelings:{title:'Conflict & Feelings', patch:'Feeling Decoder', icon:'💞', aliases:['conflict & feelings','conflict and feelings','feelings']},
+      daily:{title:'Daily Challenge', patch:'Daily Connection', icon:'☀️', aliases:['daily challenge','daily']},
+      conversation_builder:{title:'Conversation Builder', patch:'Conversation Closer', icon:'🧩', aliases:['conversation builder']},
+      tone_decoder:{title:'Tone Decoder', patch:'Tone Tracker', icon:'🎙️', aliases:['tone decoder']}
+    }},
+    travel:{label:'TravelReady', legacyScores:'tr5_scores', modes:{
+      practice:{title:'Practice Mode', patch:'Transit Warmup', icon:'🎯', aliases:['practice']},
+      challenge:{title:'Travel Challenge', patch:'Travel Tactician', icon:'🚌', aliases:['travel challenge','challenge']},
+      transit:{title:'Bus & Train', patch:'Transit Tracker', icon:'🚏', aliases:['bus & train','bus and train','transit']},
+      navigate:{title:'Getting Around', patch:'Route Reader', icon:'🗺️', aliases:['getting around','navigate']},
+      money:{title:'Money & Travel', patch:'Fare Finder', icon:'💳', aliases:['money & travel','money and travel','money']},
+      plan:{title:'Planning a Trip', patch:'Trip Planner', icon:'🧳', aliases:['planning a trip','plan']},
+      safety:{title:'Travel Safety', patch:'Safety Shuttle', icon:'🦺', aliases:['travel safety','safety']},
+      daily:{title:'Daily Challenge', patch:'Daily Transit', icon:'☀️', aliases:['daily challenge','daily']},
+      what_do_i_do_now:{title:'What Do I Do Now?', patch:'Travel Troubleshooter', icon:'🧭', aliases:['what do i do now?','what do i do now']},
+      route_builder:{title:'Route Builder', patch:'Route Navigator', icon:'🛰️', aliases:['route builder']}
+    }}
+  };
+
+  const HONORS = [
+    {id:'flight_log', icon:'🛰️', name:'Flight Log', desc:'Complete 3 runs in this module.', targetCopy:'3 runs in this module.', done:(m)=>Number(m.sessions||0)>=3, progress:(m)=>Math.min(3,Number(m.sessions)||0)+' / 3 runs'},
+    {id:'cross_training', icon:'🧩', name:'Cross-Training', desc:'Finish 3 different modes in this module.', targetCopy:'3 different modes in this module.', done:(m)=>countPlayed(m)>=3, progress:(m)=>Math.min(3,countPlayed(m))+' / 3 modes'},
+    {id:'command_ready', icon:'⭐', name:'Command Ready', desc:'Earn 3 Gold patches in this module.', targetCopy:'3 Gold patches in this module.', done:(m)=>countAtTier(m,3)>=3, progress:(m)=>Math.min(3,countAtTier(m,3))+' / 3 Gold patches'}
+  ];
+
+  const RANKS = [
+    {min:0,title:'Cadet'},{min:100,title:'Ensign'},{min:250,title:'Lieutenant Junior Grade'},{min:450,title:'Lieutenant'},{min:700,title:'Lieutenant Commander'},{min:1000,title:'Commander'},{min:1400,title:'Captain'},{min:1900,title:'Admiral'}
+  ];
+  const STORE_KEY='lr_reward_system_v3';
+  const OLD_STORE_KEY='lr_reward_system_v2';
+
+  function detectModule(){
+    const p=(location.pathname.split('/').pop()||'').toLowerCase();
+    if(p.includes('cashready')) return 'cash';
+    if(p.includes('timeready')) return 'time';
+    if(p.includes('techready')) return 'tech';
+    if(p.includes('jobready')) return 'job';
+    if(p.includes('homeready')) return 'home';
+    if(p.includes('healthready')) return 'health';
+    if(p.includes('socialready')) return 'social';
+    if(p.includes('travelready')) return 'travel';
+    return null;
+  }
+  const MODULE_KEY = detectModule();
+  const MODULE_CFG = MODULES[MODULE_KEY];
+  if(!MODULE_CFG) return;
+
+  function esc(v){ return String(v==null?'':v).replace(/[&<>"']/g, function(ch){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]; }); }
+  function normalize(s){ return String(s||'').toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' '); }
+  function slug(s){ return normalize(s).replace(/ /g,'_') || 'mode'; }
+  function countPlayed(mod){ return Object.values(mod.modes||{}).filter(m=>m && (m.plays||0)>0).length; }
+  function countAtTier(mod, tier){ return Object.values(mod.modes||{}).filter(m=>m && (m.tier||0)>=tier).length; }
+  function patchCount(mod){ return Object.values(mod.modes||{}).filter(m=>m && (m.tier||0)>0).length; }
+  function rankForXP(xp){ let cur=RANKS[0]; RANKS.forEach(r=>{ if(Number(xp)>=r.min) cur=r; }); return cur; }
+  function nextRank(xp){ for(const r of RANKS){ if(Number(xp)<r.min) return r; } return null; }
+  function tierName(t){ return t>=3?'Gold':t>=2?'Silver':t>=1?'Bronze':'Locked'; }
+  function tierClass(t){ return t>=3?'lr-tier-gold':t>=2?'lr-tier-silver':t>=1?'lr-tier-bronze':'lr-tier-none'; }
+  function ensureStyle(){
+    if(document.getElementById('lr-reward-v3-style')) return;
+    const style=document.createElement('style');
+    style.id='lr-reward-v3-style';
+    style.textContent=`
+      .lr-reward-board{display:grid;gap:14px}
+      .lr-reward-hero,.lr-reward-panel,.lr-patch-card,.lr-honor-card,.lr-reward-endbox .lr-reward-endcard{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid var(--border);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.22)}
+      .lr-reward-hero{padding:18px}
+      .lr-reward-kicker,.lr-reward-panelsub,.lr-goal-kicker{font-family:var(--font-mono);font-size:.68rem;letter-spacing:2px;color:var(--text3);text-transform:uppercase}
+      .lr-reward-title{font-family:var(--font-display);font-size:1.5rem;color:var(--text);margin-top:6px}
+      .lr-reward-copy{font-size:.9rem;line-height:1.6;color:var(--text2);margin-top:8px}
+      .lr-reward-statgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
+      .lr-reward-stat{padding:12px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+      .lr-reward-stat .v{font-family:var(--font-display);font-size:1.16rem;color:var(--text)}
+      .lr-reward-stat .l{font-size:.72rem;color:var(--text3);margin-top:4px}
+      .lr-reward-panel{padding:16px}
+      .lr-reward-panelhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;margin-bottom:14px}
+      .lr-reward-paneltitle{font-family:var(--font-display);font-size:1.16rem;color:var(--text);margin-top:4px}
+      .lr-reward-note{color:var(--text3);font-size:.8rem;line-height:1.5}
+      .lr-patch-grid,.lr-reward-honorgrid,.lr-reward-recent{display:grid;gap:12px}
+      .lr-patch-card{padding:14px}
+      .lr-patch-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+      .lr-patch-main{display:flex;gap:12px;align-items:center}
+      .lr-patch-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:1.4rem}
+      .lr-patch-name{font-family:var(--font-display);font-size:1.02rem;color:var(--text)}
+      .lr-patch-mode{font-size:.78rem;color:var(--text3);margin-top:2px}
+      .lr-reward-tier{padding:7px 10px;border-radius:999px;border:1px solid var(--border);font-family:var(--font-mono);font-size:.66rem;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap}
+      .lr-tier-bronze{color:#f0b15f;border-color:rgba(240,177,95,.45);background:rgba(240,177,95,.12)}
+      .lr-tier-silver{color:#d5dcec;border-color:rgba(213,220,236,.45);background:rgba(213,220,236,.10)}
+      .lr-tier-gold{color:#ffd87a;border-color:rgba(255,216,122,.50);background:rgba(255,216,122,.12)}
+      .lr-tier-none{color:var(--text3);background:rgba(255,255,255,.02)}
+      .lr-patch-progress{display:grid;gap:8px;margin-top:12px}
+      .lr-goal-row{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.025);border:1px solid var(--border)}
+      .lr-goal-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+      .lr-goal-label{font-weight:800;color:var(--text);font-size:.84rem}
+      .lr-goal-state{font-size:.73rem;color:var(--text3)}
+      .lr-goal-copy{font-size:.78rem;color:var(--text2);line-height:1.45;margin-top:6px}
+      .lr-goal-progress{height:8px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden;margin-top:8px}
+      .lr-goal-progress span,.lr-reward-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),rgba(255,216,122,.95))}
+      .lr-reward-progress{height:8px;border-radius:999px;background:rgba(255,255,255,.05);overflow:hidden}
+      .lr-patch-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+      .lr-reward-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-size:.74rem;color:var(--text2)}
+      .lr-reward-chiprow{display:flex;gap:8px;flex-wrap:wrap}
+      .lr-honor-card{padding:14px}
+      .lr-reward-event{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:14px;background:rgba(255,255,255,.025);border:1px solid var(--border)}
+      .lr-reward-eventicon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:1.2rem}
+      .lr-reward-eventtitle{font-weight:800;color:var(--text)}
+      .lr-reward-eventcopy{font-size:.78rem;color:var(--text3);margin-top:4px;line-height:1.45}
+      .lr-reward-endbox{display:grid;gap:10px}
+      .lr-reward-endcard{padding:14px}
+      .lr-reward-endtitle{font-family:var(--font-mono);font-size:.66rem;letter-spacing:2px;color:var(--text3);text-transform:uppercase}
+      .lr-reward-endmain{font-family:var(--font-display);font-size:1.04rem;color:var(--text);margin-top:6px}
+      .lr-reward-endsub{font-size:.8rem;color:var(--text2);line-height:1.55;margin-top:6px}
+      .lr-reward-mini{font-size:.74rem;color:var(--text3);margin-top:8px}
+      @media (max-width:700px){
+        .lr-reward-statgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+        .lr-reward-panelhead,.lr-patch-top,.lr-goal-head{flex-direction:column;align-items:flex-start}
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function buildAliasIndex(){
+    if(MODULE_CFG._aliasIndex) return MODULE_CFG._aliasIndex;
+    const idx={};
+    Object.keys(MODULE_CFG.modes).forEach(function(key){
+      const cfg=MODULE_CFG.modes[key];
+      [key,cfg.title,cfg.patch].concat(cfg.aliases||[]).forEach(function(name){ idx[normalize(name)] = key; });
+    });
+    MODULE_CFG._aliasIndex = idx;
+    return idx;
+  }
+  function getModeCfg(nameOrKey){
+    const modes=MODULE_CFG.modes;
+    if(modes[nameOrKey]) return {key:nameOrKey,cfg:modes[nameOrKey]};
+    const idx=buildAliasIndex();
+    const norm=normalize(nameOrKey);
+    if(idx[norm]) return {key:idx[norm],cfg:modes[idx[norm]]};
+    const key=slug(nameOrKey);
+    if(!modes[key]){
+      modes[key]={title:String(nameOrKey||'Practice Mode'), patch:titleFromDynamic(nameOrKey), icon:'🎮', aliases:[String(nameOrKey||'')]};
+      buildAliasIndex()[norm]=key;
+    }
+    return {key,cfg:modes[key]};
+  }
+  function titleFromDynamic(name){
+    const t=String(name||'Mode').trim();
+    if(!t) return 'Practice Patch';
+    return t.replace(/\?$/,'') + ' Patch';
+  }
+
+  function loadData(){
+    let data;
+    try{ data=JSON.parse(localStorage.getItem(STORE_KEY)||'{}'); }catch(_e){ data={}; }
+    if(!data || typeof data!=='object') data={};
+    if(!data.modules || typeof data.modules!=='object') data.modules={};
+    if(!Array.isArray(data.recent)) data.recent=[];
+    if(!Array.isArray(data.seen)) data.seen=[];
+    if(typeof data.totalXP!=='number') data.totalXP=0;
+    if(typeof data.totalSessions!=='number') data.totalSessions=0;
+    if(!data.rank) data.rank=rankForXP(data.totalXP).title;
+    ensureModule(data);
+    migrateFromV2(data);
+    migrateLegacyHistory(data);
+    return data;
+  }
+  function ensureModule(data){
+    if(!data.modules[MODULE_KEY]) data.modules[MODULE_KEY]={label:MODULE_CFG.label,sessions:0,modes:{},honors:{},legacyImported:false};
+    return data.modules[MODULE_KEY];
+  }
+  function saveData(data){
+    data.rank = rankForXP(data.totalXP).title;
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify(data)); }catch(_e){}
+    try{
+      const legacy=JSON.parse(localStorage.getItem('lr_progress_v1')||'{}');
+      legacy.totalXP=Number(data.totalXP)||0;
+      legacy.sessions=Number(data.totalSessions)||0;
+      legacy.currentRank=data.rank;
+      if(!legacy.modules||typeof legacy.modules!=='object') legacy.modules={};
+      localStorage.setItem('lr_progress_v1', JSON.stringify(legacy));
+    }catch(_e){}
+  }
+  function migrateFromV2(data){
+    if(data._migratedV2) return;
+    let old;
+    try{ old=JSON.parse(localStorage.getItem(OLD_STORE_KEY)||'null'); }catch(_e){ old=null; }
+    if(old && typeof old==='object'){
+      data.totalXP=Math.max(Number(data.totalXP)||0, Number(old.totalXP)||0);
+      data.totalSessions=Math.max(Number(data.totalSessions)||0, Number(old.totalSessions)||0);
+      if(old.modules && old.modules[MODULE_KEY]){
+        const mod=ensureModule(data), oldMod=old.modules[MODULE_KEY];
+        mod.sessions=Math.max(Number(mod.sessions)||0, Number(oldMod.sessions)||0);
+        Object.keys(oldMod.modes||{}).forEach(function(key){
+          const src=oldMod.modes[key]||{};
+          if(!MODULE_CFG.modes[key] && src.title) getModeCfg(src.title);
+          const dst=mod.modes[key]||{};
+          dst.plays=Math.max(Number(dst.plays)||0, Number(src.plays)||0);
+          dst.bestPct=Math.max(Number(dst.bestPct)||0, Number(src.bestPct)||0);
+          dst.perfects=Math.max(Number(dst.perfects)||0, Number(src.perfects)||0);
+          dst.strongNoHint=Math.max(Number(dst.strongNoHint)||0, Number(src.strongNoHint)||0);
+          dst.lastPct=Math.max(Number(dst.lastPct)||0, Number(src.lastPct)||0);
+          dst.lastPlayed=Math.max(Number(dst.lastPlayed)||0, Number(src.lastPlayed)||0);
+          dst.tier=Math.max(Number(dst.tier)||0, Number(src.tier)||0);
+          const cfg=getModeCfg(src.title||key).cfg;
+          dst.title=cfg.title; dst.patch=cfg.patch; dst.icon=cfg.icon;
+          mod.modes[key]=dst;
+        });
+        Object.keys(oldMod.honors||{}).forEach(function(id){ if(oldMod.honors[id]) mod.honors[id]=oldMod.honors[id]; });
+      }
+    }
+    data._migratedV2=true;
+  }
+  function migrateLegacyHistory(data){
+    const mod=ensureModule(data);
+    if(mod.legacyImported) return;
+    let scores=[];
+    try{ scores=JSON.parse(localStorage.getItem(MODULE_CFG.legacyScores)||'[]')||[]; }catch(_e){ scores=[]; }
+    if(Array.isArray(scores)){
+      scores.forEach(function(entry){
+        const session=sessionFromScoreEntry(entry,true);
+        if(session) applySession(data, session, {awardXP:false, logEvent:false, historical:true});
+      });
+      mod.legacyImported=true;
+    }
+    saveData(data);
+  }
+
+  function bronzePct(stats){ return Math.min(100, Math.round(((Number(stats.plays)||0)/1)*100)); }
+  function silverPct(stats){ return Math.max(Math.min(100, Math.round((Number(stats.bestPct)||0)/80*100)), Math.min(100, Math.round((Number(stats.plays)||0)/3*100))); }
+  function goldPct(stats){ return Math.max((Number(stats.perfects)||0)>0?100:0, Math.min(100, Math.round((Number(stats.strongNoHint)||0)/2*100))); }
+  function calcTier(stats){
+    const plays=Number(stats.plays)||0, best=Number(stats.bestPct)||0, perfects=Number(stats.perfects)||0, strong=Number(stats.strongNoHint)||0;
+    if(perfects>=1 || strong>=2 || (best>=95 && plays>=2)) return 3;
+    if(best>=80 || plays>=3) return 2;
+    if(plays>=1) return 1;
+    return 0;
+  }
+  function xpForSession(session, mode){
+    let xp=10;
+    if(session.pct>=70) xp+=4;
+    if(session.pct>=85) xp+=4;
+    if(session.pct===100) xp+=4;
+    if((mode.plays||0)===0) xp+=6;
+    if(session.pct > (Number(mode.bestPct)||0)) xp+=4;
+    if(session.hintsUsed===0) xp+=2;
+    return xp;
+  }
+  function pushRecent(data, ev){
+    data.recent.unshift(Object.assign({module:MODULE_KEY,at:Date.now()}, ev));
+    data.recent=data.recent.slice(0,16);
+  }
+  function rememberSig(data, sig){
+    if(!sig) return;
+    data.seen.unshift(sig);
+    data.seen=[...new Set(data.seen)].slice(0,80);
+  }
+  function seenSig(data, sig){ return !!sig && Array.isArray(data.seen) && data.seen.indexOf(sig)!==-1; }
+  function nextTargetCopy(stats){
+    const tier=Number(stats.tier)||0;
+    if(tier<=0) return 'Next target: Bronze for your first completed run.';
+    if(tier===1) return 'Next target: Silver with one 80% run or three total clears.';
+    if(tier===2) return 'Next target: Gold with a perfect run or two strong no-hint clears.';
+    return 'Gold secured. Replay it to keep sharpening the skill.';
+  }
+  function goalRows(stats){
+    stats=stats||{};
+    const bronzeDone=(Number(stats.plays)||0)>=1;
+    const silverDone=(Number(stats.tier)||0)>=2;
+    const goldDone=(Number(stats.tier)||0)>=3;
+    return [
+      {label:'Bronze', state:bronzeDone?'Unlocked':'In progress', copy:'Finish 1 run.', pct:bronzePct(stats), meta:(Math.min(1,Number(stats.plays)||0)+' / 1 clear')},
+      {label:'Silver', state:silverDone?'Unlocked':'In progress', copy:'Score 80%+ once or finish 3 runs.', pct:silverPct(stats), meta:('Best '+(Number(stats.bestPct)||0)+'% • '+Math.min(3,Number(stats.plays)||0)+' / 3 clears')},
+      {label:'Gold', state:goldDone?'Unlocked':'In progress', copy:'Get a perfect run once or two 90%+ no-hint runs.', pct:goldPct(stats), meta:((Math.min(1,Number(stats.perfects)||0))+' / 1 perfect • '+Math.min(2,Number(stats.strongNoHint)||0)+' / 2 strong runs')}
+    ];
+  }
+  function summarizeModule(data){
+    const mod=ensureModule(data);
+    return {patches:patchCount(mod), honors:Object.values(mod.honors||{}).filter(Boolean).length, sessions:mod.sessions||0, rank:rankForXP(data.totalXP).title};
+  }
+
+  function sessionFromScoreEntry(entry, historical){
+    if(!entry || typeof entry!=='object') return null;
+    const name=entry.mode || entry.title || entry.name;
+    if(!name) return null;
+    const found=getModeCfg(name);
+    const totalRaw=Number(entry.total);
+    const correctRaw=Number(entry.correct);
+    let total = totalRaw>0 ? totalRaw : 0;
+    let correct = correctRaw>=0 ? correctRaw : 0;
+    if(total<=0 && Number(entry.score)>0){ total=100; correct=Math.max(0,Math.min(100, Number(entry.score))); }
+    if(total<=0) return null;
+    const pct=Math.max(0, Math.min(100, Math.round((correct/total)*100)));
+    const datePart=entry.date || '';
+    const timePart=entry.time || '';
+    const sig=['score',MODULE_KEY,found.key,pct,total,datePart,timePart,historical?'hist':'live'].join('|');
+    return {source:'score', sig:sig, modeKey:found.key, cfg:found.cfg, modeTitle:found.cfg.title, patch:found.cfg.patch, icon:found.cfg.icon, pct:pct, correct:correct, total:total, hintsUsed:0};
+  }
+  function sessionFromState(){
+    const st=(typeof ST!=='undefined'&&ST)?ST:(window.ST||null);
+    if(!st || !st.mode) return null;
+    const resultsOn=document.getElementById('scr-results') && document.getElementById('scr-results').classList.contains('on');
+    const practiceOn=document.getElementById('scr-practice-results') && document.getElementById('scr-practice-results').classList.contains('on');
+    if(!resultsOn && !practiceOn) return null;
+    const total=Math.max(0, Number(st.total)||0);
+    const correct=Math.max(0, Number(st.correct)||0);
+    if(total<=0) return null;
+    const found=getModeCfg(st.mode);
+    const pct=Math.max(0, Math.min(100, Math.round((correct/total)*100)));
+    const sig=['state',MODULE_KEY,found.key,st.startTime||0,total,correct,Number(st.hintsUsed)||0].join('|');
+    return {source:'state', sig:sig, modeKey:found.key, cfg:found.cfg, modeTitle:found.cfg.title, patch:found.cfg.patch, icon:found.cfg.icon, pct:pct, correct:correct, total:total, hintsUsed:Math.max(0, Number(st.hintsUsed)||0)};
+  }
+
+  function applySession(data, session, opts){
+    opts=opts||{};
+    if(!session) return null;
+    const mod=ensureModule(data);
+    if(seenSig(data, session.sig)) return data.lastSessionResult || null;
+    const mode=mod.modes[session.modeKey] || {plays:0,bestPct:0,perfects:0,strongNoHint:0,tier:0,title:session.cfg.title,patch:session.cfg.patch,icon:session.cfg.icon};
+    const prevTier=Number(mode.tier)||0;
+    const prevRank=rankForXP(data.totalXP);
+    const prevBest=Number(mode.bestPct)||0;
+    const xp = opts.awardXP===false ? 0 : xpForSession(session, mode);
+    mode.plays=(Number(mode.plays)||0)+1;
+    mode.bestPct=Math.max(prevBest, session.pct);
+    mode.lastPct=session.pct;
+    mode.title=session.cfg.title; mode.patch=session.cfg.patch; mode.icon=session.cfg.icon;
+    if(session.pct===100) mode.perfects=(Number(mode.perfects)||0)+1;
+    if(session.pct>=90 && session.hintsUsed===0) mode.strongNoHint=(Number(mode.strongNoHint)||0)+1;
+    mode.lastPlayed=Date.now();
+    mode.tier=calcTier(mode);
+    mod.modes[session.modeKey]=mode;
+    mod.sessions=(Number(mod.sessions)||0)+1;
+    data.totalSessions=(Number(data.totalSessions)||0)+(opts.historical?0:1);
+    if(opts.awardXP!==false) data.totalXP=(Number(data.totalXP)||0)+xp;
+    const events=[];
+    if(!opts.logEvent===false){}
+    if(mode.tier>prevTier && opts.logEvent!==false){
+      const ev={type:'patch', icon:session.cfg.icon, title:session.cfg.patch+' • '+tierName(mode.tier), copy:(mode.tier===1?'Bronze patch unlocked.':mode.tier===2?'Silver patch unlocked.':'Gold patch unlocked.')};
+      events.push(ev); pushRecent(data, ev);
+    }
+    HONORS.forEach(function(h){
+      if(!mod.honors[h.id] && h.done(mod)){
+        mod.honors[h.id]={at:Date.now(),name:h.name,icon:h.icon};
+        if(opts.logEvent!==false){ const ev={type:'honor', icon:h.icon, title:h.name, copy:h.desc}; events.push(ev); pushRecent(data, ev); }
+      }
+    });
+    const currentRank=rankForXP(data.totalXP);
+    if(currentRank.title!==prevRank.title && opts.awardXP!==false && opts.logEvent!==false){
+      const ev={type:'rank', icon:'🖖', title:currentRank.title, copy:'Training XP promoted you to '+currentRank.title+'.'};
+      events.push(ev); pushRecent(data, ev);
+    }
+    rememberSig(data, session.sig);
+    const next=nextRank(data.totalXP);
+    const result={
+      sig:session.sig, modeKey:session.modeKey, modeTitle:session.cfg.title, patch:session.cfg.patch, icon:session.cfg.icon,
+      pct:session.pct, correct:session.correct, total:session.total, hintsUsed:session.hintsUsed, xp:xp,
+      tier:mode.tier, tierName:tierName(mode.tier), currentRank:currentRank.title, nextRank:next?next.title:'', remainingXP:next?Math.max(0,next.min-data.totalXP):0,
+      goals:goalRows(mode), nextCopy:nextTargetCopy(mode), events:events
+    };
+    data.lastSessionResult=result;
+    return result;
+  }
+
+  function queueEvents(events){
+    if(!Array.isArray(events)||!events.length) return;
+    const q=Array.isArray(window.__lrRewardToastQueue)?window.__lrRewardToastQueue:(window.__lrRewardToastQueue=[]);
+    events.forEach(function(ev){ q.push(ev); });
+    if(window.__lrRewardToastActive) return;
+    showNextToast();
+  }
+  function showNextToast(){
+    const q=window.__lrRewardToastQueue||[];
+    if(!q.length){ window.__lrRewardToastActive=false; return; }
+    window.__lrRewardToastActive=true;
+    const ev=q.shift();
+    const toast=document.getElementById('badge-toast');
+    if(!toast){ window.__lrRewardToastActive=false; return; }
+    const labelMap={patch:'PATCH UPDATED', honor:'MODULE HONOR', rank:'PROMOTION ACHIEVED'};
+    const icon=ev.icon || '🎖';
+    const label=labelMap[ev.type] || 'REWARD UPDATED';
+    const btIcon=document.getElementById('badge-toast-icon');
+    const btLabel=document.getElementById('badge-toast-label');
+    const btName=document.getElementById('badge-toast-name');
+    const btDesc=document.getElementById('badge-toast-desc');
+    if(btIcon) btIcon.textContent=icon;
+    if(btLabel) btLabel.textContent=label;
+    if(btName) btName.textContent=ev.title || 'Reward Updated';
+    if(btDesc) btDesc.textContent=ev.copy || '';
+    toast.style.display='flex';
+    toast.classList.add('show');
+    setTimeout(function(){ toast.classList.remove('show'); setTimeout(function(){ toast.style.display='none'; window.__lrRewardToastActive=false; showNextToast(); }, 260); }, 2400);
+  }
+
+  function recordFromScoreEntry(entry){
+    const session=sessionFromScoreEntry(entry,false);
+    if(!session) return null;
+    const data=loadData();
+    const result=applySession(data, session, {awardXP:true, logEvent:true});
+    if(result){ saveData(data); window.__lrRewardLastResult=result; queueEvents(result.events||[]); window.__lrRewardRecentHash=[result.modeKey,result.correct,result.total].join('|'); window.__lrRewardRecentAt=Date.now(); }
+    return result;
+  }
+  function recordFromState(){
+    const session=sessionFromState();
+    if(!session) return null;
+    const recentHash=[session.modeKey,session.correct,session.total].join('|');
+    if(window.__lrRewardRecentHash===recentHash && (Date.now()-(window.__lrRewardRecentAt||0))<2500) return window.__lrRewardLastResult||null;
+    const data=loadData();
+    const result=applySession(data, session, {awardXP:true, logEvent:true});
+    if(result){ saveData(data); window.__lrRewardLastResult=result; queueEvents(result.events||[]); }
+    return result;
+  }
+
+  function installScoreHook(){
+    const arr=window.SCORES;
+    if(!Array.isArray(arr) || arr.__lrRewardWrapped) return;
+    const orig=arr.unshift.bind(arr);
+    arr.unshift=function(){
+      const items=[].slice.call(arguments);
+      const out=orig.apply(arr, items);
+      items.forEach(function(item){ try{ recordFromScoreEntry(item); }catch(_e){} });
+      refreshHomeRewardLabels();
+      return out;
+    };
+    arr.__lrRewardWrapped=true;
+  }
+
+  function rewardChipRow(result){
+    const chips=['<div class="lr-reward-chip '+esc(tierClass(result.tier))+'">'+esc(result.icon)+' '+esc(result.patch)+' • '+esc(result.tierName)+'</div>'];
+    chips.push('<div class="lr-reward-chip">+'+esc(result.xp)+' XP • '+esc(result.currentRank)+'</div>');
+    if((result.events||[]).some(function(e){ return e.type==='honor'; })) chips.push('<div class="lr-reward-chip">🏆 Module honor unlocked</div>');
+    if((result.events||[]).some(function(e){ return e.type==='rank'; })) chips.push('<div class="lr-reward-chip">🖖 Promotion achieved</div>');
+    return chips.join('');
+  }
+  function renderEndScreenRewards(){
+    const result=recordFromState() || window.__lrRewardLastResult;
+    if(!result) return;
+    const sec=document.getElementById('r-badges-sec');
+    const wrap=document.getElementById('r-badges');
+    if(sec && wrap){
+      const label=sec.querySelector('.rr-section-label'); if(label) label.textContent='Mission Rewards';
+      sec.style.display='';
+      wrap.innerHTML=''
+        + '<div class="lr-reward-endbox">'
+        +   '<div class="lr-reward-endcard"><div class="lr-reward-endtitle">Patch Update</div><div class="lr-reward-endmain">'+esc(result.patch)+' • '+esc(result.tierName)+'</div><div class="lr-reward-endsub">'+esc(result.nextCopy)+'</div><div class="lr-reward-progress" style="margin-top:10px"><span style="width:'+esc((result.goals[result.tier>=3?2:result.tier>=2?2:result.tier>=1?1:0].pct||0))+'%"></span></div><div class="lr-reward-mini">'+esc(result.goals[result.tier>=3?2:result.tier>=2?2:result.tier>=1?1:0].meta||'')+'</div></div>'
+        +   '<div class="lr-reward-endcard"><div class="lr-reward-endtitle">Training XP</div><div class="lr-reward-endmain">+'+esc(result.xp)+' XP • '+esc(result.currentRank)+'</div><div class="lr-reward-endsub">'+esc(result.nextRank ? (result.remainingXP+' XP to '+result.nextRank) : 'Top rank reached for now.')+'</div></div>'
+        +   '<div class="lr-reward-endcard"><div class="lr-reward-endtitle">This Run Unlocked</div><div class="lr-reward-chiprow">'+rewardChipRow(result)+'</div><div class="lr-reward-endsub" style="margin-top:10px">Bronze: '+esc(result.goals[0].meta)+' • Silver: '+esc(result.goals[1].meta)+' • Gold: '+esc(result.goals[2].meta)+'</div></div>'
+        + '</div>';
+    }
+    const viewBtn=[].slice.call(document.querySelectorAll('button[onclick="go(\'badges\')"]'));
+    viewBtn.forEach(function(btn){ if(/badge|reward/i.test(btn.textContent||'')) btn.textContent='🏆 View Rewards'; });
+  }
+  function renderPracticeRewards(){
+    const result=window.__lrRewardLastResult || recordFromState();
+    const host=document.getElementById('scr-practice-results');
+    const stats=document.getElementById('pr-stats');
+    if(!host || !stats || !result) return;
+    let box=document.getElementById('lr-practice-reward-box');
+    if(!box){ box=document.createElement('div'); box.id='lr-practice-reward-box'; box.className='lr-practice-reward-box'; stats.parentNode.insertBefore(box, stats.nextSibling); }
+    box.innerHTML='<div class="title">Mission Rewards</div><div class="lr-reward-chiprow">'+rewardChipRow(result)+'</div><div class="lr-reward-note" style="margin-top:10px">'+esc(result.nextCopy)+' '+esc(result.nextRank ? (result.remainingXP+' XP to '+result.nextRank+'.') : 'Top rank reached for now.')+'</div>';
+  }
+
+  function renderPatchCard(key,cfg,stats){
+    stats=stats||{plays:0,bestPct:0,perfects:0,strongNoHint:0,tier:0};
+    const rows=goalRows(stats).map(function(row){
+      return '<div class="lr-goal-row">'
+        + '<div class="lr-goal-head"><div><div class="lr-goal-kicker">Target</div><div class="lr-goal-label">'+esc(row.label)+'</div></div><div class="lr-goal-state">'+esc(row.state)+'</div></div>'
+        + '<div class="lr-goal-copy">'+esc(row.copy)+'</div>'
+        + '<div class="lr-goal-progress"><span style="width:'+esc(row.pct)+'%"></span></div>'
+        + '<div class="lr-reward-mini">'+esc(row.meta)+'</div>'
+        + '</div>';
+    }).join('');
+    return '<div class="lr-patch-card">'
+      + '<div class="lr-patch-top"><div class="lr-patch-main"><div class="lr-patch-icon">'+esc(cfg.icon)+'</div><div><div class="lr-patch-name">'+esc(cfg.patch)+'</div><div class="lr-patch-mode">'+esc(cfg.title)+'</div></div></div><div class="lr-reward-tier '+esc(tierClass(stats.tier||0))+'">'+esc(tierName(stats.tier||0))+'</div></div>'
+      + '<div class="lr-patch-meta"><div class="lr-reward-chip">'+esc((stats.plays||0))+' clears</div><div class="lr-reward-chip">Best '+esc((stats.bestPct||0))+'%</div><div class="lr-reward-chip">Perfect '+esc((stats.perfects||0))+'</div></div>'
+      + '<div class="lr-patch-progress">'+rows+'</div>'
+      + '</div>';
+  }
+  function renderHonorCard(mod, honor){
+    const earned=!!(mod.honors&&mod.honors[honor.id]);
+    const pct=earned?100:Math.min(100, Math.round(parseHonorPct(mod, honor)));
+    return '<div class="lr-honor-card">'
+      + '<div class="lr-patch-top"><div class="lr-patch-main"><div class="lr-patch-icon">'+esc(honor.icon)+'</div><div><div class="lr-patch-name">'+esc(honor.name)+'</div><div class="lr-patch-mode">Module Honor</div></div></div><div class="lr-reward-tier '+(earned?'lr-tier-gold':'lr-tier-none')+'">'+(earned?'Unlocked':'Locked')+'</div></div>'
+      + '<div class="lr-goal-copy" style="margin-top:10px">'+esc(honor.targetCopy)+'</div>'
+      + '<div class="lr-reward-progress" style="margin-top:10px"><span style="width:'+esc(pct)+'%"></span></div>'
+      + '<div class="lr-reward-mini">'+esc(earned?honor.name+' unlocked.':honor.progress(mod))+'</div>'
+      + '</div>';
+  }
+  function parseHonorPct(mod, honor){
+    if(honor.id==='flight_log') return (Number(mod.sessions||0)/3)*100;
+    if(honor.id==='cross_training') return (countPlayed(mod)/3)*100;
+    if(honor.id==='command_ready') return (countAtTier(mod,3)/3)*100;
+    return 0;
+  }
+  function renderRewardBoard(){
+    ensureStyle();
+    const grid=document.getElementById('bgrid');
+    if(!grid) return;
+    const data=loadData();
+    const mod=ensureModule(data);
+    const rank=rankForXP(data.totalXP), next=nextRank(data.totalXP);
+    const modeKeys=Object.keys(MODULE_CFG.modes);
+    const patchCards=modeKeys.map(function(key){ return renderPatchCard(key, MODULE_CFG.modes[key], mod.modes[key]); }).join('');
+    const honorCards=HONORS.map(function(h){ return renderHonorCard(mod,h); }).join('');
+    const recent=data.recent.filter(function(ev){ return ev.module===MODULE_KEY; }).slice(0,8).map(function(ev){
+      return '<div class="lr-reward-event"><div class="lr-reward-eventicon">'+esc(ev.icon||'🎖')+'</div><div><div class="lr-reward-eventtitle">'+esc(ev.title||'Reward Updated')+'</div><div class="lr-reward-eventcopy">'+esc(ev.copy||'Progress saved.')+'</div></div></div>';
+    }).join('') || '<div class="lr-reward-note">Complete a mode and your latest unlocks will appear here.</div>';
+    grid.innerHTML=''
+      + '<div class="lr-reward-board">'
+      +   '<div class="lr-reward-hero"><div class="lr-reward-kicker">'+esc(MODULE_CFG.label)+' Rewards</div><div class="lr-reward-title">Command Rewards</div><div class="lr-reward-copy">This board shows every patch in the module, what each tier requires, and how close you are to the next unlock.</div><div class="lr-reward-statgrid"><div class="lr-reward-stat"><div class="v">'+esc(rank.title)+'</div><div class="l">Current Rank</div></div><div class="lr-reward-stat"><div class="v">'+esc(data.totalXP)+'</div><div class="l">Total XP</div></div><div class="lr-reward-stat"><div class="v">'+esc(patchCount(mod))+'</div><div class="l">Patches Earned</div></div><div class="lr-reward-stat"><div class="v">'+esc(Object.values(mod.honors||{}).filter(Boolean).length)+'</div><div class="l">Module Honors</div></div></div><div class="lr-reward-copy" style="margin-top:12px">'+esc(next ? ('Next promotion: '+next.title+' in '+(next.min-data.totalXP)+' XP.') : 'Top rank reached for now.')+'</div></div>'
+      +   '<div class="lr-reward-panel"><div class="lr-reward-panelhead"><div><div class="lr-reward-panelsub">Patch Board</div><div class="lr-reward-paneltitle">Every Reward You Can Work Toward</div></div><div class="lr-reward-note">Bronze unlocks on your first clear. Silver and Gold show the exact goal on every card.</div></div><div class="lr-patch-grid">'+patchCards+'</div></div>'
+      +   '<div class="lr-reward-panel"><div class="lr-reward-panelhead"><div><div class="lr-reward-panelsub">Module Honors</div><div class="lr-reward-paneltitle">Bigger Goals Across The Module</div></div><div class="lr-reward-note">These track replay, variety, and follow-through.</div></div><div class="lr-reward-honorgrid">'+honorCards+'</div></div>'
+      +   '<div class="lr-reward-panel"><div class="lr-reward-panelhead"><div><div class="lr-reward-panelsub">Latest Unlocks</div><div class="lr-reward-paneltitle">Recent Rewards</div></div></div><div class="lr-reward-recent">'+recent+'</div></div>'
+      + '</div>';
+    const gmode=document.querySelector('#scr-badges .gmode'); if(gmode) gmode.textContent='🏆 REWARD BOARD';
+  }
+
+  function refreshHomeRewardLabels(){
+    const data=loadData(); const sum=summarizeModule(data);
+    document.querySelectorAll('.hb[onclick="go(\'badges\')"] .hl').forEach(function(el){ el.textContent='Rewards'; });
+    document.querySelectorAll('button[onclick="go(\'badges\')"]').forEach(function(btn){ if(/badge|reward/i.test(btn.textContent||'')) btn.textContent='🏆 View Rewards'; });
+    document.querySelectorAll('#badge-ct').forEach(function(el){ el.textContent=(sum.patches||0)+' patches • '+(sum.honors||0)+' honors'; el.style.color='var(--amber)'; });
+    document.querySelectorAll('#dsb-badges').forEach(function(el){ el.textContent=String(sum.patches||0); });
+    document.querySelectorAll('.lr-subdeck-main').forEach(function(el){ if((el.textContent||'').trim()==='SCORES + BADGES') el.textContent='SCORES + REWARDS'; });
+  }
+
+  const origRenderBadges=window.renderBadges;
+  window.renderBadges=function(){ if(typeof origRenderBadges==='function'){} renderRewardBoard(); };
+  const prevRefresh=window.refreshResultsRedesign;
+  window.refreshResultsRedesign=function(){ if(typeof prevRefresh==='function') prevRefresh.apply(this, arguments); renderEndScreenRewards(); renderPracticeRewards(); refreshHomeRewardLabels(); };
+  const prevUpdateHomeUI=window.updateHomeUI;
+  window.updateHomeUI=function(){ if(typeof prevUpdateHomeUI==='function') prevUpdateHomeUI.apply(this, arguments); refreshHomeRewardLabels(); };
+  window.showBadgeToast=function(){};
+  window.awardBadge=function(){};
+
+  document.addEventListener('DOMContentLoaded', function(){ ensureStyle(); installScoreHook(); refreshHomeRewardLabels(); setTimeout(function(){ installScoreHook(); renderRewardBoard(); renderEndScreenRewards(); renderPracticeRewards(); }, 180); });
+  window.addEventListener('load', function(){ ensureStyle(); installScoreHook(); refreshHomeRewardLabels(); setTimeout(function(){ installScoreHook(); renderRewardBoard(); renderEndScreenRewards(); renderPracticeRewards(); }, 320); });
+  const page=document.getElementById('page-wrap') || document.body;
+  if(page){
+    new MutationObserver(function(){ installScoreHook(); refreshHomeRewardLabels(); if(document.getElementById('scr-badges') && document.getElementById('scr-badges').classList.contains('on')) renderRewardBoard(); const res=document.getElementById('scr-results'); const pres=document.getElementById('scr-practice-results'); if((res&&res.classList.contains('on'))||(pres&&pres.classList.contains('on'))){ renderEndScreenRewards(); renderPracticeRewards(); } }).observe(page,{subtree:true,attributes:true,attributeFilter:['class']});
+  }
+})();
+;
+</script>
+
+</body>
 </html>

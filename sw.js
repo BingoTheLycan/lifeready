@@ -1,4 +1,4 @@
-// LifeReady Service Worker (v44 - home deck rebuild)
+// LifeReady Service Worker (v43 - home deck rebuild)
 
 const VERSION = 'v43';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;

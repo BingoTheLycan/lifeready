@@ -1,4 +1,4 @@
-// LifeReady Service Worker (v47 - mission control rank pacing fix)
+// LifeReady Service Worker (v47 - mission control bridge width fix)
 
 const VERSION = 'v47';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;

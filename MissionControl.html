@@ -2113,14 +2113,14 @@ const MODULES = [
 const HUB_KEY = 'lr_mc_hub_v1';
 const TODAY = new Date().toISOString().slice(0,10);
 const RANKS = [
-  {min:0,minSessions:0,title:'Cadet'},
-  {min:20,minSessions:2,title:'Ensign'},
-  {min:30,minSessions:4,title:'Lieutenant Junior Grade'},
-  {min:42,minSessions:6,title:'Lieutenant'},
-  {min:56,minSessions:10,title:'Lieutenant Commander'},
-  {min:70,minSessions:15,title:'Commander'},
-  {min:84,minSessions:25,title:'Captain'},
-  {min:94,minSessions:40,title:'Admiral'}
+  {min:0,title:'Cadet'},
+  {min:20,title:'Ensign'},
+  {min:30,title:'Lieutenant Junior Grade'},
+  {min:42,title:'Lieutenant'},
+  {min:56,title:'Lieutenant Commander'},
+  {min:70,title:'Commander'},
+  {min:84,title:'Captain'},
+  {min:94,title:'Admiral'}
 ];
 const PROMPT_META = {
   independent:{rank:5,label:'Independent',score:100,color:'#00c851'},
@@ -2468,18 +2468,17 @@ function deriveMetrics(learner){
   const modulesTouched = unique(sessions.map(s=>s.module)).length;
   const engagement = Math.min(100, Math.round((modulesTouched / MODULES.length) * 100 + Math.min(40, sessions.length * 3)));
   const objectiveStats = evaluateObjectives(learner, false);
-  const goalScore = objectiveStats.total ? Math.round((objectiveStats.met / objectiveStats.total) * 100) : 0;
+  const goalScore = objectiveStats.total ? Math.round((objectiveStats.met / objectiveStats.total) * 100) : (sessions.length ? 55 : 0);
   const readiness = sessions.length ? Math.round(acc * .45 + ind * .25 + engagement * .15 + goalScore * .15) : 0;
-  const rank = calcRank(readiness, sessions.length);
+  const rank = calcRank(readiness);
   const last = sessions[sessions.length - 1] || null;
   const lastSessionTs = last ? combineDateTime(last.date, last.time) : 0;
   return {acc, ind, modulesTouched, engagement, goalScore, readiness, rank, last, lastSessionTs};
 }
-function calcRank(score, sessionCount=0){
+function calcRank(score){
   let current = RANKS[0];
   for(const rank of RANKS){
-    const minSessions = Number(rank.minSessions || 0);
-    if(score >= rank.min && sessionCount >= minSessions) current = rank;
+    if(score >= rank.min) current = rank;
   }
   return current;
 }
@@ -3026,11 +3025,19 @@ function renderHero(){
   const allSessions = liveRoster.flatMap(l=>filteredSessions(l));
   const loggedToday = allSessions.filter(s=>(s.date||'') === TODAY).length;
   const buckets = bridgeBuckets();
-  const needsHtml = buckets.needs.slice(0,3).map(({learner,snap})=>`<li><strong>${escapeHtml(learner.displayName)}</strong><br>${snap.sessions.length ? `${snap.inactiveDays} day${snap.inactiveDays===1?'':'s'} since last log · ${escapeHtml(snap.weakest)}` : 'No session logs yet'}</li>`).join('') || '<li>No urgent learner flags. No urgent learner flags right now.</li>';
+  const needsHtml = buckets.needs.slice(0,3).map(({learner,snap})=>`<li><strong>${escapeHtml(learner.displayName)}</strong><br>${snap.sessions.length ? `${snap.inactiveDays} day${snap.inactiveDays===1?'':'s'} since last log · ${escapeHtml(snap.weakest)}` : 'No session logs yet'}</li>`).join('') || '<li>No urgent learner flags right now.</li>';
   const momentumHtml = buckets.momentum.slice(0,3).map(({learner})=>`<li><strong>${escapeHtml(learner.displayName)}</strong><br>${escapeHtml(improvementSummary(learner))}</li>`).join('') || '<li>No clear momentum yet. One more log usually wakes the story up.</li>';
   const reportsHtml = buckets.reports.slice(0,3).map(({learner,snap})=>`<li><strong>${escapeHtml(learner.displayName)}</strong><br>${snap.sessions.length} session${snap.sessions.length===1?'':'s'} in view · ${snap.objectiveData.met} goal${snap.objectiveData.met===1?'':'s'} met</li>`).join('') || '<li>No learner has enough current evidence for a fuller brief yet.</li>';
+
+  grid.classList.add('bridge-grid');
+  grid.style.display = 'flex';
+  grid.style.flexDirection = 'column';
+  grid.style.gap = '16px';
+  grid.style.width = '100%';
+  grid.style.gridTemplateColumns = '1fr';
+  grid.style.alignItems = 'stretch';
+
   grid.innerHTML = `
-    <div class="bridge-grid">
       <article class="bridge-card actions">
         <div class="eyebrow">Bridge Status</div>
         <div class="big">${liveRoster.length}</div>
@@ -3061,9 +3068,9 @@ function renderHero(){
         <h3>${buckets.reports.length} Brief${buckets.reports.length===1?'':'s'} Ready</h3>
         <p>These learners already have enough evidence for a useful summary or supervisor update.</p>
         <ul class="bridge-list">${reportsHtml}</ul>
-      </article>
-    </div>`;
+      </article>`;
 }
+
 function promotionText(learner){
   const score = learner.metrics.readiness;
   if(score >= 92) return 'Flagship-level progress across the suite';

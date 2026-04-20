@@ -8507,5 +8507,432 @@ ensure();
   }
 })();
 </script>
+
+<style id="lr-rewards-v2-style">
+.lrw-summary-card{background:linear-gradient(180deg,rgba(17,22,38,.96),rgba(11,15,28,.96));border:2px solid rgba(255,187,51,.28);border-radius:18px;padding:16px 16px 14px;margin:12px 0 14px;box-shadow:0 14px 30px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.05)}
+.lrw-kicker{font-family:var(--font-mono);font-size:.66rem;letter-spacing:2px;color:var(--amber);margin-bottom:7px}
+.lrw-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}
+.lrw-stat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px 11px;text-align:center}
+.lrw-stat strong{display:block;font-family:var(--font-display);font-size:1.08rem;color:var(--text)}
+.lrw-stat span{display:block;margin-top:4px;color:var(--text3);font-size:.72rem;line-height:1.3}
+.lrw-line{display:flex;align-items:center;gap:10px;margin-top:10px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+.lrw-line .icon{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.05);font-size:1.05rem;flex:0 0 34px}
+.lrw-line .title{font-weight:800;color:var(--text);font-size:.88rem}
+.lrw-line .copy{font-size:.74rem;color:var(--text2);line-height:1.45;margin-top:2px}
+.lrw-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.lrw-pill{padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font-family:var(--font-mono);font-size:.64rem;letter-spacing:1px;color:var(--text2)}
+.lrw-pill.tier-bronze{border-color:rgba(205,127,50,.35);color:#d7a06f;background:rgba(205,127,50,.12)}
+.lrw-pill.tier-silver{border-color:rgba(192,192,192,.35);color:#d8d8df;background:rgba(192,192,192,.12)}
+.lrw-pill.tier-gold{border-color:rgba(255,187,51,.4);color:var(--amber);background:rgba(255,187,51,.12)}
+#scr-badges .lrw-hero{background:linear-gradient(180deg,var(--panel),var(--bg3));border:2px solid rgba(255,187,51,.38);border-radius:22px;padding:18px;margin:0 0 14px;box-shadow:0 16px 36px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.04)}
+#scr-badges .lrw-hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+#scr-badges .lrw-hero-rank{font-family:var(--font-display);font-size:1.55rem;color:var(--amber);line-height:1}
+#scr-badges .lrw-hero-copy{margin-top:5px;color:var(--text2);font-size:.8rem;line-height:1.55;max-width:560px}
+#scr-badges .lrw-rank-tag{padding:8px 11px;border-radius:999px;border:1px solid rgba(255,187,51,.34);background:rgba(255,187,51,.1);font-family:var(--font-mono);font-size:.66rem;letter-spacing:1.6px;color:var(--amber);white-space:nowrap}
+#scr-badges .lrw-progress{height:10px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);overflow:hidden;margin-top:14px}
+#scr-badges .lrw-progress>div{height:100%;background:linear-gradient(90deg,var(--green),var(--amber));border-radius:999px;transition:width .4s ease}
+#scr-badges .lrw-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
+#scr-badges .lrw-mini{padding:10px 10px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);text-align:center}
+#scr-badges .lrw-mini strong{display:block;font-family:var(--font-display);font-size:1.02rem;color:var(--text)}
+#scr-badges .lrw-mini span{display:block;margin-top:4px;color:var(--text3);font-size:.72rem;line-height:1.3}
+#scr-badges .lrw-section{margin-top:14px;background:linear-gradient(180deg,rgba(16,22,38,.94),rgba(11,15,28,.96));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:14px}
+#scr-badges .lrw-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:12px}
+#scr-badges .lrw-section-kicker{font-family:var(--font-mono);font-size:.64rem;color:var(--text3);letter-spacing:2px;margin-bottom:4px}
+#scr-badges .lrw-section-title{font-family:var(--font-display);font-size:1.08rem;color:var(--text);line-height:1}
+#scr-badges .lrw-section-copy{font-size:.75rem;color:var(--text3);line-height:1.45;max-width:520px}
+#scr-badges .lrw-chiprow{display:flex;flex-wrap:wrap;gap:8px}
+#scr-badges .lrw-chip{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:.68rem;color:var(--text2)}
+#scr-badges .lrw-patch-grid,#scr-badges .lrw-ribbon-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#scr-badges .lrw-patch,#scr-badges .lrw-ribbon{border-radius:18px;padding:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+#scr-badges .lrw-patch.tier-bronze{border-color:rgba(205,127,50,.34);box-shadow:inset 0 0 0 1px rgba(205,127,50,.08)}
+#scr-badges .lrw-patch.tier-silver{border-color:rgba(192,192,192,.3);box-shadow:inset 0 0 0 1px rgba(192,192,192,.06)}
+#scr-badges .lrw-patch.tier-gold{border-color:rgba(255,187,51,.36);box-shadow:inset 0 0 0 1px rgba(255,187,51,.08)}
+#scr-badges .lrw-patch-top,#scr-badges .lrw-ribbon-top{display:flex;align-items:flex-start;gap:12px}
+#scr-badges .lrw-badge-icon{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;font-size:1.15rem;background:rgba(255,255,255,.06);flex:0 0 40px}
+#scr-badges .lrw-patch-name,#scr-badges .lrw-ribbon-name{font-weight:800;color:var(--text);font-size:.88rem;line-height:1.3}
+#scr-badges .lrw-patch-sub,#scr-badges .lrw-ribbon-sub{font-size:.72rem;color:var(--text3);margin-top:3px;line-height:1.35}
+#scr-badges .lrw-tier-tag{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:999px;font-family:var(--font-mono);font-size:.62rem;letter-spacing:1.2px}
+#scr-badges .lrw-tier-tag.tier-bronze{background:rgba(205,127,50,.12);border:1px solid rgba(205,127,50,.34);color:#d7a06f}
+#scr-badges .lrw-tier-tag.tier-silver{background:rgba(192,192,192,.12);border:1px solid rgba(192,192,192,.3);color:#d8d8df}
+#scr-badges .lrw-tier-tag.tier-gold{background:rgba(255,187,51,.12);border:1px solid rgba(255,187,51,.36);color:var(--amber)}
+#scr-badges .lrw-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+#scr-badges .lrw-meta div{padding:9px 10px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
+#scr-badges .lrw-meta strong{display:block;font-size:.92rem;color:var(--text);font-family:var(--font-display)}
+#scr-badges .lrw-meta span{display:block;margin-top:4px;font-size:.68rem;color:var(--text3);line-height:1.35}
+#scr-badges .lrw-ribbon.locked{opacity:.75}
+#scr-badges .lrw-ribbon .lrw-progress{margin-top:10px;height:8px}
+#scr-badges .lrw-empty{padding:16px;border-radius:18px;background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.14);font-size:.78rem;color:var(--text2);line-height:1.55;text-align:center}
+#scr-badges .lrw-fleet{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#scr-badges .lrw-fleet-card{padding:12px 13px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)}
+#scr-badges .lrw-fleet-card strong{display:block;color:var(--text);font-size:.88rem}
+#scr-badges .lrw-fleet-card span{display:block;margin-top:5px;color:var(--text3);font-size:.72rem;line-height:1.4}
+#scr-badges .lrw-recent{display:grid;gap:10px}
+#scr-badges .lrw-recent-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+#scr-badges .lrw-recent-item .when{margin-left:auto;color:var(--text3);font-size:.66rem;white-space:nowrap}
+#lrw-toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%) translateY(24px);background:linear-gradient(180deg,rgba(16,22,38,.98),rgba(10,14,26,.98));border:2px solid rgba(255,187,51,.45);border-radius:18px;padding:14px 16px;box-shadow:0 14px 36px rgba(0,0,0,.42),0 0 24px rgba(255,187,51,.16);display:flex;align-items:center;gap:12px;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s cubic-bezier(.34,1.56,.64,1);width:min(360px,calc(100% - 28px));z-index:10001}
+#lrw-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#lrw-toast .icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.06);font-size:1.25rem;flex:0 0 42px}
+#lrw-toast .label{font-family:var(--font-mono);font-size:.58rem;letter-spacing:2px;color:var(--amber);margin-bottom:3px}
+#lrw-toast .name{font-weight:800;color:var(--text);font-size:.9rem;line-height:1.25}
+#lrw-toast .desc{font-size:.72rem;color:var(--text2);line-height:1.45;margin-top:3px}
+@media (max-width:640px){
+  .lrw-grid{grid-template-columns:1fr 1fr}
+  #scr-badges .lrw-strip{grid-template-columns:1fr 1fr}
+  #scr-badges .lrw-patch-grid,#scr-badges .lrw-ribbon-grid,#scr-badges .lrw-fleet{grid-template-columns:1fr}
+  .lrw-summary-card{padding:14px 14px 12px}
+}
+</style>
+
+<script id="lr-rewards-v2-script">
+(function(){
+  if(window.__lrRewardsV2Active) return;
+  window.__lrRewardsV2Active = true;
+
+  var LRW_KEY='lr_rewards_v2';
+  var LRW_LEGACY_PROGRESS='lr_progress_v1';
+  var LRW_RANKS=[
+    {min:0,title:'Cadet'},
+    {min:100,title:'Ensign'},
+    {min:250,title:'Lieutenant Junior Grade'},
+    {min:450,title:'Lieutenant'},
+    {min:700,title:'Lieutenant Commander'},
+    {min:1000,title:'Commander'},
+    {min:1400,title:'Captain'},
+    {min:1900,title:'Admiral'}
+  ];
+  var LRW_TIER_META={
+    none:{label:'No Patch',icon:'◌',cls:'tier-none'},
+    bronze:{label:'Bronze Patch',icon:'🥉',cls:'tier-bronze'},
+    silver:{label:'Silver Patch',icon:'🥈',cls:'tier-silver'},
+    gold:{label:'Gold Patch',icon:'🏅',cls:'tier-gold'}
+  };
+  var LRW_RIBBONS=[
+    {id:'flight_log',icon:'🛰',name:'Flight Log',desc:'Complete 3 runs in this module.',goal:3,progress:function(mod){return Math.min(mod.sessions||0,3);}},
+    {id:'cross_training',icon:'🧩',name:'Cross-Training',desc:'Finish 3 different modes in this module.',goal:3,progress:function(mod){return Math.min(Object.keys(mod.patches||{}).length,3);}},
+    {id:'command_ready',icon:'⭐',name:'Command Ready',desc:'Earn 3 gold mission patches in this module.',goal:3,progress:function(mod){return Math.min(lrwCountGold(mod),3);}}
+  ];
+  function $(id){ return document.getElementById(id); }
+  function lrwEsc(v){ return String(v==null?'':v).replace(/[&<>"']/g,function(ch){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]; }); }
+  function lrwSlug(v){ return String(v==null?'':v).toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'') || 'mode'; }
+  function lrwModuleName(){
+    try{ var raw=(document.title||'').replace(/\s*[|\-].*$/,'').trim(); if(raw) return raw; }catch(_e){}
+    try{ var file=(location.pathname.split('/').pop()||'').replace(/\.html$/i,''); if(file) return file; }catch(_e){}
+    return 'LifeReady';
+  }
+  function lrwRankForXP(xp){ var cur=LRW_RANKS[0]; for(var i=0;i<LRW_RANKS.length;i++){ if(Number(xp)>=LRW_RANKS[i].min) cur=LRW_RANKS[i]; } return cur; }
+  function lrwNextRank(xp){ for(var i=0;i<LRW_RANKS.length;i++){ if(Number(xp)<LRW_RANKS[i].min) return LRW_RANKS[i]; } return null; }
+  function lrwCountGold(mod){
+    mod=mod||{}; var patches=mod.patches||{}; var n=0; Object.keys(patches).forEach(function(k){ if((patches[k]||{}).tier==='gold') n++; }); return n;
+  }
+  function lrwInitData(data){
+    data=data&&typeof data==='object'?data:{};
+    if(typeof data.version!=='number') data.version=2;
+    if(typeof data.totalXP!=='number') data.totalXP=0;
+    if(typeof data.totalSessions!=='number') data.totalSessions=0;
+    if(!data.modules||typeof data.modules!=='object') data.modules={};
+    if(!data.recent||!Array.isArray(data.recent)) data.recent=[];
+    if(!data.processed||typeof data.processed!=='object') data.processed={};
+    return data;
+  }
+  function lrwLoad(){
+    var data;
+    try{ data=lrwInitData(JSON.parse(localStorage.getItem(LRW_KEY)||'{}')); }catch(_e){ data=lrwInitData({}); }
+    if(!data.migrated){
+      try{
+        var old=JSON.parse(localStorage.getItem(LRW_LEGACY_PROGRESS)||'null');
+        if(old && typeof old.totalXP==='number'){
+          data.totalXP=Math.max(Number(data.totalXP)||0, Number(old.totalXP)||0);
+          data.totalSessions=Math.max(Number(data.totalSessions)||0, Number(old.sessions)||0);
+        }
+      }catch(_e){}
+      data.migrated=true;
+      lrwSave(data);
+    }
+    return data;
+  }
+  function lrwSave(data){
+    data=lrwInitData(data);
+    try{ localStorage.setItem(LRW_KEY, JSON.stringify(data)); }catch(_e){}
+  }
+  function lrwModeTitle(meta){
+    meta=meta||{};
+    if(meta.modeTitle) return String(meta.modeTitle).trim();
+    try{ if(window.SCORES && window.SCORES[0] && window.SCORES[0].mode) return String(window.SCORES[0].mode).trim(); }catch(_e){}
+    try{ if(typeof currentModeTitle==='function'){ var t=currentModeTitle(); if(t) return String(t).trim(); } }catch(_e){}
+    return 'Training Mode';
+  }
+  function lrwPct(meta){
+    meta=meta||{};
+    if(meta.pct!=null && meta.pct!=='') return Math.max(0,Math.min(100,Math.round(Number(meta.pct)||0)));
+    var correct=Number(meta.correct!=null?meta.correct:(window.ST&&ST.correct));
+    var total=Math.max(1, Number(meta.total!=null?meta.total:(window.ST&&ST.total))||0);
+    if(total>0 && !isNaN(correct)) return Math.max(0,Math.min(100,Math.round((correct/total)*100)));
+    try{ var txt=($('r-acc')||{}).textContent||''; var m=txt.match(/(\d+)/); if(m) return Math.max(0,Math.min(100,Number(m[1])||0)); }catch(_e){}
+    return 0;
+  }
+  function lrwMetaFromCurrent(){
+    var latest=(window.SCORES && window.SCORES[0]) ? window.SCORES[0] : {};
+    var st=window.ST||{};
+    var modeTitle=lrwModeTitle({modeTitle:latest.mode || st.modeTitle || ''});
+    var modeKey=lrwSlug(st.mode || modeTitle);
+    var correct=Number(st.correct!=null?st.correct:latest.correct)||0;
+    var total=Math.max(1, Number(st.total!=null?st.total:latest.total)||0);
+    var score=Number(st.score!=null?st.score:latest.score)||Math.round((correct/Math.max(1,total))*100);
+    var pct=lrwPct({correct:correct,total:total});
+    var hintsUsed=Math.max(0, Number(st.hintsUsed)||0);
+    return {moduleName:lrwModuleName(),modeTitle:modeTitle,modeKey:modeKey,correct:correct,total:total,score:score,pct:pct,hintsUsed:hintsUsed,startTime:Number(st.startTime)||0};
+  }
+  function lrwRunSig(meta){
+    meta=meta||lrwMetaFromCurrent();
+    var scoreCount=0; try{ scoreCount=Array.isArray(window.SCORES)?window.SCORES.length:0; }catch(_e){}
+    return [meta.moduleName,meta.modeKey,meta.score,meta.correct,meta.total,meta.startTime||0,scoreCount].join('|');
+  }
+  function lrwTierForStats(stats){
+    stats=stats||{}; var tier='none';
+    if((stats.sessions||0)>=1) tier='bronze';
+    if((stats.bestPct||0)>=80) tier='silver';
+    if((stats.bestPct||0)>=95 || (stats.bestNoHintPct||0)>=90) tier='gold';
+    return tier;
+  }
+  function lrwPatchDef(moduleName, modeTitle, tier){
+    var meta=LRW_TIER_META[tier]||LRW_TIER_META.none;
+    return {id:'lrw_patch_'+lrwSlug(moduleName)+'_'+lrwSlug(modeTitle)+'_'+tier,icon:meta.icon,name:modeTitle+' · '+meta.label,desc:'Mission patch archived at '+meta.label.toLowerCase()+'.',cat:'lr_reward'};
+  }
+  function lrwRibbonDef(moduleName, rib){
+    return {id:'lrw_ribbon_'+lrwSlug(moduleName)+'_'+rib.id,icon:rib.icon,name:moduleName+' · '+rib.name,desc:rib.desc,cat:'lr_reward'};
+  }
+  function lrwPromoDef(rankTitle){
+    return {id:'lrw_rank_'+lrwSlug(rankTitle),icon:'🪐',name:'Promotion · '+rankTitle,desc:'Training rank updated to '+rankTitle+'.',cat:'lr_reward'};
+  }
+  function lrwEnsureDef(def){
+    try{
+      window.BADGES_DEF = Array.isArray(window.BADGES_DEF) ? window.BADGES_DEF : [];
+      if(!window.BADGES_DEF.some(function(x){ return x && x.id===def.id; })) window.BADGES_DEF.push(def);
+    }catch(_e){}
+  }
+  function lrwAddRecent(data, item){
+    data.recent.unshift(item);
+    data.recent = data.recent.slice(0,24);
+  }
+  function lrwRewardCountForModule(moduleName){
+    var data=lrwLoad(); var mod=data.modules[moduleName]||{patches:{},ribbons:{}};
+    var patchCount=Object.keys(mod.patches||{}).filter(function(k){ return (mod.patches[k]||{}).tier && (mod.patches[k]||{}).tier!=='none'; }).length;
+    var ribbonCount=Object.keys(mod.ribbons||{}).length;
+    return patchCount + ribbonCount;
+  }
+  function lrwArchiveSession(meta){
+    meta=meta||lrwMetaFromCurrent();
+    if(!meta.modeTitle) return null;
+    var data=lrwLoad();
+    var sig=lrwRunSig(meta);
+    if(data.processed[sig]) return {duplicate:true};
+    var moduleName=meta.moduleName||lrwModuleName();
+    var prevRank=lrwRankForXP(data.totalXP).title;
+    var mod=data.modules[moduleName] || {sessions:0,patches:{},ribbons:{}};
+    mod.patches = mod.patches || {};
+    mod.ribbons = mod.ribbons || {};
+    var patch=mod.patches[meta.modeKey] || {modeTitle:meta.modeTitle,sessions:0,bestPct:0,bestNoHintPct:0,tier:'none',lastPct:0,lastPlayed:0};
+    patch.modeTitle = meta.modeTitle;
+    var firstTime = (patch.sessions||0)===0;
+    var improved = meta.pct > (Number(patch.bestPct)||0);
+    var xp = 10 + (meta.pct>=80?5:0) + (meta.pct>=95?5:0) + (firstTime?10:0) + (!firstTime && improved?4:0) + (meta.hintsUsed===0?3:0) + (/daily/i.test(meta.modeTitle)?4:0);
+    patch.sessions = (patch.sessions||0) + 1;
+    patch.lastPct = meta.pct;
+    patch.lastPlayed = Date.now();
+    patch.bestPct = Math.max(Number(patch.bestPct)||0, meta.pct);
+    if(meta.hintsUsed===0) patch.bestNoHintPct = Math.max(Number(patch.bestNoHintPct)||0, meta.pct);
+    var previousTier = patch.tier || 'none';
+    patch.tier = lrwTierForStats(patch);
+    mod.patches[meta.modeKey] = patch;
+    mod.sessions = (mod.sessions||0) + 1;
+    data.modules[moduleName] = mod;
+    data.totalXP = (Number(data.totalXP)||0) + xp;
+    data.totalSessions = (Number(data.totalSessions)||0) + 1;
+    data.processed[sig] = Date.now();
+    var processedKeys=Object.keys(data.processed);
+    if(processedKeys.length>260){
+      processedKeys.sort(function(a,b){ return data.processed[b]-data.processed[a]; });
+      var nextProcessed={};
+      processedKeys.slice(0,220).forEach(function(k){ nextProcessed[k]=data.processed[k]; });
+      data.processed = nextProcessed;
+    }
+    var currentRank = lrwRankForXP(data.totalXP).title;
+    var nextRank = lrwNextRank(data.totalXP);
+    var earnedIds=[];
+    var toasts=[];
+    var patchChanged = patch.tier!==previousTier;
+    if(patchChanged && patch.tier!=='none'){
+      var patchDef=lrwPatchDef(moduleName, patch.modeTitle, patch.tier);
+      lrwEnsureDef(patchDef);
+      earnedIds.push(patchDef.id);
+      toasts.push({type:'patch',icon:patchDef.icon,label:'MISSION PATCH',name:patch.modeTitle+' · '+(LRW_TIER_META[patch.tier]||{}).label,desc:patch.tier==='bronze'?'First clear archived.':'Patch upgraded for stronger work.'});
+      lrwAddRecent(data,{type:'patch',icon:patchDef.icon,title:patch.modeTitle+' · '+(LRW_TIER_META[patch.tier]||{}).label,desc:moduleName+' mission patch updated.',at:Date.now()});
+    }
+    var ribbonsUnlocked=[];
+    LRW_RIBBONS.forEach(function(rib){
+      var progress=rib.progress(mod);
+      if(progress>=rib.goal && !mod.ribbons[rib.id]){
+        mod.ribbons[rib.id]={earnedAt:Date.now()};
+        ribbonsUnlocked.push(rib);
+        var ribDef=lrwRibbonDef(moduleName, rib);
+        lrwEnsureDef(ribDef);
+        earnedIds.push(ribDef.id);
+        toasts.push({type:'ribbon',icon:rib.icon,label:'SERVICE RIBBON',name:rib.name,desc:rib.desc});
+        lrwAddRecent(data,{type:'ribbon',icon:rib.icon,title:moduleName+' · '+rib.name,desc:rib.desc,at:Date.now()});
+      }
+    });
+    data.modules[moduleName] = mod;
+    var promoted = currentRank!==prevRank;
+    if(promoted){
+      var promoDef=lrwPromoDef(currentRank); lrwEnsureDef(promoDef); earnedIds.unshift(promoDef.id);
+      toasts.unshift({type:'promotion',icon:promoDef.icon,label:'PROMOTION ACHIEVED',name:currentRank,desc:'Training XP moved you up the command ladder.'});
+      lrwAddRecent(data,{type:'promotion',icon:promoDef.icon,title:'Promotion · '+currentRank,desc:'Command rank advanced from '+prevRank+'.',at:Date.now()});
+    }
+    data.lastEvent={moduleName:moduleName,modeTitle:patch.modeTitle,modeKey:meta.modeKey,pct:meta.pct,xp:xp,currentRank:currentRank,nextRank:nextRank?nextRank.title:'',remainingXP:nextRank?Math.max(0,nextRank.min-data.totalXP):0,patchTier:patch.tier,previousPatchTier:previousTier,patchChanged:patchChanged,promoted:promoted,previousRank:prevRank,ribbonsUnlocked:ribbonsUnlocked.map(function(r){ return r.id; }),earnedIds:earnedIds.slice(),toasts:toasts.slice(),totalXP:data.totalXP};
+    lrwSave(data);
+    return data.lastEvent;
+  }
+  function lrwPatchProgressText(tier){
+    if(tier==='gold') return 'Gold patch secured. Replay it whenever you want another clean run.';
+    if(tier==='silver') return 'One elite 95%+ clear, or a 90%+ no-hint run, upgrades this to Gold.';
+    if(tier==='bronze') return 'A strong 80% run upgrades this patch to Silver.';
+    return 'Complete a run to archive your first patch here.';
+  }
+  function lrwEnsureToast(){
+    var el=$('lrw-toast');
+    if(el) return el;
+    el=document.createElement('div');
+    el.id='lrw-toast';
+    el.innerHTML='<div class="icon"></div><div class="body"><div class="label"></div><div class="name"></div><div class="desc"></div></div>';
+    document.body.appendChild(el);
+    return el;
+  }
+  var lrwToastQueue=[]; var lrwToastBusy=false;
+  function lrwShowQueuedToasts(items){
+    if(!items || !items.length) return;
+    items.slice(0,3).forEach(function(it){ lrwToastQueue.push(it); });
+    if(lrwToastBusy) return;
+    lrwToastBusy=true;
+    (function next(){
+      var it=lrwToastQueue.shift();
+      if(!it){ lrwToastBusy=false; return; }
+      var el=lrwEnsureToast();
+      el.querySelector('.icon').textContent=it.icon||'🏅';
+      el.querySelector('.label').textContent=it.label||'REWARD';
+      el.querySelector('.name').textContent=it.name||'Reward Earned';
+      el.querySelector('.desc').textContent=it.desc||'';
+      el.classList.add('show');
+      setTimeout(function(){ el.classList.remove('show'); setTimeout(next,260); }, 2500);
+    })();
+  }
+  function lrwApplyResultSummary(event, meta){
+    if(!event || event.duplicate) return;
+    meta=meta||lrwMetaFromCurrent();
+    try{ if(window.ST){ ST.shiftBadges = event.earnedIds.slice(); } }catch(_e){}
+    var sec=$('r-badges-sec');
+    if(sec){
+      var lab=sec.querySelector('.rr-section-label');
+      if(lab) lab.textContent='Rewards Earned';
+      if(typeof fillBadges==='function') try{ fillBadges(); }catch(_e){}
+    }
+    var host=$('rr-session-card');
+    if(!host) return;
+    var old=$('lrw-result-card'); if(old) old.remove();
+    var card=document.createElement('div');
+    card.className='lrw-summary-card';
+    card.id='lrw-result-card';
+    var patchMeta=LRW_TIER_META[event.patchTier]||LRW_TIER_META.none;
+    var ribbons=(event.ribbonsUnlocked||[]).map(function(id){ var rib=LRW_RIBBONS.find(function(r){ return r.id===id; }); return rib ? '<div class="lrw-line"><div class="icon">'+lrwEsc(rib.icon)+'</div><div><div class="title">'+lrwEsc(rib.name)+' unlocked</div><div class="copy">'+lrwEsc(rib.desc)+'</div></div></div>' : ''; }).join('');
+    var highlight = event.patchChanged
+      ? '<div class="lrw-line"><div class="icon">'+lrwEsc(patchMeta.icon)+'</div><div><div class="title">'+lrwEsc(meta.modeTitle+' · '+patchMeta.label)+'</div><div class="copy">Mission patch archived for this mode. '+lrwEsc(lrwPatchProgressText(event.patchTier))+'</div></div></div>'
+      : '<div class="lrw-line"><div class="icon">'+lrwEsc(patchMeta.icon)+'</div><div><div class="title">'+lrwEsc(meta.modeTitle+' · '+patchMeta.label)+'</div><div class="copy">'+lrwEsc(lrwPatchProgressText(event.patchTier))+'</div></div></div>';
+    card.innerHTML = '<div class="lrw-kicker">REWARD SCAN</div>'+
+      '<div class="lrw-grid">'+
+      '<div class="lrw-stat"><strong>+'+lrwEsc(event.xp)+'</strong><span>Training XP earned</span></div>'+
+      '<div class="lrw-stat"><strong>'+lrwEsc(event.currentRank)+'</strong><span>Current command rank</span></div>'+
+      '<div class="lrw-stat"><strong>'+(event.nextRank?lrwEsc(event.remainingXP):'MAX')+'</strong><span>'+(event.nextRank?('XP to '+lrwEsc(event.nextRank)):'Rank ladder complete')+'</span></div>'+
+      '</div>'+ highlight + ribbons +
+      '<div class="lrw-pills">'+
+      '<div class="lrw-pill '+lrwEsc((patchMeta.cls||''))+'">'+lrwEsc(patchMeta.label)+'</div>'+
+      (event.promoted?('<div class="lrw-pill tier-gold">Promotion · '+lrwEsc(event.currentRank)+'</div>'):'')+
+      '<div class="lrw-pill">'+lrwEsc(meta.pct)+'% this run</div>'+
+      '<div class="lrw-pill">'+lrwEsc(event.totalXP)+' total XP</div>'+
+      '</div>';
+    host.parentNode.insertBefore(card, host.nextSibling);
+  }
+  function lrwRenderRewardsPage(){
+    var grid=$('bgrid'); if(!grid) return;
+    var data=lrwLoad();
+    var moduleName=lrwModuleName();
+    var mod=data.modules[moduleName] || {sessions:0,patches:{},ribbons:{}};
+    var currentRank=lrwRankForXP(data.totalXP).title;
+    var nextRank=lrwNextRank(data.totalXP);
+    var progressPct=nextRank ? Math.max(6, Math.min(100, Math.round(((data.totalXP - lrwRankForXP(data.totalXP).min) / Math.max(1, nextRank.min - lrwRankForXP(data.totalXP).min)) * 100))) : 100;
+    var patchList=Object.keys(mod.patches||{}).map(function(k){ return mod.patches[k]; }).sort(function(a,b){ return String(a.modeTitle||'').localeCompare(String(b.modeTitle||'')); });
+    var patchHtml = patchList.length ? patchList.map(function(p){ var meta=LRW_TIER_META[p.tier]||LRW_TIER_META.none; return '<div class="lrw-patch '+lrwEsc(meta.cls)+'"><div class="lrw-patch-top"><div class="lrw-badge-icon">'+lrwEsc(meta.icon)+'</div><div><div class="lrw-patch-name">'+lrwEsc(p.modeTitle)+'</div><div class="lrw-patch-sub">Mission patch archived for this mode.</div><div class="lrw-tier-tag '+lrwEsc(meta.cls)+'">'+lrwEsc(meta.label)+'</div></div></div><div class="lrw-meta"><div><strong>'+lrwEsc(p.bestPct||0)+'%</strong><span>Best accuracy</span></div><div><strong>'+lrwEsc(p.sessions||0)+'</strong><span>Runs logged</span></div></div></div>'; }).join('') : '<div class="lrw-empty">No mission patches archived here yet. Clear any mode once and this board starts filling in.</div>';
+    var ribbonHtml = LRW_RIBBONS.map(function(rib){ var progress=rib.progress(mod); var earned=!!(mod.ribbons||{})[rib.id]; return '<div class="lrw-ribbon '+(earned?'':'locked')+'"><div class="lrw-ribbon-top"><div class="lrw-badge-icon">'+lrwEsc(rib.icon)+'</div><div><div class="lrw-ribbon-name">'+lrwEsc(rib.name)+'</div><div class="lrw-ribbon-sub">'+lrwEsc(rib.desc)+'</div></div></div><div class="lrw-progress"><div style="width:'+Math.max(6,Math.round((progress/rib.goal)*100))+'%"></div></div><div class="lrw-tier-tag '+(earned?'tier-gold':'')+'">'+(earned?'Unlocked':'Progress '+progress+'/'+rib.goal)+'</div></div>'; }).join('');
+    var fleetModules=Object.keys(data.modules||{}).sort();
+    var fleetHtml=fleetModules.length?fleetModules.map(function(name){ var m=data.modules[name]||{patches:{},ribbons:{}}; var patches=Object.keys(m.patches||{}).filter(function(k){ return (m.patches[k]||{}).tier && (m.patches[k]||{}).tier!=='none'; }).length; var ribbons=Object.keys(m.ribbons||{}).length; return '<div class="lrw-fleet-card"><strong>'+lrwEsc(name)+'</strong><span>'+patches+' mission patches · '+ribbons+' service ribbons</span></div>'; }).join('') : '<div class="lrw-empty">Your fleet archive will expand as you practice across modules.</div>';
+    var recentHtml = (data.recent||[]).length ? data.recent.slice(0,6).map(function(item){ return '<div class="lrw-recent-item"><div class="lrw-badge-icon">'+lrwEsc(item.icon||'🏅')+'</div><div><div class="lrw-patch-name">'+lrwEsc(item.title||'Reward Earned')+'</div><div class="lrw-patch-sub">'+lrwEsc(item.desc||'')+'</div></div><div class="when">'+new Date(item.at||Date.now()).toLocaleDateString()+'</div></div>'; }).join('') : '<div class="lrw-empty">Rewards earned will show up here after each run.</div>';
+    var totalRewards = fleetModules.reduce(function(sum,name){ var m=data.modules[name]||{patches:{},ribbons:{}}; return sum + Object.keys(m.patches||{}).filter(function(k){ return (m.patches[k]||{}).tier && (m.patches[k]||{}).tier!=='none'; }).length + Object.keys(m.ribbons||{}).length; },0);
+    var gmode=document.querySelector('#scr-badges .gmode'); if(gmode) gmode.textContent='🛰 REWARDS ARCHIVE';
+    grid.innerHTML = '<div class="lrw-hero"><div class="lrw-hero-top"><div><div class="lrw-section-kicker">COMMAND STATUS</div><div class="lrw-hero-rank">'+lrwEsc(currentRank)+'</div><div class="lrw-hero-copy">Training XP, mission patches, and service ribbons now work together across old and new modes. This archive tracks the whole run history without making you dig through a hundred little menus like some tragic software scavenger hunt.</div></div><div class="lrw-rank-tag">'+lrwEsc(moduleName)+'</div></div><div class="lrw-progress"><div style="width:'+progressPct+'%"></div></div><div class="lrw-strip"><div class="lrw-mini"><strong>'+lrwEsc(data.totalXP)+'</strong><span>Total XP</span></div><div class="lrw-mini"><strong>'+lrwEsc(data.totalSessions)+'</strong><span>Runs Logged</span></div><div class="lrw-mini"><strong>'+lrwEsc(totalRewards)+'</strong><span>Rewards Archived</span></div><div class="lrw-mini"><strong>'+(nextRank?lrwEsc(nextRank.title):'MAX')+'</strong><span>'+(nextRank?lrwEsc(Math.max(0,nextRank.min-data.totalXP))+' XP away':'Top rank reached')+'</span></div></div></div>'+
+    '<div class="lrw-section"><div class="lrw-section-head"><div><div class="lrw-section-kicker">CURRENT MODULE</div><div class="lrw-section-title">Mission Patches</div><div class="lrw-section-copy">Every mode now archives one patch that upgrades from Bronze to Silver to Gold as your runs get stronger.</div></div><div class="lrw-chiprow"><div class="lrw-chip">'+lrwEsc(moduleName)+'</div><div class="lrw-chip">'+patchList.length+' patches</div></div></div><div class="lrw-patch-grid">'+patchHtml+'</div></div>'+
+    '<div class="lrw-section"><div class="lrw-section-head"><div><div class="lrw-section-kicker">CURRENT MODULE</div><div class="lrw-section-title">Service Ribbons</div><div class="lrw-section-copy">Bigger module milestones unlock ribbons for sticking with the work instead of doing one lucky run and fleeing into the void.</div></div></div><div class="lrw-ribbon-grid">'+ribbonHtml+'</div></div>'+
+    '<div class="lrw-section"><div class="lrw-section-head"><div><div class="lrw-section-kicker">FLEET STATUS</div><div class="lrw-section-title">Archive Summary</div><div class="lrw-section-copy">A quick read on how rewards are filling in across the whole app.</div></div></div><div class="lrw-fleet">'+fleetHtml+'</div></div>'+
+    '<div class="lrw-section"><div class="lrw-section-head"><div><div class="lrw-section-kicker">RECENT SIGNALS</div><div class="lrw-section-title">Latest Unlocks</div><div class="lrw-section-copy">The newest promotions, patches, and ribbons land here automatically.</div></div></div><div class="lrw-recent">'+recentHtml+'</div></div>';
+  }
+  function lrwUpdateHomeUI(){
+    var moduleName=lrwModuleName();
+    var count=lrwRewardCountForModule(moduleName);
+    var badgeCt=$('badge-ct');
+    if(badgeCt){ badgeCt.textContent = count>0 ? (count+' unlocked') : 'No rewards yet'; badgeCt.style.color = count>0 ? 'var(--amber)' : 'var(--text3)'; }
+    var dsb=$('dsb-badges'); if(dsb) dsb.textContent = String(count);
+    document.querySelectorAll('[onclick*="go(\'badges\')"],[onclick*="go(\"badges\")"]').forEach(function(node){
+      var label=node.querySelector('.hl'); if(label) label.textContent='Rewards';
+      if(node.tagName==='BUTTON') node.textContent=node.textContent.replace(/Badges/gi,'Rewards');
+    });
+    document.querySelectorAll('button,div').forEach(function(node){
+      if(node.childNodes && node.childNodes.length===1 && node.textContent && /View Badges/i.test(node.textContent)) node.textContent=node.textContent.replace(/View Badges/gi,'View Rewards');
+    });
+    document.querySelectorAll('.rr-section-label').forEach(function(node){ if(/Badges Earned/i.test(node.textContent||'')) node.textContent='Rewards Earned'; });
+    document.querySelectorAll('.lr-subdeck-main').forEach(function(node){ if(/SCORES\s*\+\s*BADGES/i.test(node.textContent||'')) node.textContent='SCORES + REWARDS'; });
+    document.querySelectorAll('.sd2').forEach(function(node){ if(/badge announcements/i.test(node.textContent||'')) node.textContent=node.textContent.replace(/badge announcements/ig,'reward announcements'); });
+  }
+  function lrwProcessResults(){
+    if(!$('scr-results')) return;
+    var meta=lrwMetaFromCurrent();
+    if(!meta.modeTitle) return;
+    var event=lrwArchiveSession(meta);
+    if(!event || event.duplicate) { lrwUpdateHomeUI(); return; }
+    lrwApplyResultSummary(event, meta);
+    lrwShowQueuedToasts(event.toasts||[]);
+    lrwUpdateHomeUI();
+    try{ if(typeof saveAll==='function') saveAll(); }catch(_e){}
+  }
+  var _legacyAward = window.awardBadge;
+  window.showBadgeToast = function(){};
+  window.awardBadge = function(id){
+    try{ if(window.BADGES && typeof BADGES.add==='function') BADGES.add(id); }catch(_e){}
+    try{ if(typeof saveAll==='function') saveAll(); }catch(_e){}
+    return id;
+  };
+  window.renderBadges = lrwRenderRewardsPage;
+  var _origUpdateHomeUI = window.updateHomeUI;
+  if(typeof _origUpdateHomeUI==='function' && !_origUpdateHomeUI.__lrwWrapped){
+    window.updateHomeUI = function(){ var out=_origUpdateHomeUI.apply(this, arguments); try{ lrwUpdateHomeUI(); }catch(_e){} return out; };
+    window.updateHomeUI.__lrwWrapped=true;
+  }
+  var _origGo = window.go;
+  if(typeof _origGo==='function' && !_origGo.__lrwWrapped){
+    window.go = function(id){ var out=_origGo.apply(this, arguments); if(id==='results'){ setTimeout(lrwProcessResults,70); setTimeout(lrwProcessResults,220); } if(id==='badges'){ setTimeout(lrwRenderRewardsPage,30); } if(id==='home'){ setTimeout(lrwUpdateHomeUI,30); } return out; };
+    window.go.__lrwWrapped=true;
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', function(){ setTimeout(lrwUpdateHomeUI,60); });
+  else setTimeout(lrwUpdateHomeUI,60);
+  setTimeout(function(){ try{ if(location.hash==='#badges') lrwRenderRewardsPage(); }catch(_e){} }, 160);
+})();
+</script>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v46 - reward board rebuild)
+// LifeReady Service Worker (v47 - mission control rank pacing fix)
 
-const VERSION = 'v45';
+const VERSION = 'v47';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

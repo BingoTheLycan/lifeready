@@ -2113,14 +2113,14 @@ const MODULES = [
 const HUB_KEY = 'lr_mc_hub_v1';
 const TODAY = new Date().toISOString().slice(0,10);
 const RANKS = [
-  {min:0,title:'Cadet'},
-  {min:20,title:'Ensign'},
-  {min:30,title:'Lieutenant Junior Grade'},
-  {min:42,title:'Lieutenant'},
-  {min:56,title:'Lieutenant Commander'},
-  {min:70,title:'Commander'},
-  {min:84,title:'Captain'},
-  {min:94,title:'Admiral'}
+  {min:0,minSessions:0,title:'Cadet'},
+  {min:20,minSessions:2,title:'Ensign'},
+  {min:30,minSessions:4,title:'Lieutenant Junior Grade'},
+  {min:42,minSessions:6,title:'Lieutenant'},
+  {min:56,minSessions:10,title:'Lieutenant Commander'},
+  {min:70,minSessions:15,title:'Commander'},
+  {min:84,minSessions:25,title:'Captain'},
+  {min:94,minSessions:40,title:'Admiral'}
 ];
 const PROMPT_META = {
   independent:{rank:5,label:'Independent',score:100,color:'#00c851'},
@@ -2468,17 +2468,18 @@ function deriveMetrics(learner){
   const modulesTouched = unique(sessions.map(s=>s.module)).length;
   const engagement = Math.min(100, Math.round((modulesTouched / MODULES.length) * 100 + Math.min(40, sessions.length * 3)));
   const objectiveStats = evaluateObjectives(learner, false);
-  const goalScore = objectiveStats.total ? Math.round((objectiveStats.met / objectiveStats.total) * 100) : (sessions.length ? 55 : 0);
+  const goalScore = objectiveStats.total ? Math.round((objectiveStats.met / objectiveStats.total) * 100) : 0;
   const readiness = sessions.length ? Math.round(acc * .45 + ind * .25 + engagement * .15 + goalScore * .15) : 0;
-  const rank = calcRank(readiness);
+  const rank = calcRank(readiness, sessions.length);
   const last = sessions[sessions.length - 1] || null;
   const lastSessionTs = last ? combineDateTime(last.date, last.time) : 0;
   return {acc, ind, modulesTouched, engagement, goalScore, readiness, rank, last, lastSessionTs};
 }
-function calcRank(score){
+function calcRank(score, sessionCount=0){
   let current = RANKS[0];
   for(const rank of RANKS){
-    if(score >= rank.min) current = rank;
+    const minSessions = Number(rank.minSessions || 0);
+    if(score >= rank.min && sessionCount >= minSessions) current = rank;
   }
   return current;
 }

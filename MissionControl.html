@@ -1562,6 +1562,70 @@ body{
   #intro-overlay .quick-grid{grid-template-columns:1fr}
 }
 
+
+/* ===== Mission Control vNext redesign ===== */
+.bridge-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:18px}
+.bridge-card{border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:18px;background:linear-gradient(180deg,rgba(9,16,27,.98),rgba(7,12,20,.98));box-shadow:0 16px 34px rgba(0,0,0,.22);position:relative;overflow:hidden}
+.bridge-card::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at top right, rgba(255,255,255,.06), transparent 26%),linear-gradient(90deg, transparent 0 24px, rgba(255,255,255,.02) 24px 25px, transparent 25px 100%),linear-gradient(0deg, transparent 0 24px, rgba(255,255,255,.02) 24px 25px, transparent 25px 100%);background-size:auto,28px 28px,28px 28px;opacity:.34}
+.bridge-card h3{margin:0 0 6px;font-size:1.06rem}
+.bridge-card p{margin:0;color:var(--text2);line-height:1.6}
+.bridge-card .big{font-size:2rem;font-weight:900;line-height:1;color:#fff;margin:.35rem 0 .4rem}
+.bridge-card .eyebrow{color:var(--mc-gold)}
+.bridge-list{margin:12px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.bridge-list li{padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);color:var(--text2);line-height:1.45}
+.bridge-list strong{color:#fff}
+.bridge-card.attention{border-color:rgba(255,106,136,.24)}
+.bridge-card.momentum{border-color:rgba(92,255,141,.24)}
+.bridge-card.report{border-color:rgba(255,191,60,.24)}
+.bridge-card.actions{border-color:rgba(55,179,255,.24)}
+.quick-ops{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.quick-ops .btn{width:100%;justify-content:center}
+.command-console{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(320px,.9fr);gap:18px;margin-top:16px}
+.console-hero{padding:20px;border-radius:24px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(180deg,rgba(12,20,33,.98),rgba(8,14,23,.98));box-shadow:0 18px 36px rgba(0,0,0,.24)}
+.console-hero h3{margin:0;font-size:1.25rem}
+.console-hero p{margin:8px 0 0;color:var(--text2);line-height:1.65}
+.console-tokens,.console-actions,.chip-bank{display:flex;flex-wrap:wrap;gap:10px}
+.console-tokens{margin-top:14px}
+.console-actions{margin-top:16px}
+.console-side{display:grid;gap:16px}
+.console-card{padding:18px;border-radius:22px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(13,20,31,.96),rgba(8,13,21,.96))}
+.console-card h4{margin:0 0 6px;font-size:1rem}
+.console-card p{margin:0;color:var(--text2);line-height:1.55}
+.console-stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.console-stat{padding:14px;border-radius:18px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06)}
+.console-stat .k{display:block;font:700 .72rem var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--text3)}
+.console-stat .v{display:block;margin-top:8px;font-size:1.35rem;font-weight:900;color:#fff}
+.module-scan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.module-scan-card{padding:16px;border-radius:20px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025)}
+.module-scan-card h4{margin:0 0 4px;font-size:1rem}
+.module-scan-card .meta{color:var(--text2);font-size:.92rem;line-height:1.55}
+.module-scan-card .module-pill{margin-top:10px}
+.report-template-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:16px}
+.report-template-card{padding:16px;border-radius:20px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(12,20,33,.96),rgba(8,14,23,.96));display:flex;flex-direction:column;gap:10px}
+.report-template-card.active{border-color:rgba(255,191,60,.34);box-shadow:0 0 0 1px rgba(255,191,60,.12)}
+.report-template-card h4{margin:0;font-size:1rem}
+.report-template-card p{margin:0;color:var(--text2);line-height:1.55}
+.report-template-card .btn{align-self:flex-start}
+.report-output{white-space:pre-wrap;line-height:1.65;min-height:260px}
+.session-helper{margin-top:14px;padding:16px;border-radius:20px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+.session-helper h4{margin:0 0 8px;font-size:.98rem}
+.session-helper p{margin:0 0 12px;color:var(--text2);line-height:1.55}
+.chip-bank button{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);color:#fff;padding:8px 12px;border-radius:999px;cursor:pointer;font:700 .74rem var(--mono);letter-spacing:1px;text-transform:uppercase}
+.chip-bank button:hover{background:rgba(255,255,255,.08)}
+.session-smartline{margin-top:12px;color:var(--text3);font-size:.88rem}
+.selected-learner-panel{padding:20px}
+.selected-learner-panel .eyebrow{margin-bottom:8px}
+.selected-learner-panel .quick-ops{margin-top:14px}
+.panel-title .mini-actions .btn{min-height:42px}
+.command-actions{align-items:flex-start}
+.command-actions .btn.danger{background:rgba(255,82,120,.12);border-color:rgba(255,82,120,.28);color:#ffd5df}
+.report-dock-note{margin-top:8px;color:var(--text3);font-size:.88rem}
+.security-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.security-card h4{margin:0 0 6px}
+.hero-copy{max-width:72ch}
+@media (max-width:1100px){.bridge-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.command-console{grid-template-columns:1fr}.module-scan-grid,.report-template-grid,.security-grid{grid-template-columns:1fr}}
+@media (max-width:760px){.bridge-grid{grid-template-columns:1fr}.quick-ops{grid-template-columns:1fr}.console-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 </style>
 </head>
 <body>
@@ -1596,9 +1660,9 @@ body{
       </div>
       <div class="topbar-right">
         <button class="btn primary" id="add-learner-btn">＋ Add Learner</button>
-        <button class="btn ghost" id="log-session-btn">📝 Log Session</button>
-        <button class="btn ghost" id="add-objective-btn">◎ Add Objective</button>
-        <button class="btn ghost" id="help-btn">❔ How It Works</button>
+        <button class="btn ghost" id="log-session-btn">📝 Log Session Fast</button>
+        <button class="btn ghost" id="add-objective-btn">◎ New Goal</button>
+        <button class="btn ghost" id="help-btn">🛰 Bridge Guide</button>
         <button class="btn ghost" id="lock-btn">🔒 Lock</button>
       </div>
     </div>
@@ -1655,19 +1719,19 @@ body{
       <section class="hero-card mission-hero">
       <div class="hero-top">
         <div class="hero-title-block">
-          <div class="eyebrow">Unified Educator Command Deck</div>
+          <div class="eyebrow">Bridge Overview</div>
           <div class="hero-title">
             <div class="mark">🛰</div>
             <h1><span class="life">Mission</span> <span class="mc">Control</span></h1>
           </div>
-          <div class="hero-copy">Roster first. Make a learner active with one tap, then open Deck, Goals, Log, Reports, or Profile in a dedicated console window.</div>
+          <div class="hero-copy">Run Mission Control like a real command center: spot who needs attention, quick-log a session in seconds, and turn teaching into clean evidence without drowning in admin.</div>
         </div>
         <div class="quick-tabs">
-          <button class="tabbtn active" data-jump="overview">Command Deck</button>
-          <button class="tabbtn" data-jump="objectives">Objectives</button>
+          <button class="tabbtn active" data-jump="overview">Snapshot</button>
+          <button class="tabbtn" data-jump="objectives">Goals</button>
           <button class="tabbtn" data-jump="sessions">Flight Log</button>
-          <button class="tabbtn" data-jump="reports">Reports</button>
-          <button class="tabbtn" data-jump="security">Security</button>
+          <button class="tabbtn" data-jump="reports">Report Dock</button>
+          <button class="tabbtn" data-jump="security">Control</button>
         </div>
       </div>
       <div class="hero-grid" id="hero-grid"></div>
@@ -1679,10 +1743,10 @@ body{
         </div>
         <div class="command-actions">
           <button class="btn ghost" id="copy-summary-btn">⧉ Copy Summary</button>
-          <button class="btn ghost" id="download-report-btn">⬇ Download Report</button>
+          <button class="btn ghost" id="download-report-btn">⬇ Export Report</button>
           <button class="btn ghost" id="download-csv-btn">⬇ Export CSV</button>
           <button class="btn ghost" id="print-report-btn">🖨 Print Brief</button>
-                    <button class="btn danger" id="court-martial-btn">⚠ Court-Martial Learner</button>
+                    <button class="btn danger" id="court-martial-btn">🗑 Delete Learner</button>
         </div>
       </div>
     </section>
@@ -1691,19 +1755,19 @@ body{
 
       <main class="stack mission-main">
         <nav class="sticky-nav section-links">
-          <button class="tabbtn active" data-jump="overview">Command Deck</button>
-          <button class="tabbtn" data-jump="objectives">Objectives</button>
+          <button class="tabbtn active" data-jump="overview">Snapshot</button>
+          <button class="tabbtn" data-jump="objectives">Goals</button>
           <button class="tabbtn" data-jump="sessions">Flight Log</button>
-          <button class="tabbtn" data-jump="reports">Reports</button>
-          <button class="tabbtn" data-jump="security">Security</button>
+          <button class="tabbtn" data-jump="reports">Report Dock</button>
+          <button class="tabbtn" data-jump="security">Control</button>
         </nav>
 
         <section class="panel mc-page active" id="overview">
           <div class="panel-inner">
             <div class="panel-title">
               <div>
-                <h2>Command Deck</h2>
-                <p id="overview-sub">Choose a learner to load the command deck.</p>
+                <h2>Snapshot</h2>
+                <p id="overview-sub">Choose a learner to load the active learner console.</p>
               </div>
               <span class="pill" id="current-view-pill">All Modules</span>
             </div>
@@ -1715,10 +1779,10 @@ body{
           <div class="panel-inner">
             <div class="panel-title">
               <div>
-                <h2>Objectives & Milestones</h2>
-                <p>Track practical goals, promotions, and imported module goals without drowning the page in every single detail at once.</p>
+                <h2>Goals & Supports</h2>
+                <p>Track goals, support targets, and module milestones in one place so staff can see exactly what the learner is working toward.</p>
               </div>
-              <button class="btn slim primary" id="add-objective-btn-2">＋ New Objective</button>
+              <button class="btn slim primary" id="add-objective-btn-2">＋ New Goal</button>
             </div>
             <div class="objective-list" id="objective-list"></div>
             <div class="milestone-list" id="milestone-list" style="margin-top:16px"></div>
@@ -1729,8 +1793,8 @@ body{
           <div class="panel-inner">
             <div class="panel-title">
               <div>
-                <h2>Flight Log</h2>
-                <p>Record support level, setting, staff initials, score, and notes so progress sounds like evidence instead of random trivia.</p>
+                <h2>Quick Log & Flight Log</h2>
+                <p>Log the essentials fast: module, mode, support level, setting, score, and a few smart notes. The rest should stay focused on teaching.</p>
               </div>
               <button class="btn slim primary" id="log-session-btn-2">＋ New Session</button>
             </div>
@@ -1742,12 +1806,12 @@ body{
           <div class="panel-inner">
             <div class="panel-title">
               <div>
-                <h2>Report Center</h2>
-                <p>Everything export-related lives here too, because teachers should not need a scavenger hunt to find the useful stuff.</p>
+                <h2>Report Dock</h2>
+                <p>Weekly summaries, supervisor briefs, goal updates, and printable evidence live here so you can show progress without rewriting it from scratch.</p>
               </div>
               <div class="mini-actions">
                 <button class="btn slim ghost" id="copy-summary-btn-2">⧉ Copy Summary</button>
-                <button class="btn slim ghost" id="download-report-btn-2">⬇ Download Report</button>
+                <button class="btn slim ghost" id="download-report-btn-2">⬇ Export Report</button>
                 <button class="btn slim ghost" id="print-report-btn-2">🖨 Print Brief</button>
               </div>
             </div>
@@ -1760,8 +1824,8 @@ body{
           <div class="panel-inner">
             <div class="panel-title">
               <div>
-                <h2>Security & System Status</h2>
-                <p>One educator code, local-device storage, import status, and lock timing in one clean control panel.</p>
+                <h2>Control Center</h2>
+                <p>Access code, auto-lock, local storage, archive state, and import status all live here so the daily workflow stays cleaner.</p>
               </div>
               <button class="btn slim ghost" id="manage-pin-btn">🔑 Manage Access Code</button>
             </div>
@@ -1794,11 +1858,11 @@ body{
       <div class="brief-rail">
         <div class="info-card brief-card brief-blue">
           <h3>Roster First</h3>
-          <p>Every learner stays on the main roster. Tap a card, then open only the panel you need instead of hunting through one endless page.</p>
+          <p>Start with the roster, make a learner active, then use the console you actually need instead of hunting through one endless page.</p>
         </div>
         <div class="info-card brief-card brief-gold">
-          <h3>Deck Panels</h3>
-          <p>Each card has fast buttons for Deck, Goals, Log, Reports, and Profile so the important facts stay one tap away.</p>
+          <h3>Focused Consoles</h3>
+          <p>Each learner card gives you Snapshot, Goals, Quick Log, Reports, and Profile actions so the important facts stay one tap away.</p>
         </div>
         <div class="info-card brief-card brief-green">
           <h3>Flight Log</h3>
@@ -1806,7 +1870,7 @@ body{
         </div>
         <div class="info-card brief-card brief-purple">
           <h3>Reports &amp; Control</h3>
-          <p>Print, export, archive, or court-martial from the deck without burying the controls under a mountain of scrolling.</p>
+          <p>Print, export, archive, or delete from one control dock without burying the important actions under a mountain of scrolling.</p>
         </div>
       </div>
     </div>
@@ -1831,7 +1895,7 @@ body{
         </div>
         <div class="info-card brief-card brief-gold">
           <h3>Use Card Panels</h3>
-          <p>Every learner card can open Deck, Goals, Log, Reports, and Profile panels right from the roster.</p>
+          <p>Every learner card can open Snapshot, Goals, Quick Log, Reports, and Profile panels right from the roster.</p>
         </div>
         <div class="info-card brief-card brief-green">
           <h3>Important Controls Stay Up Top</h3>
@@ -1909,8 +1973,8 @@ body{
     <div class="modal-inner">
       <div class="modal-head">
         <div>
-          <div class="eyebrow">Progress Logging</div>
-          <h3>Log Session</h3>
+          <div class="eyebrow">Quick Log</div>
+          <h3>Log Session Fast</h3>
         </div>
         <button class="btn slim ghost" data-close="#session-overlay">Close</button>
       </div>
@@ -1942,6 +2006,21 @@ body{
         <div class="field"><label for="session-staff">Staff initials</label><input id="session-staff" type="text" maxlength="10" placeholder="AB"/></div>
       </div>
       <div class="field" style="margin-top:12px"><label for="session-note">Notes</label><textarea id="session-note" placeholder="What happened, what support helped, and anything worth remembering later."></textarea></div>
+      <div class="session-helper">
+        <h4>Smart Notes</h4>
+        <p>Tap a few chips instead of typing the same thing over and over. Quick log should help you teach, not turn you into a clerk.</p>
+        <div class="chip-bank" id="session-note-chips">
+          <button type="button" data-note-chip="Stayed focused">Stayed focused</button>
+          <button type="button" data-note-chip="Needed verbal prompts">Needed verbal prompts</button>
+          <button type="button" data-note-chip="Needed model first">Needed model first</button>
+          <button type="button" data-note-chip="Improved confidence">Improved confidence</button>
+          <button type="button" data-note-chip="Generalized skill in real setting">Generalized skill</button>
+          <button type="button" data-note-chip="Repeat next session">Repeat next session</button>
+          <button type="button" data-note-chip="Independent completion">Independent completion</button>
+          <button type="button" data-note-chip="Needed reassurance">Needed reassurance</button>
+        </div>
+        <div class="session-smartline" id="session-smartline">Mission Control will prefill the last module, setting, support level, and staff initials when it can.</div>
+      </div>
       <div class="actions">
         <button class="btn ghost" data-close="#session-overlay">Cancel</button>
         <button class="btn primary" id="save-session-btn">Save Session</button>
@@ -2059,7 +2138,8 @@ let APP = {
   returnModule: '',
   initialView: '',
   saveTick: null,
-  currentView: 'overview'
+  currentView: 'overview',
+  reportTemplate: 'weekly'
 };
 const qs = new URLSearchParams(location.search);
 APP.selectedModule = qs.get('module') || HUB.selectedModule || 'All Modules';
@@ -2097,6 +2177,7 @@ function loadHubState(){
   state.archivedKeys = state.archivedKeys || [];
   state.dismissedKeys = state.dismissedKeys || [];
   state.showArchived = !!state.showArchived;
+  state.lastStaff = state.lastStaff || '';
   return state;
 }
 function saveHubState(message='Saved locally'){
@@ -2457,7 +2538,7 @@ function nextBestAction(learner){
     return `Focus on ${activeObjective.module === 'All Modules' ? 'the current objective' : activeObjective.module} next. The active target is "${activeObjective.title || objectiveTemplateLabel(activeObjective)}".`;
   }
   const untouched = modStats.find(m=>!m.sessions.length);
-  if(untouched) return `No ${untouched.id} sessions are logged yet. Run one clean round there next so the dashboard stops guessing.`;
+  if(untouched) return `No ${untouched.id} sessions are logged yet. Run one clean round there next so the dashboard has real evidence to work with.`;
   const needsReview = modStats.find(m=>m.status === 'Needs Review');
   if(needsReview) return `${needsReview.id} is trending down. Slow it down, reduce pressure, and log one follow-up session with support notes.`;
   const weakest = strongestAndWeakest(modStats).weakest;
@@ -2468,7 +2549,7 @@ function missionBrief(learner){
   const sw = strongestAndWeakest(ms);
   const sessions = filteredSessions(learner);
   if(!sessions.length){
-    return `${learner.displayName} does not have tracked sessions yet. Start with one module, log the support level, and Mission Control will build the report around real evidence instead of vibes.`;
+    return `${learner.displayName} does not have tracked sessions yet. Start with one module, log the support level, and Mission Control will build the report around real evidence instead of guesswork.`;
   }
   const last = sessions[sessions.length - 1];
   const prompt = promptLabel(last.prompt);
@@ -2815,35 +2896,167 @@ function syncModuleOptions(){
 function escapeHtml(text){
   return String(text ?? '').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
+
+function daysSince(date){
+  if(!date) return 999;
+  const ts = new Date(`${date}T12:00:00`).getTime();
+  if(Number.isNaN(ts)) return 999;
+  return Math.floor((Date.now() - ts) / 86400000);
+}
+function learnerSnapshot(learner){
+  const sessions = filteredSessions(learner);
+  const last = sessions[sessions.length-1] || null;
+  const mods = moduleStats(learner);
+  const strongWeak = strongestAndWeakest(mods);
+  const objectiveData = evaluateObjectives(learner);
+  return {
+    sessions,
+    last,
+    strongest: strongWeak.strongest,
+    weakest: strongWeak.weakest,
+    objectiveData,
+    inactiveDays: last ? daysSince(last.date) : 999,
+    readyToReport: sessions.length >= 3 || objectiveData.met > 0,
+    needsAttention: !sessions.length || (last && daysSince(last.date) > 14) || mods.some(m=>m.status === 'Needs Review'),
+    momentum: sessions.length >= 2 && /up \d+|holding steady/i.test(improvementSummary(learner))
+  };
+}
+function bridgeBuckets(){
+  const live = APP.learners.filter(l=>!l.archived);
+  const needs = [], momentum = [], reports = [];
+  for(const learner of live){
+    const snap = learnerSnapshot(learner);
+    if(snap.needsAttention) needs.push({learner, snap});
+    if(snap.momentum || snap.objectiveData.met > 0) momentum.push({learner, snap});
+    if(snap.readyToReport) reports.push({learner, snap});
+  }
+  needs.sort((a,b)=>b.snap.inactiveDays - a.snap.inactiveDays);
+  momentum.sort((a,b)=>b.learner.metrics.readiness - a.learner.metrics.readiness);
+  reports.sort((a,b)=>b.snap.sessions.length - a.snap.sessions.length);
+  return {needs, momentum, reports};
+}
+function currentReportTemplate(){ return APP.reportTemplate || 'weekly'; }
+function weeklySummaryText(learner){
+  const sessions = filteredSessions(learner);
+  const recent = sessions.slice(-5);
+  const mods = moduleStats(learner);
+  const sw = strongestAndWeakest(mods);
+  const obj = evaluateObjectives(learner);
+  return [
+    `${learner.displayName} · Weekly Summary`,
+    `Rank: ${learner.metrics.rank.title}`,
+    `Readiness: ${learner.metrics.readiness}`,
+    '',
+    `${learner.displayName} completed ${recent.length} recent session${recent.length===1?'':'s'} in the current view. Average accuracy is ${learner.metrics.acc || 0}% with independence at ${learner.metrics.ind || 0}%. Strongest module right now is ${sw.strongest}, and ${sw.weakest} still needs the most support.`,
+    '',
+    `Objectives met: ${obj.met} of ${obj.total || 0}.`,
+    `Trend: ${improvementSummary(learner)}`,
+    `Next step: ${nextBestAction(learner)}`
+  ].join('\n');
+}
+function progressBriefText(learner){
+  const sessions = filteredSessions(learner);
+  const last = sessions[sessions.length-1];
+  const mods = moduleStats(learner).filter(m=>m.sessions.length);
+  return [
+    `${learner.displayName} · Progress Brief`,
+    `Program: ${learner.program || 'Not listed'}`,
+    `Current rank: ${learner.metrics.rank.title}`,
+    `Readiness score: ${learner.metrics.readiness}`,
+    '',
+    `This learner has ${sessions.length} logged session${sessions.length===1?'':'s'} in the current view. ${improvementSummary(learner)}`,
+    `Most recent session: ${last ? `${last.module} on ${formatDate(last.date)} with ${promptLabel(last.prompt)}` : 'No recent sessions logged.'}`,
+    '',
+    `Module status:`,
+    (mods.length ? mods.map(m=>`- ${m.id}: ${m.status}${m.sessions.length ? ` · ${m.avg}% accuracy` : ''}`).join('\n') : '- No module sessions logged yet.'),
+    '',
+    `Recommended next action: ${nextBestAction(learner)}`
+  ].join('\n');
+}
+function goalUpdateText(learner){
+  const obj = evaluateObjectives(learner);
+  return [
+    `${learner.displayName} · Goal Update`,
+    '',
+    `Goals met: ${obj.met}`,
+    `Goals still active: ${(obj.total || 0) - obj.met}`,
+    '',
+    (obj.items.length ? obj.items.map(item=>{
+      const pct = Math.round(goalProgress(learner,item) * 100);
+      return `- ${(item.title || objectiveTemplateLabel(item))} · ${(item.module || 'All Modules')} · ${goalMet(learner,item) ? 'Completed' : `In progress (${pct}%)`}`;
+    }).join('\n') : '- No goals are currently tracked for this learner.')
+  ].join('\n');
+}
+function sessionRecapText(learner){
+  const last = filteredSessions(learner).slice(-1)[0];
+  if(!last) return `${learner.displayName} · Session Recap
+
+No session is logged yet, so there is nothing to recap.`;
+  return [
+    `${learner.displayName} · Session Recap`,
+    '',
+    `Module: ${last.module}`,
+    `Activity: ${last.activity || 'Session'}`,
+    `Date: ${formatDate(last.date)}`,
+    `Support level: ${promptLabel(last.prompt)}`,
+    `Setting: ${last.setting || 'In App'}`,
+    `Score: ${last.score || 'Not logged'}`,
+    `Staff: ${last.staff || 'Not logged'}`,
+    '',
+    `Notes: ${last.notes || 'No notes were saved for this session.'}`
+  ].join('\n');
+}
+function reportTemplateText(learner, type=currentReportTemplate()){
+  if(type === 'brief') return progressBriefText(learner);
+  if(type === 'goals') return goalUpdateText(learner);
+  if(type === 'recap') return sessionRecapText(learner);
+  return weeklySummaryText(learner);
+}
+
 function renderHero(){
   const grid = $('#hero-grid');
   const active = selectedLearner();
   const liveRoster = APP.learners.filter(l=>!l.archived);
-  const archived = APP.learners.filter(l=>l.archived);
-  const allSessions = APP.learners.flatMap(l=>l.sessions || []).sort((a,b)=>combineDateTime(a.date,a.time) - combineDateTime(b.date,b.time));
-  const last = allSessions[allSessions.length-1];
+  const allSessions = liveRoster.flatMap(l=>filteredSessions(l));
+  const loggedToday = allSessions.filter(s=>(s.date||'') === TODAY).length;
+  const buckets = bridgeBuckets();
+  const needsHtml = buckets.needs.slice(0,3).map(({learner,snap})=>`<li><strong>${escapeHtml(learner.displayName)}</strong><br>${snap.sessions.length ? `${snap.inactiveDays} day${snap.inactiveDays===1?'':'s'} since last log · ${escapeHtml(snap.weakest)}` : 'No session logs yet'}</li>`).join('') || '<li>No urgent learner flags. No urgent learner flags right now.</li>';
+  const momentumHtml = buckets.momentum.slice(0,3).map(({learner})=>`<li><strong>${escapeHtml(learner.displayName)}</strong><br>${escapeHtml(improvementSummary(learner))}</li>`).join('') || '<li>No clear momentum yet. One more log usually wakes the story up.</li>';
+  const reportsHtml = buckets.reports.slice(0,3).map(({learner,snap})=>`<li><strong>${escapeHtml(learner.displayName)}</strong><br>${snap.sessions.length} session${snap.sessions.length===1?'':'s'} in view · ${snap.objectiveData.met} goal${snap.objectiveData.met===1?'':'s'} met</li>`).join('') || '<li>No learner has enough current evidence for a fuller brief yet.</li>';
   grid.innerHTML = `
-    <div class="hero-stat">
-      <div class="label">Bridge roster</div>
-      <div class="value">${liveRoster.length}</div>
-      <div class="sub">${liveRoster.length === 1 ? 'One learner on deck' : `${liveRoster.length} learners ready to track`}</div>
-    </div>
-    <div class="hero-stat">
-      <div class="label">Active learner</div>
-      <div class="value">${active ? escapeHtml(active.displayName) : 'None selected'}</div>
-      <div class="sub">${active ? `${escapeHtml(active.metrics.rank.title)} · ${active.metrics.readiness} readiness` : 'Tap any roster card to make it active.'}</div>
-    </div>
-    <div class="hero-stat">
-      <div class="label">Archive bay</div>
-      <div class="value rank">${archived.length}</div>
-      <div class="sub">${archived.length ? 'Stored off the main roster' : 'No archived learners right now'}</div>
-    </div>
-    <div class="hero-stat">
-      <div class="label">System status</div>
-      <div class="value ${last ? '' : 'alert'}">${last ? 'Tracking Live' : 'Ready for first log'}</div>
-      <div class="sub">${last ? `${last.module} · ${formatDate(last.date)}` : 'Saved locally on this device'}</div>
-    </div>
-  `;
+    <div class="bridge-grid">
+      <article class="bridge-card actions">
+        <div class="eyebrow">Bridge Status</div>
+        <div class="big">${liveRoster.length}</div>
+        <h3>Learners on Deck</h3>
+        <p>${active ? `Active learner: ${escapeHtml(active.displayName)} · ${escapeHtml(active.metrics.rank.title)} · ${active.metrics.readiness} readiness.` : 'Pick any roster card to make a learner active.'}</p>
+        <div class="quick-ops">
+          <button class="btn primary" data-hero-action="log">Quick Log</button>
+          <button class="btn ghost" data-hero-action="goal">New Goal</button>
+          <button class="btn ghost" data-hero-action="summary">Copy Weekly Summary</button>
+          <button class="btn ghost" data-hero-action="print">Print Brief</button>
+        </div>
+        <div class="report-dock-note">${loggedToday} session${loggedToday===1?'':'s'} logged today.</div>
+      </article>
+      <article class="bridge-card attention">
+        <div class="eyebrow">Needs Attention</div>
+        <h3>${buckets.needs.length} Learner${buckets.needs.length===1?'':'s'}</h3>
+        <p>Quiet learners, old logs, or modules drifting into review show up here first.</p>
+        <ul class="bridge-list">${needsHtml}</ul>
+      </article>
+      <article class="bridge-card momentum">
+        <div class="eyebrow">Strong Momentum</div>
+        <h3>${buckets.momentum.length} Positive Signal${buckets.momentum.length===1?'':'s'}</h3>
+        <p>Improvement, steadier independence, or cleaner sessions deserve a clear spotlight.</p>
+        <ul class="bridge-list">${momentumHtml}</ul>
+      </article>
+      <article class="bridge-card report">
+        <div class="eyebrow">Ready to Report</div>
+        <h3>${buckets.reports.length} Brief${buckets.reports.length===1?'':'s'} Ready</h3>
+        <p>These learners already have enough evidence for a useful summary or supervisor update.</p>
+        <ul class="bridge-list">${reportsHtml}</ul>
+      </article>
+    </div>`;
 }
 function promotionText(learner){
   const score = learner.metrics.readiness;
@@ -2916,10 +3129,10 @@ function renderRoster(){
         </div>
         <div class="module-strip">${moduleMiniStrip(learner)}</div>
         <div class="learner-card-footer">
-          <button class="panel-btn primary" data-panel="deck" data-key="${escapeHtml(learner.key)}">Deck</button>
+          <button class="panel-btn primary" data-panel-action="new-log" data-key="${escapeHtml(learner.key)}">Quick Log</button>
+          <button class="panel-btn" data-panel="deck" data-key="${escapeHtml(learner.key)}">Snapshot</button>
           <button class="panel-btn" data-panel="goals" data-key="${escapeHtml(learner.key)}">Goals</button>
-          <button class="panel-btn" data-panel="log" data-key="${escapeHtml(learner.key)}">Log</button>
-          <button class="panel-btn" data-panel="reports" data-key="${escapeHtml(learner.key)}">Reports</button>
+          <button class="panel-btn" data-panel="reports" data-key="${escapeHtml(learner.key)}">Report Dock</button>
           <button class="panel-btn profile" data-panel="profile" data-key="${escapeHtml(learner.key)}">Profile</button>
         </div>
       </article>`;
@@ -2945,88 +3158,48 @@ function renderOverview(){
   if(!learner){
     body.className = 'empty';
     body.innerHTML = 'No learner selected yet. Pick someone from the roster or add a learner manually if you are starting fresh.';
-    $('#overview-sub').textContent = 'Choose a learner to load the command deck.';
+    $('#overview-sub').textContent = 'Choose a learner to load the active learner console.';
     return;
   }
   const modules = moduleStats(learner);
-  const brief = missionBrief(learner);
-  const sessions = filteredSessions(learner);
-  const recent = sessions.slice(-5).reverse();
-  const last = sessions[sessions.length-1];
-  const sw = strongestAndWeakest(modules);
-  const radar = renderRadar(modules);
+  const snap = learnerSnapshot(learner);
+  const recent = snap.sessions.slice().reverse().slice(0,4);
+  const activeGoal = snap.objectiveData.items.find(obj=>!goalMet(learner,obj));
+  const reportReady = snap.readyToReport ? 'Ready for a summary or supervisor brief.' : 'Log a few more sessions before the report really says anything useful.';
   $('#overview-sub').textContent = `${learner.displayName} · ${learner.metrics.rank.title} · ${learner.metrics.readiness} readiness`;
   body.className = '';
   body.innerHTML = `
-    <div class="quick-grid">
-      <div class="info-card">
-        <h3>Mission Brief</h3>
-        <p>${escapeHtml(brief)}</p>
-      </div>
-      <div class="info-card">
-        <h3>Next Best Action</h3>
-        <p>${escapeHtml(nextBestAction(learner))}</p>
-      </div>
-      <div class="info-card">
-        <h3>System Status</h3>
-        <p>${escapeHtml(last ? `Last save-ready session was ${last.module} on ${formatDate(last.date)}. PIN is ${HUB.pin ? 'active' : 'not set'}.` : `No sessions logged yet. PIN is ${HUB.pin ? 'active' : 'not set'}.`)}</p>
-      </div>
+    <div class="command-console">
+      <section class="console-hero">
+        <div class="eyebrow">Snapshot</div>
+        <h3>${escapeHtml(learner.displayName)}</h3>
+        <p>${escapeHtml(missionBrief(learner))}</p>
+        <div class="console-tokens">
+          <span class="token">${learner.metrics.modulesTouched} modules touched</span>
+          <span class="token">${snap.sessions.length} sessions in view</span>
+          <span class="token">${learner.metrics.acc}% accuracy</span>
+          <span class="token">${learner.metrics.ind}% independence</span>
+        </div>
+        <div class="console-actions">
+          <button class="btn primary" data-panel-action="new-log" data-key="${escapeHtml(learner.key)}">📝 Quick Log</button>
+          <button class="btn ghost" data-panel-action="copy-summary" data-key="${escapeHtml(learner.key)}">⧉ Copy Weekly Summary</button>
+          <button class="btn ghost" data-panel-action="print-brief" data-key="${escapeHtml(learner.key)}">🖨 Print Brief</button>
+        </div>
+      </section>
+      <aside class="console-side">
+        <div class="console-card"><h4>Next Best Action</h4><p>${escapeHtml(nextBestAction(learner))}</p></div>
+        <div class="console-card"><h4>Goal Focus</h4><p>${escapeHtml(activeGoal ? `${activeGoal.title || objectiveTemplateLabel(activeGoal)} · ${Math.round(goalProgress(learner,activeGoal)*100)}% progress` : 'No active goal yet. Add one so staff can aim at something concrete.')}</p></div>
+        <div class="console-card"><h4>Report Readiness</h4><p>${escapeHtml(reportReady)}</p></div>
+      </aside>
     </div>
-
     <div class="metric-grid" style="margin-top:16px">
-      <div class="metric-card"><div class="label">Strongest module</div><div class="num">${escapeHtml(sw.strongest)}</div></div>
-      <div class="metric-card"><div class="label">Needs support</div><div class="num">${escapeHtml(sw.weakest)}</div></div>
-      <div class="metric-card"><div class="label">Sessions in view</div><div class="num">${sessions.length}</div></div>
-      <div class="metric-card"><div class="label">Objectives met</div><div class="num">${evaluateObjectives(learner).met}</div></div>
+      <div class="metric-card"><div class="label">Strongest module</div><div class="num">${escapeHtml(snap.strongest)}</div></div>
+      <div class="metric-card"><div class="label">Needs support</div><div class="num">${escapeHtml(snap.weakest)}</div></div>
+      <div class="metric-card"><div class="label">Goals met</div><div class="num">${snap.objectiveData.met}/${snap.objectiveData.total || 0}</div></div>
+      <div class="metric-card"><div class="label">Most recent log</div><div class="num">${escapeHtml(snap.last ? formatDate(snap.last.date) : 'No log')}</div></div>
     </div>
-
-    <div class="panel" style="margin-top:16px;background:transparent;box-shadow:none;border:none">
-      <div class="panel-inner" style="padding:0">
-        <div class="panel-title">
-          <div>
-            <h3>Constellation Scan</h3>
-            <p>Suite-wide module status in one read. Because charts should help, not just decorate their cubicle walls.</p>
-          </div>
-        </div>
-        ${radar}
-      </div>
-    </div>
-
-    <div class="panel" style="margin-top:16px;background:transparent;box-shadow:none;border:none">
-      <div class="panel-inner" style="padding:0">
-        <div class="panel-title">
-          <div>
-            <h3>Module Grid</h3>
-            <p>Every module in one dashboard, with status, support trend, recent activity, and clear next steps.</p>
-          </div>
-        </div>
-        <div class="module-grid">${modules.map(renderModuleCard).join('')}</div>
-      </div>
-    </div>
-
-    <div class="panel" style="margin-top:16px;background:transparent;box-shadow:none;border:none">
-      <div class="panel-inner" style="padding:0">
-        <div class="panel-title">
-          <div>
-            <h3>Recent Activity</h3>
-            <p>Latest sessions across the current view.</p>
-          </div>
-        </div>
-        <div class="timeline">${recent.length ? recent.map(session=>`
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <div>
-                <div class="timeline-title">${escapeHtml(session.module)} · ${escapeHtml(session.activity || 'Session')}</div>
-                <div class="timeline-meta">${formatDate(session.date)}${session.time ? ` · ${escapeHtml(session.time)}` : ''} · ${escapeHtml(promptLabel(session.prompt))} · ${escapeHtml(session.setting || 'In App')}</div>
-              </div>
-              <span class="token">${session.accuracy != null ? `${session.accuracy}%` : escapeHtml(session.score || 'Logged')}</span>
-            </div>
-            ${session.notes ? `<div class="timeline-meta" style="margin-top:10px">${escapeHtml(session.notes)}</div>` : ''}
-          </div>`).join('') : `<div class="empty">No sessions match the current filter. Clear the date range or log something new.</div>`}
-        </div>
-      </div>
-    </div>
-  `;
+    <div class="panel" style="margin-top:16px;background:transparent;box-shadow:none;border:none"><div class="panel-inner" style="padding:0"><div class="panel-title"><div><h3>Module Scan</h3><p>One glance for what is strong, what is slipping, and what wants the next session.</p></div></div><div class="module-scan-grid">${modules.map(mod=>`<article class="module-scan-card"><h4>${escapeHtml(mod.id)}</h4><div class="meta">${escapeHtml(mod.status)} · ${mod.sessions.length} session${mod.sessions.length===1?'':'s'}${mod.sessions.length ? ` · ${mod.avg}% accuracy` : ''}</div><div class="module-pill ${statusClass(mod.status)}">${escapeHtml(mod.topSkillEntry ? mod.topSkillEntry[0] : 'No top skill yet')}</div></article>`).join('')}</div></div></div>
+    <div class="panel" style="margin-top:16px;background:transparent;box-shadow:none;border:none"><div class="panel-inner" style="padding:0"><div class="panel-title"><div><h3>Recent Signals</h3><p>The latest evidence stays visible so staff do not have to dig through the whole log during a live session.</p></div></div><div class="detail-list">${(recent.length ? recent : [{module:'No logs yet',activity:'',date:'',notes:'Log one session and this section starts carrying real weight.'}]).map(s=>`<div class="detail-row"><h5>${escapeHtml(s.module)}${s.activity ? ` · ${escapeHtml(s.activity)}` : ''}</h5><p>${s.date ? `${formatDate(s.date)} · ${promptLabel(s.prompt)} · ${escapeHtml(s.setting || 'In App')}` : ''}</p>${s.notes ? `<p style="margin-top:10px">${escapeHtml(s.notes)}</p>` : ''}</div>`).join('')}</div></div></div>`;
 }
 function renderRadar(modules){
   const size = 320;
@@ -3138,7 +3311,7 @@ function renderObjectives(){
   const m = milestones(learner);
   milestonesEl.innerHTML = m.length ? `
     <div class="panel-title" style="margin-top:4px">
-      <div><h3>Milestones</h3><p>Clean markers that make progress feel real without turning the dashboard into a slot machine.</p></div>
+      <div><h3>Milestones</h3><p>Clean markers that make progress feel real without overwhelming the page.</p></div>
     </div>
     ${m.map(item=>`<div class="milestone-card"><div class="objective-title">${escapeHtml(item.title)}</div><div class="objective-meta">${escapeHtml(item.copy)}</div></div>`).join('')}
   ` : '';
@@ -3151,7 +3324,8 @@ function renderSessions(){
     return;
   }
   const sessions = filteredSessions(learner).slice().reverse();
-  list.innerHTML = sessions.length ? sessions.map(s=>`
+  const tip = `<div class="report-dock-note">Use Quick Log for the fast path, then come here when you need the full evidence trail.</div>`;
+  list.innerHTML = tip + (sessions.length ? sessions.map(s=>`
     <div class="session-card">
       <div class="session-top">
         <div>
@@ -3165,7 +3339,7 @@ function renderSessions(){
         ${s.skill ? `<span class="token">${escapeHtml(s.skill)}</span>` : ''}
       </div>
       ${s.notes ? `<div class="session-meta" style="margin-top:10px">${escapeHtml(s.notes)}</div>` : ''}
-    </div>`).join('') : '<div class="empty">No sessions match the current view. Clear the filters or log a new session.</div>';
+    </div>`).join('') : '<div class="empty">No sessions match the current view. Clear the filters or log a new session.</div>');
 }
 function renderReports(){
   const learner = selectedLearner();
@@ -3173,52 +3347,38 @@ function renderReports(){
   const output = $('#report-output');
   if(!learner){
     list.innerHTML = '<div class="empty">Select a learner to prepare a report.</div>';
-    output.textContent = 'Select a learner to generate a report.';
+    output.textContent = 'Select a learner to load a report.';
     return;
   }
-  const text = reportText(learner);
-  const modStats = moduleStats(learner);
-  const last = filteredSessions(learner).slice(-1)[0];
+  const templates = [
+    {id:'weekly', title:'Weekly Summary', copy:'Fast readable update for the current week or current filter view.'},
+    {id:'brief', title:'Supervisor Brief', copy:'Softer professional summary for supervisors, case notes, or quick program updates.'},
+    {id:'goals', title:'Goal Update', copy:'Shows what is met, what is active, and what still needs practice.'},
+    {id:'recap', title:'Session Recap', copy:'Pulls the latest session into a clean recap without extra typing.'}
+  ];
+  const current = currentReportTemplate();
   list.innerHTML = `
-    <div class="report-card">
-      <div class="objective-title">Quick Snapshot</div>
-      <div class="objective-meta">${escapeHtml(learner.displayName)} · ${learner.metrics.rank.title} · ${learner.metrics.readiness} readiness</div>
-      <div class="small-note" style="margin-top:10px">${escapeHtml(last ? `Last session: ${last.module} on ${formatDate(last.date)}` : 'No sessions logged yet.')}</div>
+    <div class="report-template-grid">
+      ${templates.map(t=>`<article class="report-template-card ${current===t.id?'active':''}"><h4>${escapeHtml(t.title)}</h4><p>${escapeHtml(t.copy)}</p><button class="btn slim ${current===t.id?'primary':'ghost'}" data-report-template="${t.id}">Load ${escapeHtml(t.title)}</button></article>`).join('')}
     </div>
-    <div class="report-card">
-      <div class="objective-title">Formal Summary</div>
-      <div class="objective-meta">${escapeHtml(improvementSummary(learner))}</div>
-    </div>
-    <div class="report-card">
-      <div class="objective-title">Module Breakdown</div>
-      <div class="objective-meta">${modStats.map(m=>`${m.id}: ${m.status}${m.sessions.length ? ` (${m.avg}% accuracy)` : ''}`).join(' · ')}</div>
-    </div>
-  `;
-  output.textContent = text;
+    <div class="report-dock-note">Use the quick buttons above to load the report you want, then copy, print, or export it.</div>`;
+  output.textContent = reportTemplateText(learner, current);
 }
 function renderSecurity(){
   const list = $('#security-list');
   const pinState = HUB.pin ? 'Active' : 'Not set';
   const autoLock = Number(HUB.autoLockMinutes || 0) ? `${HUB.autoLockMinutes} minutes` : 'Never';
+  const archivedCount = APP.learners.filter(l=>l.archived).length;
   const legacy = APP.importedPins.length ? `${APP.importedPins.length} legacy code${APP.importedPins.length===1?'':'s'} detected in module storage.` : 'No legacy module codes detected.';
   list.innerHTML = `
-    <div class="security-card">
-      <div class="objective-title">Access Code</div>
-      <div class="objective-meta">Status: ${pinState}${HUB.pinHint ? ` · Hint saved for staff` : ''}</div>
-    </div>
-    <div class="security-card">
-      <div class="objective-title">Auto-Lock</div>
-      <div class="objective-meta">${autoLock}. Mission Control can lock itself after inactivity on shared devices.</div>
-    </div>
-    <div class="security-card">
-      <div class="objective-title">Data Storage</div>
-      <div class="objective-meta">Learner data is stored locally on this device. Export reports only when you actually want them outside the app.</div>
-    </div>
-    <div class="security-card">
-      <div class="objective-title">Import Status</div>
-      <div class="objective-meta">${legacy} Refresh pulls the latest learner data from every LifeReady module saved in this browser.</div>
-    </div>
-  `;
+    <div class="security-grid">
+      <article class="security-card"><h4>Access Code</h4><div class="objective-meta">${pinState}${HUB.pinHint ? ` · hint saved for staff` : ''}</div></article>
+      <article class="security-card"><h4>Auto-Lock</h4><div class="objective-meta">${autoLock}. Shared devices can lock themselves after inactivity.</div></article>
+      <article class="security-card"><h4>Archive Bay</h4><div class="objective-meta">${archivedCount} learner${archivedCount===1?'':'s'} archived off the main roster.</div></article>
+      <article class="security-card"><h4>Local Storage</h4><div class="objective-meta">All Mission Control data is stored on this device unless you export it.</div></article>
+      <article class="security-card"><h4>Import Status</h4><div class="objective-meta">${legacy} Refresh checks every LifeReady module saved in this browser.</div></article>
+      <article class="security-card"><h4>Control Reminder</h4><div class="objective-meta">Use Archive for quiet storage. Use Delete only when you really mean to remove a learner from Mission Control on this device.</div></article>
+    </div>`;
 }
 
 function renderCommandDeck(){
@@ -3227,26 +3387,43 @@ function renderCommandDeck(){
   const learner = selectedLearner();
   if(!learner){
     el.innerHTML = `
-      <div class="eyebrow">Active Learner</div>
+      <div class="eyebrow">Active Learner Console</div>
       <div class="selected-learner-name">No Learner Selected</div>
-      <div class="selected-learner-meta">Pick someone from the roster to load their command deck, reports, session log, and objectives.</div>
-    `;
+      <div class="selected-learner-meta">Pick someone from the roster to load their snapshot, quick log, reports, goals, and profile from one console.</div>
+      <div class="quick-ops">
+        <button class="btn primary" id="empty-log-btn">Quick Log</button>
+        <button class="btn ghost" id="empty-add-btn">Add Learner</button>
+      </div>`;
+    $('#empty-log-btn')?.addEventListener('click', ()=>{ populateForms(); showOverlay('#session-overlay'); });
+    $('#empty-add-btn')?.addEventListener('click', ()=>{ resetLearnerForm(); showOverlay('#learner-overlay'); });
     return;
   }
-  const sessions = filteredSessions(learner);
-  const objectives = evaluateObjectives(learner);
-  const last = sessions[sessions.length - 1];
+  const snap = learnerSnapshot(learner);
+  const activeGoal = snap.objectiveData.items.find(obj=>!goalMet(learner,obj));
+  const last = snap.last;
   el.innerHTML = `
-    <div class="eyebrow">Active Learner</div>
+    <div class="eyebrow">Active Learner Console</div>
     <div class="selected-learner-name">${escapeHtml(learner.displayName)}</div>
-    <div class="selected-learner-meta">${escapeHtml(learner.program || learner.level || 'Profile ready')} · ${escapeHtml(learner.metrics.rank.title)} · ${learner.metrics.readiness} readiness${last ? ` · last log ${formatDate(last.date)}` : ''}</div>
-    <div class="selected-learner-tokens">
-      <span class="token">${sessions.length} session${sessions.length===1?'':'s'}</span>
-      <span class="token">${objectives.met} objective${objectives.met===1?'':'s'} met</span>
+    <div class="selected-learner-meta">${escapeHtml(learner.program || learner.level || 'Profile ready')} · ${escapeHtml(learner.metrics.rank.title)} · ${learner.metrics.readiness} readiness${last ? ` · last log ${formatDate(last.date)}` : ' · no logs yet'}</div>
+    <div class="console-tokens">
+      <span class="token">${snap.sessions.length} session${snap.sessions.length===1?'':'s'}</span>
+      <span class="token">${snap.objectiveData.met}/${snap.objectiveData.total || 0} goals met</span>
       <span class="token">${learner.metrics.acc}% accuracy</span>
       <span class="token">${learner.metrics.ind}% independence</span>
     </div>
-  `;
+    <div class="console-stat-grid">
+      <div class="console-stat"><span class="k">Strongest Module</span><span class="v">${escapeHtml(snap.strongest)}</span></div>
+      <div class="console-stat"><span class="k">Needs Support</span><span class="v">${escapeHtml(snap.weakest)}</span></div>
+      <div class="console-stat"><span class="k">Current Goal</span><span class="v">${escapeHtml(activeGoal ? (activeGoal.title || objectiveTemplateLabel(activeGoal)) : 'Add Goal')}</span></div>
+      <div class="console-stat"><span class="k">Latest Signal</span><span class="v">${escapeHtml(last ? `${last.module}` : 'No Log')}</span></div>
+    </div>
+    <div class="console-actions">
+      <button class="btn primary" data-panel-action="new-log" data-key="${escapeHtml(learner.key)}">📝 Quick Log</button>
+      <button class="btn ghost" data-panel="deck" data-key="${escapeHtml(learner.key)}">Snapshot</button>
+      <button class="btn ghost" data-panel="goals" data-key="${escapeHtml(learner.key)}">Goals</button>
+      <button class="btn ghost" data-panel="reports" data-key="${escapeHtml(learner.key)}">Report Dock</button>
+      <button class="btn ghost" data-panel="profile" data-key="${escapeHtml(learner.key)}">Profile</button>
+    </div>`;
 }
 function printBrief(){
   const learner = selectedLearner();
@@ -3278,7 +3455,7 @@ function toggleArchive(key = APP.selectedKey){
 function courtMartialLearner(key = APP.selectedKey){
   const learner = APP.learners.find(l=>l.key === key);
   if(!learner) return alert('Select a learner first.');
-  const ok = window.confirm(`Court-martial ${learner.displayName} from Mission Control on this device? This deletes their Mission Control card, notes, objectives, manual logs, and archived state.`);
+  const ok = window.confirm(`Delete ${learner.displayName} from Mission Control on this device? This removes their Mission Control card, notes, objectives, manual logs, and archived state.`);
   if(!ok) return;
   const dismissed = new Set(HUB.dismissedKeys || []);
   dismissed.add(key);
@@ -3291,10 +3468,10 @@ function courtMartialLearner(key = APP.selectedKey){
     APP.selectedKey = '';
     HUB.lastLearnerKey = '';
   }
-  saveHubState('Learner court-martialed');
+  saveHubState('Learner deleted');
   const indicator = $('#save-indicator');
   if(indicator){
-    indicator.textContent = 'COURT-MARTIAL COMPLETE · Learner deleted from Mission Control';
+    indicator.textContent = 'DELETE COMPLETE · Learner removed from Mission Control';
     setTimeout(()=>{ if(indicator) indicator.textContent = 'SYSTEM STABLE · Saved locally'; }, 1800);
   }
   renderAll();
@@ -3356,7 +3533,7 @@ function panelGoalsMarkup(learner){
       <button class="btn slim primary" data-panel-action="new-objective" data-key="${escapeHtml(learner.key)}">＋ Add Objective</button>
     </div>
     <div class="detail-list">
-      ${(items.length?items:[{title:'No objectives yet',empty:true,module:'',progress:0,copy:'Add an objective so Mission Control can track something concrete instead of vibes.'}]).map(obj=>{
+      ${(items.length?items:[{title:'No objectives yet',empty:true,module:'',progress:0,copy:'Add an objective so Mission Control can track something concrete instead of guesswork.'}]).map(obj=>{
         const title = obj.title || objectiveTemplateLabel(obj);
         const progress = obj.empty ? 0 : Math.round(goalProgress(learner,obj)*100);
         const met = !obj.empty && goalMet(learner,obj);
@@ -3373,7 +3550,7 @@ function panelLogMarkup(learner){
   const sessions = filteredSessions(learner).slice().reverse();
   return `
     <div class="overlay-toolbar">
-      <button class="btn slim primary" data-panel-action="new-log" data-key="${escapeHtml(learner.key)}">📝 Log Session</button>
+      <button class="btn slim primary" data-panel-action="new-log" data-key="${escapeHtml(learner.key)}">📝 Log Session Fast</button>
     </div>
     <div class="detail-list">
       ${(sessions.length?sessions:[{empty:true,module:'No sessions yet',activity:'',date:'',prompt:'',score:'',notes:'Log the first session here so reports stop staring back at you blankly.'}]).map(s=>`<div class="detail-row">
@@ -3387,7 +3564,7 @@ function panelReportsMarkup(learner){
   return `
     <div class="overlay-toolbar">
       <button class="btn slim primary" data-panel-action="copy-summary" data-key="${escapeHtml(learner.key)}">⧉ Copy Summary</button>
-      <button class="btn slim ghost" data-panel-action="download-report" data-key="${escapeHtml(learner.key)}">⬇ Download Report</button>
+      <button class="btn slim ghost" data-panel-action="download-report" data-key="${escapeHtml(learner.key)}">⬇ Export Report</button>
       <button class="btn slim ghost" data-panel-action="download-csv" data-key="${escapeHtml(learner.key)}">⬇ Export CSV</button>
       <button class="btn slim ghost" data-panel-action="print-brief" data-key="${escapeHtml(learner.key)}">🖨 Print Brief</button>
     </div>
@@ -3412,9 +3589,9 @@ function panelProfileMarkup(learner){
     </div>
     <div class="overlay-toolbar" style="margin-top:14px">
       <button class="btn slim ghost" data-panel-action="archive" data-key="${escapeHtml(learner.key)}">${learner.archived ? 'Restore to Roster' : 'Archive Learner'}</button>
-      <button class="btn slim danger" data-panel-action="court" data-key="${escapeHtml(learner.key)}">⚠ Court-Martial Learner</button>
+      <button class="btn slim danger" data-panel-action="court" data-key="${escapeHtml(learner.key)}">🗑 Delete Learner</button>
     </div>
-    <div class="archive-note">Archive keeps the learner off the main roster without deleting anything. Court-martial deletes this learner and Mission Control data on this device.</div>`;
+    <div class="archive-note">Archive keeps the learner off the main roster without deleting anything. Delete removes this learner and Mission Control data on this device.</div>`;
 }
 function renderCardPanelBody(type, learner){
   if(!learner) return '<div class="empty">Pick a learner from the roster first.</div>';
@@ -3430,7 +3607,7 @@ function openCardPanel(type, key = APP.selectedKey){
     HUB.lastLearnerKey = key;
   }
   const learner = selectedLearner();
-  const map = {deck:'Command Deck', goals:'Objectives', log:'Flight Log', reports:'Reports', profile:'Profile'};
+  const map = {deck:'Snapshot', goals:'Goals', log:'Flight Log', reports:'Report Dock', profile:'Profile'};
   APP.activePanel = type;
   $('#card-panel-eyebrow').textContent = learner ? `${learner.metrics.rank.title} · ${learner.metrics.readiness} readiness` : 'Command Panel';
   $('#card-panel-title').textContent = learner ? `${learner.displayName} // ${map[type] || 'Panel'}` : (map[type] || 'Panel');
@@ -3445,7 +3622,7 @@ function refreshOpenCardPanel(){
   const type = APP.activePanel || 'deck';
   const learner = selectedLearner();
   $('#card-panel-eyebrow').textContent = learner ? `${learner.metrics.rank.title} · ${learner.metrics.readiness} readiness` : 'Command Panel';
-  $('#card-panel-title').textContent = learner ? `${learner.displayName} // ${({deck:'Command Deck', goals:'Objectives', log:'Flight Log', reports:'Reports', profile:'Profile'})[type]}` : 'Command Panel';
+  $('#card-panel-title').textContent = learner ? `${learner.displayName} // ${({deck:'Snapshot', goals:'Goals', log:'Flight Log', reports:'Report Dock', profile:'Profile'})[type]}` : 'Command Panel';
   $('#card-panel-body').innerHTML = renderCardPanelBody(type, learner);
 }
 
@@ -3487,6 +3664,7 @@ function populateForms(){
   syncSelectOptions();
   syncModuleOptions();
   $('#session-date').value = TODAY;
+  const learner = APP.selectedKey ? APP.learners.find(l=>l.key === APP.selectedKey) : null;
   if(APP.selectedKey){
     $('#session-learner').value = APP.selectedKey;
     $('#objective-learner').value = APP.selectedKey;
@@ -3494,6 +3672,21 @@ function populateForms(){
   if(APP.selectedModule && APP.selectedModule !== 'All Modules'){
     $('#session-module').value = APP.selectedModule;
     $('#objective-module').value = APP.selectedModule;
+  }
+  const last = learner ? filteredSessions(learner).slice(-1)[0] : null;
+  if(last){
+    $('#session-module').value = last.module || $('#session-module').value;
+    $('#session-activity').value = last.activity || '';
+    $('#session-prompt').value = normalizePrompt(last.prompt || 'independent');
+    $('#session-setting').value = last.setting || 'In App';
+    $('#session-staff').value = last.staff || HUB.lastStaff || '';
+    $('#session-smartline').textContent = `Prefilled from the latest log: ${last.module || 'Module'} · ${last.activity || 'Session'} · ${promptLabel(last.prompt)} · ${last.setting || 'In App'}.`;
+  }else{
+    $('#session-activity').value = APP.selectedModule && APP.selectedModule !== 'All Modules' ? 'Daily Challenge' : '';
+    $('#session-prompt').value = 'independent';
+    $('#session-setting').value = 'In App';
+    $('#session-staff').value = HUB.lastStaff || '';
+    $('#session-smartline').textContent = 'Mission Control will prefill the last module, setting, support level, and staff initials when it can.';
   }
 }
 function resetLearnerForm(){
@@ -3556,6 +3749,7 @@ function addSession(){
     manualSessions:[]
   });
   profile.manualSessions = profile.manualSessions || [];
+  HUB.lastStaff = $('#session-staff').value.trim().toUpperCase();
   profile.manualSessions.push({
     id: `manual-${Date.now()}`,
     module: $('#session-module').value,
@@ -3570,7 +3764,7 @@ function addSession(){
   });
   APP.selectedKey = key;
   HUB.lastLearnerKey = key;
-  saveHubState('Session logged');
+  saveHubState('Quick log saved');
   hideOverlay('#session-overlay');
   renderAll();
 }
@@ -3624,7 +3818,7 @@ function addObjective(){
 function copySummary(){
   const learner = selectedLearner();
   if(!learner) return alert('Select a learner first.');
-  const text = reportText(learner);
+  const text = reportTemplateText(learner, currentReportTemplate());
   const done = ()=>{
     const el = $('#save-indicator');
     if(el) el.textContent = 'SYSTEM STABLE · Summary copied';
@@ -3641,7 +3835,7 @@ function copySummary(){
 function downloadReport(){
   const learner = selectedLearner();
   if(!learner) return alert('Select a learner first.');
-  const text = reportText(learner);
+  const text = reportTemplateText(learner, currentReportTemplate());
   downloadFile(`${slugify(learner.displayName)}-mission-control-report.txt`, text, 'text/plain');
 }
 function downloadCSV(){
@@ -3658,6 +3852,28 @@ document.addEventListener('click', e=>{
   const jump = e.target.closest('[data-jump]');
   if(jump){
     showView(jump.dataset.jump);
+  }
+  const reportTemplateBtn = e.target.closest('[data-report-template]');
+  if(reportTemplateBtn){
+    APP.reportTemplate = reportTemplateBtn.dataset.reportTemplate || 'weekly';
+    renderReports();
+  }
+  const heroAction = e.target.closest('[data-hero-action]');
+  if(heroAction){
+    switch(heroAction.dataset.heroAction){
+      case 'log': populateForms(); showOverlay('#session-overlay'); break;
+      case 'goal': populateForms(); showOverlay('#objective-overlay'); break;
+      case 'summary': copySummary(); break;
+      case 'print': printBrief(); break;
+    }
+  }
+  const noteChip = e.target.closest('[data-note-chip]');
+  if(noteChip){
+    const note = $('#session-note');
+    const label = noteChip.dataset.noteChip || '';
+    const items = note.value.trim() ? note.value.split(/\s*•\s*/).filter(Boolean) : [];
+    if(label && !items.includes(label)) items.push(label);
+    note.value = items.join(' • ');
   }
   const panelAction = e.target.closest('[data-panel-action]');
   if(panelAction){

@@ -352,7 +352,14 @@
       };
       window.updateHomeUI.__lrPatched = true;
     }
-    window.openNamePrompt = function(){ location.href = controlUrl(); };
+    window.openNamePrompt = function(){
+      const cfg = getModuleCFG();
+      if (cfg) {
+        cfg.playerNamePrompted = true;
+        try { if (typeof window.saveAll === 'function') window.saveAll(); } catch(_e){}
+      }
+      closeNameModalIfNeeded();
+    };
     window.clearName = function(){
       update(cfg => {
         cfg.profile.displayName = '';

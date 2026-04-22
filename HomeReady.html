@@ -2538,7 +2538,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <button class="sopt" onclick="filterScores('Food Safety',this)">Food</button>
 <button class="sopt" onclick="filterScores('Renting',this)">Renting</button>
 <button class="sopt" onclick="filterScores('Daily',this)">Daily</button>
-<button class="sopt" onclick="filterScores('Home Panel Drill',this)">Home Panel Drill</button>
+<button class="sopt" onclick="filterScores('Change Drill',this)">Change Drill</button>
 <button class="sopt" onclick="filterScores('Money ID Quiz',this)">Quiz</button>
 <button class="sopt" onclick="filterScores('Do I Have Enough',this)">Enough?</button>
 </div>
@@ -2645,11 +2645,11 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 </div>
 <div class="ss">
-<div class="st">ACTIVE LEARNER</div>
+<div class="st">PLAYER NAME (OPTIONAL)</div>
 <div class="sr">
 <div class="si">👤</div>
-<div class="sinfo"><div class="sn" id="name-setting-display">Managed from Control Panel</div><div class="sd2">Appears on your results card. Personal devices only.</div></div>
-<button class="cbt" id="name-setting-btn" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem">Home Panel</button>
+<div class="sinfo"><div class="sn" id="name-setting-display">No name set</div><div class="sd2">Appears on your results card. Personal devices only.</div></div>
+<button class="cbt" id="name-setting-btn" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem">Set Name</button>
 </div>
 </div>
 <div style="text-align:center;padding:12px 0 4px">
@@ -2798,7 +2798,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 <div class="gcard">
 <div class="gstep"><div class="gnum">📅</div><div><strong>Due Date</strong> - Pay before this date to avoid late fees. Set a phone reminder.</div></div>
-<div class="gstep"><div class="gnum">💰</div><div><strong>Amount Due</strong> - How much you owe this month. Home Panels based on usage.</div></div>
+<div class="gstep"><div class="gnum">💰</div><div><strong>Amount Due</strong> - How much you owe this month. Changes based on usage.</div></div>
 <div class="gstep"><div class="gnum">📆</div><div><strong>Service Period</strong> - The dates this bill covers. Usually about 30 days.</div></div>
 <div class="gstep"><div class="gnum" style="background:var(--red)">#</div><div><strong>Past Due</strong> - You missed a previous payment. Pay immediately to avoid disconnection.</div></div>
 </div>
@@ -3167,7 +3167,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div style="font-size:2rem;margin-bottom:6px">🔒</div>
 <div class="mt" id="pin-title" style="text-align:center;justify-content:center">MISSION CONTROL ACCESS</div>
 <div id="pin-subtitle" style="font-size:.82rem;color:var(--text2);margin-bottom:16px;line-height:1.5">Enter your PIN to access Mission Control.</div>
-<input autocapitalize="none" autocomplete="off" autocorrect="off" class="fi" id="pin-input" oninput="pinInputHome Panel()" onkeydown="if(event.key==='Enter')handlePinSubmit()" placeholder="Enter PIN" spellcheck="false" style="text-align:center;font-size:1.3rem;letter-spacing:4px;font-family:var(--font-mono);margin-bottom:10px" type="password"/>
+<input autocapitalize="none" autocomplete="off" autocorrect="off" class="fi" id="pin-input" oninput="pinInputChange()" onkeydown="if(event.key==='Enter')handlePinSubmit()" placeholder="Enter PIN" spellcheck="false" style="text-align:center;font-size:1.3rem;letter-spacing:4px;font-family:var(--font-mono);margin-bottom:10px" type="password"/>
 <div id="pin-error" style="color:var(--red);font-size:.78rem;font-weight:700;margin-bottom:10px;min-height:18px;font-family:var(--font-mono)"></div>
 <button class="dbtn" onclick="handlePinSubmit()" style="margin-bottom:8px">Submit →</button>
 <button class="rsec" onclick="closeM('m-pin');go('home')" style="font-size:.8rem">Cancel</button>
@@ -3212,7 +3212,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="mow" id="m-quick-settings">
 <div class="mdl" style="max-width:340px">
 <div class="mt">⚙️ QUICK SETTINGS</div>
-<p style="font-size:.78rem;color:var(--text2);margin-bottom:14px">Home Panels apply instantly. Your session continues.</p>
+<p style="font-size:.78rem;color:var(--text2);margin-bottom:14px">Changes apply instantly. Your session continues.</p>
 <div class="sr" style="margin-bottom:8px"><div class="si">🔊</div><div class="sinfo"><div class="sn">Audio</div><div class="sd2">Spoken instructions &amp; sounds</div></div><div class="tog" id="qs-tog-audio" onclick="qsToggle('audio','qs-tog-audio')"></div></div>
 <div class="sr" style="margin-bottom:8px"><div class="si">T</div><div class="sinfo"><div class="sn">Large Text</div><div class="sd2">Bigger text &amp; buttons</div></div><div class="tog" id="qs-tog-lt" onclick="qsToggle('largetext','qs-tog-lt')"></div></div>
 <div class="sr" style="margin-bottom:8px"><div class="si">👁</div><div class="sinfo"><div class="sn">Colorblind Mode</div><div class="sd2">Orange/blue instead of red/green</div></div><div class="tog" id="qs-tog-cb" onclick="qsToggle('colorblind','qs-tog-cb')"></div></div>
@@ -3547,7 +3547,7 @@ function go(id){
     renderScores();
   }
   if(id==='quiz')   startQuiz();
-  if(id==='changedrill') startHome PanelDrill();
+  if(id==='changedrill') startChangeDrill();
   if(id==='billdrill') startBillDrill();
   if(id==='demo')   startDemo();
   // settled_in: track guide visits
@@ -3697,7 +3697,7 @@ function say(txt){
   u.rate=speechRate; u.pitch=1.05; u.volume=0.95;
   window.speechSynthesis.speak(u);
 }
-function speakAfterScreenHome Panel(txt, delay=420){
+function speakAfterScreenChange(txt, delay=420){
   if(!CFG.audio||!window.speechSynthesis) return;
   clearTimeout(window._screenSpeechTimer);
   window._screenSpeechTimer=setTimeout(()=>{
@@ -5338,7 +5338,7 @@ function editClient(i){
   resetClientModal();
   window._editingClientIndex=i;
   if($('client-modal-title')) $('client-modal-title').textContent='✏ EDIT LEARNER';
-  if($('client-save-btn')){ $('client-save-btn').textContent='Save Home Panels'; $('client-save-btn').onclick=saveClient; }
+  if($('client-save-btn')){ $('client-save-btn').textContent='Save Changes'; $('client-save-btn').onclick=saveClient; }
   if($('nc-name')) $('nc-name').value = cl.name || cl.initials || '';
   if($('nc-fullname')) $('nc-fullname').value = cl.fullName || '';
   if($('nc-program')) $('nc-program').value = cl.program || '';
@@ -5466,7 +5466,7 @@ function openClientModal(i=null){
   const saveBtn=$('client-save-btn');
   if(title) title.textContent = isEdit ? 'EDIT LEARNER' : '+ ADD NEW LEARNER';
   if(saveBtn){
-    saveBtn.textContent = isEdit ? 'Save Home Panels' : 'Add Learner';
+    saveBtn.textContent = isEdit ? 'Save Changes' : 'Add Learner';
     saveBtn.onclick = saveClient;
   }
   $('nc-name').value = cl?.name || '';
@@ -5869,8 +5869,8 @@ sub.textContent='Build daily living and home skills.';
 // Update settings name display
 const nd=$('name-setting-display');
 const nb2=$('name-setting-btn');
-if(nd) nd.textContent=CFG.playerName?`Name: ${CFG.playerName}`:'Managed from Control Panel';
-if(nb2) nb2.textContent=CFG.playerName?'Home Panel':'Home Panel';
+if(nd) nd.textContent=CFG.playerName?`Name: ${CFG.playerName}`:'No name set';
+if(nb2) nb2.textContent=CFG.playerName?'Change':'Set Name';
 const cb=$('clear-name-btn');
 if(cb) cb.style.display=CFG.playerName?'block':'none';
 // Today's progress card
@@ -6169,7 +6169,7 @@ openHint('Reset PIN?',
 ()=>{closeM('m-hint');CFG.coachPin=null;CFG.coachWelcomeSeen=false;saveAll();openPinSetup();}
 );
 }
-function pinInputHome Panel(){$('pin-error').textContent='';}
+function pinInputChange(){$('pin-error').textContent='';}
 function handlePinSubmit(){
 const inp=$('pin-input');
 if(!inp)return;
@@ -6287,7 +6287,7 @@ const CD_QS=[
 {price:625,paid:700},{price:199,paid:200},{price:349,paid:400},
 ];
 let CD={qs:[],idx:0,score:0,streak:0,answered:false};
-function startHome PanelDrill(){go("home");}
+function startChangeDrill(){go("home");}
 function buildCDDots(){
 const c=(($('cd-dots')||document.createElement('div'))||{});if(!c)return;c.innerHTML='';
 for(let i=0;i<CD.qs.length;i++){const d=document.createElement('div');d.className='pd'+(i===0?' cur':'');d.id='cdd'+i;c.appendChild(d);}
@@ -6341,14 +6341,14 @@ if(CD.idx>=CD.qs.length){
 const pct=Math.round(CD.score/CD.qs.length*100);
 const grade=pct===100?'A+':pct>=90?'A':pct>=80?'B':pct>=60?'C':'D';
 const gc=pct>=80?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
-SCORES.unshift({mode:'Home Panel Drill',score:CD.score*10,correct:CD.score,total:CD.qs.length,streak:0,date:today()});
+SCORES.unshift({mode:'Change Drill',score:CD.score*10,correct:CD.score,total:CD.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('change_drill_ace');
 if(!CFG.nomotion&&pct>=80)confetti();
 say(`Done! You got ${CD.score} out of ${CD.qs.length}!`);
 updateHomeUI();
 (($('cd-dots')||document.createElement('div'))||{}).innerHTML='';
-(($('cd-content')||document.createElement('div'))||{}).innerHTML=`<div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"><div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${grade}</div><div style="font-family:var(--font-mono);font-size:.9rem;color:var(--green);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div><div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${CD.score} of ${CD.qs.length}</strong> correct · ${pct}%</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:0 0 18px;text-align:left">${pct===100?'Flawless! You\'re a change-making machine.':pct>=80?'Strong work! Enable Count-Up Guide in Settings to see the counting method.':'Try enabling Count-Up Guide in Settings - it shows you how to count forward instead of subtract.'}</div><button class="dbtn" onclick="startHome PanelDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button><button class="rsec" onclick="go('home')" style="width:100%">← HOME</button></div>`;
+(($('cd-content')||document.createElement('div'))||{}).innerHTML=`<div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"><div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${grade}</div><div style="font-family:var(--font-mono);font-size:.9rem;color:var(--green);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div><div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${CD.score} of ${CD.qs.length}</strong> correct · ${pct}%</div><div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:0 0 18px;text-align:left">${pct===100?'Flawless! You\'re a change-making machine.':pct>=80?'Strong work! Enable Count-Up Guide in Settings to see the counting method.':'Try enabling Count-Up Guide in Settings - it shows you how to count forward instead of subtract.'}</div><button class="dbtn" onclick="startChangeDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button><button class="rsec" onclick="go('home')" style="width:100%">← HOME</button></div>`;
 return;
 }
 renderCD();
@@ -8346,7 +8346,7 @@ function finishUnsafeChoice(){ const total=UNSAFECHOICE.cases.length||1; const p
       quiz:{title:'Money Quiz', patch:'Money Spotter', icon:'💵', aliases:['money quiz','money id quiz','quiz']},
       coindrill:{title:'Coin Drill', patch:'Coin Counter', icon:'🪙', aliases:['coin drill','coins drill','coin']},
       billdrill:{title:'Bill Drill', patch:'Bill Builder', icon:'💲', aliases:['bill drill','bills drill','bill']},
-      change:{title:'Home Panel Drill', patch:'Home Panel Jockey', icon:'🔄', aliases:['change drill','change']},
+      change:{title:'Change Drill', patch:'Change Jockey', icon:'🔄', aliases:['change drill','change']},
       mini_store_interface:{title:'Mini Store Interface', patch:'Mini Mart Pilot', icon:'🛍️', aliases:['mini store interface','mini store']},
       exactpay:{title:'Exact Pay', patch:'Exact Pay Ace', icon:'💳', aliases:['exact pay','exactpay']},
       receiptdecoder:{title:'Receipt Decoder', patch:'Receipt Reader', icon:'🧾', aliases:['receipt decoder','receiptdecoder']},
@@ -9061,137 +9061,5 @@ function finishUnsafeChoice(){ const total=UNSAFECHOICE.cases.length||1; const p
 
 </script>
 
-
-
-<script>
-(function(){
-  const PROFILE_KEY='lr_global_profile';
-  const PREF_KEY='lr_global_prefs';
-  const CFG_KEYS=['cr_cfg','tr_cfg','jr_cfg','hr_cfg','tr5_cfg','sr_cfg','tc_cfg','hlr_cfg'];
-  function readJSON(key, fallback){ try{ const raw=localStorage.getItem(key); return raw?JSON.parse(raw):fallback; }catch(_){ return fallback; } }
-  function writeJSON(key, value){ try{ localStorage.setItem(key, JSON.stringify(value)); }catch(_){ } }
-  function defaultPrefs(){ return {audio:true,lightmode:false,hicontrast:false,largetext:false,largebtns:false,nomotion:false,breaks:false,colorblindMode:'none'}; }
-  function normalizePrefs(value){
-    const base=defaultPrefs();
-    const raw=(value&&typeof value==='object')?value:{};
-    let mode=typeof raw.colorblindMode==='string'?raw.colorblindMode:'none';
-    if(mode!=='none' && mode!=='protanopia' && mode!=='deuteranopia' && mode!=='tritanopia') mode='none';
-    return {
-      audio: raw.audio!==undefined ? !!raw.audio : base.audio,
-      lightmode: raw.lightmode!==undefined ? !!raw.lightmode : base.lightmode,
-      hicontrast: raw.hicontrast!==undefined ? !!raw.hicontrast : base.hicontrast,
-      largetext: raw.largetext!==undefined ? !!raw.largetext : base.largetext,
-      largebtns: raw.largebtns!==undefined ? !!raw.largebtns : base.largebtns,
-      nomotion: raw.nomotion!==undefined ? !!raw.nomotion : base.nomotion,
-      breaks: raw.breaks!==undefined ? !!raw.breaks : base.breaks,
-      colorblindMode: mode
-    };
-  }
-  function readProfile(){
-    const saved = readJSON(PROFILE_KEY, null);
-    if(saved && typeof saved.name==='string') return {name:saved.name.trim()};
-    if(typeof CFG==='object' && CFG && typeof CFG.playerName==='string' && CFG.playerName.trim()){
-      const profile={name:CFG.playerName.trim()};
-      writeJSON(PROFILE_KEY, profile);
-      return profile;
-    }
-    for(const key of CFG_KEYS){
-      const cfg = readJSON(key, null);
-      if(cfg && typeof cfg.playerName==='string' && cfg.playerName.trim()){
-        const profile={name:cfg.playerName.trim()};
-        writeJSON(PROFILE_KEY, profile);
-        return profile;
-      }
-    }
-    return {name:''};
-  }
-  function syncLearner(){
-    const profile = readProfile();
-    if(typeof CFG==='object' && CFG){
-      CFG.playerName = profile.name || null;
-      CFG.playerNamePrompted = true;
-      try{ if(typeof saveAll==='function') saveAll(); }catch(_){ }
-    }
-    try{ if(typeof updateHomeUI==='function') updateHomeUI(); }catch(_){ }
-  }
-  function syncPrefsIntoCFG(){
-    let prefs = readJSON(PREF_KEY, null);
-    if((!prefs || typeof prefs!=='object') && typeof CFG==='object' && CFG){
-      prefs = normalizePrefs({
-        audio:CFG.audio, lightmode:CFG.lightmode, hicontrast:CFG.hicontrast,
-        largetext:CFG.largetext, largebtns:CFG.largebtns, nomotion:CFG.nomotion,
-        breaks:CFG.breaks, colorblindMode:CFG.colorblindMode || (CFG.colorblind ? 'protanopia' : 'none')
-      });
-      writeJSON(PREF_KEY, prefs);
-    } else {
-      prefs = normalizePrefs(prefs);
-    }
-    if(typeof CFG==='object' && CFG){
-      CFG.audio = !!prefs.audio;
-      CFG.lightmode = !!prefs.lightmode;
-      CFG.hicontrast = !!prefs.hicontrast;
-      CFG.largetext = !!prefs.largetext;
-      CFG.largebtns = !!prefs.largebtns;
-      CFG.nomotion = !!prefs.nomotion;
-      CFG.breaks = !!prefs.breaks;
-      CFG.colorblindMode = prefs.colorblindMode || 'none';
-      CFG.colorblind = CFG.colorblindMode !== 'none';
-      try{ if(typeof applyCfg==='function') applyCfg(); }catch(_){ }
-      try{ if(typeof applySettings==='function') applySettings(); }catch(_){ }
-      try{ if(typeof saveAll==='function') saveAll(); }catch(_){ }
-    }
-  }
-  function persistPrefsFromCFG(){
-    if(typeof CFG!=='object' || !CFG) return;
-    const prefs = normalizePrefs({
-      audio: !!CFG.audio,
-      lightmode: !!CFG.lightmode,
-      hicontrast: !!CFG.hicontrast,
-      largetext: !!CFG.largetext,
-      largebtns: !!CFG.largebtns,
-      nomotion: !!CFG.nomotion,
-      breaks: !!CFG.breaks,
-      colorblindMode: (typeof CFG.colorblindMode==='string' ? CFG.colorblindMode : (CFG.colorblind ? 'protanopia' : 'none'))
-    });
-    writeJSON(PREF_KEY, prefs);
-  }
-  function hideNameTools(){
-    document.querySelectorAll('.ss').forEach(sec=>{
-      const head = sec.querySelector('.st');
-      if(head && /(PLAYER NAME|ACTIVE LEARNER)/i.test((head.textContent||'').trim())) sec.style.display='none';
-    });
-    const modal=document.getElementById('m-name');
-    if(modal) modal.style.display='none';
-    window.openNamePrompt = function(){ window.location.href='index.html#control-panel'; };
-    window.saveName = function(){ window.location.href='index.html#control-panel'; };
-    window.skipName = function(){
-      if(typeof CFG==='object' && CFG){ CFG.playerNamePrompted=true; try{ if(typeof saveAll==='function') saveAll(); }catch(_){ } }
-      try{ if(document.getElementById('m-name')) document.getElementById('m-name').style.display='none'; }catch(_){ }
-    };
-    window.clearName = function(){ window.location.href='index.html#control-panel'; };
-  }
-  function wrapSettingFns(){
-    ['togSet','qsToggle'].forEach(name=>{
-      const prev=window[name];
-      if(typeof prev==='function' && !prev.__lrWrapped){
-        const wrapped=function(){ const out=prev.apply(this, arguments); setTimeout(persistPrefsFromCFG, 0); return out; };
-        wrapped.__lrWrapped=true;
-        window[name]=wrapped;
-      }
-    });
-    const prevCB=window.setColorblindMode;
-    if(typeof prevCB==='function' && !prevCB.__lrWrapped){
-      const wrappedCB=function(){ const out=prevCB.apply(this, arguments); setTimeout(persistPrefsFromCFG, 0); return out; };
-      wrappedCB.__lrWrapped=true;
-      window.setColorblindMode=wrappedCB;
-    }
-  }
-  function run(){ hideNameTools(); syncLearner(); syncPrefsIntoCFG(); wrapSettingFns(); }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
-  window.addEventListener('pageshow', run);
-  setTimeout(run, 0);
-})();
-</script>
-
-
 </body>
+</html>

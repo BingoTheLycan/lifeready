@@ -2336,7 +2336,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="mc-icon">🧾</div>
 <div class="mc-body">
 <div class="mc-name">RECEIPT DECODER</div>
-<div class="mc-desc">Read subtotal · Tax · Discounts · Change back</div>
+<div class="mc-desc">Read subtotal · Tax · Discounts · Home Panel back</div>
 </div>
 <div class="mc-arr">›</div>
 </div>
@@ -2371,7 +2371,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="hb" onclick="go('dihe')"><div class="hi">🛒</div><div class="hl">Have Enough?</div><div class="hc">Can I afford it?</div></div>
 <div class="hb" onclick="go('coindrill')"><div class="hi">🪙</div><div class="hl">Coin Drill</div><div class="hc">Recognize coins</div></div>
 <div class="hb" onclick="go('billdrill')"><div class="hi">💵</div><div class="hl">Bill Drill</div><div class="hc">Recognize bills</div></div>
-<div class="hb" onclick="go('changedrill')"><div class="hi">🔄</div><div class="hl">Change Drill</div><div class="hc">Quick change practice</div></div>
+<div class="hb" onclick="go('changedrill')"><div class="hi">🔄</div><div class="hl">Home Panel Drill</div><div class="hc">Quick change practice</div></div>
 <div class="hb" onclick="go('guide')"><div class="hi">❓</div><div class="hl">How To Play</div><div class="hc">Learn the basics</div></div>
 </div></div></div></div></div></div></section><section class="lr-deck lr-deck-command"><div class="lr-deck-head"><div class="lr-deck-kicker">COMMAND DECK</div><div class="lr-deck-main">STATUS + SYSTEM</div><div class="lr-deck-copy">Scores, badges, settings, accessibility, and module info are grouped together.</div></div><div class="lr-deck-body"><div class="lr-split"><div class="lr-subdeck"><div class="lr-subdeck-kicker">PROGRESS LOG</div><div class="lr-subdeck-main">SCORES + BADGES</div><div class="lr-subdeck-body"><div class="lr-group-body"><div class="hgrid">
 <div class="hb" onclick="go('scores')"><div class="hi">🏆</div><div class="hl">Scores</div><div class="hc">Your best shifts</div></div>
@@ -2560,7 +2560,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <!-- ══════════ MAKING CHANGE DRILL ══════════ -->
 <div class="scr" id="scr-changedrill">
 <div class="gtop">
-<button class="back" onclick="confirmChangeDrillExit()">‹ BACK</button>
+<button class="back" onclick="confirmHome PanelDrillExit()">‹ BACK</button>
 <div class="gmode">🔄 MAKING CHANGE DRILL</div>
 <div class="gscore">
 <div class="sbox"><div class="sv" id="chd-score">0</div><div class="sl">SCORE</div></div>
@@ -2725,7 +2725,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <button class="sopt" onclick="filterScores('shift',this)">Shift</button>
 <button class="sopt" onclick="filterScores('starter',this)">Starter</button>
 <button class="sopt" onclick="filterScores('daily',this)">Daily</button>
-<button class="sopt" onclick="filterScores('Change Drill',this)">Change Drill</button>
+<button class="sopt" onclick="filterScores('Home Panel Drill',this)">Home Panel Drill</button>
 <button class="sopt" onclick="filterScores('Money ID Quiz',this)">Quiz</button>
 <button class="sopt" onclick="filterScores('Do I Have Enough',this)">Enough?</button>
 </div>
@@ -2859,11 +2859,11 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 </div>
 <div class="ss">
-<div class="st">PLAYER NAME (OPTIONAL)</div>
+<div class="st">ACTIVE LEARNER</div>
 <div class="sr">
 <div class="si">👤</div>
-<div class="sinfo"><div class="sn" id="name-setting-display">No name set</div><div class="sd2">Appears on your results card. Personal devices only.</div></div>
-<button class="cbt" id="name-setting-btn" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem">Set Name</button>
+<div class="sinfo"><div class="sn" id="name-setting-display">Managed from Control Panel</div><div class="sd2">Appears on your results card. Personal devices only.</div></div>
+<button class="cbt" id="name-setting-btn" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem">Home Panel</button>
 </div>
 </div>
 <div style="text-align:center;padding:12px 0 4px">
@@ -3165,9 +3165,9 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="fg"><label class="fl">Client</label><select class="fsel" id="log-cl"></select></div>
 <div class="fg"><label class="fl">Module Practiced</label>
 <select class="fsel" id="log-mod">
-<option>Making Change - Starter</option>
-<option>Making Change - Practice</option>
-<option>Making Change - Shift</option>
+<option>Making Home Panel - Starter</option>
+<option>Making Home Panel - Practice</option>
+<option>Making Home Panel - Shift</option>
 <option>Daily Challenge</option>
 <option>Do I Have Enough?</option>
 <option>Mini Store Interface</option>
@@ -3214,7 +3214,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="fg"><label class="fl">Client</label><select class="fsel" id="goal-cl"></select></div>
 <div class="fg"><label class="fl">Skill Area</label>
 <select class="fsel" id="goal-skill">
-<option value="change">Making Change</option>
+<option value="change">Making Home Panel</option>
 <option value="coins">Coin Identification</option>
 <option value="bills">Bill Identification</option>
 <option value="cashier">Cashier Skills</option>
@@ -3274,7 +3274,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div style="font-size:2rem;margin-bottom:6px">🔒</div>
 <div class="mt" id="pin-title" style="text-align:center;justify-content:center">MISSION CONTROL ACCESS</div>
 <div id="pin-subtitle" style="font-size:.82rem;color:var(--text2);margin-bottom:16px;line-height:1.5">Enter your PIN to access Mission Control.</div>
-<input autocapitalize="none" autocomplete="off" autocorrect="off" class="fi" id="pin-input" oninput="pinInputChange()" onkeydown="if(event.key==='Enter')handlePinSubmit()" placeholder="Enter PIN" spellcheck="false" style="text-align:center;font-size:1.3rem;letter-spacing:4px;font-family:var(--font-mono);margin-bottom:10px" type="password"/>
+<input autocapitalize="none" autocomplete="off" autocorrect="off" class="fi" id="pin-input" oninput="pinInputHome Panel()" onkeydown="if(event.key==='Enter')handlePinSubmit()" placeholder="Enter PIN" spellcheck="false" style="text-align:center;font-size:1.3rem;letter-spacing:4px;font-family:var(--font-mono);margin-bottom:10px" type="password"/>
 <div id="pin-error" style="color:var(--red);font-size:.78rem;font-weight:700;margin-bottom:10px;min-height:18px;font-family:var(--font-mono)"></div>
 <button class="dbtn" onclick="handlePinSubmit()" style="margin-bottom:8px">Submit →</button>
 <button class="rsec" onclick="closeM('m-pin');go('home')" style="font-size:.8rem">Cancel</button>
@@ -3319,7 +3319,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="mow" id="m-quick-settings">
 <div class="mdl" style="max-width:340px">
 <div class="mt">⚙️ QUICK SETTINGS</div>
-<p style="font-size:.78rem;color:var(--text2);margin-bottom:14px">Changes apply instantly. Your shift continues.</p>
+<p style="font-size:.78rem;color:var(--text2);margin-bottom:14px">Home Panels apply instantly. Your shift continues.</p>
 <div class="sr" style="margin-bottom:8px"><div class="si">🔊</div><div class="sinfo"><div class="sn">Audio</div><div class="sd2">Spoken instructions &amp; sounds</div></div><div class="tog" id="qs-tog-audio" onclick="qsToggle('audio','qs-tog-audio')"></div></div>
 <div class="sr" style="margin-bottom:8px"><div class="si">T</div><div class="sinfo"><div class="sn">Large Text</div><div class="sd2">Bigger text &amp; buttons</div></div><div class="tog" id="qs-tog-lt" onclick="qsToggle('largetext','qs-tog-lt')"></div></div>
 <div class="sr" style="margin-bottom:8px"><div class="si">👁</div><div class="sinfo"><div class="sn">Colorblind Mode</div><div class="sd2">Orange/blue instead of red/green</div></div><div class="tog" id="qs-tog-cb" onclick="qsToggle('colorblind','qs-tog-cb')"></div></div>
@@ -3405,7 +3405,7 @@ const BADGES_DEF=[
   {id:'enough_pro',   icon:'🛒', name:'Smart Shopper',    desc:'Score 8/8 on Do I Have Enough?',            cat:'challenge',   howTo:'Answer all 8 questions correctly in Do I Have Enough?.'},
   {id:'graduate',     icon:'🎓', name:'Graduate',         desc:'Complete all game modes at least once',      cat:'challenge',   howTo:'Play Starter, Practice, Shift, Daily Challenge, Do I Have Enough?, and the Money ID Quiz.'},
   {id:'self_starter', icon:'💪', name:'Self Starter',     desc:'Complete 3 shifts in a row without hints',  cat:'challenge',   howTo:'Finish 3 consecutive shifts without using the Hint button.'},
-  {id:'change_drill_ace',icon:'🔄',name:'Drill Master',   desc:'Score 100% on the Making Change Drill',     cat:'challenge',   howTo:'Get every answer right in one Making Change Drill session.'},
+  {id:'change_drill_ace',icon:'🔄',name:'Drill Master',   desc:'Score 100% on the Making Home Panel Drill',     cat:'challenge',   howTo:'Get every answer right in one Making Home Panel Drill session.'},
   {id:'bill_ace',        icon:'💵',name:'Bill Expert',    desc:'Score 100% on the Bill Recognition Drill',  cat:'challenge',   howTo:'Identify every bill correctly in one Bill Recognition session.'},
   {id:'coin_drill_ace', icon:'🪙', name:'Coin Expert', desc:'Score 100% on the Coin Recognition Drill', cat:'challenge', secret:false},
   {id:'the_vault',    icon:'🔐', name:'The Vault',        desc:'Turn on 5 different accessibility settings', cat:'challenge',  howTo:'Go to Settings and toggle on at least 5 different accessibility options.'},
@@ -3722,7 +3722,7 @@ function go(id){
     renderScores();
   }
   if(id==='quiz') startQuiz();
-  if(id==='changedrill') startChangeDrill();
+  if(id==='changedrill') startHome PanelDrill();
   if(id==='coindrill') startCoinDrill();
   if(id==='billdrill') startBillDrill();
   if(id==='dihe') startDIHE();
@@ -4038,7 +4038,7 @@ function renderDemoStep() {
         </div>
       </div>
       ${demoNavHTML('See the Final Result →')}`;
-    say('The tray shows exact change - fifty cents. Tap Dispense Change to hand the money to the customer!');
+    say('The tray shows exact change - fifty cents. Tap Dispense Home Panel to hand the money to the customer!');
 
   } else if (DEMO_STEP === 4) {
     el.innerHTML = `
@@ -4670,7 +4670,7 @@ function dispense(){
   if(ST.answered) return;
   // Block if tray is empty
   if(ST.tray===0){
-    openHint('Add Change First','You need to add coins or bills to the tray before dispensing. Tap a coin or bill above to get started!','Got it!',null);
+    openHint('Add Home Panel First','You need to add coins or bills to the tray before dispensing. Tap a coin or bill above to get started!','Got it!',null);
     return;
   }
   // Reset dispense button glow
@@ -6037,7 +6037,7 @@ function renderCoach(){
 
 function clientCard(cl,i){
   const sk=cl.skills||{};
-  const skDefs={coins:'🪙 Coins',bills:'💵 Bills',change:'🔄 Making Change',cashier:'🏪 Cashier Skills'};
+  const skDefs={coins:'🪙 Coins',bills:'💵 Bills',change:'🔄 Making Home Panel',cashier:'🏪 Cashier Skills'};
   const spHtml=Object.entries(skDefs).map(([k,n])=>`
     <div class="sprow">
       <div class="sp-lbl"><span>${n}</span><span class="sp-pct">${sk[k]||0}%</span></div>
@@ -6083,7 +6083,7 @@ function clientCard(cl,i){
   const pc=last? (promptColors[last.prompt]||'var(--text3)') : 'var(--text3)';
   const strongEntry=Object.entries(sk).sort((a,b)=>(b[1]||0)-(a[1]||0))[0];
   const supportEntry=Object.entries(sk).sort((a,b)=>(a[1]||0)-(b[1]||0))[0];
-  const labelMap={coins:'Coins',bills:'Bills',change:'Making Change',cashier:'Cashier Skills'};
+  const labelMap={coins:'Coins',bills:'Bills',change:'Making Home Panel',cashier:'Cashier Skills'};
   const weekAgo = Date.now() - 7*24*60*60*1000;
   const weekSessions = sessions.filter(s=>{
     const d=parseStoredDate(s.date||s.dat||'');
@@ -6153,9 +6153,9 @@ function clientCard(cl,i){
 // ── PROGRESS CHART (Canvas) ──
 // ── PROGRESS CHART (Canvas) ──
 const SKILL_COLORS={coins:'#33b5e5',bills:'#ffbb33',change:'#00c851',cashier:'#bb86fc'};
-const SKILL_NAMES={coins:'Coins',bills:'Bills',change:'Making Change',cashier:'Cashier Skills'};
+const SKILL_NAMES={coins:'Coins',bills:'Bills',change:'Making Home Panel',cashier:'Cashier Skills'};
 const MOD_TO_SKILL={'Coin Identification':'coins','Money ID Quiz':'coins','Counting Bills':'bills',
-  'Making Change - Starter':'change','Making Change - Practice':'change','Making Change - Shift':'change',
+  'Making Home Panel - Starter':'change','Making Home Panel - Practice':'change','Making Home Panel - Shift':'change',
   'Do I Have Enough?':'change','Daily Challenge':'change','Money ID Quiz':'coins'};
 
 function drawCharts(clientIdx){
@@ -6389,7 +6389,7 @@ function saveSession(){
   const s={module:$('log-mod').value,score:$('log-sc').value,prompt:PROMPT_SEL,notes:$('log-notes').value.trim(),date:today(),time:new Date().toLocaleTimeString([], {hour:'numeric', minute:'2-digit'})};
   CLIENTS[idx].sessions=CLIENTS[idx].sessions||[];
   CLIENTS[idx].sessions.push(s);
-  const map={'Coin Identification':'coins','Counting Bills':'bills','Making Change - Starter':'change','Making Change - Practice':'change','Making Change - Shift':'change','Money ID Quiz':'coins','Do I Have Enough?':'change','Daily Challenge':'change'};
+  const map={'Coin Identification':'coins','Counting Bills':'bills','Making Home Panel - Starter':'change','Making Home Panel - Practice':'change','Making Home Panel - Shift':'change','Money ID Quiz':'coins','Do I Have Enough?':'change','Daily Challenge':'change'};
   const sk=map[s.module];
   if(sk&&s.score){const p=s.score.split('/');if(p.length===2){const pct=Math.round(parseInt(p[0])/parseInt(p[1])*100);CLIENTS[idx].skills=CLIENTS[idx].skills||{};CLIENTS[idx].skills[sk]=Math.max(CLIENTS[idx].skills[sk]||0,pct);}}
   saveAll();closeM('m-log');renderCoach();
@@ -6420,7 +6420,7 @@ function editClient(i){
   $('nc-notes').value=cl.notes||'';
   $('nc-level').value=cl.level||'beginner';
   $('m-client').querySelector('.mt').textContent='✏ EDIT LEARNER';
-  $('m-client').querySelector('.msave').textContent='Save Changes';
+  $('m-client').querySelector('.msave').textContent='Save Home Panels';
   $('m-client').querySelector('.msave').onclick=()=>{
     const initials=($('nc-initials')?.value||'').trim();
     const fullName=($('nc-name')?.value||'').trim();
@@ -6439,7 +6439,7 @@ function editClient(i){
 
 function editSkills(i){
   const cl=CLIENTS[i],sk=cl.skills||{};
-  const names={coins:'🪙 Coins',bills:'💵 Bills',change:'🔄 Making Change',cashier:'🏪 Cashier Skills'};
+  const names={coins:'🪙 Coins',bills:'💵 Bills',change:'🔄 Making Home Panel',cashier:'🏪 Cashier Skills'};
   const inp=Object.entries(names).map(([k,n])=>`<div class="fg"><label class="fl">${n} (%)</label><input class="fi" id="se-${k}" type="number" min="0" max="100" value="${sk[k]||0}"></div>`).join('');
   openHint(`Skills - ${cl.name}`,`<div>${inp}</div>`,'Save Skills',()=>{
     Object.keys(names).forEach(k=>{CLIENTS[i].skills[k]=Math.min(100,Math.max(0,parseInt($('se-'+k).value)||0));});
@@ -6576,7 +6576,7 @@ function printReport(i){
 
   <h2>Skill Progress</h2>
   <div class="skill-grid">
-    ${Object.entries({coins:'🪙 Coins',bills:'💵 Bills',change:'🔄 Making Change',cashier:'🏪 Cashier Skills'}).map(([k,n])=>`
+    ${Object.entries({coins:'🪙 Coins',bills:'💵 Bills',change:'🔄 Making Home Panel',cashier:'🏪 Cashier Skills'}).map(([k,n])=>`
       <div class="skill-row">
         <div class="skill-name">${n}<span class="skill-pct">${sk[k]||0}%</span></div>
         <div class="bar-wrap"><div class="bar-fill" style="width:${sk[k]||0}%"></div></div>
@@ -6795,8 +6795,8 @@ sub.textContent='Practice making exact change and build cashier confidence.';
 // Update settings name display
 const nd=$('name-setting-display');
 const nb2=$('name-setting-btn');
-if(nd) nd.textContent=CFG.playerName?`Name: ${CFG.playerName}`:'No name set';
-if(nb2) nb2.textContent=CFG.playerName?'Change':'Set Name';
+if(nd) nd.textContent=CFG.playerName?`Name: ${CFG.playerName}`:'Managed from Control Panel';
+if(nb2) nb2.textContent=CFG.playerName?'Home Panel':'Home Panel';
 const cb=$('clear-name-btn');
 if(cb) cb.style.display=CFG.playerName?'block':'none';
 // Today's progress card
@@ -7171,7 +7171,7 @@ openHint('Reset PIN?',
 ()=>{closeM('m-hint');CFG.coachPin=null;CFG.coachWelcomeSeen=false;saveAll();openPinSetup();}
 );
 }
-function pinInputChange(){$('pin-error').textContent='';}
+function pinInputHome Panel(){$('pin-error').textContent='';}
 function handlePinSubmit(){
 const inp=$('pin-input');
 if(!inp)return;
@@ -7244,7 +7244,7 @@ const CHD_QS=[
 {price:625,paid:700},{price:199,paid:200},{price:349,paid:400},
 ];
 let CHD={qs:[],idx:0,score:0,answered:false};
-function startChangeDrill(){
+function startHome PanelDrill(){
 showModeIntro('🔄','MAKING CHANGE DRILL','#00c851',[
 ['🧾','Price and payment shown on every question.','You can see exactly what was paid and what the item costs.'],
 ['💰','Pick the correct change from 4 choices.','No coins to count - just choose the right dollar amount.'],
@@ -7252,37 +7252,37 @@ showModeIntro('🔄','MAKING CHANGE DRILL','#00c851',[
 ],'Start Drill →',()=>{
 closeM('m-hint');
 CHD={qs:shuf(CHD_QS).slice(0,8),idx:0,score:0,answered:false};
-buildChangeDrillDots();renderChangeDrill();
+buildHome PanelDrillDots();renderHome PanelDrill();
 });
 }
-function buildChangeDrillDots(){
+function buildHome PanelDrillDots(){
 const c=$('chd-dots');if(!c)return;c.innerHTML='';
 for(let i=0;i<CHD.qs.length;i++){const d=document.createElement('div');d.className='pd'+(i===0?' cur':'');d.id='chdd'+i;c.appendChild(d);}
 }
-function updChangeDrillDots(){
+function updHome PanelDrillDots(){
 for(let i=0;i<CHD.qs.length;i++){const d=$('chdd'+i);if(!d)continue;
 if(i<CHD.idx)d.className='pd done';else if(i===CHD.idx)d.className='pd cur';else d.className='pd';}
 const _p=$('chd-progress');if(_p)_p.textContent='QUESTION ' + (CHD.idx + 1) + ' OF ' + (CHD.qs.length);
 }
-function renderChangeDrill(){
+function renderHome PanelDrill(){
 CHD.answered=false;
 const q=CHD.qs[CHD.idx];if(!q)return;
 $('chd-score').textContent=CHD.score;
-updChangeDrillDots();
+updHome PanelDrillDots();
 hideMiniHintBar('chd-hint');
 const change=q.paid-q.price;
 // Generate wrong answers - nearby amounts
 const wrongs=[-25,-10,10,25,50,-50,5,-5].map(d=>change+d).filter(v=>v>0&&v!==change);
 const opts=shuf([change,...shuf(wrongs).slice(0,3)]);
-const optHTML=opts.map(o=>`<button class="qo" onclick="answerChangeDrill(${o},${change})">${fmt(o)}</button>`).join('');
-$('chd-content').innerHTML=` <div class="qpanel"> <div class="qq">Item costs <strong style="color:var(--green)">${fmt(q.price)}</strong>.<br>Customer paid <strong style="color:var(--amber)">${fmt(q.paid)}</strong>.<br>How much change?</div> <div style="display:flex;gap:10px;justify-content:center;margin:10px 0 16px"> <div style="background:var(--bg3);border:2px solid var(--green);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--green)">${fmt(q.price)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Price</div> </div> <div style="font-size:1.5rem;color:var(--text3);display:flex;align-items:center">→</div> <div style="background:var(--bg3);border:2px solid var(--amber);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">${fmt(q.paid)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Paid</div> </div> </div> <div class="qopts" id="chd-opts">${optHTML}</div> <div class="qfb" id="chd-fb" style="display:none"></div> <div id="chd-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,200,81,.16),rgba(0,200,81,.05));border:1px solid rgba(0,200,81,.45);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="showChangeDrillHint(this)">💡 HINT</button> <button class="abtn" style="flex:1" onclick="changeDrillSayAgain(this)">🔊 SAY AGAIN</button> </div> <button class="dbtn" id="chd-next" onclick="nextChangeDrill()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
+const optHTML=opts.map(o=>`<button class="qo" onclick="answerHome PanelDrill(${o},${change})">${fmt(o)}</button>`).join('');
+$('chd-content').innerHTML=` <div class="qpanel"> <div class="qq">Item costs <strong style="color:var(--green)">${fmt(q.price)}</strong>.<br>Customer paid <strong style="color:var(--amber)">${fmt(q.paid)}</strong>.<br>How much change?</div> <div style="display:flex;gap:10px;justify-content:center;margin:10px 0 16px"> <div style="background:var(--bg3);border:2px solid var(--green);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--green)">${fmt(q.price)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Price</div> </div> <div style="font-size:1.5rem;color:var(--text3);display:flex;align-items:center">→</div> <div style="background:var(--bg3);border:2px solid var(--amber);border-radius:10px;padding:10px 18px;text-align:center"> <div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--amber)">${fmt(q.paid)}</div> <div style="font-size:.65rem;color:var(--text3);margin-top:3px;text-transform:uppercase;letter-spacing:1px">Paid</div> </div> </div> <div class="qopts" id="chd-opts">${optHTML}</div> <div class="qfb" id="chd-fb" style="display:none"></div> <div id="chd-hint" style="display:none;opacity:0;transition:opacity .2s ease;background:linear-gradient(135deg,rgba(0,200,81,.16),rgba(0,200,81,.05));border:1px solid rgba(0,200,81,.45);border-left:4px solid var(--green);border-radius:var(--radius-sm);padding:11px 14px;margin-top:12px;font-size:.85rem;color:var(--text2);line-height:1.5;"></div> </div> <div style="display:flex;gap:8px;margin-top:8px"> <button class="abtn" style="flex:1" onclick="showHome PanelDrillHint(this)">💡 HINT</button> <button class="abtn" style="flex:1" onclick="changeDrillSayAgain(this)">🔊 SAY AGAIN</button> </div> <button class="dbtn" id="chd-next" onclick="nextHome PanelDrill()" style="display:none;margin-top:8px;width:100%;padding:13px;font-size:.82rem">NEXT →</button>`;
 say(`Item costs ${fmtSay(q.price)}. Customer paid ${fmtSay(q.paid)}. How much change?`);
 }
 function fmtSay(cents){
 if(cents%100===0)return`${cents/100} dollar${cents/100!==1?'s':''}`;
 return`${fmt(cents)}`;
 }
-function answerChangeDrill(chosen,correct){
+function answerHome PanelDrill(chosen,correct){
 if(CHD.answered)return;
 CHD.answered=true;
 const ok=chosen===correct;
@@ -7298,31 +7298,31 @@ const nxt=$('chd-next');
 if(nxt){nxt.style.display='block';nxt.textContent=CHD.idx+1>=CHD.qs.length?'SEE RESULTS →':'NEXT →';}
 const q=CHD.qs[CHD.idx];
 const detail=ok?('Correct! '+fmt(correct)+' change.'):('The correct change is '+fmt(correct)+'. '+fmt(q.paid)+' paid minus '+fmt(q.price)+' price equals '+fmt(correct)+'.');
-showQuizPopup(ok, detail, nextChangeDrill, CHD.idx+1>=CHD.qs.length);
+showQuizPopup(ok, detail, nextHome PanelDrill, CHD.idx+1>=CHD.qs.length);
 say(ok?'Correct!':'Not quite. The answer is '+fmt(correct));
 }
-function nextChangeDrill(){
+function nextHome PanelDrill(){
 closeQuizPopup();
 CHD.idx++;
 if(CHD.idx>=CHD.qs.length){
 const pct=Math.round(CHD.score/CHD.qs.length*100);
 const grade=pct===100?'A+':pct>=90?'A':pct>=80?'B':pct>=60?'C':'D';
 const gc=pct>=80?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
-SCORES.unshift({mode:'Change Drill',score:CHD.score*10,correct:CHD.score,total:CHD.qs.length,streak:0,date:today()});
+SCORES.unshift({mode:'Home Panel Drill',score:CHD.score*10,correct:CHD.score,total:CHD.qs.length,streak:0,date:today()});
 SCORES=SCORES.slice(0,30);saveAll();
 if(pct===100)awardBadge('change_drill_ace');
 if(!CFG.nomotion&&pct>=80)confetti();
 say(`Done! You got ${CHD.score} out of ${CHD.qs.length}!`);
 updateHomeUI();
 $('chd-dots').innerHTML='';
-$('chd-content').innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--green);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${CHD.score} of ${CHD.qs.length}</strong> correct · ${pct}%</div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:0 0 18px;text-align:left"> ${pct===100?'Flawless! You\'re a change-making machine.':pct>=80?'Strong work! Enable Count-Up Guide in Settings to see the counting method.':'Try enabling Count-Up Guide in Settings - it shows you how to count forward instead of subtract.'} </div> <button class="dbtn" onclick="startChangeDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
+$('chd-content').innerHTML=` <div style="background:var(--bg2);border:2px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;animation:fadeUp .4s ease"> <div style="font-family:'Fredoka One',cursive;font-size:4rem;color:${gc};margin-bottom:8px">${grade}</div> <div style="font-family:var(--font-mono);font-size:.9rem;color:var(--green);letter-spacing:2px;margin-bottom:6px">${pct===100?'PERFECT!':pct>=80?'GREAT JOB!':'KEEP PRACTICING!'}</div> <div style="font-size:.9rem;color:var(--text2);margin-bottom:16px"><strong style="color:var(--amber)">${CHD.score} of ${CHD.qs.length}</strong> correct · ${pct}%</div> <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;font-size:.84rem;color:var(--text2);line-height:1.6;margin:0 0 18px;text-align:left"> ${pct===100?'Flawless! You\'re a change-making machine.':pct>=80?'Strong work! Enable Count-Up Guide in Settings to see the counting method.':'Try enabling Count-Up Guide in Settings - it shows you how to count forward instead of subtract.'} </div> <button class="dbtn" onclick="startHome PanelDrill()" style="margin-bottom:10px;width:100%">🔄 DRILL AGAIN</button> <button class="rsec" onclick="go('home')" style="width:100%">← HOME</button> </div>`;
 return;
 }
-renderChangeDrill();
+renderHome PanelDrill();
 }
-function confirmChangeDrillExit(){
+function confirmHome PanelDrillExit(){
 if(CHD.idx>0&&CHD.idx<CHD.qs.length){
-openHint('Leave Drill?','<p style="color:var(--text2);font-size:.88rem">Leave the Making Change Drill? Progress will not be saved.</p>','Leave',()=>{closeM('m-hint');go('home');});
+openHint('Leave Drill?','<p style="color:var(--text2);font-size:.88rem">Leave the Making Home Panel Drill? Progress will not be saved.</p>','Leave',()=>{closeM('m-hint');go('home');});
 } else go('home');
 }
 
@@ -7466,7 +7466,7 @@ function changeDrillSayAgain(btn){
   const q=CHD.qs[CHD.idx];
   if(q) say('Item costs '+fmtSay(q.price)+'. Customer paid '+fmtSay(q.paid)+'. How much change?');
 }
-function showChangeDrillHint(btn){
+function showHome PanelDrillHint(btn){
   const q=CHD.qs[CHD.idx];
   if(!q) return;
   const hintText='Start with the amount the customer paid. Count back to the price, or subtract '+fmt(q.price)+' from '+fmt(q.paid)+'.';
@@ -7995,7 +7995,7 @@ function computeAutoSkills(cl){
   };
 }
 function strongestWeakestSkill(sk){
-  const defs=[['Coins',sk.coins||0],['Bills',sk.bills||0],['Making Change',sk.change||0],['Cashier Skills',sk.cashier||0]];
+  const defs=[['Coins',sk.coins||0],['Bills',sk.bills||0],['Making Home Panel',sk.change||0],['Cashier Skills',sk.cashier||0]];
   const active=defs.filter(([,v])=>v>0);
   if(!active.length) return {strongest:'Not enough data yet', weakest:'Not enough data yet'};
   active.sort((a,b)=>b[1]-a[1]);
@@ -8053,7 +8053,7 @@ function coachTrendText(sessions){
   if(delta>=8) return '↑ Improving'; if(delta<=-8) return '↓ Needs review'; return '→ Stable';
 }
 function coachSkillGrid(sk, cl){
-  const defs=[['🪙 Coins',sk.coins||0],['💵 Bills',sk.bills||0],['🔄 Making Change',sk.change||0],['🏪 Cashier Skills',sk.cashier||0]];
+  const defs=[['🪙 Coins',sk.coins||0],['💵 Bills',sk.bills||0],['🔄 Making Home Panel',sk.change||0],['🏪 Cashier Skills',sk.cashier||0]];
   return defs.map(([label,pct])=>{
     const band=pct>=85?'strong':pct>=60?'building':'support';
     const bandLabel=pct>=85?'Strong':pct>=60?'Building':'Needs Support';
@@ -8124,8 +8124,8 @@ function clientCard(cl,i){
 function openGoalForClient(i){
   const cl=CLIENTS[i]; if(!cl) return; openM('m-goal');
   const sw=strongestWeakestSkill(computeAutoSkills(cl));
-  const skillMap={'Coins':'coins','Bills':'bills','Making Change':'change','Cashier Skills':'cashier'};
-  const weakestName = sw.weakest && sw.weakest !== 'Not enough data yet' ? sw.weakest : 'Making Change';
+  const skillMap={'Coins':'coins','Bills':'bills','Making Home Panel':'change','Cashier Skills':'cashier'};
+  const weakestName = sw.weakest && sw.weakest !== 'Not enough data yet' ? sw.weakest : 'Making Home Panel';
   const suggested=skillMap[weakestName] || 'change';
   $('goal-cl').value=String(i); $('goal-skill').value=suggested; $('goal-num').value=8; $('goal-den').value=10; $('goal-consec').value=3; $('goal-desc').value=`${getClientDisplayName(cl)} will build ${weakestName} with 8/10 accuracy across 3 sessions.`; showCoachFlash(`Objective setup ready for ${getClientDisplayName(cl)}.`); setTimeout(()=>{ const el=$('goal-desc'); if(el){ try{ el.focus(); el.select(); }catch(e){} } },80);
 }
@@ -8142,7 +8142,7 @@ function editClient(i){
   window._editingClientIndex=i;
   const titleEl=modal.querySelector('.mt'); const saveBtn=modal.querySelector('.msave');
   if(titleEl) titleEl.textContent='✏ EDIT LEARNER';
-  if(saveBtn){ saveBtn.textContent='Save Changes'; saveBtn.onclick=saveClient; }
+  if(saveBtn){ saveBtn.textContent='Save Home Panels'; saveBtn.onclick=saveClient; }
   if($('nc-initials')) $('nc-initials').value = cl.name || '';
   if($('nc-name')) $('nc-name').value = cl.fullName || '';
   if($('nc-program')) $('nc-program').value = cl.program || '';
@@ -8554,7 +8554,7 @@ document.addEventListener('DOMContentLoaded', initHomeCardWiring);
 const MODULE="CashReady";
 const MODULE_LABEL="CASHREADY";
 const MODE_TITLES={"practice": "PRACTICE MODE", "shift": "SHIFT MODE", "starter": "STARTER MODE", "daily": "DAILY CHALLENGE", "change": "CHANGE DRILL", "enough": "ENOUGH?", "quiz": "MONEY ID QUIZ"};
-const MODE_GUIDE={"starter": {"well": "You were practicing coin values and simple counting up to a dollar.", "next": "Count up from the price to one dollar using the biggest useful coin first.", "reminder": "Say the amount out loud in your head as you build the change."}, "shift": {"well": "You were practicing live cashier change-making under pressure.", "next": "Count up from the cost to the bill one step at a time instead of guessing the total change.", "reminder": "Start with dollars, then quarters, then smaller coins until the amount is exact."}, "change": {"well": "You were working on exact-change thinking and quick money decisions.", "next": "Slow down on the misses and compare the price, payment, and target change before you tap.", "reminder": "Change drills get easier when you count up instead of subtracting all at once."}, "quiz": {"well": "You were practicing identifying coins and bills accurately.", "next": "Review the values of the money you missed before starting another round.", "reminder": "Look at size, color, and number together instead of relying on just one clue."}, "enough": {"well": "You were checking whether the money on hand could cover the price.", "next": "Practice adding the money you have before deciding yes or no.", "reminder": "Check the total first, then compare it with the cost."}, "practice": {"well": "You used practice mode to slow the game down and focus on money skills.", "next": "Use practice to repeat the money types or prices that still feel shaky.", "reminder": "Practice mode is for building accuracy before speed."}, "daily": {"well": "You finished the daily money run and kept your cash skills active.", "next": "Use the daily run to sharpen whatever money skill felt weakest today.", "reminder": "A short daily rep is better than waiting for a perfect session."}, "*": {"well": "You were building practical money skills for real checkout situations.", "next": "Review the missed money choices before your next run.", "reminder": "Count up calmly. Exact beats fast."}};
+const MODE_GUIDE={"starter": {"well": "You were practicing coin values and simple counting up to a dollar.", "next": "Count up from the price to one dollar using the biggest useful coin first.", "reminder": "Say the amount out loud in your head as you build the change."}, "shift": {"well": "You were practicing live cashier change-making under pressure.", "next": "Count up from the cost to the bill one step at a time instead of guessing the total change.", "reminder": "Start with dollars, then quarters, then smaller coins until the amount is exact."}, "change": {"well": "You were working on exact-change thinking and quick money decisions.", "next": "Slow down on the misses and compare the price, payment, and target change before you tap.", "reminder": "Home Panel drills get easier when you count up instead of subtracting all at once."}, "quiz": {"well": "You were practicing identifying coins and bills accurately.", "next": "Review the values of the money you missed before starting another round.", "reminder": "Look at size, color, and number together instead of relying on just one clue."}, "enough": {"well": "You were checking whether the money on hand could cover the price.", "next": "Practice adding the money you have before deciding yes or no.", "reminder": "Check the total first, then compare it with the cost."}, "practice": {"well": "You used practice mode to slow the game down and focus on money skills.", "next": "Use practice to repeat the money types or prices that still feel shaky.", "reminder": "Practice mode is for building accuracy before speed."}, "daily": {"well": "You finished the daily money run and kept your cash skills active.", "next": "Use the daily run to sharpen whatever money skill felt weakest today.", "reminder": "A short daily rep is better than waiting for a perfect session."}, "*": {"well": "You were building practical money skills for real checkout situations.", "next": "Review the missed money choices before your next run.", "reminder": "Count up calmly. Exact beats fast."}};
 const MODE_COACH_PROFILE={"starter": {"strengths": ["coin values", "simple totals", "counting up to a dollar"], "support": ["coin values", "counting up from a price", "using the biggest useful coin first"]}, "shift": {"strengths": ["making exact change", "checkout pacing", "real register thinking"], "support": ["counting up from cost to payment", "double-checking price and payment", "building change in the right order"]}, "change": {"strengths": ["exact-change thinking", "money math under pressure"], "support": ["comparing the price, payment, and target change", "counting up instead of guessing", "checking coin and bill combinations"]}, "quiz": {"strengths": ["bill and coin recognition", "noticing money details"], "support": ["matching the money to its value", "using color, number, and size together", "slowing down on look-alike choices"]}, "enough": {"strengths": ["budget checks", "adding money on hand"], "support": ["adding what you have before deciding", "comparing the total with the cost", "slowing down on close calls"]}, "practice": {"strengths": ["steady money practice", "low-pressure repetition"], "support": ["repeating shaky money types", "building accuracy before speed", "using hints early when needed"]}, "daily": {"strengths": ["daily money habits", "keeping cashier skills active"], "support": ["revisiting the weakest money skill from today", "one clean run at a time", "staying calm instead of rushing"]}, "*": {"strengths": ["real-world money skills"], "support": ["money recognition", "making change", "checking totals before tapping"]}};
 const scr=document.getElementById('scr-results');
 const initialResultsMarkup=(scr && scr.querySelector('.rr-screen')) ? scr.innerHTML : '';
@@ -9595,7 +9595,7 @@ function cashPlusRender(){
     const t = cashPlusReceiptTotals(round);
     $('cashplus-brief').innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Receipt Mission</span></div><div class="lrx-casetitle">${escapeHtml(round.question)}</div><div class="lrx-casecopy">Read the receipt carefully. Some numbers are subtotal, some are total, and some are change.</div></div>`;
     $('cashplus-side').innerHTML = `<div class="lrx-list"><div class="lrx-listitem"><span>Subtotal</span><span>${cashPlusMoney(t.subtotal)}</span></div><div class="lrx-listitem"><span>Discount</span><span>${cashPlusMoney(t.discount)}</span></div><div class="lrx-listitem"><span>Tax</span><span>${cashPlusMoney(t.tax)}</span></div><div class="lrx-listitem"><span>Paid</span><span>${cashPlusMoney(round.paid)}</span></div></div>`;
-    $('cashplus-main').innerHTML = `<div class="lrx-grid two"><div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Receipt</span></div><div class="lrx-casebody" style="font-family:var(--font-mono)">${round.items.map(it=>`<div style="display:flex;justify-content:space-between;gap:10px"><span>${escapeHtml(it[0])}</span><span>${cashPlusMoney(it[1])}</span></div>`).join('')}<div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between"><span>Subtotal</span><span>${cashPlusMoney(t.subtotal)}</span></div><div style="display:flex;justify-content:space-between"><span>Discount</span><span>-${cashPlusMoney(t.discount)}</span></div><div style="display:flex;justify-content:space-between"><span>Tax</span><span>${cashPlusMoney(t.tax)}</span></div><div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between;font-weight:800;color:var(--text)"><span>Total</span><span>${cashPlusMoney(t.total)}</span></div><div style="display:flex;justify-content:space-between"><span>Paid</span><span>${cashPlusMoney(round.paid)}</span></div><div style="display:flex;justify-content:space-between"><span>Change</span><span>${cashPlusMoney(t.change)}</span></div></div></div><div><div class="lrx-paneltitle" style="margin-bottom:10px">Choose the best answer</div><div class="lrx-choicegrid">${round.options.map((opt,idx)=>cashPlusOptionButton(cashPlusMoney(opt), CASHPLUS.selectedOption===idx, `cashPlusSelectOption(${idx})`, idx===CASHPLUS.selectedOption?'Selected':'Tap choice')).join('')}</div></div></div>`;
+    $('cashplus-main').innerHTML = `<div class="lrx-grid two"><div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Receipt</span></div><div class="lrx-casebody" style="font-family:var(--font-mono)">${round.items.map(it=>`<div style="display:flex;justify-content:space-between;gap:10px"><span>${escapeHtml(it[0])}</span><span>${cashPlusMoney(it[1])}</span></div>`).join('')}<div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between"><span>Subtotal</span><span>${cashPlusMoney(t.subtotal)}</span></div><div style="display:flex;justify-content:space-between"><span>Discount</span><span>-${cashPlusMoney(t.discount)}</span></div><div style="display:flex;justify-content:space-between"><span>Tax</span><span>${cashPlusMoney(t.tax)}</span></div><div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between;font-weight:800;color:var(--text)"><span>Total</span><span>${cashPlusMoney(t.total)}</span></div><div style="display:flex;justify-content:space-between"><span>Paid</span><span>${cashPlusMoney(round.paid)}</span></div><div style="display:flex;justify-content:space-between"><span>Home Panel</span><span>${cashPlusMoney(t.change)}</span></div></div></div><div><div class="lrx-paneltitle" style="margin-bottom:10px">Choose the best answer</div><div class="lrx-choicegrid">${round.options.map((opt,idx)=>cashPlusOptionButton(cashPlusMoney(opt), CASHPLUS.selectedOption===idx, `cashPlusSelectOption(${idx})`, idx===CASHPLUS.selectedOption?'Selected':'Tap choice')).join('')}</div></div></div>`;
   } else if(CASHPLUS.mode==='pricecompare'){
     $('cashplus-brief').innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Deal Check</span></div><div class="lrx-casetitle">${escapeHtml(round.prompt)}</div><div class="lrx-casecopy">Compare the size, pack, or sale style before you buy. The flashy sign is not always the better choice.</div></div>`;
     $('cashplus-side').innerHTML = `<div class="lrx-alert warn"><div class="lrx-decklabel">Value Tip</div><div class="lrx-copy" style="margin:0;text-align:left">Look at how much you get, not just the big sale words. Same-size products should make you compare price first.</div></div>`;
@@ -10615,7 +10615,7 @@ function cashArcRender(){
     const t=cashArcReceiptTotals(round);
     if(brief) brief.innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Receipt Mission</span></div><div class="lrx-casetitle">${escapeHtml(round.question)}</div><div class="lrx-casecopy">Read the receipt carefully. Some numbers are subtotal, some are total, and some are change.</div></div>`;
     if(side) side.innerHTML = `<div class="lrx-list"><div class="lrx-listitem"><span>Subtotal</span><span>${cashArcMoney(t.subtotal)}</span></div><div class="lrx-listitem"><span>Discount</span><span>${cashArcMoney(t.discount)}</span></div><div class="lrx-listitem"><span>Tax</span><span>${cashArcMoney(t.tax)}</span></div><div class="lrx-listitem"><span>Paid</span><span>${cashArcMoney(round.paid)}</span></div></div>`;
-    if(main) main.innerHTML = `<div class="lrx-grid two"><div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Receipt</span></div><div class="lrx-casebody" style="font-family:var(--font-mono)">${round.items.map(it=>`<div style="display:flex;justify-content:space-between;gap:10px"><span>${escapeHtml(it[0])}</span><span>${cashArcMoney(it[1])}</span></div>`).join('')}<div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between"><span>Subtotal</span><span>${cashArcMoney(t.subtotal)}</span></div><div style="display:flex;justify-content:space-between"><span>Discount</span><span>-${cashArcMoney(t.discount)}</span></div><div style="display:flex;justify-content:space-between"><span>Tax</span><span>${cashArcMoney(t.tax)}</span></div><div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between;font-weight:800;color:var(--text)"><span>Total</span><span>${cashArcMoney(t.total)}</span></div><div style="display:flex;justify-content:space-between"><span>Paid</span><span>${cashArcMoney(round.paid)}</span></div><div style="display:flex;justify-content:space-between"><span>Change</span><span>${cashArcMoney(t.change)}</span></div></div></div><div><div class="lrx-paneltitle" style="margin-bottom:10px">Choose the best answer</div><div class="lrx-choicegrid">${round.options.map((opt,idx)=>cashArcOptionButton(cashArcMoney(opt), CASHARCADE.selectedOption===idx, `cashArcSelectOption(${idx})`, idx===CASHARCADE.selectedOption?'Selected':'Tap choice')).join('')}</div></div></div>`;
+    if(main) main.innerHTML = `<div class="lrx-grid two"><div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Receipt</span></div><div class="lrx-casebody" style="font-family:var(--font-mono)">${round.items.map(it=>`<div style="display:flex;justify-content:space-between;gap:10px"><span>${escapeHtml(it[0])}</span><span>${cashArcMoney(it[1])}</span></div>`).join('')}<div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between"><span>Subtotal</span><span>${cashArcMoney(t.subtotal)}</span></div><div style="display:flex;justify-content:space-between"><span>Discount</span><span>-${cashArcMoney(t.discount)}</span></div><div style="display:flex;justify-content:space-between"><span>Tax</span><span>${cashArcMoney(t.tax)}</span></div><div style="height:1px;background:rgba(255,255,255,.08);margin:4px 0"></div><div style="display:flex;justify-content:space-between;font-weight:800;color:var(--text)"><span>Total</span><span>${cashArcMoney(t.total)}</span></div><div style="display:flex;justify-content:space-between"><span>Paid</span><span>${cashArcMoney(round.paid)}</span></div><div style="display:flex;justify-content:space-between"><span>Home Panel</span><span>${cashArcMoney(t.change)}</span></div></div></div><div><div class="lrx-paneltitle" style="margin-bottom:10px">Choose the best answer</div><div class="lrx-choicegrid">${round.options.map((opt,idx)=>cashArcOptionButton(cashArcMoney(opt), CASHARCADE.selectedOption===idx, `cashArcSelectOption(${idx})`, idx===CASHARCADE.selectedOption?'Selected':'Tap choice')).join('')}</div></div></div>`;
   } else if(CASHARCADE.mode==='pricecompare'){
     if(brief) brief.innerHTML = `<div class="lrx-case"><div class="lrx-casebar"><span>${escapeHtml(round.title)}</span><span>Deal Check</span></div><div class="lrx-casetitle">${escapeHtml(round.prompt)}</div><div class="lrx-casecopy">Compare the size, pack, or sale style before you buy. The flashy sign is not always the better choice.</div></div>`;
     if(side) side.innerHTML = `<div class="lrx-alert warn"><div class="lrx-decklabel">Value Tip</div><div class="lrx-copy" style="margin:0;text-align:left">Look at how much you get, not just the big sale words. Same-size products should make you compare price first.</div></div>`;
@@ -10909,7 +10909,7 @@ function finishCashArcadeRun(){
       quiz:{title:'Money Quiz', patch:'Money Spotter', icon:'💵', aliases:['money quiz','money id quiz','quiz']},
       coindrill:{title:'Coin Drill', patch:'Coin Counter', icon:'🪙', aliases:['coin drill','coins drill','coin']},
       billdrill:{title:'Bill Drill', patch:'Bill Builder', icon:'💲', aliases:['bill drill','bills drill','bill']},
-      change:{title:'Change Drill', patch:'Change Jockey', icon:'🔄', aliases:['change drill','change']},
+      change:{title:'Home Panel Drill', patch:'Home Panel Jockey', icon:'🔄', aliases:['change drill','change']},
       mini_store_interface:{title:'Mini Store Interface', patch:'Mini Mart Pilot', icon:'🛍️', aliases:['mini store interface','mini store']},
       exactpay:{title:'Exact Pay', patch:'Exact Pay Ace', icon:'💳', aliases:['exact pay','exactpay']},
       receiptdecoder:{title:'Receipt Decoder', patch:'Receipt Reader', icon:'🧾', aliases:['receipt decoder','receiptdecoder']},
@@ -11624,5 +11624,137 @@ function finishCashArcadeRun(){
 
 </script>
 
+
+
+<script>
+(function(){
+  const PROFILE_KEY='lr_global_profile';
+  const PREF_KEY='lr_global_prefs';
+  const CFG_KEYS=['cr_cfg','tr_cfg','jr_cfg','hr_cfg','tr5_cfg','sr_cfg','tc_cfg','hlr_cfg'];
+  function readJSON(key, fallback){ try{ const raw=localStorage.getItem(key); return raw?JSON.parse(raw):fallback; }catch(_){ return fallback; } }
+  function writeJSON(key, value){ try{ localStorage.setItem(key, JSON.stringify(value)); }catch(_){ } }
+  function defaultPrefs(){ return {audio:true,lightmode:false,hicontrast:false,largetext:false,largebtns:false,nomotion:false,breaks:false,colorblindMode:'none'}; }
+  function normalizePrefs(value){
+    const base=defaultPrefs();
+    const raw=(value&&typeof value==='object')?value:{};
+    let mode=typeof raw.colorblindMode==='string'?raw.colorblindMode:'none';
+    if(mode!=='none' && mode!=='protanopia' && mode!=='deuteranopia' && mode!=='tritanopia') mode='none';
+    return {
+      audio: raw.audio!==undefined ? !!raw.audio : base.audio,
+      lightmode: raw.lightmode!==undefined ? !!raw.lightmode : base.lightmode,
+      hicontrast: raw.hicontrast!==undefined ? !!raw.hicontrast : base.hicontrast,
+      largetext: raw.largetext!==undefined ? !!raw.largetext : base.largetext,
+      largebtns: raw.largebtns!==undefined ? !!raw.largebtns : base.largebtns,
+      nomotion: raw.nomotion!==undefined ? !!raw.nomotion : base.nomotion,
+      breaks: raw.breaks!==undefined ? !!raw.breaks : base.breaks,
+      colorblindMode: mode
+    };
+  }
+  function readProfile(){
+    const saved = readJSON(PROFILE_KEY, null);
+    if(saved && typeof saved.name==='string') return {name:saved.name.trim()};
+    if(typeof CFG==='object' && CFG && typeof CFG.playerName==='string' && CFG.playerName.trim()){
+      const profile={name:CFG.playerName.trim()};
+      writeJSON(PROFILE_KEY, profile);
+      return profile;
+    }
+    for(const key of CFG_KEYS){
+      const cfg = readJSON(key, null);
+      if(cfg && typeof cfg.playerName==='string' && cfg.playerName.trim()){
+        const profile={name:cfg.playerName.trim()};
+        writeJSON(PROFILE_KEY, profile);
+        return profile;
+      }
+    }
+    return {name:''};
+  }
+  function syncLearner(){
+    const profile = readProfile();
+    if(typeof CFG==='object' && CFG){
+      CFG.playerName = profile.name || null;
+      CFG.playerNamePrompted = true;
+      try{ if(typeof saveAll==='function') saveAll(); }catch(_){ }
+    }
+    try{ if(typeof updateHomeUI==='function') updateHomeUI(); }catch(_){ }
+  }
+  function syncPrefsIntoCFG(){
+    let prefs = readJSON(PREF_KEY, null);
+    if((!prefs || typeof prefs!=='object') && typeof CFG==='object' && CFG){
+      prefs = normalizePrefs({
+        audio:CFG.audio, lightmode:CFG.lightmode, hicontrast:CFG.hicontrast,
+        largetext:CFG.largetext, largebtns:CFG.largebtns, nomotion:CFG.nomotion,
+        breaks:CFG.breaks, colorblindMode:CFG.colorblindMode || (CFG.colorblind ? 'protanopia' : 'none')
+      });
+      writeJSON(PREF_KEY, prefs);
+    } else {
+      prefs = normalizePrefs(prefs);
+    }
+    if(typeof CFG==='object' && CFG){
+      CFG.audio = !!prefs.audio;
+      CFG.lightmode = !!prefs.lightmode;
+      CFG.hicontrast = !!prefs.hicontrast;
+      CFG.largetext = !!prefs.largetext;
+      CFG.largebtns = !!prefs.largebtns;
+      CFG.nomotion = !!prefs.nomotion;
+      CFG.breaks = !!prefs.breaks;
+      CFG.colorblindMode = prefs.colorblindMode || 'none';
+      CFG.colorblind = CFG.colorblindMode !== 'none';
+      try{ if(typeof applyCfg==='function') applyCfg(); }catch(_){ }
+      try{ if(typeof applySettings==='function') applySettings(); }catch(_){ }
+      try{ if(typeof saveAll==='function') saveAll(); }catch(_){ }
+    }
+  }
+  function persistPrefsFromCFG(){
+    if(typeof CFG!=='object' || !CFG) return;
+    const prefs = normalizePrefs({
+      audio: !!CFG.audio,
+      lightmode: !!CFG.lightmode,
+      hicontrast: !!CFG.hicontrast,
+      largetext: !!CFG.largetext,
+      largebtns: !!CFG.largebtns,
+      nomotion: !!CFG.nomotion,
+      breaks: !!CFG.breaks,
+      colorblindMode: (typeof CFG.colorblindMode==='string' ? CFG.colorblindMode : (CFG.colorblind ? 'protanopia' : 'none'))
+    });
+    writeJSON(PREF_KEY, prefs);
+  }
+  function hideNameTools(){
+    document.querySelectorAll('.ss').forEach(sec=>{
+      const head = sec.querySelector('.st');
+      if(head && /(PLAYER NAME|ACTIVE LEARNER)/i.test((head.textContent||'').trim())) sec.style.display='none';
+    });
+    const modal=document.getElementById('m-name');
+    if(modal) modal.style.display='none';
+    window.openNamePrompt = function(){ window.location.href='index.html#control-panel'; };
+    window.saveName = function(){ window.location.href='index.html#control-panel'; };
+    window.skipName = function(){
+      if(typeof CFG==='object' && CFG){ CFG.playerNamePrompted=true; try{ if(typeof saveAll==='function') saveAll(); }catch(_){ } }
+      try{ if(document.getElementById('m-name')) document.getElementById('m-name').style.display='none'; }catch(_){ }
+    };
+    window.clearName = function(){ window.location.href='index.html#control-panel'; };
+  }
+  function wrapSettingFns(){
+    ['togSet','qsToggle'].forEach(name=>{
+      const prev=window[name];
+      if(typeof prev==='function' && !prev.__lrWrapped){
+        const wrapped=function(){ const out=prev.apply(this, arguments); setTimeout(persistPrefsFromCFG, 0); return out; };
+        wrapped.__lrWrapped=true;
+        window[name]=wrapped;
+      }
+    });
+    const prevCB=window.setColorblindMode;
+    if(typeof prevCB==='function' && !prevCB.__lrWrapped){
+      const wrappedCB=function(){ const out=prevCB.apply(this, arguments); setTimeout(persistPrefsFromCFG, 0); return out; };
+      wrappedCB.__lrWrapped=true;
+      window.setColorblindMode=wrappedCB;
+    }
+  }
+  function run(){ hideNameTools(); syncLearner(); syncPrefsIntoCFG(); wrapSettingFns(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
+  window.addEventListener('pageshow', run);
+  setTimeout(run, 0);
+})();
+</script>
+
+
 </body>
-</html>

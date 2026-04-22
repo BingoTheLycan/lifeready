@@ -2622,11 +2622,11 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 </div>
 <div class="ss">
-<div class="st">PLAYER NAME (OPTIONAL)</div>
+<div class="st">ACTIVE LEARNER</div>
 <div class="sr">
 <div class="si">👤</div>
-<div class="sinfo"><div class="sn" id="name-setting-display">No name set</div><div class="sd2">Appears on your results card. Personal devices only.</div></div>
-<button class="cbt" id="name-setting-btn" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem">Set Name</button>
+<div class="sinfo"><div class="sn" id="name-setting-display">Managed from Control Panel</div><div class="sd2">Appears on your results card. Personal devices only.</div></div>
+<button class="cbt" id="name-setting-btn" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem">Home Panel</button>
 </div>
 </div>
 <div style="text-align:center;padding:12px 0 4px">
@@ -2932,7 +2932,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <p style="font-size:.84rem;color:var(--text2);line-height:1.7;margin-bottom:14px">Small daily habits have a big impact on your long-term health, your confidence, and how others interact with you.</p>
 <div class="guide-card" onclick="say('Wash hands for 20 seconds with soap before eating, after the bathroom, after sneezing, and after touching shared surfaces.')"><div class="gc-icon">🖐️</div><div><div class="gc-title">HANDWASHING</div><div class="gc-body">Wash with soap for 20 seconds (long enough to sing Happy Birthday twice). Key times: before eating · after using the bathroom · after sneezing or coughing · after touching shared surfaces</div></div></div>
 <div class="guide-card" onclick="say('Brush teeth twice a day for 2 minutes each time, and see a dentist every 6 months.')"><div class="gc-icon">🦷</div><div><div class="gc-title">DENTAL CARE</div><div class="gc-body">Brush twice a day for 2 minutes (morning and before bed) · Floss daily · See a dentist every 6 months · Regular cleanings prevent painful and expensive emergencies</div></div></div>
-<div class="guide-card" onclick="say('Shower every day or every other day. Change socks and underwear daily to prevent bacteria buildup.')"><div class="gc-icon">🚿</div><div><div class="gc-title">BATHING &amp; CLOTHING</div><div class="gc-body">Shower or bathe every day or every other day · Change socks and underwear daily - wearing them again traps bacteria and can cause skin infections and odor</div></div></div>
+<div class="guide-card" onclick="say('Shower every day or every other day. Home Panel socks and underwear daily to prevent bacteria buildup.')"><div class="gc-icon">🚿</div><div><div class="gc-title">BATHING &amp; CLOTHING</div><div class="gc-body">Shower or bathe every day or every other day · Home Panel socks and underwear daily - wearing them again traps bacteria and can cause skin infections and odor</div></div></div>
 <div class="guide-card" onclick="say('Most adults need 7 to 9 hours of sleep each night. Chronic sleep loss increases risk of illness and poor decisions.')"><div class="gc-icon">😴</div><div><div class="gc-title">SLEEP</div><div class="gc-body">Most adults need 7-9 hours per night. Consistent sleep supports immune function, mental health, and decision-making. Chronic sleep deprivation increases risk of serious health problems.</div></div></div>
 <div class="guide-card" onclick="say('When sick, stay home until fever-free for 24 to 48 hours without medication and your symptoms are clearly improving.')"><div class="gc-icon">🤒</div><div><div class="gc-title">WHEN YOU ARE SICK</div><div class="gc-body">Stay home until: fever-free for 24-48 hours without fever-reducing medication AND symptoms clearly improving. Cough or sneeze into your elbow or a tissue, not your hands.</div></div></div>
 </div>
@@ -5345,7 +5345,7 @@ function openClientModal(clientIndex=null){
   const cl = isEdit ? CLIENTS[clientIndex] : null;
   window._editingClientIndex = isEdit ? clientIndex : null;
   $('m-client').querySelector('.mt').textContent = isEdit ? '✏ EDIT LEARNER' : '+ ADD NEW LEARNER';
-  $('m-client').querySelector('.msave').textContent = isEdit ? 'Save Changes' : 'Add Learner';
+  $('m-client').querySelector('.msave').textContent = isEdit ? 'Save Home Panels' : 'Add Learner';
   $('m-client').querySelector('.msave').onclick = saveClient;
   $('nc-name').value = cl ? (cl.name||'') : '';
   if($('nc-fullname')) $('nc-fullname').value = cl ? (cl.fullName||'') : '';
@@ -5957,8 +5957,8 @@ sub.textContent='Practice routines, safety, and everyday health skills.';
 // Update settings name display
 const nd=$('name-setting-display');
 const nb2=$('name-setting-btn');
-if(nd) nd.textContent=CFG.playerName?`Name: ${CFG.playerName}`:'No name set';
-if(nb2) nb2.textContent=CFG.playerName?'Change':'Set Name';
+if(nd) nd.textContent=CFG.playerName?`Name: ${CFG.playerName}`:'Managed from Control Panel';
+if(nb2) nb2.textContent=CFG.playerName?'Home Panel':'Home Panel';
 const cb=$('clear-name-btn');
 if(cb) cb.style.display=CFG.playerName?'block':'none';
 // Today's progress card
@@ -6398,7 +6398,7 @@ openHint('Reset PIN?',
 ()=>{closeM('m-hint');CFG.coachPin=null;CFG.coachWelcomeSeen=false;saveAll();openPinSetup();}
 );
 }
-function pinInputChange(){$('pin-error').textContent='';}
+function pinInputHome Panel(){$('pin-error').textContent='';}
 function handlePinSubmit(){
 const inp=$('pin-input');
 if(!inp)return;
@@ -6835,7 +6835,7 @@ document.addEventListener('DOMContentLoaded', initHomeCardWiring);
 <div style="font-size:2rem;margin-bottom:6px">🔒</div>
 <div class="mt" id="pin-title" style="text-align:center;justify-content:center">MISSION CONTROL ACCESS</div>
 <div id="pin-subtitle" style="font-size:.82rem;color:var(--text2);margin-bottom:16px;line-height:1.5">Enter your PIN to access Mission Control.</div>
-<input autocapitalize="none" autocomplete="off" autocorrect="off" class="fi" id="pin-input" oninput="pinInputChange()" onkeydown="if(event.key==='Enter')handlePinSubmit()" placeholder="Enter PIN" spellcheck="false" style="text-align:center;font-size:1.3rem;letter-spacing:4px;font-family:var(--font-mono);margin-bottom:10px" type="password"/>
+<input autocapitalize="none" autocomplete="off" autocorrect="off" class="fi" id="pin-input" oninput="pinInputHome Panel()" onkeydown="if(event.key==='Enter')handlePinSubmit()" placeholder="Enter PIN" spellcheck="false" style="text-align:center;font-size:1.3rem;letter-spacing:4px;font-family:var(--font-mono);margin-bottom:10px" type="password"/>
 <div id="pin-error" style="color:var(--red);font-size:.78rem;font-weight:700;margin-bottom:10px;min-height:18px;font-family:var(--font-mono)"></div>
 <button class="dbtn" onclick="handlePinSubmit()" style="margin-bottom:8px">Submit →</button>
 <button class="rsec" onclick="closeM('m-pin');go('home')" style="font-size:.8rem">Cancel</button>
@@ -6880,7 +6880,7 @@ document.addEventListener('DOMContentLoaded', initHomeCardWiring);
 <div class="mow" id="m-quick-settings">
 <div class="mdl" style="max-width:340px">
 <div class="mt">⚙️ QUICK SETTINGS</div>
-<p style="font-size:.78rem;color:var(--text2);margin-bottom:14px">Changes apply instantly. Your session continues.</p>
+<p style="font-size:.78rem;color:var(--text2);margin-bottom:14px">Home Panels apply instantly. Your session continues.</p>
 <div class="sr" style="margin-bottom:8px"><div class="si">🔊</div><div class="sinfo"><div class="sn">Audio</div><div class="sd2">Spoken instructions &amp; sounds</div></div><div class="tog" id="qs-tog-audio" onclick="qsToggle('audio','qs-tog-audio')"></div></div>
 <div class="sr" style="margin-bottom:8px"><div class="si">T</div><div class="sinfo"><div class="sn">Large Text</div><div class="sd2">Bigger text &amp; buttons</div></div><div class="tog" id="qs-tog-lt" onclick="qsToggle('largetext','qs-tog-lt')"></div></div>
 <div class="sr" style="margin-bottom:8px"><div class="si">👁</div><div class="sinfo"><div class="sn">Colorblind Mode</div><div class="sd2">Orange/blue instead of red/green</div></div><div class="tog" id="qs-tog-cb" onclick="qsToggle('colorblind','qs-tog-cb')"></div></div>
@@ -8622,7 +8622,7 @@ ensure();
       quiz:{title:'Money Quiz', patch:'Money Spotter', icon:'💵', aliases:['money quiz','money id quiz','quiz']},
       coindrill:{title:'Coin Drill', patch:'Coin Counter', icon:'🪙', aliases:['coin drill','coins drill','coin']},
       billdrill:{title:'Bill Drill', patch:'Bill Builder', icon:'💲', aliases:['bill drill','bills drill','bill']},
-      change:{title:'Change Drill', patch:'Change Jockey', icon:'🔄', aliases:['change drill','change']},
+      change:{title:'Home Panel Drill', patch:'Home Panel Jockey', icon:'🔄', aliases:['change drill','change']},
       mini_store_interface:{title:'Mini Store Interface', patch:'Mini Mart Pilot', icon:'🛍️', aliases:['mini store interface','mini store']},
       exactpay:{title:'Exact Pay', patch:'Exact Pay Ace', icon:'💳', aliases:['exact pay','exactpay']},
       receiptdecoder:{title:'Receipt Decoder', patch:'Receipt Reader', icon:'🧾', aliases:['receipt decoder','receiptdecoder']},
@@ -9337,5 +9337,137 @@ ensure();
 
 </script>
 
+
+
+<script>
+(function(){
+  const PROFILE_KEY='lr_global_profile';
+  const PREF_KEY='lr_global_prefs';
+  const CFG_KEYS=['cr_cfg','tr_cfg','jr_cfg','hr_cfg','tr5_cfg','sr_cfg','tc_cfg','hlr_cfg'];
+  function readJSON(key, fallback){ try{ const raw=localStorage.getItem(key); return raw?JSON.parse(raw):fallback; }catch(_){ return fallback; } }
+  function writeJSON(key, value){ try{ localStorage.setItem(key, JSON.stringify(value)); }catch(_){ } }
+  function defaultPrefs(){ return {audio:true,lightmode:false,hicontrast:false,largetext:false,largebtns:false,nomotion:false,breaks:false,colorblindMode:'none'}; }
+  function normalizePrefs(value){
+    const base=defaultPrefs();
+    const raw=(value&&typeof value==='object')?value:{};
+    let mode=typeof raw.colorblindMode==='string'?raw.colorblindMode:'none';
+    if(mode!=='none' && mode!=='protanopia' && mode!=='deuteranopia' && mode!=='tritanopia') mode='none';
+    return {
+      audio: raw.audio!==undefined ? !!raw.audio : base.audio,
+      lightmode: raw.lightmode!==undefined ? !!raw.lightmode : base.lightmode,
+      hicontrast: raw.hicontrast!==undefined ? !!raw.hicontrast : base.hicontrast,
+      largetext: raw.largetext!==undefined ? !!raw.largetext : base.largetext,
+      largebtns: raw.largebtns!==undefined ? !!raw.largebtns : base.largebtns,
+      nomotion: raw.nomotion!==undefined ? !!raw.nomotion : base.nomotion,
+      breaks: raw.breaks!==undefined ? !!raw.breaks : base.breaks,
+      colorblindMode: mode
+    };
+  }
+  function readProfile(){
+    const saved = readJSON(PROFILE_KEY, null);
+    if(saved && typeof saved.name==='string') return {name:saved.name.trim()};
+    if(typeof CFG==='object' && CFG && typeof CFG.playerName==='string' && CFG.playerName.trim()){
+      const profile={name:CFG.playerName.trim()};
+      writeJSON(PROFILE_KEY, profile);
+      return profile;
+    }
+    for(const key of CFG_KEYS){
+      const cfg = readJSON(key, null);
+      if(cfg && typeof cfg.playerName==='string' && cfg.playerName.trim()){
+        const profile={name:cfg.playerName.trim()};
+        writeJSON(PROFILE_KEY, profile);
+        return profile;
+      }
+    }
+    return {name:''};
+  }
+  function syncLearner(){
+    const profile = readProfile();
+    if(typeof CFG==='object' && CFG){
+      CFG.playerName = profile.name || null;
+      CFG.playerNamePrompted = true;
+      try{ if(typeof saveAll==='function') saveAll(); }catch(_){ }
+    }
+    try{ if(typeof updateHomeUI==='function') updateHomeUI(); }catch(_){ }
+  }
+  function syncPrefsIntoCFG(){
+    let prefs = readJSON(PREF_KEY, null);
+    if((!prefs || typeof prefs!=='object') && typeof CFG==='object' && CFG){
+      prefs = normalizePrefs({
+        audio:CFG.audio, lightmode:CFG.lightmode, hicontrast:CFG.hicontrast,
+        largetext:CFG.largetext, largebtns:CFG.largebtns, nomotion:CFG.nomotion,
+        breaks:CFG.breaks, colorblindMode:CFG.colorblindMode || (CFG.colorblind ? 'protanopia' : 'none')
+      });
+      writeJSON(PREF_KEY, prefs);
+    } else {
+      prefs = normalizePrefs(prefs);
+    }
+    if(typeof CFG==='object' && CFG){
+      CFG.audio = !!prefs.audio;
+      CFG.lightmode = !!prefs.lightmode;
+      CFG.hicontrast = !!prefs.hicontrast;
+      CFG.largetext = !!prefs.largetext;
+      CFG.largebtns = !!prefs.largebtns;
+      CFG.nomotion = !!prefs.nomotion;
+      CFG.breaks = !!prefs.breaks;
+      CFG.colorblindMode = prefs.colorblindMode || 'none';
+      CFG.colorblind = CFG.colorblindMode !== 'none';
+      try{ if(typeof applyCfg==='function') applyCfg(); }catch(_){ }
+      try{ if(typeof applySettings==='function') applySettings(); }catch(_){ }
+      try{ if(typeof saveAll==='function') saveAll(); }catch(_){ }
+    }
+  }
+  function persistPrefsFromCFG(){
+    if(typeof CFG!=='object' || !CFG) return;
+    const prefs = normalizePrefs({
+      audio: !!CFG.audio,
+      lightmode: !!CFG.lightmode,
+      hicontrast: !!CFG.hicontrast,
+      largetext: !!CFG.largetext,
+      largebtns: !!CFG.largebtns,
+      nomotion: !!CFG.nomotion,
+      breaks: !!CFG.breaks,
+      colorblindMode: (typeof CFG.colorblindMode==='string' ? CFG.colorblindMode : (CFG.colorblind ? 'protanopia' : 'none'))
+    });
+    writeJSON(PREF_KEY, prefs);
+  }
+  function hideNameTools(){
+    document.querySelectorAll('.ss').forEach(sec=>{
+      const head = sec.querySelector('.st');
+      if(head && /(PLAYER NAME|ACTIVE LEARNER)/i.test((head.textContent||'').trim())) sec.style.display='none';
+    });
+    const modal=document.getElementById('m-name');
+    if(modal) modal.style.display='none';
+    window.openNamePrompt = function(){ window.location.href='index.html#control-panel'; };
+    window.saveName = function(){ window.location.href='index.html#control-panel'; };
+    window.skipName = function(){
+      if(typeof CFG==='object' && CFG){ CFG.playerNamePrompted=true; try{ if(typeof saveAll==='function') saveAll(); }catch(_){ } }
+      try{ if(document.getElementById('m-name')) document.getElementById('m-name').style.display='none'; }catch(_){ }
+    };
+    window.clearName = function(){ window.location.href='index.html#control-panel'; };
+  }
+  function wrapSettingFns(){
+    ['togSet','qsToggle'].forEach(name=>{
+      const prev=window[name];
+      if(typeof prev==='function' && !prev.__lrWrapped){
+        const wrapped=function(){ const out=prev.apply(this, arguments); setTimeout(persistPrefsFromCFG, 0); return out; };
+        wrapped.__lrWrapped=true;
+        window[name]=wrapped;
+      }
+    });
+    const prevCB=window.setColorblindMode;
+    if(typeof prevCB==='function' && !prevCB.__lrWrapped){
+      const wrappedCB=function(){ const out=prevCB.apply(this, arguments); setTimeout(persistPrefsFromCFG, 0); return out; };
+      wrappedCB.__lrWrapped=true;
+      window.setColorblindMode=wrappedCB;
+    }
+  }
+  function run(){ hideNameTools(); syncLearner(); syncPrefsIntoCFG(); wrapSettingFns(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
+  window.addEventListener('pageshow', run);
+  setTimeout(run, 0);
+})();
+</script>
+
+
 </body>
-</html>

@@ -836,6 +836,17 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
   .app-grid{grid-template-columns:1fr}
   .mini-grid{grid-template-columns:1fr}
 }
+
+.lr-profile-card h2,.lr-panel-card h2{margin-top:0}
+.lr-profile-card,.lr-panel-card{position:relative;overflow:hidden}
+.lr-profile-card::after,.lr-panel-card::after{
+  content:"";position:absolute;inset:auto -18% -40% auto;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle, rgba(92,240,255,.12), transparent 62%);pointer-events:none;
+}
+.lr-panel-list{display:grid;gap:10px;margin-top:16px}
+.lr-panel-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(143,196,255,.12)}
+.lr-panel-mark{width:26px;height:26px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(92,240,255,.12);color:#5cf0ff;font-weight:800;flex-shrink:0}
+
 </style>
 </head>
 <body>
@@ -850,11 +861,13 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
   <div class="hero-trust">Designed for real-world independence · Simple, repeatable, and judgment-free</div>
   <div class="hero-actions">
     <a class="btn btn-primary" href="#missions">Choose a Mission</a>
+    <a class="btn btn-secondary" href="ControlPanel.html">Open Control Panel</a>
     <a class="btn btn-secondary" href="MissionControl.html">Open Mission Control</a>
     <button class="btn btn-secondary" id="installBtn" type="button">Install LifeReady</button>
     <a class="btn btn-secondary" href="#how-it-works">How It Works</a>
   </div>
   <div class="install-note" id="installNote">On iPhone use Share → Add to Home Screen. On Android use Install app or Add to Home Screen.</div>
+  <div class="lr-status-note" id="lr-hero-status"><strong>NO PROFILE LINKED</strong> · Use the command card below to set a display name once for the whole suite</div>
 </div>
 
 <main>
@@ -874,6 +887,43 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
       <div class="quick-number">3</div>
       <strong>Use Mission Control</strong>
       <p>Open the unified Mission Control hub from the suite or from any module to track one learner across the entire app on this device.</p>
+    </div>
+  </section>
+
+  <section class="duo" aria-label="Suite command deck">
+    <div class="info-card control-card lr-profile-card">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="info-title">Command Access</div>
+      <h2 id="lr-hub-title">SYSTEMS ONLINE</h2>
+      <p id="lr-hub-copy">Link your profile once here, then carry your name and learning setup across the whole suite.</p>
+      <div class="lr-home-form" style="margin-top:16px">
+        <label for="lr-home-name">Display Name</label>
+        <input id="lr-home-name" type="text" maxlength="28" placeholder="Enter first name, nickname, or initials" />
+        <div class="lr-home-actions">
+          <button class="btn btn-primary" id="lr-home-save" type="button">Link Profile</button>
+          <button class="btn btn-secondary" id="lr-home-clear" type="button">Use Shared Device Mode</button>
+        </div>
+        <div class="lr-home-chiprow">
+          <div class="lr-home-chip">✦ One name for every module</div>
+          <div class="lr-home-chip">✦ Shared accessibility defaults</div>
+        </div>
+        <div class="grid-top-copy" id="lr-hub-note" style="margin-top:4px">Shared Device Mode active. Use initials or a nickname if other people use this computer, phone, or tablet.</div>
+      </div>
+    </div>
+
+    <div class="info-card control-card lr-panel-card">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="info-title">Control Panel</div>
+      <h2>The whole suite should answer to one command deck.</h2>
+      <p>Open the Control Panel to manage your linked profile, suite-wide accessibility defaults, and which modules stay visible on the Mission Deck.</p>
+      <div class="lr-panel-list">
+        <div class="lr-panel-item"><div class="lr-panel-mark">1</div><div><strong>Link once</strong><br/><span>Set a name once on the homepage instead of being asked inside every module.</span></div></div>
+        <div class="lr-panel-item"><div class="lr-panel-mark">2</div><div><strong>Control the launch bay</strong><br/><span>Hide modules you are not using right now so the homepage stays focused and calm.</span></div></div>
+        <div class="lr-panel-item"><div class="lr-panel-mark">3</div><div><strong>Keep support settings synced</strong><br/><span>Audio, text size, contrast, motion, and learning aids now live in one suite-wide system.</span></div></div>
+      </div>
+      <div style="margin-top:16px">
+        <a class="btn btn-primary" href="ControlPanel.html">Open Control Panel</a>
+      </div>
     </div>
   </section>
 
@@ -1106,5 +1156,6 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   });
 }
 </script>
+<script src="lifeready-control.js"></script>
 </body>
 </html>

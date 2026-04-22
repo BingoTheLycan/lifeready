@@ -101,8 +101,9 @@
       .lr-control-shortcut .lr-copy{font-size:.78rem;line-height:1.55;color:var(--text2, #b8c3d2);max-width:560px;}
       .lr-control-shortcut button{border:1px solid rgba(92,240,255,.4);background:rgba(92,240,255,.12);color:var(--green, #5cf0ff);padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer;}
       .lr-suite-hidden{display:none !important;}
-      .lr-status-note{margin-top:10px;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;letter-spacing:1.2px;font-size:.74rem;opacity:.88;}
-      .lr-status-note strong{color:inherit;}
+      .lr-status-note{margin:16px auto 0;max-width:840px;display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;border-radius:999px;border:1px solid rgba(255,207,102,.28);background:linear-gradient(135deg,rgba(255,207,102,.10),rgba(92,240,255,.08));font-family:ui-monospace, SFMono-Regular, Menlo, monospace;letter-spacing:1.4px;font-size:.74rem;color:#eef6ff;box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;}
+      .lr-status-note strong{color:#ffcf66;}
+      .lr-status-note::before{content:'◢';color:#5cf0ff;font-size:.86rem;line-height:1;}
       .lr-home-form{display:grid;gap:12px;}
       .lr-home-form label{font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:#8fc4ff;}
       .lr-home-form input{width:100%;padding:14px 16px;border-radius:14px;border:1px solid rgba(143,196,255,.3);background:rgba(7,14,25,.82);color:#e9f6ff;font-size:1rem;}
@@ -127,6 +128,17 @@
     document.body.classList.toggle('lr-suite-no-motion', !!a.nomotion);
   }
 
+
+  function getModuleCFG(){
+    try {
+      if (typeof CFG !== 'undefined' && CFG && typeof CFG === 'object') return CFG;
+    } catch(_e){}
+    try {
+      if (window.CFG && typeof window.CFG === 'object') return window.CFG;
+    } catch(_e){}
+    return null;
+  }
+
   function controlUrl(){
     const file = currentFile();
     return `ControlPanel.html?return=${encodeURIComponent(file)}`;
@@ -146,8 +158,8 @@
     if (nameInput) nameInput.value = name || '';
     if (clearBtn) clearBtn.textContent = name ? 'Clear Profile From Device' : 'Use Shared Device Mode';
     if (heroNote) heroNote.innerHTML = name
-      ? `<strong>PROFILE LINKED</strong> · ${name} · ${data.profile.sharedDevice ? 'SHARED DEVICE MODE' : 'PERSONAL DEVICE MODE'}`
-      : '<strong>NO PROFILE LINKED</strong> · Use the command card below to set a display name once for the whole suite';
+      ? `<strong>COMMAND LINKED</strong> · ${name} · ${data.profile.sharedDevice ? 'SHARED DEVICE MODE' : 'PERSONAL DEVICE MODE'}`
+      : '<strong>COMMAND LINK OFFLINE</strong> · Link a profile below once and every training deck will recognize it';
   }
 
   function applyHubModuleVisibility(data){
@@ -206,33 +218,35 @@
   function syncGlobalToCFG(){
     const data = read();
     applySuiteClasses(data);
-    if (!window.CFG || typeof window.CFG !== 'object') return data;
-    if (!data.profile.displayName && window.CFG.playerName) {
-      data.profile.displayName = String(window.CFG.playerName || '').trim().slice(0,28);
+    const cfg = getModuleCFG();
+    if (!cfg) return data;
+    if (!data.profile.displayName && cfg.playerName) {
+      data.profile.displayName = String(cfg.playerName || '').trim().slice(0,28);
       data.profile.sharedDevice = !data.profile.displayName;
       write(data);
     }
     GLOBAL_ACCESS_KEYS.forEach(key => {
-      if (key in window.CFG) window.CFG[key] = data.accessibility[key];
+      if (key in cfg) cfg[key] = data.accessibility[key];
     });
-    if ('colorblind' in window.CFG) window.CFG.colorblind = data.accessibility.colorblindMode !== 'none';
-    if ('playerName' in window.CFG) window.CFG.playerName = data.profile.displayName || null;
-    if ('playerNamePrompted' in window.CFG) window.CFG.playerNamePrompted = true;
+    if ('colorblind' in cfg) cfg.colorblind = data.accessibility.colorblindMode !== 'none';
+    if ('playerName' in cfg) cfg.playerName = data.profile.displayName || null;
+    if ('playerNamePrompted' in cfg) cfg.playerNamePrompted = true;
     return data;
   }
 
   function syncCFGToGlobal(){
-    if (!window.CFG || typeof window.CFG !== 'object') return read();
-    return update(cfg => {
+    const cfg = getModuleCFG();
+    if (!cfg) return read();
+    return update(data => {
       GLOBAL_ACCESS_KEYS.forEach(key => {
-        if (key in window.CFG) cfg.accessibility[key] = window.CFG[key];
+        if (key in cfg) data.accessibility[key] = cfg[key];
       });
-      const name = typeof window.CFG.playerName === 'string' ? window.CFG.playerName.trim().slice(0,28) : '';
-      if (name || !cfg.profile.displayName) {
-        cfg.profile.displayName = name;
-        cfg.profile.sharedDevice = !name;
+      const name = typeof cfg.playerName === 'string' ? cfg.playerName.trim().slice(0,28) : '';
+      if (name || !data.profile.displayName) {
+        data.profile.displayName = name;
+        data.profile.sharedDevice = !name;
       }
-      return cfg;
+      return data;
     });
   }
 
@@ -265,9 +279,10 @@
           cfg.profile.sharedDevice = true;
           return cfg;
         });
-        if (window.CFG && typeof window.CFG === 'object') {
-          window.CFG.playerName = null;
-          window.CFG.playerNamePrompted = true;
+        const cfg = getModuleCFG();
+        if (cfg) {
+          cfg.playerName = null;
+          cfg.playerNamePrompted = true;
           try { if (typeof window.saveAll === 'function') window.saveAll(); } catch(_e){}
           try { if (typeof window.updateHomeUI === 'function') window.updateHomeUI(); } catch(_e){}
         }
@@ -294,7 +309,7 @@
     box.innerHTML = `
       <div class="st">CONTROL PANEL</div>
       <div class="lr-cta">
-        <div class="lr-copy">Link your display name once, set suite-wide accessibility defaults, and choose which training modules stay visible on the Mission Deck.</div>
+        <div class="lr-copy">Link your display name once, set suite-wide accessibility defaults, and set suite-wide support defaults without repeating the same setup in every module.</div>
         <button type="button">Open Control Panel</button>
       </div>`;
     const btn = box.querySelector('button');
@@ -344,9 +359,10 @@
         cfg.profile.sharedDevice = true;
         return cfg;
       });
-      if (window.CFG && typeof window.CFG === 'object') {
-        window.CFG.playerName = null;
-        window.CFG.playerNamePrompted = true;
+      const cfg = getModuleCFG();
+      if (cfg) {
+        cfg.playerName = null;
+        cfg.playerNamePrompted = true;
         try { if (typeof window.saveAll === 'function') window.saveAll(); } catch(_e){}
         try { if (typeof window.updateHomeUI === 'function') window.updateHomeUI(); } catch(_e){}
       }

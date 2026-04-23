@@ -8031,7 +8031,7 @@ function finishUnsafeChoice(){ const total=UNSAFECHOICE.cases.length||1; const p
         var subEl = document.getElementById('r-sub'); if(subEl) subEl.textContent='';
         var pb = document.getElementById('pb-banner'); if(pb){ pb.textContent=''; pb.style.display='none'; }
         if(typeof window.refreshResultsRedesign==='function') window.refreshResultsRedesign();
-        if(titleEl) titleEl.textContent = opts.header || (modeTitle.toUpperCase() + ' COMPLETE');
+        if(titleEl) titleEl.textContent = (String(modeTitle||'Arcade Mission').replace(/[!?]+$/,'').toUpperCase() + ' COMPLETE');
         if(subEl) subEl.textContent = opts.sub || ('You cleared ' + correct + ' of ' + total + ' checkpoints.');
         var scoreEl=document.getElementById('r-score'); if(scoreEl) scoreEl.textContent=String(score);
         var accEl=document.getElementById('r-acc'); if(accEl) accEl.textContent=pct+'%';
@@ -8542,9 +8542,11 @@ function finishUnsafeChoice(){ const total=UNSAFECHOICE.cases.length||1; const p
       .lr-reward-endstat{padding:12px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
       .lr-reward-endstat .v{font-family:var(--font-display);font-size:1rem;color:var(--text)}
       .lr-reward-endstat .l{font-size:.68rem;color:var(--text3);margin-top:4px}
-      .lr-reward-endgoals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
-      .lr-reward-endgoals .lr-goal-row{padding:10px;display:grid;gap:6px}
-      .lr-reward-endgoals .lr-goal-copy{margin-top:0}
+      .lr-reward-endgoals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+      .lr-reward-endgoals .lr-goal-row{padding:10px 12px;display:grid;gap:5px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.06);box-shadow:none}
+      .lr-reward-endgoals .lr-goal-copy{margin-top:0;font-size:.74rem;color:var(--text2)}
+      .lr-reward-endgoals .lr-goal-label{font-size:.92rem;line-height:1.2}
+      .lr-reward-endgoals .lr-goal-meta{font-size:.69rem;margin-top:4px;color:var(--text3)}
       .lr-reward-mini{font-size:.72rem;color:var(--text3)}
       .lr-practice-reward-box{margin-top:12px;background:linear-gradient(135deg,rgba(116,224,255,.12),rgba(0,255,163,.08));border:1px solid rgba(116,224,255,.26);border-radius:16px;padding:12px;display:grid;gap:8px}
       .lr-practice-reward-box .title{font-family:var(--font-mono);font-size:.6rem;letter-spacing:1.7px;text-transform:uppercase;color:var(--text3)}

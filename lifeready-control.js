@@ -274,7 +274,7 @@
     if (clearBtn) clearBtn.textContent = name ? 'Clear Profile From Device' : 'Use Shared Device Mode';
     if (heroNote) heroNote.innerHTML = name
       ? `<span class="lr-band-label">COMMAND LINKED</span><span class="lr-band-copy">${escapeHTML(name)} · ${data.profile.sharedDevice ? 'SHARED DEVICE MODE' : 'PERSONAL DEVICE MODE'} · ${readiness.activeSupports} SUPPORT SYSTEM${readiness.activeSupports === 1 ? '' : 'S'} ACTIVE</span>`
-      : `<span class="lr-band-label">COMMAND LINK OFFLINE</span><span class="lr-band-copy">Link a profile below once and every training deck will recognize it.</span>`;
+      : `<span class="lr-band-label">COMMAND LINK OFFLINE</span><span class="lr-band-copy">Open Control Panel to link a profile or use Shared Device Mode.</span>`;
     const bridgeStatus = document.getElementById('lr-bridge-status');
     if (bridgeStatus) bridgeStatus.textContent = name ? `${name} linked · ${readiness.currentRank} status · ${readiness.visibleDecks} decks online` : `Profile offline · ${readiness.visibleDecks} decks online`;
     const readinessMode = document.getElementById('lr-bridge-recent');

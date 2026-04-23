@@ -889,7 +889,7 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
     <a class="btn btn-secondary" href="#how-it-works">How It Works</a>
   </div>
   <div class="install-note" id="installNote">On iPhone use Share → Add to Home Screen. On Android use Install app or Add to Home Screen.</div>
-  <div class="lr-status-note" id="lr-hero-status"><strong>COMMAND LINK OFFLINE</strong> · Link a profile below once and every training deck will recognize it</div>
+  <div class="lr-status-note" id="lr-hero-status"><strong>COMMAND LINK OFFLINE</strong> · Open Control Panel to link a profile or use Shared Device Mode</div>
 </div>
 
 <main>
@@ -912,62 +912,19 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
     </div>
   </section>
 
-  <section class="bridge-console" aria-label="LifeReady bridge console">
-    <div class="bridge-strip">
-      <div class="bridge-pill" id="lr-bridge-status">Profile offline · 8 decks online</div>
-      <div class="bridge-pill" id="lr-bridge-recent">No training logged yet</div>
-      <div class="bridge-pill" id="lr-bridge-support">0 support systems active</div>
-      <div class="bridge-pill" id="lr-bridge-decks">8 mission decks visible</div>
-    </div>
-
-    <div class="bridge-grid">
-      <div class="info-card control-card lr-profile-card">
-        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-        <div class="info-title">Command Link</div>
-        <h2 id="lr-hub-title">SYSTEMS ONLINE</h2>
-        <p id="lr-hub-copy">Link a display name here, or use Shared Device Mode.</p>
-        <div class="lr-home-form" style="margin-top:16px">
-          <label for="lr-home-name">Display Name</label>
-          <input id="lr-home-name" type="text" maxlength="28" placeholder="Enter first name, nickname, or initials" />
-          <div class="lr-home-actions">
-            <button class="btn btn-primary" id="lr-home-save" type="button">Link Profile</button>
-            <button class="btn btn-secondary" id="lr-home-clear" type="button">Use Shared Device Mode</button>
-          </div>
-          <div class="lr-home-chiprow">
-            <div class="lr-home-chip">✦ One name for every module</div>
-            <div class="lr-home-chip">✦ Shared accessibility defaults</div>
-          </div>
-          <div class="grid-top-copy" id="lr-hub-note" style="margin-top:6px">Shared Device Mode active. Use initials or a nickname if other people use this computer, phone, or tablet.</div>
-        </div>
+  <section class="bridge-console" aria-label="Control panel access">
+    <div class="info-card control-card lr-panel-card lr-panel-home" style="max-width:980px;margin:0 auto;">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div class="info-title">Control Panel</div>
+      <h2>Set your systems before launch.</h2>
+      <p>Open the Control Panel to manage your profile link, support systems, and local device settings.</p>
+      <div class="lr-panel-list">
+        <div class="lr-panel-item"><div class="lr-panel-mark">1</div><div><strong>Link your profile</strong><br/><span>Save a display name or use Shared Device Mode when more than one person uses the device.</span></div></div>
+        <div class="lr-panel-item"><div class="lr-panel-mark">2</div><div><strong>Adjust support systems</strong><br/><span>Text size, contrast, motion, audio, and learning aids can all be set from one place.</span></div></div>
+        <div class="lr-panel-item"><div class="lr-panel-mark">3</div><div><strong>Open your local console</strong><br/><span>Manage module visibility, presets, and device tools without crowding the launch deck.</span></div></div>
       </div>
-
-      <div class="info-card control-card lr-readiness-card">
-        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-        <div class="info-title">Readiness Report</div>
-        <h2>Bridge status for your training decks.</h2>
-        <p>See recent training, support systems, active decks, and progress across LifeReady at your own pace.</p>
-        <div class="lr-report-grid">
-          <div class="lr-report-stat"><span class="lr-report-label">Rank</span><strong id="lr-report-rank">Cadet</strong></div>
-          <div class="lr-report-stat"><span class="lr-report-label">Sessions</span><strong id="lr-report-sessions">0</strong></div>
-          <div class="lr-report-stat"><span class="lr-report-label">Support Systems</span><strong id="lr-report-supports">0</strong></div>
-          <div class="lr-report-stat"><span class="lr-report-label">Decks Practiced</span><strong id="lr-report-active">0</strong></div>
-        </div>
-        <div class="lr-console-log" id="lr-recent-list"></div>
-        <div style="margin-top:16px">
-          <a class="btn btn-primary" href="ReadinessReport.html">Open Readiness Report</a>
-        </div>
-      </div>
-
-      <div class="info-card control-card lr-panel-card">
-        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-        <div class="info-title">Control Panel</div>
-        <h2>Set your systems before launch.</h2>
-        <p>Open the Control Panel to manage your profile link, support systems, and local device settings.</p>
-        <div class="lr-system-list" id="lr-system-list"></div>
-        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn btn-primary" href="ControlPanel.html">Open Control Panel</a>
-          <a class="btn btn-secondary" href="MissionControl.html">Open Mission Control</a>
-        </div>
+      <div style="margin-top:16px">
+        <a class="btn btn-primary" href="ControlPanel.html">Open Control Panel</a>
       </div>
     </div>
   </section>

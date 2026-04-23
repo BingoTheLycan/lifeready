@@ -4,116 +4,112 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>LifeReady Control Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --bg:#070d16;
-  --bg2:#0d1522;
-  --panel:#101c2b;
-  --panel2:#142437;
-  --line:rgba(119,174,255,.18);
-  --line2:rgba(92,240,255,.28);
-  --text:#e9f4ff;
-  --muted:#a8bbd2;
+  --bg:#060b12;
+  --bg2:#0c1421;
+  --panel:#111b2a;
+  --panel2:#0d1726;
+  --text:#eef6ff;
+  --muted:#9eb2c8;
+  --line:rgba(126,176,255,.18);
   --cyan:#5cf0ff;
-  --violet:#7d5eff;
+  --cyan-soft:rgba(92,240,255,.13);
+  --violet:#8e74ff;
   --gold:#ffcf66;
-  --red:#ff6b7c;
   --green:#7dffb2;
-  --radius:20px;
-  --shadow:0 24px 60px rgba(0,0,0,.42), 0 0 40px rgba(92,240,255,.08);
+  --red:#ff7d93;
+  --shadow:0 26px 60px rgba(0,0,0,.42), 0 0 28px rgba(92,240,255,.08);
+  --font-mono:'Space Mono',ui-monospace,monospace;
+  --font-body:'Nunito',system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:
-    radial-gradient(circle at top, rgba(92,240,255,.12), transparent 42%),
-    radial-gradient(circle at 80% 10%, rgba(125,94,255,.12), transparent 32%),
-    linear-gradient(180deg,var(--bg),#050a12 60%, #04080f 100%);
   color:var(--text);
+  font-family:var(--font-body);
+  background:
+    radial-gradient(circle at 15% 12%, rgba(92,240,255,.08), transparent 22%),
+    radial-gradient(circle at 85% 10%, rgba(142,116,255,.08), transparent 25%),
+    radial-gradient(ellipse at top, rgba(255,207,102,.08), transparent 40%),
+    linear-gradient(180deg, #09111b 0%, #050910 100%);
 }
-.cp-shell{max-width:1240px;margin:0 auto;padding:34px 18px 56px;}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;opacity:.32;
+  background:repeating-linear-gradient(0deg, transparent, transparent 6px, rgba(255,255,255,.015) 6px, rgba(255,255,255,.015) 7px);
+}
+.cp-shell{max-width:1280px;margin:0 auto;padding:28px 16px 56px;position:relative;z-index:1;}
 .cp-topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:18px;}
-.cp-return,.cp-link,.cp-btn,.cp-chip,.cp-toggle,.cp-speed button,.cp-cb button{
-  appearance:none;border:1px solid var(--line2);background:rgba(15,31,49,.72);color:var(--text);
-  border-radius:14px;padding:12px 16px;font-weight:700;cursor:pointer;text-decoration:none;
-  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+.cp-return,.cp-link,.cp-btn,.cp-chip,.cp-toggle,.cp-speed button,.cp-cb button,.cp-preset,.cp-summary-link{
+  appearance:none;border:1px solid rgba(92,240,255,.24);background:rgba(13,24,39,.8);color:var(--text);
+  border-radius:16px;padding:12px 15px;text-decoration:none;cursor:pointer;font-weight:800;
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease;
 }
-.cp-return:hover,.cp-link:hover,.cp-btn:hover,.cp-chip:hover,.cp-toggle:hover,.cp-speed button:hover,.cp-cb button:hover{transform:translateY(-1px);border-color:rgba(92,240,255,.55);box-shadow:0 0 24px rgba(92,240,255,.12);}
+.cp-return:hover,.cp-link:hover,.cp-btn:hover,.cp-chip:hover,.cp-toggle:hover,.cp-speed button:hover,.cp-cb button:hover,.cp-preset:hover,.cp-summary-link:hover{transform:translateY(-1px);border-color:rgba(92,240,255,.52);box-shadow:0 0 26px rgba(92,240,255,.12);}
 .cp-top-actions{display:flex;gap:10px;flex-wrap:wrap;}
 .cp-hero{
-  background:linear-gradient(135deg, rgba(16,28,43,.98), rgba(8,16,27,.96));
-  border:1px solid var(--line2);
-  border-radius:28px;
-  padding:26px;
+  position:relative;overflow:hidden;padding:28px;border-radius:28px;border:1px solid rgba(92,240,255,.24);
+  background:
+    radial-gradient(circle at top right, rgba(92,240,255,.12), transparent 24%),
+    radial-gradient(circle at 15% 15%, rgba(255,207,102,.12), transparent 20%),
+    linear-gradient(135deg, rgba(18,29,45,.97), rgba(8,14,23,.98));
   box-shadow:var(--shadow);
-  position:relative;
-  overflow:hidden;
 }
-.cp-hero::before,.cp-card::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.04) 34%, transparent 64%);
-  opacity:.45;
+.cp-hero::after,.cp-card::after{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.22;
+  background:linear-gradient(90deg, transparent 0 14px, rgba(255,255,255,.02) 14px 15px, transparent 15px 100%),linear-gradient(0deg, transparent 0 14px, rgba(255,255,255,.02) 14px 15px, transparent 15px 100%);
+  background-size:30px 30px,30px 30px;
 }
-.cp-kicker{font-size:.74rem;letter-spacing:3px;color:var(--cyan);font-weight:900;text-transform:uppercase;margin-bottom:8px;}
-.cp-title{font-size:clamp(2rem,4vw,3rem);font-weight:900;letter-spacing:1.4px;margin:0 0 10px;line-height:1;}
-.cp-copy{max-width:760px;color:var(--muted);font-size:1rem;line-height:1.7;margin:0 0 16px;}
-.cp-note{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(125,94,255,.26);background:rgba(125,94,255,.10);border-radius:999px;padding:9px 14px;font-size:.78rem;letter-spacing:1px;color:#dbd4ff;font-weight:800;}
-.cp-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:18px;}
-.cp-card{
-  position:relative;
-  background:linear-gradient(180deg, rgba(16,28,43,.96), rgba(9,16,27,.98));
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:22px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
+.cp-kicker,.cp-section-kicker,.cp-label{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:2.6px;text-transform:uppercase;font-weight:800;color:var(--cyan);
 }
-.cp-card h2{margin:0 0 8px;font-size:1.28rem;letter-spacing:.3px;}
-.cp-card p{margin:0;color:var(--muted);line-height:1.6;}
+.cp-title{margin:8px 0 10px;font-size:clamp(2rem,5vw,3.3rem);line-height:1.02;letter-spacing:1.2px;}
+.cp-copy{max-width:760px;margin:0;color:var(--muted);line-height:1.7;font-size:1rem;}
+.cp-note{margin-top:16px;display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:10px 14px;border:1px solid rgba(255,207,102,.22);background:rgba(255,207,102,.08);font-family:var(--font-mono);font-size:.72rem;letter-spacing:1.4px;color:#ffe9b2;}
+.cp-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px;}
+.cp-summary-card{position:relative;padding:16px 16px 14px;border-radius:18px;border:1px solid rgba(126,176,255,.18);background:rgba(7,13,22,.72);box-shadow:inset 0 1px 0 rgba(255,255,255,.03);}
+.cp-summary-label{font-family:var(--font-mono);font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:#97bfff;margin-bottom:8px;}
+.cp-summary-value{font-size:1.18rem;font-weight:900;letter-spacing:.2px;}
+.cp-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:18px;}
+.cp-card{position:relative;overflow:hidden;padding:22px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(17,27,42,.96), rgba(9,15,24,.98));box-shadow:var(--shadow);}
 .cp-card + .cp-card{margin-top:18px;}
-.cp-section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
-.cp-section-kicker{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);font-weight:900;margin-bottom:6px;}
+.cp-section-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:14px;}
+.cp-card h2{margin:4px 0 0;font-size:1.28rem;}
+.cp-card p,.cp-field-copy,.cp-empty{margin:0;color:var(--muted);line-height:1.65;}
 .cp-field{display:grid;gap:10px;margin-top:16px;}
-.cp-label{font-size:.76rem;letter-spacing:2px;text-transform:uppercase;color:#8fc4ff;font-weight:900;}
-#cp-name{
-  width:100%;padding:15px 16px;border-radius:16px;border:1px solid rgba(143,196,255,.3);
-  background:rgba(5,12,22,.72);color:var(--text);font-size:1rem;
-}
-#cp-name::placeholder{color:#6f879f;}
-.cp-row{display:flex;gap:10px;flex-wrap:wrap;}
-.cp-btn.primary{background:linear-gradient(135deg, rgba(92,240,255,.18), rgba(92,240,255,.09));color:var(--cyan);}
-.cp-btn.warn{border-color:rgba(255,107,124,.32);color:#ffb6bf;background:rgba(255,107,124,.08);}
-.cp-field-copy{font-size:.88rem;color:var(--muted);line-height:1.65;}
+#cp-name{width:100%;padding:15px 16px;border-radius:16px;border:1px solid rgba(143,196,255,.28);background:rgba(5,10,18,.78);color:var(--text);font-size:1rem;}
+#cp-name::placeholder{color:#6d84a2;}
+.cp-row,.cp-speed,.cp-cb,.cp-preset-row{display:flex;gap:10px;flex-wrap:wrap;}
+.cp-btn.primary{background:linear-gradient(135deg, rgba(92,240,255,.18), rgba(92,240,255,.08));color:var(--cyan);}
+.cp-btn.warn{border-color:rgba(255,125,147,.28);background:rgba(255,125,147,.08);color:#ffc5d0;}
+.cp-preset-row{margin-top:14px;}
+.cp-preset{flex:1 1 160px;text-align:left;padding:15px 16px;min-height:96px;display:grid;gap:8px;align-content:start;border-radius:18px;}
+.cp-preset strong{display:block;font-size:1rem;}
+.cp-preset span{display:block;color:var(--muted);font-size:.84rem;line-height:1.45;font-weight:700;}
+ .cp-preset.on,.cp-toggle.on,.cp-chip.on,.cp-speed button.on,.cp-cb button.on{border-color:rgba(92,240,255,.54);background:linear-gradient(135deg, rgba(92,240,255,.17), rgba(142,116,255,.12));}
+.cp-meta-strip{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.cp-badge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);font-family:var(--font-mono);font-size:.68rem;letter-spacing:1.3px;color:#dbe8f7;}
 .cp-toggle-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px;}
-.cp-toggle{
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
-  text-align:left;padding:15px 16px;border-radius:18px;background:rgba(9,18,31,.78);
-}
-.cp-toggle-copy{display:grid;gap:5px;}
-.cp-toggle-title{font-weight:800;letter-spacing:.2px;}
-.cp-toggle-sub{font-size:.82rem;color:var(--muted);line-height:1.45;}
-.cp-toggle-state,.cp-chip-state{font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);font-weight:900;}
-.cp-toggle.on,.cp-chip.on,.cp-speed button.on,.cp-cb button.on{border-color:rgba(92,240,255,.55);background:linear-gradient(135deg, rgba(92,240,255,.18), rgba(125,94,255,.11));}
-.cp-speed,.cp-cb{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
-.cp-speed button,.cp-cb button{padding:11px 14px;min-width:92px;}
-.cp-module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px;}
-.cp-chip{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-radius:18px;text-align:left;}
-.cp-chip-main{display:grid;gap:3px;}
-.cp-chip-title{font-weight:900;letter-spacing:.3px;}
-.cp-chip-sub{font-size:.8rem;color:var(--muted);}
-.cp-utility-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.cp-toggle,.cp-chip{display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;padding:16px;border-radius:18px;min-height:92px;}
+.cp-toggle-copy,.cp-chip-main{display:grid;gap:5px;}
+.cp-toggle-title,.cp-chip-title{font-weight:900;letter-spacing:.2px;}
+.cp-toggle-sub,.cp-chip-sub{color:var(--muted);font-size:.84rem;line-height:1.45;}
+.cp-toggle-state,.cp-chip-state{font-family:var(--font-mono);font-size:.68rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--cyan);font-weight:800;}
+.cp-speed button,.cp-cb button{min-width:94px;}
+.cp-status-grid{display:grid;gap:12px;}
+.cp-log-row{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;border-radius:15px;border:1px solid rgba(126,176,255,.12);background:rgba(255,255,255,.03);}
+.cp-log-row strong{font-size:.96rem;}
+.cp-log-row span{color:var(--muted);font-size:.84rem;text-align:right;line-height:1.45;}
+.cp-module-grid,.cp-utility-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px;}
 .cp-link{display:block;padding:15px 16px;border-radius:18px;text-align:left;}
 .cp-link strong{display:block;margin-bottom:4px;}
-.cp-link span{display:block;color:var(--muted);font-size:.84rem;line-height:1.5;font-weight:500;}
-.cp-status{display:grid;gap:12px;}
-.cp-status-strip{display:flex;gap:10px;flex-wrap:wrap;}
-.cp-badge{display:inline-flex;align-items:center;gap:7px;border-radius:999px;border:1px solid rgba(255,255,255,.08);padding:8px 12px;font-size:.76rem;letter-spacing:1px;background:rgba(255,255,255,.03);font-weight:800;}
-.cp-danger{border-color:rgba(255,107,124,.28);background:linear-gradient(180deg, rgba(61,13,19,.58), rgba(25,8,12,.9));}
-.cp-danger h2{color:#ffd2d8;}
-.cp-footer{margin-top:20px;color:#8da4be;font-size:.82rem;line-height:1.6;text-align:center;}
-@media(max-width:980px){.cp-grid{grid-template-columns:1fr;}.cp-toggle-grid,.cp-module-grid,.cp-utility-links{grid-template-columns:1fr;}}
-@media(max-width:640px){.cp-shell{padding:20px 12px 44px;}.cp-hero,.cp-card{padding:18px;}.cp-row,.cp-speed,.cp-cb,.cp-top-actions{flex-direction:column;}.cp-btn,.cp-return,.cp-link,.cp-speed button,.cp-cb button{width:100%;}}
+.cp-link span{display:block;color:var(--muted);font-size:.84rem;line-height:1.5;}
+.cp-danger{border-color:rgba(255,125,147,.24);background:linear-gradient(180deg, rgba(56,14,22,.65), rgba(20,8,12,.95));}
+.cp-footer{margin-top:20px;color:#92a7c0;font-size:.82rem;line-height:1.7;text-align:center;}
+@media(max-width:1040px){.cp-grid,.cp-summary-grid,.cp-toggle-grid,.cp-module-grid,.cp-utility-links{grid-template-columns:1fr 1fr;}}
+@media(max-width:860px){.cp-grid,.cp-summary-grid,.cp-toggle-grid,.cp-module-grid,.cp-utility-links{grid-template-columns:1fr;}}
+@media(max-width:640px){.cp-shell{padding:18px 12px 42px;}.cp-hero,.cp-card{padding:18px;}.cp-row,.cp-speed,.cp-cb,.cp-top-actions,.cp-preset-row{flex-direction:column;}.cp-return,.cp-btn,.cp-link,.cp-preset,.cp-speed button,.cp-cb button,.cp-summary-link{width:100%;}.cp-log-row{flex-direction:column;}.cp-log-row span{text-align:left;}}
 </style>
 </head>
 <body data-lr-control-panel="true">
@@ -121,6 +117,7 @@ body{
     <div class="cp-topbar">
       <a class="cp-return" id="cp-return-link" href="index.html">← Return to Mission Deck</a>
       <div class="cp-top-actions">
+        <a class="cp-return" href="ReadinessReport.html">Open Readiness Report</a>
         <a class="cp-return" href="MissionControl.html">Open Mission Control</a>
         <a class="cp-return" href="index.html#missions">Choose a Mission</a>
       </div>
@@ -129,8 +126,14 @@ body{
     <section class="cp-hero">
       <div class="cp-kicker">LifeReady Systems Console</div>
       <h1 class="cp-title" id="cp-status-title">SYSTEMS ONLINE</h1>
-      <p class="cp-copy" id="cp-status-copy">Link a display name, or use Shared Device Mode.</p>
-      <div class="cp-note" id="cp-device-note">Shared Device Mode active. This is best for schools, programs, families, and support teams.</div>
+      <p class="cp-copy" id="cp-status-copy">Link a display name here, or use Shared Device Mode.</p>
+      <div class="cp-note" id="cp-device-note">Shared Device Mode active. Best for classrooms, programs, families, and support teams.</div>
+      <div class="cp-summary-grid">
+        <div class="cp-summary-card"><div class="cp-summary-label">Profile Link</div><div class="cp-summary-value" id="cp-sum-profile">Shared Device</div></div>
+        <div class="cp-summary-card"><div class="cp-summary-label">Support Systems</div><div class="cp-summary-value" id="cp-sum-supports">0 online</div></div>
+        <div class="cp-summary-card"><div class="cp-summary-label">Mission Decks</div><div class="cp-summary-value" id="cp-sum-decks">8 visible</div></div>
+        <div class="cp-summary-card"><div class="cp-summary-label">Readiness Rank</div><div class="cp-summary-value" id="cp-sum-rank">Cadet</div></div>
+      </div>
     </section>
 
     <div class="cp-grid">
@@ -139,8 +142,8 @@ body{
           <div class="cp-section-head">
             <div>
               <div class="cp-section-kicker">Profile Link</div>
-              <h2>Command Console</h2>
-              <p>Set a display name for this device and launch any training deck with the same profile.</p>
+              <h2>Command Link Console</h2>
+              <p>Set one learner name for this device, or leave the profile blank and keep Shared Device Mode on.</p>
             </div>
           </div>
           <div class="cp-field">
@@ -158,23 +161,42 @@ body{
         <section class="cp-card">
           <div class="cp-section-head">
             <div>
-              <div class="cp-section-kicker">Accessibility</div>
-              <h2>Support Systems</h2>
-              <p>Adjust reading, motion, sound, and learning support settings for this device.</p>
+              <div class="cp-section-kicker">System Presets</div>
+              <h2>Quick Setup Modes</h2>
+              <p>One tap loads a whole support setup. Because flipping twelve switches every time is extremely human and also extremely annoying.</p>
             </div>
           </div>
-          <div class="cp-field-copy"><strong style="color:var(--text)">Live preview:</strong> Large Text, Extra-Large Buttons, Reduce Motion, High Contrast, and Light Mode change the display right away. Audio, Break Reminders, Errorless Learning, speech speed, and color mode are used when you launch a deck.</div>
+          <div class="cp-field-copy">Current preset: <strong id="cp-preset-state" style="color:var(--text)">Custom Setup</strong></div>
+          <div class="cp-preset-row">
+            <button class="cp-preset" type="button" data-preset="standard"><strong>Standard Setup</strong><span>Default display, default controls, normal speed.</span></button>
+            <button class="cp-preset" type="button" data-preset="support"><strong>Support Mode</strong><span>Large text, bigger buttons, break reminders, and errorless learning.</span></button>
+            <button class="cp-preset" type="button" data-preset="focus"><strong>Focus Mode</strong><span>Reduced motion with a calmer visual setup.</span></button>
+            <button class="cp-preset" type="button" data-preset="quiet"><strong>Quiet Mode</strong><span>Audio off, motion reduced, and fewer distractions.</span></button>
+          </div>
+        </section>
+
+        <section class="cp-card">
+          <div class="cp-section-head">
+            <div>
+              <div class="cp-section-kicker">Support Systems</div>
+              <h2>Accessibility + Training Defaults</h2>
+              <p>Some settings change the display right away. Others become the starting support setup inside each module.</p>
+            </div>
+          </div>
+          <div class="cp-meta-strip">
+            <div class="cp-badge">Live Preview: text, buttons, motion, contrast, light mode</div>
+            <div class="cp-badge">Module Defaults: audio, reminders, errorless learning, speech speed, color mode</div>
+          </div>
           <div class="cp-toggle-grid">
             <button class="cp-toggle" type="button" data-access-key="audio" aria-pressed="false"><span class="cp-toggle-copy"><span class="cp-toggle-title">Audio</span><span class="cp-toggle-sub">Speech, prompts, and sound effects</span></span><span class="cp-toggle-state">STANDBY</span></button>
-            <button class="cp-toggle" type="button" data-access-key="largetext" aria-pressed="false"><span class="cp-toggle-copy"><span class="cp-toggle-title">Large Text</span><span class="cp-toggle-sub">Bigger text on this device</span></span><span class="cp-toggle-state">STANDBY</span></button>
+            <button class="cp-toggle" type="button" data-access-key="largetext" aria-pressed="false"><span class="cp-toggle-copy"><span class="cp-toggle-title">Large Text</span><span class="cp-toggle-sub">Bigger text across LifeReady</span></span><span class="cp-toggle-state">STANDBY</span></button>
             <button class="cp-toggle" type="button" data-access-key="largebtns" aria-pressed="false"><span class="cp-toggle-copy"><span class="cp-toggle-title">Extra-Large Buttons</span><span class="cp-toggle-sub">Larger tap targets and controls</span></span><span class="cp-toggle-state">STANDBY</span></button>
             <button class="cp-toggle" type="button" data-access-key="nomotion" aria-pressed="false"><span class="cp-toggle-copy"><span class="cp-toggle-title">Reduce Motion</span><span class="cp-toggle-sub">Turns off movement-heavy effects</span></span><span class="cp-toggle-state">STANDBY</span></button>
-            <button class="cp-toggle" type="button" data-access-key="hicontrast" aria-pressed="false"><span class="cp-toggle-copy"><span class="cp-toggle-title">High Contrast</span><span class="cp-toggle-sub">Maximum contrast for cleaner reading</span></span><span class="cp-toggle-state">STANDBY</span></button>
-            <button class="cp-toggle" type="button" data-access-key="lightmode" aria-pressed="false"><span class="cp-toggle-copy"><span class="cp-toggle-title">Light Mode</span><span class="cp-toggle-sub">Brighter screen for daylight environments</span></span><span class="cp-toggle-state">STANDBY</span></button>
+            <button class="cp-toggle" type="button" data-access-key="hicontrast" aria-pressed="false"><span class="cp-toggle-copy"><span class="cp-toggle-title">High Contrast</span><span class="cp-toggle-sub">Sharper reading and stronger contrast</span></span><span class="cp-toggle-state">STANDBY</span></button>
+            <button class="cp-toggle" type="button" data-access-key="lightmode" aria-pressed="false"><span class="cp-toggle-copy"><span class="cp-toggle-title">Light Mode</span><span class="cp-toggle-sub">Brighter screen for daylight spaces</span></span><span class="cp-toggle-state">STANDBY</span></button>
             <button class="cp-toggle" type="button" data-access-key="breaks" aria-pressed="false"><span class="cp-toggle-copy"><span class="cp-toggle-title">Break Reminders</span><span class="cp-toggle-sub">Prompts to pause and reset</span></span><span class="cp-toggle-state">STANDBY</span></button>
             <button class="cp-toggle" type="button" data-access-key="errorless" aria-pressed="false"><span class="cp-toggle-copy"><span class="cp-toggle-title">Errorless Learning</span><span class="cp-toggle-sub">Highlights the correct answer first</span></span><span class="cp-toggle-state">STANDBY</span></button>
           </div>
-
           <div class="cp-field">
             <div class="cp-label">Speech Speed</div>
             <div class="cp-speed">
@@ -183,7 +205,6 @@ body{
               <button type="button" data-speed="fast">Fast</button>
             </div>
           </div>
-
           <div class="cp-field">
             <div class="cp-label">Colorblind Mode</div>
             <div class="cp-cb">
@@ -192,7 +213,7 @@ body{
               <button type="button" data-cb-mode="deuteranopia">Deuter</button>
               <button type="button" data-cb-mode="tritanopia">Tritan</button>
             </div>
-            <div class="cp-field-copy">Module pages still use their own detailed color filters. Set the default here.</div>
+            <div class="cp-field-copy">Module pages still use their own detailed color filters. This sets the default so you do not have to keep flipping the same switches.</div>
           </div>
         </section>
       </div>
@@ -202,26 +223,20 @@ body{
           <div class="cp-section-head">
             <div>
               <div class="cp-section-kicker">Status Board</div>
-              <h2>Current Readiness</h2>
-              <p>A quick systems readout, because nobody should need six menus to confirm a simple setting.</p>
+              <h2>Current Readiness Snapshot</h2>
+              <p>A quick systems readout, because nobody should need six menus to confirm one setting.</p>
             </div>
+            <a class="cp-summary-link" href="ReadinessReport.html">Open Full Report</a>
           </div>
-          <div class="cp-status">
-            <div class="cp-status-strip">
-              <div class="cp-badge">✦ Support systems ready</div>
-              <div class="cp-badge">✦ Profile link managed here</div>
-              <div class="cp-badge">✦ Device and privacy tools live here</div>
-            </div>
-            <p class="cp-field-copy">Your linked profile, support systems, and local device options are all managed here.</p>
-          </div>
+          <div class="cp-status-grid" id="cp-recent-list"></div>
         </section>
 
         <section class="cp-card">
           <div class="cp-section-head">
             <div>
-              <div class="cp-section-kicker">Mission Deck</div>
+              <div class="cp-section-kicker">Mission Deck Access</div>
               <h2>Module Visibility</h2>
-              <p>Choose which training decks stay visible on the homepage. Hidden modules are not deleted. They just stop cluttering the launch bay.</p>
+              <p>Optional. Hide training decks you are not using right now. Hidden modules are not deleted. They just stop cluttering the launch bay.</p>
             </div>
           </div>
           <div class="cp-module-grid">
@@ -234,20 +249,20 @@ body{
             <button class="cp-chip" type="button" data-module-key="TechReady" aria-pressed="true"><span class="cp-chip-main"><span class="cp-chip-title">TechReady</span><span class="cp-chip-sub">Digital systems deck</span></span><span class="cp-chip-state">ACTIVE</span></button>
             <button class="cp-chip" type="button" data-module-key="HealthReady" aria-pressed="true"><span class="cp-chip-main"><span class="cp-chip-title">HealthReady</span><span class="cp-chip-sub">Med bay deck</span></span><span class="cp-chip-state">ACTIVE</span></button>
           </div>
-          <div class="cp-field-copy" style="margin-top:12px;">This is optional. Hide decks you are not using right now, then bring them back whenever you want.</div>
         </section>
 
         <section class="cp-card">
           <div class="cp-section-head">
             <div>
-              <div class="cp-section-kicker">Utility Links</div>
-              <h2>Bridge Links</h2>
+              <div class="cp-section-kicker">Local Console</div>
+              <h2>Bridge Links + Device Tools</h2>
               <p>Fast access to the parts of LifeReady people actually need.</p>
             </div>
           </div>
           <div class="cp-utility-links">
             <a class="cp-link" href="MissionControl.html"><strong>Mission Control</strong><span>Educator dashboard, logs, and reports</span></a>
-            <a class="cp-link" href="index.html#missions"><strong>Mission Deck</strong><span>Launch a training module</span></a>
+            <a class="cp-link" href="ReadinessReport.html"><strong>Readiness Report</strong><span>Learner-facing progress and mission activity</span></a>
+            <a class="cp-link" href="index.html#missions"><strong>Mission Deck</strong><span>Launch any training module in any order</span></a>
             <a class="cp-link" href="privacy.html"><strong>Privacy</strong><span>How local storage works on shared devices</span></a>
             <a class="cp-link" href="accessibility.html"><strong>Accessibility</strong><span>Support features and reading options</span></a>
             <a class="cp-link" href="contact.html"><strong>Contact</strong><span>Reach the creator</span></a>
@@ -260,24 +275,23 @@ body{
             <div>
               <div class="cp-section-kicker">Danger Zone</div>
               <h2>Local Device Reset</h2>
-              <p>Use these only when you really mean it. Humans do love pressing red buttons and then acting betrayed by the consequences.</p>
+              <p>Use these only when you really mean it. Red buttons remain one of humanity’s most suspicious hobbies.</p>
             </div>
           </div>
           <div class="cp-row">
             <button class="cp-btn warn" id="cp-reset-suite" type="button">Reset Control Panel Defaults</button>
             <button class="cp-btn warn" id="cp-clear-local" type="button">Clear All Local LifeReady Data</button>
           </div>
-          <div class="cp-field-copy" style="margin-top:12px;">Clearing local data removes saved settings, progress, and Mission Control records stored in this browser on this device.</div>
+          <div class="cp-field-copy" style="margin-top:12px;">Clearing local data removes Control Panel settings, readiness history, saved progress, and Mission Control records stored in this browser on this device.</div>
         </section>
       </div>
     </div>
 
     <div class="cp-footer">
-      LifeReady Control Panel keeps your profile, support systems, and device options in one place.<br/>
+      LifeReady Control Panel keeps your profile link, support systems, and local settings in one place.<br/>
       Free for everyone. Built for real-world readiness.
     </div>
   </div>
-
   <script src="lifeready-control.js"></script>
 </body>
 </html>

@@ -847,6 +847,27 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
 .lr-panel-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(143,196,255,.12)}
 .lr-panel-mark{width:26px;height:26px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(92,240,255,.12);color:#5cf0ff;font-weight:800;flex-shrink:0}
 
+
+.bridge-console{display:grid;gap:14px;margin:0 0 24px}
+.bridge-strip{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.bridge-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid rgba(92,240,255,.18);background:linear-gradient(135deg,rgba(14,22,35,.9),rgba(9,16,26,.95));box-shadow:var(--shadow);font-family:var(--font-mono);font-size:.68rem;letter-spacing:1.4px;text-transform:uppercase;color:#dbe9f8}
+.bridge-grid{display:grid;grid-template-columns:1.05fr .95fr .95fr;gap:18px}
+.lr-readiness-card,.lr-profile-card,.lr-panel-card{position:relative;overflow:hidden}
+.lr-readiness-card::after,.lr-profile-card::after,.lr-panel-card::after{content:"";position:absolute;inset:auto -18% -40% auto;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle, rgba(92,240,255,.12), transparent 62%);pointer-events:none}
+.lr-report-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.lr-report-stat{padding:12px 14px;border-radius:16px;border:1px solid rgba(143,196,255,.14);background:rgba(255,255,255,.03)}
+.lr-report-label{display:block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:#9bc3ff;margin-bottom:7px}
+.lr-report-stat strong{display:block;font-size:1.14rem}
+.lr-console-log,.lr-system-list{display:grid;gap:10px;margin-top:16px}
+.lr-log-row,.lr-system-item{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(143,196,255,.12)}
+.lr-log-row span,.lr-log-empty{color:var(--text2);font-size:.84rem;line-height:1.5}
+.lr-system-item{font-size:.92rem;color:var(--text)}
+.lr-status-note{margin:16px auto 0;max-width:840px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding:12px 16px;border-radius:18px;border:1px solid rgba(255,207,102,.22);background:linear-gradient(135deg,rgba(255,207,102,.10),rgba(92,240,255,.08));box-shadow:var(--shadow);font-family:var(--font-mono);letter-spacing:1.2px;font-size:.74rem;color:#eef6ff}
+.lr-band-label{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(7,14,25,.55);border:1px solid rgba(255,255,255,.08);color:#ffcf66;font-weight:800}
+.lr-band-copy{color:#e9f6ff}
+@media(max-width:1100px){.bridge-grid{grid-template-columns:1fr 1fr}.lr-panel-card{grid-column:1/-1}}
+@media(max-width:760px){.bridge-grid,.lr-report-grid{grid-template-columns:1fr}.lr-log-row,.lr-system-item{flex-direction:column}.bridge-pill{width:100%;justify-content:center}}
+
 </style>
 </head>
 <body>
@@ -862,12 +883,13 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
   <div class="hero-actions">
     <a class="btn btn-primary" href="#missions">Choose a Mission</a>
     <a class="btn btn-secondary" href="ControlPanel.html">Open Control Panel</a>
+    <a class="btn btn-secondary" href="ReadinessReport.html">Open Readiness Report</a>
     <a class="btn btn-secondary" href="MissionControl.html">Open Mission Control</a>
     <button class="btn btn-secondary" id="installBtn" type="button">Install LifeReady</button>
     <a class="btn btn-secondary" href="#how-it-works">How It Works</a>
   </div>
   <div class="install-note" id="installNote">On iPhone use Share → Add to Home Screen. On Android use Install app or Add to Home Screen.</div>
-  <div class="lr-status-note" id="lr-hero-status"><strong>COMMAND LINK OFFLINE</strong> · Link a profile below or use Shared Device Mode</div>
+  <div class="lr-status-note" id="lr-hero-status"><strong>COMMAND LINK OFFLINE</strong> · Link a profile below once and every training deck will recognize it</div>
 </div>
 
 <main>
@@ -886,43 +908,66 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
     <div class="quick-card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <div class="quick-number">3</div>
       <strong>Use Mission Control</strong>
-      <p>Open the unified Mission Control hub from the suite or from any module to track one learner across the entire app on this device.</p>
+      <p>Open Mission Control from the homepage or any module to track one learner across this device.</p>
     </div>
   </section>
 
-  <section class="duo" aria-label="Suite command deck">
-    <div class="info-card control-card lr-profile-card">
-      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-      <div class="info-title">Profile Link</div>
-      <h2 id="lr-hub-title">SYSTEMS ONLINE</h2>
-      <p id="lr-hub-copy">Link a display name here, or use Shared Device Mode.</p>
-      <div class="lr-home-form" style="margin-top:16px">
-        <label for="lr-home-name">Display Name</label>
-        <input id="lr-home-name" type="text" maxlength="28" placeholder="Enter first name, nickname, or initials" />
-        <div class="lr-home-actions">
-          <button class="btn btn-primary" id="lr-home-save" type="button">Link Profile</button>
-          <button class="btn btn-secondary" id="lr-home-clear" type="button">Use Shared Device Mode</button>
-        </div>
-        <div class="lr-home-chiprow">
-          <div class="lr-home-chip">✦ One name for every module</div>
-          <div class="lr-home-chip">✦ Shared accessibility defaults</div>
-        </div>
-        <div class="grid-top-copy" id="lr-hub-note" style="margin-top:4px">Shared Device Mode active. Use initials or a nickname if other people use this computer, phone, or tablet.</div>
-      </div>
+  <section class="bridge-console" aria-label="LifeReady bridge console">
+    <div class="bridge-strip">
+      <div class="bridge-pill" id="lr-bridge-status">Profile offline · 8 decks online</div>
+      <div class="bridge-pill" id="lr-bridge-recent">No training logged yet</div>
+      <div class="bridge-pill" id="lr-bridge-support">0 support systems active</div>
+      <div class="bridge-pill" id="lr-bridge-decks">8 mission decks visible</div>
     </div>
 
-    <div class="info-card control-card lr-panel-card">
-      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-      <div class="info-title">Control Panel</div>
-      <h2>Set your systems before launch.</h2>
-      <p>Open the Control Panel to manage your profile link, support systems, and local device settings.</p>
-      <div class="lr-panel-list">
-        <div class="lr-panel-item"><div class="lr-panel-mark">1</div><div><strong>Link once</strong><br/><span>Set a name once on the homepage instead of being asked inside every module.</span></div></div>
-        <div class="lr-panel-item"><div class="lr-panel-mark">2</div><div><strong>Keep support systems synced</strong><br/><span>Text size, motion, contrast, sound, and learning aids are ready when you launch a deck.</span></div></div>
-        <div class="lr-panel-item"><div class="lr-panel-mark">3</div><div><strong>Manage the device once</strong><br/><span>Shared Device Mode, privacy shortcuts, and profile tools live here.</span></div></div>
+    <div class="bridge-grid">
+      <div class="info-card control-card lr-profile-card">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="info-title">Command Link</div>
+        <h2 id="lr-hub-title">SYSTEMS ONLINE</h2>
+        <p id="lr-hub-copy">Link a display name here, or use Shared Device Mode.</p>
+        <div class="lr-home-form" style="margin-top:16px">
+          <label for="lr-home-name">Display Name</label>
+          <input id="lr-home-name" type="text" maxlength="28" placeholder="Enter first name, nickname, or initials" />
+          <div class="lr-home-actions">
+            <button class="btn btn-primary" id="lr-home-save" type="button">Link Profile</button>
+            <button class="btn btn-secondary" id="lr-home-clear" type="button">Use Shared Device Mode</button>
+          </div>
+          <div class="lr-home-chiprow">
+            <div class="lr-home-chip">✦ One name for every module</div>
+            <div class="lr-home-chip">✦ Shared accessibility defaults</div>
+          </div>
+          <div class="grid-top-copy" id="lr-hub-note" style="margin-top:6px">Shared Device Mode active. Use initials or a nickname if other people use this computer, phone, or tablet.</div>
+        </div>
       </div>
-      <div style="margin-top:16px">
-        <a class="btn btn-primary" href="ControlPanel.html">Open Control Panel</a>
+
+      <div class="info-card control-card lr-readiness-card">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="info-title">Readiness Report</div>
+        <h2>Bridge status for your training decks.</h2>
+        <p>See recent training, support systems, active decks, and progress across LifeReady at your own pace.</p>
+        <div class="lr-report-grid">
+          <div class="lr-report-stat"><span class="lr-report-label">Rank</span><strong id="lr-report-rank">Cadet</strong></div>
+          <div class="lr-report-stat"><span class="lr-report-label">Sessions</span><strong id="lr-report-sessions">0</strong></div>
+          <div class="lr-report-stat"><span class="lr-report-label">Support Systems</span><strong id="lr-report-supports">0</strong></div>
+          <div class="lr-report-stat"><span class="lr-report-label">Decks Practiced</span><strong id="lr-report-active">0</strong></div>
+        </div>
+        <div class="lr-console-log" id="lr-recent-list"></div>
+        <div style="margin-top:16px">
+          <a class="btn btn-primary" href="ReadinessReport.html">Open Readiness Report</a>
+        </div>
+      </div>
+
+      <div class="info-card control-card lr-panel-card">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <div class="info-title">Control Panel</div>
+        <h2>Set your systems before launch.</h2>
+        <p>Open the Control Panel to manage your profile link, support systems, and local device settings.</p>
+        <div class="lr-system-list" id="lr-system-list"></div>
+        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="ControlPanel.html">Open Control Panel</a>
+          <a class="btn btn-secondary" href="MissionControl.html">Open Mission Control</a>
+        </div>
       </div>
     </div>
   </section>

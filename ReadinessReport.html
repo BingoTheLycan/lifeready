@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LifeReady Readiness Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#070d16;--panel:#101a29;--panel2:#0a121d;--text:#edf6ff;--muted:#9db2ca;--cyan:#5cf0ff;--gold:#ffcf66;--violet:#8e74ff;--green:#7dffb2;--line:rgba(126,176,255,.18);--shadow:0 24px 56px rgba(0,0,0,.42);--font-mono:'Space Mono',ui-monospace,monospace;--font-body:'Nunito',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--font-body);color:var(--text);background:radial-gradient(circle at top, rgba(255,207,102,.08), transparent 30%),radial-gradient(circle at 10% 14%, rgba(92,240,255,.08), transparent 22%),radial-gradient(circle at 82% 12%, rgba(142,116,255,.08), transparent 24%),linear-gradient(180deg,#09111b,#050910);}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.26;background:repeating-linear-gradient(0deg, transparent, transparent 6px, rgba(255,255,255,.016) 6px, rgba(255,255,255,.016) 7px)}
+.rr-shell{max-width:1220px;margin:0 auto;padding:28px 16px 56px;position:relative;z-index:1}
+.rr-topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.rr-link{appearance:none;border:1px solid rgba(92,240,255,.24);background:rgba(12,22,35,.8);color:var(--text);border-radius:16px;padding:12px 15px;text-decoration:none;font-weight:800;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.rr-link:hover{transform:translateY(-1px);border-color:rgba(92,240,255,.52);box-shadow:0 0 24px rgba(92,240,255,.12)}
+.rr-top-actions{display:flex;gap:10px;flex-wrap:wrap}
+.rr-hero,.rr-card{position:relative;overflow:hidden;border-radius:26px;border:1px solid rgba(92,240,255,.22);background:linear-gradient(135deg, rgba(18,29,45,.97), rgba(8,14,23,.98));box-shadow:var(--shadow)}
+.rr-hero::after,.rr-card::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.22;background:linear-gradient(90deg, transparent 0 14px, rgba(255,255,255,.02) 14px 15px, transparent 15px 100%),linear-gradient(0deg, transparent 0 14px, rgba(255,255,255,.02) 14px 15px, transparent 15px 100%);background-size:30px 30px,30px 30px}
+.rr-hero{padding:28px}
+.rr-kicker,.rr-label{font-family:var(--font-mono);font-size:.72rem;letter-spacing:2.6px;text-transform:uppercase;font-weight:800;color:var(--cyan)}
+.rr-title{margin:8px 0 10px;font-size:clamp(2rem,5vw,3rem);line-height:1.02}
+.rr-copy{max-width:780px;margin:0;color:var(--muted);line-height:1.7}
+.rr-badge{margin-top:16px;display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:10px 14px;border:1px solid rgba(255,207,102,.24);background:rgba(255,207,102,.08);font-family:var(--font-mono);font-size:.72rem;letter-spacing:1.4px;color:#ffe9b2}
+.rr-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.rr-card{padding:22px}
+.rr-card h2{margin:4px 0 0;font-size:1.26rem}
+.rr-card p{margin:0;color:var(--muted);line-height:1.6}
+.rr-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.rr-metric{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(6,12,20,.72)}
+.rr-metric-label{font-family:var(--font-mono);font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:#9bc3ff;margin-bottom:8px}
+.rr-metric-value{font-size:1.24rem;font-weight:900}
+.rr-list,.rr-module-grid,.rr-chip-row{display:grid;gap:12px;margin-top:14px}
+.rr-log-row{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.rr-log-row strong{font-size:.96rem}
+.rr-log-row span{color:var(--muted);font-size:.84rem;text-align:right;line-height:1.45}
+.rr-chip-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rr-chip{padding:12px 14px;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);font-size:.9rem;line-height:1.45}
+.rr-module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rr-module-card{padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.rr-module-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.rr-module-title{font-size:1.05rem;font-weight:900}
+.rr-module-sub,.rr-module-time,.rr-module-mode{color:var(--muted);font-size:.84rem;line-height:1.5}
+.rr-bar{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin:14px 0 10px}
+.rr-bar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--cyan),var(--gold))}
+.rr-module-metrics{display:flex;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:.68rem;letter-spacing:1.2px;text-transform:uppercase;color:#d9e8ff;margin-bottom:10px}
+.rr-empty{padding:18px;border-radius:18px;border:1px dashed rgba(255,255,255,.15);color:var(--muted);line-height:1.65}
+@media(max-width:980px){.rr-grid,.rr-metrics,.rr-chip-row,.rr-module-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.rr-shell{padding:18px 12px 42px}.rr-top-actions{flex-direction:column}.rr-link{width:100%}.rr-log-row,.rr-module-head{flex-direction:column}.rr-log-row span{text-align:left}}
+</style>
+</head>
+<body data-lr-readiness-report="true">
+  <div class="rr-shell">
+    <div class="rr-topbar">
+      <a class="rr-link" href="index.html">← Return to Mission Deck</a>
+      <div class="rr-top-actions">
+        <a class="rr-link" href="ControlPanel.html">Open Control Panel</a>
+        <a class="rr-link" href="MissionControl.html">Open Mission Control</a>
+      </div>
+    </div>
+
+    <section class="rr-hero">
+      <div class="rr-kicker">Learner Status Screen</div>
+      <h1 class="rr-title" id="rr-title">READINESS REPORT</h1>
+      <p class="rr-copy" id="rr-copy">A learner-facing status screen for recent practice, completed sessions, active support systems, and overall momentum.</p>
+      <div class="rr-badge" id="rr-profile">Shared Device Mode active</div>
+    </section>
+
+    <div class="rr-grid">
+      <section class="rr-card">
+        <div class="rr-label">Current Status</div>
+        <h2>Bridge Readout</h2>
+        <div class="rr-metrics" style="margin-top:14px">
+          <div class="rr-metric"><div class="rr-metric-label">Rank</div><div class="rr-metric-value" id="rr-rank">Cadet</div></div>
+          <div class="rr-metric"><div class="rr-metric-label">Total XP</div><div class="rr-metric-value" id="rr-xp">0</div></div>
+          <div class="rr-metric"><div class="rr-metric-label">Sessions Logged</div><div class="rr-metric-value" id="rr-sessions">0</div></div>
+          <div class="rr-metric"><div class="rr-metric-label">Decks Practiced</div><div class="rr-metric-value" id="rr-modules">0</div></div>
+          <div class="rr-metric"><div class="rr-metric-label">Support Systems</div><div class="rr-metric-value" id="rr-supports">0</div></div>
+          <div class="rr-metric"><div class="rr-metric-label">Visible Decks</div><div class="rr-metric-value" id="rr-visible">8</div></div>
+        </div>
+      </section>
+
+      <section class="rr-card">
+        <div class="rr-label">Recent Training</div>
+        <h2>Mission Log</h2>
+        <p>Recent module opens on this device. No pressure, no sequence, no glowing arrows ordering people around.</p>
+        <div class="rr-list" id="rr-recent-list"></div>
+      </section>
+
+      <section class="rr-card">
+        <div class="rr-label">Support Systems</div>
+        <h2>Active Setup</h2>
+        <p>Your current Control Panel defaults that shape the app and module startup behavior.</p>
+        <div class="rr-chip-row" id="rr-support-list"></div>
+      </section>
+
+      <section class="rr-card">
+        <div class="rr-label">Skill Progress</div>
+        <h2>Training Deck Progress</h2>
+        <p>Progress is shown as practiced sessions, readiness level, and best recorded score. Order does not matter. Momentum does.</p>
+        <div class="rr-module-grid" id="rr-module-list"></div>
+      </section>
+    </div>
+  </div>
+  <script src="lifeready-control.js"></script>
+</body>
+</html>

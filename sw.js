@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v48 - mission control rank guide)
+// LifeReady Service Worker (v49 - multi-device release prep)
 
-const VERSION = 'v48';
+const VERSION = 'v49';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 
@@ -22,6 +22,9 @@ const APP_SHELL = [
   './TechReady.html',
   './HealthReady.html',
   './MissionControl.html',
+  './ControlPanel.html',
+  './ReadinessReport.html',
+  './lifeready-control.js',
 
   './icon_192.png',
   './icon_512.png'

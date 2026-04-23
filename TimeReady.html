@@ -2190,7 +2190,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <!-- ══════════ DEMO ══════════ -->
 <div class="scr" id="scr-demo">
 <div class="gtop">
-<button class="back" onclick="go('home')">‹ HOME</button>
+<button class="back" onclick="go('home')">‹ BACK</button>
 <div class="gmode">👀 WATCH A DEMO</div>
 <div id="demo-step-counter" style="margin-left:auto;font-family:var(--font-mono);font-size:0.7rem;color:var(--text3)">Step 1 of 5</div>
 </div>
@@ -2294,7 +2294,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <!-- ══════════ CLOCK GUIDE ══════════ -->
 <div class="scr" id="scr-clockguide">
 <div class="gtop">
-<button class="back" onclick="go('home')">‹ HOME</button>
+<button class="back" onclick="go('home')">‹ BACK</button>
 <div class="gmode">🕐 CLOCK GUIDE</div>
 </div>
 <div class="gsec">
@@ -2395,7 +2395,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 </div>
 <div class="scr" id="scr-scores">
 <div class="gtop">
-<button class="back" onclick="go('home')">‹ HOME</button>
+<button class="back" onclick="go('home')">‹ BACK</button>
 <div class="gmode">🏆 SCOREBOARD</div>
 <button class="abtn" onclick="clearScores()" style="margin-left:auto;padding:5px 11px;min-height:30px;font-size:0.72rem">CLEAR</button>
 </div>
@@ -2424,7 +2424,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <!-- ══════════ HOW TO PLAY ══════════ -->
 <div class="scr" id="scr-guide">
 <div class="gtop">
-<button class="back" onclick="go('home')">‹ HOME</button>
+<button class="back" onclick="go('home')">‹ BACK</button>
 <div class="gmode">❓ HOW TO PLAY</div>
 </div>
 <div class="gsec">
@@ -2465,7 +2465,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <!-- ══════════ SETTINGS ══════════ -->
 <div class="scr" id="scr-settings">
 <div class="gtop">
-<button class="back" onclick="go('home')">‹ HOME</button>
+<button class="back" onclick="go('home')">‹ BACK</button>
 <div class="gmode">⚙️ SETTINGS</div>
 </div>
 <div class="ss">
@@ -2664,7 +2664,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <!-- ══════════ ABOUT ══════════ -->
 <div class="scr about-screen" id="scr-about">
 <div class="gtop">
-<button class="back" onclick="go('home')">‹ HOME</button>
+<button class="back" onclick="go('home')">‹ BACK</button>
 <div class="gmode">ℹ️ ABOUT</div>
 </div><div class="about-shell">
 <div class="about-hero" style="text-align:center;padding:28px 16px 20px">
@@ -7420,10 +7420,9 @@ function delClient(i){ return deleteClient(i); }
 <script id="lifeready-shared-sw">
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ r.unregister(); }); }).catch(function(){});
-    if (window.caches && caches.keys) {
-      caches.keys().then(function(keys){ keys.forEach(function(k){ caches.delete(k); }); }).catch(function(){});
-    }
+    navigator.serviceWorker.register('./sw.js').catch(function(err){
+      console.warn('LifeReady service worker registration failed:', err);
+    });
   });
 }
 </script>

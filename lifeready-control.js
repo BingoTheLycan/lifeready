@@ -722,7 +722,7 @@
     const copy = document.getElementById('rr-copy');
     const badge = document.getElementById('rr-profile');
     if (title) title.textContent = readiness.control.profile.displayName ? `READINESS REPORT · ${readiness.control.profile.displayName.toUpperCase()}` : 'READINESS REPORT';
-    if (copy) copy.textContent = 'A learner-facing status screen for recent practice, completed sessions, active support systems, and overall momentum.';
+    if (copy) copy.textContent = 'Check recent practice, active support systems, and overall momentum at your own pace.';
     if (badge) badge.textContent = readiness.control.profile.displayName ? `${readiness.control.profile.displayName} linked on this device` : 'Shared Device Mode active';
     const map = {
       'rr-rank': readiness.currentRank,

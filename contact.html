@@ -263,5 +263,14 @@ textarea:focus-visible,
   }
 })();
 </script>
+  <script id="lifeready-shared-sw">
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js').catch(function(err){
+      console.warn('LifeReady service worker registration failed:', err);
+    });
+  });
+}
+</script>
 </body>
 </html>

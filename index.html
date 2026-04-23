@@ -67,7 +67,7 @@ body::after{
 a,button{font:inherit}
 button{border:none;background:none}
 img{max-width:100%}
-main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-index:1}
+main{max-width:1380px;margin:0 auto;padding:0 18px 60px;position:relative;z-index:1}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:999px}
@@ -150,10 +150,10 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
   text-transform:uppercase;
   animation:fadeUp .9s ease both;
 }
-.hero-actions{
-  display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
-  margin-top:22px;
-}
+.hero-actions{display:grid;gap:10px;justify-items:center;margin-top:22px}
+.hero-actions-main,.hero-actions-utility{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.hero-actions-utility .btn{opacity:.92}
+
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
   min-height:48px; padding:12px 18px;
@@ -266,7 +266,7 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
   background:linear-gradient(135deg,rgba(22,27,34,.94),rgba(18,23,31,.96));
   border:1px solid var(--border);
   border-radius:18px;
-  padding:16px 16px 15px;
+  padding:14px 14px 13px;
   box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.02);
   overflow:hidden;
 }
@@ -318,12 +318,12 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
 .quick-card strong{
   position:relative;
   z-index:1;
-  display:block; margin-bottom:6px; font-size:1rem; color:var(--text)
+  display:block; margin-bottom:5px; font-size:.98rem; color:var(--text)
 }
 .quick-card p{
   position:relative;
   z-index:1;
-  color:var(--text2); line-height:1.55; font-size:.92rem
+  color:var(--text2); line-height:1.5; font-size:.88rem
 }
 
 .grid-wrap{
@@ -368,7 +368,10 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
 .app-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px;
+  gap:16px;
+}
+@media(min-width:1180px){
+  .app-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
 }
 .app-card{
   position:relative;
@@ -828,6 +831,9 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
 }
 @media(max-width:640px){
   .hero{padding:42px 16px 24px}
+  .hero-actions-main,.hero-actions-utility{flex-direction:column;width:100%}
+  .hero-actions .btn{width:100%}
+
   .hero-copy{font-size:.95rem}
   .hero-logo{font-size:clamp(2.6rem,12vw,4.2rem); letter-spacing:4px}
   .grid-wrap{padding:14px}
@@ -881,15 +887,19 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
   <div class="hero-subline">PRESS START ON REAL LIFE</div>
   <div class="hero-trust">Designed for real-world independence · Simple, repeatable, and judgment-free</div>
   <div class="hero-actions">
-    <a class="btn btn-primary" href="#missions">Choose a Mission</a>
-    <a class="btn btn-secondary" href="ControlPanel.html">Open Control Panel</a>
-    <a class="btn btn-secondary" href="ReadinessReport.html">Open Readiness Report</a>
-    <a class="btn btn-secondary" href="MissionControl.html">Open Mission Control</a>
-    <button class="btn btn-secondary" id="installBtn" type="button">Install LifeReady</button>
-    <a class="btn btn-secondary" href="#how-it-works">How It Works</a>
+    <div class="hero-actions-main">
+      <a class="btn btn-primary" href="#missions">Choose a Mission</a>
+      <a class="btn btn-secondary" href="ControlPanel.html">Open Control Panel</a>
+      <a class="btn btn-secondary" href="MissionControl.html">Open Mission Control</a>
+    </div>
+    <div class="hero-actions-utility">
+      <a class="btn btn-secondary" href="ReadinessReport.html">Readiness Report</a>
+      <button class="btn btn-secondary" id="installBtn" type="button">Install LifeReady</button>
+      <a class="btn btn-secondary" href="#how-it-works">How It Works</a>
+    </div>
   </div>
   <div class="install-note" id="installNote">On iPhone use Share → Add to Home Screen. On Android use Install app or Add to Home Screen.</div>
-  <div class="lr-status-note" id="lr-hero-status"><strong>COMMAND LINK OFFLINE</strong> · Open Control Panel to link a profile or use Shared Device Mode</div>
+  <div class="lr-status-note" id="lr-hero-status"><strong>COMMAND LINK OFFLINE</strong> · Open Control Panel to link a profile or use Shared Device Mode.</div>
 </div>
 
 <main>
@@ -898,30 +908,29 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
     <div class="quick-card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <div class="quick-number">1</div>
       <strong>Choose a mission</strong>
-      <p>Choose the skill area you want to practice right now. Each module has its own theme, but they all work the same way.</p>
+      <p>Pick any skill area. Every training deck is open from the start.</p>
     </div>
     <div class="quick-card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <div class="quick-number">2</div>
       <strong>Play and repeat</strong>
-      <p>Try the daily challenge, play a mode, and come back as often as you want. Repetition is built in on purpose.</p>
+      <p>Practice in any order and come back as often as you want.</p>
     </div>
     <div class="quick-card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <div class="quick-number">3</div>
       <strong>Use Mission Control</strong>
-      <p>Open Mission Control from the homepage or any module to track one learner across this device.</p>
+      <p>Track one learner on this device from the homepage or any module.</p>
     </div>
   </section>
 
   <section class="bridge-console" aria-label="Control panel access">
-    <div class="info-card control-card lr-panel-card lr-panel-home" style="max-width:980px;margin:0 auto;">
+    <div class="info-card control-card lr-panel-card lr-panel-home" style="max-width:960px;margin:0 auto;">
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <div class="info-title">Control Panel</div>
       <h2>Set your systems before launch.</h2>
-      <p>Open the Control Panel to manage your profile link, support systems, and local device settings.</p>
+      <p>Manage your profile link, support systems, and this device from one place.</p>
       <div class="lr-panel-list">
-        <div class="lr-panel-item"><div class="lr-panel-mark">1</div><div><strong>Link your profile</strong><br/><span>Save a display name or use Shared Device Mode when more than one person uses the device.</span></div></div>
-        <div class="lr-panel-item"><div class="lr-panel-mark">2</div><div><strong>Adjust support systems</strong><br/><span>Text size, contrast, motion, audio, and learning aids can all be set from one place.</span></div></div>
-        <div class="lr-panel-item"><div class="lr-panel-mark">3</div><div><strong>Open your local console</strong><br/><span>Manage module visibility, presets, and device tools without crowding the launch deck.</span></div></div>
+        <div class="lr-panel-item"><div class="lr-panel-mark">1</div><div><strong>Link your profile</strong><br/><span>Save a display name or stay in Shared Device Mode.</span></div></div>
+        <div class="lr-panel-item"><div class="lr-panel-mark">2</div><div><strong>Adjust support systems</strong><br/><span>Text, contrast, motion, audio, and learning aids all live here.</span></div></div>
       </div>
       <div style="margin-top:16px">
         <a class="btn btn-primary" href="ControlPanel.html">Open Control Panel</a>
@@ -1148,13 +1157,12 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 60px;position:relative;z-inde
 })();
 </script>
 
-<script>
+<script id="lifeready-shared-sw">
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ r.unregister(); }); }).catch(function(){});
-    if (window.caches && caches.keys) {
-      caches.keys().then(function(keys){ keys.forEach(function(k){ caches.delete(k); }); }).catch(function(){});
-    }
+    navigator.serviceWorker.register('./sw.js').catch(function(err){
+      console.warn('LifeReady service worker registration failed:', err);
+    });
   });
 }
 </script>

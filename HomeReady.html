@@ -6533,10 +6533,9 @@ let _lt=0;document.addEventListener('touchend',function(e){const n=Date.now();if
 <script id="lifeready-shared-sw">
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ r.unregister(); }); }).catch(function(){});
-    if (window.caches && caches.keys) {
-      caches.keys().then(function(keys){ keys.forEach(function(k){ caches.delete(k); }); }).catch(function(){});
-    }
+    navigator.serviceWorker.register('./sw.js').catch(function(err){
+      console.warn('LifeReady service worker registration failed:', err);
+    });
   });
 }
 </script>

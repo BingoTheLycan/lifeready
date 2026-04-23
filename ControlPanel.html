@@ -124,7 +124,7 @@ body::before{
     </div>
 
     <section class="cp-hero">
-      <div class="cp-kicker">LifeReady Systems Console</div>
+      <div class="cp-kicker">Control Panel</div>
       <h1 class="cp-title" id="cp-status-title">SYSTEMS ONLINE</h1>
       <p class="cp-copy" id="cp-status-copy">Link a display name here, or use Shared Device Mode.</p>
       <div class="cp-note" id="cp-device-note">Shared Device Mode active. Best for classrooms, programs, families, and support teams.</div>
@@ -132,7 +132,7 @@ body::before{
         <div class="cp-summary-card"><div class="cp-summary-label">Profile Link</div><div class="cp-summary-value" id="cp-sum-profile">Shared Device</div></div>
         <div class="cp-summary-card"><div class="cp-summary-label">Support Systems</div><div class="cp-summary-value" id="cp-sum-supports">0 online</div></div>
         <div class="cp-summary-card"><div class="cp-summary-label">Mission Decks</div><div class="cp-summary-value" id="cp-sum-decks">8 visible</div></div>
-        <div class="cp-summary-card"><div class="cp-summary-label">Readiness Rank</div><div class="cp-summary-value" id="cp-sum-rank">Cadet</div></div>
+        <div class="cp-summary-card"><div class="cp-summary-label">Readiness Level</div><div class="cp-summary-value" id="cp-sum-rank">Cadet</div></div>
       </div>
     </section>
 
@@ -142,8 +142,8 @@ body::before{
           <div class="cp-section-head">
             <div>
               <div class="cp-section-kicker">Profile Link</div>
-              <h2>Command Link Console</h2>
-              <p>Set one learner name for this device, or leave the profile blank and keep Shared Device Mode on.</p>
+              <h2>Profile Link</h2>
+              <p>Set one display name for this device, or leave it blank and stay in Shared Device Mode.</p>
             </div>
           </div>
           <div class="cp-field">
@@ -161,9 +161,9 @@ body::before{
         <section class="cp-card">
           <div class="cp-section-head">
             <div>
-              <div class="cp-section-kicker">System Presets</div>
-              <h2>Quick Setup Modes</h2>
-              <p>One tap loads a whole support setup. Because flipping twelve switches every time is extremely human and also extremely annoying.</p>
+              <div class="cp-section-kicker">Quick Modes</div>
+              <h2>Quick Modes</h2>
+              <p>One tap loads a whole support setup so you do not have to keep flipping the same switches.</p>
             </div>
           </div>
           <div class="cp-field-copy">Current preset: <strong id="cp-preset-state" style="color:var(--text)">Custom Setup</strong></div>
@@ -179,7 +179,7 @@ body::before{
           <div class="cp-section-head">
             <div>
               <div class="cp-section-kicker">Support Systems</div>
-              <h2>Accessibility + Training Defaults</h2>
+              <h2>Support Systems</h2>
               <p>Some settings change the display right away. Others become the starting support setup inside each module.</p>
             </div>
           </div>
@@ -222,9 +222,9 @@ body::before{
         <section class="cp-card">
           <div class="cp-section-head">
             <div>
-              <div class="cp-section-kicker">Status Board</div>
-              <h2>Current Readiness Snapshot</h2>
-              <p>A quick systems readout, because nobody should need six menus to confirm one setting.</p>
+              <div class="cp-section-kicker">Readiness</div>
+              <h2>Readiness</h2>
+              <p>A quick readout for recent activity and current support settings.</p>
             </div>
             <a class="cp-summary-link" href="ReadinessReport.html">Open Full Report</a>
           </div>
@@ -254,9 +254,9 @@ body::before{
         <section class="cp-card">
           <div class="cp-section-head">
             <div>
-              <div class="cp-section-kicker">Local Console</div>
-              <h2>Bridge Links + Device Tools</h2>
-              <p>Fast access to the parts of LifeReady people actually need.</p>
+              <div class="cp-section-kicker">This Device</div>
+              <h2>This Device</h2>
+              <p>Quick links for the parts of LifeReady you may want most often.</p>
             </div>
           </div>
           <div class="cp-utility-links">
@@ -274,8 +274,8 @@ body::before{
           <div class="cp-section-head">
             <div>
               <div class="cp-section-kicker">Danger Zone</div>
-              <h2>Local Device Reset</h2>
-              <p>Use these only when you really mean it. Red buttons remain one of humanity’s most suspicious hobbies.</p>
+              <h2>Reset</h2>
+              <p>Use these only when you really mean it.</p>
             </div>
           </div>
           <div class="cp-row">
@@ -288,10 +288,19 @@ body::before{
     </div>
 
     <div class="cp-footer">
-      LifeReady Control Panel keeps your profile link, support systems, and local settings in one place.<br/>
+      LifeReady keeps your profile link, support systems, and device settings in one place.<br/>
       Free for everyone. Built for real-world readiness.
     </div>
   </div>
   <script src="lifeready-control.js"></script>
+  <script id="lifeready-shared-sw">
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js').catch(function(err){
+      console.warn('LifeReady service worker registration failed:', err);
+    });
+  });
+}
+</script>
 </body>
 </html>

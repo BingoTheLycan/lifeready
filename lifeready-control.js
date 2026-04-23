@@ -3,14 +3,14 @@
   const ACTIVITY_KEY = 'lr_activity_v1';
   const PROGRESS_KEY = 'lr_progress_v1';
   const MODULES = [
-    { key:'CashReady', file:'CashReady.html', label:'CashReady', accent:'#00c851', deck:'Neon Checkout Deck' },
-    { key:'TimeReady', file:'TimeReady.html', label:'TimeReady', accent:'#33b5e5', deck:'Chrono Training Deck' },
-    { key:'JobReady', file:'JobReady.html', label:'JobReady', accent:'#ffbb33', deck:'Career Command Deck' },
-    { key:'HomeReady', file:'HomeReady.html', label:'HomeReady', accent:'#e8650a', deck:'Home Systems Deck' },
-    { key:'TravelReady', file:'TravelReady.html', label:'TravelReady', accent:'#00bcd4', deck:'Transit Navigation Deck' },
-    { key:'SocialReady', file:'SocialReady.html', label:'SocialReady', accent:'#9c27b0', deck:'Communication Deck' },
-    { key:'TechReady', file:'TechReady.html', label:'TechReady', accent:'#cc2200', deck:'Digital Systems Deck' },
-    { key:'HealthReady', file:'HealthReady.html', label:'HealthReady', accent:'#e91e8c', deck:'Med Bay Deck' }
+    { key:'CashReady', file:'CashReady.html', label:'CashReady', accent:'#00c851', deck:'Checkout Deck' },
+    { key:'TimeReady', file:'TimeReady.html', label:'TimeReady', accent:'#33b5e5', deck:'Clock Deck' },
+    { key:'JobReady', file:'JobReady.html', label:'JobReady', accent:'#ffbb33', deck:'Career Deck' },
+    { key:'HomeReady', file:'HomeReady.html', label:'HomeReady', accent:'#e8650a', deck:'Habitat Deck' },
+    { key:'TravelReady', file:'TravelReady.html', label:'TravelReady', accent:'#00bcd4', deck:'Transit Deck' },
+    { key:'SocialReady', file:'SocialReady.html', label:'SocialReady', accent:'#9c27b0', deck:'Communications Deck' },
+    { key:'TechReady', file:'TechReady.html', label:'TechReady', accent:'#cc2200', deck:'Cyber Deck' },
+    { key:'HealthReady', file:'HealthReady.html', label:'HealthReady', accent:'#e91e8c', deck:'Med Bay' }
   ];
   const GLOBAL_ACCESS_KEYS = ['audio','colorblindMode','largetext','largebtns','nomotion','breaks','errorless','hicontrast','lightmode','speed'];
   const DEFAULTS = {

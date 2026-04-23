@@ -153,8 +153,8 @@
     const heroNote = document.getElementById('lr-hero-status');
     const name = data.profile.displayName;
     if (title) title.textContent = name ? `BACK ON DECK, ${name.toUpperCase()}` : 'SYSTEMS ONLINE';
-    if (copy) copy.textContent = name ? 'Training profile linked. Your suite-wide settings are ready across every module.' : 'Link your profile once here, then carry your name and learning setup across the whole suite.';
-    if (note) note.textContent = data.profile.sharedDevice ? 'Shared Device Mode active. Use initials or a nickname if other people use this computer, phone, or tablet.' : 'Personal Device Mode active. Your name and suite settings stay linked on this device.';
+    if (copy) copy.textContent = name ? 'Training profile linked. Ready for launch.' : 'Link a display name here, or use Shared Device Mode.';
+    if (note) note.textContent = data.profile.sharedDevice ? 'Shared Device Mode active. Use initials or a nickname if other people use this computer, phone, or tablet.' : 'Personal Device Mode active. Your name is saved on this device.';
     if (nameInput) nameInput.value = name || '';
     if (clearBtn) clearBtn.textContent = name ? 'Clear Profile From Device' : 'Use Shared Device Mode';
     if (heroNote) heroNote.innerHTML = name
@@ -265,7 +265,7 @@
     const btn = document.getElementById('name-setting-btn');
     const clearBtn = document.getElementById('clear-name-btn');
     const data = read();
-    if (display) display.textContent = data.profile.displayName ? `Linked Profile: ${data.profile.displayName}` : 'No suite profile linked';
+    if (display) display.textContent = data.profile.displayName ? `Linked Profile: ${data.profile.displayName}` : 'No profile linked';
     if (btn) {
       btn.textContent = 'Open Control Panel';
       btn.onclick = function(){ location.href = controlUrl(); };
@@ -293,9 +293,9 @@
     document.querySelectorAll('#scr-settings .ss').forEach(section => {
       if (findSectionTitle(section) === 'PLAYER NAME (OPTIONAL)') {
         const hdr = section.querySelector('.st');
-        if (hdr) hdr.textContent = 'SUITE PROFILE';
+        if (hdr) hdr.textContent = 'LINKED PROFILE';
         const desc = section.querySelector('.sd2');
-        if (desc) desc.textContent = 'Managed from the Control Panel so every module uses the same linked profile.';
+        if (desc) desc.textContent = 'Managed from the Control Panel.';
       }
     });
   }
@@ -309,7 +309,7 @@
     box.innerHTML = `
       <div class="st">CONTROL PANEL</div>
       <div class="lr-cta">
-        <div class="lr-copy">Link your display name once, set suite-wide accessibility defaults, and set suite-wide support defaults without repeating the same setup in every module.</div>
+        <div class="lr-copy">Open the Control Panel to manage your display name, support systems, and device settings.</div>
         <button type="button">Open Control Panel</button>
       </div>`;
     const btn = box.querySelector('button');
@@ -406,7 +406,7 @@
     const note = document.getElementById('cp-device-note');
     const input = document.getElementById('cp-name');
     if (header) header.textContent = name ? `BACK ON DECK, ${name.toUpperCase()}` : 'SYSTEMS ONLINE';
-    if (copy) copy.textContent = name ? 'Profile linked. Your command settings are active across every enabled training deck.' : 'Link a display name once, then let the whole suite carry it for you.';
+    if (copy) copy.textContent = name ? 'Profile linked. Support systems ready.' : 'Link a display name, or use Shared Device Mode.';
     if (note) note.textContent = data.profile.sharedDevice ? 'Shared Device Mode active. This is best for schools, programs, families, and support teams.' : 'Personal Device Mode active. Your linked profile is saved on this device.';
     if (input && document.activeElement !== input) input.value = name;
 
@@ -502,13 +502,13 @@
     });
 
     if (resetBtn) resetBtn.addEventListener('click', function(){
-      if (!window.confirm('Reset the Control Panel to default suite settings?')) return;
+      if (!window.confirm('Reset the Control Panel to default settings?')) return;
       write(clone(DEFAULTS));
       refreshControlPanel();
     });
 
     if (wipeBtn) wipeBtn.addEventListener('click', function(){
-      if (!window.confirm('Clear LifeReady data saved on this device? This removes suite settings, module progress, and Mission Control data stored locally.')) return;
+      if (!window.confirm('Clear LifeReady data saved on this device? This removes saved settings, module progress, and Mission Control data stored locally.')) return;
       const keysToRemove = [];
       for (let i = 0; i < localStorage.length; i += 1) {
         const key = localStorage.key(i);

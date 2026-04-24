@@ -7030,7 +7030,7 @@ function printClientReport(i){
       .lr-reward-eventicon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:1.2rem;flex:0 0 40px}
       .lr-reward-eventtitle{font-weight:800;color:var(--text)}
       .lr-reward-eventcopy{font-size:.76rem;color:var(--text3);margin-top:4px;line-height:1.45}
-      .lr-end-run-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.85fr);gap:12px;align-items:stretch}
+      .lr-end-run-stack{display:grid;gap:12px}
       .lr-reward-endhero,.lr-reward-endaside{padding:14px;display:grid;gap:10px}
       .lr-reward-endtitle{font-family:var(--font-mono);font-size:.64rem;letter-spacing:2px;color:var(--text3);text-transform:uppercase}
       .lr-reward-endmain{font-family:var(--font-display);font-size:1.12rem;color:var(--text);line-height:1.2}
@@ -7039,17 +7039,18 @@ function printClientReport(i){
       .lr-reward-endstat{padding:12px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
       .lr-reward-endstat .v{font-family:var(--font-display);font-size:1rem;color:var(--text)}
       .lr-reward-endstat .l{font-size:.68rem;color:var(--text3);margin-top:4px}
-      .lr-reward-endgoals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
-      .lr-reward-endgoals .lr-goal-row{padding:10px 12px;display:grid;gap:5px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.06);box-shadow:none}
+      .lr-reward-endgoals{display:grid;grid-template-columns:1fr;gap:10px}
+      .lr-reward-endgoals .lr-goal-row{padding:12px 14px;display:grid;gap:7px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.06);box-shadow:none}
+      .lr-reward-endgoals .lr-goal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
       .lr-reward-endgoals .lr-goal-copy{margin-top:0;font-size:.74rem;color:var(--text2)}
       .lr-reward-endgoals .lr-goal-label{font-size:.92rem;line-height:1.2}
-      .lr-reward-endgoals .lr-goal-meta{font-size:.69rem;margin-top:4px;color:var(--text3)}
+      .lr-reward-endgoals .lr-goal-meta{font-size:.69rem;margin-top:2px;color:var(--text3)}
       .lr-reward-mini{font-size:.72rem;color:var(--text3)}
       .lr-practice-reward-box{margin-top:12px;background:linear-gradient(135deg,rgba(116,224,255,.12),rgba(0,255,163,.08));border:1px solid rgba(116,224,255,.26);border-radius:16px;padding:12px;display:grid;gap:8px}
       .lr-practice-reward-box .title{font-family:var(--font-mono);font-size:.6rem;letter-spacing:1.7px;text-transform:uppercase;color:var(--text3)}
       @media (max-width:760px){
         .lr-reward-statgrid,.lr-reward-endstatgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
-        .lr-patch-grid,.lr-reward-honorgrid,.lr-reward-endgoals,.lr-end-run-grid{grid-template-columns:1fr}
+        .lr-patch-grid,.lr-reward-honorgrid{grid-template-columns:1fr}
       }
       @media (max-width:520px){
         .lr-tier-summary{grid-template-columns:1fr}
@@ -7431,10 +7432,10 @@ function printClientReport(i){
       const rankData=rankProgressData((loadData().totalXP||0));
       const active=result.goals[activeGoalIndex(result)] || result.goals[0];
       const goalCards=(result.goals||[]).map(function(goal){
-        return '<div class="lr-goal-row"><div class="lr-goal-kicker">'+esc(goal.label)+'</div><div class="lr-goal-label">'+esc(goal.state)+'</div><div class="lr-goal-copy">'+esc(goal.copy)+'</div><div class="lr-goal-progress"><span style="width:'+esc(goal.pct||0)+'%"></span></div><div class="lr-goal-meta">'+esc(goal.meta||'')+'</div></div>';
+        return '<div class="lr-goal-row"><div class="lr-goal-head"><div class="lr-goal-kicker">'+esc(goal.label)+'</div><div class="lr-goal-label">'+esc(goal.state)+'</div></div><div class="lr-goal-copy">'+esc(goal.copy)+'</div><div class="lr-goal-progress"><span style="width:'+esc(goal.pct||0)+'%"></span></div><div class="lr-goal-meta">'+esc(goal.meta||'')+'</div></div>';
       }).join('');
       wrap.innerHTML=''
-        + '<div class="lr-end-run-grid">'
+        + '<div class="lr-end-run-stack">'
         +   '<div class="lr-reward-endhero">'
         +     '<div class="lr-reward-endtitle">Patch Update</div>'
         +     '<div class="lr-reward-endmain">'+esc(result.patch)+' • '+esc(result.tierName)+'</div>'
@@ -7456,8 +7457,8 @@ function printClientReport(i){
         +       '<div class="lr-reward-endstat"><div class="v">'+esc(result.hintsUsed||0)+'</div><div class="l">Hints Used</div></div>'
         +     '</div>'
         +   '</div>'
-        + '</div>'
-        + '<div class="lr-reward-endgoals">'+goalCards+'</div>';
+        +   '<div class="lr-reward-endgoals">'+goalCards+'</div>'
+        + '</div>';
     }
     const viewBtn=[].slice.call(document.querySelectorAll('button[onclick="go(\'badges\')"]'));
     viewBtn.forEach(function(btn){ if(/badge|reward/i.test(btn.textContent||'')) btn.textContent='🏆 View Rewards'; });

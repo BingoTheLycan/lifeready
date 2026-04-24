@@ -1,6 +1,6 @@
-// LifeReady Service Worker (v49 - multi-device release prep)
+// LifeReady Service Worker (v50 - cleanup polish)
 
-const VERSION = 'v49';
+const VERSION = 'v50';
 const STATIC_CACHE = `lifeready-static-${VERSION}`;
 const RUNTIME_CACHE = `lifeready-runtime-${VERSION}`;
 

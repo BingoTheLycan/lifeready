@@ -2583,14 +2583,14 @@ function nextBestAction(learner){
   const modStats = moduleStats(learner);
   const activeObjective = learner.objectives.find(obj=>!goalMet(learner,obj));
   if(activeObjective){
-    return `Focus on ${activeObjective.module === 'All Modules' ? 'the current objective' : activeObjective.module} next. The active target is "${activeObjective.title || objectiveTemplateLabel(activeObjective)}".`;
+    return `Current support focus: ${activeObjective.module === 'All Modules' ? 'the current objective' : activeObjective.module}. Active target: "${activeObjective.title || objectiveTemplateLabel(activeObjective)}".`;
   }
   const untouched = modStats.find(m=>!m.sessions.length);
-  if(untouched) return `No ${untouched.id} sessions are logged yet. Run one clean round there next so the dashboard has real evidence to work with.`;
+  if(untouched) return `No ${untouched.id} sessions are logged yet. One clean round there will give the dashboard real evidence to work with.`;
   const needsReview = modStats.find(m=>m.status === 'Needs Review');
   if(needsReview) return `${needsReview.id} is trending down. Slow it down, reduce pressure, and log one follow-up session with support notes.`;
   const weakest = strongestAndWeakest(modStats).weakest;
-  return `Practice ${weakest} next. That module has the most room to grow and will sharpen the overall readiness picture.`;
+  return `Skill area to revisit: ${weakest}. That module has room to grow and will sharpen the overall readiness picture.`;
 }
 function missionBrief(learner){
   const ms = moduleStats(learner);
@@ -2790,7 +2790,7 @@ function reportText(learner){
     `Objectives still active: ${activeCount}`,
     objectiveData.items.length ? objectiveData.items.map(obj=>`- ${obj.title || objectiveTemplateLabel(obj)}${goalMet(learner,obj) ? ' [met]' : ''}`).join('\n') : '- No objectives tracked yet',
     '',
-    `Recommended Next Step`,
+    `Support Focus`,
     nextBestAction(learner)
   ].join('\n');
 }
@@ -3074,7 +3074,7 @@ function weeklySummaryText(learner){
     '',
     `Objectives met: ${obj.met} of ${obj.total || 0}.`,
     `Trend: ${improvementSummary(learner)}`,
-    `Next step: ${nextBestAction(learner)}`
+    `Support focus: ${nextBestAction(learner)}`
   ].join('\n');
 }
 function progressBriefText(learner){
@@ -3093,7 +3093,7 @@ function progressBriefText(learner){
     `Module status:`,
     (mods.length ? mods.map(m=>`- ${m.id}: ${m.status}${m.sessions.length ? ` · ${m.avg}% accuracy` : ''}`).join('\n') : '- No module sessions logged yet.'),
     '',
-    `Recommended next action: ${nextBestAction(learner)}`
+    `Support focus: ${nextBestAction(learner)}`
   ].join('\n');
 }
 function goalUpdateText(learner){
@@ -3310,7 +3310,7 @@ function renderOverview(){
         </div>
       </section>
       <aside class="console-side">
-        <div class="console-card"><h4>Next Best Action</h4><p>${escapeHtml(nextBestAction(learner))}</p></div>
+        <div class="console-card"><h4>Support Focus</h4><p>${escapeHtml(nextBestAction(learner))}</p></div>
         <div class="console-card"><h4>Goal Focus</h4><p>${escapeHtml(activeGoal ? `${activeGoal.title || objectiveTemplateLabel(activeGoal)} · ${Math.round(goalProgress(learner,activeGoal)*100)}% progress` : 'No active goal yet. Add one so staff can aim at something concrete.')}</p></div>
         <div class="console-card"><h4>Report Readiness</h4><p>${escapeHtml(reportReady)}</p></div>
       </aside>
@@ -3632,7 +3632,7 @@ function panelOverviewMarkup(learner){
   return `
     <div class="panel-overlay-grid">
       <div class="overlay-card"><h4>Mission Brief</h4><p>${escapeHtml(missionBrief(learner))}</p></div>
-      <div class="overlay-card"><h4>Next Best Action</h4><p>${escapeHtml(nextBestAction(learner))}</p></div>
+      <div class="overlay-card"><h4>Support Focus</h4><p>${escapeHtml(nextBestAction(learner))}</p></div>
       <div class="overlay-card"><h4>Strongest Module</h4><div class="big-number">${escapeHtml(sw.strongest)}</div><div class="subline">Best combined score in the current view.</div></div>
       <div class="overlay-card"><h4>Needs Attention</h4><div class="big-number">${escapeHtml(sw.weakest)}</div><div class="subline">Lowest combined score in the current view.</div></div>
     </div>

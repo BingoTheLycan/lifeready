@@ -273,8 +273,8 @@
     if (nameInput && document.activeElement !== nameInput) nameInput.value = name || '';
     if (clearBtn) clearBtn.textContent = name ? 'Clear Profile From Device' : 'Use Shared Device Mode';
     if (heroNote) heroNote.innerHTML = name
-      ? `<span class="lr-band-label">COMMAND LINKED</span><span class="lr-band-copy">${escapeHTML(name)} · ${data.profile.sharedDevice ? 'SHARED DEVICE MODE' : 'PERSONAL DEVICE MODE'} · ${readiness.activeSupports} SUPPORT SYSTEM${readiness.activeSupports === 1 ? '' : 'S'} ACTIVE</span>`
-      : `<span class="lr-band-label">COMMAND LINK OFFLINE</span><span class="lr-band-copy">Open Control Panel to link a profile or use Shared Device Mode.</span>`;
+      ? `<span class="lr-band-label">PROFILE LINKED</span><span class="lr-band-copy">${escapeHTML(name)} · ${data.profile.sharedDevice ? 'SHARED DEVICE MODE' : 'PERSONAL DEVICE MODE'} · ${readiness.activeSupports} SUPPORT SYSTEM${readiness.activeSupports === 1 ? '' : 'S'} ACTIVE</span>`
+      : `<span class="lr-band-label">PROFILE OFFLINE</span><span class="lr-band-copy">Open Control Panel to link a profile or use Shared Device Mode.</span>`;
     const bridgeStatus = document.getElementById('lr-bridge-status');
     if (bridgeStatus) bridgeStatus.textContent = name ? `${name} linked · ${readiness.currentRank} status · ${readiness.visibleDecks} decks online` : `Profile offline · ${readiness.visibleDecks} decks online`;
     const readinessMode = document.getElementById('lr-bridge-recent');
@@ -340,7 +340,7 @@
         });
         renderHubStatus(next);
         renderHomeReadiness();
-        toast(displayName ? 'COMMAND LINKED' : 'SHARED DEVICE MODE', displayName ? `${displayName} is now linked on this device.` : 'No name saved. This device will stay in shared mode.', 'success');
+        toast(displayName ? 'PROFILE LINKED' : 'SHARED DEVICE MODE', displayName ? `${displayName} is now linked on this device.` : 'No name saved. This device will stay in shared mode.', 'success');
       });
     }
     if (clearBtn) {
@@ -440,7 +440,7 @@
     document.querySelectorAll('#scr-settings .ss').forEach(section => {
       if (findSectionTitle(section) === 'PLAYER NAME (OPTIONAL)') {
         const hdr = section.querySelector('.st');
-        if (hdr) hdr.textContent = 'SUITE PROFILE';
+        if (hdr) hdr.textContent = 'PROFILE LINK';
         const desc = section.querySelector('.sd2');
         if (desc) desc.textContent = 'Managed from the Control Panel so every module uses the same linked profile.';
       }
@@ -619,7 +619,7 @@
         return cfg;
       });
       refreshControlPanel();
-      toast(displayName ? 'COMMAND LINKED' : 'SHARED DEVICE MODE', displayName ? `${displayName} is now linked on this device.` : 'This device is now set to shared mode.', 'success');
+      toast(displayName ? 'PROFILE LINKED' : 'SHARED DEVICE MODE', displayName ? `${displayName} is now linked on this device.` : 'This device is now set to shared mode.', 'success');
     });
 
     if (clearNameBtn) clearNameBtn.addEventListener('click', function(){

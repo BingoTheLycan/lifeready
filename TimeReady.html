@@ -2287,7 +2287,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="r-tabs"><button class="r-tab on" onclick="showRTab('summary',this)">SUMMARY</button><button class="r-tab" id="rounds-tab-btn" onclick="showRTab('rounds',this)">ROUND REVIEW (0)</button><button class="r-tab" onclick="showRTab('nextsteps',this)">COACHING</button></div>
 <div class="r-tab-pane on" id="rtab-summary"><div class="rr-card rr-summary-card"><div class="rr-section-label">Mission Signal</div><div class="rr-session-card" id="rr-session-card"></div></div></div>
 <div class="r-tab-pane" id="rtab-rounds"><div class="rr-card rr-rounds-card"><div class="rr-action-row"><div class="rr-section-label">Round Review</div><div class="rr-action-note">Every run gets a recap</div></div><div id="rounds-log"></div></div></div>
-<div class="r-tab-pane" id="rtab-nextsteps"><div class="rr-coach-grid"><div class="rr-card rr-coach-card"><div class="rr-section-label">What Went Well</div><div id="rr-well-card"></div></div><div class="rr-card rr-coach-card"><div class="rr-section-label">Practice Next</div><div id="wtw-card"></div></div><div class="rr-card rr-coach-card"><div class="rr-section-label">Helpful Reminder</div><div id="rr-reminder-card"></div></div></div></div>
+<div class="r-tab-pane" id="rtab-nextsteps"><div class="rr-coach-grid"><div class="rr-card rr-coach-card"><div class="rr-section-label">What Went Well</div><div id="rr-well-card"></div></div><div class="rr-card rr-coach-card"><div class="rr-section-label">Skill to Revisit</div><div id="wtw-card"></div></div><div class="rr-card rr-coach-card"><div class="rr-section-label">Helpful Reminder</div><div id="rr-reminder-card"></div></div></div></div>
 <div class="rbtns rr-btns"><button class="rpri" id="r-play-again">▶ PLAY AGAIN</button><button class="rsec" id="r-share" onclick="shareScore()" style="display:none">📤 SHARE MY SCORE</button><button class="rsec" id="r-coach-copy" onclick="copyForCoach()" style="display:none">📋 COPY SESSION SUMMARY</button><button class="rsec" onclick="go('home')">← MAIN MENU</button></div>
 </div>
 </div>
@@ -2501,22 +2501,6 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="st">LEARNING AIDS</div>
 <div class="sr"><div class="si">✨</div><div class="sinfo"><div class="sn">Errorless Learning</div><div class="sd2">Highlights the correct answer to build recognition before recall.</div></div><div class="tog" id="tog-errorless" onclick="togSet('errorless')"></div></div>
 </div>
-<div class="ss">
-<div class="st">MISSION CONTROL</div>
-<div class="sr">
-<div class="si">🔒</div>
-<div class="sinfo"><div class="sn">Mission Control PIN</div><div class="sd2">Reset the PIN for Mission Control. At least 4 characters.</div></div>
-<button class="cbt" onclick="resetCoachPin()" style="flex-shrink:0;font-size:.72rem">Reset PIN</button>
-</div>
-</div>
-<div class="ss">
-<div class="st">PLAYER NAME (OPTIONAL)</div>
-<div class="sr">
-<div class="si">👤</div>
-<div class="sinfo"><div class="sn" id="name-setting-display">No name set</div><div class="sd2">Appears on your results card. Personal devices only.</div></div>
-<button class="cbt" id="name-setting-btn" onclick="openNamePrompt()" style="flex-shrink:0;font-size:.72rem">Set Name</button>
-</div>
-</div>
 <div style="text-align:center;padding:12px 0 4px">
 <div style="font-family:var(--font-mono);font-size:.62rem;color:var(--text3);margin-bottom:3px">TimeReady v1.0</div>
 <div style="font-size:.72rem;color:var(--blue);font-weight:700">© 2026 Tristan</div>
@@ -2582,7 +2566,7 @@ body.hi-contrast #scr-home .home-hero::after{display:none !important;}
 <div class="mc-welcome-step"><div class="mc-welcome-stepno">1</div><div class="mc-welcome-stepbody"><strong>Add Learner</strong>Create one profile for each learner.</div></div>
 <div class="mc-welcome-step"><div class="mc-welcome-stepno">2</div><div class="mc-welcome-stepbody"><strong>Log Session</strong>Record the skill, prompt level, score, and a quick note.</div></div>
 <div class="mc-welcome-step"><div class="mc-welcome-stepno">3</div><div class="mc-welcome-stepbody"><strong>Set Objective</strong>Add a goal once. Mission Control tracks progress automatically.</div></div>
-<div class="mc-welcome-step"><div class="mc-welcome-stepno">4</div><div class="mc-welcome-stepbody"><strong>Smart Guidance</strong>Watch for Needs Attention, support needs, and next best actions.</div></div>
+<div class="mc-welcome-step"><div class="mc-welcome-stepno">4</div><div class="mc-welcome-stepbody"><strong>Smart Guidance</strong>Watch for Needs Attention, support needs, and support focus cues.</div></div>
 </div>
 <div class="mc-welcome-note">Use initials or learner nicknames on shared devices. Mission Control keeps progress organized so staff spend less time typing and more time teaching.</div>
 <div class="mc-welcome-foot">🔒 PIN protected. Data stays on this device unless you choose to export or print a report.</div>
@@ -5324,7 +5308,7 @@ function renderCoach(){
   let body = `<div class="mc-sections">
     <section class="mc-section">
       <div class="mc-section-head">
-        <div><div class="mc-section-title">Next Best Actions</div><div class="mc-section-sub">Smart guidance to help you spend less time deciding what to log next.</div></div>
+        <div><div class="mc-section-title">Support Focus</div><div class="mc-section-sub">Support cues based on the sessions already logged.</div></div>
         <div class="mc-inline-chip">${Math.min(3, nextPool.length)} queued</div>
       </div>
       <div class="mc-next-list">${nextHtml}</div>
@@ -7590,7 +7574,7 @@ function nextBestActionForClient(cl, sessions){
   if(activeGoal) return {copy:`Run ${SKILL_NAMES[activeGoal.skill]||activeGoal.skill} once more and log the result to move the goal forward.`};
   if(needsAttention(cl,sessions)) return {copy:attentionReason(cl,sessions).replace('⚠ ','')};
   const weak=strongestWeakestSkill(computeAutoSkills(cl)).weakest;
-  if(weak && weak!=='Not enough data yet') return {copy:`Practice ${weak} next. Mission Control is calculating skill progress automatically from sessions.`};
+  if(weak && weak!=='Not enough data yet') return {copy:`Skill area to revisit: ${weak}. Mission Control is calculating skill progress automatically from sessions.`};
   return {copy:'Log one more real session to keep momentum and sharpen the trend data.'};
 }
 function coachCompactProgress(pct){
@@ -8681,7 +8665,7 @@ function finishScheduleBuilderRun(){
   showArcadeDebriefRedesign({
     modeKey:'daily_schedule_builder',
     modeTitle:'Daily Schedule Builder',
-    header:avgPct===100?'SCHEDULE RUN COMPLETE':avgPct>=80?'STRONG PLANNING':avgPct>=60?'BUILDING ROUTINES':'TRY ANOTHER RUN',
+    header:avgPct===100?'SCHEDULE RUN COMPLETE':avgPct>=80?'STRONG PLANNING':avgPct>=60?'BUILDING ROUTINES':'DAILY SCHEDULE BUILDER COMPLETE',
     sub:totalCorrect + ' of ' + totalSteps + ' routine steps landed in the right place.',
     correct:totalCorrect,
     total:Math.max(totalSteps,1),
@@ -9881,7 +9865,7 @@ function finishScheduleBuilderRun(){
       .lr-reward-eventicon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:1.2rem;flex:0 0 40px}
       .lr-reward-eventtitle{font-weight:800;color:var(--text)}
       .lr-reward-eventcopy{font-size:.76rem;color:var(--text3);margin-top:4px;line-height:1.45}
-      .lr-end-run-stack{display:grid;gap:12px}
+      .lr-end-run-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.85fr);gap:12px;align-items:stretch}
       .lr-reward-endhero,.lr-reward-endaside{padding:14px;display:grid;gap:10px}
       .lr-reward-endtitle{font-family:var(--font-mono);font-size:.64rem;letter-spacing:2px;color:var(--text3);text-transform:uppercase}
       .lr-reward-endmain{font-family:var(--font-display);font-size:1.12rem;color:var(--text);line-height:1.2}
@@ -9890,18 +9874,17 @@ function finishScheduleBuilderRun(){
       .lr-reward-endstat{padding:12px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
       .lr-reward-endstat .v{font-family:var(--font-display);font-size:1rem;color:var(--text)}
       .lr-reward-endstat .l{font-size:.68rem;color:var(--text3);margin-top:4px}
-      .lr-reward-endgoals{display:grid;grid-template-columns:1fr;gap:10px}
-      .lr-reward-endgoals .lr-goal-row{padding:12px 14px;display:grid;gap:7px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.06);box-shadow:none}
-      .lr-reward-endgoals .lr-goal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+      .lr-reward-endgoals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+      .lr-reward-endgoals .lr-goal-row{padding:10px 12px;display:grid;gap:5px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.06);box-shadow:none}
       .lr-reward-endgoals .lr-goal-copy{margin-top:0;font-size:.74rem;color:var(--text2)}
       .lr-reward-endgoals .lr-goal-label{font-size:.92rem;line-height:1.2}
-      .lr-reward-endgoals .lr-goal-meta{font-size:.69rem;margin-top:2px;color:var(--text3)}
+      .lr-reward-endgoals .lr-goal-meta{font-size:.69rem;margin-top:4px;color:var(--text3)}
       .lr-reward-mini{font-size:.72rem;color:var(--text3)}
       .lr-practice-reward-box{margin-top:12px;background:linear-gradient(135deg,rgba(116,224,255,.12),rgba(0,255,163,.08));border:1px solid rgba(116,224,255,.26);border-radius:16px;padding:12px;display:grid;gap:8px}
       .lr-practice-reward-box .title{font-family:var(--font-mono);font-size:.6rem;letter-spacing:1.7px;text-transform:uppercase;color:var(--text3)}
       @media (max-width:760px){
         .lr-reward-statgrid,.lr-reward-endstatgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
-        .lr-patch-grid,.lr-reward-honorgrid{grid-template-columns:1fr}
+        .lr-patch-grid,.lr-reward-honorgrid,.lr-reward-endgoals,.lr-end-run-grid{grid-template-columns:1fr}
       }
       @media (max-width:520px){
         .lr-tier-summary{grid-template-columns:1fr}
@@ -10283,10 +10266,10 @@ function finishScheduleBuilderRun(){
       const rankData=rankProgressData((loadData().totalXP||0));
       const active=result.goals[activeGoalIndex(result)] || result.goals[0];
       const goalCards=(result.goals||[]).map(function(goal){
-        return '<div class="lr-goal-row"><div class="lr-goal-head"><div class="lr-goal-kicker">'+esc(goal.label)+'</div><div class="lr-goal-label">'+esc(goal.state)+'</div></div><div class="lr-goal-copy">'+esc(goal.copy)+'</div><div class="lr-goal-progress"><span style="width:'+esc(goal.pct||0)+'%"></span></div><div class="lr-goal-meta">'+esc(goal.meta||'')+'</div></div>';
+        return '<div class="lr-goal-row"><div class="lr-goal-kicker">'+esc(goal.label)+'</div><div class="lr-goal-label">'+esc(goal.state)+'</div><div class="lr-goal-copy">'+esc(goal.copy)+'</div><div class="lr-goal-progress"><span style="width:'+esc(goal.pct||0)+'%"></span></div><div class="lr-goal-meta">'+esc(goal.meta||'')+'</div></div>';
       }).join('');
       wrap.innerHTML=''
-        + '<div class="lr-end-run-stack">'
+        + '<div class="lr-end-run-grid">'
         +   '<div class="lr-reward-endhero">'
         +     '<div class="lr-reward-endtitle">Patch Update</div>'
         +     '<div class="lr-reward-endmain">'+esc(result.patch)+' • '+esc(result.tierName)+'</div>'
@@ -10308,8 +10291,8 @@ function finishScheduleBuilderRun(){
         +       '<div class="lr-reward-endstat"><div class="v">'+esc(result.hintsUsed||0)+'</div><div class="l">Hints Used</div></div>'
         +     '</div>'
         +   '</div>'
-        +   '<div class="lr-reward-endgoals">'+goalCards+'</div>'
-        + '</div>';
+        + '</div>'
+        + '<div class="lr-reward-endgoals">'+goalCards+'</div>';
     }
     const viewBtn=[].slice.call(document.querySelectorAll('button[onclick="go(\'badges\')"]'));
     viewBtn.forEach(function(btn){ if(/badge|reward/i.test(btn.textContent||'')) btn.textContent='🏆 View Rewards'; });
